@@ -261,3 +261,13 @@ question-7-7
 measurement-invariance
 question-8-5
 question-9-5
+resources
+topics-schedule
+software
+grading-1
+rules
+academic-misconduct
+weekly-preparation
+background-knowledge
+instructors
+schedule

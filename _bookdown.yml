@@ -1,7 +1,8 @@
 book_filename: "TCSM"
-rmd_files: ["index.Rmd",
-"01-rstudio_and_basics.Rmd",
-"02-getting_data_in_R.Rmd",
+rmd_files: [
+  "index.Rmd",
+  "01-rstudio_and_basics.Rmd",
+  "02-getting_data_in_R.Rmd",
 "Week1_program.Rmd",
 "RQ-Week1.Rmd",
 "03-Week1_home.Rmd",
@@ -33,7 +34,9 @@ rmd_files: ["index.Rmd",
 "14-Week6_class.Rmd",
 "formative6.Rmd",
 "Week7_program.Rmd",
-"15-Week7_home.Rmd"]
+"15-Week7_home.Rmd",
+"assignments.Rmd"
+]
 language:
   ui:
     chapter_name: "Chapter "
