@@ -1,0 +1,62 @@
+--- 
+title: "Theory Construction and Statistical Modeling"
+#subtitle: "A guide to structural equation modeling in R"
+author: "Kyle M. Lang"
+date: "Last updated: `r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    config: 
+      toc:
+       collapse: section
+      search: yes
+      fontsettings:
+        size: 2
+    split_by: section
+    df_print: paged
+documentclass: book
+bibliography: [../bibtex/book.bib, ../bibtex/packages.bib]
+biblio-style: apalike
+link-citations: yes
+#description: "This is a guide for the elective course TCSM."
+---
+
+# Course Information {-}
+
+Placeholder
+
+
+## Instructors
+## Course overview
+### Schedule
+## Learning goals
+## Resources
+### Literature
+### Software
+## Reading questions
+## Weekly preparation
+### Background knowledge
+## Grading
+## Attendance
+
+<!--chapter:end:index.Rmd-->
+
+```{r, include = FALSE}
+library(dplyr)
+library(foreign)
+dataDir  <- "../../../data/"
+childDir <- "children/"
+imageDir <- "../../images/"
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+knitr::knit_child(paste0(childDir, "w0_setup.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(childDir, "w0_basics.Rmd"), quiet = TRUE, envir = parent.frame()) %>% 
+  cat(sep = "\n")
+#knitr::knit_child(paste0(childDir, "w0_tutorial.Rmd"), quiet = TRUE) %>% 
+#  cat(sep = "\n")
+```
+
+<!--chapter:end:week0.Rmd-->
+
