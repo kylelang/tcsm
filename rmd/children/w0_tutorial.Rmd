@@ -86,12 +86,15 @@ The four panes really help become organized. In RStudio, you can do everything a
 
 ```{r, echo = FALSE, eval = TRUE}
 library(foreign)
-LifeSat <- read.spss("../../data/LifeSat.sav", to.data.frame = TRUE, use.value.labels = FALSE)
-View(LifeSat)
+LifeSat <- read.spss(paste0(dataDir, "LifeSat.sav"), 
+                     to.data.frame = TRUE, 
+                     use.value.labels = FALSE)
 ```
 ```{r, echo = TRUE, eval = FALSE}
 library(foreign)
-LifeSat <- read.spss("../../data/LifeSat.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+LifeSat <- read.spss("LifeSat.sav", 
+                     to.data.frame = TRUE, 
+                     use.value.labels = FALSE)
 ```
 
 - Select these lines with the mouse.

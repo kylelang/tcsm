@@ -1,7 +1,7 @@
 ```{r, include = FALSE}
 library(dplyr)
 library(foreign)
-dataDir  <- "../../../data/"
+dataDir  <- "../../../../data/"
 childDir <- "children/"
 imageDir <- "../../images/"
 ```
@@ -11,6 +11,6 @@ knitr::knit_child(paste0(childDir, "w0_setup.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knitr::knit_child(paste0(childDir, "w0_basics.Rmd"), quiet = TRUE, envir = parent.frame()) %>% 
   cat(sep = "\n")
-#knitr::knit_child(paste0(childDir, "w0_tutorial.Rmd"), quiet = TRUE) %>% 
-#  cat(sep = "\n")
+knitr::knit_child(paste0(childDir, "w0_tutorial.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
 ```

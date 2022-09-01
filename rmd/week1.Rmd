@@ -2,8 +2,9 @@
 
 ```{r, include = FALSE}
 library(dplyr)
-dataDir  <- "../../../data/"
-childDir <- "./children/"
+dataDir  <- "../../../../data/"
+quizDir  <- "../../assess/"
+childDir <- "children/"
 ```
 
 **Homework before lecture**

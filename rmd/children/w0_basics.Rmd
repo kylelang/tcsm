@@ -82,7 +82,7 @@ data.frame(
                   "All values are words",
                   "Boolean flags: TRUE or FALSE",
                   "A special type of object with labels to represent the levels of a categorical variable")
-) %>% kable()
+) %>% knitr::kable()
 ```
 
 ### Converting to factors {#convertfactors}

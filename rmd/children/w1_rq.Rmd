@@ -2,7 +2,7 @@
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
-config <- yaml::yaml.load_file("config.yml")
+config <- yaml::yaml.load_file("../config.yml")
 ```
 
 ### Reference {-}

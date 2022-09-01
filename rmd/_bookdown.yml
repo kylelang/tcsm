@@ -1,9 +1,9 @@
 book_filename: "tcsm"
 rmd_files: [
   "index.Rmd",
-  "week0.Rmd" #,
-  #"week1.Rmd",
-  #"week2.Rmd",
+  "week0.Rmd",
+  "week1.Rmd",
+  "week2.Rmd",
 #"Week1_program.Rmd",
 #"RQ-Week1.Rmd",
 #"03-Week1_home.Rmd",
@@ -36,7 +36,7 @@ rmd_files: [
 #"formative6.Rmd",
 #"Week7_program.Rmd",
 #"15-Week7_home.Rmd",
-#"assignments.Rmd"
+"assignments.Rmd"
 ]
 language:
   ui:
