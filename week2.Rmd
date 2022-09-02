@@ -1,0 +1,41 @@
+# EFA
+
+```{r, include = FALSE}
+library(dplyr)
+dataDir  <- "../../data/"
+quizDir  <- "../assess/"
+partDir <- "sections/"
+```
+
+**Homework before the lecture**
+
+Read this week’s literature and finish the reading questions before coming to the lecture (see Blackboard for direct URLs)
+Make sure to also answer the reading questions (on Blackboard).
+
+- Preacher, Kristopher J. and MacCullum, Robert C. (2003) Repairing Tom Swift’s Electric Factor Analysis Machine, Understanding Statistics 2(1) 13-43.
+- Kestilä, Elina (2006) Is There Demand for Radical Right Populism in the Finnish Electorate? Scandinavian Political Studies 29(3),169-191
+
+**Lecture content**
+
+This lecture forms an introduction to latent variables and scaling procedures. Different aspects of exploratory factor analysis will be discussed. Most notably we focus on the differences between Principal Component Analyses (PCA) and Factor Analysis, estimation and extraction methods, and factor axes rotations. The researcher has to take decisions on all these aspects when (s)he wants to analyse whether questions form a scale or not. Furthermore, reliability and factor scores are discussed as methods to construct and evaluate the properties of a scale.
+
+**Homework before the practical**
+
+Perform the take home exercise Exploratory Factor Analysis (EFA) before coming to the practical.
+
+**Practical content**
+
+During the practical, the take home exercise EFA is shortly discussed. After this, students can work on the class exercise EFA.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+knitr::knit_child(paste0(partDir, "w2_lecture.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_rq.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_home.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_class.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_assess.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+```

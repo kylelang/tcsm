@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.4 In-Class Exercises | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="1.4 In-Class Exercises | Theory Construction and Statistical Modeling" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.4 In-Class Exercises | Theory Construction and Statistical Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.4 In-Class Exercises | Theory Construction and Statistical Modeling" />
+  
+  
+  
+
+<meta name="author" content="Kyle M. Lang" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="at-home-exercises.html"/>
+<link rel="next" href="formative-assessment.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">TCSM</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="course-information.html"><a href="course-information.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="instructors.html"><a href="instructors.html"><i class="fa fa-check"></i><b>0.1</b> Instructors</a></li>
+<li class="chapter" data-level="0.2" data-path="course-overview.html"><a href="course-overview.html"><i class="fa fa-check"></i><b>0.2</b> Course overview</a>
+<ul>
+<li class="chapter" data-level="0.2.1" data-path="course-overview.html"><a href="course-overview.html#schedule"><i class="fa fa-check"></i><b>0.2.1</b> Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="learning-goals.html"><a href="learning-goals.html"><i class="fa fa-check"></i><b>0.3</b> Learning goals</a></li>
+<li class="chapter" data-level="0.4" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>0.4</b> Resources</a>
+<ul>
+<li class="chapter" data-level="0.4.1" data-path="resources.html"><a href="resources.html#literature"><i class="fa fa-check"></i><b>0.4.1</b> Literature</a></li>
+<li class="chapter" data-level="0.4.2" data-path="resources.html"><a href="resources.html#software"><i class="fa fa-check"></i><b>0.4.2</b> Software</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="reading-questions.html"><a href="reading-questions.html"><i class="fa fa-check"></i><b>0.5</b> Reading questions</a></li>
+<li class="chapter" data-level="0.6" data-path="weekly-preparation.html"><a href="weekly-preparation.html"><i class="fa fa-check"></i><b>0.6</b> Weekly preparation</a>
+<ul>
+<li class="chapter" data-level="0.6.1" data-path="weekly-preparation.html"><a href="weekly-preparation.html#background-knowledge"><i class="fa fa-check"></i><b>0.6.1</b> Background knowledge</a></li>
+</ul></li>
+<li class="chapter" data-level="0.7" data-path="grading.html"><a href="grading.html"><i class="fa fa-check"></i><b>0.7</b> Grading</a></li>
+<li class="chapter" data-level="0.8" data-path="attendance.html"><a href="attendance.html"><i class="fa fa-check"></i><b>0.8</b> Attendance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i>Software Setup</a>
+<ul>
+<li class="chapter" data-level="0.9" data-path="installing-software.html"><a href="installing-software.html"><i class="fa fa-check"></i><b>0.9</b> Installing software</a>
+<ul>
+<li class="chapter" data-level="0.9.1" data-path="installing-software.html"><a href="installing-software.html#installing-r"><i class="fa fa-check"></i><b>0.9.1</b> Installing R</a></li>
+<li class="chapter" data-level="0.9.2" data-path="installing-software.html"><a href="installing-software.html#installing-rstudio"><i class="fa fa-check"></i><b>0.9.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="0.9.3" data-path="installing-software.html"><a href="installing-software.html#installpackages"><i class="fa fa-check"></i><b>0.9.3</b> Installing packages</a></li>
+</ul></li>
+<li class="chapter" data-level="0.10" data-path="basic-usage.html"><a href="basic-usage.html"><i class="fa fa-check"></i><b>0.10</b> Basic usage</a>
+<ul>
+<li class="chapter" data-level="0.10.1" data-path="basic-usage.html"><a href="basic-usage.html#starting-a-new-project-in-rstudio"><i class="fa fa-check"></i><b>0.10.1</b> Starting a new project in Rstudio</a></li>
+<li class="chapter" data-level="0.10.2" data-path="basic-usage.html"><a href="basic-usage.html#code-conventions"><i class="fa fa-check"></i><b>0.10.2</b> Code conventions</a></li>
+<li class="chapter" data-level="0.10.3" data-path="basic-usage.html"><a href="basic-usage.html#getting-help"><i class="fa fa-check"></i><b>0.10.3</b> Getting Help</a></li>
+</ul></li>
+<li class="chapter" data-level="0.11" data-path="getting-the-course-data.html"><a href="getting-the-course-data.html"><i class="fa fa-check"></i><b>0.11</b> Getting the course data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-data-into-r.html"><a href="reading-data-into-r.html"><i class="fa fa-check"></i>Reading data into R</a>
+<ul>
+<li class="chapter" data-level="0.12" data-path="using-r-projects.html"><a href="using-r-projects.html"><i class="fa fa-check"></i><b>0.12</b> Using R projects</a></li>
+<li class="chapter" data-level="0.13" data-path="importing-excel-files.html"><a href="importing-excel-files.html"><i class="fa fa-check"></i><b>0.13</b> Importing Excel Files</a>
+<ul>
+<li class="chapter" data-level="0.13.1" data-path="importing-excel-files.html"><a href="importing-excel-files.html#inspect-the-data"><i class="fa fa-check"></i><b>0.13.1</b> Inspect the data</a></li>
+</ul></li>
+<li class="chapter" data-level="0.14" data-path="importing-spss-files.html"><a href="importing-spss-files.html"><i class="fa fa-check"></i><b>0.14</b> Importing SPSS Files</a></li>
+<li class="chapter" data-level="0.15" data-path="data-manipulation-optional.html"><a href="data-manipulation-optional.html"><i class="fa fa-check"></i><b>0.15</b> Data manipulation (optional)</a>
+<ul>
+<li class="chapter" data-level="0.15.1" data-path="data-manipulation-optional.html"><a href="data-manipulation-optional.html#convertfactors"><i class="fa fa-check"></i><b>0.15.1</b> Converting to factors</a></li>
+<li class="chapter" data-level="0.15.2" data-path="data-manipulation-optional.html"><a href="data-manipulation-optional.html#select"><i class="fa fa-check"></i><b>0.15.2</b> Selecting specific cases</a></li>
+<li class="chapter" data-level="0.15.3" data-path="data-manipulation-optional.html"><a href="data-manipulation-optional.html#changing-cell-values"><i class="fa fa-check"></i><b>0.15.3</b> Changing cell values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="lecture.html"><a href="lecture.html"><i class="fa fa-check"></i><b>1.1</b> Lecture</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-questions-1.html"><a href="reading-questions-1.html"><i class="fa fa-check"></i><b>1.2</b> Reading questions</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-questions-1.html"><a href="reading-questions-1.html#reference"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-questions-1.html"><a href="reading-questions-1.html#questions"><i class="fa fa-check"></i>Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="at-home-exercises.html"><a href="at-home-exercises.html"><i class="fa fa-check"></i><b>1.3</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section"><i class="fa fa-check"></i><b>1.3.1</b> </a></li>
+<li class="chapter" data-level="1.3.2" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section-1"><i class="fa fa-check"></i><b>1.3.2</b> </a></li>
+<li class="chapter" data-level="1.3.3" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section-2"><i class="fa fa-check"></i><b>1.3.3</b> </a></li>
+<li class="chapter" data-level="1.3.4" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section-3"><i class="fa fa-check"></i><b>1.3.4</b> </a></li>
+<li class="chapter" data-level="1.3.5" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section-4"><i class="fa fa-check"></i><b>1.3.5</b> </a></li>
+<li class="chapter" data-level="1.3.6" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section-5"><i class="fa fa-check"></i><b>1.3.6</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="in-class-exercises.html"><a href="in-class-exercises.html"><i class="fa fa-check"></i><b>1.4</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="in-class-exercises.html"><a href="in-class-exercises.html#loading-data"><i class="fa fa-check"></i><b>1.4.1</b> Loading data</a></li>
+<li class="chapter" data-level="1.4.2" data-path="in-class-exercises.html"><a href="in-class-exercises.html#section-6"><i class="fa fa-check"></i><b>1.4.2</b> </a></li>
+<li class="chapter" data-level="1.4.3" data-path="in-class-exercises.html"><a href="in-class-exercises.html#section-17"><i class="fa fa-check"></i><b>1.4.3</b> </a></li>
+<li class="chapter" data-level="1.4.4" data-path="in-class-exercises.html"><a href="in-class-exercises.html#section-27"><i class="fa fa-check"></i><b>1.4.4</b> </a></li>
+<li class="chapter" data-level="1.4.5" data-path="in-class-exercises.html"><a href="in-class-exercises.html#question-3.h"><i class="fa fa-check"></i><b>1.4.5</b> Question 3.h</a></li>
+<li class="chapter" data-level="1.4.6" data-path="in-class-exercises.html"><a href="in-class-exercises.html#question-3.i"><i class="fa fa-check"></i><b>1.4.6</b> Question 3.i</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="formative-assessment.html"><a href="formative-assessment.html"><i class="fa fa-check"></i><b>1.5</b> Formative Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="efa.html"><a href="efa.html"><i class="fa fa-check"></i><b>2</b> EFA</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="lecture-1.html"><a href="lecture-1.html"><i class="fa fa-check"></i><b>2.1</b> Lecture</a></li>
+<li class="chapter" data-level="2.2" data-path="reading-questions-2.html"><a href="reading-questions-2.html"><i class="fa fa-check"></i><b>2.2</b> Reading questions</a></li>
+<li class="chapter" data-level="2.3" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html"><i class="fa fa-check"></i><b>2.3</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-39"><i class="fa fa-check"></i><b>2.3.1</b> </a></li>
+<li class="chapter" data-level="2.3.2" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-40"><i class="fa fa-check"></i><b>2.3.2</b> </a></li>
+<li class="chapter" data-level="2.3.3" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-41"><i class="fa fa-check"></i><b>2.3.3</b> </a></li>
+<li class="chapter" data-level="2.3.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-42"><i class="fa fa-check"></i><b>2.3.4</b> </a></li>
+<li class="chapter" data-level="2.3.5" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-43"><i class="fa fa-check"></i><b>2.3.5</b> </a></li>
+<li class="chapter" data-level="2.3.6" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-44"><i class="fa fa-check"></i><b>2.3.6</b> </a></li>
+<li class="chapter" data-level="2.3.7" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-45"><i class="fa fa-check"></i><b>2.3.7</b> </a></li>
+<li class="chapter" data-level="2.3.8" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-46"><i class="fa fa-check"></i><b>2.3.8</b> </a></li>
+<li class="chapter" data-level="2.3.9" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-47"><i class="fa fa-check"></i><b>2.3.9</b> </a></li>
+<li class="chapter" data-level="2.3.10" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-48"><i class="fa fa-check"></i><b>2.3.10</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.4</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#loading-the-data"><i class="fa fa-check"></i><b>2.4.1</b> Loading the data</a></li>
+<li class="chapter" data-level="2.4.2" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-49"><i class="fa fa-check"></i><b>2.4.2</b> </a></li>
+<li class="chapter" data-level="2.4.3" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-50"><i class="fa fa-check"></i><b>2.4.3</b> </a></li>
+<li class="chapter" data-level="2.4.4" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-51"><i class="fa fa-check"></i><b>2.4.4</b> </a></li>
+<li class="chapter" data-level="2.4.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-52"><i class="fa fa-check"></i><b>2.4.5</b> </a></li>
+<li class="chapter" data-level="2.4.6" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-53"><i class="fa fa-check"></i><b>2.4.6</b> </a></li>
+<li class="chapter" data-level="2.4.7" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-54"><i class="fa fa-check"></i><b>2.4.7</b> </a></li>
+<li class="chapter" data-level="2.4.8" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-55"><i class="fa fa-check"></i><b>2.4.8</b> </a></li>
+<li class="chapter" data-level="2.4.9" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-56"><i class="fa fa-check"></i><b>2.4.9</b> </a></li>
+<li class="chapter" data-level="2.4.10" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-57"><i class="fa fa-check"></i><b>2.4.10</b> </a></li>
+<li class="chapter" data-level="2.4.11" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-58"><i class="fa fa-check"></i><b>2.4.11</b> </a></li>
+<li class="chapter" data-level="2.4.12" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-59"><i class="fa fa-check"></i><b>2.4.12</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="formative-assessment-1.html"><a href="formative-assessment-1.html"><i class="fa fa-check"></i><b>2.5</b> Formative Assessment</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Theory Construction and Statistical Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="in-class-exercises" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> In-Class Exercises<a href="in-class-exercises.html#in-class-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>During the practical you will work on some exercises about ANOVA and ANCOVA using regression and path modeling. Note that ANOVA and ANCOVA are special cases of regression, as discussed during MTS3 or a similar course. How to perform an ANOVA/ANCOVA as a regression analysis is prerequisite knowledge.</p>
+<p>This practical we will work on these topics (ANOVA, ANCOVA, regression and how they are related). If you need to refresh your knowledge you could use the internet to find information or you could look it up in a book on statistics, for example <span class="citation">@field2012discovering</span> (<em>The chapters on ANOVA, Factorial ANOVA, and ANCOVA (11.6)</em>).</p>
+<p>We start with two exercises in which you have to explore your data and perform a regression analysis, ANOVA and an ANCOVA. You will also practice with performing an ANCOVA as a regression analysis in exercise 3 today.</p>
+<div id="loading-data" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Loading data<a href="in-class-exercises.html#loading-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Open the file Sesam.sav:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="in-class-exercises.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library for reading SPSS files:</span></span>
+<span id="cb25-2"><a href="in-class-exercises.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb25-3"><a href="in-class-exercises.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data and put them in the object called &quot;data&quot;</span></span>
+<span id="cb25-4"><a href="in-class-exercises.html#cb25-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;sesam.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>, <span class="at">use.value.labels =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>This file is part of a larger dataset that evaluates the impact of the first year of the Sesame Street television series. Sesame Street is mainly concerned with teaching preschool related skills to children in the 3-5 year age range.</p>
+<p>The following variables will be used in this exercise:</p>
+<ul>
+<li><strong>age</strong> measured in months</li>
+<li><strong>prelet</strong> knowledge of letters before watching Sesame Street (range 0-58)</li>
+<li><strong>prenumb</strong> knowledge of numbers before watching Sesame Street (range 0-54)</li>
+<li><strong>prerelat</strong> knowledge of relations before watching Sesame Street (range 0-17)</li>
+<li><strong>peabody</strong> vocabulary maturity before watching Sesame Street (range 20-120)</li>
+<li><strong>postnumb</strong> knowledge of numbers after a year of Sesame Street (range 0-54)</li>
+</ul>
+</div>
+<div id="section-6" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> </h3>
+<div id="section-7" class="section level4" number="1.4.2.1">
+<h4><span class="header-section-number">1.4.2.1</span> </h4>
+<p>What is the level of measurement of each of the variables?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>In the ‘Environment’ panel in the top right corner of the screen, click the arrow in the next to the object called ‘data’. Alternatively, run the rode: <code>head(data)</code>.</p>
+<img src="measurement_level.png" /><!-- -->
+</details>
+</div>
+<div id="section-8" class="section level4" number="1.4.2.2">
+<h4><span class="header-section-number">1.4.2.2</span> </h4>
+<p>What is the average age in the sample? And the range (youngest and oldest child)?</p>
+<p><em>Hint: Use library(tidySEM); descriptives()</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>As in the take home exercises, use the function <code>descriptives()</code> from the <code>tidySEM</code> package to describe the data:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="in-class-exercises.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb26-2"><a href="in-class-exercises.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(data)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["min"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"id","2":"numeric","3":"240","4":"0","5":"240","6":"120.500000","7":"120.5","8":"120.5","9":"NA","10":"69.426220","11":"NA","12":"1","13":"240","14":"239","15":"0.000000000","16":"0.000000000","17":"-1.21501007","18":"-1.9408393"},{"1":"age","2":"numeric","3":"240","4":"0","5":"33","6":"51.525000","7":"52.0","8":"52.0","9":"NA","10":"6.281356","11":"NA","12":"34","13":"69","14":"35","15":"-0.233536030","16":"-0.743094143","17":"0.31130095","18":"0.4972676"},{"1":"prelet","2":"numeric","3":"240","4":"0","5":"40","6":"15.937500","7":"14.0","8":"14.0","9":"NA","10":"8.536425","11":"NA","12":"1","13":"55","14":"54","15":"1.969433485","16":"6.266589723","17":"4.76701118","18":"7.6147537"},{"1":"prenumb","2":"numeric","3":"240","4":"0","5":"47","6":"20.895833","7":"19.0","8":"19.0","9":"NA","10":"10.685382","11":"NA","12":"1","13":"52","14":"51","15":"0.729616854","16":"2.321586139","17":"0.07849738","18":"0.1253906"},{"1":"prerelat","2":"numeric","3":"240","4":"0","5":"16","6":"9.937500","7":"10.0","8":"10.0","9":"NA","10":"3.073753","11":"NA","12":"2","13":"17","14":"15","15":"-0.177273429","16":"-0.564070762","17":"-0.47484928","18":"-0.7585173"},{"1":"peabody","2":"numeric","3":"240","4":"0","5":"46","6":"46.775000","7":"42.0","8":"42.0","9":"NA","10":"15.986900","11":"NA","12":"27","13":"99","14":"72","15":"1.026881773","16":"3.267460828","17":"0.46567388","18":"0.7438606"},{"1":"postnumb","2":"numeric","3":"240","4":"0","5":"50","6":"30.054167","7":"29.0","8":"29.0","9":"NA","10":"12.845769","11":"NA","12":"0","13":"54","14":"54","15":"0.002760256","16":"0.008782928","17":"-1.10201172","18":"-1.7603374"},{"1":"gain","2":"numeric","3":"240","4":"0","5":"45","6":"9.158333","7":"9.0","8":"9.0","9":"NA","10":"9.682401","11":"NA","12":"-35","13":"33","14":"68","15":"-0.393891365","16":"-1.253332797","17":"1.87658414","18":"2.9976280"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-9" class="section level4" number="1.4.2.3">
+<h4><span class="header-section-number">1.4.2.3</span> </h4>
+<p>What is the average gain in knowledge of numbers? Provide both the mean and the standard deviation.</p>
+<p><em>Hint: Use the &lt;- operator to assign to a new variable in data. You can use descriptives(), or the functions mean() and sd().</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Create a new variable that represents the difference between pre- and post-test scores:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="in-class-exercises.html#cb27-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>dif <span class="ot">&lt;-</span> data<span class="sc">$</span>postnumb <span class="sc">-</span> data<span class="sc">$</span>prenumb</span></code></pre></div>
+<p>There are specialized functions to obtain the mean and sd:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="in-class-exercises.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>dif)</span></code></pre></div>
+<pre><code>## [1] 9.158333</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="in-class-exercises.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(data<span class="sc">$</span>dif)</span></code></pre></div>
+<pre><code>## [1] 9.682401</code></pre>
+</div>
+<div id="section-10" class="section level4" number="1.4.2.4">
+<h4><span class="header-section-number">1.4.2.4</span> </h4>
+<p>Choose an appropriate graph to present the gain scores. What did you choose and why?</p>
+<p><em>Hint: As explained in the introductory chapters, you can use ggplot and add a histogram, density plot, or boxplot:</em> <code>geom_histogram(); geom_density(); geom_boxplot()</code></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="in-class-exercises.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb32-2"><a href="in-class-exercises.html#cb32-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> dif))</span>
+<span id="cb32-3"><a href="in-class-exercises.html#cb32-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="in-class-exercises.html#cb33-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="in-class-exercises.html#cb34-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-45-3.png" width="672" />
+</p>
+</div>
+<div id="section-11" class="section level4" number="1.4.2.5">
+<h4><span class="header-section-number">1.4.2.5</span> </h4>
+<p>Can you think of a graph based on two variables that is informative? What is it and how is it informative?</p>
+<p><em>Hint: A useful plotting function for a bivariate distribution is the scatterplot:</em> <code>geom_point()</code></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="in-class-exercises.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Possible variables would be the pre- and post measurement</span></span>
+<span id="cb35-2"><a href="in-class-exercises.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> prenumb, <span class="at">y =</span> postnumb)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+</p>
+</div>
+<div id="section-12" class="section level4" number="1.4.2.6">
+<h4><span class="header-section-number">1.4.2.6</span> </h4>
+<p>Which of the variables age, prelet, prenumb, prerelat and peabody are related to postnumb? Use Pearson’s correlations (<code>cor()</code>). You don’t need to check assumptions. If you want p-values for the correlations, use the function <code>corr.test()</code> from the <code>psych</code> package instead.</p>
+<p><em>Hint: The function</em> <code>corr.test()</code> <em>from the psych package provides Pearson’s correlationsand p-values (the base R function cor() does not provide p-values). Select variables by name from a data.frame object (like</em> <code>data</code><em>) using the following syntax</em>: <code>data[, c("each", "variable", "name")]</code><em>.</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="in-class-exercises.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb36-2"><a href="in-class-exercises.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corr.test</span>(data[, <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;prelet&quot;</span>, <span class="st">&quot;prenumb&quot;</span>, <span class="st">&quot;prerelat&quot;</span>, <span class="st">&quot;peabody&quot;</span>, <span class="st">&quot;postnumb&quot;</span>)])</span></code></pre></div>
+<pre><code>## Call:corr.test(x = data[, c(&quot;age&quot;, &quot;prelet&quot;, &quot;prenumb&quot;, &quot;prerelat&quot;, 
+##     &quot;peabody&quot;, &quot;postnumb&quot;)])
+## Correlation matrix 
+##           age prelet prenumb prerelat peabody postnumb
+## age      1.00   0.33    0.43     0.44    0.29     0.34
+## prelet   0.33   1.00    0.72     0.47    0.40     0.50
+## prenumb  0.43   0.72    1.00     0.72    0.61     0.68
+## prerelat 0.44   0.47    0.72     1.00    0.56     0.54
+## peabody  0.29   0.40    0.61     0.56    1.00     0.52
+## postnumb 0.34   0.50    0.68     0.54    0.52     1.00
+## Sample Size 
+## [1] 240
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##          age prelet prenumb prerelat peabody postnumb
+## age        0      0       0        0       0        0
+## prelet     0      0       0        0       0        0
+## prenumb    0      0       0        0       0        0
+## prerelat   0      0       0        0       0        0
+## peabody    0      0       0        0       0        0
+## postnumb   0      0       0        0       0        0
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+<p>The use of <code>data[,]</code> follows the conventions of matrix indexation: You can select rows (the horizontal lines) like this, <code>data[i, ]</code>, and columns (the vertical lines) like this, <code>data[ ,j]</code>, where i are the rows and j are the columns you want to select. As you can see in the example, you can select multiple columns using c( … , … ).
+</p>
+</div>
+<div id="section-13" class="section level4" number="1.4.2.7">
+<h4><span class="header-section-number">1.4.2.7</span> </h4>
+<p>Can age and prenumb be used to predict postnumb? If so, discuss the substantial importance of the model and the significance and substantial importance of the separate predictors.</p>
+<p><em>Hint: The function</em> <code>lm()</code> <em>(short for linear model) conducts linear regression. The functions</em> <code>summary()</code> <em>provides relevant summary statistics for the model. It can be helpful to store the results of your analysis in an object, too.</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="in-class-exercises.html#cb38-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> postnumb <span class="sc">~</span> age <span class="sc">+</span> prenumb, </span>
+<span id="cb38-2"><a href="in-class-exercises.html#cb38-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> data)</span>
+<span id="cb38-3"><a href="in-class-exercises.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = postnumb ~ age + prenumb, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -38.130  -6.456  -0.456   5.435  22.568 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   7.4242     5.1854   1.432    0.154    
+## age           0.1225     0.1084   1.131    0.259    
+## prenumb       0.7809     0.0637  12.259   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.486 on 237 degrees of freedom
+## Multiple R-squared:  0.4592, Adjusted R-squared:  0.4547 
+## F-statistic: 100.6 on 2 and 237 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="section-14" class="section level4" number="1.4.2.8">
+<h4><span class="header-section-number">1.4.2.8</span> </h4>
+<p>Provide the null hypotheses and the alternative hypotheses of the model in 1.g.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>The null-hypotheses of the <strong>model</strong> pertain to the variance explained: <span class="math inline">\(\rho^2\)</span> (that’s Greek letter rho, for the population value of <span class="math inline">\(\rho^2\)</span>).</p>
+<p><span class="math inline">\(H_0: \rho^2 = 0\)</span></p>
+<p><span class="math inline">\(H_a: \rho^2 &gt; 0\)</span>
+</p>
+</div>
+<div id="section-15" class="section level4" number="1.4.2.9">
+<h4><span class="header-section-number">1.4.2.9</span> </h4>
+<p>Consider the path model below. How many regression coefficients are estimated in this model? And how many variances? And how many covariances? How many degrees of freedom does this model have? (<span class="math inline">\(df = N_{obs} – N_{par}\)</span>, see slides Lecture 1).</p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
+<div id="section-16" class="section level4" number="1.4.2.10">
+<h4><span class="header-section-number">1.4.2.10</span> </h4>
+<p>Consider a multiple regression analysis with three continuous independent variables, tests in language, history and logic, and one continuous dependent variable, a score on a math test. We want to know whether the various tests can predict the math score. Sketch a path model for this analysis (there are examples in the lecture slides of week 1).</p>
+<p>How many regression parameters are there? How many variances could you estimate?
+How many covariances could you estimate? How many degrees of freedom does this model have?</p>
+</div>
+</div>
+<div id="section-17" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> </h3>
+<p>Open the file <code>Drivers.sav</code>:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="in-class-exercises.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data and put them in the object called &quot;data&quot;</span></span>
+<span id="cb40-2"><a href="in-class-exercises.html#cb40-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;Drivers.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="research-question-1-anova-does-talking-on-the-phone-interfere-with-peoples-driving-skills" class="section level4 hasAnchor" number="1.4.3.1">
+<h4><span class="header-section-number">1.4.3.1</span> Research question 1 (ANOVA): Does talking on the phone interfere with people’s driving skills?<a href="in-class-exercises.html#research-question-1-anova-does-talking-on-the-phone-interfere-with-peoples-driving-skills" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The IV for this reseach question is <code>condition</code>, with conditions:</p>
+<ul>
+<li>hand-held phone</li>
+<li>hands-free phone</li>
+<li>control</li>
+</ul>
+<p>The DV is reaction time in milliseconds in a driver simulation test, in variable <code>RT</code>.</p>
+</div>
+<div id="section-18" class="section level4" number="1.4.3.2">
+<h4><span class="header-section-number">1.4.3.2</span> </h4>
+<p>Perform the ANOVA. You can use <code>lm(y ~ -1 + x)</code> to remove the intercept from a regression with dummies, and get a separate mean for each group. The function <code>aov()</code> is an alternate interface for <code>lm()</code> that reports results in a way that matches the conventions for ANOVA analyses more closely.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>You can use <code>summary(lm(y ~ -1 + x))</code> to get the means for each group:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="in-class-exercises.html#cb41-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> RT <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> condition, <span class="at">data =</span> data)</span>
+<span id="cb41-2"><a href="in-class-exercises.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = RT ~ -1 + condition, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -317.50  -71.25    2.97   89.55  243.45 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## conditionhand-held    654.50      29.08   22.51   &lt;2e-16 ***
+## conditionhands-free   617.55      29.08   21.24   &lt;2e-16 ***
+## conditioncontrol      553.75      29.08   19.04   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 130.1 on 57 degrees of freedom
+## Multiple R-squared:  0.9586, Adjusted R-squared:  0.9564 
+## F-statistic:   440 on 3 and 57 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>And you can use <code>aov()</code> to get the sum of squares for the factor:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="in-class-exercises.html#cb43-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> RT <span class="sc">~</span> condition, <span class="at">data =</span> data)</span>
+<span id="cb43-2"><a href="in-class-exercises.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## condition    2 103909   51954   3.072 0.0541 .
+## Residuals   57 964082   16914                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="section-19" class="section level4" number="1.4.3.3">
+<h4><span class="header-section-number">1.4.3.3</span> </h4>
+<p>What are the assumptions you need to check?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We can check several assumptions:</p>
+<ol style="list-style-type: decimal">
+<li>Presence of outliers</li>
+<li>Normality of residuals</li>
+<li>Homogeneity of residuals</li>
+</ol>
+<p>Let’s deal with them in order.</p>
+<div id="presence-of-outliers" class="section level5 hasAnchor" number="1.4.3.3.1">
+<h5><span class="header-section-number">1.4.3.3.1</span> Presence of outliers:<a href="in-class-exercises.html#presence-of-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>In Y-space</strong></p>
+<p>We can check the range of the standardized (<code>scale()</code>) residuals for outliers in Y-space. The residuals are <strong>inside</strong> of the results object, so we can just extract them, standardize them, and get the range:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="in-class-exercises.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(<span class="fu">scale</span>(results<span class="sc">$</span>residuals))</span></code></pre></div>
+<pre><code>## [1] -2.483778  1.904491</code></pre>
+<p>What is your conclusiong about the outliers?</p>
+</div>
+<div id="normality-of-residuals" class="section level5 hasAnchor" number="1.4.3.3.2">
+<h5><span class="header-section-number">1.4.3.3.2</span> Normality of residuals<a href="in-class-exercises.html#normality-of-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>We can check the normality of residuals using a QQplot.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="in-class-exercises.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(results<span class="sc">$</span>residuals)</span>
+<span id="cb47-2"><a href="in-class-exercises.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(results<span class="sc">$</span>residuals)</span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>There appears to be some mild deviation from normality at the extremes.</p>
+<p>You can also <strong>test</strong> for normality with the <code>shapiro.test(x)</code> function:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="in-class-exercises.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(results<span class="sc">$</span>residuals)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  results$residuals
+## W = 0.98367, p-value = 0.6013</code></pre>
+</div>
+<div id="homogeneity-of-variances" class="section level5 hasAnchor" number="1.4.3.3.3">
+<h5><span class="header-section-number">1.4.3.3.3</span> Homogeneity of Variances<a href="in-class-exercises.html#homogeneity-of-variances" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The <code>bartlett.test()</code> function provides a parametric K-sample test of the equality of variances. This test has the same hypotheses as the Levene’s test.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="in-class-exercises.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(<span class="at">formula =</span> RT<span class="sc">~</span>condition, <span class="at">data =</span> data)</span></code></pre></div>
+<pre><code>## 
+##  Bartlett test of homogeneity of variances
+## 
+## data:  RT by condition
+## Bartlett&#39;s K-squared = 2.7203, df = 2, p-value = 0.2566</code></pre>
+<p>It can also be nice to use a paneled boxplot to visualize the distributions. For this, we will use <code>ggplot2</code>. This time, we introduce a new command, <code>theme_bw()</code>: A theme for the plot that conforms to APA standards. We can apply this theme to any figure created using <code>ggplot()</code>:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="in-class-exercises.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-2"><a href="in-class-exercises.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">y =</span> RT, <span class="at">group =</span> condition)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="in-class-exercises.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb52-4"><a href="in-class-exercises.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+</p>
+</div>
+</div>
+<div id="section-20" class="section level4" number="1.4.3.4">
+<h4><span class="header-section-number">1.4.3.4</span> </h4>
+<p>Explain for each of the assumptions why they are important to check.</p>
+</div>
+<div id="section-21" class="section level4" number="1.4.3.5">
+<h4><span class="header-section-number">1.4.3.5</span> </h4>
+<p>What are your conclusions regarding the assumption checks?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+There are no outliers in X-space, no evidence for (severe) deviations from normality of residuals, and no evidence for (severe) heteroscedasticity.
+</details>
+</div>
+<div id="section-22" class="section level4" number="1.4.3.6">
+<h4><span class="header-section-number">1.4.3.6</span> </h4>
+<p>Answer the research question.</p>
+<p><em>Hint: Use</em> <code>summary()</code> <em>and</em> <code>TukeyHSD()</code><em>.</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We can examine the overall F-test, which is significant:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="in-class-exercises.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## condition    2 103909   51954   3.072 0.0541 .
+## Residuals   57 964082   16914                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="in-class-exercises.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(results)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = RT ~ condition, data = data)
+## 
+## $condition
+##                         diff      lwr       upr     p adj
+## hands-free-hand-held  -36.95 -135.917 62.017041 0.6434900
+## control-hand-held    -100.75 -199.717 -1.782959 0.0451401
+## control-hands-free    -63.80 -162.767 35.167041 0.2750829</code></pre>
+<p>Post-hoc tests with Bonferroni correction can be obtained using <code>TukeyHSD(results)</code>. We notice that none of these comparisons are significant. However, the research question was <em>Does talking on the phone interfere with peoples driving skills?</em> There are two conditions for talking on the phone. We could thus test a planned contrast of these two conditions against the control condition, instead of all possible post-hoc tests:</p>
+<p>The standard contrasts are dummy coded:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="in-class-exercises.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>condition)</span></code></pre></div>
+<pre><code>##            hands-free control
+## hand-held           0       0
+## hands-free          1       0
+## control             0       1</code></pre>
+<p>We can replace these with planned contrasts for “phone” vs control, and hand-held vs hands-free:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="in-class-exercises.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>condition) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">phoneVcontrol =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">2</span>), <span class="at">handVfree =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb59-2"><a href="in-class-exercises.html#cb59-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">aov</span>(RT <span class="sc">~</span> condition, data)</span>
+<span id="cb59-3"><a href="in-class-exercises.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask for the lm summary, which gives you t-tests for the planned contrasts:</span></span>
+<span id="cb59-4"><a href="in-class-exercises.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(results)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## aov(formula = RT ~ condition, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -317.50  -71.25    2.98   89.55  243.45 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              608.60      16.79  36.248   &lt;2e-16 ***
+## conditionphoneVcontrol   -27.42      11.87  -2.310   0.0245 *  
+## conditionhandVfree       -18.47      20.56  -0.898   0.3727    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 130.1 on 57 degrees of freedom
+## Multiple R-squared:  0.09729,    Adjusted R-squared:  0.06562 
+## F-statistic: 3.072 on 2 and 57 DF,  p-value: 0.05408</code></pre>
+</div>
+<div id="research-question-2-ancova-are-there-differences-in-reaction-time-between-the-conditions-when-controlling-for-age" class="section level4 hasAnchor" number="1.4.3.7">
+<h4><span class="header-section-number">1.4.3.7</span> Research question 2 (ANCOVA): Are there differences in reaction time between the conditions when controlling for age?<a href="in-class-exercises.html#research-question-2-ancova-are-there-differences-in-reaction-time-between-the-conditions-when-controlling-for-age" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="section-23" class="section level4" number="1.4.3.8">
+<h4><span class="header-section-number">1.4.3.8</span> </h4>
+<p>What are the assumptions you need to check?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Assumptions for ANCOVA are the same as for ANOVA (no outliers, normality of residuals, homoscedasticity). ANCOVA has the following additional assumptions:</p>
+<ul>
+<li>Homogeneity of regression slopes for the covariate (no interaction between factor variable and covariate)</li>
+<li>The covariate is independent of the treatment effects. I.e. there is no difference in the covariate between the groups of the independent variable.</li>
+</ul>
+</div>
+<div id="section-24" class="section level4" number="1.4.3.9">
+<h4><span class="header-section-number">1.4.3.9</span> </h4>
+<p>Explain for each of the assumptions why they are important to check.</p>
+</div>
+<div id="section-25" class="section level4" number="1.4.3.10">
+<h4><span class="header-section-number">1.4.3.10</span> </h4>
+<p>Check the assumptions of ANCOVA.</p>
+<p><em>Hint: Within formulas, you can use</em> <code>*</code> <em>instead of</em> <code>+</code> <em>to include interaction effects.</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div id="homogeneity-of-regression-slopes" class="section level5 hasAnchor" number="1.4.3.10.1">
+<h5><span class="header-section-number">1.4.3.10.1</span> Homogeneity of regression slopes<a href="in-class-exercises.html#homogeneity-of-regression-slopes" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Add the interaction to the model and test whether the interaction is significant:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="in-class-exercises.html#cb61-1" aria-hidden="true" tabindex="-1"></a>results_age <span class="ot">&lt;-</span> <span class="fu">aov</span>(RT <span class="sc">~</span> condition <span class="sc">+</span> age, data)</span>
+<span id="cb61-2"><a href="in-class-exercises.html#cb61-2" aria-hidden="true" tabindex="-1"></a>results_age_int <span class="ot">&lt;-</span> <span class="fu">aov</span>(RT <span class="sc">~</span> condition <span class="sc">*</span> age, data)</span>
+<span id="cb61-3"><a href="in-class-exercises.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_age_int)</span></code></pre></div>
+<pre><code>##               Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+## condition      2 103909   51954   4.532  0.0151 *  
+## age            1 320454  320454  27.955 2.3e-06 ***
+## condition:age  2  24622   12311   1.074  0.3488    
+## Residuals     54 619005   11463                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="in-class-exercises.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Or you could use `anova()` to compare two different models</span></span>
+<span id="cb63-2"><a href="in-class-exercises.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(results_age, results_age_int)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Res.Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"56","2":"643627.3","3":"NA","4":"NA","5":"NA","6":"NA","_rn_":"1"},{"1":"54","2":"619005.2","3":"2","4":"24622.15","5":"1.073978","6":"0.3488307","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>What would your conclusion be about this assumption?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>The interaction is NOT significant; no evidence for violation of the assumption.
+</p>
+</div>
+<div id="the-covariate-is-independent-of-the-treatment-effects" class="section level5 hasAnchor" number="1.4.3.10.2">
+<h5><span class="header-section-number">1.4.3.10.2</span> The covariate is independent of the treatment effects<a href="in-class-exercises.html#the-covariate-is-independent-of-the-treatment-effects" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="in-class-exercises.html#cb64-1" aria-hidden="true" tabindex="-1"></a>results_indep <span class="ot">&lt;-</span> <span class="fu">aov</span>(age <span class="sc">~</span> condition, data)</span>
+<span id="cb64-2"><a href="in-class-exercises.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_indep)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## condition    2    137   68.55   0.659  0.521
+## Residuals   57   5926  103.97</code></pre>
+<p>What would your conclusion be about this assumption?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>The covariate is not significantly related to treatment effect. The assumption is met.
+</p>
+<!--#### Outliers in X-space
+
+In addition to the aforementioned outliers in Y-space, we can now test for (multivariate) outliers in X-space using Mahalanobis' distance. In this case, we only have one continuous covariate. The function requires a **matrix** of data, a vector of means for centering the data, and a covariance matrix. In the syntax below, we use `drop = FALSE` when extracting a single column from the data, in order to make sure that the data will still be in matrix format when we extract only one column. This is necessary for the underlying matrix algebra. We have to take the `sqrt()` because the function `mahalanobis()` returns the **squared** Mahalanobis' distances.
+
+```r
+mahal <- sqrt(mahalanobis(data[ , "age", drop = FALSE], 
+                          center = mean(data$age),
+                          cov = cov(data[, "age", drop = FALSE])))
+range(mahal)
+```
+
+```
+## [1] 0.01972835 1.79527971
+```
+\details
+-->
+</div>
+</div>
+<div id="section-26" class="section level4" number="1.4.3.11">
+<h4><span class="header-section-number">1.4.3.11</span> </h4>
+<p>Answer the research question. (Do you have to include the interaction or not?)</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="in-class-exercises.html#cb66-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> RT <span class="sc">~</span> condition <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
+<span id="cb66-2"><a href="in-class-exercises.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(results)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = RT ~ condition + age, data = data)
+## 
+## $condition
+##                         diff       lwr       upr     p adj
+## hands-free-hand-held  -36.95 -118.5708  44.67082 0.5242511
+## control-hand-held    -100.75 -182.3708 -19.12918 0.0119407
+## control-hands-free    -63.80 -145.4208  17.82082 0.1533777</code></pre>
+<p>The handheld-condition has a significant <strong>higher</strong> reaction time than the control condition</p>
+</div>
+</div>
+<div id="section-27" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> </h3>
+<p>Open the file Sesam2.sav.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="in-class-exercises.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data and put them in the object called &quot;data&quot;</span></span>
+<span id="cb68-2"><a href="in-class-exercises.html#cb68-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;Sesam2.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Use postnumb as the dependent variable in all the following analyses.</p>
+<div id="section-28" class="section level4" number="1.4.4.1">
+<h4><span class="header-section-number">1.4.4.1</span> </h4>
+<p>Viewcat is a factor variable, but is not coded as such in the data. Turn it into a factor. Afterwards, make sure that viewcat=1 is the reference group in the contrasts, i.e., the group that is identified by zero scores on all the associated dummy variables.</p>
+<p><em>Hint: Use</em> <code>&lt;- factor()</code> <em>and</em> <code>contrasts()</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="in-class-exercises.html#cb69-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>VIEWCAT <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>VIEWCAT)</span>
+<span id="cb69-2"><a href="in-class-exercises.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>VIEWCAT)</span></code></pre></div>
+<pre><code>##   2 3 4
+## 1 0 0 0
+## 2 1 0 0
+## 3 0 1 0
+## 4 0 0 1</code></pre>
+</div>
+<div id="section-29" class="section level4" number="1.4.4.2">
+<h4><span class="header-section-number">1.4.4.2</span> </h4>
+<p>Perform a multiple regression analysis with just the viewcat dummies as predictors.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="in-class-exercises.html#cb71-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(POSTNUMB <span class="sc">~</span> VIEWCAT, data)</span>
+<span id="cb71-2"><a href="in-class-exercises.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = POSTNUMB ~ VIEWCAT, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -25.474  -7.942   0.240   8.526  25.240 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   18.760      2.316   8.102 8.95e-14 ***
+## VIEWCAT2       9.331      2.900   3.218  0.00154 ** 
+## VIEWCAT3      14.714      2.777   5.298 3.49e-07 ***
+## VIEWCAT4      18.032      2.809   6.419 1.24e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 11.58 on 175 degrees of freedom
+## Multiple R-squared:  0.2102, Adjusted R-squared:  0.1967 
+## F-statistic: 15.53 on 3 and 175 DF,  p-value: 5.337e-09</code></pre>
+</div>
+<div id="section-30" class="section level4" number="1.4.4.3">
+<h4><span class="header-section-number">1.4.4.3</span> </h4>
+<p>What do the regression coefficients represent? How can you determine the average postnumb score for each of the viewcat categories, based on the regression parameters?</p>
+</div>
+<div id="section-31" class="section level4" number="1.4.4.4">
+<h4><span class="header-section-number">1.4.4.4</span> </h4>
+<p>Make a coloured scatter plot with age on the x-axis and postnumb on the y-axis. Colour the dots according to the their <code>viewcat</code> category. How do you interpret the differences in slopes of these four fit lines?</p>
+<p><em>Hint: Use</em> <code>ggplot()</code> and <code>geom_point()</code>; <em>use the argument aes(colour = ‘…’) to map colour to a certain variable. A new command is</em> <code>geom_smooth()</code> <em>: This plots a smooth line (like a regression line).</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We will use ggplot again:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="in-class-exercises.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> AGE, <span class="at">y =</span> POSTNUMB, <span class="at">colour =</span> VIEWCAT)) <span class="sc">+</span> </span>
+<span id="cb73-2"><a href="in-class-exercises.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># For scatterplot</span></span>
+<span id="cb73-3"><a href="in-class-exercises.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># For regression lines</span></span>
+<span id="cb73-4"><a href="in-class-exercises.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="co"># For a pretty theme</span></span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-70-1.png" width="672" />
+</p>
+</div>
+<div id="section-32" class="section level4" number="1.4.4.5">
+<h4><span class="header-section-number">1.4.4.5</span> </h4>
+<p>Add an interaction between age and viewcat to the regression analysis.</p>
+<p><em>Hint: An interaction is created by multiplying two variables. You can multiply with * in the formula of</em> <code>lm()</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="in-class-exercises.html#cb74-1" aria-hidden="true" tabindex="-1"></a>results_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(POSTNUMB <span class="sc">~</span> VIEWCAT<span class="sc">*</span>AGE, data)</span>
+<span id="cb74-2"><a href="in-class-exercises.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_interaction)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = POSTNUMB ~ VIEWCAT * AGE, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.8371  -8.2387   0.6158   8.7988  22.5611 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  -18.7211    15.5883  -1.201   0.2314  
+## VIEWCAT2       9.9741    20.6227   0.484   0.6293  
+## VIEWCAT3      23.5825    19.3591   1.218   0.2248  
+## VIEWCAT4      34.3969    19.3600   1.777   0.0774 .
+## AGE            0.7466     0.3074   2.429   0.0162 *
+## VIEWCAT2:AGE  -0.0175     0.4060  -0.043   0.9657  
+## VIEWCAT3:AGE  -0.1930     0.3782  -0.510   0.6104  
+## VIEWCAT4:AGE  -0.3416     0.3770  -0.906   0.3663  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 10.99 on 171 degrees of freedom
+## Multiple R-squared:  0.3046, Adjusted R-squared:  0.2762 
+## F-statistic:  10.7 on 7 and 171 DF,  p-value: 3.79e-11</code></pre>
+</div>
+<div id="section-33" class="section level4" number="1.4.4.6">
+<h4><span class="header-section-number">1.4.4.6</span> </h4>
+<p>Perform a sequential multiple regression. Include age and viewcat as the predictors in the first analysis. Add the interaction term in the second analysis. Make sure to obtain information about the change in R-square!</p>
+<p><em>Hint: Use</em> <code>anova()</code> <em>to compare two regression models.</em></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="in-class-exercises.html#cb76-1" aria-hidden="true" tabindex="-1"></a>results_main <span class="ot">&lt;-</span> <span class="fu">lm</span>(POSTNUMB <span class="sc">~</span> VIEWCAT <span class="sc">+</span> AGE, data)</span>
+<span id="cb76-2"><a href="in-class-exercises.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(results_main, results_interaction)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Res.Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"174","2":"20806.26","3":"NA","4":"NA","5":"NA","6":"NA","_rn_":"1"},{"1":"171","2":"20653.50","3":"3","4":"152.7625","5":"0.4215975","6":"0.7377438","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-34" class="section level4" number="1.4.4.7">
+<h4><span class="header-section-number">1.4.4.7</span> </h4>
+<p>Sketch path models of both steps of the regression analysis (on paper).</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Step 1:</p>
+<p><img src="3_g1.png" /></p>
+<p>Step 2:</p>
+<p><img src="3_g2.png" /></p>
+</div>
+</div>
+<div id="question-3.h" class="section level3 hasAnchor" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Question 3.h<a href="in-class-exercises.html#question-3.h" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write down the regression equations of both steps of the sequential analysis.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p><span class="math inline">\(Postnumb_i = b_0 + b_1D_{view2i} + b_2D_{view3i} + b_3D_{view4i} + b_4Age_i + \epsilon_i\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+Postnumb_i = b_0 + &amp;b_1D_{view2i} + b_2D_{view3i} + b_3D_{view4i} + b_4Age_i +\\
+&amp;b_5D_{view2i}Age_i + b_6D_{view3i}Age_i + b_7D_{view4i}Age_i + \epsilon_i
+\end{aligned}
+\]</span></p>
+</div>
+<div id="question-3.i" class="section level3 hasAnchor" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Question 3.i<a href="in-class-exercises.html#question-3.i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write down the null hypothesis that is tested to determine whether there is an interaction between age and viewcat.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p><span class="math inline">\(H_0: b_5 = b_6 = b_7 = 0\)</span>
+</p>
+<div id="section-35" class="section level4" number="1.4.6.1">
+<h4><span class="header-section-number">1.4.6.1</span> </h4>
+<p>Indicate for each parameter in the second regression model what it means. Also write down the regression equation for each of the four categories of viewcat separately.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>b_0</td>
+<td>Intercept; the predicted value of postnumb for someone of age 0 in viewcat 1</td>
+</tr>
+<tr class="even">
+<td>b_1</td>
+<td>Slope of the dummy for viewcat 2; difference in the predicted value of postnumb for someone aged 0 in category 2, compared to category 1</td>
+</tr>
+<tr class="odd">
+<td>b_4</td>
+<td>The effect of age for someone in viewcat 1</td>
+</tr>
+<tr class="even">
+<td>b_5</td>
+<td>Difference in the effect of age for someone in viewcat 2, compared to viewcat 1</td>
+</tr>
+<tr class="odd">
+<td>b_7</td>
+<td>Difference in the effect of age for someone in viewcat 4, compared to viewcat 1</td>
+</tr>
+</tbody>
+</table>
+<p>For viewcat 1:</p>
+<p><span class="math inline">\(Postnumb_i = b_0 + b_4Age_i + \epsilon_i\)</span></p>
+<p>For viewcat 2:</p>
+<p><span class="math inline">\(Postnumb_i = b_0 + b_4Age_i + b_1D_{view2i} + b_4Age_i + b_5D_{view2i}Age_i + \epsilon_i\)</span></p>
+<p>Etc.</p>
+</div>
+<div id="section-36" class="section level4" number="1.4.6.2">
+<h4><span class="header-section-number">1.4.6.2</span> </h4>
+<p>What do you conclude about the interaction between age and viewcat?</p>
+</div>
+<div id="section-37" class="section level4" number="1.4.6.3">
+<h4><span class="header-section-number">1.4.6.3</span> </h4>
+<p>Note that you can also look at this problem as an ANCOVA. What are the research question and null hypothesis in this case?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>RQ: Is there a significant difference between the marginal means of postnumb by viewcat, after controlling for age?</p>
+<p><span class="math inline">\(H_0:\)</span> After controling for age, the mans of postnumb are equal in all groups.</p>
+</div>
+<div id="section-38" class="section level4" number="1.4.6.4">
+<h4><span class="header-section-number">1.4.6.4</span> </h4>
+<p>Perform this analysis as an ANCOVA.</p>
+<em>Hint: Add</em> <code>-1</code> <em>to a formula to drop the intercept.</em>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>To drop the intercept from the analysis, and estimate the marginal means for all viewcat categories, we can add <code>-1</code> (minus the intercept) to the formula:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="in-class-exercises.html#cb77-1" aria-hidden="true" tabindex="-1"></a>results_ancov <span class="ot">&lt;-</span> <span class="fu">aov</span>(POSTNUMB<span class="sc">~</span>AGE<span class="sc">+</span>VIEWCAT<span class="dv">-1</span>, data)</span></code></pre></div>
+<p>Examine the parameter estimates of the ANCOVA. What do the parameter estimates represent?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We use summary.lm() again to obtain the parameter estimates:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="in-class-exercises.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(results_ancov)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## aov(formula = POSTNUMB ~ AGE + VIEWCAT - 1, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -23.680  -8.003  -0.070   8.464  22.635 
+## 
+## Coefficients:
+##          Estimate Std. Error t value Pr(&gt;|t|)    
+## AGE        0.5750     0.1221   4.708 5.08e-06 ***
+## VIEWCAT1 -10.1056     6.5091  -1.553    0.122    
+## VIEWCAT2  -0.9603     6.3865  -0.150    0.881    
+## VIEWCAT3   3.7546     6.4760   0.580    0.563    
+## VIEWCAT4   6.8159     6.5414   1.042    0.299    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 10.94 on 174 degrees of freedom
+## Multiple R-squared:  0.8973, Adjusted R-squared:  0.8943 
+## F-statistic:   304 on 5 and 174 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The parameter estimates are the means of each VIEWCAT category when age = 0.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="at-home-exercises.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="formative-assessment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["tcsm.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
