@@ -4,20 +4,20 @@ title: "Theory Construction and Statistical Modeling"
 author: "Kyle M. Lang"
 date: "Last updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
-output: 
-  bookdown::gitbook:
-    config: 
-      toc:
-       collapse: section
-      search: yes
-      fontsettings:
-        size: 2
-    split_by: section
-    df_print: paged
-documentclass: book
-bibliography: [../bibtex/book.bib, ../bibtex/packages.bib]
-biblio-style: apalike
-link-citations: yes
+#output: 
+#  bookdown::gitbook:
+#    config: 
+#      toc:
+#       collapse: section
+#      search: yes
+#      fontsettings:
+#        size: 2
+#    split_by: section
+#    df_print: paged
+#documentclass: book
+#bibliography: [../bibtex/book.bib, ../bibtex/packages.bib]
+#biblio-style: apalike
+#link-citations: yes
 #description: "This is a guide for the elective course TCSM."
 ---
 

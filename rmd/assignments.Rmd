@@ -1,4 +1,4 @@
-# Assignments {#assignments} {-}
+# Assignments {-}
 
 1. Apply the “latent variable model” to a real-life problem, where observed variables do not directly measure, but are indicators of, an unobserved social scientific construct (G, 25%)
     a. Find a suitable dataset, for example: (no word limit)
