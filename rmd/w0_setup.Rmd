@@ -6,7 +6,7 @@ If you're already using R, all of this might be nothing new for you. You may **s
 
 If you have **never used R before, this Chapter is essential**, as it gives you some input on how R works, and how we can use it for our data analyses.
 
-![](../../images/chap2.jpg)
+![](../images/chap2.jpg)
 
 ## Installing software 
 
@@ -90,7 +90,7 @@ Don't forget to put the package names in `""`. Otherwise, you will get an error 
  
 To keep all your work organized, you should use a **project**. In Rstudio, click on the *New project* button:
 
-![](../../images/tut_new_proj.png)
+![](../images/tut_new_proj.png)
 
 In the pop-up dialog, click *New directory*, and again *New project*.
 
@@ -123,7 +123,7 @@ more likely to find help for English error messages.)
 
 All of the course data files are available on a GitHub repository. You can download them all at once by going to https://github.com/cjvanlissa/TCSM_student, clicking the green button labeled 'Code', and downloading a ZIP archive of the repository.
 
-![](../../images/coursematerials.png)
+![](../images/coursematerials.png)
 
 After unzipping the archive, you can open the RStudio project 'TCSM_student.Rproj', and the script 'run_me.R'. This script contains a few lines of code to help you install the required R-packages for the course.
 
