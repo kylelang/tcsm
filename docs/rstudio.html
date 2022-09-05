@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.1 Instructors | Theory Construction and Statistical Modeling</title>
-  <meta name="description" content="0.1 Instructors | Theory Construction and Statistical Modeling" />
+  <title>0.17 RStudio | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="0.17 RStudio | Theory Construction and Statistical Modeling" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.1 Instructors | Theory Construction and Statistical Modeling" />
+  <meta property="og:title" content="0.17 RStudio | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.1 Instructors | Theory Construction and Statistical Modeling" />
+  <meta name="twitter:title" content="0.17 RStudio | Theory Construction and Statistical Modeling" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="course-information.html"/>
-<link rel="next" href="course-overview.html"/>
+<link rel="prev" href="who-r-you.html"/>
+<link rel="next" href="loading-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -301,23 +301,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instructors" class="section level2 hasAnchor" number="0.1">
-<h2><span class="header-section-number">0.1</span> Instructors<a href="instructors.html#instructors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Coordinator:</strong></p>
-<p><a href="https://www.kylemlang.com">dr. Kyle M. Lang</a></p>
-<p><strong>Lectures</strong></p>
-<p><a href="https://www.kylemlang.com">dr. Kyle M. Lang</a></p>
-<p><strong>Practicals</strong></p>
-<p><a href="https://www.uu.nl/staff/amkraakman">Rianne Kraakman</a></p>
-<p><a href="https://www.uu.nl/staff/DMRemmerswaal">Daniëlle Remmerswaal</a></p>
+<div id="rstudio" class="section level2 hasAnchor" number="0.17">
+<h2><span class="header-section-number">0.17</span> RStudio<a href="rstudio.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Thankfully, we have a great user interface for R, called RStudio!</p>
+<ul>
+<li>RStudio helps users to use and learn R easier</li>
+<li>If you are using RStudio, this means you are using R.</li>
+<li>From now on, all tutorials will go with RStudio.</li>
+</ul>
+<div id="no-pane-no-gain" class="section level3 hasAnchor" number="0.17.1">
+<h3><span class="header-section-number">0.17.1</span> No ‘pane’, no gain!<a href="rstudio.html#no-pane-no-gain" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you open RStudio, the screen may look like this. You may notice that the screen is divided into A ‘panes’ (a pane is a division of a window):</p>
+<p><img src="tut_panes.jpg" /></p>
+<p>Before we explain these three panes - I want you to add the fourth one, which you will see if you open an R script. An R script is like a “new document” in Microsoft Word. When you open an R script, the fourth pane appears.</p>
+</div>
+<div id="create-a-new-r-script" class="section level3 hasAnchor" number="0.17.2">
+<h3><span class="header-section-number">0.17.2</span> Create a new R script<a href="rstudio.html#create-a-new-r-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Click the icon with a plus sign on the paper. Click the icon highlighted by the red square:</p>
+<p><img src="tut_new_file.png" /></p>
+<p>When you click the icon, a new script appears in a fourth pane on the upper left side of the screen</p>
+<p><img src="tut_panes2.jpg" /></p>
+<p>The four panes really help become organized. In RStudio, you can do everything all together on one screen. Thus, four panes make the work efficient (indeed, no ‘pain’!).</p>
+</div>
+<div id="what-do-the-four-panes-do" class="section level3 hasAnchor" number="0.17.3">
+<h3><span class="header-section-number">0.17.3</span> What do the four panes do?<a href="rstudio.html#what-do-the-four-panes-do" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Out of four panes, the two on the left side are the panes you will use a lot.
+<ul>
+<li>Source pane: located at the top left side of the screen. It is also called the “editor”, because this is where we edit scripts. We will usually type our code in the source pane.</li>
+<li>Console pane: located at the bottom left side of the screen. This panel is for direct communication with R. We can type commands here that are <em>immediately</em> evaluated (whereas a script is only evaluated when we run it). Furthermore, all output of our commands is printed in this console pane.</li>
+</ul></li>
+<li>The panels on the right side of the screen contain various tabs. Among those tabs, it is worth looking at the Environment tab at the upper pane and the Plots tab at the lower pane.
+<ul>
+<li>The Environment tab contains all the ‘objects’ currently loaded in your R session. In SPSS, you can have only one data file open. In R, you can have as many data ‘objects’ as you like. They will be listed here. You can always check what objects are loaded under the environment tab. The environment is also called the ‘workspace’.</li>
+<li>The Plots tab shows various graphs and figures we draw. If you click Zoom with the magnifying glass, you can see plots in a bigger size.</li>
+</ul></li>
+</ul>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="course-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="course-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="who-r-you.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loading-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

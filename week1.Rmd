@@ -2,8 +2,10 @@
 
 ```{r, include = FALSE}
 library(dplyr)
-dataDir  <- "../../data/"
+dataDir  <- "../../../data/"
 quizDir  <- "../assess/"
+partDir  <- "sections/"
+imageDir <- "../images/"
 ```
 
 **Homework before lecture**
@@ -28,9 +30,14 @@ Perform the take-home exercise Regression (Chapter 3, Week 1 Home) before coming
 During the practical you will work on the class exercise about regression and SEM models.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
-knitr::knit_child("sections/w1_lecture.Rmd", quiet = TRUE) %>% cat(sep = "\n")
-knitr::knit_child("sections/w1_rq.Rmd", quiet = TRUE) %>% cat(sep = "\n")
-knitr::knit_child("sections/w1_home.Rmd", quiet = TRUE) %>% cat(sep = "\n")
-knitr::knit_child("sections/w1_class.Rmd", quiet = TRUE) %>% cat(sep = "\n")
-knitr::knit_child("sections/w1_assess.Rmd", quiet = TRUE) %>% cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_lecture.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_rq.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_home.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_class.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_assess.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
 ```

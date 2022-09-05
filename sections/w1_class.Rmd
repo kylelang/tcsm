@@ -539,20 +539,33 @@ anova(results_main, results_interaction)
 ```{r, echo = FALSE}
 library(tidySEM)
 library(lavaan)
-tmp <- data.frame(model.matrix(~.-1, data))
-res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE", data = tmp)
-set.seed(6)
-p <- prepare_graph(res, angle = 179)
-edges(p) <- edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
-ggsave("3_g1.png", plot(p))
 
-tmp <- data.frame(POSTNUMB = data$POSTNUMB, model.matrix(POSTNUMB~-1+VIEWCAT *AGE, data))
-res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE + VIEWCAT2.AGE + VIEWCAT3.AGE + VIEWCAT4.AGE", data = tmp)
+tmp <- data.frame(model.matrix(~ . -1, data))
+res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE", data = tmp)
+
 set.seed(6)
-p <- prepare_graph(res, angle = 179)
-edges(p) <- edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
-ggsave("3_g2.png", plot(p))
+
+p        <- prepare_graph(res, angle = 179)
+edges(p) <- 
+  edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
+
+ggsave(paste0(imageDir, "3_g1.png"), plot(p))
+
+tmp <- data.frame(POSTNUMB = data$POSTNUMB, 
+                  model.matrix(POSTNUMB ~ -1 + VIEWCAT * AGE, data)
+                  )
+res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE + VIEWCAT2.AGE + VIEWCAT3.AGE + VIEWCAT4.AGE", 
+  data = tmp)
+
+set.seed(6)
+
+p        <- prepare_graph(res, angle = 179)
+edges(p) <- 
+  edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
+
+ggsave(paste0(imageDir, "3_g2.png"), plot(p))
 ```
+
 Sketch path models of both steps of the regression analysis (on paper).
 
 <details>

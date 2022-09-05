@@ -1,19 +1,26 @@
 ## Formative Assessment
 
-```{r include=FALSE}
-knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo = FALSE)
-if(!file.exists("formative1.png")){
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE)
+
+fName <- paste0(imageDir, "formative1.png")
+
+if(!file.exists(fName)) {
   library(tidySEM)
-library(lavaan)
-library(ggplot2)
-df <- iris[ , 1:4]
-names(df) <- c("y_1", "x", "y_2", "y_3")
-set.seed(58)
-tidy_sem(df) |>
-  measurement() |>
-  estimate_lavaan() |>
-  graph_sem(fix_coord = TRUE) -> p
-ggsave("formative1.png", p, "png")
+  library(lavaan)
+  library(ggplot2)
+
+  df        <- iris[ , 1:4]
+  names(df) <- c("y_1", "x", "y_2", "y_3")
+  
+  set.seed(58)
+  
+  tidy_sem(df) |>
+    measurement() |>
+    estimate_lavaan() |>
+    graph_sem(fix_coord = TRUE) -> p
+
+  ggsave(fName, p, "png")
 }
 ```
 

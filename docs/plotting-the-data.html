@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.1 Instructors | Theory Construction and Statistical Modeling</title>
-  <meta name="description" content="0.1 Instructors | Theory Construction and Statistical Modeling" />
+  <title>0.20 Plotting the data | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="0.20 Plotting the data | Theory Construction and Statistical Modeling" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.1 Instructors | Theory Construction and Statistical Modeling" />
+  <meta property="og:title" content="0.20 Plotting the data | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.1 Instructors | Theory Construction and Statistical Modeling" />
+  <meta name="twitter:title" content="0.20 Plotting the data | Theory Construction and Statistical Modeling" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="course-information.html"/>
-<link rel="next" href="course-overview.html"/>
+<link rel="prev" href="explore-your-data.html"/>
+<link rel="next" href="analyze-your-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -301,23 +301,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instructors" class="section level2 hasAnchor" number="0.1">
-<h2><span class="header-section-number">0.1</span> Instructors<a href="instructors.html#instructors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Coordinator:</strong></p>
-<p><a href="https://www.kylemlang.com">dr. Kyle M. Lang</a></p>
-<p><strong>Lectures</strong></p>
-<p><a href="https://www.kylemlang.com">dr. Kyle M. Lang</a></p>
-<p><strong>Practicals</strong></p>
-<p><a href="https://www.uu.nl/staff/amkraakman">Rianne Kraakman</a></p>
-<p><a href="https://www.uu.nl/staff/DMRemmerswaal">Daniëlle Remmerswaal</a></p>
+<div id="plotting-the-data" class="section level2 hasAnchor" number="0.20">
+<h2><span class="header-section-number">0.20</span> Plotting the data<a href="plotting-the-data.html#plotting-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is always a good idea to look into your data visually. For example, you would like to know the relationship between two specific variables in your data, the distribution of values, and more.</p>
+<p>We will introduce three basic functions for plotting data. After you run these functions, the output appears in the Plots tab at the lower right pane.</p>
+<p>For plots, we use the <code>ggplot2</code> package. If the package will not load when you run the code below, you may have skipped some essential steps in <a href="installing-software.html#installpackages">0.9.3</a>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plotting-the-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div id="histogram" class="section level3 hasAnchor" number="0.20.1">
+<h3><span class="header-section-number">0.20.1</span> Histogram<a href="plotting-the-data.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Are you curious about how the values of a continuous variable are distributed? Drawing a histogram is one way of examining the distribution.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plotting-the-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the data for the plot and select the variable to plot using aes:</span></span>
+<span id="cb27-2"><a href="plotting-the-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="plotting-the-data.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="co"># Add a histgram</span></span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="boxplot" class="section level3 hasAnchor" number="0.20.2">
+<h3><span class="header-section-number">0.20.2</span> Boxplot<a href="plotting-the-data.html#boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A boxplot shows you how the data are dispersed from the median and whether the outliers exist. Let’s draw the boxplot of the variable, <code>LifSat</code>. Can you guess how to do this?</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plotting-the-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same set up as in the previous example:</span></span>
+<span id="cb28-2"><a href="plotting-the-data.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="plotting-the-data.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="co"># Add a boxplot</span></span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="scatterplot" class="section level3 hasAnchor" number="0.20.3">
+<h3><span class="header-section-number">0.20.3</span> Scatterplot<a href="plotting-the-data.html#scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What if we are interested in visually investigating the relationship between two variables, <code>LifSat</code> and <code>age</code>, in the data? One possible solution is to draw a scatterplot. In addition to the <code>x</code> variable from the previous examples, we can also specify a <code>y</code> variable:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="plotting-the-data.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the data for the plot and select the variable to plot using aes:</span></span>
+<span id="cb29-2"><a href="plotting-the-data.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="plotting-the-data.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="co"># Add scatter</span></span></code></pre></div>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This code gives you the scatterplot of the two variables, <code>LifSat</code> and <code>age</code>. The variable, <code>LifSat</code>, is at the x-axis and the variable, <code>age</code>, is at the y-axis.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="course-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="course-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="explore-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analyze-your-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
