@@ -1,10 +1,14 @@
 # Software Setup {-}
 
-This Chapter helps you prepare for the course. It shows how to install R and RStudio on your computer. We'll also provide some general information on R, and how you can get help if you get error messages. 
+This Chapter helps you prepare for the course. It shows how to install R and 
+RStudio on your computer. We'll also provide some general information on R and 
+how you can get help if you get error messages. 
 
-If you're already using R, all of this might be nothing new for you. You may **skip** this chapter then.
+If you're already using R, all of this might be nothing new for you. You may 
+**skip** this chapter then.
 
-If you have **never used R before, this Chapter is essential**, as it gives you some input on how R works, and how we can use it for our data analyses.
+If you have **never used R before, this Chapter is essential**, as it gives you 
+some input on how R works and how we can use it for our data analyses.
 
 ![](../images/chap2.jpg)
 
@@ -12,23 +16,26 @@ If you have **never used R before, this Chapter is essential**, as it gives you 
 
 Before we start the course, we have to install three things:
 
-* **R**, a free program for statistical programming
-* **RStudio**, a user interface which makes it easier to work with R; overlook our data, packages and output. 
-* Several **packages**, which are 'add-ons' for R with functions to do specific analyses. They also include the documentation (help files) that describes how to use them, and sample data.
-
-
-
-<br><br>
+- **R**: A free program for statistical programming
+- **RStudio**: An integrated development environment (IDE) which makes it easier 
+to work with R. 
+- Several **packages**: Separate pieces of 'add-on' software for R with 
+functions to do specific analyses. Packages also include documentation describing 
+how to use their functions and sample data.
 
 ---
 
 ### Installing R
 
-- The latest R Version is available [here](https://cran.r-project.org)
--	Based on your operating system (Linux, Mac, Windows), click Download.
-    -	If you use **Windows**, click Download R for Windows: Find ‘base’ under subdirectories -> Click ‘install R for the first time’ -> Click Download R 3.6.3 (or another version) for Windows
-    -	If you use **Mac**, click Download R for (Mac) OS X: Find the header ‘Latest release’ -> Click R-3.6.3.pkg (or another version)
-    -	If you use **Linux**, click Download R for Linux: Choose your Linux distribution (debian/, redhat/, suse/, ubuntu/) -> Open the terminal -> Run the installation command
+The latest version of R is available [here](https://cran.r-project.org).
+
+- Click the appropriate link for your operating system and follow the 
+instructions for installing the latest stable release.
+- Depending on which OS you select, you may be given an option to install 
+different components (e.g., *base*, *contrib*, *Rtools*). For this course, you 
+will only need the *base* package. 
+
+---
 
 ### Installing RStudio
 
@@ -39,15 +46,16 @@ img <- readPNG(paste0(imageDir, "rstudiologo.PNG"))
 grid.raster(img)
 ```
 
-Download RStudio on the **RStudio** Website ([Link](https://www.rstudio.com/products/rstudio/download/)). It's free!
+Download the Free Desktop version of RStudio from the 
+[download page](https://www.rstudio.com/products/rstudio/download/) of the 
+[RStudio website](https://www.rstudio.com/).
+
+---
 
 ### Installing packages {#installpackages}
 
-As a prerequisite for this guide, you need to have a few essential **R packages** installed.
-
-1. Open RStudio
-2. Inside RStudio, find the window named **Console** on the bottom left corner of your screen (it might fill the entire left side of the screen).
-3. We will now install a few packages using R Code. Here's an overview of the packages, and why we need them:
+To participate in this course, you will need a few essential **R packages**. 
+Here's an overview of the packages and why we need them:
 
 ```{r, echo = FALSE}
 data.frame(
@@ -68,62 +76,107 @@ data.frame(
   ) %>%
   knitr::kable()
 ```
-  
-<br><br>
 
-4. To install these packages, we use the `install.packages()` function in R. One package after another, our code should look like this:
+To install these packages, we use the `install.packages()` function in R.
 
-```{r, eval=FALSE}
-install.packages("tidySEM", dependencies = TRUE)
+1. Open RStudio
+1. Inside RStudio, find the window named **Console** on left side of the screen.
+3. Copy the following code into the console and hit `Enter`/`Return` to run the 
+command.
+
+```{r, eval = FALSE}
+install.packages(c("lavaan", 
+                   "ggplot2", 
+                   "tidySEM", 
+                   "semTools", 
+                   "psych", 
+                   "foreign", 
+                   "readxl"), 
+                 dependencies = TRUE)
 ```
-
-```{block, type='rmdachtung'}
-Don't forget to put the package names in `""`. Otherwise, you will get an error message.
-```
-
-
-<br><br>
 
 ## Basic usage
 
 ### Starting a new project in Rstudio
  
-To keep all your work organized, you should use a **project**. In Rstudio, click on the *New project* button:
+To keep all your work organized, you should use a **project**. In Rstudio, click 
+on the *New project* button:
 
 ![](../images/tut_new_proj.png)
 
-In the pop-up dialog, click *New directory*, and again *New project*.
+1. In the pop-up dialog, click *New Directory*.
+1. Click *New Project*.
+1. Type the desired directory name in the dialog box 
+   - Give a meaningful name, e.g., "TCSM_Course".
+   - Use the *Browse* button if you need to change the location of the directory 
+   that you will use to store this project. 
 
-type the desired directory name in the dialog (give it a meaningful name, e.g. "TCSM_course"), and use 'Browse' if you need to change the directory where you store your projects. Now, in your project, click *File > New file > R script*. This script file works just like notepad, or the syntax editor in SPSS: You type plain text, but you can run it any time you want. Conduct all of the exercises in this script file.
+Now, you have created a new project and linked it to your current RStudio session 
+(this linking is done automatically when you create a new project). To do any
+useful work, you need to create an R script where you can write your code.
 
-### Code conventions
+1. Click *File > New File > R Script*. 
 
-Throughout the guide, a consistent set of conventions is used to refer to code:
+You should now see a new pane in your RStudio session containing the empty R 
+script you just created. To write your code, you simply type plain text into this 
+script, but, the text you type represents R commands that you can execute any 
+time you want. 
 
-* Functions are in a code font and followed by parentheses, like
-`sum()` or `mean()`.
-* Other R objects (like data or function arguments) are in a code
-font, without parentheses, like `seTE` or `method.tau`. 
-* Sometimes, we’ll use the package name followed by two colons, like
-`lavaan::sem()`. This is valid R code and will run. The `lavaan::` part indicates that the function `sem()` comes from the package `lavaan`.
+- Your should follow this procedure to create a separate R script for each 
+practical (when the time comes, no need to do so now) and for each of your 
+assignments.
+
+<!----------------------------------------------------------------------------->
+
+### Typesetting Conventions
+
+Throughout the guide, we (trye to) use a consistent set of typographic conventions:
+
+- Functions are in a code font, the name is always followed by parentheses
+   - E.g., `sum()`, `mean()`
+- Other R objects (e.g., data objects, function arguments) are in a code font 
+without parentheses
+   - E.g., `seTE`, `method.tau` 
+- Sometimes, we’ll use the package name followed by two colons, like
+`lavaan::sem()`. This command is valid R code and will run if you copy it into 
+your R console. The `lavaan::` part indicates that the function `sem()` comes 
+from the package `lavaan`.
+
+<!----------------------------------------------------------------------------->
 
 ### Getting Help
 
-As you start to apply the techniques described in this guide to your data you will soon find questions that the guide does not answer. This section describes a few tips on how to get help.
+As you start to apply the techniques described in this guide, you will soon have
+questions that the guide does not answer. This section describes a few tips on 
+how to get help answering these questions.
 
-1. Every function in R has documentation (a help file). To see it, select the name of the function and press F1, or run the command `?` followed by the name of the function, e.g.: `?aov`. I have been using R for 10 years, and I still press F1 all the time to see how a function works.
-2. Andy Field, the book used for our undergraduate statistics courses [@field2012discovering], is also available for R. Many basic analyses are explained for R in this book.
-3. If you get stuck, start with **Google**. Typically, adding “R” to a search is enough to restrict it to relevant results, e.g.: "exploratory factor analysis R". Google is particularly useful for error messages. If you get an error message and you have no idea what it means, try googling it. Chances are that someone else has been confused by it in the past, and there will be help somewhere on the web. (If the error message isn’t in English,
-run `Sys.setenv(LANGUAGE = "en")` and re-run the code; you’re
-more likely to find help for English error messages.)
-4. If Google doesn’t help, try [stackoverflow](https://stackoverflow.com). Start by spending a little time searching for an existing answer; including [R] restricts your search to questions and answers that use R.
-5. Lastly, if you stumble upon an error (or typos!) in this guide's text or R syntax, feel free to contact **Caspar van Lissa** at **c.j.vanlissa@uu.nl**.
+1. Every function in R has documentation (i.e., a help file). To see this file 
+in RStudio, select the name of the function in your script, and press F1, or run 
+the command `?` followed by the name of the function (e.g., `?aov`).
+   - The second option works outside of RStudio, too.
+1. If you get stuck, start with **Google**. 
+   - Typically, adding “R” to a search is enough to return relevant results (e.g., 
+   "exploratory factor analysis R"). 
+   - Google is particularly useful for error messages. If you get an error 
+   message that you don't understand, try googling it. Someone else has almost
+   certainly been confused by the same message in the past, and there will be 
+   help somewhere on the web. 
+   - If the error message isn’t in English, run `Sys.setenv(LANGUAGE = "en")` 
+   and re-run the code that produced the error (you’re more likely to find help 
+   for English error messages.)
+1. If Google doesn’t help, try [stackoverflow](https://stackoverflow.com). 
+   - Before posting your question, spend some time searching the site for an 
+   existing answer (active contributors really hate it when you ask a question 
+   that has already been answered on the site).
+   - Including [R] restricts your search to questions and answers that use R.
+1. Lastly, if you find errors (or typos!) in this guide's text or R syntax, feel 
+free to contact me ([Kyle Lang](mailto:k.m.lang@uu.nl)).
 
 ## Getting the course data
 
-All of the course data files are available on a GitHub repository. You can download them all at once by going to https://github.com/cjvanlissa/TCSM_student, clicking the green button labeled 'Code', and downloading a ZIP archive of the repository.
+All of the data files you will need for the course are available in this 
+[SurfDrive directory](https://surfdrive.surf.nl/files/index.php/s/93FzuSnGidunEVA).
 
-![](../images/coursematerials.png)
-
-After unzipping the archive, you can open the RStudio project 'TCSM_student.Rproj', and the script 'run_me.R'. This script contains a few lines of code to help you install the required R-packages for the course.
-
+- Follow the link to download a ZIP archive containing the data you will need to 
+complete the practical exercises.
+- Extract these data files to a convenient location on your computer.

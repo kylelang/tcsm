@@ -2,6 +2,8 @@
 
 Welcome to the world of R! This tutorial is based on the tutorial "R: How to get started" by [Ihnwhi Heo](https://www.linkedin.com/in/ihnwhi-heo/), [Duco Veen](https://www.ducoveen.com/), and [Rens van de Schoot](https://www.rensvandeschoot.com/), and adapted for TCSM.
 
+<!----------------------------------------------------------------------------->
+
 ## Who R you?
 
 R is...
@@ -12,7 +14,9 @@ R is...
 
 R itself looks a bit old-fashioned and tedious:
 
-![](tut_R.jpg)
+![](../images/tut_R.jpg)
+
+<!----------------------------------------------------------------------------->
 
 ## RStudio
 
@@ -26,7 +30,7 @@ Thankfully, we have a great user interface for R, called RStudio!
 
 When you open RStudio, the screen may look like this. You may notice that the screen is divided into A ‘panes’ (a pane is a division of a window): 
 
-![](tut_panes.jpg)
+![](../images/tut_panes.jpg)
 
 Before we explain these three panes - I want you to add the fourth one, which you will see if you open an R script. An R script is like a "new document" in Microsoft Word. When you open an R script, the fourth pane appears.
 
@@ -34,12 +38,12 @@ Before we explain these three panes - I want you to add the fourth one, which yo
 
 Click the icon with a plus sign on the paper. Click the icon highlighted by the red square: 
 
-![](tut_new_file.png)
+![](../images/tut_new_file.png)
 
 
 When you click the icon, a new script appears in a fourth pane on the upper left side of the screen
 
-![](tut_panes2.jpg)
+![](../images/tut_panes2.jpg)
 
 The four panes really help become organized. In RStudio, you can do everything all together on one screen. Thus, four panes make the work efficient (indeed, no ‘pain’!).
 
@@ -52,6 +56,7 @@ The four panes really help become organized. In RStudio, you can do everything a
     -	The Environment tab contains all the ‘objects’ currently loaded in your R session. In SPSS, you can have only one data file open. In R, you can have as many data 'objects' as you like. They will be listed here. You can always check what objects are loaded under the environment tab. The environment is also called the 'workspace'.
     -	The Plots tab shows various graphs and figures we draw. If you click Zoom with the magnifying glass, you can see plots in a bigger size.
 
+<!----------------------------------------------------------------------------->
 
 ## Loading data
 
@@ -64,7 +69,7 @@ The four panes really help become organized. In RStudio, you can do everything a
 -	Suddenly, you may encounter an Install Required Packages pop-up with a message that asks you whether you want to install the `haven` package now. A package is an "enhancement" for R; in this case, an enhancement to allow it to read SPSS files.
 
 <center>
-![](tut_packages.jpg)
+![](../images/tut_packages.jpg)
 </center>
 
 -	Click ‘Yes’.
@@ -75,8 +80,7 @@ The four panes really help become organized. In RStudio, you can do everything a
 -	Now, it’s time to load your data to R. How? Just click Import at the lower right side of the pop-up.
 -	In our example, the name of the dataset is ``LifeSat``.
 
-![](tut_load_data.gif)
-
+![](../images/tut_load_data.gif)
 
 ### Loading data with R code
 
@@ -102,6 +106,8 @@ LifeSat <- read.spss("LifeSat.sav",
 - The lines of code are now evaluated by R, and R is telling you the result of its actions in the console pane.
 
 There are many different ways to load data into R. During this course, we will see a few of them.
+
+<!----------------------------------------------------------------------------->
 
 ## Explore your data
 
@@ -157,7 +163,6 @@ We can refer to columns by name, too:
 LifeSat[1:2, c("age", "educ")]
 ```
 
-
 ### str()
 
 -	It is of interest to know what types of variables are in the dataset. For example, if you want to run an analysis of variance (ANOVA), the independent variable should be categorical, and we should check if it is the case.
@@ -183,6 +188,8 @@ summary(LifeSat)
 
 This summary is a bit messy; you can get a nicer summary using the `describe()` function from the `psych` package. We will learn more about this in the course.
 
+<!----------------------------------------------------------------------------->
+
 ## Plotting the data
 
 It is always a good idea to look into your data visually. For example, you would like to know the relationship between two specific variables in your data, the distribution of values, and more.
@@ -195,7 +202,6 @@ For plots, we use the `ggplot2` package. If the package will not load when you r
 library(ggplot2)
 ```
 
-
 ### Histogram
 
 Are you curious about how the values of a continuous variable are distributed? Drawing a histogram is one way of examining the distribution.
@@ -206,10 +212,9 @@ ggplot(data = LifeSat, aes(x = LifSat)) +
   geom_histogram() # Add a histgram
 ```
 
-
 ### Boxplot
 
-A boxplot shows you how the data are dispersed from the median and whether the outliers exist. Let’s draw the boxplot of the variable, `LifSat`. Can you guess how to do this?
+A boxplot shows you how the data are dispersed from the median and whether the outliers exist. Let’s draw the boxplot of the variable, `LifeSat`. Can you guess how to do this?
 
 ```{r, fig.align="center"}
 # Same set up as in the previous example:
@@ -228,7 +233,3 @@ ggplot(data = LifeSat, aes(x = LifSat, y = age)) +
 ```
 
 This code gives you the scatterplot of the two variables, `LifSat` and `age`. The variable, `LifSat`, is at the x-axis and the variable, `age`, is at the y-axis.
-
-## Analyze your data
-
--	One of the strengths of R is its flexibility in running statistical analyses and producing graphical outputs. In the first week of the course, we will perform some standard analyses in R that you are already familiar with from previous courses.

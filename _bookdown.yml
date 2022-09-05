@@ -1,7 +1,7 @@
 book_filename: "tcsm.Rmd"
 rmd_files: [
-  #"index.Rmd",
-  "course_info.Rmd",
+  "index.Rmd",
+  #"course_info.Rmd",
   "week0.Rmd",
   "week1.Rmd",
   "week2.Rmd"
