@@ -1,0 +1,236 @@
+# Week 6 - Class
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+show_answers <- TRUE
+```
+```{r echo = FALSE, warning=FALSE, message=FALSE}
+library(foreign)
+library(semTools)
+library(kableExtra)
+library(lavaan)
+library(psych)
+data <- read.spss("TCSM_student/suiciderisk.sav", to.data.frame = TRUE)
+```
+
+Start with your last model from Question 11 of the THE. Note that ‘Depression’ and ‘use of narcotic substances’ are completely independent in the model, i.e. they are not predicted by anything. Usually we would estimate a covariance between them, otherwise the model restricts the covariance to be zero. However, to replicate the original results, it is important to NOT estimate this covariance (fix it to zero). 
+
+### Question 1
+
+We can modify this general model for all cases into a multi-group model
+with two groups (males and females). Why is this a good method to study moderation? (or in other words, what are the two research questions we can investigate with a multi-group model?)
+
+<details>
+  <summary>Click for explanation</summary>
+Because we can investigate 1) whether the model itself is different for boys and girls and 2) whether the size of regression coefficients differ
+\details
+
+### Question 2
+
+Estimate a multi-group model, with gender as grouping variable. In case you forgot how to do this, see the first of the class exercise from week 4. Look at the fit of the model, what do you find?
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+model <- "
+suirisk ~ hopeless + depression + subabuse
+hopeless ~ depression + selfesteem
+selfesteem ~ depression
+subabuse ~~ 0*depression
+"
+
+fit <- sem(model, data, 
+                   group = "gender")
+summary(fit, fit.measures = TRUE)
+```
+
+\details
+
+### Question 3
+
+Mehta et al. (1998) state that their model can be improved post-hoc by adding and removing a path to this model. Follow their procedure, and first add a path for both males and females, and secondly, remove a nonsignificant path.
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+model_exploratory <- "
+suirisk ~ depression + subabuse
+hopeless ~ depression + selfesteem
+selfesteem ~ depression
+subabuse ~ hopeless
+subabuse ~~ 0*depression
+"
+
+fit_exploratory <- sem(model_exploratory, data, 
+                   group = "gender")
+summary(fit_exploratory, fit.measures = TRUE)
+```
+\details
+
+### Question 4
+
+Evaluate the path coefficients of both males and females (tip: look at both the unstandardized and standardized coefficients). Can you explain how the two groups differ?
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+summary(fit, fit.measures = FALSE, standardized = TRUE)
+```
+  
+
+\details
+
+### Question 5
+
+We can test the difference between males and females more formally in two ways: 
+
+1. By constraining the size of the regression coefficients to be equal in both groups and doing a test for nested models/
+2. By computing (`:=`) a parameter for the difference between the two groups, and looking at its p-value, or a bootstrapped confidence interval. 
+
+Why are these approaches both preferrable over just comparing regression coefficients by sight?
+
+<details>
+  <summary>Click for explanation</summary>
+Even if we observe differences, we do not know whether they are significantly different. By constraining parameters to be equal, we can test two models. 1) the free model against 2) the constrained model. This is done using a Chi-square difference test. By computing a difference parameter, we can do a parameteric test or bootstrap confidence interval for the difference.
+\details
+
+### Question 6
+
+Constrain the regression coefficients for males and females. Compare the unconstrained model to the model with constrained regression coefficients. What is your conclusion?
+
+<details>
+  <summary>Click for explanation</summary>
+First, estimate the constrained model. We can use the `model` from the first exercise:
+
+```{r}
+fit_fix_reg <- sem(model, data,
+                   group = "gender",
+                   group.equal = "regressions")
+summary(fit_fix_reg, fit.measures = TRUE)
+```
+
+Then, compare the two models. I like to use `semTools::compareFit()`:
+
+
+```{r}
+library(semTools)
+compareFit(Free = fit,
+           Constrained = fit_fix_reg)
+```
+  
+The model gets significantly worse. This means the regression coefficients for males and females are not equal.
+\details
+
+
+### Specific differences
+
+Just knowing that regression coefficients differ, is interesting in itself. Reflect here on the conclusion of Mehta et al. 1998. Do they test for significant moderation?
+
+After doing this omnibus (overall) test, it is interesting to know which parameters, speciffically, differ. We can do this by computing new parameters for the difference between men and women. These new parameters will be tested using Z-tests and corresponding p-values. For a non-parametric test, you will have to bootstrap your analysis (see the explanation about bootstrapping indirect effects).
+
+We use a similar approach to the one we used to compute indirect effects:
+
+1. Label every path in your model
+2. Define new parameters as the difference between corresponding parameters for men and women 
+
+```{r}
+model_diff <- "
+suirisk ~ c(m1, f1)*hopeless + c(m2, f2)*depression + c(m3, f3)*subabuse
+hopeless ~ c(m4, f4)*depression + c(m5, f5)*selfesteem
+selfesteem ~ c(m6, f6)*depression
+subabuse ~~ 0*depression
+
+D1 := m1-f1
+D2 := m2-f2
+D3 := m3-f3
+D4 := m4-f4
+D5 := m5-f5
+D6 := m6-f6
+"
+```
+
+### Question 7
+
+Fit this model, and inspect the results for the defined parameters. What are your conclusions?
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+fit_dif <- sem(model_diff, data, 
+                   group = "gender")
+summary(fit_dif)
+```
+
+Only the effect of depression on suicide risk, and the effect of depression on selfesteem, are significantly different between the sexes.
+\details
+
+### Question 8
+
+Is there anything we should consider when inspecting these p-values?
+
+<details>
+  <summary>Click for explanation</summary>
+You should consider the potential risk of multiple testing, and whether the assumption of normality holds.
+\details
+
+### Results table
+
+When you want to include your results in a paper, it's a lot of work to copy-paste everything. There are many ways to get R results directly into a paper, including writing the entire paper in R and automatically updating the results. I will show you a very basic way to make a table and export it to a spreadsheet. We will use the functions `parameterEstimates(fit, standardized = TRUE)` to get the unstandardized and standardized estimates, and then put them into a nice table:
+
+```{r}
+table_results <- parameterEstimates(fit, standardized = TRUE)
+head(table_results)
+```
+
+Then, we take only the labeled parameters (which are the regression coefficients and difference parameters):
+
+```{r}
+table_results <- table_results[table_results$label != "", ]
+table_results <- cbind(table_results[1:6, 1:3],
+               Est_men = table_results[1:6, "std.all"],
+               Est_women = table_results[7:12, "std.all"],
+               p_diff = table_results[13:18, "pvalue"])
+write.csv(table_results, "table_results.csv", row.names = FALSE)
+```
+
+
+### Question 9
+
+Interpret the effect sizes (standardized estimates) for males and females. What are your conclusions?
+
+### Question 10
+
+Evaluate R-square for suicide risk for males and females. What do you find?
+
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+summary(fit, rsquare = TRUE)
+```
+The R-square for suicide risk is .29 for males, and .12 for females. The model predicts suicide risk better for females.
+
+\details
+
+### Question 12
+
+Calculate the total, direct and indirect effects (see practical week 5). The model we have made is a typical example of moderated mediation (i.e. the mediation effects are moderated by gender). In your own words, what are the differences in the mediation between males and females?
+
+*Note: Because the paths are different for males and females, you should also calculate the total, direct and indirect effects (see practical week 5) for males and females separately.* 
+
+<details>
+  <summary>Click for explanation</summary>
+The total effects of depression and substance use on suicide risk are higher for females than males, but the total effect for selfesteem and hopelessness are very similar. 
+\details
+
+### Question 13
+
+Compare your conclusion in the previous question with that of Mehta and colleagues (1998). Are your conclusions any different? Why?
+
+<details>
+  <summary>Click for explanation</summary>
+Should be different: They do not test moderation explicitly, and report differences in all paths between males and females. In fact, the paths leading to suicide risk are different for males and females, but the mediation of depression through hopelessness is similar.
+\details
+
+

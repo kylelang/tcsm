@@ -1,0 +1,65 @@
+# Week 4 - Reading questions
+
+```{r include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+config <- yaml::yaml.load_file("config.yml")
+```
+
+#### Reference {-}
+
+[Miller, G. A., & Chapman, J. P. (2001). Misunderstanding 
+analysis of covariance. Journal of Abnormal Psychology, 110(1), 40-48.](https://pdfs.semanticscholar.org/e6d5/8a8a0dd660f6bbaba8d88137735d40124b05.pdf)
+
+#### Questions: {-}
+
+1. What was the original purpose of ANCOVA?
+1. In the intro two problems are mentioned which may arise when ANCOVA is 
+used in the context of existing groups. Which problems are these, and why are 
+these problems?
+1. On p. 44 a hypothetical statistician is discussed (introduced by Lord) who uses 
+ANCOVA to compare the weight of boys and girls, while using initial weight as a 
+covariate. How does this statistician use ANCOVA exactly, and why is this wrong?
+1. Why is comparing young women to old men problematic (p. 44)?
+1. In the example discussed on p. 46 (first column), what is the DV, the 
+covariate(s) and the grouping variable? Is this a good example of the problem the 
+authors try to point out, and why do you think it is/is not?
+
+```{r echo=FALSE, results = 'asis', eval = config$show_text}
+cat("#### Answers {-}
+
+1. ANCOVA was developed to improve the power of the test of the independent 
+variable, not to “control” for anything.
+1. In the intro two problems are mentioned which may arise when ANCOVA is 
+used in the context of existing groups. Which problems are these, and why are 
+these problems? 
+    * Removal of variance related to the covariate might also remove variance 
+related to the factor of interest, therefore deflating the effect of the factor 
+on the DV. 
+    * Additional problem is that preexisting groups might differ on more than 
+one covariate (not all might be measured) and therefore differences 
+remain intact. 
+1. The statistician selects two groups, one with boys and one with girls that have 
+identical frequency distributions of initial weight. By selecting these groups the 
+statistician wants to look at the effect of a certain diet on the increase in weight 
+by taking out the effect of initial weight (when you were heavier to start with, you 
+are probably heavier later on). But by selecting a group of boys that is equal in 
+weight as a group of girls, you will select girls that are heavier that the average 
+girl, and boys that are lower in weight than the average boy. By regression to the 
+mean, these boys will regress to the mean of the boys (and therefore increase 
+more than other boys), and girls will increase less than other girls. 
+1. Because all the women are young (in this example) and all men are old, you 
+cannot conclude whether an effect is related to age or gender, because they are 
+entwined.  
+1. DV = performance on reading test  
+Grouping variable = district (White vs. Black)  
+Covariates = poverty, parent education, class size  
+What is Quality in teaching staff? Also covariate, but treated as important 
+predictor.  
+They want to point out that you cannot separate the effects of district, poverty, 
+parent education etc. on the performance, because these IVs are highly 
+correlated. I don’t think this is a very good example, because the way the results 
+are formulated does not clearly imply what kind of analysis is done. Besides that,
+the point that numerous variables are correlated and therefore the effects (on the 
+DV) cannot easily be separated, is true.
+")
+```
