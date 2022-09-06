@@ -24,7 +24,7 @@ contribute to R
 
 R itself looks a bit old-fashioned and tedious:
 
-![](../images/tut_R.jpg)
+![](images/tut_R.jpg)
 
 <!----------------------------------------------------------------------------->
 
@@ -45,7 +45,7 @@ When you open RStudio, the screen should look something like the following image
 You will notice that the window is divided into ‘panes’ (a pane is a division of 
 a window).
 
-![](../images/tut_panes.jpg)
+![](images/tut_panes.jpg)
 
 Before we explain these three panes, I want you to add another, which you will 
 see if you open an R script. An R script is simply a plain-text file wherein you
@@ -59,7 +59,7 @@ create a new one, which is really the same thing), a fourth pane appears.
 To create a new R script, Click the icon with a plus sign on the paper 
 (highlighted below by the red square).
 
-![](../images/tut_new_file.png)
+![](images/tut_new_file.png)
 
 
 When you click this icon, a new script is generated and appears in a fourth pane 
@@ -68,7 +68,7 @@ on the upper left side of the screen (if you're using the default layout).
 - Note that this script is not yet saved anywhere. If you close this script 
 without saving, you will lose all its  contents.
 
-![](../images/tut_panes2.jpg)
+![](images/tut_panes2.jpg)
 
 The four panes help organize your workflow. Rstudio is an *integrated development 
 environment* (IDE) that is meant to integrate all of the tasks you may need to 
@@ -124,7 +124,7 @@ will can load the data without specifying the file path.
  
 In Rstudio, click on the *New project* button:
 
-![](../images/tut_new_proj.png)
+![](images/tut_new_proj.png)
 
 1. In the pop-up dialog, click *New Directory*.
 1. Click *New Project*.
@@ -155,7 +155,7 @@ You may encounter an *Install Required Packages* pop-up dialog with a message
 that asks you whether you want to install the `haven` package. 
 
 <center>
-![](../images/tut_packages.jpg)
+![](images/tut_packages.jpg)
 </center>
 
 A package is an a piece of add-on software for R.
@@ -184,7 +184,7 @@ selected options are expressed in terms of code.
 
 Finally, click *Import* at the lower right side of the window to load your data.
 
-![](../images/tut_load_data.gif)
+![](images/tut_load_data.gif)
 
 ---
 

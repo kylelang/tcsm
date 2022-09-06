@@ -10,8 +10,6 @@ output:
       toc:
        collapse: section
        search: yes
-#      fontsettings:
-#        size: 2
     split_by: section
     df_print: paged
 documentclass: book
