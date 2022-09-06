@@ -8,7 +8,7 @@ that your current setup will be compatible with the course requirements.
 If you have never used R before, this chapter is essential! The information is 
 this chapter will be crucial for getting your computer ready for the course.
 
-![](../images/chap2.jpg)
+![](images/chap2.jpg)
 
 ## Typographic Conventions
 
