@@ -11,5 +11,5 @@ rsconnect
 *.xlsx
 *.pdf
 *.RData
-TCSM_student/
-students_2021.csv
+!pdfs/*.pdf
+!docs/pdfs/*.pdf

@@ -227,6 +227,8 @@ To run the code:
 The code should now be evaluated by R, and R will tell you the result of its 
 actions in the console pane.
 
+---
+
 #### Data frames
 
 When we read data into R, the data are most often stored as a special type of 
@@ -661,7 +663,7 @@ the command `?` followed by the name of the function (e.g., `?aov`).
 1. Lastly, if you find errors (or typos!) in this guide's text or R syntax, feel 
 free to contact me ([Kyle Lang](mailto:k.m.lang@uu.nl)).
 
----
+<!----------------------------------------------------------------------------->
 
 [LifeSat]: https://surfdrive.surf.nl/files/index.php/s/odvDwcQNiUCj0rN/download
 
