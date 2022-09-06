@@ -298,8 +298,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="at-home-exercises" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> At-Home Exercises<a href="at-home-exercises.html#at-home-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Open the data file LifeSat.sav.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="at-home-exercises.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb37-2"><a href="at-home-exercises.html#cb37-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;LifeSat.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="at-home-exercises.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb38-2"><a href="at-home-exercises.html#cb38-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;LifeSat.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div id="section" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> </h3>
 <p>Make a table with descriptive statistics for the variables: LifSat, educ, ChildSup, SpouSup, and age.</p>
@@ -310,8 +310,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Click for explanation
 </summary>
 <p>The package <code>tidySEM</code> contains a function to describe data. Install and load the package, then use the <code>descriptives()</code> function. Alternatively, you can also use the <code>describe()</code> function in the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="at-home-exercises.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb38-2"><a href="at-home-exercises.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(data[, <span class="fu">c</span>(<span class="st">&quot;LifSat&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;ChildSup&quot;</span>, <span class="st">&quot;SpouSup&quot;</span>, <span class="st">&quot;age&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="at-home-exercises.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb39-2"><a href="at-home-exercises.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(data[, <span class="fu">c</span>(<span class="st">&quot;LifSat&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;ChildSup&quot;</span>, <span class="st">&quot;SpouSup&quot;</span>, <span class="st">&quot;age&quot;</span>)])</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["min"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"LifSat","2":"numeric","3":"98","4":"0","5":"49","6":"57.857143","7":"58","8":"58","9":"NA","10":"18.330303","11":"NA","12":"13","13":"100","14":"87","15":"-0.18014791","16":"-0.3695206","17":"-0.3821327","18":"-0.3956129"},{"1":"educ","2":"numeric","3":"98","4":"0","5":"9","6":"6.540816","7":"6","8":"6","9":"NA","10":"1.527537","11":"NA","12":"4","13":"12","14":"8","15":"1.44367529","16":"2.9612761","17":"2.9270980","18":"3.0303556"},{"1":"ChildSup","2":"numeric","3":"98","4":"0","5":"8","6":"6.857143","7":"7","8":"7","9":"NA","10":"1.526400","11":"NA","12":"3","13":"10","14":"7","15":"-0.29512318","16":"-0.6053586","17":"-0.4106227","18":"-0.4251080"},{"1":"SpouSup","2":"numeric","3":"98","4":"0","5":"9","6":"6.061224","7":"6","8":"6","9":"NA","10":"1.751679","11":"NA","12":"2","13":"10","14":"8","15":"-0.10382843","16":"-0.2129736","17":"-0.7058851","18":"-0.7307863"},{"1":"age","2":"numeric","3":"98","4":"0","5":"12","6":"70.255102","7":"70","8":"70","9":"NA","10":"2.429676","11":"NA","12":"64","13":"75","14":"11","15":"-0.09451875","16":"-0.1938775","17":"-0.4635443","18":"-0.4798965"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -327,8 +327,8 @@ Click for explanation
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="at-home-exercises.html#cb39-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> educ, data)</span>
-<span id="cb39-2"><a href="at-home-exercises.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="at-home-exercises.html#cb40-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> educ, data)</span>
+<span id="cb40-2"><a href="at-home-exercises.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = LifSat ~ educ, data = data)
@@ -356,8 +356,8 @@ Click for explanation
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="at-home-exercises.html#cb41-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> age, data)</span>
-<span id="cb41-2"><a href="at-home-exercises.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="at-home-exercises.html#cb42-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> age, data)</span>
+<span id="cb42-2"><a href="at-home-exercises.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = LifSat ~ age, data = data)
@@ -385,8 +385,8 @@ Click for explanation
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="at-home-exercises.html#cb43-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> ChildSup, data)</span>
-<span id="cb43-2"><a href="at-home-exercises.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="at-home-exercises.html#cb44-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> ChildSup, data)</span>
+<span id="cb44-2"><a href="at-home-exercises.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = LifSat ~ ChildSup, data = data)
@@ -415,8 +415,8 @@ Click for explanation
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="at-home-exercises.html#cb45-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> ChildSup, data)</span>
-<span id="cb45-2"><a href="at-home-exercises.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="at-home-exercises.html#cb46-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> ChildSup, data)</span>
+<span id="cb46-2"><a href="at-home-exercises.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = LifSat ~ educ + age + ChildSup, data = data)

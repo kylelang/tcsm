@@ -507,12 +507,12 @@ We now see that `gender` has been converted to a factor with the levels "1" and
 - We can assign meaningful value labels by providing an appropriate input for 
 the `labels` argument.
 
-```{r, results = "hide"}
+```{r}
 ## Create a factor with meaningful labels:
 LifeSat$gender <- factor(LifeSat$gender, labels = c("Female", "Male"))
 
 ## Check the results:
-str(LifeSat)
+str(LifeSat$gender)
 ```
 
 ---
@@ -583,7 +583,7 @@ columns).
 `LifeSat_male`.
 
 ```{r}
-LifeSat_male <- LifeSat[LifeSat$gender == "male", ]
+LifeSat_male <- LifeSat[LifeSat$gender == "Male", ]
 str(LifeSat_male)
 ```
 
