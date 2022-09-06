@@ -1,9 +1,15 @@
-# R tutorial for beginners (Optional) {-}
+# R Tutorial {-}
 
-Welcome to the world of R! This tutorial is based on "R: How to get started" by 
-[Ihnwhi Heo](https://www.linkedin.com/in/ihnwhi-heo/), 
+Welcome to the world of R! This chapter provides a tutorial based on "R: How to 
+get started" by [Ihnwhi Heo](https://www.linkedin.com/in/ihnwhi-heo/), 
 [Duco Veen](https://www.ducoveen.com/), and 
 [Rens van de Schoot](https://www.rensvandeschoot.com/).
+
+- If you already have a good deal of R experience, and you don't see anything new in this tutorial, feel free to skip this chapter.
+- If you haven't worked with R before, I strongly encourage you to spend some time 
+carefully working through this tutorial. The content of this chapter will go a 
+long way towards familiarizing you with the basic R commands that you will need 
+to use at the beginning of the course.
 
 <!----------------------------------------------------------------------------->
 
@@ -376,7 +382,7 @@ lower right quadrant of the RStudio window.
 
 We will use the `ggplot2` package for plotting. This package is not part of the 
 Base R installation. So, you must install `ggplot2` yourself (you should have 
-already done so in Section \@ref(installpackages)).
+already done so in Section \@ref(installPackages)).
 
 - You only need to install an R package once.
     - R packages are just small software programs, so they must be installed 

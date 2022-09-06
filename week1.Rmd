@@ -8,31 +8,41 @@ partDir  <- "sections/"
 imageDir <- "../images/"
 ```
 
-**Homework before lecture**
+**Homework before the lecture**
 
-Work your way through the first two chapters of the GitBook online: https://cjvanlissa.github.io/TCSM/index.html. This will help you install the software required for the course, and get the data into R. You can skip the optional sections if you are already familiar with R.
-
-Read the article by Smaldino (skip the red sections; the yellow section is optional). Answer the reading questions (on Blackboard). Plan a call with your learning team to discuss the second question. Reference:
-
-Smaldino, P. E. (2017). Models are stupid, and we need more of 
-them. Computational social psychology, 311-331.
+1. Complete the preparatory material:
+    a. Read over the [Course Information](index.html) chapter
+    a. Work through the [Software Setup](software-setup.html) chapter
+    a. Work through the [R Tutorial](r-tutorial.html) chapter
+1. Watch the [Lecture Recording](lecture.html) for this week.
+1. Complete the [Reading](reading.html) for this week, and answer the associated 
+reading questions.
+1. Complete the [Formative Assessment](formative-assessment.html) for this week.
 
 **Lecture content**
 
-We start with a brief introduction to the course, its goals and rules and the idea of statistical modelling. In this lecture we will introduce the type of models that will come across in this course. We will shortly discuss the concepts of model simplicity/complexity, model fit, the graphical display and the interpretation of different model parameters.  
+We start with a brief introduction to the course, the course goals and rules, 
+and the general idea of statistical modeling. 
 
-**Homework before practical**
+- We will introduce the type of models that we will consider in this course.
+- We will shortly discuss several related concepts:
+    - Model simplicity/complexity
+    - Model fit
+    - Graphical representations of model parameters
+    - Interpretations of model parameters   
 
-Perform the take-home exercise Regression (Chapter 3, Week 1 Home) before coming to the practical. 
+**Homework before the practical**
+
+Complete the [At-Home Exercises](at-home-exercises.html). 
 
 **Practical content**
 
-During the practical you will work on the class exercise about regression and SEM models.
+During the practical you will work on the [In-Class Exercises](in-class-exercises.html).
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
 knitr::knit_child(paste0(partDir, "w1_lecture.Rmd"), quiet = TRUE) %>% 
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "w1_rq.Rmd"), quiet = TRUE) %>% 
+knitr::knit_child(paste0(partDir, "w1_reading.Rmd"), quiet = TRUE) %>% 
   cat(sep = "\n")
 knitr::knit_child(paste0(partDir, "w1_home.Rmd"), quiet = TRUE) %>% 
   cat(sep = "\n")
