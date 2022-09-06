@@ -1,25 +1,27 @@
-# Reading data into R {-}
+# Basic R Usage {-}
 
-```{block, type = 'rmdinfo'}
-This optional chapter will tell you about how you can import data in R. We will 
-also go over a few commands to manipulate data in R.
-```
 
-## Using R projects
+---
 
-One advantage of using an **R project** is that the project directory is automatically set as the working directory. Just copy your data file to the folder that contains the *".Rproj"* file, and you will be able to load files by name.
+### Creating a new R script
 
-## Importing Excel Files
+Now, you have created a new project and linked it to your current RStudio session 
+(this linking is done automatically when you create a new project). To do any
+useful work, you need to create an R script where you can write your code.
 
-One way to get Excel files directly into R is by using the `readxl` package. Install the package, and try using the read_excel() function to load the data, and assign it to an object called `df`:
+- Click *File > New File > R Script*. 
 
-```{r, eval = FALSE}
-## Load the package:
-library(readxl)
+You should now see a new pane in your RStudio session containing the empty R 
+script you just created. To write your code, you simply type plain text into this 
+script, but, the text you type represents R commands that you can execute any 
+time you want. 
 
-## Read the first sheet of 'your_file.xlsx' into 'df':
-df <- read_excel("your_file.xlsx", sheet = 1)
-```
+- Your should follow this procedure to create a separate R script for each 
+practical (when the time comes, no need to do so now) and for each of your 
+assignments.
+
+<!----------------------------------------------------------------------------->
+
 
 ```{r, echo = FALSE, results = "hide", message = FALSE, eval = FALSE}
 library(readxl)
@@ -67,90 +69,3 @@ df <- read.spss("Sesam2.sav", to.data.frame = TRUE)
 df <- read.spss(paste0(dataDir, "Sesam2.sav"), to.data.frame = TRUE)
 ```
 
-## Data manipulation (optional)
-
-Now that we have the data in R, let's manipulate the data a bit. The following 
-functions might come in handy later on.
-
-Going back to the output of the `str()` function, we see that this also gives us details on the type of column data we have stored in our data. There a different abbreviations signifying different types of data.
-
-```{r, echo = FALSE}
-data.frame(
-  Abbreviation = c("num", "chr", "log", "factor"),
-  Type = c("Numeric", "Character", "Logical", "Factor"),
-  Description = c("All values are numbers (e.g., 1.02)",
-                  "All values are words",
-                  "Boolean flags: TRUE or FALSE",
-                  "A special type of object with labels to represent the levels of a categorical variable")
-) %>% knitr::kable()
-```
-
-### Converting to factors {#convertfactors}
-
-Let's look at the variable `df$VIEWCAT`. This is a categorical variable, coded as a numerical one. We can have a look at this variable by typing the name of our dataset, then adding the selector `$` and then adding the variable we want to have a look at.
-This variable is currently a numeric vector. We want it to be a factor: That's a categorical variable.
-
-To convert this to a **factor** variable now, we use the `factor()` function.
-
-```{r, results = "hide"}
-df$VIEWCAT <- factor(df$VIEWCAT)
-```
-
-We now see that the variable has been **converted to a factor with the levels "1", "2", "3", and "4"**. We can assign different value labels as follows:
-
-```{r, results = "hide"}
-df$VIEWCAT <- factor(df$VIEWCAT, labels = c("Rarely", "Sometimes", "Regularly", "Often"))
-```
-
-### Selecting specific cases {#select}
-
-It may often come in handy to **select certain cases for further analyses**, or to **exclude some studies in further analyses** (e.g., if they are outliers).
-
-To do this, we can use the `[]` operator to index our data.
-
-Let's say we want to get only the first 5 cases. We can select them like so:
-
-```{r}
-df[1:5, ]
-```
-
-Or let's say we only want the children younger than 36 months in the dataset. In this case, we can use **boolean indexing**: We create a TRUE / FALSE statement, and select the cases that are TRUE:
-
-```{r}
-df[df$AGE < 36, ]
-```
-
-Note that this approach can be used for any other type of data and variable. We can also use it to e.g., only select studies where VIEWCAT was equal to "Often" "typical":
-
-```{r, eval = FALSE}
-df[df$VIEWCAT == "Often", ]
-```
-```{r, echo = FALSE}
-df[df$VIEWCAT == "Often", ][1:5, ]
-```
-
-### Changing cell values
-
-Sometimes, even when preparing your data in EXCEL, you might want to **change values in RStudio once you have imported your data**. 
-
-To do this, we have to select a cell in our data frame in RStudio. This can be done by adding `[x,y]` to our dataset name, where **x** signifies the number of the **row** we want to select, and **y** signifies the number of the **column**.
-
-To see how this works, let's select a variable using this command first:
-
-```{r}
-df[8,1]
-```
-
-We now see the **8th study** in our dataframe, and the value of this study for **Column 1 (participant ID)** is displayed. Let's say we had a typo in this name and want to have it changed. In this case, we have to give this exact cell a new value.
-
-```{r}
-df[8,1] <- 1001
-```
-
-Let's check if the value has changed.
-
-```{r}
-df[8,1]
-```
-
-You can also use this function to change any other type of data, including numericals and logicals. Only for characters, you have to put the values you want to insert in `""`.

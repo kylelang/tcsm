@@ -12,6 +12,23 @@ some input on how R works and how we can use it for our data analyses.
 
 ![](../images/chap2.jpg)
 
+## Typeographic Conventions
+
+Throughout this GitBook, we (try to) use a consistent set of typographic 
+conventions:
+
+- Functions are typeset in a code font, and the name of the function is always 
+followed by parentheses
+    - E.g., `sum()`, `mean()`
+- Other R objects (e.g., data objects, function arguments) are in also typeset
+in a code font but without parentheses
+    - E.g., `seTE`, `method.tau` 
+- Sometimes, we’ll use the package name followed by two colons (`::`, the 
+so-called *scope-resolution operator), like `lavaan::sem()`. This command is 
+valid R code and will run if you copy it into your R console. The `lavaan::` 
+part of the command tells R that we want to use the `sem()` from the `lavaan` 
+package.
+
 ## Installing software 
 
 Before we start the course, we have to install three things:
@@ -95,82 +112,7 @@ install.packages(c("lavaan",
                  dependencies = TRUE)
 ```
 
-## Basic usage
-
-### Starting a new project in Rstudio
- 
-To keep all your work organized, you should use a **project**. In Rstudio, click 
-on the *New project* button:
-
-![](../images/tut_new_proj.png)
-
-1. In the pop-up dialog, click *New Directory*.
-1. Click *New Project*.
-1. Type the desired directory name in the dialog box 
-   - Give a meaningful name, e.g., "TCSM_Course".
-   - Use the *Browse* button if you need to change the location of the directory 
-   that you will use to store this project. 
-
-Now, you have created a new project and linked it to your current RStudio session 
-(this linking is done automatically when you create a new project). To do any
-useful work, you need to create an R script where you can write your code.
-
-1. Click *File > New File > R Script*. 
-
-You should now see a new pane in your RStudio session containing the empty R 
-script you just created. To write your code, you simply type plain text into this 
-script, but, the text you type represents R commands that you can execute any 
-time you want. 
-
-- Your should follow this procedure to create a separate R script for each 
-practical (when the time comes, no need to do so now) and for each of your 
-assignments.
-
 <!----------------------------------------------------------------------------->
-
-### Typesetting Conventions
-
-Throughout the guide, we (trye to) use a consistent set of typographic conventions:
-
-- Functions are in a code font, the name is always followed by parentheses
-   - E.g., `sum()`, `mean()`
-- Other R objects (e.g., data objects, function arguments) are in a code font 
-without parentheses
-   - E.g., `seTE`, `method.tau` 
-- Sometimes, we’ll use the package name followed by two colons, like
-`lavaan::sem()`. This command is valid R code and will run if you copy it into 
-your R console. The `lavaan::` part indicates that the function `sem()` comes 
-from the package `lavaan`.
-
-<!----------------------------------------------------------------------------->
-
-### Getting Help
-
-As you start to apply the techniques described in this guide, you will soon have
-questions that the guide does not answer. This section describes a few tips on 
-how to get help answering these questions.
-
-1. Every function in R has documentation (i.e., a help file). To see this file 
-in RStudio, select the name of the function in your script, and press F1, or run 
-the command `?` followed by the name of the function (e.g., `?aov`).
-   - The second option works outside of RStudio, too.
-1. If you get stuck, start with **Google**. 
-   - Typically, adding “R” to a search is enough to return relevant results (e.g., 
-   "exploratory factor analysis R"). 
-   - Google is particularly useful for error messages. If you get an error 
-   message that you don't understand, try googling it. Someone else has almost
-   certainly been confused by the same message in the past, and there will be 
-   help somewhere on the web. 
-   - If the error message isn’t in English, run `Sys.setenv(LANGUAGE = "en")` 
-   and re-run the code that produced the error (you’re more likely to find help 
-   for English error messages.)
-1. If Google doesn’t help, try [stackoverflow](https://stackoverflow.com). 
-   - Before posting your question, spend some time searching the site for an 
-   existing answer (active contributors really hate it when you ask a question 
-   that has already been answered on the site).
-   - Including [R] restricts your search to questions and answers that use R.
-1. Lastly, if you find errors (or typos!) in this guide's text or R syntax, feel 
-free to contact me ([Kyle Lang](mailto:k.m.lang@uu.nl)).
 
 ## Getting the course data
 

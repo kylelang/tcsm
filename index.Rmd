@@ -49,7 +49,7 @@ student ID and password).
 
 <!----------------------------------------------------------------------------->
 
-## Acknowledgement
+## Acknowledgement {-}
 
 This course was originally developed by 
 [dr. Caspar van Lissa](https://www.tilburguniversity.edu/staff/c-j-vanlissa). 
@@ -64,17 +64,17 @@ pedagogy should probably go to Caspar.
 
 <!----------------------------------------------------------------------------->
 
-## Instructors
+## Instructors {-}
 
 **Coordinator:**
 
 [dr. Kyle M. Lang](https://www.kylemlang.com)
 
-**Lectures**
+**Lectures:**
 
 [dr. Kyle M. Lang](https://www.kylemlang.com)
 
-**Practicals**
+**Practicals:**
 
 [Rianne Kraakman](https://www.uu.nl/staff/amkraakman)
 
@@ -84,7 +84,7 @@ Laura Jochim
 
 <!----------------------------------------------------------------------------->
 
-## Course overview
+## Course overview {-}
 
 This course comprises three parts:
 
@@ -99,7 +99,7 @@ Each of these three themes will be evaluated with a separate assignment. Your
 course grade will be based on the weighted average of these three assignment 
 grades.
 
-### Schedule
+### Schedule {-}
 
 ```{r print_schedule, echo = FALSE}
 schedule <- read.csv2("data/schedule.csv")
@@ -110,7 +110,7 @@ knitr::kable(schedule,
 
 <!----------------------------------------------------------------------------->
 
-## Learning goals
+## Learning goals {-}
 
 In this course you will learn how to translate a social scientific theory into a 
 statistical model, how to analyze your data with these models, and how to 
@@ -132,9 +132,11 @@ structural equation models.
 
 <!----------------------------------------------------------------------------->
 
-## Resources
+## Resources {-}
 
-### Literature
+---
+
+### Literature {-}
 
 **You do not need a separate book for this course!** 
 
@@ -149,7 +151,9 @@ If you run into any trouble accessing a given article, searching for the title
 using [Google Scholar][gs] or the [University Library][uu_lib] will probably due 
 the trick.
 
-### Software
+---
+
+### Software {-}
 
 You will do all of your statistical analyses with the statistical programming language/environment [R][r] and the add-on package [`lavaan`][lavaan].
 
@@ -159,7 +163,7 @@ optional, though.
 
 <!----------------------------------------------------------------------------->
 
-## Reading questions
+## Reading questions {-}
 
 Along with every article, we will provide reading questions. You will not be 
 graded on the reading questions, but it is important to prepare the reading 
@@ -173,14 +177,16 @@ purposes:
 
 <!----------------------------------------------------------------------------->
 
-## Weekly preparation
+## Weekly preparation {-}
 
 Before every class meeting (both lectures and practicals) you need to do the 
 assigned homework (delineated in the GitBook chapter for that week). This course 
 follows a *flipped classroom* procedure, so you must complete the weekly homework 
 to meaningfully participate in, and benefit from, the class meetings.
 
-### Background knowledge
+---
+
+### Background knowledge {-}
 
 We assume you have basic knowledge about multivariate statistics before entering 
 this course. You do not need any prior experience working with R. If you wish to 
@@ -197,35 +203,32 @@ past statistics courses. You could also try one of the following open-access opt
 
 <!----------------------------------------------------------------------------->
 
-## Grading
+## Grading {-}
 
 Your grade for the course is based on a “portfolio” composed of the three 
 take-home assignments:
 
 1. Latent variable modeling 
-
-- Deadline: **2022-10-07 23:59**
-- Group assignment
-- Contributes 25% of your course grade
+    - Deadline: **2022-10-07 23:59**
+    - Group assignment
+    - Contributes 25% of your course grade
 
 1. Path modeling 
-
-- Deadline: **2022-10-28 23:59**
-- Group assignment
-- Contributes 25% of your course grade
+    - Deadline: **2022-10-28 23:59**
+    - Group assignment
+    - Contributes 25% of your course grade
 
 1. Full Structural equation modeling 
-
-- Deadline: **2022-11-11 23:59**
-- Individual assignment
-- Contributes 50% of your course grade
+    - Deadline: **2022-11-11 23:59**
+    - Individual assignment
+    - Contributes 50% of your course grade
 
 **The specifics of the assignments will soon be given as a seperate chapter in 
 this GitBook.**
 
 <!----------------------------------------------------------------------------->
 
-## Attendance
+## Attendance {-}
 
 Attendance is not mandatory, but we strongly encourage you to attend all lectures 
 and practicals. In our experience, students who actively participate tend to pass 
@@ -233,6 +236,8 @@ the course, whereas those who do not participate tend to drop out or fail. The
 lectures and practicals build on each other, so, in the unfortunate event that 
 you have to miss a class meeting, please make sure you have caught up with the 
 material before the next session.
+
+<!----------------------------------------------------------------------------->
 
 [gs]: https://scholar.google.com/
 [uu_lib]: https://www.uu.nl/en/university-library
