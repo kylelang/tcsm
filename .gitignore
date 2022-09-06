@@ -11,5 +11,5 @@ rsconnect
 *.xlsx
 *.pdf
 *.RData
-!pdfs/*.pdf
-!docs/pdfs/*.pdf
+!pdf/*.pdf
+!docs/pdf/*.pdf
