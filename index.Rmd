@@ -33,18 +33,20 @@ dataDir  <- "../../data/"
 # Course Information {-}
 
 In order to test a theory, we must express the theory as a statistical model and 
-then test this model on quantitative (numeric) data. This course uses existing 
-tutorial datasets to practice the process of translating verbal theories into 
-testable statistical models. If you are interested in the methods of acquiring 
-high quality data to test your own theory, we recommend following the course 
-*Conducting a Survey* which is taught from November to January.
+then test this model on quantitative (numeric) data. In this course we will use 
+datasets from different disciplines within the social sciences (educational 
+sciences, psychology, and sociology) to explain and illustrate theories and 
+practices that are used in all social science disciplines to statistically model 
+social science theories.
 
-In this course we will use datasets from different disciplines within the social 
-sciences (educational sciences, psychology, and sociology) to explain and 
-illustrate theories and practices that are used in all social science disciplines to statistically model social science theories.
+This course uses existing tutorial datasets to practice the process of 
+translating verbal theories into testable statistical models. If you are 
+interested in the methods of acquiring high quality data to test your own theory, 
+we recommend following the course *Conducting a Survey* which is taught from 
+November to January.
 
 Most information about the course is available in this GitBook. Course-related 
-communication will be through <https://uu.blackboard.nl> (Log in with your 
+communication will be through <https://uu.blackboard.com> (Log in with your 
 student ID and password).
 
 <!----------------------------------------------------------------------------->

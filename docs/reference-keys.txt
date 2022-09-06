@@ -36,6 +36,7 @@ getting-help
 introduction
 lecture
 reading
+formative-assessment
 at-home-exercises
 section
 slr1
@@ -44,4 +45,3 @@ slr3
 mlr
 section-1
 in-class-exercises
-formative-assessment
