@@ -659,7 +659,8 @@ the command `?` followed by the name of the function (e.g., `?aov`).
     - Before posting your question, spend some time searching the site for an 
     existing answer (active contributors really hate it when you ask a question 
     that has already been answered on the site).
-    - Including [R] restricts your search to questions and answers that use R.
+    - Including \[R] in your search string restricts your search to questions 
+    and answers that use R.
 1. Lastly, if you find errors (or typos!) in this guide's text or R syntax, feel 
 free to contact me ([Kyle Lang](mailto:k.m.lang@uu.nl)).
 

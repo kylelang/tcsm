@@ -145,7 +145,7 @@ Most of the information is contained within this GitBook and the course readings
 
 All literature is freely available online, as long as you are logging in from 
 within the UU-domain (i.e., from the UU campus or through an appropriate VPN). 
-All readings are linked in this GitBook via either direct download links of DOIs. 
+All readings are linked in this GitBook via either direct download links or DOIs. 
 
 If you run into any trouble accessing a given article, searching for the title 
 using [Google Scholar][gs] or the [University Library][uu_lib] will probably due 
