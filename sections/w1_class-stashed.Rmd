@@ -1,128 +1,186 @@
 ## In-Class Exercises
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-show_answers <- TRUE
+```{r include = FALSE}
+answer <- yaml::yaml.load_file("../answers.yml")$class1
 ```
 
-During the practical you will work on some exercises about ANOVA and ANCOVA using regression and path modeling. Note that ANOVA and ANCOVA are special cases of regression, as discussed during MTS3 or a similar course. How to perform an ANOVA/ANCOVA as a regression analysis is prerequisite knowledge. 
+During this practical, you will work through some exercises about ANOVA and 
+ANCOVA using regression and path modeling. 
 
-This practical we will work on these topics (ANOVA, ANCOVA, regression and how they are related). If you need to refresh your knowledge you could use the internet to find information or you could look it up in a book on statistics, for example @field2012discovering (*The chapters on ANOVA, Factorial ANOVA, and ANCOVA (11.6)*).
+- Note that ANOVA and ANCOVA are special cases of regression.
+- Or, more accurately, ANOVA, ANCOVA, and regression are all different flavors 
+of the *general linear model*.
+
+If you need to refresh your knowledge on ANOVA, ANCOVA, or regression consider
+the resources listed in \@ref(background). 
 
 We start with two exercises in which you have to explore your data and perform a regression analysis, ANOVA and an ANCOVA. You will also practice with performing an ANCOVA as a regression analysis in exercise 3 today.
 
+---
 
-### Loading data
+### Part 1: Data Exploration {-}
+
+---
+
+####
 
 Open the file Sesam.sav:
 
-```{r, echo = TRUE, message=FALSE, eval = FALSE}
-# Library for reading SPSS files:
+```{r, echo = TRUE, eval = FALSE}
+## Load the 'foreign'library for reading SPSS files:
 library(foreign)
-# Load the data and put them in the object called "data"
-data <- read.spss("sesam.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+
+## Load the sesam into an object called 'sesam':
+sesam <- read.spss("sesam.sav", to.data.frame = TRUE, use.value.labels = FALSE)
 ```
-```{r, message=FALSE, echo= FALSE}
-# Library for reading SPSS files:
+
+```{r, echo = FALSE}
 library(foreign)
-# Load the data and put them in the object called "data"
-data <- read.spss(paste0(dataDir, "sesam.sav"), to.data.frame = TRUE, use.value.labels = FALSE)
+sesam <- read.spss(paste0(dataDir, "sesam.sav"), 
+                   to.data.frame    = TRUE, 
+                   use.value.labels = FALSE)
 ```
-This file is part of a larger dataset that evaluates the impact of the first year of the Sesame Street television series. Sesame Street is mainly concerned with teaching preschool related skills to children in the 3-5 year age range.
+
+---
+
+This file is part of a larger dataset that evaluates the impact of the first 
+year of the Sesame Street television series. Sesame Street is mainly concerned 
+with teaching preschool related skills to children in the 3--5 year age range.
 
 The following variables will be used in this exercise:
 
-* **age** 	measured in months
-* **prelet**	knowledge of letters before watching Sesame Street (range 0-58)
-* **prenumb**	knowledge of numbers before watching Sesame Street (range 0-54)
-* **prerelat**	knowledge of relations before watching Sesame Street (range 0-17)
-* **peabody**	vocabulary maturity before watching Sesame Street (range 20-120)
-* **postnumb** 	knowledge of numbers after a year of Sesame Street (range 0-54)
+- **age** 	measured in months
+- **prelet**	knowledge of letters before watching Sesame Street (range 0--58)
+- **prenumb**	knowledge of numbers before watching Sesame Street (range 0--54)
+- **prerelat**	knowledge of relations before watching Sesame Street (range 0--17)
+- **peabody**	vocabulary maturity before watching Sesame Street (range 20--120)
+- **postnumb** 	knowledge of numbers after a year of Sesame Street (range 0--54)
 
-###
+*Note*: Unless otherwise noted, the following questions refer to the `sesam` 
+data and the above variables.
+
+---
 
 ####
 
-What is the level of measurement of each of the variables?
+What is the  measurement level of each variable?
 
 <details>
   <summary>Click for explanation</summary>
-In the 'Environment' panel in the top right corner of the screen, click the arrow in the next to the object called 'data'. Alternatively, run the rode: `head(data)`.
 
-```{r echo = FALSE}
+In the 'Environment' pane, click the arrow in the next to the 'sesam' object. 
+Alternatively, run the command: `str(data)`.
+
+```{r, echo = FALSE}
 knitr::include_graphics("measurement_level.png")#, out.width = "456px")
 ```
+
 </details> 
+
+---
 
 ####
 
-What is the average age in the sample? And the range (youngest and oldest child)? 
+- What is the average age in the sample? 
+- What is the age range (youngest and oldest child)? 
 
-*Hint: Use library(tidySEM); descriptives()*
+*Hint:* Use `tidySEM::descriptives()`
 
 <details>
   <summary>Click for explanation</summary>
-As in the take home exercises, use the function `descriptives()` from the `tidySEM` package to describe the data:
+
+As in the take home exercises, you can use the `descriptives()` function from 
+the `tidySEM` package to describe the data:
 
 ```{r, echo = TRUE}
 library(tidySEM)
-descriptives(data)
+
+descriptives(sesam)
 ```
-`r if(knitr::is_html_output()){"\\details"}`
 
-####
+</details>
 
-What is the average gain in knowledge of numbers? Provide both the mean and the standard deviation. 
+---
 
-*Hint: Use the <- operator to assign to a new variable in data. You can use descriptives(), or the functions mean() and sd().*
+#### {#changeScore}
+
+- What is the average gain in knowledge of numbers? 
+- What is the standard deviation of this gain?  
+
+*Hints:* 
+
+- You will need to compute the gain and save the change score as a new object. 
+- You can then use the base-R functions mean() and sd() to do the calculations.
 
 <details>
   <summary>Click for explanation</summary>
-Create a new variable that represents the difference between pre- and post-test scores:
+
+Create a new variable that represents the difference between pre- and post-test 
+scores on knowledge of numbers:
 
 ```{r, echo = TRUE}
-data$dif <- data$postnumb - data$prenumb
+sesam$ndif <- sesam$postnumb - sesam$prenumb
 ```
 
-There are specialized functions to obtain the mean and sd:
+Compute the mean and sd of the change score:
 
 ```{r, echo = TRUE}
-mean(data$dif)
-sd(data$dif)
+mean(sesam$ndif)
+sd(sesam$ndif)
 ```
-`r if(knitr::is_html_output()){"\\details"}`
+
+</details>
+
+---
 
 ####
 
-Choose an appropriate graph to present the gain scores. What did you choose and why?
+- Create an appropriate visualization of the gain scores you computed in 
+\@ref(changeScore). 
+- Justify your choice of visualization.
 
-*Hint: As explained in the introductory chapters, you can use ggplot and add a histogram, density plot, or boxplot:* `geom_histogram(); geom_density(); geom_boxplot()`
+*Hint:* Some applicable visualizations are explained in \@ref(tutorialPlotting).
 
 <details>
   <summary>Click for explanation</summary>
-```{r, echo = TRUE, include = show_answers}
+  
+```{r, echo = TRUE}
 library(ggplot2)
-p <- ggplot(data, aes(x = dif))
+
+## Create an empty baseline plot object:
+p <- ggplot(sesam, aes(x = dif))
+
+## Add some appropriate geoms:
 p + geom_histogram()
 p + geom_density()
 p + geom_boxplot()
 ```
-`r if(knitr::is_html_output()){"\\details"}`
+
+</details>
+
+---
 
 ####
 
-Can you think of a graph based on two variables that is informative? What is it and how is it informative?
+- Create a visualization that provides information about the bivariate 
+relationship between two of the variables.
+- Justify your choice of visualization.
 
-*Hint: A useful plotting function for a bivariate distribution is the scatterplot:* `geom_point()`
+*Hint:* Again, Section \@ref(tutorialPlotting) may provide some useful insights.
 
 <details>
   <summary>Click for explanation</summary>
-```{r, echo = TRUE, include = show_answers}
-#Possible variables would be the pre- and post measurement
-ggplot(data, aes(x = prenumb, y = postnumb)) + geom_point()
+  
+```{r, echo = TRUE}
+## Create a scatterplot of the pre- and post-test number knowledge
+ggplot(sesam, aes(x = prenumb, y = postnumb)) + geom_point()
 ```
-`r if(knitr::is_html_output()){"\\details"}`
 
+</details>
+
+---
+
+### Part 2: Regression Analysis
 
 ####
 
@@ -134,7 +192,7 @@ Which of the variables age, prelet, prenumb, prerelat and peabody are related to
   <summary>Click for explanation</summary>
 ```{r, echo = TRUE}
 library(psych)
-corr.test(data[, c("age", "prelet", "prenumb", "prerelat", "peabody", "postnumb")])
+corr.test(sesam[, c("age", "prelet", "prenumb", "prerelat", "peabody", "postnumb")])
 ```
 
 The use of `data[,]` follows the conventions of matrix indexation: You can select rows (the horizontal lines) like this, `data[i, ]`, and columns (the vertical lines) like this, `data[ ,j]`, where i are the rows and j are the columns you want to select. As you can see in the example, you can select multiple columns using c( ... , ... ).
@@ -150,7 +208,7 @@ Can age and prenumb be used to predict postnumb? If so, discuss the substantial 
   <summary>Click for explanation</summary>
 ```{r, echo = TRUE}
 results <- lm(formula = postnumb ~ age + prenumb, 
-              data = data)
+              data = sesam)
 summary(results)
 ```
 `r if(knitr::is_html_output()){"\\details"}`
@@ -177,7 +235,7 @@ Consider the path model below. How many regression coefficients are estimated in
 res <- lavaan::sem("postnumb ~ prerelat + prelet + prenumb
                    prerelat ~ age
                    prelet ~ age
-                   prenumb ~ age", data)
+                   prenumb ~ age", sesam)
 library(tidySEM)
 p <- prepare_graph(res, layout = get_layout("", "prerelat", "",
                                             "age", "prelet", "postnumb",

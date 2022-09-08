@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.3 Getting the course data | Theory Construction and Statistical Modeling</title>
-  <meta name="description" content="0.3 Getting the course data | Theory Construction and Statistical Modeling" />
+  <title>0.9 Plotting data | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="0.9 Plotting data | Theory Construction and Statistical Modeling" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.3 Getting the course data | Theory Construction and Statistical Modeling" />
+  <meta property="og:title" content="0.9 Plotting data | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.3 Getting the course data | Theory Construction and Statistical Modeling" />
+  <meta name="twitter:title" content="0.9 Plotting data | Theory Construction and Statistical Modeling" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="installing-software.html"/>
-<link rel="next" href="r-tutorial.html"/>
+<link rel="prev" href="exploring-data-via-r-functions.html"/>
+<link rel="next" href="manipulating-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -260,24 +260,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="getting-the-course-data" class="section level2 hasAnchor" number="0.3">
-<h2><span class="header-section-number">0.3</span> Getting the course data<a href="getting-the-course-data.html#getting-the-course-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>All of the data files you will need for the course are available in this
-<a href="https://surfdrive.surf.nl/files/index.php/s/93FzuSnGidunEVA">SurfDrive directory</a>.</p>
+<div id="tutorialPlotting" class="section level2 hasAnchor" number="0.9">
+<h2><span class="header-section-number">0.9</span> Plotting data<a href="tutorialPlotting.html#tutorialPlotting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is almost always a good idea to visualize your data before you dive into a
+full statistical analysis. For example, you may like to know something about the
+nature of the relationship between two specific variables, the distribution of
+some set of values, etc.</p>
 <ul>
-<li>Follow the link to download a ZIP archive containing the data you will need to
-complete the practical exercises.</li>
-<li>Extract these data files to a convenient location on your computer.</li>
+<li>In this section, we will create three basic plots of our data.</li>
+<li>When we create these plots, the figures will appear in the plots tab in the
+lower right quadrant of the RStudio window.</li>
 </ul>
+<hr />
+<div id="r-packages-and-ggplot2" class="section level3 hasAnchor" number="0.9.1">
+<h3><span class="header-section-number">0.9.1</span> R packages and <code>ggplot2</code><a href="tutorialPlotting.html#r-packages-and-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will use the <code>ggplot2</code> package for plotting. This package is not part of the
+Base R installation. So, you must install <code>ggplot2</code> yourself (you should have
+already done so in Section <a href="installing-software.html#installPackages">0.2.3</a>).</p>
+<ul>
+<li>You only need to install an R package once.
+<ul>
+<li>R packages are just small software programs, so they must be installed
+just like any other piece of software.</li>
+<li>After installing, the package is accessible on your computer but not yet
+available for use in your current R session.
+<ul>
+<li>You must first load the package.</li>
+</ul></li>
+</ul></li>
+<li>You need to load the package every time you want to use it in a new R session.
+<ul>
+<li>After loading, the package contents (i.e., functions, help files, datasets)
+are initialized in memory and ready to use in your current R session.</li>
+<li>Loading a package is more-or-less equivalent to ‘opening’ a software
+program by clicking on its desktop icon.</li>
+</ul></li>
+</ul>
+<p>Run the following code to load the <code>ggplot2</code> package.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="tutorialPlotting.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<hr />
 </div>
-<!-- </div> -->
+<div id="histogram" class="section level3 hasAnchor" number="0.9.2">
+<h3><span class="header-section-number">0.9.2</span> Histogram<a href="tutorialPlotting.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use a histogram to visualize how the values of a continuous variable are
+distributed.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tutorialPlotting.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the &#39;LifeSat&#39; data to create the plot</span></span>
+<span id="cb10-2"><a href="tutorialPlotting.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the &#39;LifeSat$LifSat&#39; variable to define the X-axis</span></span>
+<span id="cb10-3"><a href="tutorialPlotting.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="tutorialPlotting.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="co"># Create a histogram from the data/variable defined above</span></span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplot" class="section level3 hasAnchor" number="0.9.3">
+<h3><span class="header-section-number">0.9.3</span> Boxplot<a href="tutorialPlotting.html#boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A boxplot provides another useful visualization of a condituous variable’s
+distribution. We can also use boxplots to detect outliers.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="tutorialPlotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Same data/variable setup as above:</span></span>
+<span id="cb11-2"><a href="tutorialPlotting.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="tutorialPlotting.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="co"># Create a boxplot</span></span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="scatterplot" class="section level3 hasAnchor" number="0.9.4">
+<h3><span class="header-section-number">0.9.4</span> Scatterplot<a href="tutorialPlotting.html#scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A scatterplot provides a visual representation of the relationship between two
+variables.</p>
+<ul>
+<li>Since we are now plotting two variables, we need to define a <code>y</code> variable in
+addition to the<code>x</code> variable specified in the previous examples.</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tutorialPlotting.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the &#39;age&#39; variable on the Y-axis:</span></span>
+<span id="cb12-2"><a href="tutorialPlotting.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="tutorialPlotting.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="co"># Create a scatterplot</span></span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<!---------------------------------------------------------------------------->
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="installing-software.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-tutorial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exploring-data-via-r-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulating-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

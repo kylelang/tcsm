@@ -367,7 +367,7 @@ the median is `r median(LifeSat$LifSat) %>% round(2)`, and the mean is
 
 <!----------------------------------------------------------------------------->
 
-## Plotting data
+## Plotting data {#tutorialPlotting}
 
 It is almost always a good idea to visualize your data before you dive into a 
 full statistical analysis. For example, you may like to know something about the 

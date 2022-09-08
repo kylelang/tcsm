@@ -186,7 +186,7 @@ to meaningfully participate in, and benefit from, the class meetings.
 
 ---
 
-### Background knowledge {-}
+### Background knowledge {- #background}
 
 We assume you have basic knowledge about multivariate statistics before entering 
 this course. You do not need any prior experience working with R. If you wish to 
