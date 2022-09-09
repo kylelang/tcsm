@@ -1,7 +1,8 @@
 # Introduction
 
-```{r, include = FALSE}
+```{r week1_global_options, include = FALSE}
 library(dplyr)
+
 dataDir  <- "../../../data/"
 quizDir  <- "../assess/"
 partDir  <- "sections/"

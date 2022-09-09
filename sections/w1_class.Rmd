@@ -1,6 +1,8 @@
 ## In-Class Exercises
 
 ```{r include = FALSE}
+opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
+
 answer <- yaml::yaml.load_file("../answers.yml")$class1
 ```
 
@@ -24,7 +26,7 @@ the resources listed in the [Background knowledge](#background) section.
 
 Open the file Sesam.sav:
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, eval = FALSE}
 ## Load the 'foreign'library for reading SPSS files:
 library(foreign)
 
@@ -63,15 +65,17 @@ data and the above variables.
 
 What is the  measurement level of each variable?
 
+*Hint:* The output of the `str()` function should be helpful here.
+
 <details>
   <summary>Click for explanation</summary>
 
-In the 'Environment' pane, click the arrow in the next to the 'sesam' object. 
-Alternatively, run the command: `str(data)`.
-
-```{r, echo = FALSE}
-knitr::include_graphics("measurement_level.png")#, out.width = "456px")
+```{r}
+## Examine the data structure:
+str(sesam)
 ```
+
+All variables are numeric.
 
 </details> 
 
@@ -90,7 +94,7 @@ knitr::include_graphics("measurement_level.png")#, out.width = "456px")
 As in the take home exercises, you can use the `descriptives()` function from 
 the `tidySEM` package to describe the data:
 
-```{r, echo = TRUE}
+```{r}
 library(tidySEM)
 
 descriptives(sesam)
@@ -116,13 +120,13 @@ descriptives(sesam)
 Create a new variable that represents the difference between pre- and post-test 
 scores on knowledge of numbers:
 
-```{r, echo = TRUE}
+```{r}
 sesam$ndif <- sesam$postnumb - sesam$prenumb
 ```
 
 Compute the mean and sd of the change score:
 
-```{r, echo = TRUE}
+```{r}
 mean(sesam$ndif)
 sd(sesam$ndif)
 ```
@@ -142,7 +146,7 @@ sd(sesam$ndif)
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
+```{r}
 library(ggplot2)
 
 ## Create an empty baseline plot object:
@@ -169,7 +173,7 @@ relationship between two of the variables.
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
+```{r}
 ## Create a scatterplot of the pre- and post-test number knowledge
 ggplot(sesam, aes(x = prenumb, y = postnumb)) + geom_point()
 ```
@@ -184,7 +188,8 @@ ggplot(sesam, aes(x = prenumb, y = postnumb)) + geom_point()
 
 ####
 
-Are there significant, bivariate associations between *postnumb* and the following variables?
+Are there significant, bivariate associations between *postnumb* and the 
+following variables?
 
 - *age*
 - *prelet*
@@ -196,14 +201,14 @@ Use Pearson correlations to answer this question.
 
 - You do not need to check the assumptions here (though you would in real life).
 
-*Hint:* The base-R `cor.test()` function and the `corr.test()` function from the 
-`psych` package will both conduct hypothesis tests for a correlation coefficients
-(the base-R `cor()` function only computes the coefficients).
+*Hint:* The base-R `cor.test()` function and the `corr.test()` function from the
+`psych` package will both conduct hypothesis tests for a correlation 
+coefficients (the base-R `cor()` function only computes the coefficients).
 
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
+```{r}
 library(psych)
 
 ## Test the correlations using psych::corr.test():
@@ -240,7 +245,7 @@ Do *age* and *prenumb* explain a significant proportion of the variance in *post
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
+```{r}
 results <- lm(postnumb ~ age + prenumb, data = sesam)
 summary(results)
 ```
@@ -256,7 +261,7 @@ f   <- f[1] %>% round(3)
 ```
 
 - Yes, *age* and *prenumb* explain a significant amount of variability in *postnumb* 
-($R^2 = `r r2`$, $F[`r df1`, `r df2`] = `r f`, p < 0.001).
+($R^2 = `r r2`$, $F[`r df1`, `r df2`] = `r f`$, $p < 0.001$).
 - We use the F statistic for the overall test of model fit to support this conclusion.
 - The variables *age* and *prenumb* together explain `r 100 * r2`% of the 
 variability in *postnumb*. 
@@ -276,8 +281,8 @@ Since we are testing for explained variance, our hypotheses concern the $R^2$.
 
 \[
 \begin{align*}
-H_0:$ R^2 = 0\\
-H_1:$ R^2 > 0
+H_0: R^2 = 0\\
+H_1: R^2 > 0
 \end{align*}
 \]
 
@@ -341,7 +346,7 @@ dependent variable: score on a math test. We want to know if scores on the langu
 
 Load the `Drivers.sav` data.
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, eval = FALSE}
 # Read the data into a data frame named 'drivers':
 drivers <- read.spss("Drivers.sav", to.data.frame = TRUE)
 ```
@@ -391,7 +396,7 @@ in your model.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 ## Estimate the underlying model:
 results <- lm(RT ~ condition, data = drivers)
 
@@ -431,7 +436,7 @@ of the estimated distance statistics.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 ## Compute the Cook's distances:
 d <- cooks.distance(results)
 
@@ -461,7 +466,7 @@ Check the normality of the residuals.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 plot(results, 2)
 ``` 
 
@@ -496,7 +501,7 @@ scale-location plot.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 plot(results, 3)
 ```
 
@@ -539,7 +544,7 @@ Use your results to answer the research question.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 anova(results)
 ```
 
@@ -563,9 +568,10 @@ for an effect of mobile phone usage on driving performance.
 
 ---
 
-We will now conduct an ANCOVA to assess the following research question. Are
-there differences in reaction times between the conditions after controlling for
-age? 
+We will now conduct an ANCOVA to assess the following research question. 
+
+- Are there differences in reaction times between the phone conditions after 
+controlling for age? 
 
 As with ANOVA, the statistical model underlying an ANCOVA is simply a linear
 regression model. The model for an ANCOVA, however, includes at least one
@@ -612,7 +618,7 @@ If we want to report our analysis as an ANCOVA, we need to show that the covaria
 
 ---
 
-#### {#ancova_int}
+#### {#ancova2}
 
 Test for an interaction between *age* and *condition* in the model from
 \@ref(ancova1). 
@@ -716,7 +722,7 @@ regression models with categorical predictors.
 
 Load the `Sesam2.sav` data. 
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, eval = FALSE}
 # Read the data into an object called 'sesam2':
 sesam2 <- read.spss("Sesam2.sav", to.data.frame = TRUE)
 ```
@@ -746,7 +752,7 @@ each column of this matrix.
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
+```{r}
 ## Convert 'VIEWCAT' to a factor:
 sesam2$VIEWCAT <- factor(sesam2$VIEWCAT)
 
@@ -769,7 +775,7 @@ Estimate a multiple regression model wherein *VIEWCAT* predicts *POSTNUMB*.
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
+```{r}
 results <- lm(POSTNUMB ~ VIEWCAT, data = sesam2)
 summary(results)
 ```
@@ -793,12 +799,15 @@ assigning the variable names to the `color` argument of the `aes()` function in
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 library(ggplot2)
 
 ## Add aes(..., color = VIEWCAT) to get different colors for each group:
 p <- ggplot(sesam2, aes(x = AGE, y = POSTNUMB, color = VIEWCAT)) + 
   geom_point() # Add points for scatterplot
+
+## Print the plot stored as 'p':
+p
 ```
 
 We assigned the global color aesthetic to the *VIEWCAT* variable, so the points
@@ -873,12 +882,12 @@ analysis entailing three steps:
 Conduct the hierarchical regression analysis described above.
 
 - Does *VIEWCAT* significantly moderate the effect of *AGE* on *POSTNUMB*?
-- Provide statistical justifcation for your conclusion.
+- Provide statistical justification for your conclusion.
 
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 ## Estimate the additive model a view the results:
 results_add <- lm(POSTNUMB ~ VIEWCAT + AGE, data = sesam2)
 summary(results_add)
@@ -907,12 +916,13 @@ p   <- tmp[2, 6] %>% round(3)
 
 ---
 
+<!------------------------------------------------------------------------------
 ####
 
 Sketch path diagrams for the additive and moderated models you estimated in
 \@ref(hReg) (on paper).
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 library(tidySEM)
 library(lavaan)
 
@@ -955,7 +965,8 @@ ggsave(paste0(imageDir, "3_g2.png"), plot(p))
 
 </details>
 
-----
+---
+------------------------------------------------------------------------------->
 
 ####
 
@@ -973,10 +984,10 @@ $Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{vie
 **Moderated Model**
 
 \[
-\begin{aligned*}
+\begin{align*}
 Y_{postnumb} = \beta_0 + &\beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} +\\
 &\beta_5 X_{view2} X_{age} + \beta_6 X_{view3} X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon
-\end{aligned*}
+\end{align*}
 \]
 
 </details>
@@ -989,8 +1000,12 @@ conducted in \@ref(hReg).
 <details>
   <summary>Click for explanation</summary>
 
-$H_0: \Delta R^2 = 0$
-$H_1: \Delta R^2 > 0$
+\[
+\begin{align*}
+H_0: \Delta R^2 = 0\\
+H_1: \Delta R^2 > 0
+\end{align*}
+\]
 
 </details>
 
@@ -1005,19 +1020,19 @@ Write the regression equation for each of the four *VIEWCAT* groups.
 
 ***VIEWCAT* 1:**
 
-$\hat{Y}_{postnumb} = \beta_0 + \beta_4 X_{age}$
+$Y_{postnumb} = \beta_0 + \beta_4 X_{age} + \varepsilon$
 
 ***VIEWCAT* 2:**
 
-$\hat{Y}_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age}$
+$Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age} + \varepsilon$
 
 ***VIEWCAT* 3:**
 
-$\hat{Y}_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age}$
+$Y_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age} + \varepsilon$
 
 ***VIEWCAT* 4:**
 
-$\hat{Y}_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age}$
+$Y_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon$
 
 </details>
 
@@ -1041,13 +1056,15 @@ anova(results_add, results_mod)
 ```
 
 When we run the `anova()` function on only the moderated regression model, we
-get the ANCOVA-style tests that we used in \@ref(ancova_int). The marginal test
+get the ANCOVA-style tests that we used in \@ref(ancova2). The marginal test
 for the interaction between *AGE* and *VIEWCAT* in this ANCOVA-style result is identical to the model comparison test from \@ref(hReg).
 
 This comparison shows that the significance tests for marginal effects in an
-AN(C)OVA model are equivalent to certain model comparison tests in a regression
-model. Indeed, although you cannot know this from only the examples explored
-here, any significance test in an AN(C)OVA can be reformulated as a comparison
+AN(C)OVA model can be equivalent to certain model comparison tests in a
+regression model. 
+
+- Indeed, although you cannot know this from only the examples explored here,
+any significance test in an AN(C)OVA can be reformulated as a comparison
 between two appropriately nested linear regression models.
 
 </details>
