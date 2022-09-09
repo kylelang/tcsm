@@ -422,7 +422,7 @@ ggplot(data = LifeSat, aes(x = LifSat)) +
 
 ### Boxplot
 
-A boxplot provides another useful visualization of a condituous variable's
+A boxplot provides another useful visualization of a continuous variable's
 distribution. We can also use boxplots to detect outliers.
 
 ```{r, fig.align = "center"}
