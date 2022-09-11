@@ -260,8 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="in-class-exercises" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> In-Class Exercises<a href="in-class-exercises.html#in-class-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>During this practical, you will work through some exercises about ANOVA and
-ANCOVA using regression and path modeling.</p>
+<p>During this practical, you will work through some exercises about ANOVA, ANCOVA, and regression.</p>
 <ul>
 <li>Note that ANOVA and ANCOVA are special cases of regression.</li>
 <li>Or, more accurately, ANOVA, ANCOVA, and regression are all different flavors
@@ -276,10 +275,10 @@ the resources listed in the <a href="weekly-preparation.html#background">Backgro
 <div id="section-2" class="section level4" number="1.5.1.1">
 <h4><span class="header-section-number">1.5.1.1</span> </h4>
 <p>Open the file Sesam.sav:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="in-class-exercises.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the &#39;foreign&#39;library for reading SPSS files:</span></span>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="in-class-exercises.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the &#39;foreign&#39; library for reading SPSS files:</span></span>
 <span id="cb47-2"><a href="in-class-exercises.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
 <span id="cb47-3"><a href="in-class-exercises.html#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="in-class-exercises.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the sesam into an object called &#39;sesam&#39;:</span></span>
+<span id="cb47-4"><a href="in-class-exercises.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the &#39;Sesam.sav&#39; data into an object called &#39;sesam&#39;:</span></span>
 <span id="cb47-5"><a href="in-class-exercises.html#cb47-5" aria-hidden="true" tabindex="-1"></a>sesam <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;sesam.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>, <span class="at">use.value.labels =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <hr />
 <p>This file is part of a larger dataset that evaluates the impact of the first
@@ -364,7 +363,7 @@ Click for explanation
 <p>Create a new variable that represents the difference between pre- and post-test
 scores on knowledge of numbers:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="in-class-exercises.html#cb51-1" aria-hidden="true" tabindex="-1"></a>sesam<span class="sc">$</span>ndif <span class="ot">&lt;-</span> sesam<span class="sc">$</span>postnumb <span class="sc">-</span> sesam<span class="sc">$</span>prenumb</span></code></pre></div>
-<p>Compute the mean and sd of the change score:</p>
+<p>Compute the mean and SD of the change score:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="in-class-exercises.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sesam<span class="sc">$</span>ndif)</span></code></pre></div>
 <pre><code>## [1] 9.158333</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="in-class-exercises.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sesam<span class="sc">$</span>ndif)</span></code></pre></div>
@@ -653,16 +652,31 @@ three experimental conditions:</p>
 <p>We will use <em>condition</em> as the IV in our ANOVA models. The DV, <em>RT</em>, represents
 the participant’s reaction time (in milliseconds) during a driving simulation.</p>
 <hr />
+<div id="anova-vs.-linear-regression" class="section level5 unnumbered hasAnchor">
+<h5>ANOVA vs. Linear Regression<a href="in-class-exercises.html#anova-vs.-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>As you may know, the mathematical model underlying ANOVA is just a linear
-regression model with nominal IVs. The only difference between ANOVA and
-regression analysis is the focus of the analysis.</p>
+regression model with nominal IVs. So, in terms of the underlying statistical
+models, there is no difference between ANOVA and regression; the differences lie
+in the focus of the analysis.</p>
 <ul>
-<li>In regression analysis, we focus on inference about the coefficients.</li>
-<li>In ANOVA, we focus on the overall effect of entire grouping factors.</li>
+<li>ANOVA is really a type of statistical test wherein we are testing hypotheses
+about the effects of some set of nominal grouping factors on some continuous
+outcome.
+<ul>
+<li>When doing an ANOVA, we usually don’t interact directly with the parameter
+estimates from the underlying model.</li>
+</ul></li>
+<li>Regression is a type of statistical model (i.e., a way to represent a
+univariate distribution with a conditional mean and fixed variance).
+<ul>
+<li>When we do a regression analysis, we primarily focus on the estimated
+parameters of the underling linear model.</li>
+</ul></li>
 </ul>
 <p>When doing ANOVA in R, we estimate the model exactly as we would for linear
 regression; we simply summarize the results differently.</p>
 <hr />
+</div>
 </div>
 <div id="anova1" class="section level4" number="1.5.3.2">
 <h4><span class="header-section-number">1.5.3.2</span> </h4>
@@ -876,6 +890,8 @@ Click for explanation
 </div>
 </details>
 <hr />
+<div id="ancova-and-interactions" class="section level5 unnumbered hasAnchor">
+<h5>ANCOVA and Interactions<a href="in-class-exercises.html#ancova-and-interactions" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>As you can see above, when we run an ANCOVA, we’re just estimating a multiple
 linear regression model. We call the analysis ANCOVA because we are interested
 in a specific hypothesis.</p>
@@ -891,6 +907,7 @@ covariates and grouping factors.</p>
 </ul>
 <p>If we want to report our analysis as an ANCOVA, we need to show that the covariate effects are equivalent in each group. In other words, there is no interaction between the grouping factors and the covariates.</p>
 <hr />
+</div>
 </div>
 <div id="ancova2" class="section level4" number="1.5.4.2">
 <h4><span class="header-section-number">1.5.4.2</span> </h4>
@@ -973,10 +990,10 @@ condition has a significant <strong>higher</strong> reaction time than the contr
 <hr />
 <p>As we saw above, we can use ANOVA or ANCOVA to test hypotheses about differences
 between groups in some continuous outcome. AN(C)OVA is a type of statistical
-test, not a type of model. The statistical model underlying an AN(C)OVA is just
-a linear regression model. Since this class is about statistical modeling, it
-won’t do us much good to keep thinking in terms of statistical tests; we’re
-better off approaching these problems from a modeling perspective.</p>
+test, though, not a type of model. The statistical model underlying an AN(C)OVA
+is just a linear regression model. Since this class is about statistical
+modeling, it won’t do us much good to keep thinking in terms of statistical
+tests; we’re better off approaching these problems from a modeling perspective.</p>
 <p>We can just as easily make the inferences from above by working directly within
 a regression modeling framework. In this section, we will explore linear
 regression models with categorical predictors.</p>
@@ -1125,6 +1142,8 @@ increase along with increasing age. The lines are not parallel, though. So,
 <em>VIEWCAT</em> may be moderating the effect of <em>AGE</em> on <em>POSTNUMB</em>.</p>
 </details>
 <hr />
+<div id="moderated-regression" class="section level5 unnumbered hasAnchor">
+<h5>Moderated Regression<a href="in-class-exercises.html#moderated-regression" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Based on the figure we just created, we may want to test for moderation in our
 regression model. To do so, we need to add an interaction between <em>AGE</em> and
 <em>VIEWCAT</em>. The <em>VIEWCAT</em> factor is represented by
@@ -1142,6 +1161,7 @@ analysis entailing three steps:</p>
 <li>Conduct a <span class="math inline">\(\Delta R^2\)</span> test to compare the fit of the two models.</li>
 </ol>
 <hr />
+</div>
 </div>
 <div id="hReg" class="section level4" number="1.5.5.7">
 <h4><span class="header-section-number">1.5.5.7</span> </h4>
@@ -1249,7 +1269,11 @@ Sketch path diagrams for the additive and moderated models you estimated in
 Click for explanation
 </summary>
 <p><strong>Additive Model</strong></p>
-<p><span class="math inline">\(Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} + \varepsilon\)</span></p>
+<p><span class="math display">\[
+\begin{align*}
+Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} + \varepsilon
+\end{align*}
+\]</span></p>
 <p><strong>Moderated Model</strong></p>
 <p><span class="math display">\[
 \begin{align*}
@@ -1258,6 +1282,7 @@ Y_{postnumb} = \beta_0 + &amp;\beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_
 \end{align*}
 \]</span></p>
 </details>
+<hr />
 </div>
 <div id="section-24" class="section level4" number="1.5.5.9">
 <h4><span class="header-section-number">1.5.5.9</span> </h4>
@@ -1284,13 +1309,21 @@ H_1: \Delta R^2 &gt; 0
 Click for explanation
 </summary>
 <p><strong><em>VIEWCAT</em> 1:</strong></p>
-<p><span class="math inline">\(Y_{postnumb} = \beta_0 + \beta_4 X_{age} + \varepsilon\)</span></p>
+<p><span class="math display">\[
+Y_{postnumb} = \beta_0 + \beta_4 X_{age} + \varepsilon
+\]</span></p>
 <p><strong><em>VIEWCAT</em> 2:</strong></p>
-<p><span class="math inline">\(Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age} + \varepsilon\)</span></p>
+<p><span class="math display">\[
+Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age} + \varepsilon
+\]</span></p>
 <p><strong><em>VIEWCAT</em> 3:</strong></p>
-<p><span class="math inline">\(Y_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age} + \varepsilon\)</span></p>
+<p><span class="math display">\[
+Y_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age} + \varepsilon
+\]</span></p>
 <p><strong><em>VIEWCAT</em> 4:</strong></p>
-<p><span class="math inline">\(Y_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon\)</span></p>
+<p><span class="math display">\[
+Y_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon
+\]</span></p>
 </details>
 <hr />
 </div>
@@ -1320,7 +1353,7 @@ Click for explanation
   </script>
 </div>
 <p>When we run the <code>anova()</code> function on only the moderated regression model, we
-get the ANCOVA-style tests that we used in <a href="in-class-exercises.html#ancova2">1.5.4.2</a>. The marginal test
+get ANCOVA-style tests like those we used in <a href="in-class-exercises.html#ancova2">1.5.4.2</a>. The marginal test
 for the interaction between <em>AGE</em> and <em>VIEWCAT</em> in this ANCOVA-style result is identical to the model comparison test from <a href="in-class-exercises.html#hReg">1.5.5.7</a>.</p>
 <p>This comparison shows that the significance tests for marginal effects in an
 AN(C)OVA model can be equivalent to certain model comparison tests in a

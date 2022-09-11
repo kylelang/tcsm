@@ -6,8 +6,7 @@ opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
 answer <- yaml::yaml.load_file("../answers.yml")$class1
 ```
 
-During this practical, you will work through some exercises about ANOVA and 
-ANCOVA using regression and path modeling. 
+During this practical, you will work through some exercises about ANOVA, ANCOVA, and regression. 
 
 - Note that ANOVA and ANCOVA are special cases of regression.
 - Or, more accurately, ANOVA, ANCOVA, and regression are all different flavors 
@@ -27,10 +26,10 @@ the resources listed in the [Background knowledge](#background) section.
 Open the file Sesam.sav:
 
 ```{r, eval = FALSE}
-## Load the 'foreign'library for reading SPSS files:
+## Load the 'foreign' library for reading SPSS files:
 library(foreign)
 
-## Load the sesam into an object called 'sesam':
+## Load the 'Sesam.sav' data into an object called 'sesam':
 sesam <- read.spss("sesam.sav", to.data.frame = TRUE, use.value.labels = FALSE)
 ```
 
@@ -124,7 +123,7 @@ scores on knowledge of numbers:
 sesam$ndif <- sesam$postnumb - sesam$prenumb
 ```
 
-Compute the mean and sd of the change score:
+Compute the mean and SD of the change score:
 
 ```{r}
 mean(sesam$ndif)
@@ -373,13 +372,23 @@ the participant's reaction time (in milliseconds) during a driving simulation.
 
 ---
 
+##### ANOVA vs. Linear Regression {-}
+
 As you may know, the mathematical model underlying ANOVA is just a linear
-regression model with nominal IVs. The only difference between ANOVA and
-regression analysis is the focus of the analysis.
+regression model with nominal IVs. So, in terms of the underlying statistical
+models, there is no difference between ANOVA and regression; the differences lie
+in the focus of the analysis.
 
-- In regression analysis, we focus on inference about the coefficients.
-- In ANOVA, we focus on the overall effect of entire grouping factors.
-
+- ANOVA is really a type of statistical test wherein we are testing hypotheses
+about the effects of some set of nominal grouping factors on some continuous
+outcome.
+    - When doing an ANOVA, we usually don't interact directly with the parameter
+    estimates from the underlying model.
+- Regression is a type of statistical model (i.e., a way to represent a
+univariate distribution with a conditional mean and fixed variance).
+    - When we do a regression analysis, we primarily focus on the estimated 
+    parameters of the underling linear model.
+    
 When doing ANOVA in R, we estimate the model exactly as we would for linear
 regression; we simply summarize the results differently.
 
@@ -601,6 +610,8 @@ anova(results)
 
 ---
 
+##### ANCOVA and Interactions {-}
+
 As you can see above, when we run an ANCOVA, we're just estimating a multiple
 linear regression model. We call the analysis ANCOVA because we are interested
 in a specific hypothesis.
@@ -707,10 +718,10 @@ condition has a significant **higher** reaction time than the control condition.
 
 As we saw above, we can use ANOVA or ANCOVA to test hypotheses about differences
 between groups in some continuous outcome. AN(C)OVA is a type of statistical 
-test, not a type of model. The statistical model underlying an AN(C)OVA is just 
-a linear regression model. Since this class is about statistical modeling, it 
-won't do us much good to keep thinking in terms of statistical tests; we're 
-better off approaching these problems from a modeling perspective. 
+test, though, not a type of model. The statistical model underlying an AN(C)OVA
+is just a linear regression model. Since this class is about statistical
+modeling, it won't do us much good to keep thinking in terms of statistical
+tests; we're better off approaching these problems from a modeling perspective. 
 
 We can just as easily make the inferences from above by working directly within 
 a regression modeling framework. In this section, we will explore linear
@@ -858,6 +869,8 @@ increase along with increasing age. The lines are not parallel, though. So,
 
 ---
 
+##### Moderated Regression {-}
+
 Based on the figure we just created, we may want to test for moderation in our
 regression model. To do so, we need to add an interaction between *AGE* and 
 *VIEWCAT*. The *VIEWCAT* factor is represented by 
@@ -979,7 +992,11 @@ Write the regression equations for the additive and moderated models from
   
 **Additive Model**
 
-$Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} + \varepsilon$
+\[
+\begin{align*}
+Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} + \varepsilon
+\end{align*}
+\]
 
 **Moderated Model**
 
@@ -991,6 +1008,8 @@ Y_{postnumb} = \beta_0 + &\beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{vie
 \]
 
 </details>
+
+---
 
 #### 
 
@@ -1020,19 +1039,27 @@ Write the regression equation for each of the four *VIEWCAT* groups.
 
 ***VIEWCAT* 1:**
 
-$Y_{postnumb} = \beta_0 + \beta_4 X_{age} + \varepsilon$
+\[
+Y_{postnumb} = \beta_0 + \beta_4 X_{age} + \varepsilon
+\]
 
 ***VIEWCAT* 2:**
 
-$Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age} + \varepsilon$
+\[
+Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age} + \varepsilon
+\]
 
 ***VIEWCAT* 3:**
 
-$Y_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age} + \varepsilon$
+\[
+Y_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age} + \varepsilon
+\]
 
 ***VIEWCAT* 4:**
 
-$Y_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon$
+\[
+Y_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon
+\]
 
 </details>
 
@@ -1056,7 +1083,7 @@ anova(results_add, results_mod)
 ```
 
 When we run the `anova()` function on only the moderated regression model, we
-get the ANCOVA-style tests that we used in \@ref(ancova2). The marginal test
+get ANCOVA-style tests like those we used in \@ref(ancova2). The marginal test
 for the interaction between *AGE* and *VIEWCAT* in this ANCOVA-style result is identical to the model comparison test from \@ref(hReg).
 
 This comparison shows that the significance tests for marginal effects in an
