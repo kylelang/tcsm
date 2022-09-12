@@ -1,0 +1,229 @@
+# Assignments {-}
+
+This chapter contains the details and binding information about the three 
+assignments that comprise the portfolio up which your course grade is based.
+
+<!----------------------------------------------------------------------------->
+
+## Assignment 1: Latent Variable Model {-}
+
+In the first assignment, **you will work in groups** to apply a *latent variable 
+model* to a real-world problem wherein the observed variables are indirect 
+indicators of an unobserved social scientific construct. The details of the 
+assignment are given below. 
+
+1. Find a suitable dataset, and describe the data. **(150 words)**.
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and define the theoretical latent variable 
+model. **(150 words)**
+    a. Be sure to clearly explicate all parts of your model.
+1. Translate your theoretical latent variable model into `lavaan` syntax, and 
+estimate the model.
+    a. Provide relevant output in a suitable format.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Motivate your choice of latent variable model (i.e., EFA, CFA, PCA).
+    a. Discuss assumptions.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Include measures of model fit.
+1. Discuss the results. **(300 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+     
+<!----------------------------------------------------------------------------->
+
+## Assignment 2: Path Model {-}
+
+For the second assignment, **you will work in groups** to apply a *path model* 
+that describes how several variables could be causally related.
+
+1. Find a suitable dataset, and describe the data. **(150 words)**
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and introduce the theoretical path model. 
+**(150 words)**
+    a. This model can be a re-analysis of a question that was originally 
+    tested using regression or ANOVA in a published paper.
+1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
+model.
+    a. Provide relevant output in a suitable format.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Discuss the conceptual fit between your theory and your model.
+    a. Evaluate the model assumptions.
+    a. If applicable, discuss the differences and similarities between your
+    path model and the regression or ANOVA results from the original paper.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Include measures of explained variance for the dependent variables.
+1. Discuss the results. **(300 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+
+<!----------------------------------------------------------------------------->
+
+## Assignment 3: Full Structural Equation Model {-}
+
+In the third assignment, **you will work individually** to apply a full *SEM* 
+that describes how several (latent) variables could be causally related.
+
+1. Find a suitable dataset, and describe the data. **(150 words)**
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and introduce the theoretical SEM. 
+**(200 words)**
+    a. This model can be a re-analysis of a question that was originally tested 
+    using regression or ANOVA in a published paper.
+    a. The structural component of this model must include, at least, three
+    variables.
+    a. The model must include, at least, one latent variable.
+1. Translate your theoretical SEM into `lavaan` syntax, and estimate the model.
+    a. Provide relevant output in a suitable format.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Discuss the conceptual fit between your theory and your model.
+    a. Evaluate the model assumptions.
+    a. If applicable, discuss the differences and similarities between your path 
+    model and the regression or ANOVA results from the original paper.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Include measures of model fit.
+    a. Include measures of explained variance for the dependent variables.
+1. Discuss the results. **(500 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+
+<!----------------------------------------------------------------------------->
+
+## Procedure & Format
+
+### File format
+
+You must write your report as an R Markdown document.
+
+---
+
+### Report length
+
+In the preceding three sections, some line-items in the descriptions of the 
+assignments concluded with a word count.
+
+- These sections of your report must conform to the indicated word counts.
+    - E.g., the *Data* section of Assignment 1 must contain no more that 150 
+    words, and the *Discussion* section of Assignment 3 must contain no more 
+    than 500 words.
+- In all other sections, you may use as many words as necessary to adequately 
+explain yourself (though concision and parsimony are still encouraged).
+
+Note that the assignments are **not** intended to be full-blown papers! You only 
+get a few hundred words to describe your data, justify your theoretical model, 
+and discuss the results. The focus should be on the definition of your model, 
+how this model relates to theory (introduction), and what you have learned from 
+your estimated model (discussion).
+
+---
+
+### Submission procedure
+
+You will submit your reports through Blackboard.
+
+- Each assignment has a corresponding item in the "Assignments" section of the 
+course BB page through which you will submit your reports.
+- The submissions will be screened with SafeAssign.
+
+<!----------------------------------------------------------------------------->
+
+## Grading
+
+Each assignment comprises 6 components (i.e., the line-items labelled 1--6 in 
+the assignment descriptions).
+
+- Each of these 6 elements will be scored as:
+    - Insufficient (0 points)
+    - Sufficient (1 point)
+    - Excellent (1.5 points)
+    
+The individual assignment grades will be computed as follows:
+
+1. Sum the 6 component grades.
+1. Add 1 to the sum of the component grades.
+
+Consequently, we have th following landmarks:
+
+- All components marked as *Insufficient* $\rightarrow$ Assignment Grade = 1
+- All components marked as *Sufficient* $\rightarrow$ Assignment Grade = 7
+- All components marked as *Excellent* $\rightarrow$ Assignment Grade = 10
+
+The final course grade will be computed as the weighted average of the three 
+individual assignment grades. Specifically:
+
+\[
+G_{course} = 0.25 G_{a1} + 0.25 G_{a2} + 0.5 G_{a3}
+\]
+
+Where $G$ indicates a grade and the subscripts have the obvious meaning.
+
+<!----------------------------------------------------------------------------->
+
+## Rules
+
+For all three assignments, you may use any reference materials you like, 
+including:
+
+- All course materials
+- The course GitBook
+- Additional books and papers
+- The internet
+
+You will complete the first two assignments in groups.
+
+- Although you will work in groups, you may not work together with other 
+   groups.
+
+You will complete the final assignment individually. 
+
+- For this assignment, you may not work with anyone else.
+
+For all three assignments, you are obligated to submit original work (i.e., work 
+conducted by you or your group for this course). 
+
+- Submitting an assignment that violates this condition constitutes fraud.
+- Such cases of fraud will be addressed according to the 
+[University's standard policy](https://students.uu.nl/en/practical-information/policies-and-procedures/fraud-and-plagiarism).
+
+Hopefully, you also feel a moral obligation to obey the rules. For this course, 
+we have implemented an examination that allows you to showcase what you have 
+learned in a more realistic way than a written exam would allow. 
+
+- This assessment format spares you the stress of long exams (the two exams for 
+this course used to be 4 hours each) and the attendant studying/cramming. 
+- The assignments will also help you assess your ability to independently 
+analyse data, which is important to know for your future courses and/or career.
+
+However, this format also assumes that you complete the assignments in good 
+faith. So, I simply ask that you hold up your end of the bargain, and submit 
+your original work to show what you’ve learned.
+
+---
+
+### Academic misconduct
+
+The preceding points not withstanding, this section explicates the consequences 
+of fraud more clearly.
+
+By submitting your assignments (both group and individual), you confirm the 
+following:
+
+1. You have completed the assignment yourself (or with your group)
+1. You are submitting work that you have written yourself (or with your group)
+1. You are using your own UU credentials to submit the assignment
+1. You have not had outside help that violates the conditions delineated above 
+while completing the assignment
+
+All assignments will be submitted via SafeAssign in Blackboard and, thereby, 
+checked for plagiarism. If fraud or plagiarism is detected or suspected, the 
+Board of Examiners will be informed in the usual manner. In the event of fraud, 
+the sanctions deliniated in Article 5.14 of the 
+[Education and Examination Regulations (EER)](https://students.uu.nl/en/fss/education-and-examination-regulations-eer). 

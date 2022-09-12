@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.7 Loading data | Theory Construction and Statistical Modeling</title>
-  <meta name="description" content="0.7 Loading data | Theory Construction and Statistical Modeling" />
+  <title>1.6 Procedure &amp; Format | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="1.6 Procedure &amp; Format | Theory Construction and Statistical Modeling" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.7 Loading data | Theory Construction and Statistical Modeling" />
+  <meta property="og:title" content="1.6 Procedure &amp; Format | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.7 Loading data | Theory Construction and Statistical Modeling" />
+  <meta name="twitter:title" content="1.6 Procedure &amp; Format | Theory Construction and Statistical Modeling" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rstudio-projects.html"/>
-<link rel="next" href="exploring-data-via-r-functions.html"/>
+<link rel="prev" href="assignment-3-full-structural-equation-model.html"/>
+<link rel="next" href="grading-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -275,111 +275,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="loading-data" class="section level2 hasAnchor" number="0.7">
-<h2><span class="header-section-number">0.7</span> Loading data<a href="loading-data.html#loading-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Statistical analysis cannot happen without data. In R, you can load data in
-various ways. Let’s go over a couple of these.</p>
-<ul>
-<li>To complete the following exercise, first download the <a href="https://surfdrive.surf.nl/files/index.php/s/odvDwcQNiUCj0rN/download"><code>LifeSat.sav</code> data</a>.</li>
-</ul>
+<div id="procedure-format" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Procedure &amp; Format<a href="procedure-format.html#procedure-format" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="file-format" class="section level3 hasAnchor" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> File format<a href="procedure-format.html#file-format" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You must write your report as an R Markdown document.</p>
 <hr />
-<div id="via-clicky-box-options" class="section level3 hasAnchor" number="0.7.1">
-<h3><span class="header-section-number">0.7.1</span> Via clicky-box options<a href="loading-data.html#via-clicky-box-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Click through the following menu options: <em>File</em> &gt; <em>Import Dataset</em></li>
-<li>Choose the type of dataset.
+</div>
+<div id="report-length" class="section level3 hasAnchor" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Report length<a href="procedure-format.html#report-length" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the preceding three sections, some line-items in the descriptions of the
+assignments concluded with a word count.</p>
 <ul>
-<li>For this exercise, the data are stored as an SPSS .sav file.</li>
-<li>Thus, select the <em>From SPSS</em> option.</li>
+<li>These sections of your report must conform to the indicated word counts.
+<ul>
+<li>E.g., the <em>Data</em> section of Assignment 1 must contain no more that 150
+words, and the <em>Discussion</em> section of Assignment 3 must contain no more
+than 500 words.</li>
 </ul></li>
-</ol>
-<p>You may encounter an <em>Install Required Packages</em> pop-up dialog with a message
-that asks you whether you want to install the <code>haven</code> package.</p>
-<center>
-<img src="images/tut_packages.jpg" />
-</center>
-<p>A package is an a piece of add-on software for R.</p>
-<ul>
-<li>To do most analyses, you will need some packages above-and-beyond the Base R
-software.</li>
-<li>In this case, <code>haven</code> contains functions that allow R to read SPSS data files.</li>
-<li>Click ‘Yes’ to install the package.</li>
+<li>In all other sections, you may use as many words as necessary to adequately
+explain yourself (though concision and parsimony are still encouraged).</li>
 </ul>
-<p>At this point, the <em>Import Statistical Data</em> pop-up dialog should appear.</p>
-<ol style="list-style-type: decimal">
-<li>Provide the location of your data file in the <em>File/URL</em> field.
-<ul>
-<li>You can type the file path directly.</li>
-<li>You can also click <em>Browse</em> to find the file via a GUI interface.</li>
-</ul></li>
-</ol>
-<p>You should now see your data in the <em>Data Preview</em> area.</p>
-<ul>
-<li>In the <em>Import Options</em> section, you can set the name and format of your data
-file.</li>
-</ul>
-<p>All of your your selections are being translated to the R-code required to load
-your file.</p>
-<ul>
-<li>In the <em>Code Preview</em> area, the steps required to load the data with your
-selected options are expressed in terms of code.</li>
-</ul>
-<p>Finally, click <em>Import</em> at the lower right side of the window to load your data.</p>
-<p><img src="images/tut_load_data.gif" /></p>
+<p>Note that the assignments are <strong>not</strong> intended to be full-blown papers! You only
+get a few hundred words to describe your data, justify your theoretical model,
+and discuss the results. The focus should be on the definition of your model,
+how this model relates to theory (introduction), and what you have learned from
+your estimated model (discussion).</p>
 <hr />
 </div>
-<div id="via-r-code" class="section level3 hasAnchor" number="0.7.2">
-<h3><span class="header-section-number">0.7.2</span> Via R code<a href="loading-data.html#via-r-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Of course, we don’t have to use tedious clicky-box processes. Once you get more
-familiar with R, it will be much easier to load data with R code.</p>
+<div id="submission-procedure" class="section level3 hasAnchor" number="1.6.3">
+<h3><span class="header-section-number">1.6.3</span> Submission procedure<a href="procedure-format.html#submission-procedure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will submit your reports through Blackboard.</p>
 <ul>
-<li>For this exercise, we will use the <code>read.spss()</code> function from the <code>foreign</code>
-package.</li>
+<li>Each assignment has a corresponding item in the “Assignments” section of the
+course BB page through which you will submit your reports.</li>
+<li>The submissions will be screened with SafeAssign.</li>
 </ul>
-<p>Copy the following code into an R-script.</p>
-<ul>
-<li>Note that this code assumes you have saved your data in the <em>working directory</em>
-(this is the project directory if you’re using an R project).</li>
-<li>Otherwise, you will need to specify the file path to your data file as the
-first argument.</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="loading-data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb2-2"><a href="loading-data.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="loading-data.html#cb2-3" aria-hidden="true" tabindex="-1"></a>LifeSat <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;LifeSat.sav&quot;</span>, </span>
-<span id="cb2-4"><a href="loading-data.html#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">to.data.frame    =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb2-5"><a href="loading-data.html#cb2-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">use.value.labels =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>To run the code:</p>
-<ol style="list-style-type: decimal">
-<li>Place your cursor on the first line of code.</li>
-<li>Press the <em>Ctrl/Cmd</em> + <em>Enter</em> keys together.</li>
-</ol>
-<p>The code should now be evaluated by R, and R will tell you the result of its
-actions in the console pane.</p>
-<hr />
-<div id="data-frames" class="section level4 hasAnchor" number="0.7.2.1">
-<h4><span class="header-section-number">0.7.2.1</span> Data frames<a href="loading-data.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>When we read data into R, the data are most often stored as a special type of
-object called a <em>data frame</em>.</p>
-<ul>
-<li>Data frames are the preferred way to handle data in R.</li>
-<li>Data frames can hold variables with different types (e.g., a numeric
-depression rating, a categorical grouping factor representing employment status,
-and a character string recording the response to an open-ended question).</li>
-<li>The option <code>to.data.frame = TRUE</code> in the <code>read.spss()</code> call above loads the
-data into a data frame.</li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="from-excel-files" class="section level3 hasAnchor" number="0.7.3">
-<h3><span class="header-section-number">0.7.3</span> From Excel files<a href="loading-data.html#from-excel-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We can also load data that are stored in Excel files. One way to do so is via
-the <code>readxl</code> package.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="loading-data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the package:</span></span>
-<span id="cb3-2"><a href="loading-data.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb3-3"><a href="loading-data.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="loading-data.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Read the first sheet of &#39;LifeSat.xlsx&#39; into &#39;LifeSat&#39;:</span></span>
-<span id="cb3-5"><a href="loading-data.html#cb3-5" aria-hidden="true" tabindex="-1"></a>LifeSat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;LifeSat.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span></code></pre></div>
 <!----------------------------------------------------------------------------->
 </div>
 </div>
@@ -388,8 +319,8 @@ the <code>readxl</code> package.</p>
           </div>
         </div>
       </div>
-<a href="rstudio-projects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exploring-data-via-r-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="assignment-3-full-structural-equation-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="grading-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

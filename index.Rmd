@@ -155,7 +155,8 @@ the trick.
 
 ### Software {-}
 
-You will do all of your statistical analyses with the statistical programming language/environment [R][r] and the add-on package [`lavaan`][lavaan].
+You will do all of your statistical analyses with the statistical programming 
+language/environment [R][r] and the add-on package [`lavaan`][lavaan].
 
 - If you want to expand your learning, you can follow this excellent 
 [`lavaan` tutorial](https://lavaan.ugent.be/tutorial/). Doing so is entirely 

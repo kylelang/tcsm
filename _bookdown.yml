@@ -2,7 +2,8 @@ book_filename: "duddly_bumble_pocket.Rmd"
 rmd_files: [
   "index.Rmd",
   "week0.Rmd",
-  "week1.Rmd"
+  "week1.Rmd",
+  "assignments.Rmd"
   ]
 delete_merged_file: true
 output_dir: "docs"
