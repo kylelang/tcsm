@@ -224,8 +224,8 @@ take-home assignments:
     - Individual assignment
     - Contributes 50% of your course grade
 
-**The specifics of the assignments will soon be given as a separate chapter in 
-this GitBook.**
+**The specifics of the assignments are explicated in the 
+[Assignments](assignments.html) chapter of this GitBook**
 
 <!----------------------------------------------------------------------------->
 

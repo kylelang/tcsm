@@ -82,10 +82,3 @@ section-23
 section-24
 section-25
 section-26
-procedure-format
-file-format
-report-length
-submission-procedure
-grading-1
-rules
-academic-misconduct
