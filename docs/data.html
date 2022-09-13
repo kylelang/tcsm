@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R Tutorial | Theory Construction and Statistical Modeling</title>
-  <meta name="description" content="R Tutorial | Theory Construction and Statistical Modeling" />
+  <title>Data | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="Data | Theory Construction and Statistical Modeling" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R Tutorial | Theory Construction and Statistical Modeling" />
+  <meta property="og:title" content="Data | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R Tutorial | Theory Construction and Statistical Modeling" />
+  <meta name="twitter:title" content="Data | Theory Construction and Statistical Modeling" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="getting-the-course-data.html"/>
-<link rel="next" href="who-r-you.html"/>
+<link rel="prev" href="assignment-3-full-structural-equation-model.html"/>
+<link rel="next" href="procedures.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -292,28 +292,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-tutorial" class="section level1 unnumbered hasAnchor">
-<h1>R Tutorial<a href="r-tutorial.html#r-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Welcome to the world of R! This chapter provides a tutorial based on “R: How to
-get started” by <a href="https://www.linkedin.com/in/ihnwhi-heo/">Ihnwhi Heo</a>,
-<a href="https://www.ducoveen.com/">Duco Veen</a>, and
-<a href="https://www.rensvandeschoot.com/">Rens van de Schoot</a>.</p>
+<div id="data" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you have your own data, that’s great, and we strongly encourage you to use
+those data for the projects. That being said, most students will not have their
+own data. If you’re one of the majority without data, you’ll have to find an
+existing dataset to analyze (in case you were wondering, you won’t have time to
+collect new data).</p>
+<hr />
+<div id="sources" class="section level3 unnumbered hasAnchor">
+<h3>Sources<a href="data.html#sources" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Those who need data can make use of one of the myriad publicly available
+datasets available online. Of course these datasets will vary widely in terms of
+their applicability to the project and the amount of work required to prepare
+the variables for analysis.</p>
+<p>The following links point to various sources of publicly available data.</p>
 <ul>
-<li>If you already have a good deal of R experience, and you don’t see anything new in this tutorial, feel free to skip this chapter.</li>
-<li>If you haven’t worked with R before, I strongly encourage you to spend some time
-carefully working through this tutorial. The content of this chapter will go a
-long way towards familiarizing you with the basic R commands that you will need
-to use at the beginning of the course.</li>
+<li><a href="https://www.kaggle.com/datasets">Kaggle datasets</a></li>
+<li><a href="https://gssdataexplorer.norc.org/">GSS Sata Explorer</a></li>
+<li><a href="https://www.cbs.nl/en-gb/our-services/open-data/">StatLine Open Data</a></li>
+<li><a href="https://data.overheid.nl/">Open Data from the Dutch Government</a></li>
+<li><a href="https://console.cloud.google.com/marketplace/browse?filter=solution-type:dataset&amp;_ga=2.82807711.826450092.1580463730-1425634986.1574932949">Google Cloud Platform</a></li>
+<li><a href="https://toolbox.google.com/datasetsearch">Google dataset search</a></li>
+</ul>
+<hr />
+</div>
+<div id="tips" class="section level3 unnumbered hasAnchor">
+<h3>Tips<a href="data.html#tips" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When searching for a suitable dataset, consider the following tips:</p>
+<ul>
+<li>It will take longer than you expect.
+<ul>
+<li>Start searching for data early.</li>
+<li>Plan on devoting a good chunk of time to tracking down a useful dataset.</li>
+<li>Realize that even after you find the data, you will also have to do a good
+bit of cleaning to get the variables ready for analysis.</li>
+</ul></li>
+<li>Expect to be disappointed.
+<ul>
+<li>You may find a dataset that looks good on paper but won’t work for the
+project (e.g., too much missing data, poor coverage for key relations, jenky
+distributions, etc.).
+<ul>
+<li>You usually won’t discover these issue until you’ve already downloaded
+the data and started exploring/cleaning.</li>
+<li>Make sure you check the actual data you’ve downloaded before you
+declare success in your search.</li>
+</ul></li>
+</ul></li>
+<li>Keep the project requirements in mind when searching for data.
+<ul>
+<li>You will need, at least, three interesting variables to model in some sort
+of causal process (required for Assignment 3).</li>
+<li>You will need, at least, one latent variable (required for Assignments 1 &amp; 3).
+<ul>
+<li>To define a latent variable, you need multiple items (at least three)
+measuring the same hypothetical construct.</li>
+<li>In practice, these multiple indicators usually come from scales (e.g.,
+NEO-PI Big Five Personality Inventory, Beck Depression Inventory).</li>
+</ul></li>
+</ul></li>
+<li>If you find a dataset that looks suitable, but you want to confirm, send
+me (<a href="mailto:k.m.lang@uu.nl">Kyle</a>) a link to the dataset, and I’ll let you know
+if it will work for the assignments.</li>
 </ul>
 <!----------------------------------------------------------------------------->
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="getting-the-course-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="who-r-you.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="assignment-3-full-structural-equation-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="procedures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

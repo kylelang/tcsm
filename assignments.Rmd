@@ -133,6 +133,65 @@ Assignment 3 is due at 23:59 on Friday 11 November 2022
 
 <!----------------------------------------------------------------------------->
 
+## Data {-}
+
+If you have your own data, that's great, and we strongly encourage you to use
+those data for the projects. That being said, most students will not have their
+own data. If you're one of the majority without data, you'll have to find an 
+existing dataset to analyze (in case you were wondering, you won't have time to 
+collect new data).
+
+---
+
+### Sources {-}
+
+Those who need data can make use of one of the myriad publicly available 
+datasets available online. Of course these datasets will vary widely in terms of 
+their applicability to the project and the amount of work required to prepare 
+the variables for analysis. 
+
+The following links point to various sources of publicly available data.
+
+- [Kaggle datasets](https://www.kaggle.com/datasets)
+- [GSS Sata Explorer](https://gssdataexplorer.norc.org/) 
+- [StatLine Open Data](https://www.cbs.nl/en-gb/our-services/open-data/)
+- [Open Data from the Dutch Government](https://data.overheid.nl/)
+- [Google Cloud Platform](https://console.cloud.google.com/marketplace/browse?filter=solution-type:dataset&_ga=2.82807711.826450092.1580463730-1425634986.1574932949)
+- [Google dataset search](https://toolbox.google.com/datasetsearch) 
+
+---
+
+### Tips {-}
+
+When searching for a suitable dataset, consider the following tips:
+
+- It will take longer than you expect.
+    - Start searching for data early.
+    - Plan on devoting a good chunk of time to tracking down a useful dataset.
+    - Realize that even after you find the data, you will also have to do a good 
+    bit of cleaning to get the variables ready for analysis.
+- Expect to be disappointed. 
+    - You may find a dataset that looks good on paper but won't work for the 
+    project (e.g., too much missing data, poor coverage for key relations, jenky 
+    distributions, etc.).
+        - You usually won't discover these issue until you've already downloaded 
+        the data and started exploring/cleaning.
+        - Make sure you check the actual data you've downloaded before you 
+        declare success in your search.
+- Keep the project requirements in mind when searching for data. 
+    - You will need, at least, three interesting variables to model in some sort 
+    of causal process (required for Assignment 3).
+    - You will need, at least, one latent variable (required for Assignments 1 & 3).
+        - To define a latent variable, you need multiple items (at least three) 
+        measuring the same hypothetical construct.
+        - In practice, these multiple indicators usually come from scales (e.g., 
+        NEO-PI Big Five Personality Inventory, Beck Depression Inventory).
+- If you find a dataset that looks suitable, but you want to confirm, send 
+me ([Kyle](mailto:k.m.lang@uu.nl)) a link to the dataset, and I'll let you know 
+if it will work for the assignments.
+        
+<!----------------------------------------------------------------------------->
+
 ## Procedures {-}
 
 ---
