@@ -6,7 +6,11 @@ answer <- yaml::yaml.load_file("../answers.yml")$rq1
 
 ### Reference {-}
 
-[Smaldino, P. E. (2017). *Models are stupid, and we need more of them.* Computational social psychology, 311--331.](https://smaldino.com/wp/wp-content/uploads/2018/01/Smaldino2017-ModelsAreStupid.pdf)
+[
+Smaldino, P. E. (2017). 
+*Models are stupid, and we need more of them.* 
+Computational Social Psychology, 311--331.
+](https://smaldino.com/wp/wp-content/uploads/2018/01/Smaldino2017-ModelsAreStupid.pdf)
 
 **SKIP PAGES 322 - 327**
 

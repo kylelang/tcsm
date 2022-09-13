@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="at-home-exercises.html"/>
-
+<link rel="next" href="efa.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -275,6 +275,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.5" data-path="in-class-exercises.html"><a href="in-class-exercises.html#part-5-back-to-regression"><i class="fa fa-check"></i><b>1.5.5</b> Part 5: Back to Regression</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="2" data-path="efa.html"><a href="efa.html"><i class="fa fa-check"></i><b>2</b> EFA</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="lecture-1.html"><a href="lecture-1.html"><i class="fa fa-check"></i><b>2.1</b> Lecture</a></li>
+<li class="chapter" data-level="2.2" data-path="reading-1.html"><a href="reading-1.html"><i class="fa fa-check"></i><b>2.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-1"><i class="fa fa-check"></i>Reference 1</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-1"><i class="fa fa-check"></i>Questions 1</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-1"><i class="fa fa-check"></i>Answers 1</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-2"><i class="fa fa-check"></i>Reference 2</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-2"><i class="fa fa-check"></i>Questions 2</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-2"><i class="fa fa-check"></i>Answers 2</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -424,11 +437,11 @@ Click for explanation
 <span id="cb56-5"><a href="in-class-exercises.html#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-6"><a href="in-class-exercises.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some appropriate geoms:</span></span>
 <span id="cb56-7"><a href="in-class-exercises.html#cb56-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="in-class-exercises.html#cb57-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="in-class-exercises.html#cb58-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-49-3.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-50-3.png" width="672" /></p>
 </details>
 <hr />
 </div>
@@ -446,7 +459,7 @@ Click for explanation
 </summary>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="in-class-exercises.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a scatterplot of the pre- and post-test number knowledge</span></span>
 <span id="cb59-2"><a href="in-class-exercises.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sesam, <span class="fu">aes</span>(<span class="at">x =</span> prenumb, <span class="at">y =</span> postnumb)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </details>
 <hr />
 </div>
@@ -645,7 +658,7 @@ H_1: R^2 &gt; 0
 <li>How many degrees of freedom does this model have?</li>
 </ul>
 <p><em>Hint:</em> As you learned in <a href="pdf/tcsm_week_1.pdf">Lecture 1</a>, <span class="math inline">\(df = N_{obs} – N_{par}\)</span>.</p>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="section-10" class="section level4" number="1.5.2.5">
@@ -785,7 +798,7 @@ Click for explanation
 <span id="cb78-3"><a href="in-class-exercises.html#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb78-4"><a href="in-class-exercises.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot the distances:</span></span>
 <span id="cb78-5"><a href="in-class-exercises.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <p>In the figure above, we’re looking for any distances that clearly “stand out
 from the crowd”.</p>
 <ul>
@@ -808,7 +821,7 @@ from the crowd”.</p>
 Click for explanation
 </summary>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="in-class-exercises.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <p>In the QQ-Plot created above, we want to see all of the points follow the
 diagonal, dashed line.</p>
 <ul>
@@ -842,7 +855,7 @@ scale-location plot.</li>
 Click for explanation
 </summary>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="in-class-exercises.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>The red line in this figure is a <em>loess line</em> which represents the trend of the
 plotted data.</p>
 <ul>
@@ -1134,7 +1147,7 @@ Click for explanation
 <span id="cb94-6"><a href="in-class-exercises.html#cb94-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-7"><a href="in-class-exercises.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Print the plot stored as &#39;p&#39;:</span></span>
 <span id="cb94-8"><a href="in-class-exercises.html#cb94-8" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>We assigned the global color aesthetic to the <em>VIEWCAT</em> variable, so the points
 are colored based on their group.</p>
 </details>
@@ -1157,7 +1170,7 @@ Click for explanation
 </summary>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="in-class-exercises.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add OLS best-fit lines:</span></span>
 <span id="cb95-2"><a href="in-class-exercises.html#cb95-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p>The global color aesthetic assignment from above carries through to any
 additional plot elements that we add, including the regression lines. So, we
 also get a separate regression line for each <em>VIEWCAT</em> group.</p>
@@ -1411,8 +1424,8 @@ between two appropriately nested linear regression models.</li>
           </div>
         </div>
       </div>
-<a href="at-home-exercises.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="at-home-exercises.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="efa.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -82,3 +82,6 @@ section-23
 section-24
 section-25
 section-26
+efa
+lecture-1
+reading-1

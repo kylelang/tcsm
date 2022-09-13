@@ -1,10 +1,38 @@
 ## Lecture
 
-```{r}
+```{r, echo = FALSE}
 knitr::include_url("https://www.youtube.com/embed/LGJap7ZRMSU")
 ```
 
-[Download slides](pdfs/tcsm_week_2.pdf)
+[Download slides](pdf/tcsm_week_2.pdf)
 
-How do I test whether I measure what I intend to measure?
-In the social sciences we often try to measure things indirectly. For example, someone’s IQ or socio-economic status cannot be measured with just one question; we need more questions that each measure different aspects of these constructs. The method that is used in the social sciences to evaluate the quality of our measurements, and combine different questions or items to form the variables we’re interested in, are factor analysis and reliability analysis. 
+How do you know if you have measured the putative hypothetical construct that 
+you intend to measure?
+
+- The methods introduced in this lecture (namely, latent variables, factor 
+analysis, and reliability analysis) can shed empirical light on this issue. 
+
+In the social and behavioral sciences we're often forced to measure key concepts
+indirectly. For example, we have no way of directly quantifying a person's 
+current level of depression, or their innate motivation, or their risk-aversion,
+or any of the other myriad psychological features that comprise the human mental 
+state. In truth, we cannot really *measure* these hypothetical 
+constructs at all, we must *estimate* latent representations thereof (though, 
+psychometricians still use the language of physical measurement to describe this 
+process).
+
+Furthermore, we can rarely estimate an adequate representation with only a single 
+observed variable (e.g., question on a survey, score on a test, reading from a 
+sensor). We generally need several observed variables to reliably represent a 
+single hypothetical construct. For example, we cannot accurately determine 
+someone’s IQ or socio-economic status based on their response to a single 
+question; we need several questions that each tap into slightly different 
+aspects of IQ or SES. 
+
+Given multiple items measuring the same construct, we can use the methods 
+discussed in this lecture (i.e., factor analysis and reliability analysis) to 
+evaluate the quality of our measurement (i.e., how well we have estimated the 
+underlying hypothetical construct). If we do well enough in this estimation 
+task, we will be able to combine these estimated *latent variables* with the 
+*path analysis* methods discussed in two weeks to produce the full *structural 
+equation models* that we will cover at the end of this course. 
