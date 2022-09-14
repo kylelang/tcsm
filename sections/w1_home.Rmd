@@ -1,5 +1,9 @@
 ## At-Home Exercises
 
+```{r include = FALSE}
+opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
+```
+
 Load the `LifeSat.sav` data. 
 
 ```{r, echo = FALSE}
@@ -32,7 +36,7 @@ Make a table of descriptive statistics for the variables: `LifSat`, `educ`,
 descriptive statistics. 
 - The `describe()` function in the `psych` package is a good alternative.
 
-```{r, echo = TRUE}
+```{r}
 library(tidySEM)
 
 descriptives(LifeSat[ , c("LifSat", "educ", "ChildSup", "SpouSup", "age")])
@@ -55,7 +59,7 @@ Run a simple linear regression with `LifSat` as the dependent variable and
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 results <- lm(LifSat ~ educ, data = LifeSat)
 summary(results)
 ```
@@ -70,7 +74,7 @@ Repeat the analysis from \@ref(slr1) with `age` as the independent variable.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 results <- lm(LifSat ~ age, data = LifeSat)
 summary(results)
 ```
@@ -86,7 +90,7 @@ independent variable.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 results <- lm(LifSat ~ ChildSup, data = LifeSat)
 summary(results)
 ```
@@ -105,7 +109,7 @@ model formula.
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
 results <- lm(LifSat ~ educ + age + ChildSup, data = LifeSat)
 summary(results)
 ```

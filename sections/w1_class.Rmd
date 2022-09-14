@@ -30,12 +30,12 @@ Open the file Sesam.sav:
 library(foreign)
 
 ## Load the 'Sesam.sav' data into an object called 'sesam':
-sesam <- read.spss("sesam.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+sesam <- read.spss("Sesam.sav", to.data.frame = TRUE, use.value.labels = FALSE)
 ```
 
 ```{r, echo = FALSE}
 library(foreign)
-sesam <- read.spss(paste0(dataDir, "sesam.sav"), 
+sesam <- read.spss(paste0(dataDir, "Sesam.sav"), 
                    to.data.frame    = TRUE, 
                    use.value.labels = FALSE)
 ```
