@@ -42,7 +42,7 @@ latent measurement structure that generates a set of measured variables. In othe
 words, when doing EFA, we're trying to estimate how many latent variables underlie
 a set of observed data and which observed items "belong to" which latent variable.
 1. The "little jiffy" method consists of the following steps:
-    a. Run a PCA to extract facotrs
+    a. Run a PCA to extract factors
     a. Apply no subsequent rotation or the varimax rotation
     a. Retain all components with eigenvalues greater than 1.0
     
@@ -95,27 +95,26 @@ research question)?
 ```{asis echo = answer}
 ### Answers 2 {-}
 
-1. There is no literal passage that can be used, but the research problem 
-is stated as “why there is no Radical Right Party in Finland”. The 
-question this paper poses is whether the attitudes the Finnish 
-electorate holds about trust in politics and immigration is similar to or 
-different from the other Western-European countries. 
-2. pages 175-177 provide information on this. In short RRP emphasize 
-anti-immigrant attitudes and connect immigrations to feelings of 
-insecurity, spurring debates about crime. They are protest, anti-elitist 
-parties, that often push for lower taxes, while protecting the welfare 
-state. They can be clearly placed along the new cleavage in politics 
-that is about materialism vs. post-materialism, and reflect the antonym 
-of green parties. Finally, they represent the ‘losers’ of modernization 
-and emphasize traditional moral values, social norms, the role of the 
-family and the importance of a national culture. 
-3. the anti-immigration issue and protest voting. 
-4. No, Finland is very similar to other (Nordic) European countries. Some 
-countries with the most anti-immigrant and anti-politics attitudes, still 
-host a RRP. 
-5. Anti-immigrant and anti-politics attitudes cannot explain why there is 
-no RRP in Finland. The author find the reason for this in history, and 
-the fact that politicians from mainstream political parties have caught 
-the populist voters.
+1. Why is there no Radical Right Party in Finland? 
+    - To explore this question, the author considers how similar the attitudes 
+    of the Finnish electorate about trust in politics and immigration are to 
+    other Western-European countries. 
+1. Pages 175--177 provide the relevant information. Briefly:
+    - RRPs emphasize anti-immigrant attitudes and connect immigration to 
+    feelings of insecurity, spurring debates about crime. 
+    - RRPs are anti-elitist, protest parties that often push for lower taxes 
+    while protecting the welfare state. 
+    - RRPs represent the antitheses of green parties. 
+    - RRPs represent the ‘losers’ of modernization and emphasize traditional 
+    moral values, social norms, the role of the family, and the importance of 
+    national culture. 
+1. The anti-immigration issue and protest voting
+1. NEED AN ANSWER HERE
+1. No, Finland is very similar to other (Nordic) European countries. 
+1. Anti-immigrant and anti-politics attitudes cannot explain why there is no RRP 
+in Finland. 
+    - The author finds reasons for the absence of such a link in history and the 
+    fact that politicians from mainstream political parties have caught the 
+    populist voters.
 ```
 

@@ -52,8 +52,10 @@ relative consensus about what the model means, and we can improve it.
 - Every model imposes some violence upon reality.
     - I.e., every model is wrong (but some are useful).
 - Because a model is a simplification, by necessity, we leave out many factors. 
-    - Thinking about how this simplification relates to the third requirement 
-    for causality, we see that all alternative causes are ruled out.
+    - This simplification is a feature, not a bug. Models abstract away the 
+    uninteresting details (i.e., noise) of a phenomenon.
+    - Even models that are too simple to be interesting represent useful 
+    building-blocks to expand upon when creating more complex, interesting models.
 - Data can be used to validate a model and to refine the model into a closer 
 approximation of reality
 ```
