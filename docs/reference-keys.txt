@@ -86,3 +86,5 @@ efa
 lecture-1
 reading-1
 formative-assessment-1
+at-home-exercises-1
+in-class-exercises-1

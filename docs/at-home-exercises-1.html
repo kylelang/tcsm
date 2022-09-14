@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.4 At-Home Exercises | Theory Construction and Statistical Modeling</title>
-  <meta name="description" content="1.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
+  <title>2.4 At-Home Exercises | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="2.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
+  <meta property="og:title" content="2.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
+  <meta name="twitter:title" content="2.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="formative-assessment.html"/>
-<link rel="next" href="in-class-exercises.html"/>
+<link rel="prev" href="formative-assessment-1.html"/>
+<link rel="next" href="in-class-exercises-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -307,190 +307,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="at-home-exercises" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> At-Home Exercises<a href="at-home-exercises.html#at-home-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Load the <code>LifeSat.sav</code> data.</p>
-<hr />
-<div id="section" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> </h3>
-<p>Make a table of descriptive statistics for the variables: <code>LifSat</code>, <code>educ</code>,
-<code>ChildSup</code>, <code>SpouSup</code>, and <code>age</code>.</p>
-<ul>
-<li>What is the average age in the sample?</li>
-<li>What is the ange (youngest and oldest child)?</li>
-</ul>
-<p><em>Hint:</em> Use the <code>tidySEM::descriptives()</code> function.`</p>
-<details>
-<summary>
-Click for explanation
-</summary>
-<ul>
-<li>The package <code>tidySEM</code> contains the <code>descriptives()</code> function for computing
-descriptive statistics.</li>
-<li>The <code>describe()</code> function in the <code>psych</code> package is a good alternative.</li>
-</ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="at-home-exercises.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb38-2"><a href="at-home-exercises.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="at-home-exercises.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(LifeSat[ , <span class="fu">c</span>(<span class="st">&quot;LifSat&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;ChildSup&quot;</span>, <span class="st">&quot;SpouSup&quot;</span>, <span class="st">&quot;age&quot;</span>)])</span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["min"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"LifSat","2":"numeric","3":"98","4":"0","5":"50","6":"57.714286","7":"58","8":"58","9":"NA","10":"18.648678","11":"NA","12":"10","13":"100","14":"90","15":"-0.25972002","16":"-0.5327394","17":"-0.2329906","18":"-0.2412096"},{"1":"educ","2":"numeric","3":"98","4":"0","5":"9","6":"6.540816","7":"6","8":"6","9":"NA","10":"1.527537","11":"NA","12":"4","13":"12","14":"8","15":"1.44367529","16":"2.9612761","17":"2.9270980","18":"3.0303556"},{"1":"ChildSup","2":"numeric","3":"98","4":"0","5":"8","6":"6.857143","7":"7","8":"7","9":"NA","10":"1.526400","11":"NA","12":"3","13":"10","14":"7","15":"-0.29512318","16":"-0.6053586","17":"-0.4106227","18":"-0.4251080"},{"1":"SpouSup","2":"numeric","3":"98","4":"0","5":"9","6":"6.061224","7":"6","8":"6","9":"NA","10":"1.751679","11":"NA","12":"2","13":"10","14":"8","15":"-0.10382843","16":"-0.2129736","17":"-0.7058851","18":"-0.7307863"},{"1":"age","2":"numeric","3":"98","4":"0","5":"12","6":"70.255102","7":"70","8":"70","9":"NA","10":"2.429676","11":"NA","12":"64","13":"75","14":"11","15":"-0.09451875","16":"-0.1938775","17":"-0.4635443","18":"-0.4798965"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</details>
-<hr />
-</div>
-<div id="slr1" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> </h3>
-<p>Run a simple linear regression with <code>LifSat</code> as the dependent variable and
-<code>educ</code> as the independent variable.</p>
-<p><em>Hints:</em></p>
-<ul>
-<li>The <code>lm()</code> function (short for linear model) does linear regression.</li>
-<li>The <code>summary()</code> function provides relevant summary statistics for the model.</li>
-<li>It can be helpful to store the results of your analysis in an object.</li>
-</ul>
-<details>
-<summary>
-Click for explanation
-</summary>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="at-home-exercises.html#cb39-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> educ, <span class="at">data =</span> LifeSat)</span>
-<span id="cb39-2"><a href="at-home-exercises.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = LifSat ~ educ, data = LifeSat)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -44.158 -11.678   2.212  12.541  43.212 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   34.418      8.003   4.301 4.09e-05 ***
-## educ           3.562      1.192   2.988  0.00356 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 17.93 on 96 degrees of freedom
-## Multiple R-squared:  0.08511,    Adjusted R-squared:  0.07558 
-## F-statistic: 8.931 on 1 and 96 DF,  p-value: 0.00356</code></pre>
-</details>
-<hr />
-</div>
-<div id="slr2" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> </h3>
-<p>Repeat the analysis from <a href="at-home-exercises.html#slr1">1.4.2</a> with <code>age</code> as the independent variable.</p>
-<details>
-<summary>
-Click for explanation
-</summary>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="at-home-exercises.html#cb41-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> age, <span class="at">data =</span> LifeSat)</span>
-<span id="cb41-2"><a href="at-home-exercises.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = LifSat ~ age, data = LifeSat)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -48.230 -14.025   3.321  13.745  40.770 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 199.6492    53.1261   3.758 0.000294 ***
-## age          -2.0203     0.7557  -2.673 0.008829 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 18.08 on 96 degrees of freedom
-## Multiple R-squared:  0.06928,    Adjusted R-squared:  0.05959 
-## F-statistic: 7.146 on 1 and 96 DF,  p-value: 0.008829</code></pre>
-</details>
-<hr />
-</div>
-<div id="slr3" class="section level3" number="1.4.4">
-<h3><span class="header-section-number">1.4.4</span> </h3>
-<p>Repeat the analysis from <a href="at-home-exercises.html#slr1">1.4.2</a> and <a href="at-home-exercises.html#slr2">1.4.3</a> with <code>ChildSup</code> as the
-independent variable.</p>
-<details>
-<summary>
-Click for explanation
-</summary>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="at-home-exercises.html#cb43-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> ChildSup, <span class="at">data =</span> LifeSat)</span>
-<span id="cb43-2"><a href="at-home-exercises.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = LifSat ~ ChildSup, data = LifeSat)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -45.131 -11.875   0.862  12.595  44.869 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   37.052      8.487   4.366  3.2e-05 ***
-## ChildSup       3.013      1.208   2.494   0.0144 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 18.17 on 96 degrees of freedom
-## Multiple R-squared:  0.06083,    Adjusted R-squared:  0.05105 
-## F-statistic: 6.218 on 1 and 96 DF,  p-value: 0.01436</code></pre>
-</details>
-<hr />
-</div>
-<div id="mlr" class="section level3" number="1.4.5">
-<h3><span class="header-section-number">1.4.5</span> </h3>
-<p>Run a multiple linear regression with <code>LifSat</code> as the dependent variable and
-<code>educ</code>, <code>age</code>, and <code>ChildSup</code> as the independent variables.</p>
-<p><em>Hint:</em> You can use the <code>+</code> sign to add multiple variables to the RHS of your
-model formula.</p>
-<details>
-<summary>
-Click for explanation
-</summary>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="at-home-exercises.html#cb45-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifSat <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> ChildSup, <span class="at">data =</span> LifeSat)</span>
-<span id="cb45-2"><a href="at-home-exercises.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = LifSat ~ educ + age + ChildSup, data = LifeSat)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -41.525 -12.472   2.601  11.235  42.108 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept) 132.5942    54.2325   2.445   0.0164 *
-## educ          2.9123     1.1640   2.502   0.0141 *
-## age          -1.5766     0.7316  -2.155   0.0337 *
-## ChildSup      2.4554     1.1564   2.123   0.0364 *
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 17.23 on 94 degrees of freedom
-## Multiple R-squared:  0.1732, Adjusted R-squared:  0.1468 
-## F-statistic: 6.565 on 3 and 94 DF,  p-value: 0.0004452</code></pre>
-</details>
-<hr />
-</div>
-<div id="section-1" class="section level3" number="1.4.6">
-<h3><span class="header-section-number">1.4.6</span> </h3>
-<p>Compare the results from <a href="at-home-exercises.html#mlr">1.4.5</a> with those from <a href="at-home-exercises.html#slr1">1.4.2</a>, <a href="at-home-exercises.html#slr2">1.4.3</a>,
-and <a href="at-home-exercises.html#slr3">1.4.4</a>.</p>
-<ul>
-<li>What do you notice when you compare the estimated slopes for each of the three
-predictors in the multiple regression model with the corresponding estimates
-from the simple regression models?</li>
-</ul>
-</div>
+<div id="at-home-exercises-1" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> At-Home Exercises<a href="at-home-exercises-1.html#at-home-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="formative-assessment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="in-class-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="formative-assessment-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="in-class-exercises-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
