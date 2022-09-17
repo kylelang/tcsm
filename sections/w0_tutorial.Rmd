@@ -573,7 +573,7 @@ LifeSat[1:2, c("age", "educ")]
 
 ---
 
-### Subsetting based on logical conditions
+### Subsetting based on logical conditions {#logicalSubsetting}
 
 We can also select rows or columns that satisfy logical conditions.
 
