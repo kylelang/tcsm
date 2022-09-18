@@ -245,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.10.2" data-path="manipulating-data.html"><a href="manipulating-data.html#factors"><i class="fa fa-check"></i><b>0.10.2</b> Factors</a></li>
 <li class="chapter" data-level="0.10.3" data-path="manipulating-data.html"><a href="manipulating-data.html#subsetting-extracting-one-variable"><i class="fa fa-check"></i><b>0.10.3</b> Subsetting: Extracting one variable</a></li>
 <li class="chapter" data-level="0.10.4" data-path="manipulating-data.html"><a href="manipulating-data.html#subsetting-extracting-rows-and-columns"><i class="fa fa-check"></i><b>0.10.4</b> Subsetting: Extracting rows and columns</a></li>
-<li class="chapter" data-level="0.10.5" data-path="manipulating-data.html"><a href="manipulating-data.html#subsetting-based-on-logical-conditions"><i class="fa fa-check"></i><b>0.10.5</b> Subsetting based on logical conditions</a></li>
+<li class="chapter" data-level="0.10.5" data-path="manipulating-data.html"><a href="manipulating-data.html#logicalSubsetting"><i class="fa fa-check"></i><b>0.10.5</b> Subsetting based on logical conditions</a></li>
 <li class="chapter" data-level="0.10.6" data-path="manipulating-data.html"><a href="manipulating-data.html#changing-cell-values"><i class="fa fa-check"></i><b>0.10.6</b> Changing cell values</a></li>
 </ul></li>
 <li class="chapter" data-level="0.11" data-path="getting-help.html"><a href="getting-help.html"><i class="fa fa-check"></i><b>0.11</b> Getting Help</a></li>
@@ -298,9 +298,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.5" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-31"><i class="fa fa-check"></i><b>2.4.5</b> </a></li>
 <li class="chapter" data-level="2.4.6" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-32"><i class="fa fa-check"></i><b>2.4.6</b> </a></li>
 <li class="chapter" data-level="2.4.7" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-33"><i class="fa fa-check"></i><b>2.4.7</b> </a></li>
-<li class="chapter" data-level="2.4.8" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-34"><i class="fa fa-check"></i><b>2.4.8</b> </a></li>
-<li class="chapter" data-level="2.4.9" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-35"><i class="fa fa-check"></i><b>2.4.9</b> </a></li>
-<li class="chapter" data-level="2.4.10" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-36"><i class="fa fa-check"></i><b>2.4.10</b> </a></li>
+<li class="chapter" data-level="2.4.8" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#run_pca"><i class="fa fa-check"></i><b>2.4.8</b> </a></li>
+<li class="chapter" data-level="2.4.9" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-34"><i class="fa fa-check"></i><b>2.4.9</b> </a></li>
+<li class="chapter" data-level="2.4.10" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-35"><i class="fa fa-check"></i><b>2.4.10</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> In-Class Exercises</a></li>
 </ul></li>
@@ -323,26 +323,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="at-home-exercises-1" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> At-Home Exercises<a href="at-home-exercises-1.html#at-home-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This exercise is based on:</p>
-<p>Kestilä, Elina (2006). Is There Demand for Radical Right
-Populism in the Finnish Electorate? <em>Scandinavian Political Studies 29</em>(3),169-191</p>
-<p>You have read and answered questions about the article in the reading questions. In this
-exercise, as well as in the second class practical, we will analyze these data ourselves.</p>
-<p>The data for this practical stem from the first round of the European Social Survey (ESS).
-This is a repeated cross-sectional survey across 32 European countries. The first round
-was held in 2002, and since then, subsequent rounds of data-collection are held bi-
-anually. More info, as well as access to all data -&gt; www.europeansocialsurvey.org.</p>
-<p>The raw, first round data can also be found <a href="https://github.com/cjvanlissa/TCSM_student">here</a>. The file is called ESSround1-
-a.sav. This file contains data for all respondents, but only those variables are included
-that you will need in this exercise.</p>
+<p>In these exercises, you will attempt to replicate some of the analyses from the
+second reading for this week:</p>
+<p>Kestilä, E. (2006). Is there demand for radical right populism in the Finnish
+electorate? <em>Scandinavian Political Studies 29</em>(3), 169–191.</p>
+<p>The data for this practical were collected during the first round of the
+European Social Survey (ESS). The ESS is a repeated cross-sectional survey
+administered in 32 European countries. The first wave was collected in 2002, and
+two new waves have been collected each year since. You can find more info and
+access the data at <a href="https://www.europeansocialsurvey.org" class="uri">https://www.europeansocialsurvey.org</a>.</p>
+<p>The data we will analyze for this practical are contained in the file named
+<em>ESSround1-a.sav</em>. This file contains data for all respondents, but only includes
+those variables that you will need to complete the following exercises.</p>
+<hr />
 <div id="section-27" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> </h3>
-<p>Download the file, and import it in R. Inspect the file (no. of cases and no. of variables) to see if the file opened well.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="at-home-exercises-1.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb104-2"><a href="at-home-exercises-1.html#cb104-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;ESSround1-a.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Load the <em>ESSround1-a.sav</em> dataset into R.</p>
+<ul>
+<li>Inspect the data after loading to make sure everything went well.</li>
+</ul>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="at-home-exercises-1.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the &#39;foreign&#39; package:</span></span>
+<span id="cb104-2"><a href="at-home-exercises-1.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb104-3"><a href="at-home-exercises-1.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="at-home-exercises-1.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Read the &#39;ESSround1-a.sav&#39; ess into a data frame called &#39;ess&#39;: </span></span>
+<span id="cb104-5"><a href="at-home-exercises-1.html#cb104-5" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;ESSround1-a.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb104-6"><a href="at-home-exercises-1.html#cb104-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-7"><a href="at-home-exercises-1.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the result:</span></span>
+<span id="cb104-8"><a href="at-home-exercises-1.html#cb104-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ess)</span>
+<span id="cb104-9"><a href="at-home-exercises-1.html#cb104-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ess)</span>
+<span id="cb104-10"><a href="at-home-exercises-1.html#cb104-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ess)</span></code></pre></div>
+<p>When you inspect the data, you may notice that almost all variables are
+represented as factors. If so, good eyes! We’ll come back to this issue a
+little later.</p>
 <details>
 <summary>
-<b>For a description of all variables in the dataset, click here!</b>
+<b>Click here for a description of the variables.</b>
 </summary>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -758,111 +773,299 @@ Placement on left right scale
 </tr>
 </tbody>
 </table>
+</details>
+<hr />
+<p>The <code>ess</code> dataset contains much more information than Kestilä (2006) used.
+Kestilä only analyzed data from the following ten countries:</p>
+<ul>
+<li>Austria</li>
+<li>Belgium</li>
+<li>Denmark</li>
+<li>Finland</li>
+<li>France</li>
+<li>Germany</li>
+<li>Italy</li>
+<li>Netherlands</li>
+<li>Norway</li>
+<li>Sweden</li>
+</ul>
+<p>So, our first task is to subset the data to only the relevant population.</p>
+<p>As explained in <a href="manipulating-data.html#logicalSubsetting">0.10.5</a>, we can select rows from a dataset
+based on logical conditions. In this case, we want to select only rows from the
+10 countries listed above.</p>
+<hr />
 </div>
 <div id="section-28" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> </h3>
-<p>The ESS-file contains much more information than we need to re-analyze the paper by
-Kestilä. We need to reduce the number of cases to make sure our results pertain to the relevant target population.</p>
-<p>Kestilä only uses data from ten countries: <code>c("Austria", "Belgium", "Denmark", "Finland", "France", "Germany", "Italy", "Netherlands", "Norway", "Sweden")</code>.</p>
-<p>As explained in the tutorial chapters at the beginning of this GitBook, it is possible to select rows from the data. In this case, we will select only rows from these countries by means of boolean indexing, using the <code>%in%</code> function to check if the value of <code>$cntry</code> is in the list.</p>
-<p><em>Hint: Use</em> <code>[]; %in%</code></p>
+<p>Subset the data to include only the 10 countries analyzed by Kestilä (2006).</p>
+<ul>
+<li>Inspect the subsetted data to check that everything went well.</li>
+</ul>
+<p><em>Hint:</em> Use the <code>%in%</code> operator to create a logical vector that indicates which
+elements of the <code>cntry</code> variable are <em>in</em> the set of target counties.</p>
 <details>
 <summary>
 Click for explanation
 </summary>
-<p>Use the following code:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="at-home-exercises-1.html#cb105-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> data[data<span class="sc">$</span>cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Austria&quot;</span>, <span class="st">&quot;Belgium&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Finland&quot;</span>, <span class="st">&quot;France&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Italy&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Sweden&quot;</span>), ]</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="at-home-exercises-1.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a character vector naming the target countries:</span></span>
+<span id="cb105-2"><a href="at-home-exercises-1.html#cb105-2" aria-hidden="true" tabindex="-1"></a>targets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Austria&quot;</span>, </span>
+<span id="cb105-3"><a href="at-home-exercises-1.html#cb105-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Belgium&quot;</span>, </span>
+<span id="cb105-4"><a href="at-home-exercises-1.html#cb105-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Denmark&quot;</span>, </span>
+<span id="cb105-5"><a href="at-home-exercises-1.html#cb105-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Finland&quot;</span>, </span>
+<span id="cb105-6"><a href="at-home-exercises-1.html#cb105-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;France&quot;</span>, </span>
+<span id="cb105-7"><a href="at-home-exercises-1.html#cb105-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Germany&quot;</span>, </span>
+<span id="cb105-8"><a href="at-home-exercises-1.html#cb105-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Italy&quot;</span>, </span>
+<span id="cb105-9"><a href="at-home-exercises-1.html#cb105-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Netherlands&quot;</span>, </span>
+<span id="cb105-10"><a href="at-home-exercises-1.html#cb105-10" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Norway&quot;</span>, </span>
+<span id="cb105-11"><a href="at-home-exercises-1.html#cb105-11" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;Sweden&quot;</span>)</span>
+<span id="cb105-12"><a href="at-home-exercises-1.html#cb105-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-13"><a href="at-home-exercises-1.html#cb105-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Select only those rows that come from a target country:</span></span>
+<span id="cb105-14"><a href="at-home-exercises-1.html#cb105-14" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> ess[ess<span class="sc">$</span>cntry <span class="sc">%in%</span> targets, ]</span>
+<span id="cb105-15"><a href="at-home-exercises-1.html#cb105-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-16"><a href="at-home-exercises-1.html#cb105-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the result:</span></span>
+<span id="cb105-17"><a href="at-home-exercises-1.html#cb105-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ess)</span></code></pre></div>
+<pre><code>## [1] 19690    50</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="at-home-exercises-1.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess<span class="sc">$</span>cntry)</span></code></pre></div>
+<pre><code>## 
+##        Austria        Belgium    Switzerland Czech Republic        Germany 
+##           2257           1899              0              0           2919 
+##        Denmark          Spain        Finland         France United Kingdom 
+##           1506              0           2000           1503              0 
+##         Greece        Hungary        Ireland         Israel          Italy 
+##              0              0              0              0           1207 
+##     Luxembourg    Netherlands         Norway         Poland       Portugal 
+##              0           2364           2036              0              0 
+##         Sweden       Slovenia 
+##           1999              0</code></pre>
+</details>
+<hr />
+<p>Before we can analyze the data, we need to screen them for problems. At this
+point, we won’t get into the nitty-gritty of outlier analysis and data
+cleaning. We must, however, ensure that the variables we want to analyze are
+formatted correctly (e.g., interval and ratio variables should be numeric,
+nominal variables should be factors).</p>
+<hr />
 </div>
 <div id="section-29" class="section level3" number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> </h3>
-<p>Inspect the data file again to see whether step 1b went ok.</p>
-</div>
-<div id="section-30" class="section level3" number="2.4.4">
-<h3><span class="header-section-number">2.4.4</span> </h3>
-<p>Before we can start the analyses, we first need to screen the
-data. What are the things we need to watch for? (think about your earlier
-statistics-courses)?</p>
+<p>Screen the data to see if the variables are formatted correctly.</p>
 <details>
 <summary>
 Click for explanation
 </summary>
-<p>This question is open to interpretation. One thing you might notice is that all variables the authors used are currently coded as factor variables (e.g., “Factor w/ 11 levels”):</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="at-home-exercises-1.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb106-2"><a href="at-home-exercises-1.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="at-home-exercises-1.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb109-2"><a href="at-home-exercises-1.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="at-home-exercises-1.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the data structure:</span></span>
+<span id="cb109-4"><a href="at-home-exercises-1.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ess)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    19690 obs. of  50 variables:
+##  $ name    : chr  &quot;ESS1e06_1&quot; &quot;ESS1e06_1&quot; &quot;ESS1e06_1&quot; &quot;ESS1e06_1&quot; ...
+##  $ essround: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ edition : chr  &quot;6.1&quot; &quot;6.1&quot; &quot;6.1&quot; &quot;6.1&quot; ...
+##  $ proddate: chr  &quot;03.10.2008&quot; &quot;03.10.2008&quot; &quot;03.10.2008&quot; &quot;03.10.2008&quot; ...
+##  $ cntry   : Factor w/ 22 levels &quot;Austria&quot;,&quot;Belgium&quot;,..: 1 18 1 1 18 1 2 18 1 18 ...
+##  $ idno    : num  1 1 2 3 3 4 4 4 6 6 ...
+##  $ trstlgl : Factor w/ 11 levels &quot;No trust at all&quot;,..: 11 7 9 5 9 11 10 8 8 8 ...
+##  $ trstplc : Factor w/ 11 levels &quot;No trust at all&quot;,..: 11 9 6 9 9 10 9 10 5 10 ...
+##  $ trstun  : Factor w/ 11 levels &quot;No trust at all&quot;,..: 10 9 7 NA 6 9 NA 8 6 8 ...
+##  $ trstep  : Factor w/ 11 levels &quot;No trust at all&quot;,..: NA 4 1 8 4 8 1 4 5 7 ...
+##  $ trstprl : Factor w/ 11 levels &quot;No trust at all&quot;,..: 10 8 1 7 9 9 11 3 7 9 ...
+##  $ stfhlth : Factor w/ 11 levels &quot;Extremely bad&quot;,..: 11 5 1 8 7 9 NA 7 4 6 ...
+##  $ stfedu  : Factor w/ 11 levels &quot;Extremely bad&quot;,..: 9 8 8 6 9 8 NA 8 7 8 ...
+##  $ stfeco  : Factor w/ 11 levels &quot;Extremely dissatisfied&quot;,..: 8 7 1 8 9 7 NA 10 9 10 ...
+##  $ stfgov  : Factor w/ 11 levels &quot;Extremely dissatisfied&quot;,..: 8 8 1 8 7 4 NA 6 6 8 ...
+##  $ stfdem  : Factor w/ 11 levels &quot;Extremely dissatisfied&quot;,..: 9 6 6 6 8 8 NA 8 8 10 ...
+##  $ pltinvt : Factor w/ 5 levels &quot;Nearly all just interested in votes&quot;,..: 1 3 1 1 4 1 1 3 2 3 ...
+##  $ pltcare : Factor w/ 5 levels &quot;Hardly any politicians care&quot;,..: 1 4 1 1 4 3 2 5 2 3 ...
+##  $ trstplt : Factor w/ 11 levels &quot;No trust at all&quot;,..: 1 6 1 3 6 5 9 3 5 7 ...
+##  $ imsmetn : Factor w/ 4 levels &quot;Allow many to come and live here&quot;,..: 4 3 2 3 2 1 NA 2 NA 1 ...
+##  $ imdfetn : Factor w/ 4 levels &quot;Allow many to come and live here&quot;,..: 3 3 2 3 2 2 NA 2 NA 1 ...
+##  $ eimrcnt : Factor w/ 4 levels &quot;Allow many to come and live here&quot;,..: 4 2 2 2 3 1 NA 2 NA 1 ...
+##  $ eimpcnt : Factor w/ 4 levels &quot;Allow many to come and live here&quot;,..: 3 2 2 2 2 2 NA 2 NA 1 ...
+##  $ imrcntr : Factor w/ 4 levels &quot;Allow many to come and live here&quot;,..: 3 3 2 2 2 1 NA 2 NA 2 ...
+##  $ impcntr : Factor w/ 4 levels &quot;Allow many to come and live here&quot;,..: 3 2 2 3 2 1 NA 2 NA 2 ...
+##  $ qfimchr : Factor w/ 14 levels &quot;Extremely unimportant&quot;,..: 5 3 1 7 3 1 14 1 2 3 ...
+##  $ qfimwht : Factor w/ 14 levels &quot;Extremely unimportant&quot;,..: 2 1 1 1 1 1 14 1 1 2 ...
+##  $ imwgdwn : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 3 4 2 2 3 3 NA 4 NA 4 ...
+##  $ imhecop : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 2 2 1 4 3 2 NA 3 NA 2 ...
+##  $ imtcjob : Factor w/ 11 levels &quot;Take jobs away&quot;,..: 8 6 7 6 8 11 NA 9 NA 5 ...
+##  $ imbleco : Factor w/ 11 levels &quot;Generally take out more&quot;,..: 10 5 3 NA 4 11 NA 10 NA 7 ...
+##  $ imbgeco : Factor w/ 11 levels &quot;Bad for the economy&quot;,..: 5 4 11 8 6 11 NA 9 NA 6 ...
+##  $ imueclt : Factor w/ 11 levels &quot;Cultural life undermined&quot;,..: 10 5 11 6 5 11 NA 10 NA 4 ...
+##  $ imwbcnt : Factor w/ 11 levels &quot;Worse place to live&quot;,..: 8 4 6 6 6 11 NA 9 NA 6 ...
+##  $ imwbcrm : Factor w/ 11 levels &quot;Crime problems made worse&quot;,..: 4 4 6 3 4 6 NA 6 NA 4 ...
+##  $ imrsprc : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 2 2 1 4 1 2 NA 1 1 3 ...
+##  $ pplstrd : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 2 4 2 2 3 4 NA 4 4 2 ...
+##  $ vrtrlg  : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 3 5 3 2 4 1 NA 4 2 3 ...
+##  $ shrrfg  : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 3 2 1 1 3 3 NA 3 4 3 ...
+##  $ rfgawrk : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 2 2 1 2 2 2 NA 2 1 2 ...
+##  $ gvrfgap : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 4 3 2 4 2 2 NA 3 2 4 ...
+##  $ rfgfrpc : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 4 3 2 4 4 4 NA 4 3 4 ...
+##  $ rfggvfn : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 2 3 2 4 3 2 NA 2 2 2 ...
+##  $ rfgbfml : Factor w/ 5 levels &quot;Agree strongly&quot;,..: 2 3 1 2 2 1 NA 4 2 3 ...
+##  $ gndr    : Factor w/ 2 levels &quot;Male&quot;,&quot;Female&quot;: 1 2 1 2 2 1 NA 2 2 1 ...
+##  $ yrbrn   : Factor w/ 88 levels &quot;1893&quot;,&quot;1900&quot;,..: 48 77 52 39 63 58 NA 72 61 70 ...
+##  $ edulvl  : Factor w/ 7 levels &quot;Not completed primary education&quot;,..: NA 4 NA NA 4 NA NA 7 NA 6 ...
+##  $ eduyrs  : Factor w/ 35 levels &quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,..: 12 17 15 10 13 19 NA 18 16 18 ...
+##  $ polintr : Factor w/ 4 levels &quot;Very interested&quot;,..: 3 3 1 2 3 2 1 4 3 3 ...
+##  $ lrscale : Factor w/ 11 levels &quot;Left&quot;,&quot;1&quot;,&quot;2&quot;,..: 7 8 7 6 9 6 NA 9 6 8 ...
+##  - attr(*, &quot;variable.labels&quot;)= Named chr [1:50] &quot;Title of dataset&quot; &quot;ESS round&quot; &quot;Edition&quot; &quot;Production date&quot; ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:50] &quot;name&quot; &quot;essround&quot; &quot;edition&quot; &quot;proddate&quot; ...
+##  - attr(*, &quot;codepage&quot;)= int 65001</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="at-home-exercises-1.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute descriptive statistics:</span></span>
+<span id="cb111-2"><a href="at-home-exercises-1.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(ess)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["chr"],"align":["left"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"name","2":"character","3":"19690","4":"0.000000000","5":"2","6":"NA","7":"NA","8":"19690","9":"ESS1e06_1","10":"NA","11":"0.0000000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"essround","2":"numeric","3":"19690","4":"0.000000000","5":"1","6":"1.0","7":"1","8":"1","9":"NA","10":"0.0","11":"NA","12":"1","13":"1","14":"0","15":"NaN","16":"NaN","17":"NaN","18":"NaN"},{"1":"edition","2":"character","3":"19690","4":"0.000000000","5":"2","6":"NA","7":"NA","8":"19690","9":"6.1","10":"NA","11":"0.0000000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"proddate","2":"character","3":"19690","4":"0.000000000","5":"2","6":"NA","7":"NA","8":"19690","9":"03.10.2008","10":"NA","11":"0.0000000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"cntry","2":"factor","3":"19690","4":"0.000000000","5":"11","6":"NA","7":"NA","8":"2919","9":"Germany","10":"NA","11":"0.8944160","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"idno","2":"numeric","3":"19690","4":"0.000000000","5":"15220","6":"373711.5","7":"12611","8":"12611","9":"NA","10":"828081.4","11":"NA","12":"1","13":"4136400","14":"4136399","15":"2.906626","16":"83.26059","17":"7.686043","18":"110.0893"},{"1":"trstlgl","2":"factor","3":"19380","4":"0.015744033","5":"12","6":"NA","7":"NA","8":"3266","9":"8","10":"NA","11":"0.8789684","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"trstplc","2":"factor","3":"19560","4":"0.006602336","5":"12","6":"NA","7":"NA","8":"4318","9":"8","10":"NA","11":"0.8608062","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"trstun","2":"factor","3":"18450","4":"0.062976130","5":"12","6":"NA","7":"NA","8":"3347","9":"5","10":"NA","11":"0.8748756","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"trstep","2":"factor","3":"17825","4":"0.094718131","5":"12","6":"NA","7":"NA","8":"4265","9":"5","10":"NA","11":"0.8662044","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"trstprl","2":"factor","3":"19228","4":"0.023463687","5":"12","6":"NA","7":"NA","8":"4139","9":"5","10":"NA","11":"0.8713378","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"stfhlth","2":"factor","3":"19481","4":"0.010614525","5":"12","6":"NA","7":"NA","8":"3450","9":"7","10":"NA","11":"0.8748756","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"stfedu","2":"factor","3":"18844","4":"0.042965973","5":"12","6":"NA","7":"NA","8":"3424","9":"7","10":"NA","11":"0.8728407","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"stfeco","2":"factor","3":"19211","4":"0.024327070","5":"12","6":"NA","7":"NA","8":"3183","9":"5","10":"NA","11":"0.8811399","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"stfgov","2":"factor","3":"19106","4":"0.029659726","5":"12","6":"NA","7":"NA","8":"3511","9":"5","10":"NA","11":"0.8784157","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"stfdem","2":"factor","3":"19106","4":"0.029659726","5":"12","6":"NA","7":"NA","8":"3510","9":"7","10":"NA","11":"0.8695498","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"pltinvt","2":"factor","3":"17971","4":"0.087303200","5":"6","6":"NA","7":"NA","8":"5743","9":"Some just interested in votes","10":"NA","11":"0.7420247","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"pltcare","2":"factor","3":"19471","4":"0.011122397","5":"6","6":"NA","7":"NA","8":"7325","9":"Some care","10":"NA","11":"0.7307648","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"trstplt","2":"factor","3":"19464","4":"0.011477908","5":"12","6":"NA","7":"NA","8":"4129","9":"5","10":"NA","11":"0.8702633","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imsmetn","2":"factor","3":"18953","4":"0.037430168","5":"5","6":"NA","7":"NA","8":"9580","9":"Allow some","10":"NA","11":"0.6353649","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imdfetn","2":"factor","3":"18974","4":"0.036363636","5":"5","6":"NA","7":"NA","8":"8211","9":"Allow some","10":"NA","11":"0.6556632","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"eimrcnt","2":"factor","3":"18883","4":"0.040985272","5":"5","6":"NA","7":"NA","8":"8417","9":"Allow some","10":"NA","11":"0.6741836","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"eimpcnt","2":"factor","3":"19022","4":"0.033925851","5":"5","6":"NA","7":"NA","8":"8871","9":"Allow some","10":"NA","11":"0.6477789","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imrcntr","2":"factor","3":"18877","4":"0.041289995","5":"5","6":"NA","7":"NA","8":"7888","9":"Allow some","10":"NA","11":"0.6739428","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"impcntr","2":"factor","3":"18944","4":"0.037887252","5":"5","6":"NA","7":"NA","8":"8214","9":"Allow some","10":"NA","11":"0.6566178","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"qfimchr","2":"factor","3":"19690","4":"0.000000000","5":"15","6":"NA","7":"NA","8":"6225","9":"Extremely unimportant","10":"NA","11":"0.8445259","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"qfimwht","2":"factor","3":"19690","4":"0.000000000","5":"15","6":"NA","7":"NA","8":"9475","9":"Extremely unimportant","10":"NA","11":"0.7321678","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imwgdwn","2":"factor","3":"18515","4":"0.059674962","5":"6","6":"NA","7":"NA","8":"6580","9":"Disagree","10":"NA","11":"0.7418747","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imhecop","2":"factor","3":"18632","4":"0.053732859","5":"6","6":"NA","7":"NA","8":"6202","9":"Agree","10":"NA","11":"0.7433170","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imtcjob","2":"factor","3":"18897","4":"0.040274251","5":"12","6":"NA","7":"NA","8":"7202","9":"5","10":"NA","11":"0.8040579","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imbleco","2":"factor","3":"18783","4":"0.046063992","5":"12","6":"NA","7":"NA","8":"5776","9":"5","10":"NA","11":"0.8406950","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imbgeco","2":"factor","3":"18798","4":"0.045302184","5":"12","6":"NA","7":"NA","8":"5449","9":"5","10":"NA","11":"0.8504046","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imueclt","2":"factor","3":"19036","4":"0.033214830","5":"12","6":"NA","7":"NA","8":"3894","9":"5","10":"NA","11":"0.8659707","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imwbcnt","2":"factor","3":"19053","4":"0.032351447","5":"12","6":"NA","7":"NA","8":"6672","9":"5","10":"NA","11":"0.8239317","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imwbcrm","2":"factor","3":"19165","4":"0.026663281","5":"12","6":"NA","7":"NA","8":"3792","9":"3","10":"NA","11":"0.8513989","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"imrsprc","2":"factor","3":"19254","4":"0.022143220","5":"6","6":"NA","7":"NA","8":"8113","9":"Agree","10":"NA","11":"0.7182154","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"pplstrd","2":"factor","3":"19432","4":"0.013103098","5":"6","6":"NA","7":"NA","8":"6273","9":"Agree","10":"NA","11":"0.7531543","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"vrtrlg","2":"factor","3":"19190","4":"0.025393601","5":"6","6":"NA","7":"NA","8":"6279","9":"Agree","10":"NA","11":"0.7371280","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"shrrfg","2":"factor","3":"18125","4":"0.079481971","5":"6","6":"NA","7":"NA","8":"7485","9":"Agree","10":"NA","11":"0.7238031","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"rfgawrk","2":"factor","3":"19141","4":"0.027882174","5":"6","6":"NA","7":"NA","8":"10058","9":"Agree","10":"NA","11":"0.6597333","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"gvrfgap","2":"factor","3":"19117","4":"0.029101067","5":"6","6":"NA","7":"NA","8":"6768","9":"Disagree","10":"NA","11":"0.7440341","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"rfgfrpc","2":"factor","3":"17640","4":"0.104113763","5":"6","6":"NA","7":"NA","8":"5471","9":"Agree","10":"NA","11":"0.7366097","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"rfggvfn","2":"factor","3":"19102","4":"0.029862875","5":"6","6":"NA","7":"NA","8":"8517","9":"Agree","10":"NA","11":"0.7013989","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"rfgbfml","2":"factor","3":"19133","4":"0.028288471","5":"6","6":"NA","7":"NA","8":"7033","9":"Agree","10":"NA","11":"0.7454417","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"gndr","2":"factor","3":"19653","4":"0.001879126","5":"3","6":"NA","7":"NA","8":"10133","9":"Female","10":"NA","11":"0.4995136","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"yrbrn","2":"factor","3":"19568","4":"0.006196039","5":"87","6":"NA","7":"NA","8":"428","9":"1963","10":"NA","11":"0.9844786","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"edulvl","2":"factor","3":"17338","4":"0.119451498","5":"8","6":"NA","7":"NA","8":"6459","9":"Upper secondary","10":"NA","11":"0.7644261","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"eduyrs","2":"factor","3":"19483","4":"0.010512951","5":"36","6":"NA","7":"NA","8":"2745","9":"12","10":"NA","11":"0.9209349","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"polintr","2":"factor","3":"19644","4":"0.002336211","5":"5","6":"NA","7":"NA","8":"8083","9":"Quite interested","10":"NA","11":"0.6854263","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"lrscale","2":"factor","3":"18053","4":"0.083138649","5":"12","6":"NA","7":"NA","8":"5618","9":"5","10":"NA","11":"0.8393710","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="at-home-exercises-1.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(df<span class="sc">$</span>trstlgl)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="at-home-exercises-1.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the levels of one of the spurious factors:</span></span>
+<span id="cb112-2"><a href="at-home-exercises-1.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ess<span class="sc">$</span>trstlgl)</span></code></pre></div>
 <pre><code>##  [1] &quot;No trust at all&quot; &quot;1&quot;               &quot;2&quot;               &quot;3&quot;              
 ##  [5] &quot;4 &quot;              &quot;5&quot;               &quot;6&quot;               &quot;7&quot;              
 ##  [9] &quot;8&quot;               &quot;9&quot;               &quot;Complete trust&quot;</code></pre>
-<p>In keeping with conventions, we could treat ordinal Likert scales with &gt;5 levels as continuous. We can either re-code the data, or prevent <code>read.spss()</code> from coding these variables as factors when it reads the data. Here is code for both approaches.</p>
-<div id="re-coding-factors-to-numeric" class="section level4 hasAnchor" number="2.4.4.1">
-<h4><span class="header-section-number">2.4.4.1</span> Re-coding factors to numeric<a href="at-home-exercises-1.html#re-coding-factors-to-numeric" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We can convert a factor to numeric using the function <code>as.numeric()</code>. However, in this case, we have 38 variables to convert - that’s a lot of code.</p>
-<p>Thankfully, there is a function to apply this transformation to each column of the data: <code>lapply()</code>, short for list apply. This function takes each list element (column of the <code>data.frame</code>), and applies the function <code>as.numeric()</code> to it:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="at-home-exercises-1.html#cb109-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>], as.numeric)</span></code></pre></div>
+<p>As noted above, one thing you might notice when inspecting the <code>ess</code> data is
+that nearly all variables are stored as factors.</p>
+</details>
+<hr />
 </div>
-<div id="reading-data-without-coding-factors" class="section level4 hasAnchor" number="2.4.4.2">
-<h4><span class="header-section-number">2.4.4.2</span> Reading data without coding factors<a href="at-home-exercises-1.html#reading-data-without-coding-factors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>An alternative solution is to prevent the function <code>read.spss()</code> from using value labels to code variables as factors when the data are loaded. However, we’re not going to use this right now, so the information below is merely illustrative:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="at-home-exercises-1.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The option use.value.labels = FALSE stops the function from coding factors:</span></span>
-<span id="cb110-2"><a href="at-home-exercises-1.html#cb110-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;ESSround1-a.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>, <span class="at">use.value.labels =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb110-3"><a href="at-home-exercises-1.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, re-select the subset of data. The countries are now also unlabeled, so</span></span>
-<span id="cb110-4"><a href="at-home-exercises-1.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we select them by number:</span></span>
-<span id="cb110-5"><a href="at-home-exercises-1.html#cb110-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> data[data<span class="sc">$</span>cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">21</span>,<span class="dv">18</span>,<span class="dv">17</span>,<span class="dv">15</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>), ]</span></code></pre></div>
-</div>
+<div id="section-30" class="section level3" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> </h3>
+<p>Correct any formatting issues that you discovered above.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>In keeping with conventions, we will treat ordinal Likert-type rating scales
+with five or more levels as continuous. Consequently, we need to convert these
+variables from factors to numeric vectors.</p>
+<p>We can convert a factor to a numeric variable using the <code>as.numeric()</code> function,
+but this function only operates on one variable at a time. To replicate the
+Kestilä (2006) analysis, we need to convert 37 variables.</p>
+<p>Thankfully, we can use <em>apply</em> functions to broadcast univariate operation
+across each column (or row) of a dataset. We are specifically interested in
+the <code>lapply()</code> function. The <code>lapply()</code> function applies some function to each
+element in a list (e.g., each column in a data frame).</p>
+<p>The variables we care about live in columns 7 to 44 of the <code>ess</code> dataset. In the
+following code, we apply the <code>as.numeric()</code> function to these columns and
+overwrite their original factor versions with the converted numeric data.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="at-home-exercises-1.html#cb114-1" aria-hidden="true" tabindex="-1"></a>ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>], as.numeric)</span></code></pre></div>
+</details>
+<hr />
+<p>In addition to screening with summary statistics, we can also visualize the
+variables’ distributions. You have already created a few such visualizations
+for single variables. Now, we will use a few tricks to efficiently plot each
+of our target variables.</p>
+<p>The first step in this process will be to convert the interesting part of our
+data from “wide format” (one column per variable) into “long format” (one column
+of variable names, one column of data values). The <code>pivot_longer()</code> function
+from the <code>tidyr</code> package provides a convenient way to execute this conversion.</p>
+<hr />
 </div>
 <div id="section-31" class="section level3" number="2.4.5">
 <h3><span class="header-section-number">2.4.5</span> </h3>
-<p>Aside from screening variables by looking at summary statistics, we can also plot their distributions. You already know how to do this for one single variable.
-Yet it is not very difficult to plot all variables in a data.frame.
-To do this, we need to turn the data from “wide format” (one column per variable)
-into “long format” (one column with the variable names, one column with the values).
-The package <code>tidyr</code> has a convenient function to reshape data to long format:
-<code>pivot_longer()</code>.</p>
-<p>First, make a long data.frame containing variables 7:44.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="at-home-exercises-1.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</span>
-<span id="cb111-2"><a href="at-home-exercises-1.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb111-3"><a href="at-home-exercises-1.html#cb111-3" aria-hidden="true" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> df[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>]</span>
-<span id="cb111-4"><a href="at-home-exercises-1.html#cb111-4" aria-hidden="true" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(df_plot, <span class="fu">names</span>(df_plot))</span></code></pre></div>
-<p>Next, we can plot the data - using <code>geom_histogram()</code>, <code>geom_density()</code> or <code>geom_boxplot()</code> as before. A new additional function allows us to make separate plots for each variable: <code>+ facet_wrap(~name, scales = "free_x")</code>.</p>
+<p>Use <code>tidyr::pivot_longer()</code> to create a long-formatted data frame from the
+target variables in <code>ess</code> (i.e., columns 7 to 44).</p>
 <details>
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="at-home-exercises-1.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb112-2"><a href="at-home-exercises-1.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_plot, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
-<p>Notice the fact that you can see that the scales are actually categorical (because of the gaps between bars), and that most variables look relatively normally distributed despite being categorical. It’s probably fine to treat them as continuous.
-</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="at-home-exercises-1.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the tidyr package:</span></span>
+<span id="cb115-2"><a href="at-home-exercises-1.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb115-3"><a href="at-home-exercises-1.html#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-4"><a href="at-home-exercises-1.html#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Convert the target variables into a long-formatted data frame:</span></span>
+<span id="cb115-5"><a href="at-home-exercises-1.html#cb115-5" aria-hidden="true" tabindex="-1"></a>ess_plot <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>], <span class="fu">colnames</span>(ess)[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>])</span></code></pre></div>
+</details>
+<hr />
+<p>The next step in the process will be to plot the variables using <code>ggplot()</code>. To
+create one plot for each variable, we will use the <code>facet_wrap()</code> function to
+<em>facet</em> the plots on the <code>ess_plot$name</code> column (i.e., create a separate
+conditional plot for each unique value in <code>ess_plot$name</code>).</p>
+<hr />
 </div>
 <div id="section-32" class="section level3" number="2.4.6">
 <h3><span class="header-section-number">2.4.6</span> </h3>
-<p>Check the scale descriptives table again. Are there any incorrectly coded missing value labels, or other inexplicable values?</p>
-</div>
-<div id="section-33" class="section level3" number="2.4.7">
-<h3><span class="header-section-number">2.4.7</span> </h3>
-<p>The first step in re-analyzing data is replicating the results from the paper by
-Kestilä. Run a Principal Component Analysis using <code>psych::principal()</code>, and
-choose the exact same specification as Kestilä concerning estimation method,
-rotation etc. Do two analyses: one for trust in politics, and one for attitudes towards immigration. Remember that you can view the help file for <code>psych::principal()</code> by running
-<code>?psych::principal</code>.</p>
-<p><em>Hint: Use</em> <code>psych::principal()</code></p>
+<p>Use <code>ggplot()</code> with an appropriate <em>geom</em> (e.g., <code>geom_histogram()</code>,
+<code>geom_density()</code>, <code>geom_boxplot()</code>) and <code>facet_wrap()</code> to visualize each of the
+target variables.</p>
+<p><em>Hint:</em> To implement the faceting, simply add
+<code>facet_wrap(~ name, scales = "free_x")</code> to the end of your <code>ggplot()</code> call.</p>
 <details>
 <summary>
 Click for explanation
 </summary>
-<div id="trust-in-politics" class="section level4 hasAnchor" number="2.4.7.1">
-<h4><span class="header-section-number">2.4.7.1</span> Trust in politics<a href="at-home-exercises-1.html#trust-in-politics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Kestilä extracted three components, with VARIMAX rotation. When we print the results, we can hide all factor loadings smaller than the smallest one in their table, to make it easier to read:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="at-home-exercises-1.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb113-2"><a href="at-home-exercises-1.html#cb113-2" aria-hidden="true" tabindex="-1"></a>pca_trust <span class="ot">&lt;-</span> <span class="fu">principal</span>(df[, <span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb113-3"><a href="at-home-exercises-1.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pca_trust, <span class="at">cut =</span> .<span class="dv">3</span>, <span class="at">digits =</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="at-home-exercises-1.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb116-2"><a href="at-home-exercises-1.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="at-home-exercises-1.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ess_plot, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span> </span>
+<span id="cb116-4"><a href="at-home-exercises-1.html#cb116-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span>                    <span class="co"># Create a histogram</span></span>
+<span id="cb116-5"><a href="at-home-exercises-1.html#cb116-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="co"># Facet on &#39;name&#39;</span></span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p>Notice that the variables are actually discrete (i.e., each variable takes only
+a few integer values). However, most variables look relatively normal despite
+being categorical. So, it’s probably fine to analyze these variables as continuous.</p>
+</details>
+<hr />
+</div>
+<div id="section-33" class="section level3" number="2.4.7">
+<h3><span class="header-section-number">2.4.7</span> </h3>
+<p>Check the descriptives for the target variables again.</p>
+<ul>
+<li>Do you see any remaining issues?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="at-home-exercises-1.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">44</span>])</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["min"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"trstlgl","2":"numeric","3":"19380","4":"0.015744033","5":"12","6":"6.801393","7":"7","8":"7","9":"NA","10":"2.4332416","11":"NA","12":"1","13":"11","14":"10","15":"-0.49076168","16":"-13.9468305","17":"-0.33757829","18":"-4.7970229"},{"1":"trstplc","2":"numeric","3":"19560","4":"0.006602336","5":"12","6":"7.642076","7":"8","8":"8","9":"NA","10":"2.2408436","11":"NA","12":"1","13":"11","14":"10","15":"-0.78648819","16":"-22.4545476","17":"0.35135870","18":"5.0159710"},{"1":"trstun","2":"numeric","3":"18450","4":"0.062976130","5":"12","6":"6.647317","7":"7","8":"7","9":"NA","10":"2.3979196","11":"NA","12":"1","13":"11","14":"10","15":"-0.50626808","16":"-14.0381027","17":"-0.22914405","18":"-3.1770934"},{"1":"trstep","2":"numeric","3":"17825","4":"0.094718131","5":"12","6":"5.608752","7":"6","8":"6","9":"NA","10":"2.2615333","11":"NA","12":"1","13":"11","14":"10","15":"-0.26255311","16":"-7.1558768","17":"-0.35703974","18":"-4.8658264"},{"1":"trstprl","2":"numeric","3":"19228","4":"0.023463687","5":"12","6":"6.220824","7":"6","8":"6","9":"NA","10":"2.3156353","11":"NA","12":"1","13":"11","14":"10","15":"-0.35082950","16":"-9.9309641","17":"-0.25701844","18":"-3.6379119"},{"1":"stfhlth","2":"numeric","3":"19481","4":"0.010614525","5":"12","6":"6.782763","7":"7","8":"7","9":"NA","10":"2.2956151","11":"NA","12":"1","13":"11","14":"10","15":"-0.41736656","16":"-11.8918956","17":"-0.40995068","18":"-5.8405982"},{"1":"stfedu","2":"numeric","3":"18844","4":"0.042965973","5":"12","6":"6.910635","7":"7","8":"7","9":"NA","10":"2.2694788","11":"NA","12":"1","13":"11","14":"10","15":"-0.46647458","16":"-13.0720433","17":"-0.29153279","18":"-4.0850365"},{"1":"stfeco","2":"numeric","3":"19211","4":"0.024327070","5":"12","6":"6.000989","7":"6","8":"6","9":"NA","10":"2.3702892","11":"NA","12":"1","13":"11","14":"10","15":"-0.26875202","16":"-7.6042259","17":"-0.53840412","18":"-7.6173559"},{"1":"stfgov","2":"numeric","3":"19106","4":"0.029659726","5":"12","6":"5.484350","7":"6","8":"6","9":"NA","10":"2.3083865","11":"NA","12":"1","13":"11","14":"10","15":"-0.16333916","16":"-4.6089678","17":"-0.59396639","18":"-8.3804618"},{"1":"stfdem","2":"numeric","3":"19106","4":"0.029659726","5":"12","6":"6.747619","7":"7","8":"7","9":"NA","10":"2.2624805","11":"NA","12":"1","13":"11","14":"10","15":"-0.50771210","16":"-14.3261954","17":"-0.14847952","18":"-2.0949451"},{"1":"pltinvt","2":"numeric","3":"17971","4":"0.087303200","5":"6","6":"2.435368","7":"2","8":"2","9":"NA","10":"1.0578608","11":"NA","12":"1","13":"5","14":"4","15":"0.20483080","16":"5.6054696","17":"-0.78579971","18":"-10.7528298"},{"1":"pltcare","2":"numeric","3":"19471","4":"0.011122397","5":"6","6":"2.552154","7":"3","8":"3","9":"NA","10":"1.0533481","11":"NA","12":"1","13":"5","14":"4","15":"0.24033065","16":"6.8459089","17":"-0.41459521","18":"-5.9052534"},{"1":"trstplt","2":"numeric","3":"19464","4":"0.011477908","5":"12","6":"5.255703","7":"6","8":"6","9":"NA","10":"2.2191541","11":"NA","12":"1","13":"11","14":"10","15":"-0.19857963","16":"-5.6555987","17":"-0.57946810","18":"-8.2521238"},{"1":"imsmetn","2":"numeric","3":"18953","4":"0.037430168","5":"5","6":"2.206300","7":"2","8":"2","9":"NA","10":"0.7684472","11":"NA","12":"1","13":"4","14":"3","15":"0.24036722","16":"6.7552739","17":"-0.29156752","18":"-4.0973190"},{"1":"imdfetn","2":"numeric","3":"18974","4":"0.036363636","5":"5","6":"2.432803","7":"2","8":"2","9":"NA","10":"0.7990475","11":"NA","12":"1","13":"4","14":"3","15":"0.07800108","16":"2.1933543","17":"-0.45303979","18":"-6.3699700"},{"1":"eimrcnt","2":"numeric","3":"18883","4":"0.040985272","5":"5","6":"2.339141","7":"2","8":"2","9":"NA","10":"0.8463753","11":"NA","12":"1","13":"4","14":"3","15":"0.20697594","16":"5.8060963","17":"-0.54104062","18":"-7.5890470"},{"1":"eimpcnt","2":"numeric","3":"19022","4":"0.033925851","5":"5","6":"2.339870","7":"2","8":"2","9":"NA","10":"0.7864228","11":"NA","12":"1","13":"4","14":"3","15":"0.14524827","16":"4.0894762","17":"-0.39310383","18":"-5.5342250"},{"1":"imrcntr","2":"numeric","3":"18877","4":"0.041289995","5":"5","6":"2.442443","7":"2","8":"2","9":"NA","10":"0.8385421","11":"NA","12":"1","13":"4","14":"3","15":"0.09503589","16":"2.6655266","17":"-0.56790662","18":"-7.9646245"},{"1":"impcntr","2":"numeric","3":"18944","4":"0.037887252","5":"5","6":"2.420450","7":"2","8":"2","9":"NA","10":"0.8008112","11":"NA","12":"1","13":"4","14":"3","15":"0.07893464","16":"2.2178503","17":"-0.45906912","18":"-6.4496420"},{"1":"qfimchr","2":"numeric","3":"19690","4":"0.000000000","5":"14","6":"4.229863","7":"4","8":"4","9":"NA","10":"3.1730815","11":"NA","12":"1","13":"14","14":"13","15":"0.75123730","16":"21.5192664","17":"-0.31040935","18":"-4.4460789"},{"1":"qfimwht","2":"numeric","3":"19690","4":"0.000000000","5":"14","6":"3.147892","7":"2","8":"2","9":"NA","10":"2.8654218","11":"NA","12":"1","13":"14","14":"13","15":"1.38887365","16":"39.7844223","17":"1.29555814","18":"18.5566372"},{"1":"imwgdwn","2":"numeric","3":"18515","4":"0.059674962","5":"6","6":"3.165271","7":"3","8":"3","9":"NA","10":"1.0877128","11":"NA","12":"1","13":"5","14":"4","15":"-0.25609901","16":"-7.1137618","17":"-0.76251728","18":"-10.5909412"},{"1":"imhecop","2":"numeric","3":"18632","4":"0.053732859","5":"6","6":"2.869311","7":"3","8":"3","9":"NA","10":"1.0900315","11":"NA","12":"1","13":"5","14":"4","15":"0.09911269","16":"2.7617754","17":"-0.90921236","18":"-12.6682817"},{"1":"imtcjob","2":"numeric","3":"18897","4":"0.040274251","5":"12","6":"5.960047","7":"6","8":"6","9":"NA","10":"2.0442920","11":"NA","12":"1","13":"11","14":"10","15":"-0.32731225","16":"-9.1851773","17":"0.39980259","18":"5.6100129"},{"1":"imbleco","2":"numeric","3":"18783","4":"0.046063992","5":"12","6":"5.292552","7":"6","8":"6","9":"NA","10":"2.1564986","11":"NA","12":"1","13":"11","14":"10","15":"0.01640132","16":"0.4588707","17":"-0.10034573","18":"-1.4037946"},{"1":"imbgeco","2":"numeric","3":"18798","4":"0.045302184","5":"12","6":"6.143739","7":"6","8":"6","9":"NA","10":"2.2405437","11":"NA","12":"1","13":"11","14":"10","15":"-0.28655032","16":"-8.0202103","17":"-0.07667141","18":"-1.0730288"},{"1":"imueclt","2":"numeric","3":"19036","4":"0.033214830","5":"12","6":"7.106272","7":"7","8":"7","9":"NA","10":"2.3330745","11":"NA","12":"1","13":"11","14":"10","15":"-0.49018601","16":"-13.8063015","17":"-0.06699460","18":"-0.9435155"},{"1":"imwbcnt","2":"numeric","3":"19053","4":"0.032351447","5":"12","6":"5.929722","7":"6","8":"6","9":"NA","10":"2.1341836","11":"NA","12":"1","13":"11","14":"10","15":"-0.09271198","16":"-2.6124386","17":"0.17945171","18":"2.5284283"},{"1":"imwbcrm","2":"numeric","3":"19165","4":"0.026663281","5":"12","6":"4.131959","7":"4","8":"4","9":"NA","10":"2.0487086","11":"NA","12":"1","13":"11","14":"10","15":"0.40457289","16":"11.4335094","17":"0.08988721","18":"1.2702036"},{"1":"imrsprc","2":"numeric","3":"19254","4":"0.022143220","5":"6","6":"2.638984","7":"2","8":"2","9":"NA","10":"1.0531894","11":"NA","12":"1","13":"5","14":"4","15":"0.42102894","16":"11.9261602","17":"-0.60777868","18":"-8.6084846"},{"1":"pplstrd","2":"numeric","3":"19432","4":"0.013103098","5":"6","6":"2.784428","7":"3","8":"3","9":"NA","10":"1.1278237","11":"NA","12":"1","13":"5","14":"4","15":"0.10101268","16":"2.8745016","17":"-0.97310258","18":"-13.8464238"},{"1":"vrtrlg","2":"numeric","3":"19190","4":"0.025393601","5":"6","6":"2.934341","7":"3","8":"3","9":"NA","10":"1.0491906","11":"NA","12":"1","13":"5","14":"4","15":"0.16090618","16":"4.5502845","17":"-0.76466459","18":"-10.8125820"},{"1":"shrrfg","2":"numeric","3":"18125","4":"0.079481971","5":"6","6":"2.470786","7":"2","8":"2","9":"NA","10":"1.0547729","11":"NA","12":"1","13":"5","14":"4","15":"0.45122410","16":"12.4011401","17":"-0.57840144","18":"-7.9486366"},{"1":"rfgawrk","2":"numeric","3":"19141","4":"0.027882174","5":"6","6":"2.406928","7":"2","8":"2","9":"NA","10":"1.0646657","11":"NA","12":"1","13":"5","14":"4","15":"0.80494042","16":"22.7339267","17":"-0.12411958","18":"-1.7528457"},{"1":"gvrfgap","2":"numeric","3":"19117","4":"0.029101067","5":"6","6":"3.256892","7":"3","8":"3","9":"NA","10":"1.0887919","11":"NA","12":"1","13":"5","14":"4","15":"-0.22937037","16":"-6.4740440","17":"-0.79055582","18":"-11.1574147"},{"1":"rfgfrpc","2":"numeric","3":"17640","4":"0.104113763","5":"6","6":"2.834127","7":"3","8":"3","9":"NA","10":"1.0306449","11":"NA","12":"1","13":"5","14":"4","15":"0.04557919","16":"1.2357971","17":"-0.75320876","18":"-10.2115241"},{"1":"rfggvfn","2":"numeric","3":"19102","4":"0.029862875","5":"6","6":"2.815203","7":"3","8":"3","9":"NA","10":"1.0609326","11":"NA","12":"1","13":"5","14":"4","15":"0.51088742","16":"14.4142851","17":"-0.70971381","18":"-10.0125313"},{"1":"rfgbfml","2":"numeric","3":"19133","4":"0.028288471","5":"6","6":"2.928344","7":"3","8":"3","9":"NA","10":"1.1658147","11":"NA","12":"1","13":"5","14":"4","15":"0.21519421","16":"6.0764586","17":"-1.02830386","18":"-14.5189135"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>No. Everything looks pretty much fine.</p>
+</details>
+<hr />
+<p>Now, we’re ready to run the analyses and see if we can replicate the Kestilä
+(2006) results.</p>
+<hr />
+</div>
+<div id="run_pca" class="section level3" number="2.4.8">
+<h3><span class="header-section-number">2.4.8</span> </h3>
+<p>Run two principal component analyses (PCA): one for <em>trust in politics</em>, one for
+<em>attitudes towards immigration</em>.</p>
+<ul>
+<li>Use the <code>principal()</code> function from the <code>psych</code> package.</li>
+<li>Use exactly the same specifications as Kestilä (2006) concerning the estimation
+method, rotation, number of components extracted, etc.</li>
+</ul>
+<p><em>Hints:</em></p>
+<ul>
+<li>Remember that you can view the help file for <code>psych::principal()</code> by running
+<code>?psych::principal</code> or, if the <code>psych</code> package already loaded, simply running
+<code>?principal</code>.</li>
+<li>When you print the output from <code>psych::principal()</code>, you can use the <code>cut</code>
+option to hide any factor loadings smaller than a given threshold.
+<ul>
+<li>You could consider hiding any loadings smaller than those reported by
+Kestilä (2006) to make the output easier to interpret.</li>
+</ul></li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div id="trust-in-politics" class="section level4 unnumbered hasAnchor">
+<h4>Trust in politics<a href="at-home-exercises-1.html#trust-in-politics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Kestilä extracted three components with VARIMAX rotation.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="at-home-exercises-1.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the psych package:</span></span>
+<span id="cb118-2"><a href="at-home-exercises-1.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb118-3"><a href="at-home-exercises-1.html#cb118-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-4"><a href="at-home-exercises-1.html#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the PCA:</span></span>
+<span id="cb118-5"><a href="at-home-exercises-1.html#cb118-5" aria-hidden="true" tabindex="-1"></a>pca_trust <span class="ot">&lt;-</span> <span class="fu">principal</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb118-6"><a href="at-home-exercises-1.html#cb118-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-7"><a href="at-home-exercises-1.html#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Print the results:</span></span>
+<span id="cb118-8"><a href="at-home-exercises-1.html#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pca_trust, <span class="at">cut =</span> <span class="fl">0.3</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Principal Components Analysis
-## Call: principal(r = df[, 7:19], nfactors = 3, rotate = &quot;varimax&quot;)
+## Call: principal(r = ess[7:19], nfactors = 3, rotate = &quot;varimax&quot;)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
 ##           RC3   RC2    RC1    h2    u2  com
 ## trstlgl 0.779              0.669 0.331 1.21
@@ -893,46 +1096,49 @@ Click for explanation
 ##  with the empirical chi square  15240.94  with prob &lt;  0 
 ## 
 ## Fit based upon off diagonal values = 0.967</code></pre>
-<p>For attitude towards immigration, Kestilä extracted five components, with VARIMAX rotation:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="at-home-exercises-1.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb115-2"><a href="at-home-exercises-1.html#cb115-2" aria-hidden="true" tabindex="-1"></a>pca_att <span class="ot">&lt;-</span> <span class="fu">principal</span>(df[, <span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>], <span class="at">nfactors =</span> <span class="dv">5</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb115-3"><a href="at-home-exercises-1.html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pca_att, <span class="at">cut =</span> .<span class="dv">3</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="attitudes-toward-imigration" class="section level4 unnumbered hasAnchor">
+<h4>Attitudes toward imigration<a href="at-home-exercises-1.html#attitudes-toward-imigration" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Kestilä extracted five components with VARIMAX rotation.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="at-home-exercises-1.html#cb120-1" aria-hidden="true" tabindex="-1"></a>pca_att <span class="ot">&lt;-</span> <span class="fu">principal</span>(ess[<span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>], <span class="at">nfactors =</span> <span class="dv">5</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb120-2"><a href="at-home-exercises-1.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pca_att, <span class="at">cut =</span> <span class="fl">0.3</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Principal Components Analysis
-## Call: principal(r = df[, 20:44], nfactors = 5, rotate = &quot;varimax&quot;)
+## Call: principal(r = ess[20:44], nfactors = 5, rotate = &quot;varimax&quot;)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
-##           RC2   RC1   RC5   RC3   RC4   h2   u2 com
-## imsmetn  0.80                         0.72 0.28 1.3
-## imdfetn  0.78                         0.79 0.21 1.7
-## eimrcnt  0.83                         0.71 0.29 1.1
-## eimpcnt  0.80                         0.79 0.21 1.5
-## imrcntr  0.83                         0.75 0.25 1.1
-## impcntr  0.78                         0.78 0.22 1.6
-## qfimchr                    0.82       0.70 0.30 1.1
-## qfimwht                    0.76       0.65 0.35 1.3
-## imwgdwn                          0.81 0.71 0.29 1.2
-## imhecop                          0.75 0.67 0.33 1.4
-## imtcjob        0.57              0.34 0.48 0.52 2.0
-## imbleco        0.70                   0.55 0.45 1.3
-## imbgeco        0.70                   0.60 0.40 1.5
-## imueclt        0.57       -0.34       0.54 0.46 2.4
-## imwbcnt        0.67                   0.63 0.37 1.9
-## imwbcrm        0.66                   0.48 0.52 1.2
-## imrsprc              0.61             0.44 0.56 1.3
-## pplstrd        0.33       -0.54       0.46 0.54 2.2
-## vrtrlg        -0.35        0.46       0.41 0.59 2.8
-## shrrfg         0.37 -0.35             0.42 0.58 4.1
-## rfgawrk              0.61             0.40 0.60 1.1
-## gvrfgap              0.69             0.56 0.44 1.3
-## rfgfrpc             -0.39             0.33 0.67 3.3
-## rfggvfn              0.58             0.42 0.58 1.5
-## rfgbfml              0.60             0.46 0.54 1.6
+##            RC2    RC1    RC5    RC3    RC4    h2    u2  com
+## imsmetn  0.796                             0.725 0.275 1.30
+## imdfetn  0.776                             0.794 0.206 1.69
+## eimrcnt  0.827                             0.715 0.285 1.09
+## eimpcnt  0.801                             0.789 0.211 1.49
+## imrcntr  0.835                             0.747 0.253 1.15
+## impcntr  0.777                             0.782 0.218 1.63
+## qfimchr                       0.819        0.699 0.301 1.09
+## qfimwht                       0.764        0.654 0.346 1.25
+## imwgdwn                              0.806 0.712 0.288 1.19
+## imhecop                              0.747 0.669 0.331 1.42
+## imtcjob         0.565                0.335 0.480 0.520 1.99
+## imbleco         0.702                      0.553 0.447 1.25
+## imbgeco         0.697                      0.603 0.397 1.52
+## imueclt         0.569        -0.336        0.544 0.456 2.42
+## imwbcnt         0.673                      0.633 0.367 1.87
+## imwbcrm         0.657                      0.480 0.520 1.23
+## imrsprc                0.614               0.441 0.559 1.35
+## pplstrd         0.329        -0.539        0.460 0.540 2.17
+## vrtrlg         -0.349         0.460        0.415 0.585 2.75
+## shrrfg          0.368 -0.352               0.417 0.583 4.11
+## rfgawrk                0.615               0.397 0.603 1.10
+## gvrfgap                0.691               0.558 0.442 1.35
+## rfgfrpc               -0.388               0.327 0.673 3.31
+## rfggvfn                0.584               0.416 0.584 1.46
+## rfgbfml                0.596               0.460 0.540 1.61
 ## 
-##                        RC2  RC1  RC5  RC3  RC4
-## SS loadings           4.38 3.40 2.78 2.19 1.72
-## Proportion Var        0.18 0.14 0.11 0.09 0.07
-## Cumulative Var        0.18 0.31 0.42 0.51 0.58
-## Proportion Explained  0.30 0.24 0.19 0.15 0.12
-## Cumulative Proportion 0.30 0.54 0.73 0.88 1.00
+##                         RC2   RC1   RC5   RC3   RC4
+## SS loadings           4.377 3.404 2.776 2.191 1.722
+## Proportion Var        0.175 0.136 0.111 0.088 0.069
+## Cumulative Var        0.175 0.311 0.422 0.510 0.579
+## Proportion Explained  0.303 0.235 0.192 0.151 0.119
+## Cumulative Proportion 0.303 0.538 0.730 0.881 1.000
 ## 
 ## Mean item complexity =  1.7
 ## Test of the hypothesis that 5 components are sufficient.
@@ -940,21 +1146,71 @@ Click for explanation
 ## The root mean square of the residuals (RMSR) is  0.05 
 ##  with the empirical chi square  29520.06  with prob &lt;  0 
 ## 
-## Fit based upon off diagonal values = 0.98</code></pre>
+## Fit based upon off diagonal values = 0.976</code></pre>
+</details>
+<hr />
+<p><em>Feature engineering</em> (i.e., creating new variables by combining and/or
+transforming existing variables) is one of the most common applications of PCA.
+PCA is a <em>dimension reduction</em> technique that distills the most salient
+information from a set of variables into a (smaller) set of component scores.
+Hence, PCA can be a good way of creating aggregate items (analogous to weighted
+scale scores) when the data are not collected with validated scales.</p>
+<p>Principal component scores are automatically generated when we run the PCA. If
+we want to use these scores in subsequent analyses (e.g., as predictors in a
+regression model), we usually add them to our dataset as additional columns.</p>
+<hr />
 </div>
 </div>
-<div id="section-34" class="section level3" number="2.4.8">
-<h3><span class="header-section-number">2.4.8</span> </h3>
-<!-- Video here about extracting factor scores-->
-<p>Extract the PCA factor scores from the results objects, and add them to the data.frame. Give the PCA scores informative names, based on your interpretation of the factor loadings, so that you understand what they summarize.</p>
-<p><em>Hint: Use</em> <code>$; colnames(); cbind()</code></p>
+<div id="section-34" class="section level3" number="2.4.9">
+<h3><span class="header-section-number">2.4.9</span> </h3>
+<p>Add the component scores produced by the analyses you ran above to
+the <code>ess</code> data frame.</p>
+<ul>
+<li>Give each component score an informative name, based on your interpretation
+of the factor loading matrix
+<ul>
+<li>I.e., What hypothetical construct do you think each component represents
+given the items that load onto it?</li>
+</ul></li>
+</ul>
+<p><em>Hints:</em></p>
+<ul>
+<li>You can use the <code>data.frame()</code> function to join multiple objects into a single
+data frame.</li>
+<li>You can use the <code>colnames()</code> function to assign column names to a matrix or
+data frame.</li>
+</ul>
 <details>
 <summary>
 Click for explanation
 </summary>
-<p>Extracting factor scores</p>
-<p>The factor scores are inside of the results objects. Use the <code>$</code> operator to access them:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="at-home-exercises-1.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pca_att<span class="sc">$</span>scores)</span></code></pre></div>
+<p><strong>1. Extract the component scores</strong></p>
+<p>The object produced by <code>psych::principal()</code> is simply list, and the component
+scores are already stored therein. So, to extract the component scores, we
+simply use the <code>$</code> operator to extract them.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="at-home-exercises-1.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the component scores in stand-alone matrices: </span></span>
+<span id="cb122-2"><a href="at-home-exercises-1.html#cb122-2" aria-hidden="true" tabindex="-1"></a>trust_scores <span class="ot">&lt;-</span> pca_trust<span class="sc">$</span>scores</span>
+<span id="cb122-3"><a href="at-home-exercises-1.html#cb122-3" aria-hidden="true" tabindex="-1"></a>att_scores <span class="ot">&lt;-</span> pca_att<span class="sc">$</span>scores</span>
+<span id="cb122-4"><a href="at-home-exercises-1.html#cb122-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-5"><a href="at-home-exercises-1.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the result:</span></span>
+<span id="cb122-6"><a href="at-home-exercises-1.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trust_scores)</span></code></pre></div>
+<pre><code>##            RC3         RC2       RC1
+## 1           NA          NA        NA
+## 4   0.09755193 -0.01552183  0.994954
+## 7   0.23069626 -1.53162604 -2.022642
+## 14          NA          NA        NA
+## 17 -0.21112678  0.84370377  1.200007
+## 20  1.86596955  0.31083233 -1.062603</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="at-home-exercises-1.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(trust_scores)</span></code></pre></div>
+<pre><code>##       RC3              RC2              RC1        
+##  Min.   :-4.035   Min.   :-3.706   Min.   :-3.139  
+##  1st Qu.:-0.527   1st Qu.:-0.652   1st Qu.:-0.649  
+##  Median : 0.155   Median : 0.094   Median : 0.092  
+##  Mean   : 0.055   Mean   : 0.015   Mean   : 0.049  
+##  3rd Qu.: 0.727   3rd Qu.: 0.742   3rd Qu.: 0.742  
+##  Max.   : 3.302   Max.   : 3.452   Max.   : 3.539  
+##  NA&#39;s   :4912     NA&#39;s   :4912     NA&#39;s   :4912</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="at-home-exercises-1.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(att_scores)</span></code></pre></div>
 <pre><code>##           RC2        RC1        RC5         RC3         RC4
 ## 1   1.9920289  1.3140238 -0.8305392 -0.06329775 -0.08837693
 ## 4   0.1708174 -1.2167781 -0.4974957 -0.23766146  0.67364069
@@ -962,28 +1218,56 @@ Click for explanation
 ## 14         NA         NA         NA          NA          NA
 ## 17 -0.1136716 -0.7869911 -1.4664715 -0.07112144  0.41078167
 ## 20 -0.9188606  2.8264230 -0.3477484 -0.73788338 -1.32089442</code></pre>
-<p>We’re going to give these factor scores some informative names, and add them to our data.frame. <strong>You should give them different, informative names based on the meaning of the factors!</strong></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="at-home-exercises-1.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print names</span></span>
-<span id="cb119-2"><a href="at-home-exercises-1.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_att<span class="sc">$</span>scores)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="at-home-exercises-1.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(att_scores)</span></code></pre></div>
+<pre><code>##       RC2              RC1              RC5              RC3        
+##  Min.   :-3.650   Min.   :-3.909   Min.   :-3.817   Min.   :-2.730  
+##  1st Qu.:-0.611   1st Qu.:-0.599   1st Qu.:-0.653   1st Qu.:-0.748  
+##  Median :-0.080   Median : 0.053   Median :-0.004   Median :-0.152  
+##  Mean   :-0.007   Mean   : 0.001   Mean   : 0.023   Mean   :-0.026  
+##  3rd Qu.: 0.686   3rd Qu.: 0.644   3rd Qu.: 0.653   3rd Qu.: 0.620  
+##  Max.   : 3.743   Max.   : 4.495   Max.   : 4.114   Max.   : 3.869  
+##  NA&#39;s   :5400     NA&#39;s   :5400     NA&#39;s   :5400     NA&#39;s   :5400    
+##       RC4        
+##  Min.   :-3.767  
+##  1st Qu.:-0.682  
+##  Median : 0.045  
+##  Mean   : 0.004  
+##  3rd Qu.: 0.716  
+##  Max.   : 3.248  
+##  NA&#39;s   :5400</code></pre>
+<hr />
+<p><strong>2. Name the component scores</strong></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="at-home-exercises-1.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check names (note the order):</span></span>
+<span id="cb130-2"><a href="at-home-exercises-1.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(trust_scores)</span></code></pre></div>
+<pre><code>## [1] &quot;RC3&quot; &quot;RC2&quot; &quot;RC1&quot;</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="at-home-exercises-1.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(att_scores)</span></code></pre></div>
 <pre><code>## [1] &quot;RC2&quot; &quot;RC1&quot; &quot;RC5&quot; &quot;RC3&quot; &quot;RC4&quot;</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="at-home-exercises-1.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change names</span></span>
-<span id="cb121-2"><a href="at-home-exercises-1.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_att<span class="sc">$</span>scores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Att1&quot;</span>, <span class="st">&quot;Att2&quot;</span>, <span class="st">&quot;Att3&quot;</span>, <span class="st">&quot;Att4&quot;</span>, <span class="st">&quot;Att5&quot;</span>)</span>
-<span id="cb121-3"><a href="at-home-exercises-1.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_trust<span class="sc">$</span>scores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Trust1&quot;</span>, <span class="st">&quot;Trust2&quot;</span>, <span class="st">&quot;Trust3&quot;</span>)</span>
-<span id="cb121-4"><a href="at-home-exercises-1.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add columns</span></span>
-<span id="cb121-5"><a href="at-home-exercises-1.html#cb121-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(df, pca_trust<span class="sc">$</span>scores, pca_att<span class="sc">$</span>scores)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="at-home-exercises-1.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Give informative names:</span></span>
+<span id="cb134-2"><a href="at-home-exercises-1.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(trust_scores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Trust_Institutions&quot;</span>, </span>
+<span id="cb134-3"><a href="at-home-exercises-1.html#cb134-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;Satisfaction&quot;</span>, <span class="st">&quot;</span></span>
+<span id="cb134-4"><a href="at-home-exercises-1.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="st">                            Trust_Politicians&quot;</span>)</span>
+<span id="cb134-5"><a href="at-home-exercises-1.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(att_scores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Quantity&quot;</span>, </span>
+<span id="cb134-6"><a href="at-home-exercises-1.html#cb134-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Effects&quot;</span>, </span>
+<span id="cb134-7"><a href="at-home-exercises-1.html#cb134-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Refugees&quot;</span>, </span>
+<span id="cb134-8"><a href="at-home-exercises-1.html#cb134-8" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Diversity&quot;</span>, </span>
+<span id="cb134-9"><a href="at-home-exercises-1.html#cb134-9" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Economic&quot;</span>)</span></code></pre></div>
+<hr />
+<p><strong>3. Add the component scores to the dataset</strong></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="at-home-exercises-1.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the component scores to the &#39;ess&#39; data:</span></span>
+<span id="cb135-2"><a href="at-home-exercises-1.html#cb135-2" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ess, trust_scores, att_scores)</span></code></pre></div>
+</details>
+<hr />
 </div>
-<div id="section-35" class="section level3" number="2.4.9">
-<h3><span class="header-section-number">2.4.9</span> </h3>
-<p>Are you able to replicate her results?</p>
+<div id="section-35" class="section level3" number="2.4.10">
+<h3><span class="header-section-number">2.4.10</span> </h3>
+<p>Were you able to replicate the results of Kestilä (2006)?</p>
 <details>
 <summary>
 Click for explanation
 </summary>
-<p>No, probably not. The team of teachers was unable to reproduce this analysis, even though it should be pretty easy to do so…</p>
-</div>
-<div id="section-36" class="section level3" number="2.4.10">
-<h3><span class="header-section-number">2.4.10</span> </h3>
-<p>Save your syntax and bring your data and syntax to the practical on Thursday.</p>
+<p>Yes, more-or-less. Although the exact estimates differ somewhat, the general
+pattern of factor loadings in Kestilä (2006) matches what we found here.</p>
+</details>
 </div>
 </div>
             </section>

@@ -5,16 +5,17 @@ library(kableExtra)
 library(foreign)
 ```
 
-These exercise is based on the second reading for this week:
+In these exercises, you will attempt to replicate some of the analyses from the 
+second reading for this week:
 
 Kestilä, E. (2006). Is there demand for radical right populism in the Finnish 
 electorate? *Scandinavian Political Studies 29*(3), 169--191. 
  
-The data for this practical, were collected during the first round of the 
+The data for this practical were collected during the first round of the 
 European Social Survey (ESS). The ESS is a repeated cross-sectional survey
 administered in 32 European countries. The first wave was collected in 2002, and 
 two new waves have been collected each year since. You can find more info and 
-access the data at [https://www.europeansocialsurvey.org]. 
+access the data at <https://www.europeansocialsurvey.org>. 
 
 The data we will analyze for this practical are contained in the file named 
 *ESSround1-a.sav*. This file contains data for all respondents, but only includes 
@@ -46,12 +47,7 @@ represented as factors. If so, good eyes! We'll come back to this issue a
 little later.
 
 ```{r, echo = FALSE}
-dataDir <- "../../data/" ####################################################
-ess1 <- read.spss(paste0(dataDir, "ESSround1-a.sav"), to.data.frame = TRUE)
-ess2 <- read_spss(paste0(dataDir, "ESSround1-a.sav"))
-
-
-str(ess2)
+ess <- read.spss(paste0(dataDir, "ESSround1-a.sav"), to.data.frame = TRUE)
 ```
 
 <details>
@@ -225,133 +221,263 @@ In keeping with conventions, we will treat ordinal Likert-type rating scales
 with five or more levels as continuous. Consequently, we need to convert these
 variables from factors to numeric vectors.
 
-We can convert a factor to a numeric variable using the `as.numeric()` function. However, in this case, we have `r 45-7` variables to convert - that's a lot of code.
+We can convert a factor to a numeric variable using the `as.numeric()` function, 
+but this function only operates on one variable at a time. To replicate the 
+Kestilä (2006) analysis, we need to convert 37 variables.
 
-Thankfully, there is a function to apply this transformation to each column of the data: `lapply()`, short for list apply. This function takes each list element (column of the `data.frame`), and applies the function `as.numeric()` to it:
+Thankfully, we can use *apply* functions to broadcast univariate operation 
+across each column (or row) of a dataset. We are specifically interested in
+the `lapply()` function. The `lapply()` function applies some function to each
+element in a list (e.g., each column in a data frame).
 
-```{r, echo = TRUE}
+The variables we care about live in columns 7 to 44 of the `ess` dataset. In the 
+following code, we apply the `as.numeric()` function to these columns and 
+overwrite their original factor versions with the converted numeric data.
+
+```{r}
 ess[7:44] <- lapply(ess[7:44], as.numeric)
-?read.spss
 ```
 
-`r if(knitr::is_html_output()){"\\details"}`
+</details>
+
+---
+
+In addition to screening with summary statistics, we can also visualize the
+variables' distributions. You have already created a few such visualizations 
+for single variables. Now, we will use a few tricks to efficiently plot each
+of our target variables.
+
+The first step in this process will be to convert the interesting part of our 
+data from "wide format" (one column per variable) into "long format" (one column 
+of variable names, one column of data values). The `pivot_longer()` function 
+from the `tidyr` package provides a convenient way to execute this conversion.
+
+---
 
 ###
 
-Aside from screening variables by looking at summary statistics, we can also plot their distributions. You already know how to do this for one single variable.
-Yet it is not very difficult to plot all variables in a data.frame.
-To do this, we need to turn the data from "wide format" (one column per variable)
-into "long format" (one column with the variable names, one column with the values).
-The package `tidyr` has a convenient function to reshape data to long format:
-`pivot_longer()`.
-
-First, make a long data.frame containing variables 7:44.
-
-```{r, eval = FALSE, echo = TRUE}
-install.packages("tidyr")
-library(tidyr)
-ess_plot <- ess[7:44]
-ess_plot <- pivot_longer(ess_plot, names(ess_plot))
-```
-```{r, echo = FALSE}
-library(tidyr)
-ess_plot <- ess[7:44]
-ess_plot <- pivot_longer(ess_plot, names(ess_plot))
-```
-
-Next, we can plot the data - using `geom_histogram()`, `geom_density()` or `geom_boxplot()` as before. A new additional function allows us to make separate plots for each variable: `+ facet_wrap(~name, scales = "free_x")`.
+Use `tidyr::pivot_longer()` to create a long-formatted data frame from the 
+target variables in `ess` (i.e., columns 7 to 44).
 
 <details>
   <summary>Click for explanation</summary>
 
-```{r, echo = TRUE}
+```{r}
+## Load the tidyr package:
+library(tidyr)
+
+## Convert the target variables into a long-formatted data frame:
+ess_plot <- pivot_longer(ess[7:44], colnames(ess)[7:44])
+```
+
+</details>
+
+---
+
+The next step in the process will be to plot the variables using `ggplot()`. To
+create one plot for each variable, we will use the `facet_wrap()` function to 
+*facet* the plots on the `ess_plot$name` column (i.e., create a separate
+conditional plot for each unique value in `ess_plot$name`).
+
+---
+
+###
+
+Use `ggplot()` with an appropriate *geom* (e.g., `geom_histogram()`, 
+`geom_density()`, `geom_boxplot()`) and `facet_wrap()` to visualize each of the 
+target variables. 
+
+*Hint:* To implement the faceting, simply add 
+`facet_wrap(~ name, scales = "free_x")` to the end of your `ggplot()` call.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
 library(ggplot2)
-ggplot(ess_plot, aes(x = value)) + geom_histogram() + facet_wrap(~name, scales = "free_x")
+
+ggplot(ess_plot, aes(x = value)) + 
+  geom_histogram() +                    # Create a histogram
+  facet_wrap(~ name, scales = "free_x") # Facet on 'name'
 ```
 
-Notice the fact that you can see that the scales are actually categorical (because of the gaps between bars), and that most variables look relatively normally distributed despite being categorical. It's probably fine to treat them as continuous.
-`r if(knitr::is_html_output()){"\\details"}`
+Notice that the variables are actually discrete (i.e., each variable takes only 
+a few integer values). However, most variables look relatively normal despite 
+being categorical. So, it's probably fine to analyze these variables as continuous.
+
+</details>
+
+---
 
 ###
 
-Check the scale descriptives table again. Are there any incorrectly coded missing value labels, or other inexplicable values?
+Check the descriptives for the target variables again. 
 
-###
-
-The first step in re-analyzing data is replicating the results from the paper by 
-Kestilä. Run a Principal Component Analysis using `psych::principal()`, and 
-choose the exact same specification as Kestilä concerning estimation method, 
-rotation etc. Do two analyses: one for trust in politics, and one for attitudes towards immigration. Remember that you can view the help file for `psych::principal()` by running
-`?psych::principal`.
-
-*Hint: Use* `psych::principal()`
+- Do you see any remaining issues?
 
 <details>
   <summary>Click for explanation</summary>
-
-#### Trust in politics
-
-Kestilä extracted three components, with VARIMAX rotation. When we print the results, we can hide all factor loadings smaller than the smallest one in their table, to make it easier to read:
   
-```{r, echo = TRUE}
-library(psych)
-pca_trust <- principal(ess[, 7:19], nfactors = 3, rotate = "varimax")
-print(pca_trust, cut = .3, digits =3)
+```{r}
+descriptives(ess[7:44])
 ```
 
-For attitude towards immigration, Kestilä extracted five components, with VARIMAX rotation:
+No. Everything looks pretty much fine.
+
+</details>
+
+---
+
+Now, we're ready to run the analyses and see if we can replicate the Kestilä 
+(2006) results. 
+
+---
+
+### {#run_pca}
+
+Run two principal component analyses (PCA): one for *trust in politics*, one for 
+*attitudes towards immigration*.
+
+- Use the `principal()` function from the `psych` package.
+- Use exactly the same specifications as Kestilä (2006) concerning the estimation 
+method, rotation, number of components extracted, etc. 
+
+*Hints:* 
+
+- Remember that you can view the help file for `psych::principal()` by running 
+`?psych::principal` or, if the `psych` package already loaded, simply running 
+`?principal`.
+- When you print the output from `psych::principal()`, you can use the `cut` 
+option to hide any factor loadings smaller than a given threshold. 
+    - You could consider hiding any loadings smaller than those reported by 
+    Kestilä (2006) to make the output easier to interpret.
+
+
+<details>
+  <summary>Click for explanation</summary>
+
+#### Trust in politics {-}
+
+Kestilä extracted three components with VARIMAX rotation. 
+
+```{r}
+## Load the psych package:
+library(psych)
+
+## Run the PCA:
+pca_trust <- principal(ess[7:19], nfactors = 3, rotate = "varimax")
+
+## Print the results:
+print(pca_trust, cut = 0.3, digits = 3)
+```
+
+---
+
+#### Attitudes toward imigration {-}
+
+Kestilä extracted five components with VARIMAX rotation.
+
+```{r}
+pca_att <- principal(ess[20:44], nfactors = 5, rotate = "varimax")
+print(pca_att, cut = 0.3, digits = 3)
+```
+
+</details>
+
+---
+
+*Feature engineering* (i.e., creating new variables by combining and/or 
+transforming existing variables) is one of the most common applications of PCA.
+PCA is a *dimension reduction* technique that distills the most salient 
+information from a set of variables into a (smaller) set of component scores. 
+Hence, PCA can be a good way of creating aggregate items (analogous to weighted 
+scale scores) when the data are not collected with validated scales.
+
+Principal component scores are automatically generated when we run the PCA. If 
+we want to use these scores in subsequent analyses (e.g., as predictors in a 
+regression model), we usually add them to our dataset as additional columns.
+
+---
+
+###
+
+Add the component scores produced by the analyses you ran above to 
+the `ess` data frame. 
+
+- Give each component score an informative name, based on your interpretation 
+of the factor loading matrix 
+    - I.e., What hypothetical construct do you think each component represents 
+    given the items that load onto it? 
+
+*Hints:*
+
+- You can use the `data.frame()` function to join multiple objects into a single 
+data frame.
+- You can use the `colnames()` function to assign column names to a matrix or 
+data frame.
+
+<details>
+  <summary>Click for explanation</summary>
+
+**1. Extract the component scores**
+
+The object produced by `psych::principal()` is simply list, and the component
+scores are already stored therein. So, to extract the component scores, we
+simply use the `$` operator to extract them.
+
+```{r}
+## Save the component scores in stand-alone matrices: 
+trust_scores <- pca_trust$scores
+att_scores <- pca_att$scores
+
+## Inspect the result:
+head(trust_scores)
+summary(trust_scores)
+head(att_scores)
+summary(att_scores)
+```
+
+---
+
+**2. Name the component scores**
+
+```{r}
+## Check names (note the order):
+colnames(trust_scores)
+colnames(att_scores)
+
+## Give informative names:
+colnames(trust_scores) <- c("Trust_Institutions", 
+                            "Satisfaction", "
+                            Trust_Politicians")
+colnames(att_scores) <- c("Quantity", 
+                          "Effects", 
+                          "Refugees", 
+                          "Diversity", 
+                          "Economic")
+```
+
+---
+
+**3. Add the component scores to the dataset**
+
+```{r}
+# Add the component scores to the 'ess' data:
+ess <- data.frame(ess, trust_scores, att_scores)
+```
+
+</details>
+
+---
+
+###
+
+Were you able to replicate the results of Kestilä (2006)? 
+
+<details>
+  <summary>Click for explanation</summary>
   
-```{r, echo = TRUE}
-library(psych)
-pca_att <- principal(ess[, 20:44], nfactors = 5, rotate = "varimax")
-print(pca_att, cut = .3)
-```
-`r if(knitr::is_html_output()){"\\details"}`
+Yes, more-or-less. Although the exact estimates differ somewhat, the general 
+pattern of factor loadings in Kestilä (2006) matches what we found here.
 
-###
-
-<!-- Video here about extracting factor scores-->
-Extract the PCA factor scores from the results objects, and add them to the data.frame. Give the PCA scores informative names, based on your interpretation of the factor loadings, so that you understand what they summarize. 
-
-*Hint: Use* `$; colnames(); cbind()`
-
-<details>
-  <summary>Click for explanation</summary>
-Extracting factor scores
-
-The factor scores are inside of the results objects. Use the `$` operator to access them:
-
-```{r, echo = TRUE}
-head(pca_att$scores)
-```
-
-We're going to give these factor scores some informative names, and add them to our data.frame. **You should give them different, informative names based on the meaning of the factors!**
-
-```{r, echo = TRUE}
-# Print names
-colnames(pca_att$scores)
-# Change names
-colnames(pca_att$scores) <- c("Att1", "Att2", "Att3", "Att4", "Att5")
-colnames(pca_trust$scores) <- c("Trust1", "Trust2", "Trust3")
-# Add columns
-ess <- cbind(ess, pca_trust$scores, pca_att$scores)
-```
-
-`r if(knitr::is_html_output()){"\\details"}`
-
-
-###
-
-Are you able to replicate her results? 
-
-<details>
-  <summary>Click for explanation</summary>
-  No, probably not. The team of teachers was unable to reproduce this analysis, even though it should be pretty easy to do so...
-
-`r if(knitr::is_html_output()){"\\details"}`
-
-
-###
-
-Save your syntax and bring your data and syntax to the practical on Thursday.
-
+</details>

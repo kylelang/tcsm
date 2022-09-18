@@ -30,7 +30,7 @@ data-types
 factors
 subsetting-extracting-one-variable
 subsetting-extracting-rows-and-columns
-subsetting-based-on-logical-conditions
+logicalSubsetting
 changing-cell-values
 getting-help
 introduction
@@ -91,13 +91,10 @@ section-27
 section-28
 section-29
 section-30
-re-coding-factors-to-numeric
-reading-data-without-coding-factors
 section-31
 section-32
 section-33
-trust-in-politics
+run_pca
 section-34
 section-35
-section-36
 in-class-exercises-1
