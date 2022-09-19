@@ -1,59 +1,112 @@
 ## In-Class Exercises
 
-In the unlikely event that you were able to replicate the results of Kestilä in the take-home exercise, rerun your analysis script. If you did not manage to replicate the results, load the dataset `ESSround1-b.csv` into RStudio. 
+In these exercises, we will continue with our re-analysis/replication of the 
+Kestilä (2006) results. Rather than attempting a direct replication, we will now
+redo the analysis using *exploratory factor analysis* (EFA).
 
-### Loading the data
+---
 
-If you don't know how to load the data, click below. 
+### Load the *ESSround1-a.csv* dataset
+
+``` {r, eval = FALSE}
+library(foreign)
+ess <- read.csv("ESSround1-a.csv", to.data.frame = TRUE)
+```
+
+``` {r, echo = FALSE}
+dataDir <- "../../data/"
+ess <- read.csv(paste0(dataDir, "ESSround1-b.csv"))
+
+summary(ess)
+```
+
+---
+
+###
+
+Kestilä (2006) claimed that running a PCA is a good way to test if the questions 
+in the ESS measure attitudes towards immigration and trust in politics.
+
+- Based on what you've learned from the readings and lectures, do you agree with 
+this position?
 
 <details>
-  <summary>Click for explanation</summary>
-``` {r, eval = FALSE, warning = FALSE}
-df <- read.csv("ESSround1-b.csv", stringsAsFactors = FALSE)
-```
-``` {r, echo = FALSE, message = FALSE, warning = FALSE}
-df <- read.csv(paste0(dataDir, "ESSround1-b.csv"), stringsAsFactors = FALSE)
-```
-`r if(knitr::is_html_output()){"\\details"}`
+  <summary>Click for information</summary>
 
+Hopefully not. PCA is not a method for estimating latent measurement structure; 
+PCA is a dimension reduction technique that tries to summarize a set of data 
+with a smaller set of component scores.
 
+If we really want to estimate the factor structure underlying a set of observed 
+variables, we should use EFA.
 
-###
+</details>
 
-Kestilä states that running a Principal Components Analysis is a good way to test whether the survey questions in the ESS measure attitudes towards immigration and trust in politics.
-Based on your reading of Preacher and MacCallum (2003), do you agree with this position?
+---
 
 ###
 
-If you would have to choose a method for constructing the 'trust in politics' and 'attitude towards immigration' scales based on the theory and background information in the Kestilä article, what type of factor analysis would you choose? What key factors influence your decision?
+Suppose you had to construct the *trust in politics* and *attitude towards 
+immigration* scales described by Kestilä (2006) based on the theory and 
+background information presented in that article.
+
+- What type of analysis would you choose? 
+- What key factors would influence your decision?
 
 <details>
   <summary>Click for information</summary>
   
-Key factors include:
+- We are trying to estimate meaningful latent factors, so EFA would be an 
+appropriate method.
+- The theory presented by Kestilä (2006) did not hypothesize a particular number
+of factors, so we would need to use appropriate techniques to estimate the best
+number. In particular, combining information from:
+    - Scree plots
+    - Parallel analysis
+    - Substantive interpretability of the (rotated) factor loadings
+- Since the factors are almost certainly correlated, we should apply an oblique 
+rotation.
 
-* Theory-driven or exploratory?
-* Estimation method
-* Rotation method
-* Method to establish how many factors are needed
-`r if(knitr::is_html_output()){"\\details"}`
+</details>
+
+---
 
 ###
 
-Run two factor analyses, one for each PCA of the original article. Inspect the number of factors necessary, evaluate the rotation method, and if necessary, run the factor analysis again with adapted settings (rotation method and/or different number of factors). How many factors are there?
+Redo the two PCAs that you conducted for the 
+[At-Home Exercises](at-home-exercises-1.html) using EFA. 
 
-*Hint: Examing the help file for* `?psych::fa`
+- Use the `fa()` function from the `psych` package.
+- Extract what you estimate to the the optimal number of factors.
+- Apply an appropriate rotation.
+
+*Hints:* 
+
+- The eigenvalues for a given EFA solution live in the `values` slot of the 
+object returned by `psych::fa()`.
+- You can implement parallel analysis via `psych::fa.parallel()`.
 
 <details>
   <summary>Click for explanation</summary>
 
-To perform an exploratory factor analysis, you can use the function `fa` of the package `psych`. You will have to specify the data, and the variables that you want to include in the factor analyses. Furthermore, you will have to specify the number of factors that you want to extract, the rotation method and the estimation method.
+To perform EFA using the `fa()` function, we need to specify a few key options.
+
+- The data (including only the variables you want to analyze)
+- The number of factors that you want to extract
+- The rotation method
+- The estimation method
+- The method of estimating factor scores
 
 ```{r}
+## Load the psych package:
 library(psych)
-library(GPArotation)
 
-efa_trust <- fa(df[, 7:19], nfactors = 3, rotate = "promax", fm = "ml", scores = "Bartlett")
+## Run an EFA on the 'trust' items:
+efa_trust <- fa(ess[7:19], 
+                nfactors = 3, 
+                rotate   = "promax",   # Oblique rotation 
+                fm       = "ml",       # Estimate via maximum likelihood
+                scores   = "Bartlett") # Use WLS for factor score estimation
 ```
 
 In order to determine the number of factors to extract, you might want to look at the eigenvalues of the factors, which can be accessed by using the following code:

@@ -302,7 +302,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.9" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-34"><i class="fa fa-check"></i><b>2.4.9</b> </a></li>
 <li class="chapter" data-level="2.4.10" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-35"><i class="fa fa-check"></i><b>2.4.10</b> </a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> In-Class Exercises</a></li>
+<li class="chapter" data-level="2.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#loading-the-data"><i class="fa fa-check"></i><b>2.5.1</b> Loading the data</a></li>
+<li class="chapter" data-level="2.5.2" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-36"><i class="fa fa-check"></i><b>2.5.2</b> </a></li>
+<li class="chapter" data-level="2.5.3" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-37"><i class="fa fa-check"></i><b>2.5.3</b> </a></li>
+<li class="chapter" data-level="2.5.4" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-38"><i class="fa fa-check"></i><b>2.5.4</b> </a></li>
+<li class="chapter" data-level="2.5.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-39"><i class="fa fa-check"></i><b>2.5.5</b> </a></li>
+<li class="chapter" data-level="2.5.6" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-40"><i class="fa fa-check"></i><b>2.5.6</b> </a></li>
+<li class="chapter" data-level="2.5.7" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-41"><i class="fa fa-check"></i><b>2.5.7</b> </a></li>
+<li class="chapter" data-level="2.5.8" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-42"><i class="fa fa-check"></i><b>2.5.8</b> </a></li>
+<li class="chapter" data-level="2.5.9" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-43"><i class="fa fa-check"></i><b>2.5.9</b> </a></li>
+<li class="chapter" data-level="2.5.10" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-44"><i class="fa fa-check"></i><b>2.5.10</b> </a></li>
+<li class="chapter" data-level="2.5.11" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-45"><i class="fa fa-check"></i><b>2.5.11</b> </a></li>
+<li class="chapter" data-level="2.5.12" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-46"><i class="fa fa-check"></i><b>2.5.12</b> </a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -323,8 +337,372 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="in-class-exercises-1" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> In-Class Exercises<a href="in-class-exercises-1.html#in-class-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
+<p>In the unlikely event that you were able to replicate the results of Kestilä in the take-home exercise, rerun your analysis script. If you did not manage to replicate the results, load the dataset <code>ESSround1-b.csv</code> into RStudio.</p>
+<div id="loading-the-data" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Loading the data<a href="in-class-exercises-1.html#loading-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you don’t know how to load the data, click below.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="in-class-exercises-1.html#cb136-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="section-36" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> </h3>
+<p>Kestilä states that running a Principal Components Analysis is a good way to test whether the survey questions in the ESS measure attitudes towards immigration and trust in politics.
+Based on your reading of Preacher and MacCallum (2003), do you agree with this position?</p>
+</div>
+<div id="section-37" class="section level3" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> </h3>
+<p>If you would have to choose a method for constructing the ‘trust in politics’ and ‘attitude towards immigration’ scales based on the theory and background information in the Kestilä article, what type of factor analysis would you choose? What key factors influence your decision?</p>
+<details>
+<summary>
+Click for information
+</summary>
+<p>Key factors include:</p>
+<ul>
+<li>Theory-driven or exploratory?</li>
+<li>Estimation method</li>
+<li>Rotation method</li>
+<li>Method to establish how many factors are needed
+</li>
+</ul>
+</div>
+<div id="section-38" class="section level3" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> </h3>
+<p>Run two factor analyses, one for each PCA of the original article. Inspect the number of factors necessary, evaluate the rotation method, and if necessary, run the factor analysis again with adapted settings (rotation method and/or different number of factors). How many factors are there?</p>
+<p><em>Hint: Examing the help file for</em> <code>?psych::fa</code></p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>To perform an exploratory factor analysis, you can use the function <code>fa</code> of the package <code>psych</code>. You will have to specify the data, and the variables that you want to include in the factor analyses. Furthermore, you will have to specify the number of factors that you want to extract, the rotation method and the estimation method.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="in-class-exercises-1.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb137-2"><a href="in-class-exercises-1.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
+<span id="cb137-3"><a href="in-class-exercises-1.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="in-class-exercises-1.html#cb137-4" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>, <span class="at">scores =</span> <span class="st">&quot;Bartlett&quot;</span>)</span></code></pre></div>
+<p>In order to determine the number of factors to extract, you might want to look at the eigenvalues of the factors, which can be accessed by using the following code:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="in-class-exercises-1.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  5.054  0.874  0.687  0.304  0.185  0.076  0.014  0.008 -0.060 -0.078
+## [11] -0.123 -0.149 -0.191</code></pre>
+<p>Another common approach is to make a scree plot. All that is required for this, is to pass the eigenvalues to the <code>qplot()</code> function and add a geom_path:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="in-class-exercises-1.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb140-2"><a href="in-class-exercises-1.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> efa_trust<span class="sc">$</span>values) <span class="sc">+</span> <span class="fu">geom_path</span>()</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>You can do the same for the attitude variables:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="in-class-exercises-1.html#cb141-1" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>], <span class="at">nfactors =</span> <span class="dv">5</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>, <span class="at">scores =</span> <span class="st">&quot;Bartlett&quot;</span>)</span>
+<span id="cb141-2"><a href="in-class-exercises-1.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_att<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  8.016  1.702  1.051  0.697  0.500  0.389  0.218  0.162  0.091  0.046
+## [11]  0.043  0.028  0.022  0.008 -0.018 -0.028 -0.032 -0.056 -0.066 -0.083
+## [21] -0.089 -0.119 -0.132 -0.146 -0.266</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="in-class-exercises-1.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> efa_att<span class="sc">$</span>values) <span class="sc">+</span> <span class="fu">geom_path</span>()</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p>As recommended in the lecture, a better and more quantified way to establish the number of factors is “parallel analysis” (Horn, 1965). Here’s how to do it in R:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="in-class-exercises-1.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(df[, <span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>])</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  6  and the number of components =  3</code></pre>
+<p>Note that, in this case, parallel analysis recommends as many as 6 factors. However, in order to be able to compare our results with those from Kestilä, we might consider aligning ourselves with the literature and choosing the same number of factors for our analyses as components in the article.</p>
+</div>
+<div id="section-39" class="section level3" number="2.5.5">
+<h3><span class="header-section-number">2.5.5</span> </h3>
+<p>Apart from the number of factors, you also want to look at the factor loadings. They can be found in the “pattern matrix”. The higher the factor loadings are, the more indicative an item is for the latent factor. If you find some items to have only very low loadings (indicating that the items do not provide much information about the factor), you may choose not to include them in your analysis. This means you have to rerun the analysis under question 3.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>You can find the factor loadings by means of the ‘print’-function used in the take-home exercise, or you can search for the variable ‘loadings’, which is inside the results object, to end up with just the information you are searching for.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="in-class-exercises-1.html#cb146-1" aria-hidden="true" tabindex="-1"></a>efa_trust<span class="sc">$</span>loadings</span></code></pre></div>
+<pre><code>## 
+## Loadings:
+##         ML1    ML2    ML3   
+## pltcare  0.784        -0.126
+## pltinvt  0.783        -0.131
+## trstprl  0.528  0.101  0.258
+## trstlgl                0.827
+## trstplc -0.157         0.800
+## trstplt  0.713         0.116
+## trstep   0.432         0.303
+## trstun   0.343         0.366
+## stfeco   0.128  0.725 -0.129
+## stfgov   0.270  0.640 -0.132
+## stfdem   0.201  0.479  0.129
+## stfedu  -0.166  0.665  0.104
+## stfhlth -0.137  0.632       
+## 
+##                  ML1   ML2   ML3
+## SS loadings    2.518 2.035 1.725
+## Proportion Var 0.194 0.157 0.133
+## Cumulative Var 0.194 0.350 0.483</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="in-class-exercises-1.html#cb148-1" aria-hidden="true" tabindex="-1"></a>efa_att<span class="sc">$</span>loadings</span></code></pre></div>
+<pre><code>## 
+## Loadings:
+##         ML3    ML1    ML5    ML2    ML4   
+## imsmetn         0.479         0.403       
+## imdfetn         0.321         0.563       
+## eimrcnt         1.110        -0.187       
+## eimpcnt         0.345         0.665       
+## imrcntr         0.798                     
+## impcntr         0.259         0.727       
+## qfimchr  0.126                       0.867
+## qfimwht  0.114                       0.749
+## imwgdwn  0.511         0.182              
+## imhecop  0.560         0.153              
+## imtcjob  0.712                       0.138
+## imbleco  0.702                       0.162
+## imbgeco  0.740                            
+## imueclt  0.470        -0.166        -0.166
+## imwbcnt  0.639        -0.169              
+## imwbcrm  0.515        -0.177         0.101
+## imrsprc                0.534  0.159       
+## pplstrd  0.245                      -0.365
+## vrtrlg  -0.115         0.186         0.270
+## shrrfg   0.302        -0.280              
+## rfgawrk                0.474              
+## gvrfgap                0.752              
+## rfgfrpc  0.219        -0.255              
+## rfggvfn                0.489              
+## rfgbfml                0.632              
+## 
+##                  ML3   ML1   ML5   ML2   ML4
+## SS loadings    3.271 2.397 2.061 1.549 1.648
+## Proportion Var 0.131 0.096 0.082 0.062 0.066
+## Cumulative Var 0.131 0.227 0.309 0.371 0.437</code></pre>
+<p>The matrix of loadings indicates how strongly each factor (columns) is associated with the items (rows).
+Below the matrix of loadings, we see a second matrix, which indicates (amongst other things) the
+<em>proportion var</em>: How much variance in the items is explained by each of the factors.
+Each subsequent factor explains slightly less variance than the ones before it (this is a property of exploratory factor analysis).
+The <em>cumulative var</em> indicates how much variance the factors explain, in total. If you estimated as many factors as items, then the last value for <em>cumulative var</em> would be <code>1.00</code> (100%).</p>
+<p>The factor loading matrix is slightly hard to read, due to the jumble of factor loadings. To create more clarity, it is convenient to suppress the factor loadings that are lower than .30.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="in-class-exercises-1.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_trust<span class="sc">$</span>loadings, <span class="at">cut =</span> .<span class="dv">30</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 
+## Loadings:
+##         ML1   ML2   ML3  
+## pltcare  0.78            
+## pltinvt  0.78            
+## trstprl  0.53            
+## trstlgl              0.83
+## trstplc              0.80
+## trstplt  0.71            
+## trstep   0.43        0.30
+## trstun   0.34        0.37
+## stfeco         0.73      
+## stfgov         0.64      
+## stfdem         0.48      
+## stfedu         0.67      
+## stfhlth        0.63      
+## 
+##                 ML1  ML2  ML3
+## SS loadings    2.52 2.03 1.72
+## Proportion Var 0.19 0.16 0.13
+## Cumulative Var 0.19 0.35 0.48</code></pre>
+<p>Furthermore, if you want to perform a factor analysis without, say, <code>stfedu</code>, while you want all other variables included in your factor analysis, you can simply leave the column number of <code>stfedu</code>, which is 13, out of the command:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="in-class-exercises-1.html#cb152-1" aria-hidden="true" tabindex="-1"></a>efa_trust_without_stfedu <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="fu">c</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">14</span><span class="sc">:</span><span class="dv">19</span>)], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span></code></pre></div>
+</div>
+<div id="section-40" class="section level3" number="2.5.6">
+<h3><span class="header-section-number">2.5.6</span> </h3>
+<p>Give the factor scores an appropriate name. You can do this by inspecting the items that load on one factor. What do these items have in common substantively? The goal of a factor analysis usually is to create interpretable factors. If you have trouble interpreting the factors, you can choose to tweak the analysis by changing the options, or including/excluding more items.</p>
+<p>Furthermore, after you named the factor scores accordingly, extract them from the results object and add them to the data.frame.</p>
+<p><em>Hint: If you do not know how to do this, have a look at question 1.h from the take-home exercise of week 2.</em></p>
+<p><strong>Please note that the <code>colnames</code> will be specified from left to right, and not, for example, from ML1 to ML5.</strong></p>
+</div>
+<div id="section-41" class="section level3" number="2.5.7">
+<h3><span class="header-section-number">2.5.7</span> </h3>
+<p>The next step is to assert whether the items that together form one factor, also form a reliable scale. Run separate reliability analyses by means of the function <code>alpha</code> for the items that together form one factor, and evaluate Cronbach’s alpha to see whether the scales are internally consistent. The “Reliability if an item is dropped (alpha.drop)” information may be handy to inspect what would happen if you would delete one item; you can find it inside the reliability analysis object. If Cronbach’s alpha is not ok, deselect one survey item and run the analyses under question 4 and question 5 again.</p>
+<p><em>Hint: Cronbach’s alpha &gt; .7 are deemed to be ok, &gt; .8 is good.</em></p>
+<p>If Cronbach’s alpha is not ok, deselect one survey item and run the analyses under question 4 and question 5 again.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>If you want to assess the reliability of the variables <code>pltcare</code>, <code>pltinvt</code>, <code>trstprl</code>, <code>trstplt</code>, and <code>trstep</code> you can run a reliability analysis as follows.</p>
+<p><em>Hint: name the new objects substantively, instead of numbering them.</em></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="in-class-exercises-1.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb153-2"><a href="in-class-exercises-1.html#cb153-2" aria-hidden="true" tabindex="-1"></a>reli_1 <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(df_with_scores[, <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">13</span>)])</span>
+<span id="cb153-3"><a href="in-class-exercises-1.html#cb153-3" aria-hidden="true" tabindex="-1"></a>reli_1</span></code></pre></div>
+<pre><code>## 
+## Reliability analysis   
+## Call: psych::alpha(x = df_with_scores[, c(7, 8, 9, 12, 13)])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
+##        0.8      0.83    0.82      0.49 4.8 0.0019  4.4 1.4     0.52
+## 
+##     95% confidence boundaries 
+##          lower alpha upper
+## Feldt      0.8   0.8  0.81
+## Duhachek   0.8   0.8  0.81
+## 
+##  Reliability if an item is dropped:
+##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+## pltcare      0.79      0.80    0.77      0.50 4.0   0.0021 0.017  0.52
+## pltinvt      0.80      0.81    0.78      0.51 4.2   0.0021 0.016  0.53
+## trstprl      0.73      0.78    0.76      0.47 3.6   0.0027 0.018  0.52
+## trstplt      0.70      0.75    0.73      0.43 3.1   0.0031 0.014  0.43
+## trstep       0.78      0.82    0.80      0.53 4.6   0.0021 0.010  0.52
+## 
+##  Item statistics 
+##             n raw.r std.r r.cor r.drop mean  sd
+## pltcare 17975  0.66  0.75  0.67   0.56  2.6 1.1
+## pltinvt 17971  0.64  0.74  0.65   0.54  2.4 1.1
+## trstprl 17753  0.84  0.80  0.74   0.69  6.3 2.3
+## trstplt 17966  0.88  0.86  0.83   0.77  5.3 2.2
+## trstep  16390  0.77  0.70  0.59   0.57  5.6 2.3</code></pre>
+<p>Sometimes, the table “Reliability if an item is dropped” will indicate that Cronbach’s alpha increases when you drop a variable out of the analysis. Note, however, that doing so is an exploratory approach to analysis, and it may make your work incomparable to other publications using the same scale.</p>
+</div>
+<div id="section-42" class="section level3" number="2.5.8">
+<h3><span class="header-section-number">2.5.8</span> </h3>
+<p>Now you can analyze the differences between the factor scores for the PCA analysis (take-home exercise 2) and the EFA by plotting them in a series of scatterplots (bivariate) using <code>ggplot2</code>. The PCA factor scores are already stored in the dataset <code>ESSround1-b.csv</code> in columns 45 through 52 (<code>df[, 45:52]</code>).</p>
+<p>Plot the scores for one of your new factors on the x axis, and try to match it with a corresponding PCA component in the dataset. Note that if you went with a different number of factors than Kestilä’s components (5 for ‘trust in politics’ and 3 for ‘attitudes towards immigration’), you may find little correlation between any factors.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p><em>Make sure to adjust the arguments <code>x = EFA_trust1</code> and <code>y = PCA_Trust1</code> to align with <em>your own</em> EFA factor column name and a PCA component column name <em>from the data</em> respectively</em></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="in-class-exercises-1.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb155-2"><a href="in-class-exercises-1.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_with_scores) <span class="sc">+</span></span>
+<span id="cb155-3"><a href="in-class-exercises-1.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> EFA_Trust1, <span class="at">y =</span> PCA_Trust1))</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+</div>
+<div id="section-43" class="section level3" number="2.5.9">
+<h3><span class="header-section-number">2.5.9</span> </h3>
+<p>Examine the correlations between the PCA and EFA scales for the ‘trust in politics’ scores, and for the ‘immigration’ scores. What is your conclusion: is there a difference between them?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p><em>Hint: Name the new objects substantively once again.</em></p>
+<p>Example for trust in politics:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="in-class-exercises-1.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb156-2"><a href="in-class-exercises-1.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corr.test</span>(df_with_scores<span class="sc">$</span>EFA_Trust1, df_with_scores<span class="sc">$</span>PCA_Trust1, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = df_with_scores$trustinstEFA, y = df_with_scores$trustinst, 
+##     use = &quot;complete.obs&quot;)
+## Correlation matrix 
+## [1] 0.94
+## Sample Size 
+## [1] 14778
+## These are the unadjusted probability values.
+##   The probability values  adjusted for multiple tests are in the p.adj object. 
+## [1] 0
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+</div>
+<div id="section-44" class="section level3" number="2.5.10">
+<h3><span class="header-section-number">2.5.10</span> </h3>
+<p>Kestila uses the PCA factor scores to evaluate country level differences in 1. Attitudes towards immigration and 2. Political trust. Repeat her analyses using the factor scores you saved in step 5. Think about the statistical test you would like to use. Do you draw similar or different conclusions?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We can use an ANOVA to test whether the countries differ in the amount of political trust the participants have.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="in-class-exercises-1.html#cb158-1" aria-hidden="true" tabindex="-1"></a>fit_ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(trustinstEFA <span class="sc">~</span> cntry, <span class="at">data =</span> df_with_scores)</span>
+<span id="cb158-2"><a href="in-class-exercises-1.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_ANOVA)</span></code></pre></div>
+<pre><code>##                Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## cntry           8   1740  217.55   199.6 &lt;2e-16 ***
+## Residuals   14769  16100    1.09                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 3409 observations deleted due to missingness</code></pre>
+<p>In which <code>trustinstEFA</code> is the dependent variable, <code>cntry</code> is the grouping variable, and <code>df</code> is the name of the dataset; <code>summary</code> will provide the results. However, it will only indicate whether the variable <code>cntry</code> is significant or not, so you will be unable to tell which countries differ in terms of their political trust. To tell which countries differ, you can do a pairwise comparison test, with a Bonferroni adjustment for multiple testing.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="in-class-exercises-1.html#cb160-1" aria-hidden="true" tabindex="-1"></a>pair_comparison <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(df_with_scores<span class="sc">$</span>trustinstEFA, df_with_scores<span class="sc">$</span>cntry, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonf&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb160-2"><a href="in-class-exercises-1.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pair_comparison<span class="sc">$</span>p.value, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##             Austria Belgium Denmark Finland Germany Italy Netherlands Norway
+## Belgium       0.000      NA      NA      NA      NA    NA          NA     NA
+## Denmark       0.000       0      NA      NA      NA    NA          NA     NA
+## Finland       0.000       0   0.085      NA      NA    NA          NA     NA
+## Germany       0.033       0   0.000       0      NA    NA          NA     NA
+## Italy         1.000       0   0.000       0       1    NA          NA     NA
+## Netherlands   0.000       0   0.000       0       0 0.000          NA     NA
+## Norway        0.000       0   0.000       0       0 0.000           0     NA
+## Sweden        0.231       0   0.000       0       0 0.144           0  0.005</code></pre>
+</div>
+<div id="section-45" class="section level3" number="2.5.11">
+<h3><span class="header-section-number">2.5.11</span> </h3>
+<p>The second goal of Kestilä is to show how socio-demographic characteristics affect attitudes towards immigrants and trust in politics in Finland. Select only the Finnish cases using the variable <code>cntry</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>To select the Finnish cases only, select rows for which <code>$cntry</code> is equal to (<code>==</code>) Finland:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="in-class-exercises-1.html#cb162-1" aria-hidden="true" tabindex="-1"></a>df_finland <span class="ot">&lt;-</span> df_with_scores[df_with_scores<span class="sc">$</span>cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>, ]</span></code></pre></div>
+<p>After selecting the Finnish cases, we have to prepare our variables for analysis.
+Thanks to the factor analyses above, our dependent variables are taken care of.
+However, we should examine the independent variables to make sure there are no surprises,
+and do any recoding necessary before we can run multiple regression. The independent variables are
+<code>c("gndr", "yrbrn", "eduyrs", "polintr", "lrscale")</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="in-class-exercises-1.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb163-2"><a href="in-class-exercises-1.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(df_finland[, <span class="fu">c</span>(<span class="st">&quot;gndr&quot;</span>, <span class="st">&quot;yrbrn&quot;</span>, <span class="st">&quot;eduyrs&quot;</span>, <span class="st">&quot;polintr&quot;</span>, <span class="st">&quot;lrscale&quot;</span>)])</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["chr"],"align":["left"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[12],"type":["int"],"align":["right"]},{"label":["max"],"name":[13],"type":["int"],"align":["right"]},{"label":["range"],"name":[14],"type":["int"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"gndr","2":"character","3":"2000","4":"0.0000","5":"3","6":"NA","7":"NA","8":"1040","9":"Female","10":"NA","11":"0.4992000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"yrbrn","2":"integer","3":"2000","4":"0.0000","5":"79","6":"1956.36950","7":"1957","8":"1957","9":"NA","10":"18.491510","11":"NA","12":"1906","13":"1987","14":"81","15":"-0.1584100","16":"-1.447163","17":"-0.8888179","18":"-4.0619431"},{"1":"eduyrs","2":"integer","3":"1997","4":"0.0015","5":"28","6":"11.95643","7":"12","8":"12","9":"NA","10":"3.900645","11":"NA","12":"0","13":"26","14":"26","15":"0.2946392","16":"2.689675","17":"-0.1854030","18":"-0.8466672"},{"1":"polintr","2":"character","3":"1999","4":"0.0005","5":"5","6":"NA","7":"NA","8":"842","9":"Hardly interested","10":"NA","11":"0.6501730","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"lrscale","2":"character","3":"1891","4":"0.0545","5":"12","6":"NA","7":"NA","8":"599","9":"5","10":"NA","11":"0.8312956","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Note that we still have to do some recoding. For example, the data contains participants’ year of birth instead of their age. We have to recode this variable. The data were collected in 2002, so we can simply subtract the year of birth of every participant from the year 2002.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="in-class-exercises-1.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>age <span class="ot">&lt;-</span> (<span class="dv">2002</span> <span class="sc">-</span> df_finland<span class="sc">$</span>yrbrn)</span></code></pre></div>
+<p>Furthermore, the variables <code>polintr</code> and <code>lrscale</code> are currently coded as character variables. If you analyze them like that, R will make dummies for all distinct values on these variables. Let’s recode those, too! The main challenge is to get the levels of these variables in the correct order, and convert them to numbers. We demonstrate two ways to do this, one way for each of the two variables.</p>
+<p>For political interest, we convert the character variable to an ordered categorical variable, and we specify the correct order of labels. Then, we convert it to a numeric variable.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="in-class-exercises-1.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_finland<span class="sc">$</span>polintr)</span></code></pre></div>
+<pre><code>## 
+##     Hardly interested Not at all interested      Quite interested 
+##                   842                   228                   785 
+##       Very interested 
+##                   144</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="in-class-exercises-1.html#cb167-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>polintr <span class="ot">&lt;-</span> <span class="fu">ordered</span>(df_finland<span class="sc">$</span>polintr, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Not at all interested&quot;</span>, <span class="st">&quot;Hardly interested&quot;</span>, <span class="st">&quot;Quite interested&quot;</span>, <span class="st">&quot;Very interested&quot;</span>))</span>
+<span id="cb167-2"><a href="in-class-exercises-1.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_finland<span class="sc">$</span>polintr)</span></code></pre></div>
+<pre><code>## 
+## Not at all interested     Hardly interested      Quite interested 
+##                   228                   842                   785 
+##       Very interested 
+##                   144</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="in-class-exercises-1.html#cb169-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>polintr <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_finland<span class="sc">$</span>polintr)</span></code></pre></div>
+<p>For political orientation, only the two extreme values of the scale are labeled as text. Thus, we can replace these labels with numbers, and then convert the entire variable to numeric.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="in-class-exercises-1.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_finland<span class="sc">$</span>lrscale)</span></code></pre></div>
+<pre><code>## 
+##     1     2     3    4      5     6     7     8     9  Left Right 
+##    25    62   148   183   599   199   296   217    79    24    59</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="in-class-exercises-1.html#cb172-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>lrscale[df_finland<span class="sc">$</span>lrscale <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb172-2"><a href="in-class-exercises-1.html#cb172-2" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>lrscale[df_finland<span class="sc">$</span>lrscale <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb172-3"><a href="in-class-exercises-1.html#cb172-3" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>lrscale <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_finland<span class="sc">$</span>lrscale)</span></code></pre></div>
+<p>Furthermore, Kestilä recoded <code>polintr</code> in such a way that there are only two categories. The lowest two and highest two categories were combined. Here is how to do this in R, so you can replicate their analysis:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="in-class-exercises-1.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>polintr_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_finland<span class="sc">$</span>polintr <span class="sc">&lt;=</span> <span class="dv">2</span>,</span>
+<span id="cb173-2"><a href="in-class-exercises-1.html#cb173-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Not or hardly interested&quot;</span>,</span>
+<span id="cb173-3"><a href="in-class-exercises-1.html#cb173-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Quite or very interested&quot;</span>)</span></code></pre></div>
+<p>Next, run a number of multiple linear regression analyses with the (sub-)scales of attitudes towards immigrants and political trust as subsequent dependent variables, and the same predictors as Kestilä. Inspect your output.</p>
+<p>Compare your results with the results from Kestilä. How do your results differ or agree with the results by Kestilä?</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-1.html#cb174-1" aria-hidden="true" tabindex="-1"></a>fit_trust1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(trustinstEFA <span class="sc">~</span> gndr <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_dummy <span class="sc">+</span> lrscale, <span class="at">data =</span> df_finland, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb174-2"><a href="in-class-exercises-1.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_trust1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = trustinstEFA ~ gndr + age + eduyrs + polintr_dummy + 
+##     lrscale, data = df_finland, na.action = na.omit)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.0364 -0.4740  0.1394  0.6379  2.3394 
+## 
+## Coefficients:
+##                                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           -0.100441   0.125066  -0.803   0.4220    
+## gndrMale                               0.010228   0.044386   0.230   0.8178    
+## age                                   -0.001053   0.001356  -0.776   0.4377    
+## eduyrs                                 0.027904   0.006277   4.445 9.34e-06 ***
+## polintr_dummyQuite or very interested  0.090948   0.045642   1.993   0.0465 *  
+## lrscale                                0.051650   0.011037   4.680 3.10e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9159 on 1734 degrees of freedom
+##   (260 observations deleted due to missingness)
+## Multiple R-squared:  0.03377,    Adjusted R-squared:  0.03099 
+## F-statistic: 12.12 on 5 and 1734 DF,  p-value: 1.454e-11</code></pre>
+</div>
+<div id="section-46" class="section level3" number="2.5.12">
+<h3><span class="header-section-number">2.5.12</span> </h3>
+<p>Save your syntax and your data, you will need it next week.</p>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
