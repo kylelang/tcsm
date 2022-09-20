@@ -1,0 +1,746 @@
+--- 
+title: "Theory Construction and Statistical Modeling"
+#subtitle: "A guide to structural equation modeling in R"
+author: "Kyle M. Lang"
+date: "Last updated: `r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    config: 
+      toc:
+       collapse: section
+       search: yes
+    split_by: section
+    df_print: paged
+documentclass: book
+#bibliography: [../bibtex/book.bib, ../bibtex/packages.bib]
+#biblio-style: apalike
+#link-citations: yes
+#description: "This is a guide for the elective course TCSM."
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+library(dplyr)
+
+opts_chunk$set(warning = FALSE, message = FALSE)
+
+dataDir  <- "../../data/"
+```
+
+# Course Information {-}
+
+In order to test a theory, we must express the theory as a statistical model and 
+then test this model on quantitative (numeric) data. In this course we will use 
+datasets from different disciplines within the social sciences (educational 
+sciences, psychology, and sociology) to explain and illustrate theories and 
+practices that are used in all social science disciplines to statistically model 
+social science theories.
+
+This course uses existing tutorial datasets to practice the process of 
+translating verbal theories into testable statistical models. If you are 
+interested in the methods of acquiring high quality data to test your own theory, 
+we recommend following the course *Conducting a Survey* which is taught from 
+November to January.
+
+Most information about the course is available in this GitBook. Course-related 
+communication will be through <https://uu.blackboard.com> (Log in with your 
+student ID and password).
+
+<!----------------------------------------------------------------------------->
+
+## Acknowledgement {-}
+
+This course was originally developed by 
+[dr. Caspar van Lissa](https://www.tilburguniversity.edu/staff/c-j-vanlissa). 
+Indeed, you will still see Caspar in the lecture recordings. I 
+([dr. Kyle M. Lang](https://www.kylemlang.com)) have modified Caspar's original 
+materials and take full responsibility for any errors or inaccuracies introduced 
+through these modifications. Credit for any particularly effective piece of 
+pedagogy should probably go to Caspar.
+
+- You can view the original version of this course 
+[here](https://github.com/cjvanlissa/TCSM) on Caspar's GitHub page.
+
+<!----------------------------------------------------------------------------->
+
+## Instructors {-}
+
+**Coordinator:**
+
+[dr. Kyle M. Lang](https://www.kylemlang.com)
+
+**Lectures:**
+
+[dr. Kyle M. Lang](https://www.kylemlang.com)
+
+**Practicals:**
+
+[Rianne Kraakman](https://www.uu.nl/staff/amkraakman)
+
+[Daniëlle Remmerswaal](https://www.uu.nl/staff/DMRemmerswaal)
+
+Laura Jochim
+
+<!----------------------------------------------------------------------------->
+
+## Course overview {-}
+
+This course comprises three parts:
+
+1. *Factor analysis*: You will learn different ways of defining and estimating
+unobserved constructs.
+1. *Path analysis*: You will learn how to conduct regressions and ANOVAs as 
+structural equation models with observed variables.
+1. *Full structural equation modeling*: You will combine the first two topics by 
+estimating path models using latent variables.
+
+Each of these three themes will be evaluated with a separate assignment. Your 
+course grade will be based on the weighted average of these three assignment 
+grades.
+
+### Schedule {-}
+
+```{r print_schedule, echo = FALSE}
+schedule <- read.csv2("data/schedule.csv")
+knitr::kable(schedule, 
+             col.names = gsub("\\.", " ", colnames(schedule))
+             )
+```
+
+<!----------------------------------------------------------------------------->
+
+## Learning goals {-}
+
+In this course you will learn how to translate a social scientific theory into a 
+statistical model, how to analyze your data with these models, and how to 
+interpret and report your results following APA standards.
+
+After completing the course, you will be able to:
+
+1. Translate a verbal theory into a conceptual model, and translate a conceptual 
+model into a statistical model.
+1. Independently analyze data using the free, open-source statistical software R.
+1. Apply a *latent variable model* to a real-life problem wherein the observed 
+variables are only indirect indicators of an unobserved construct.
+1. Use a *path model* to represent the hypothesized causal relations among
+several variables, including relationships such as mediation and moderation.
+1. Explain to a fellow student how *structural equation modeling* combines 
+latent variable models with path models and the benefits of doing so.
+1. Reflect critically on the decisions involved in defining and estimating
+structural equation models.
+
+<!----------------------------------------------------------------------------->
+
+## Resources {-}
+
+---
+
+### Literature {-}
+
+**You do not need a separate book for this course!** 
+
+Most of the information is contained within this GitBook and the course readings 
+(which you will be able to access via links in this GitBook). 
+
+All literature is freely available online, as long as you are logging in from 
+within the UU-domain (i.e., from the UU campus or through an appropriate VPN). 
+All readings are linked in this GitBook via either direct download links or DOIs. 
+
+If you run into any trouble accessing a given article, searching for the title 
+using [Google Scholar][gs] or the [University Library][uu_lib] will probably due 
+the trick.
+
+---
+
+### Software {-}
+
+You will do all of your statistical analyses with the statistical programming 
+language/environment [R][r] and the add-on package [`lavaan`][lavaan].
+
+- If you want to expand your learning, you can follow this excellent 
+[`lavaan` tutorial](https://lavaan.ugent.be/tutorial/). Doing so is entirely 
+optional, though.
+
+<!----------------------------------------------------------------------------->
+
+## Reading questions {-}
+
+Along with every article, we will provide reading questions. You will not be 
+graded on the reading questions, but it is important to prepare the reading 
+questions before every lecture. The reading questions serve several important 
+purposes:
+
+-	Provide relevant background knowledge for the lecture
+-	Help you recognize and understand the key terms and concepts
+-	Make you aware of important publications that shaped the field
+- Help you extract the relevant insights from the literature
+
+<!----------------------------------------------------------------------------->
+
+## Weekly preparation {-}
+
+Before every class meeting (both lectures and practicals) you need to do the 
+assigned homework (delineated in the GitBook chapter for that week). This course 
+follows a *flipped classroom* procedure, so you must complete the weekly homework 
+to meaningfully participate in, and benefit from, the class meetings.
+
+---
+
+### Background knowledge {- #background}
+
+We assume you have basic knowledge about multivariate statistics before entering 
+this course. You do not need any prior experience working with R. If you wish to 
+refresh your knowledge, we recommend the chapters on ANOVA, multiple regression,
+and exploratory factor analysis from Field’s [*Discovering Statistics using R*][field]. 
+
+If you cannot access the Field book, many other introductory statistics textbooks 
+cover these topics equally well. So, use whatever you have lying around from 
+past statistics courses. You could also try one of the following open-access options:
+
+- [*Applied Statistics with R*][stats_with_r]
+- [*Introduction to Modern Statistics*][modern_stats]
+- [*Introduction to Statistical Learning*][isl]
+
+<!----------------------------------------------------------------------------->
+
+## Grading {-}
+
+Your grade for the course is based on a “portfolio” composed of the three 
+take-home assignments:
+
+1. Latent variable modeling 
+    - Deadline: **2022-10-07 23:59**
+    - Group assignment
+    - Contributes 25% of your course grade
+
+1. Path modeling 
+    - Deadline: **2022-10-28 23:59**
+    - Group assignment
+    - Contributes 25% of your course grade
+
+1. Full Structural equation modeling 
+    - Deadline: **2022-11-11 23:59**
+    - Individual assignment
+    - Contributes 50% of your course grade
+
+**The specifics of the assignments are explicated in the 
+[Assignments](assignments.html) chapter of this GitBook**
+
+<!----------------------------------------------------------------------------->
+
+## Attendance {-}
+
+Attendance is not mandatory, but we strongly encourage you to attend all lectures 
+and practicals. In our experience, students who actively participate tend to pass 
+the course, whereas those who do not participate tend to drop out or fail. The 
+lectures and practicals build on each other, so, in the unfortunate event that 
+you have to miss a class meeting, please make sure you have caught up with the 
+material before the next session.
+
+<!----------------------------------------------------------------------------->
+
+[gs]: https://scholar.google.com/
+[uu_lib]: https://www.uu.nl/en/university-library
+[r]: https://www.r-project.org/
+[lavaan]: https://www.lavaan.ugent.be/
+[field]: https://www.discoveringstatistics.com/books/discovering-statistics-using-r/
+[stats_with_r]: https://book.stat420.org/
+[modern_stats]: https://openintro-ims.netlify.app/
+[isl]: https://www.statlearning.com
+
+<!--chapter:end:index.Rmd-->
+
+# Assignments {-}
+
+This chapter contains the details and binding information about the three 
+assignments that comprise the portfolio upon which your course grade is based.
+
+- For each assignment, you will use R to analyze some real-world data, and you 
+will write up your results in a concise report.
+    - The required components of these analyses/reports are delineated in the 
+    following three sections.
+    - You will submit this report via Blackboard.
+- You will complete the first two assignments in your [Assignment Group][group].
+- You will complete the third assignment individually.
+- The first two assignments each contribute 25% of your course grade.
+- The third assignment contributes 50% of your course grade.
+
+<!----------------------------------------------------------------------------->
+
+## Assignment 1: Latent Variable Model {-}
+
+In the first assignment, **you will work in groups** to apply a *latent variable 
+model* to a real-world problem wherein the observed variables are indirect 
+indicators of an unobserved social scientific construct. The components of the 
+first assignment are described below.
+
+1. Find a suitable dataset, and describe the data. **(150 words)**.
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and define the theoretical latent variable 
+model. **(150 words)**
+    a. Be sure to clearly explicate all parts of your model.
+1. Translate your theoretical latent variable model into `lavaan` syntax, and 
+estimate the model.
+    a. Provide relevant output in a suitable format.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Motivate your choice of latent variable model (i.e., EFA, CFA, PCA).
+    a. Discuss assumptions.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Include measures of model fit.
+1. Discuss the results. **(300 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+     
+---
+
+### Submission {-}
+
+Assignment 1 is due at 23:59 on Friday 7 October 2022
+
+- Submit your report via the [Assignment 1][a1] portal on Blackboard.
+
+<!----------------------------------------------------------------------------->
+
+## Assignment 2: Path Model {-}
+
+For the second assignment, **you will work in groups** to apply a *path model* 
+that describes how several variables could be causally related. The components 
+of the second assignment are described below.
+
+1. Find a suitable dataset, and describe the data. **(150 words)**
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and define the theoretical path model. 
+**(150 words)**
+    a. This model can be a re-analysis of a question that was originally 
+    tested using regression or ANOVA in a published paper.
+1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
+model.
+    a. Provide relevant output in a suitable format.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Discuss the conceptual fit between your theory and your model.
+    a. Evaluate the model assumptions.
+    a. If applicable, discuss the differences and similarities between your
+    path model and the regression or ANOVA results from the original paper.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Include measures of explained variance for the dependent variables.
+1. Discuss the results. **(300 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+
+---
+
+### Submission {-}
+
+Assignment 2 is due at 23:59 on Friday 28 October 2022
+
+- Submit your report via the [Assignment 2][a2] portal on Blackboard.
+
+<!----------------------------------------------------------------------------->
+
+## Assignment 3: Full Structural Equation Model {-}
+
+In the third assignment, **you will work individually** to apply a full *SEM* 
+that describes how several (latent) variables could be causally related. The 
+components of the third assignment are described below.
+
+1. Find a suitable dataset, and describe the data. **(150 words)**
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and define the theoretical SEM. 
+**(200 words)**
+    a. This model can be a re-analysis of a question that was originally tested 
+    using regression or ANOVA in a published paper.
+    a. The structural component of this model must include, at least, three
+    variables.
+    a. The model must include, at least, one latent variable.
+1. Translate your theoretical SEM into `lavaan` syntax, and estimate the model.
+    a. Provide relevant output in a suitable format.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Discuss the conceptual fit between your theory and your model.
+    a. Evaluate the model assumptions.
+    a. If applicable, discuss the differences and similarities between your path 
+    model and the regression or ANOVA results from the original paper.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Include measures of model fit.
+    a. Include measures of explained variance for the dependent variables.
+1. Discuss the results. **(500 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+
+---
+
+### Submission {-}
+
+Assignment 3 is due at 23:59 on Friday 11 November 2022
+
+- Submit your report via the [Assignment 3][a3] portal on Blackboard.
+
+<!----------------------------------------------------------------------------->
+
+## Data {-}
+
+If you have your own data, that's great, and we strongly encourage you to use
+those data for the projects. That being said, most students will not have their
+own data. If you're one of the majority without data, you'll have to find an 
+existing dataset to analyze (in case you were wondering, you won't have time to 
+collect new data).
+
+---
+
+### Sources {-}
+
+Those who need data can make use of one of the myriad publicly available 
+datasets available online. Of course these datasets will vary widely in terms of 
+their applicability to the project and the amount of work required to prepare 
+the variables for analysis. 
+
+The following links point to various sources of publicly available data.
+
+- [Kaggle datasets](https://www.kaggle.com/datasets)
+- [GSS Sata Explorer](https://gssdataexplorer.norc.org/) 
+- [StatLine Open Data](https://www.cbs.nl/en-gb/our-services/open-data/)
+- [Open Data from the Dutch Government](https://data.overheid.nl/)
+- [Google Cloud Platform](https://console.cloud.google.com/marketplace/browse?filter=solution-type:dataset&_ga=2.82807711.826450092.1580463730-1425634986.1574932949)
+- [Google dataset search](https://toolbox.google.com/datasetsearch) 
+
+---
+
+### Tips {-}
+
+When searching for a suitable dataset, consider the following tips:
+
+- It will take longer than you expect.
+    - Start searching for data early.
+    - Plan on devoting a good chunk of time to tracking down a useful dataset.
+    - Realize that even after you find the data, you will also have to do a good 
+    bit of cleaning to get the variables ready for analysis.
+- Expect to be disappointed. 
+    - You may find a dataset that looks good on paper but won't work for the 
+    project (e.g., too much missing data, poor coverage for key relations, jenky 
+    distributions, etc.).
+        - You usually won't discover these issue until you've already downloaded 
+        the data and started exploring/cleaning.
+        - Make sure you check the actual data you've downloaded before you 
+        declare success in your search.
+- Keep the project requirements in mind when searching for data. 
+    - You will need, at least, three interesting variables to model in some sort 
+    of causal process (required for Assignment 3).
+    - You will need, at least, one latent variable (required for Assignments 1 & 3).
+        - To define a latent variable, you need multiple items (at least three) 
+        measuring the same hypothetical construct.
+        - In practice, these multiple indicators usually come from scales (e.g., 
+        NEO-PI Big Five Personality Inventory, Beck Depression Inventory).
+- If you find a dataset that looks suitable, but you want to confirm, send 
+me ([Kyle](mailto:k.m.lang@uu.nl)) a link to the dataset, and I'll let you know 
+if it will work for the assignments.
+        
+<!----------------------------------------------------------------------------->
+
+## Procedures {-}
+
+---
+
+### Formating {-}
+
+- You must submit your assignment reports in PDF format.
+- Each report should include a title page.
+- The title page should include the following information:
+    - The name of the assignment.
+    - The names of all assignment authors (i.e., all group members for 
+    Assignments 1 & 2, your name for Assignment 3).
+    - The Assignment Group number (only for Assignments 1 & 2).
+
+---
+
+### Length {-}
+
+In the preceding three sections, some line-items in the descriptions of the 
+assignments concluded with a word count.
+
+- These sections of your report must conform to the indicated word counts.
+    - E.g., the *Data* section of Assignment 1 must contain no more that 150 
+    words, and the *Discussion* section of Assignment 3 must contain no more 
+    than 500 words.
+- In all other sections, you may use as many words as necessary to adequately 
+explain yourself (though concision and parsimony are still encouraged).
+
+Note that the assignments are **not** intended to be full-blown papers! You only 
+get a few hundred words to describe your data, justify your theoretical model, 
+and discuss the results. The focus should be on the definition of your model, 
+how this model relates to theory (introduction), and what you have learned from 
+your estimated model (discussion).
+
+---
+
+### Submission {-}
+
+You will submit your reports through Blackboard.
+
+- Each assignment has a corresponding item in the "Assignments" section of the 
+BB page through which you will submit your reports.
+- For Assignments 1 & 2, you may only submit one report per group.
+    - Designate one group member to submit the report.
+    - The grade for this submission will apply to all group members.
+- If something goes wrong with the submission, or you notice a mistake (before 
+the deadline) that you want to correct, you may upload a new version of your 
+report. 
+    - We will grade the final submitted version.
+- The submissions will be screened with SafeAssign.
+
+<!----------------------------------------------------------------------------->
+
+## Grading {-}
+
+Each assignment comprises 6 components (i.e., the line-items labelled 1--6 in 
+the assignment descriptions).
+
+- Each of these 6 elements will be scored as:
+    - Insufficient (0 points)
+    - Sufficient (1 point)
+    - Excellent (1.5 points)
+    
+The individual assignment grades will be computed as follows:
+
+1. Sum the 6 component grades.
+1. Add 1 to the sum of the component grades.
+
+Consequently, we have the following landmarks:
+
+- All components marked as *Insufficient* $\rightarrow$ Assignment Grade = 1
+- All components marked as *Sufficient* $\rightarrow$ Assignment Grade = 7
+- All components marked as *Excellent* $\rightarrow$ Assignment Grade = 10
+
+The final course grade, $G_{course}$, will be computed as the weighted average of 
+the three individual assignment grades, $G_{a1}$, $G_{a2}$, $G_{a3}$:
+
+\[
+G_{course} = 0.25 G_{a1} + 0.25 G_{a2} + 0.5 G_{a3}
+\]
+
+<!----------------------------------------------------------------------------->
+
+## Rules {-}
+
+---
+
+### Resources {-}
+
+For all three assignments, you may use any reference materials you like, 
+including:
+
+- All course materials
+- The course GitBook
+- Additional books and papers
+- The internet
+
+---
+
+### Collaboration {-}
+
+You will complete the first two assignments in groups.
+
+- Although you will work in groups, your group may not work together with other 
+groups.
+
+You will complete the final assignment individually. 
+
+- For this assignment, you may not work with anyone else.
+
+For all three assignments, you are obligated to submit original work (i.e., work 
+conducted for this course by you or your group). 
+
+- Submitting an assignment that violates this condition constitutes fraud.
+- Such cases of fraud will be addressed according to the 
+[University's standard policy](https://students.uu.nl/en/practical-information/policies-and-procedures/fraud-and-plagiarism).
+
+---
+
+### Academic integrity {-}
+
+Hopefully, you also feel a moral obligation to obey the rules. For this course, 
+we have implemented an examination that allows you to showcase what you have 
+learned in a more realistic way than a written exam would allow. 
+
+- This assessment format spares you the stress of long exams (the two exams for 
+this course used to be 4 hours each) and the attendant studying/cramming. 
+- The assignments will also help you assess your ability to independently 
+analyse data, which is important to know for your future courses and/or career.
+
+However, this format also assumes that you complete the assignments in good 
+faith. So, I simply ask that you hold up your end of the bargain, and submit 
+your original work to show us what you’ve learned.
+
+---
+
+### Strict stuff {-}
+
+By submitting your assignments (both group and individual), you confirm the 
+following:
+
+1. You have completed the assignment yourself (or with your group)
+1. You are submitting work that you have written yourself (or with your group)
+1. You are using your own UU credentials to submit the assignment
+1. You have not had outside help that violates the conditions delineated above 
+while completing the assignment
+
+All assignments will be submitted via SafeAssign in Blackboard and, thereby, 
+checked for plagiarism. If fraud or plagiarism is detected or suspected, we will 
+inform the Board of Examiners in the usual manner. In the event of demonstrable 
+fraud, the sanctions delineated in Article 5.15 of the 
+[Education and Examination Regulations (EER)](https://students.uu.nl/en/fss/education-and-examination-regulations-eer)
+will apply. 
+
+<!----------------------------------------------------------------------------->
+
+[a1]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4261056_1&course_id=_141610_1
+[a2]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4261057_1&course_id=_141610_1
+[a3]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4261058_1&course_id=_141610_1
+[group]: https://uu.blackboard.com/webapps/bb-group-mgmt-LEARN/execute/groupInventoryList?course_id=_141610_1
+
+<!--chapter:end:assignments.Rmd-->
+
+```{r, include = FALSE}
+library(dplyr)
+library(foreign)
+
+dataDir  <- "../../../data/"
+imageDir <- "../images/"
+partDir  <- "sections/"
+```
+
+<!--
+\Sexpr{knit_child("w0_setup.Rmd", quiet = TRUE) %>% cat(sep = "\n")}
+\Sepxr{knit_child("w0_basics.Rmd", quiet = TRUE) %>% cat(sep = "\n")}
+\Sexpr{knit_child("w0_tutorial.Rmd", quiet = TRUE) %>% cat(sep = "\n")}
+-->
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+knitr::knit_child(paste0(partDir, "w0_setup.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w0_tutorial.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+```
+
+<!--chapter:end:week0.Rmd-->
+
+# Introduction
+
+```{r week1_global_options, include = FALSE}
+library(dplyr)
+
+dataDir  <- "../../../data/"
+quizDir  <- "../assess/"
+partDir  <- "sections/"
+imageDir <- "../images/"
+```
+
+**Homework before the lecture**
+
+1. Complete the preparatory material:
+    a. Read over the [Course Information](index.html) chapter
+    a. Work through the [Software Setup](software-setup.html) chapter
+    a. Work through the [R Tutorial](r-tutorial.html) chapter
+1. Watch the [Lecture Recording](lecture.html) for this week.
+1. Complete the [Reading](reading.html) for this week, and answer the associated 
+reading questions.
+1. Complete the [Formative Assessment](formative-assessment.html) for this week.
+
+**Lecture content**
+
+We start with a brief introduction to the course, the course goals and rules, 
+and the general idea of statistical modeling. 
+
+- We will introduce the type of models that we will consider in this course.
+- We will shortly discuss several related concepts:
+    - Model simplicity/complexity
+    - Model fit
+    - Graphical representations of model parameters
+    - Interpretations of model parameters   
+
+**Homework before the practical**
+
+Complete the [At-Home Exercises](at-home-exercises.html). 
+
+**Practical content**
+
+During the practical you will work on the [In-Class Exercises](in-class-exercises.html).
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+knitr::knit_child(paste0(partDir, "w1_lecture.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_reading.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_assess.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_home.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w1_class.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+```
+
+<!--chapter:end:week1.Rmd-->
+
+# EFA
+
+```{r week2_global_options, include = FALSE}
+library(dplyr)
+
+dataDir  <- "../../../data/"
+quizDir  <- "../assess/"
+partDir  <- "sections/"
+imageDir <- "../images/"
+```
+
+**Homework before the lecture**
+
+1. Watch the [Lecture Recording](lecture-1.html) for this week.
+1. Complete the [Reading](reading-1.html) for this week, and answer the 
+associated reading questions.
+1. Complete the [Formative Assessment](formative-assessment-1.html) for this week.
+
+**Lecture content**
+
+This lecture constitutes a general introduction to latent variables and scaling 
+procedures. We will discuss several different aspects of exploratory factor 
+analysis (EFA). Most notably:
+
+- The differences between Principal Component Analyses (PCA) and Factor Analysis
+- Model estimation and factor extraction methods
+- Factor rotations
+
+You will have to make decisions regarding each of these aspects when conducting
+a factor analysis. We will also discuss reliability and factor scores as means 
+of evaluating the properties of a scale.
+
+**Homework before the practical**
+
+Complete the [At-Home Exercises](at-home-exercises-1.html). 
+
+**Practical content**
+
+During the practical you will work on the [In-Class Exercises](in-class-exercises-1.html).
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+knitr::knit_child(paste0(partDir, "w2_lecture.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_reading.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_assess.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_home.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+knitr::knit_child(paste0(partDir, "w2_class.Rmd"), quiet = TRUE) %>% 
+  cat(sep = "\n")
+```
+
+<!--chapter:end:week2.Rmd-->
+

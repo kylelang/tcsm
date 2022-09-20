@@ -399,7 +399,7 @@ regression model), we usually add them to our dataset as additional columns.
 
 ---
 
-###
+### {#pcScores}
 
 Add the component scores produced by the analyses you ran above to 
 the `ess` data frame. 

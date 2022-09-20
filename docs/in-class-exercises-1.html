@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> In-Class Exercises</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#loading-the-data"><i class="fa fa-check"></i><b>2.5.1</b> Loading the data</a></li>
+<li class="chapter" data-level="2.5.1" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#load-the-essround1-a.csv-dataset"><i class="fa fa-check"></i><b>2.5.1</b> Load the <em>ESSround1-a.csv</em> dataset</a></li>
 <li class="chapter" data-level="2.5.2" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-36"><i class="fa fa-check"></i><b>2.5.2</b> </a></li>
 <li class="chapter" data-level="2.5.3" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-37"><i class="fa fa-check"></i><b>2.5.3</b> </a></li>
 <li class="chapter" data-level="2.5.4" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-38"><i class="fa fa-check"></i><b>2.5.4</b> </a></li>
@@ -316,6 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.10" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-44"><i class="fa fa-check"></i><b>2.5.10</b> </a></li>
 <li class="chapter" data-level="2.5.11" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-45"><i class="fa fa-check"></i><b>2.5.11</b> </a></li>
 <li class="chapter" data-level="2.5.12" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-46"><i class="fa fa-check"></i><b>2.5.12</b> </a></li>
+<li class="chapter" data-level="2.5.13" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-47"><i class="fa fa-check"></i><b>2.5.13</b> </a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -337,176 +338,942 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="in-class-exercises-1" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> In-Class Exercises<a href="in-class-exercises-1.html#in-class-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the unlikely event that you were able to replicate the results of Kestilä in the take-home exercise, rerun your analysis script. If you did not manage to replicate the results, load the dataset <code>ESSround1-b.csv</code> into RStudio.</p>
-<div id="loading-the-data" class="section level3 hasAnchor" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Loading the data<a href="in-class-exercises-1.html#loading-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If you don’t know how to load the data, click below.</p>
-<details>
-<summary>
-Click for explanation
-</summary>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="in-class-exercises-1.html#cb136-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>In these exercises, we will continue with our re-analysis/replication of the
+Kestilä (2006) results. Rather than attempting a direct replication, we will now
+redo the analysis using <em>exploratory factor analysis</em> (EFA).</p>
+<hr />
+<div id="load-the-essround1-a.csv-dataset" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Load the <em>ESSround1-a.csv</em> dataset<a href="in-class-exercises-1.html#load-the-essround1-a.csv-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="in-class-exercises-1.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb136-2"><a href="in-class-exercises-1.html#cb136-2" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##      name              essround    edition      proddate        
+##  Length:18187       Min.   :1   Min.   :6.1   Length:18187      
+##  Class :character   1st Qu.:1   1st Qu.:6.1   Class :character  
+##  Mode  :character   Median :1   Median :6.1   Mode  :character  
+##                     Mean   :1   Mean   :6.1                     
+##                     3rd Qu.:1   3rd Qu.:6.1                     
+##                     Max.   :1   Max.   :6.1                     
+##                                                                 
+##     cntry                idno            pltcare         pltinvt     
+##  Length:18187       Min.   :      1   Min.   :1.000   Min.   :1.000  
+##  Class :character   1st Qu.:   1854   1st Qu.:2.000   1st Qu.:2.000  
+##  Mode  :character   Median :  23436   Median :3.000   Median :2.000  
+##                     Mean   : 403707   Mean   :2.575   Mean   :2.435  
+##                     3rd Qu.: 211313   3rd Qu.:3.000   3rd Qu.:3.000  
+##                     Max.   :4136400   Max.   :5.000   Max.   :5.000  
+##                                       NA&#39;s   :212     NA&#39;s   :216    
+##     trstprl          trstlgl          trstplc          trstplt      
+##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 5.000   1st Qu.: 5.000   1st Qu.: 6.000   1st Qu.: 4.000  
+##  Median : 6.000   Median : 7.000   Median : 8.000   Median : 6.000  
+##  Mean   : 6.283   Mean   : 6.882   Mean   : 7.705   Mean   : 5.306  
+##  3rd Qu.: 8.000   3rd Qu.: 9.000   3rd Qu.: 9.000   3rd Qu.: 7.000  
+##  Max.   :11.000   Max.   :11.000   Max.   :11.000   Max.   :11.000  
+##  NA&#39;s   :434      NA&#39;s   :304      NA&#39;s   :125      NA&#39;s   :221     
+##      trstep          trstun           stfeco           stfgov      
+##  Min.   : 1.00   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 4.00   1st Qu.: 5.000   1st Qu.: 4.000   1st Qu.: 4.000  
+##  Median : 6.00   Median : 7.000   Median : 6.000   Median : 6.000  
+##  Mean   : 5.63   Mean   : 6.737   Mean   : 6.127   Mean   : 5.507  
+##  3rd Qu.: 7.00   3rd Qu.: 8.000   3rd Qu.: 8.000   3rd Qu.: 7.000  
+##  Max.   :11.00   Max.   :11.000   Max.   :11.000   Max.   :11.000  
+##  NA&#39;s   :1797    NA&#39;s   :1182     NA&#39;s   :459      NA&#39;s   :566     
+##      stfdem           stfedu          stfhlth          imsmetn     
+##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   :1.000  
+##  1st Qu.: 6.000   1st Qu.: 5.000   1st Qu.: 5.000   1st Qu.:2.000  
+##  Median : 7.000   Median : 7.000   Median : 7.000   Median :2.000  
+##  Mean   : 6.823   Mean   : 6.984   Mean   : 6.794   Mean   :2.196  
+##  3rd Qu.: 8.000   3rd Qu.: 9.000   3rd Qu.: 9.000   3rd Qu.:3.000  
+##  Max.   :11.000   Max.   :11.000   Max.   :11.000   Max.   :4.000  
+##  NA&#39;s   :563      NA&#39;s   :807      NA&#39;s   :206      NA&#39;s   :670    
+##     imdfetn         eimrcnt         eimpcnt         imrcntr     
+##  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000  
+##  Median :2.000   Median :2.000   Median :2.000   Median :2.000  
+##  Mean   :2.426   Mean   :2.329   Mean   :2.331   Mean   :2.429  
+##  3rd Qu.:3.000   3rd Qu.:3.000   3rd Qu.:3.000   3rd Qu.:3.000  
+##  Max.   :4.000   Max.   :4.000   Max.   :4.000   Max.   :4.000  
+##  NA&#39;s   :655     NA&#39;s   :757     NA&#39;s   :620     NA&#39;s   :761    
+##     impcntr         qfimchr          qfimwht         imwgdwn     
+##  Min.   :1.000   Min.   : 1.000   Min.   : 1.00   Min.   :1.000  
+##  1st Qu.:2.000   1st Qu.: 1.000   1st Qu.: 1.00   1st Qu.:2.000  
+##  Median :2.000   Median : 3.000   Median : 2.00   Median :3.000  
+##  Mean   :2.407   Mean   : 4.054   Mean   : 2.99   Mean   :3.201  
+##  3rd Qu.:3.000   3rd Qu.: 6.000   3rd Qu.: 4.00   3rd Qu.:4.000  
+##  Max.   :4.000   Max.   :11.000   Max.   :11.00   Max.   :5.000  
+##  NA&#39;s   :697     NA&#39;s   :354      NA&#39;s   :253     NA&#39;s   :1140   
+##     imhecop         imtcjob          imbleco          imbgeco      
+##  Min.   :1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.:2.000   1st Qu.: 5.000   1st Qu.: 4.000   1st Qu.: 5.000  
+##  Median :3.000   Median : 6.000   Median : 6.000   Median : 6.000  
+##  Mean   :2.889   Mean   : 5.964   Mean   : 5.286   Mean   : 6.151  
+##  3rd Qu.:4.000   3rd Qu.: 7.000   3rd Qu.: 6.000   3rd Qu.: 8.000  
+##  Max.   :5.000   Max.   :11.000   Max.   :11.000   Max.   :11.000  
+##  NA&#39;s   :1017    NA&#39;s   :765      NA&#39;s   :873      NA&#39;s   :871     
+##     imueclt          imwbcnt          imwbcrm          imrsprc     
+##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   :1.000  
+##  1st Qu.: 6.000   1st Qu.: 5.000   1st Qu.: 3.000   1st Qu.:2.000  
+##  Median : 7.000   Median : 6.000   Median : 4.000   Median :2.000  
+##  Mean   : 7.183   Mean   : 5.964   Mean   : 4.101   Mean   :2.653  
+##  3rd Qu.: 9.000   3rd Qu.: 7.000   3rd Qu.: 6.000   3rd Qu.:3.000  
+##  Max.   :11.000   Max.   :11.000   Max.   :11.000   Max.   :5.000  
+##  NA&#39;s   :629      NA&#39;s   :614      NA&#39;s   :497      NA&#39;s   :419    
+##     pplstrd        vrtrlg          shrrfg         rfgawrk         gvrfgap     
+##  Min.   :1.0   Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:2.0   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:3.000  
+##  Median :3.0   Median :3.000   Median :2.000   Median :2.000   Median :3.000  
+##  Mean   :2.8   Mean   :2.984   Mean   :2.487   Mean   :2.393   Mean   :3.326  
+##  3rd Qu.:4.0   3rd Qu.:4.000   3rd Qu.:3.000   3rd Qu.:3.000   3rd Qu.:4.000  
+##  Max.   :5.0   Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+##  NA&#39;s   :249   NA&#39;s   :484     NA&#39;s   :1500    NA&#39;s   :530     NA&#39;s   :540    
+##     rfgfrpc         rfggvfn         rfgbfml       trustinst     
+##  Min.   :1.000   Min.   :1.000   Min.   :1.00   Min.   :-4.137  
+##  1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.00   1st Qu.:-0.595  
+##  Median :3.000   Median :2.000   Median :3.00   Median : 0.104  
+##  Mean   :2.818   Mean   :2.787   Mean   :2.93   Mean   : 0.000  
+##  3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.00   3rd Qu.: 0.690  
+##  Max.   :5.000   Max.   :5.000   Max.   :5.00   Max.   : 3.257  
+##  NA&#39;s   :1919    NA&#39;s   :560     NA&#39;s   :534    NA&#39;s   :3409    
+##     satcntry         trustpol        allowimmi        effectimmi    
+##  Min.   :-3.736   Min.   :-3.246   Min.   :-3.699   Min.   :-4.129  
+##  1st Qu.:-0.675   1st Qu.:-0.703   1st Qu.:-0.635   1st Qu.:-0.585  
+##  Median : 0.079   Median : 0.044   Median :-0.096   Median : 0.049  
+##  Mean   : 0.000   Mean   : 0.000   Mean   :-0.018   Mean   : 0.001  
+##  3rd Qu.: 0.733   3rd Qu.: 0.698   3rd Qu.: 0.697   3rd Qu.: 0.638  
+##  Max.   : 3.457   Max.   : 3.531   Max.   : 3.446   Max.   : 4.679  
+##  NA&#39;s   :3409     NA&#39;s   :3409     NA&#39;s   :5129     NA&#39;s   :5129    
+##     allowref         immicult         immieco           gndr          
+##  Min.   :-3.775   Min.   :-2.766   Min.   :-3.451   Length:18187      
+##  1st Qu.:-0.643   1st Qu.:-0.768   1st Qu.:-0.625   Class :character  
+##  Median : 0.004   Median :-0.129   Median : 0.091   Mode  :character  
+##  Mean   : 0.029   Mean   : 0.001   Mean   : 0.047                     
+##  3rd Qu.: 0.657   3rd Qu.: 0.684   3rd Qu.: 0.738                     
+##  Max.   : 4.084   Max.   : 4.049   Max.   : 3.270                     
+##  NA&#39;s   :5129     NA&#39;s   :5129     NA&#39;s   :5129                       
+##      yrbrn         edulvl              eduyrs        polintr         
+##  Min.   :1900   Length:18187       Min.   : 0.00   Length:18187      
+##  1st Qu.:1943   Class :character   1st Qu.:10.00   Class :character  
+##  Median :1957   Mode  :character   Median :12.00   Mode  :character  
+##  Mean   :1956                      Mean   :12.46                     
+##  3rd Qu.:1970                      3rd Qu.:15.00                     
+##  Max.   :1989                      Max.   :40.00                     
+##  NA&#39;s   :122                       NA&#39;s   :176                       
+##    lrscale            filter_.        
+##  Length:18187       Length:18187      
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+##                                       
+## </code></pre>
+<hr />
 </div>
 <div id="section-36" class="section level3" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> </h3>
-<p>Kestilä states that running a Principal Components Analysis is a good way to test whether the survey questions in the ESS measure attitudes towards immigration and trust in politics.
-Based on your reading of Preacher and MacCallum (2003), do you agree with this position?</p>
-</div>
-<div id="section-37" class="section level3" number="2.5.3">
-<h3><span class="header-section-number">2.5.3</span> </h3>
-<p>If you would have to choose a method for constructing the ‘trust in politics’ and ‘attitude towards immigration’ scales based on the theory and background information in the Kestilä article, what type of factor analysis would you choose? What key factors influence your decision?</p>
+<p>Kestilä (2006) claimed that running a PCA is a good way to test if the questions
+in the ESS measure attitudes towards immigration and trust in politics.</p>
+<ul>
+<li>Based on what you’ve learned from the readings and lectures, do you agree with
+this position?</li>
+</ul>
 <details>
 <summary>
 Click for information
 </summary>
-<p>Key factors include:</p>
+<p>Hopefully not. PCA is not a method for estimating latent measurement structure;
+PCA is a dimension reduction technique that tries to summarize a set of data
+with a smaller set of component scores.</p>
+<p>If we really want to estimate the factor structure underlying a set of observed
+variables, we should use EFA.</p>
+</details>
+<hr />
+</div>
+<div id="section-37" class="section level3" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> </h3>
+<p>Suppose you had to construct the <em>trust in politics</em> and <em>attitude towards
+immigration</em> scales described by Kestilä (2006) based on the theory and
+background information presented in that article.</p>
 <ul>
-<li>Theory-driven or exploratory?</li>
-<li>Estimation method</li>
-<li>Rotation method</li>
-<li>Method to establish how many factors are needed
-</li>
+<li>What type of analysis would you choose?</li>
+<li>What key factors would influence your decision?</li>
 </ul>
+<details>
+<summary>
+Click for information
+</summary>
+<ul>
+<li>We are trying to estimate meaningful latent factors, so EFA would be an
+appropriate method.</li>
+<li>The theory presented by Kestilä (2006) did not hypothesize a particular number
+of factors, so we would need to use appropriate techniques to estimate the best
+number. In particular, combining information from:
+<ul>
+<li>Scree plots</li>
+<li>Parallel analysis</li>
+<li>Substantive interpretability of the (rotated) factor loadings</li>
+</ul></li>
+<li>Since the factors are almost certainly correlated, we should apply an oblique
+rotation.</li>
+</ul>
+</details>
+<hr />
+<p>We will now rerun the two PCAs that you conducted for the
+<a href="at-home-exercises-1.html">At-Home Exercises</a> using EFA.</p>
+<p>We need to know how many factors to extract to estimate an EFA using the
+<code>psych::fa()</code> function.</p>
+<ul>
+<li>We could simply estimate a range of solutions and compare the results.</li>
+<li>We can restrict the range of plausible solutions and save some time by first
+checking/plotting the eigenvalues and running parallel analysis.</li>
+</ul>
+<hr />
 </div>
 <div id="section-38" class="section level3" number="2.5.4">
 <h3><span class="header-section-number">2.5.4</span> </h3>
-<p>Run two factor analyses, one for each PCA of the original article. Inspect the number of factors necessary, evaluate the rotation method, and if necessary, run the factor analysis again with adapted settings (rotation method and/or different number of factors). How many factors are there?</p>
-<p><em>Hint: Examing the help file for</em> <code>?psych::fa</code></p>
+<p>Estimate the number of latent factors underlying the <em>Trust</em> items based on the
+eigenvalues, the scree plot, and parallel analysis.</p>
+<ul>
+<li>How many factors are suggested by each method?</li>
+</ul>
+<p><em>Hints</em>:</p>
+<ul>
+<li>You can estimate the eigenvalues of a data matrix with the <code>eigen()</code> function
+from Base-R.
+<ul>
+<li>Check the <em>Value</em> section of the documentation for <code>eigen()</code> to find
+information on how to extract the eigenvalues.</li>
+</ul></li>
+<li>You can create a scree plot by supplying the vector of eigenvalues to the
+<code>qplot()</code> function from the <code>ggplot2</code> package and applying the <code>geom_path()</code> geometry.</li>
+</ul>
 <details>
 <summary>
 Click for explanation
 </summary>
-<p>To perform an exploratory factor analysis, you can use the function <code>fa</code> of the package <code>psych</code>. You will have to specify the data, and the variables that you want to include in the factor analyses. Furthermore, you will have to specify the number of factors that you want to extract, the rotation method and the estimation method.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="in-class-exercises-1.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb137-2"><a href="in-class-exercises-1.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
-<span id="cb137-3"><a href="in-class-exercises-1.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-4"><a href="in-class-exercises-1.html#cb137-4" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>, <span class="at">scores =</span> <span class="st">&quot;Bartlett&quot;</span>)</span></code></pre></div>
-<p>In order to determine the number of factors to extract, you might want to look at the eigenvalues of the factors, which can be accessed by using the following code:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="in-class-exercises-1.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##  [1]  5.054  0.874  0.687  0.304  0.185  0.076  0.014  0.008 -0.060 -0.078
-## [11] -0.123 -0.149 -0.191</code></pre>
-<p>Another common approach is to make a scree plot. All that is required for this, is to pass the eigenvalues to the <code>qplot()</code> function and add a geom_path:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="in-class-exercises-1.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb140-2"><a href="in-class-exercises-1.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> efa_trust<span class="sc">$</span>values) <span class="sc">+</span> <span class="fu">geom_path</span>()</span></code></pre></div>
+<p>First, we’ll run a trivial EFA using the <code>psych::fa()</code> function to get eigenvalues.</p>
+<ul>
+<li>We don’t care about the factors yet, so we can extract a single factor.</li>
+<li>We also don’t care about interpretable solutions, so we don’t need rotation.</li>
+</ul>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="in-class-exercises-1.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the psych package:</span></span>
+<span id="cb138-2"><a href="in-class-exercises-1.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb138-3"><a href="in-class-exercises-1.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-4"><a href="in-class-exercises-1.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run a trival EFA on the &#39;trust&#39; items</span></span>
+<span id="cb138-5"><a href="in-class-exercises-1.html#cb138-5" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="ot">&lt;-</span> <span class="fu">fa</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p>We can check the eigenvalues to see what proportion of the observed variance is
+accounted for by each additional factor we may extract.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="in-class-exercises-1.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust0<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  4.940  0.733  0.492  0.173  0.064  0.014 -0.066 -0.091 -0.195 -0.210
+## [11] -0.289 -0.307 -0.318</code></pre>
+<p>Since only one eigenvalue is greater than one, the so-called “Kaiser Criterion”
+would suggest extracting a single factor.</p>
+<ul>
+<li>The Kaiser Criterion is not a valid way to select the number of factors in EFA.
+So, we don’t want to rely on this information alone.</li>
+</ul>
+<p>We can still use the eigenvalues to help us with factor enumeration, though. One
+way to do so is by plotting the eigenvalues in a <em>scree plot</em>.</p>
+<ul>
+<li>We can easily create a scree plot by passing the eigenvalues to the <code>qplot()</code>
+function from the <code>ggplot2</code> package and add apply the <code>geom_path()</code> geometry:</li>
+</ul>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="in-class-exercises-1.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb141-2"><a href="in-class-exercises-1.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-3"><a href="in-class-exercises-1.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> efa_trust0<span class="sc">$</span>values) <span class="sc">+</span> </span>
+<span id="cb141-4"><a href="in-class-exercises-1.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb141-5"><a href="in-class-exercises-1.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb141-6"><a href="in-class-exercises-1.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Factors&quot;</span>)</span></code></pre></div>
 <p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
-<p>You can do the same for the attitude variables:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="in-class-exercises-1.html#cb141-1" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>], <span class="at">nfactors =</span> <span class="dv">5</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>, <span class="at">scores =</span> <span class="st">&quot;Bartlett&quot;</span>)</span>
-<span id="cb141-2"><a href="in-class-exercises-1.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_att<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##  [1]  8.016  1.702  1.051  0.697  0.500  0.389  0.218  0.162  0.091  0.046
-## [11]  0.043  0.028  0.022  0.008 -0.018 -0.028 -0.032 -0.056 -0.066 -0.083
-## [21] -0.089 -0.119 -0.132 -0.146 -0.266</code></pre>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="in-class-exercises-1.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> efa_att<span class="sc">$</span>values) <span class="sc">+</span> <span class="fu">geom_path</span>()</span></code></pre></div>
+<p>Although the scree plot provides useful information, we need to interpret that
+information subjectively, and the conclusions are sometimes ambiguous.</p>
+<ul>
+<li>In this case, the plot seems to suggest either one or three components,
+depending on where we consider the “elbow” to lie.</li>
+</ul>
+<p>As recommended in the lecture, we can also use “parallel analysis” (Horn, 1965)
+to provide more quantified information about the number of factors. We’ll use
+the <code>psych::fa.parallel()</code> function to implement parallel analysis.</p>
+<ul>
+<li>Parallel analysis relies on randomly simulated/permuted data, so we should set
+a seed to make sure our results are reproducible.</li>
+<li>We can set the <code>fa = "fa"</code> option to get only the results for EFA.</li>
+</ul>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="in-class-exercises-1.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the random number seed:</span></span>
+<span id="cb142-2"><a href="in-class-exercises-1.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb142-3"><a href="in-class-exercises-1.html#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-4"><a href="in-class-exercises-1.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
+<span id="cb142-5"><a href="in-class-exercises-1.html#cb142-5" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
 <p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
-<p>As recommended in the lecture, a better and more quantified way to establish the number of factors is “parallel analysis” (Horn, 1965). Here’s how to do it in R:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="in-class-exercises-1.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(df[, <span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>])</span></code></pre></div>
+<pre><code>## Parallel analysis suggests that the number of factors =  6  and the number of components =  NA</code></pre>
+<p>The results of the parallel analysis suggest 6 factors.</p>
+<hr />
+<p>If you’ve been paying close attention, you may have noticed that we need to
+compute the eigenvalues from the original data to run parallel analysis. Hence,
+we don’t actually need to run a separate EFA to estimate the eigenvalues.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="in-class-exercises-1.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the eigenvalues estimated during the parallel analysis:</span></span>
+<span id="cb144-2"><a href="in-class-exercises-1.html#cb144-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values</span></code></pre></div>
+<pre><code>##  [1]  4.93985031  0.73335474  0.49174655  0.17294854  0.06372444  0.01363969
+##  [7] -0.06605432 -0.09109183 -0.19535125 -0.20991379 -0.28855561 -0.30662420
+## [13] -0.31782296</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="in-class-exercises-1.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare to the version from the EFA:</span></span>
+<span id="cb146-2"><a href="in-class-exercises-1.html#cb146-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values <span class="sc">-</span> efa_trust0<span class="sc">$</span>values</span></code></pre></div>
+<pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="in-class-exercises-1.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recreate the scree plot from above:</span></span>
+<span id="cb148-2"><a href="in-class-exercises-1.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> pa_trust<span class="sc">$</span>fa.values) <span class="sc">+</span> </span>
+<span id="cb148-3"><a href="in-class-exercises-1.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span> </span>
+<span id="cb148-4"><a href="in-class-exercises-1.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb148-5"><a href="in-class-exercises-1.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Factors&quot;</span>)</span></code></pre></div>
 <p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<pre><code>## Parallel analysis suggests that the number of factors =  6  and the number of components =  3</code></pre>
-<p>Note that, in this case, parallel analysis recommends as many as 6 factors. However, in order to be able to compare our results with those from Kestilä, we might consider aligning ourselves with the literature and choosing the same number of factors for our analyses as components in the article.</p>
+<hr />
+<p>The different criteria disagree on how many factors we should extract, but we
+have narrowed the range.</p>
+<ul>
+<li>Based on the scree plot and parallel analysis, we should consider solutions
+for 3 to 6 factors.</li>
+<li>We need to examine the factor loadings to see which solution makes the most
+substantive sense.</li>
+</ul>
+</details>
+<hr />
 </div>
 <div id="section-39" class="section level3" number="2.5.5">
 <h3><span class="header-section-number">2.5.5</span> </h3>
+<p>Do the same analysis for the <em>attitudes toward immigration</em> items.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>This time, we’ll start by running the parallel analysis and get the eigenvalues
+from the object returned by <code>psych::fa.parallel()</code>.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="in-class-exercises-1.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the seed:</span></span>
+<span id="cb149-2"><a href="in-class-exercises-1.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb149-3"><a href="in-class-exercises-1.html#cb149-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-4"><a href="in-class-exercises-1.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run parallel analysis on the &#39;attitudes&#39; items:</span></span>
+<span id="cb149-5"><a href="in-class-exercises-1.html#cb149-5" aria-hidden="true" tabindex="-1"></a>pa_att <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(ess[<span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>])</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  7  and the number of components =  5</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="in-class-exercises-1.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the eigenvalues:</span></span>
+<span id="cb151-2"><a href="in-class-exercises-1.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pa_att<span class="sc">$</span>fa.values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  7.841  1.474  0.748  0.534  0.327  0.152  0.123  0.025 -0.033 -0.064
+## [11] -0.081 -0.098 -0.121 -0.137 -0.145 -0.179 -0.196 -0.204 -0.214 -0.222
+## [21] -0.246 -0.253 -0.331 -0.425 -0.432</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="in-class-exercises-1.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a scree plot:</span></span>
+<span id="cb153-2"><a href="in-class-exercises-1.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> pa_att<span class="sc">$</span>fa.values) <span class="sc">+</span> </span>
+<span id="cb153-3"><a href="in-class-exercises-1.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb153-4"><a href="in-class-exercises-1.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-5"><a href="in-class-exercises-1.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Factors&quot;</span>)</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-108-2.png" width="672" /></p>
+<p>For the <em>attitudes toward immigration</em> analysis, the results are even more
+ambiguous than they were for the <em>trust</em> items.</p>
+<ul>
+<li>The Kaiser Criterion suggests 2 factors</li>
+<li>The scree plot is hopelessly ambiguous
+<ul>
+<li>At least 3 factors?</li>
+<li>No more than 9 factors?</li>
+</ul></li>
+<li>Parallel analysis suggests 7 factors</li>
+</ul>
+<p>Based on the scree plot and parallel analysis, it seems reasonable to consider
+solutions for 3 to 7 factors.</p>
+<ul>
+<li>Again, we need to check the substantive interpretation to choose the most
+reasonable solution.</li>
+</ul>
+</details>
+<p>To perform EFA using the <code>fa()</code> function, we need to specify a few key options.</p>
+<ul>
+<li>The data (including only the variables you want to analyze)</li>
+<li>The number of factors that you want to extract</li>
+<li>The rotation method</li>
+<li>The estimation method</li>
+<li>The method of estimating factor scores</li>
+</ul>
+</div>
+<div id="section-40" class="section level3" number="2.5.6">
+<h3><span class="header-section-number">2.5.6</span> </h3>
 <p>Apart from the number of factors, you also want to look at the factor loadings. They can be found in the “pattern matrix”. The higher the factor loadings are, the more indicative an item is for the latent factor. If you find some items to have only very low loadings (indicating that the items do not provide much information about the factor), you may choose not to include them in your analysis. This means you have to rerun the analysis under question 3.</p>
 <details>
 <summary>
 Click for explanation
 </summary>
 <p>You can find the factor loadings by means of the ‘print’-function used in the take-home exercise, or you can search for the variable ‘loadings’, which is inside the results object, to end up with just the information you are searching for.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="in-class-exercises-1.html#cb146-1" aria-hidden="true" tabindex="-1"></a>efa_trust<span class="sc">$</span>loadings</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="in-class-exercises-1.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define an empty list to hold all of our fitted EFA objects:</span></span>
+<span id="cb154-2"><a href="in-class-exercises-1.html#cb154-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb154-3"><a href="in-class-exercises-1.html#cb154-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-4"><a href="in-class-exercises-1.html#cb154-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Loop through the interesting numbers of factors and estimate an EFA for each:</span></span>
+<span id="cb154-5"><a href="in-class-exercises-1.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb154-6"><a href="in-class-exercises-1.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  efa_trust[[i <span class="sc">-</span> <span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">fa</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], </span>
+<span id="cb154-7"><a href="in-class-exercises-1.html#cb154-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">nfactors =</span> i,          <span class="co"># Number of factors = Loop index</span></span>
+<span id="cb154-8"><a href="in-class-exercises-1.html#cb154-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,   <span class="co"># Oblique rotation</span></span>
+<span id="cb154-9"><a href="in-class-exercises-1.html#cb154-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>) <span class="co"># Extimate factor scores with WLS</span></span>
+<span id="cb154-10"><a href="in-class-exercises-1.html#cb154-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-11"><a href="in-class-exercises-1.html#cb154-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Do the same for the &#39;attitudes&#39; items:</span></span>
+<span id="cb154-12"><a href="in-class-exercises-1.html#cb154-12" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb154-13"><a href="in-class-exercises-1.html#cb154-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb154-14"><a href="in-class-exercises-1.html#cb154-14" aria-hidden="true" tabindex="-1"></a>  efa_att[[i <span class="sc">-</span> <span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">fa</span>(ess[<span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>], </span>
+<span id="cb154-15"><a href="in-class-exercises-1.html#cb154-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">nfactors =</span> i,          <span class="co"># Number of factors = Loop index</span></span>
+<span id="cb154-16"><a href="in-class-exercises-1.html#cb154-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,   <span class="co"># Oblique rotation</span></span>
+<span id="cb154-17"><a href="in-class-exercises-1.html#cb154-17" aria-hidden="true" tabindex="-1"></a>                         <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>) <span class="co"># Extimate factor scores with WLS</span></span>
+<span id="cb154-18"><a href="in-class-exercises-1.html#cb154-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-19"><a href="in-class-exercises-1.html#cb154-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(efa_trust, <span class="cf">function</span>(x) <span class="fu">print</span>(x<span class="sc">$</span>loadings, <span class="at">cut =</span> <span class="dv">0</span>))</span></code></pre></div>
 <pre><code>## 
 ## Loadings:
-##         ML1    ML2    ML3   
-## pltcare  0.784        -0.126
-## pltinvt  0.783        -0.131
-## trstprl  0.528  0.101  0.258
-## trstlgl                0.827
-## trstplc -0.157         0.800
-## trstplt  0.713         0.116
-## trstep   0.432         0.303
-## trstun   0.343         0.366
-## stfeco   0.128  0.725 -0.129
-## stfgov   0.270  0.640 -0.132
-## stfdem   0.201  0.479  0.129
-## stfedu  -0.166  0.665  0.104
-## stfhlth -0.137  0.632       
+##         MR3    MR1    MR2   
+## pltcare -0.103  0.815 -0.044
+## pltinvt -0.100  0.806 -0.062
+## trstprl  0.405  0.381  0.093
+## trstlgl  0.843 -0.103 -0.012
+## trstplc  0.776 -0.217  0.053
+## trstplt  0.279  0.571  0.076
+## trstep   0.503  0.243 -0.051
+## trstun   0.543  0.199 -0.064
+## stfeco  -0.121  0.156  0.703
+## stfgov  -0.051  0.246  0.594
+## stfdem   0.180  0.166  0.462
+## stfedu   0.071 -0.168  0.701
+## stfhlth  0.005 -0.134  0.664
 ## 
-##                  ML1   ML2   ML3
-## SS loadings    2.518 2.035 1.725
-## Proportion Var 0.194 0.157 0.133
-## Cumulative Var 0.194 0.350 0.483</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="in-class-exercises-1.html#cb148-1" aria-hidden="true" tabindex="-1"></a>efa_att<span class="sc">$</span>loadings</span></code></pre></div>
+##                  MR3   MR1   MR2
+## SS loadings    2.178 2.101 2.023
+## Proportion Var 0.168 0.162 0.156
+## Cumulative Var 0.168 0.329 0.485
+## 
+## Loadings:
+##         MR2    MR1    MR4    MR3   
+## pltcare -0.047 -0.106  0.873  0.011
+## pltinvt -0.064 -0.085  0.843  0.007
+## trstprl  0.118  0.471  0.194  0.106
+## trstlgl -0.030  0.056  0.067  0.785
+## trstplc  0.053  0.001 -0.029  0.715
+## trstplt  0.101  0.491  0.335 -0.002
+## trstep  -0.087  0.982 -0.171 -0.057
+## trstun  -0.061  0.670 -0.042  0.113
+## stfeco   0.726 -0.017  0.093 -0.091
+## stfgov   0.629  0.200  0.076 -0.157
+## stfdem   0.485  0.129  0.110  0.091
+## stfedu   0.712 -0.108 -0.106  0.108
+## stfhlth  0.672 -0.088 -0.101  0.042
+## 
+##                  MR2   MR1   MR4   MR3
+## SS loadings    2.161 1.974 1.706 1.210
+## Proportion Var 0.166 0.152 0.131 0.093
+## Cumulative Var 0.166 0.318 0.449 0.542
+## 
+## Loadings:
+##         MR1    MR5    MR4    MR3    MR2   
+## pltcare -0.054  0.872 -0.062 -0.035  0.019
+## pltinvt -0.085  0.871 -0.049 -0.041  0.023
+## trstprl  0.360  0.142  0.248  0.201 -0.104
+## trstlgl -0.083  0.006 -0.049  0.940 -0.020
+## trstplc -0.059 -0.069 -0.057  0.808  0.052
+## trstplt  0.294  0.316  0.308  0.053 -0.056
+## trstep  -0.140 -0.105  1.123 -0.157  0.080
+## trstun   0.011  0.026  0.515  0.163 -0.008
+## stfeco   0.701  0.000 -0.120 -0.052  0.181
+## stfgov   0.992 -0.109 -0.029 -0.129 -0.031
+## stfdem   0.526  0.031 -0.010  0.158  0.089
+## stfedu  -0.035  0.033  0.043  0.050  0.746
+## stfhlth  0.077  0.002  0.045 -0.011  0.578
+## 
+##                  MR1   MR5   MR4   MR3   MR2
+## SS loadings    2.016 1.668 1.714 1.681 0.956
+## Proportion Var 0.155 0.128 0.132 0.129 0.074
+## Cumulative Var 0.155 0.283 0.415 0.545 0.618
+## 
+## Loadings:
+##         MR6    MR3    MR5    MR4    MR1    MR2   
+## pltcare -0.034  0.840 -0.031 -0.042 -0.009  0.002
+## pltinvt -0.045  0.899 -0.018 -0.030 -0.086 -0.007
+## trstprl -0.032 -0.065 -0.029 -0.054  1.068 -0.010
+## trstlgl -0.117  0.005  0.742 -0.027  0.160  0.028
+## trstplc  0.006 -0.048  0.955 -0.064 -0.141 -0.014
+## trstplt  0.156  0.296  0.026  0.172  0.303 -0.014
+## trstep  -0.066 -0.081 -0.129  1.175 -0.070  0.061
+## trstun   0.080  0.072  0.227  0.390  0.012 -0.053
+## stfeco   0.588  0.030 -0.037 -0.071  0.000  0.216
+## stfgov   1.041 -0.079 -0.074  0.007 -0.057 -0.101
+## stfdem   0.423  0.051  0.151 -0.010  0.079  0.119
+## stfedu   0.031  0.003  0.078  0.024 -0.084  0.688
+## stfhlth -0.076 -0.014 -0.061  0.025  0.055  0.743
+## 
+##                  MR6   MR3   MR5   MR4   MR1   MR2
+## SS loadings    1.667 1.629 1.573 1.579 1.310 1.103
+## Proportion Var 0.128 0.125 0.121 0.121 0.101 0.085
+## Cumulative Var 0.128 0.254 0.375 0.496 0.597 0.682</code></pre>
+<pre><code>## [[1]]
+## 
+## Loadings:
+##         MR3    MR1    MR2   
+## pltcare -0.103  0.815       
+## pltinvt -0.100  0.806       
+## trstprl  0.405  0.381       
+## trstlgl  0.843 -0.103       
+## trstplc  0.776 -0.217       
+## trstplt  0.279  0.571       
+## trstep   0.503  0.243       
+## trstun   0.543  0.199       
+## stfeco  -0.121  0.156  0.703
+## stfgov          0.246  0.594
+## stfdem   0.180  0.166  0.462
+## stfedu         -0.168  0.701
+## stfhlth        -0.134  0.664
+## 
+##                  MR3   MR1   MR2
+## SS loadings    2.178 2.101 2.023
+## Proportion Var 0.168 0.162 0.156
+## Cumulative Var 0.168 0.329 0.485
+## 
+## [[2]]
+## 
+## Loadings:
+##         MR2    MR1    MR4    MR3   
+## pltcare        -0.106  0.873       
+## pltinvt                0.843       
+## trstprl  0.118  0.471  0.194  0.106
+## trstlgl                       0.785
+## trstplc                       0.715
+## trstplt  0.101  0.491  0.335       
+## trstep          0.982 -0.171       
+## trstun          0.670         0.113
+## stfeco   0.726                     
+## stfgov   0.629  0.200        -0.157
+## stfdem   0.485  0.129  0.110       
+## stfedu   0.712 -0.108 -0.106  0.108
+## stfhlth  0.672        -0.101       
+## 
+##                  MR2   MR1   MR4   MR3
+## SS loadings    2.161 1.974 1.706 1.210
+## Proportion Var 0.166 0.152 0.131 0.093
+## Cumulative Var 0.166 0.318 0.449 0.542
+## 
+## [[3]]
+## 
+## Loadings:
+##         MR1    MR5    MR4    MR3    MR2   
+## pltcare         0.872                     
+## pltinvt         0.871                     
+## trstprl  0.360  0.142  0.248  0.201 -0.104
+## trstlgl                       0.940       
+## trstplc                       0.808       
+## trstplt  0.294  0.316  0.308              
+## trstep  -0.140 -0.105  1.123 -0.157       
+## trstun                 0.515  0.163       
+## stfeco   0.701        -0.120         0.181
+## stfgov   0.992 -0.109        -0.129       
+## stfdem   0.526                0.158       
+## stfedu                               0.746
+## stfhlth                              0.578
+## 
+##                  MR1   MR5   MR4   MR3   MR2
+## SS loadings    2.016 1.668 1.714 1.681 0.956
+## Proportion Var 0.155 0.128 0.132 0.129 0.074
+## Cumulative Var 0.155 0.283 0.415 0.545 0.618
+## 
+## [[4]]
+## 
+## Loadings:
+##         MR6    MR3    MR5    MR4    MR1    MR2   
+## pltcare         0.840                            
+## pltinvt         0.899                            
+## trstprl                              1.068       
+## trstlgl -0.117         0.742         0.160       
+## trstplc                0.955        -0.141       
+## trstplt  0.156  0.296         0.172  0.303       
+## trstep                -0.129  1.175              
+## trstun                 0.227  0.390              
+## stfeco   0.588                              0.216
+## stfgov   1.041                             -0.101
+## stfdem   0.423         0.151                0.119
+## stfedu                                      0.688
+## stfhlth                                     0.743
+## 
+##                  MR6   MR3   MR5   MR4   MR1   MR2
+## SS loadings    1.667 1.629 1.573 1.579 1.310 1.103
+## Proportion Var 0.128 0.125 0.121 0.121 0.101 0.085
+## Cumulative Var 0.128 0.254 0.375 0.496 0.597 0.682</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="in-class-exercises-1.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(efa_att, <span class="cf">function</span>(x) <span class="fu">print</span>(x<span class="sc">$</span>loadings, <span class="at">cut =</span> <span class="dv">0</span>))</span></code></pre></div>
 <pre><code>## 
 ## Loadings:
-##         ML3    ML1    ML5    ML2    ML4   
-## imsmetn         0.479         0.403       
-## imdfetn         0.321         0.563       
-## eimrcnt         1.110        -0.187       
-## eimpcnt         0.345         0.665       
-## imrcntr         0.798                     
-## impcntr         0.259         0.727       
-## qfimchr  0.126                       0.867
-## qfimwht  0.114                       0.749
-## imwgdwn  0.511         0.182              
-## imhecop  0.560         0.153              
-## imtcjob  0.712                       0.138
-## imbleco  0.702                       0.162
-## imbgeco  0.740                            
-## imueclt  0.470        -0.166        -0.166
-## imwbcnt  0.639        -0.169              
-## imwbcrm  0.515        -0.177         0.101
-## imrsprc                0.534  0.159       
-## pplstrd  0.245                      -0.365
-## vrtrlg  -0.115         0.186         0.270
-## shrrfg   0.302        -0.280              
-## rfgawrk                0.474              
-## gvrfgap                0.752              
-## rfgfrpc  0.219        -0.255              
-## rfggvfn                0.489              
-## rfgbfml                0.632              
+##         MR1    MR2    MR3   
+## imsmetn -0.044  0.801 -0.029
+## imdfetn -0.098  0.756  0.111
+## eimrcnt  0.086  0.837 -0.027
+## eimpcnt -0.078  0.813  0.024
+## imrcntr  0.070  0.854  0.002
+## impcntr -0.099  0.771  0.066
+## qfimchr  0.233 -0.007  0.852
+## qfimwht  0.135  0.072  0.712
+## imwgdwn  0.308 -0.016 -0.163
+## imhecop  0.380 -0.020 -0.143
+## imtcjob  0.615  0.028  0.048
+## imbleco  0.691  0.069  0.088
+## imbgeco  0.681  0.026 -0.023
+## imueclt  0.558  0.035 -0.209
+## imwbcnt  0.731  0.036 -0.059
+## imwbcrm  0.634  0.076  0.058
+## imrsprc -0.487  0.089 -0.119
+## pplstrd  0.259  0.014 -0.413
+## vrtrlg  -0.261 -0.030  0.274
+## shrrfg   0.529 -0.031 -0.105
+## rfgawrk -0.368  0.008 -0.039
+## gvrfgap -0.615  0.082 -0.151
+## rfgfrpc  0.449 -0.056 -0.051
+## rfggvfn -0.478  0.061 -0.072
+## rfgbfml -0.541  0.034 -0.068
 ## 
-##                  ML3   ML1   ML5   ML2   ML4
-## SS loadings    3.271 2.397 2.061 1.549 1.648
-## Proportion Var 0.131 0.096 0.082 0.062 0.066
-## Cumulative Var 0.131 0.227 0.309 0.371 0.437</code></pre>
+##                  MR1   MR2   MR3
+## SS loadings    4.811 3.943 1.667
+## Proportion Var 0.192 0.158 0.067
+## Cumulative Var 0.192 0.350 0.417
+## 
+## Loadings:
+##         MR2    MR1    MR4    MR3   
+## imsmetn  0.788 -0.016  0.063 -0.039
+## imdfetn  0.734  0.009  0.144  0.115
+## eimrcnt  0.854 -0.084 -0.146 -0.076
+## eimpcnt  0.788  0.048  0.161  0.034
+## imrcntr  0.861 -0.057 -0.100 -0.037
+## impcntr  0.744  0.057  0.191  0.081
+## qfimchr -0.029  0.098 -0.141  0.859
+## qfimwht  0.045  0.094 -0.043  0.735
+## imwgdwn -0.052  0.601  0.237 -0.070
+## imhecop -0.058  0.656  0.210 -0.044
+## imtcjob -0.007  0.671 -0.026  0.141
+## imbleco  0.039  0.607 -0.157  0.156
+## imbgeco -0.004  0.635 -0.123  0.051
+## imueclt  0.029  0.368 -0.241 -0.187
+## imwbcnt  0.016  0.536 -0.262 -0.016
+## imwbcrm  0.059  0.430 -0.257  0.087
+## imrsprc  0.048  0.072  0.605 -0.058
+## pplstrd  0.015  0.219 -0.071 -0.396
+## vrtrlg  -0.047 -0.063  0.220  0.295
+## shrrfg  -0.031  0.300 -0.277 -0.095
+## rfgawrk -0.024  0.049  0.447  0.012
+## gvrfgap  0.029  0.078  0.765 -0.086
+## rfgfrpc -0.052  0.228 -0.263 -0.049
+## rfggvfn  0.033 -0.036  0.483 -0.030
+## rfgbfml -0.010  0.042  0.635 -0.005
+## 
+##                  MR2   MR1   MR4   MR3
+## SS loadings    3.831 2.867 2.460 1.671
+## Proportion Var 0.153 0.115 0.098 0.067
+## Cumulative Var 0.153 0.268 0.366 0.433
+## 
+## Loadings:
+##         MR2    MR1    MR5    MR3    MR4   
+## imsmetn  0.794  0.015  0.065 -0.037 -0.012
+## imdfetn  0.733  0.050  0.156  0.117 -0.022
+## eimrcnt  0.905 -0.139 -0.229 -0.072  0.053
+## eimpcnt  0.781  0.110  0.197  0.033 -0.030
+## imrcntr  0.908 -0.117 -0.179 -0.032  0.059
+## impcntr  0.734  0.123  0.231  0.080 -0.035
+## qfimchr -0.025  0.114 -0.156  0.864 -0.018
+## qfimwht  0.033  0.165 -0.017  0.735 -0.064
+## imwgdwn  0.028 -0.006  0.053 -0.049  0.717
+## imhecop  0.015  0.075  0.040 -0.021  0.695
+## imtcjob -0.022  0.532  0.012  0.129  0.207
+## imbleco -0.003  0.691 -0.002  0.142  0.029
+## imbgeco -0.059  0.793  0.093  0.034 -0.008
+## imueclt -0.011  0.560 -0.050 -0.211 -0.080
+## imwbcnt -0.029  0.711 -0.059 -0.036 -0.041
+## imwbcrm  0.026  0.557 -0.110  0.074 -0.027
+## imrsprc  0.022  0.019  0.610 -0.064  0.034
+## pplstrd  0.002  0.224 -0.006 -0.406  0.046
+## vrtrlg  -0.025 -0.222  0.102  0.308  0.103
+## shrrfg  -0.023  0.228 -0.266 -0.098  0.121
+## rfgawrk -0.045  0.020  0.450  0.007  0.006
+## gvrfgap -0.005  0.016  0.778 -0.096  0.038
+## rfgfrpc -0.025  0.081 -0.317 -0.046  0.165
+## rfggvfn  0.008 -0.020  0.503 -0.036 -0.038
+## rfgbfml -0.016 -0.110  0.562 -0.006  0.097
+## 
+##                  MR2   MR1   MR5   MR3   MR4
+## SS loadings    3.974 2.799 2.193 1.693 1.131
+## Proportion Var 0.159 0.112 0.088 0.068 0.045
+## Cumulative Var 0.159 0.271 0.359 0.426 0.472
+## 
+## Loadings:
+##         MR2    MR1    MR6    MR3    MR5    MR4   
+## imsmetn  0.696 -0.014  0.011 -0.037  0.175 -0.006
+## imdfetn  0.834 -0.042 -0.012  0.094  0.004  0.013
+## eimrcnt  0.236  0.016  0.024 -0.047  0.868  0.001
+## eimpcnt  0.943  0.003 -0.010 -0.001 -0.031  0.013
+## imrcntr  0.447 -0.005 -0.002  0.004  0.526  0.014
+## impcntr  0.956  0.012  0.003  0.044 -0.088  0.013
+## qfimchr -0.017  0.140 -0.120  0.858 -0.003 -0.022
+## qfimwht  0.081  0.174 -0.015  0.723 -0.028 -0.062
+## imwgdwn  0.026 -0.031  0.020 -0.052 -0.002  0.723
+## imhecop -0.002  0.073  0.025 -0.022  0.008  0.678
+## imtcjob  0.001  0.551  0.021  0.127 -0.014  0.202
+## imbleco -0.023  0.753  0.057  0.150  0.033  0.013
+## imbgeco  0.006  0.813  0.095  0.032 -0.046 -0.008
+## imueclt  0.018  0.567 -0.052 -0.210 -0.020 -0.076
+## imwbcnt -0.015  0.744 -0.031 -0.033 -0.004 -0.046
+## imwbcrm -0.001  0.601 -0.062  0.079  0.036 -0.038
+## imrsprc  0.158 -0.025  0.514 -0.074 -0.103  0.047
+## pplstrd  0.006  0.222 -0.015 -0.402 -0.005  0.047
+## vrtrlg  -0.018 -0.224  0.100  0.305 -0.008  0.101
+## shrrfg  -0.002  0.217 -0.281 -0.102 -0.029  0.125
+## rfgawrk -0.073  0.066  0.499  0.016  0.032 -0.009
+## gvrfgap  0.022  0.042  0.786 -0.091 -0.004  0.031
+## rfgfrpc -0.083  0.100 -0.279 -0.042  0.038  0.156
+## rfggvfn -0.006  0.012  0.530 -0.029  0.027 -0.050
+## rfgbfml -0.056 -0.067  0.610  0.005  0.045  0.082
+## 
+##                  MR2   MR1   MR6   MR3   MR5   MR4
+## SS loadings    3.289 2.992 1.988 1.649 1.091 1.102
+## Proportion Var 0.132 0.120 0.080 0.066 0.044 0.044
+## Cumulative Var 0.132 0.251 0.331 0.397 0.440 0.484
+## 
+## Loadings:
+##         MR2    MR1    MR6    MR7    MR5    MR4    MR3   
+## imsmetn  0.715 -0.028  0.015  0.060  0.170 -0.005 -0.009
+## imdfetn  0.854 -0.031 -0.017 -0.029  0.003  0.011  0.070
+## eimrcnt  0.255  0.029  0.018 -0.040  0.852 -0.003 -0.064
+## eimpcnt  0.965 -0.011 -0.009  0.062 -0.032  0.014  0.021
+## imrcntr  0.467  0.006 -0.006 -0.033  0.516  0.011 -0.015
+## impcntr  0.978  0.009 -0.003  0.023 -0.087  0.012  0.042
+## qfimchr  0.005  0.038 -0.060 -0.231 -0.012 -0.014  0.625
+## qfimwht  0.084 -0.010  0.107  0.019 -0.050 -0.039  0.718
+## imwgdwn  0.024  0.001  0.025 -0.058 -0.003  0.735 -0.052
+## imhecop  0.000  0.033  0.054  0.033  0.004  0.715  0.011
+## imtcjob -0.002  0.573 -0.040 -0.163 -0.005  0.198  0.001
+## imbleco -0.029  0.709  0.007 -0.067  0.041  0.003  0.045
+## imbgeco  0.001  0.852  0.021 -0.108 -0.032 -0.039 -0.087
+## imueclt  0.014  0.435 -0.049  0.288 -0.020 -0.075 -0.110
+## imwbcnt -0.018  0.576 -0.030  0.235 -0.004 -0.039  0.013
+## imwbcrm  0.000  0.423 -0.029  0.225  0.032 -0.028  0.122
+## imrsprc  0.160  0.003  0.480 -0.031 -0.100  0.047 -0.058
+## pplstrd  0.023 -0.023  0.100  0.648 -0.022  0.072 -0.109
+## vrtrlg  -0.026 -0.022  0.013 -0.527  0.005  0.094  0.069
+## shrrfg   0.003  0.057 -0.212  0.324 -0.038  0.149  0.032
+## rfgawrk -0.073  0.002  0.517  0.079  0.027  0.000  0.067
+## gvrfgap  0.024  0.053  0.744 -0.021 -0.005  0.030 -0.065
+## rfgfrpc -0.082 -0.029 -0.213  0.237  0.030  0.182  0.059
+## rfggvfn -0.006 -0.033  0.542  0.077  0.023 -0.045  0.030
+## rfgbfml -0.055 -0.066  0.599 -0.036  0.042  0.089  0.021
+## 
+##                  MR2   MR1   MR6   MR7   MR5   MR4   MR3
+## SS loadings    3.462 2.275 1.830 1.175 1.052 1.184 0.991
+## Proportion Var 0.138 0.091 0.073 0.047 0.042 0.047 0.040
+## Cumulative Var 0.138 0.229 0.303 0.350 0.392 0.439 0.479</code></pre>
+<pre><code>## [[1]]
+## 
+## Loadings:
+##         MR1    MR2    MR3   
+## imsmetn         0.801       
+## imdfetn         0.756  0.111
+## eimrcnt         0.837       
+## eimpcnt         0.813       
+## imrcntr         0.854       
+## impcntr         0.771       
+## qfimchr  0.233         0.852
+## qfimwht  0.135         0.712
+## imwgdwn  0.308        -0.163
+## imhecop  0.380        -0.143
+## imtcjob  0.615              
+## imbleco  0.691              
+## imbgeco  0.681              
+## imueclt  0.558        -0.209
+## imwbcnt  0.731              
+## imwbcrm  0.634              
+## imrsprc -0.487        -0.119
+## pplstrd  0.259        -0.413
+## vrtrlg  -0.261         0.274
+## shrrfg   0.529        -0.105
+## rfgawrk -0.368              
+## gvrfgap -0.615        -0.151
+## rfgfrpc  0.449              
+## rfggvfn -0.478              
+## rfgbfml -0.541              
+## 
+##                  MR1   MR2   MR3
+## SS loadings    4.811 3.943 1.667
+## Proportion Var 0.192 0.158 0.067
+## Cumulative Var 0.192 0.350 0.417
+## 
+## [[2]]
+## 
+## Loadings:
+##         MR2    MR1    MR4    MR3   
+## imsmetn  0.788                     
+## imdfetn  0.734         0.144  0.115
+## eimrcnt  0.854        -0.146       
+## eimpcnt  0.788         0.161       
+## imrcntr  0.861                     
+## impcntr  0.744         0.191       
+## qfimchr               -0.141  0.859
+## qfimwht                       0.735
+## imwgdwn         0.601  0.237       
+## imhecop         0.656  0.210       
+## imtcjob         0.671         0.141
+## imbleco         0.607 -0.157  0.156
+## imbgeco         0.635 -0.123       
+## imueclt         0.368 -0.241 -0.187
+## imwbcnt         0.536 -0.262       
+## imwbcrm         0.430 -0.257       
+## imrsprc                0.605       
+## pplstrd         0.219        -0.396
+## vrtrlg                 0.220  0.295
+## shrrfg          0.300 -0.277       
+## rfgawrk                0.447       
+## gvrfgap                0.765       
+## rfgfrpc         0.228 -0.263       
+## rfggvfn                0.483       
+## rfgbfml                0.635       
+## 
+##                  MR2   MR1   MR4   MR3
+## SS loadings    3.831 2.867 2.460 1.671
+## Proportion Var 0.153 0.115 0.098 0.067
+## Cumulative Var 0.153 0.268 0.366 0.433
+## 
+## [[3]]
+## 
+## Loadings:
+##         MR2    MR1    MR5    MR3    MR4   
+## imsmetn  0.794                            
+## imdfetn  0.733         0.156  0.117       
+## eimrcnt  0.905 -0.139 -0.229              
+## eimpcnt  0.781  0.110  0.197              
+## imrcntr  0.908 -0.117 -0.179              
+## impcntr  0.734  0.123  0.231              
+## qfimchr         0.114 -0.156  0.864       
+## qfimwht         0.165         0.735       
+## imwgdwn                              0.717
+## imhecop                              0.695
+## imtcjob         0.532         0.129  0.207
+## imbleco         0.691         0.142       
+## imbgeco         0.793                     
+## imueclt         0.560        -0.211       
+## imwbcnt         0.711                     
+## imwbcrm         0.557 -0.110              
+## imrsprc                0.610              
+## pplstrd         0.224        -0.406       
+## vrtrlg         -0.222  0.102  0.308  0.103
+## shrrfg          0.228 -0.266         0.121
+## rfgawrk                0.450              
+## gvrfgap                0.778              
+## rfgfrpc               -0.317         0.165
+## rfggvfn                0.503              
+## rfgbfml        -0.110  0.562              
+## 
+##                  MR2   MR1   MR5   MR3   MR4
+## SS loadings    3.974 2.799 2.193 1.693 1.131
+## Proportion Var 0.159 0.112 0.088 0.068 0.045
+## Cumulative Var 0.159 0.271 0.359 0.426 0.472
+## 
+## [[4]]
+## 
+## Loadings:
+##         MR2    MR1    MR6    MR3    MR5    MR4   
+## imsmetn  0.696                       0.175       
+## imdfetn  0.834                                   
+## eimrcnt  0.236                       0.868       
+## eimpcnt  0.943                                   
+## imrcntr  0.447                       0.526       
+## impcntr  0.956                                   
+## qfimchr         0.140 -0.120  0.858              
+## qfimwht         0.174         0.723              
+## imwgdwn                                     0.723
+## imhecop                                     0.678
+## imtcjob         0.551         0.127         0.202
+## imbleco         0.753         0.150              
+## imbgeco         0.813                            
+## imueclt         0.567        -0.210              
+## imwbcnt         0.744                            
+## imwbcrm         0.601                            
+## imrsprc  0.158         0.514        -0.103       
+## pplstrd         0.222        -0.402              
+## vrtrlg         -0.224         0.305         0.101
+## shrrfg          0.217 -0.281 -0.102         0.125
+## rfgawrk                0.499                     
+## gvrfgap                0.786                     
+## rfgfrpc         0.100 -0.279                0.156
+## rfggvfn                0.530                     
+## rfgbfml                0.610                     
+## 
+##                  MR2   MR1   MR6   MR3   MR5   MR4
+## SS loadings    3.289 2.992 1.988 1.649 1.091 1.102
+## Proportion Var 0.132 0.120 0.080 0.066 0.044 0.044
+## Cumulative Var 0.132 0.251 0.331 0.397 0.440 0.484
+## 
+## [[5]]
+## 
+## Loadings:
+##         MR2    MR1    MR6    MR7    MR5    MR4    MR3   
+## imsmetn  0.715                       0.170              
+## imdfetn  0.854                                          
+## eimrcnt  0.255                       0.852              
+## eimpcnt  0.965                                          
+## imrcntr  0.467                       0.516              
+## impcntr  0.978                                          
+## qfimchr                      -0.231                0.625
+## qfimwht                0.107                       0.718
+## imwgdwn                                     0.735       
+## imhecop                                     0.715       
+## imtcjob         0.573        -0.163         0.198       
+## imbleco         0.709                                   
+## imbgeco         0.852        -0.108                     
+## imueclt         0.435         0.288               -0.110
+## imwbcnt         0.576         0.235                     
+## imwbcrm         0.423         0.225                0.122
+## imrsprc  0.160         0.480        -0.100              
+## pplstrd                       0.648               -0.109
+## vrtrlg                       -0.527                     
+## shrrfg                -0.212  0.324         0.149       
+## rfgawrk                0.517                            
+## gvrfgap                0.744                            
+## rfgfrpc               -0.213  0.237         0.182       
+## rfggvfn                0.542                            
+## rfgbfml                0.599                            
+## 
+##                  MR2   MR1   MR6   MR7   MR5   MR4   MR3
+## SS loadings    3.462 2.275 1.830 1.175 1.052 1.184 0.991
+## Proportion Var 0.138 0.091 0.073 0.047 0.042 0.047 0.040
+## Cumulative Var 0.138 0.229 0.303 0.350 0.392 0.439 0.479</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="in-class-exercises-1.html#cb160-1" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> efa_trust[[<span class="dv">1</span>]]</span>
+<span id="cb160-2"><a href="in-class-exercises-1.html#cb160-2" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> efa_att[[<span class="dv">3</span>]]</span></code></pre></div>
 <p>The matrix of loadings indicates how strongly each factor (columns) is associated with the items (rows).
 Below the matrix of loadings, we see a second matrix, which indicates (amongst other things) the
 <em>proportion var</em>: How much variance in the items is explained by each of the factors.
 Each subsequent factor explains slightly less variance than the ones before it (this is a property of exploratory factor analysis).
 The <em>cumulative var</em> indicates how much variance the factors explain, in total. If you estimated as many factors as items, then the last value for <em>cumulative var</em> would be <code>1.00</code> (100%).</p>
 <p>The factor loading matrix is slightly hard to read, due to the jumble of factor loadings. To create more clarity, it is convenient to suppress the factor loadings that are lower than .30.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="in-class-exercises-1.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_trust<span class="sc">$</span>loadings, <span class="at">cut =</span> .<span class="dv">30</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="in-class-exercises-1.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_trust<span class="sc">$</span>loadings, <span class="at">cut =</span> .<span class="dv">30</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 ## Loadings:
-##         ML1   ML2   ML3  
-## pltcare  0.78            
-## pltinvt  0.78            
-## trstprl  0.53            
-## trstlgl              0.83
-## trstplc              0.80
-## trstplt  0.71            
-## trstep   0.43        0.30
-## trstun   0.34        0.37
-## stfeco         0.73      
-## stfgov         0.64      
-## stfdem         0.48      
-## stfedu         0.67      
-## stfhlth        0.63      
+##         MR3   MR1   MR2  
+## pltcare        0.82      
+## pltinvt        0.81      
+## trstprl  0.41  0.38      
+## trstlgl  0.84            
+## trstplc  0.78            
+## trstplt        0.57      
+## trstep   0.50            
+## trstun   0.54            
+## stfeco               0.70
+## stfgov               0.59
+## stfdem               0.46
+## stfedu               0.70
+## stfhlth              0.66
 ## 
-##                 ML1  ML2  ML3
-## SS loadings    2.52 2.03 1.72
-## Proportion Var 0.19 0.16 0.13
-## Cumulative Var 0.19 0.35 0.48</code></pre>
+##                 MR3  MR1  MR2
+## SS loadings    2.18 2.10 2.02
+## Proportion Var 0.17 0.16 0.16
+## Cumulative Var 0.17 0.33 0.48</code></pre>
 <p>Furthermore, if you want to perform a factor analysis without, say, <code>stfedu</code>, while you want all other variables included in your factor analysis, you can simply leave the column number of <code>stfedu</code>, which is 13, out of the command:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="in-class-exercises-1.html#cb152-1" aria-hidden="true" tabindex="-1"></a>efa_trust_without_stfedu <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="fu">c</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">14</span><span class="sc">:</span><span class="dv">19</span>)], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="in-class-exercises-1.html#cb163-1" aria-hidden="true" tabindex="-1"></a>efa_trust_without_stfedu <span class="ot">&lt;-</span> <span class="fu">fa</span>(df[, <span class="fu">c</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">14</span><span class="sc">:</span><span class="dv">19</span>)], <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;promax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span></code></pre></div>
 </div>
-<div id="section-40" class="section level3" number="2.5.6">
-<h3><span class="header-section-number">2.5.6</span> </h3>
+<div id="section-41" class="section level3" number="2.5.7">
+<h3><span class="header-section-number">2.5.7</span> </h3>
 <p>Give the factor scores an appropriate name. You can do this by inspecting the items that load on one factor. What do these items have in common substantively? The goal of a factor analysis usually is to create interpretable factors. If you have trouble interpreting the factors, you can choose to tweak the analysis by changing the options, or including/excluding more items.</p>
 <p>Furthermore, after you named the factor scores accordingly, extract them from the results object and add them to the data.frame.</p>
 <p><em>Hint: If you do not know how to do this, have a look at question 1.h from the take-home exercise of week 2.</em></p>
 <p><strong>Please note that the <code>colnames</code> will be specified from left to right, and not, for example, from ML1 to ML5.</strong></p>
 </div>
-<div id="section-41" class="section level3" number="2.5.7">
-<h3><span class="header-section-number">2.5.7</span> </h3>
+<div id="section-42" class="section level3" number="2.5.8">
+<h3><span class="header-section-number">2.5.8</span> </h3>
 <p>The next step is to assert whether the items that together form one factor, also form a reliable scale. Run separate reliability analyses by means of the function <code>alpha</code> for the items that together form one factor, and evaluate Cronbach’s alpha to see whether the scales are internally consistent. The “Reliability if an item is dropped (alpha.drop)” information may be handy to inspect what would happen if you would delete one item; you can find it inside the reliability analysis object. If Cronbach’s alpha is not ok, deselect one survey item and run the analyses under question 4 and question 5 again.</p>
 <p><em>Hint: Cronbach’s alpha &gt; .7 are deemed to be ok, &gt; .8 is good.</em></p>
 <p>If Cronbach’s alpha is not ok, deselect one survey item and run the analyses under question 4 and question 5 again.</p>
@@ -516,12 +1283,11 @@ Click for explanation
 </summary>
 <p>If you want to assess the reliability of the variables <code>pltcare</code>, <code>pltinvt</code>, <code>trstprl</code>, <code>trstplt</code>, and <code>trstep</code> you can run a reliability analysis as follows.</p>
 <p><em>Hint: name the new objects substantively, instead of numbering them.</em></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="in-class-exercises-1.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb153-2"><a href="in-class-exercises-1.html#cb153-2" aria-hidden="true" tabindex="-1"></a>reli_1 <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(df_with_scores[, <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">13</span>)])</span>
-<span id="cb153-3"><a href="in-class-exercises-1.html#cb153-3" aria-hidden="true" tabindex="-1"></a>reli_1</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="in-class-exercises-1.html#cb164-1" aria-hidden="true" tabindex="-1"></a>reli_1 <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(ess_with_scores[, <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">13</span>)])</span>
+<span id="cb164-2"><a href="in-class-exercises-1.html#cb164-2" aria-hidden="true" tabindex="-1"></a>reli_1</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
-## Call: psych::alpha(x = df_with_scores[, c(7, 8, 9, 12, 13)])
+## Call: psych::alpha(x = ess_with_scores[, c(7, 8, 9, 12, 13)])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
 ##        0.8      0.83    0.82      0.49 4.8 0.0019  4.4 1.4     0.52
@@ -548,8 +1314,8 @@ Click for explanation
 ## trstep  16390  0.77  0.70  0.59   0.57  5.6 2.3</code></pre>
 <p>Sometimes, the table “Reliability if an item is dropped” will indicate that Cronbach’s alpha increases when you drop a variable out of the analysis. Note, however, that doing so is an exploratory approach to analysis, and it may make your work incomparable to other publications using the same scale.</p>
 </div>
-<div id="section-42" class="section level3" number="2.5.8">
-<h3><span class="header-section-number">2.5.8</span> </h3>
+<div id="section-43" class="section level3" number="2.5.9">
+<h3><span class="header-section-number">2.5.9</span> </h3>
 <p>Now you can analyze the differences between the factor scores for the PCA analysis (take-home exercise 2) and the EFA by plotting them in a series of scatterplots (bivariate) using <code>ggplot2</code>. The PCA factor scores are already stored in the dataset <code>ESSround1-b.csv</code> in columns 45 through 52 (<code>df[, 45:52]</code>).</p>
 <p>Plot the scores for one of your new factors on the x axis, and try to match it with a corresponding PCA component in the dataset. Note that if you went with a different number of factors than Kestilä’s components (5 for ‘trust in politics’ and 3 for ‘attitudes towards immigration’), you may find little correlation between any factors.</p>
 <details>
@@ -557,13 +1323,13 @@ Click for explanation
 Click for explanation
 </summary>
 <p><em>Make sure to adjust the arguments <code>x = EFA_trust1</code> and <code>y = PCA_Trust1</code> to align with <em>your own</em> EFA factor column name and a PCA component column name <em>from the data</em> respectively</em></p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="in-class-exercises-1.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb155-2"><a href="in-class-exercises-1.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_with_scores) <span class="sc">+</span></span>
-<span id="cb155-3"><a href="in-class-exercises-1.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> EFA_Trust1, <span class="at">y =</span> PCA_Trust1))</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="in-class-exercises-1.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb166-2"><a href="in-class-exercises-1.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ess_with_scores) <span class="sc">+</span></span>
+<span id="cb166-3"><a href="in-class-exercises-1.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> EFA_Trust1, <span class="at">y =</span> PCA_Trust1))</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 </div>
-<div id="section-43" class="section level3" number="2.5.9">
-<h3><span class="header-section-number">2.5.9</span> </h3>
+<div id="section-44" class="section level3" number="2.5.10">
+<h3><span class="header-section-number">2.5.10</span> </h3>
 <p>Examine the correlations between the PCA and EFA scales for the ‘trust in politics’ scores, and for the ‘immigration’ scores. What is your conclusion: is there a difference between them?</p>
 <details>
 <summary>
@@ -571,12 +1337,11 @@ Click for explanation
 </summary>
 <p><em>Hint: Name the new objects substantively once again.</em></p>
 <p>Example for trust in politics:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="in-class-exercises-1.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb156-2"><a href="in-class-exercises-1.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corr.test</span>(df_with_scores<span class="sc">$</span>EFA_Trust1, df_with_scores<span class="sc">$</span>PCA_Trust1, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
-<pre><code>## Call:corr.test(x = df_with_scores$trustinstEFA, y = df_with_scores$trustinst, 
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="in-class-exercises-1.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corr.test</span>(ess_with_scores<span class="sc">$</span>EFA_Trust1, ess_with_scores<span class="sc">$</span>PCA_Trust1, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = ess_with_scores$trustinstEFA, y = ess_with_scores$trustinst, 
 ##     use = &quot;complete.obs&quot;)
 ## Correlation matrix 
-## [1] 0.94
+## [1] 0.24
 ## Sample Size 
 ## [1] 14778
 ## These are the unadjusted probability values.
@@ -585,44 +1350,44 @@ Click for explanation
 ## 
 ##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
 </div>
-<div id="section-44" class="section level3" number="2.5.10">
-<h3><span class="header-section-number">2.5.10</span> </h3>
+<div id="section-45" class="section level3" number="2.5.11">
+<h3><span class="header-section-number">2.5.11</span> </h3>
 <p>Kestila uses the PCA factor scores to evaluate country level differences in 1. Attitudes towards immigration and 2. Political trust. Repeat her analyses using the factor scores you saved in step 5. Think about the statistical test you would like to use. Do you draw similar or different conclusions?</p>
 <details>
 <summary>
 Click for explanation
 </summary>
 <p>We can use an ANOVA to test whether the countries differ in the amount of political trust the participants have.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="in-class-exercises-1.html#cb158-1" aria-hidden="true" tabindex="-1"></a>fit_ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(trustinstEFA <span class="sc">~</span> cntry, <span class="at">data =</span> df_with_scores)</span>
-<span id="cb158-2"><a href="in-class-exercises-1.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_ANOVA)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="in-class-exercises-1.html#cb169-1" aria-hidden="true" tabindex="-1"></a>fit_ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(trustinstEFA <span class="sc">~</span> cntry, <span class="at">data =</span> ess_with_scores)</span>
+<span id="cb169-2"><a href="in-class-exercises-1.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_ANOVA)</span></code></pre></div>
 <pre><code>##                Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## cntry           8   1740  217.55   199.6 &lt;2e-16 ***
-## Residuals   14769  16100    1.09                   
+## cntry           8   4730   591.2   637.3 &lt;2e-16 ***
+## Residuals   14769  13700     0.9                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 3409 observations deleted due to missingness</code></pre>
 <p>In which <code>trustinstEFA</code> is the dependent variable, <code>cntry</code> is the grouping variable, and <code>df</code> is the name of the dataset; <code>summary</code> will provide the results. However, it will only indicate whether the variable <code>cntry</code> is significant or not, so you will be unable to tell which countries differ in terms of their political trust. To tell which countries differ, you can do a pairwise comparison test, with a Bonferroni adjustment for multiple testing.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="in-class-exercises-1.html#cb160-1" aria-hidden="true" tabindex="-1"></a>pair_comparison <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(df_with_scores<span class="sc">$</span>trustinstEFA, df_with_scores<span class="sc">$</span>cntry, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonf&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb160-2"><a href="in-class-exercises-1.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pair_comparison<span class="sc">$</span>p.value, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="in-class-exercises-1.html#cb171-1" aria-hidden="true" tabindex="-1"></a>pair_comparison <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(ess_with_scores<span class="sc">$</span>trustinstEFA, ess_with_scores<span class="sc">$</span>cntry, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonf&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb171-2"><a href="in-class-exercises-1.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pair_comparison<span class="sc">$</span>p.value, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##             Austria Belgium Denmark Finland Germany Italy Netherlands Norway
-## Belgium       0.000      NA      NA      NA      NA    NA          NA     NA
-## Denmark       0.000       0      NA      NA      NA    NA          NA     NA
-## Finland       0.000       0   0.085      NA      NA    NA          NA     NA
-## Germany       0.033       0   0.000       0      NA    NA          NA     NA
-## Italy         1.000       0   0.000       0       1    NA          NA     NA
-## Netherlands   0.000       0   0.000       0       0 0.000          NA     NA
-## Norway        0.000       0   0.000       0       0 0.000           0     NA
-## Sweden        0.231       0   0.000       0       0 0.144           0  0.005</code></pre>
+## Belgium           0      NA      NA      NA      NA    NA          NA     NA
+## Denmark           0       0      NA      NA      NA    NA          NA     NA
+## Finland           0       0   0.036      NA      NA    NA          NA     NA
+## Germany           0       0   0.000       0      NA    NA          NA     NA
+## Italy             0       0   0.000       0       0    NA          NA     NA
+## Netherlands       0       0   0.000       0       0     0          NA     NA
+## Norway            1       0   0.000       0       0     0           0     NA
+## Sweden            0       0   0.000       0       0     0           1      0</code></pre>
 </div>
-<div id="section-45" class="section level3" number="2.5.11">
-<h3><span class="header-section-number">2.5.11</span> </h3>
+<div id="section-46" class="section level3" number="2.5.12">
+<h3><span class="header-section-number">2.5.12</span> </h3>
 <p>The second goal of Kestilä is to show how socio-demographic characteristics affect attitudes towards immigrants and trust in politics in Finland. Select only the Finnish cases using the variable <code>cntry</code>.</p>
 <details>
 <summary>
 Click for explanation
 </summary>
 <p>To select the Finnish cases only, select rows for which <code>$cntry</code> is equal to (<code>==</code>) Finland:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="in-class-exercises-1.html#cb162-1" aria-hidden="true" tabindex="-1"></a>df_finland <span class="ot">&lt;-</span> df_with_scores[df_with_scores<span class="sc">$</span>cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="in-class-exercises-1.html#cb173-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> ess_with_scores[ess_with_scores<span class="sc">$</span>cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>, ]</span></code></pre></div>
 <p>After selecting the Finnish cases, we have to prepare our variables for analysis.
 Thanks to the factor analyses above, our dependent variables are taken care of.
 However, we should examine the independent variables to make sure there are no surprises,
@@ -632,74 +1397,74 @@ and do any recoding necessary before we can run multiple regression. The indepen
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="in-class-exercises-1.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb163-2"><a href="in-class-exercises-1.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(df_finland[, <span class="fu">c</span>(<span class="st">&quot;gndr&quot;</span>, <span class="st">&quot;yrbrn&quot;</span>, <span class="st">&quot;eduyrs&quot;</span>, <span class="st">&quot;polintr&quot;</span>, <span class="st">&quot;lrscale&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-1.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb174-2"><a href="in-class-exercises-1.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(ess_finland[, <span class="fu">c</span>(<span class="st">&quot;gndr&quot;</span>, <span class="st">&quot;yrbrn&quot;</span>, <span class="st">&quot;eduyrs&quot;</span>, <span class="st">&quot;polintr&quot;</span>, <span class="st">&quot;lrscale&quot;</span>)])</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["chr"],"align":["left"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[12],"type":["int"],"align":["right"]},{"label":["max"],"name":[13],"type":["int"],"align":["right"]},{"label":["range"],"name":[14],"type":["int"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"gndr","2":"character","3":"2000","4":"0.0000","5":"3","6":"NA","7":"NA","8":"1040","9":"Female","10":"NA","11":"0.4992000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"yrbrn","2":"integer","3":"2000","4":"0.0000","5":"79","6":"1956.36950","7":"1957","8":"1957","9":"NA","10":"18.491510","11":"NA","12":"1906","13":"1987","14":"81","15":"-0.1584100","16":"-1.447163","17":"-0.8888179","18":"-4.0619431"},{"1":"eduyrs","2":"integer","3":"1997","4":"0.0015","5":"28","6":"11.95643","7":"12","8":"12","9":"NA","10":"3.900645","11":"NA","12":"0","13":"26","14":"26","15":"0.2946392","16":"2.689675","17":"-0.1854030","18":"-0.8466672"},{"1":"polintr","2":"character","3":"1999","4":"0.0005","5":"5","6":"NA","7":"NA","8":"842","9":"Hardly interested","10":"NA","11":"0.6501730","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"lrscale","2":"character","3":"1891","4":"0.0545","5":"12","6":"NA","7":"NA","8":"599","9":"5","10":"NA","11":"0.8312956","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Note that we still have to do some recoding. For example, the data contains participants’ year of birth instead of their age. We have to recode this variable. The data were collected in 2002, so we can simply subtract the year of birth of every participant from the year 2002.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="in-class-exercises-1.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>age <span class="ot">&lt;-</span> (<span class="dv">2002</span> <span class="sc">-</span> df_finland<span class="sc">$</span>yrbrn)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="in-class-exercises-1.html#cb175-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>age <span class="ot">&lt;-</span> (<span class="dv">2002</span> <span class="sc">-</span> ess_finland<span class="sc">$</span>yrbrn)</span></code></pre></div>
 <p>Furthermore, the variables <code>polintr</code> and <code>lrscale</code> are currently coded as character variables. If you analyze them like that, R will make dummies for all distinct values on these variables. Let’s recode those, too! The main challenge is to get the levels of these variables in the correct order, and convert them to numbers. We demonstrate two ways to do this, one way for each of the two variables.</p>
 <p>For political interest, we convert the character variable to an ordered categorical variable, and we specify the correct order of labels. Then, we convert it to a numeric variable.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="in-class-exercises-1.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_finland<span class="sc">$</span>polintr)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="in-class-exercises-1.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess_finland<span class="sc">$</span>polintr)</span></code></pre></div>
 <pre><code>## 
 ##     Hardly interested Not at all interested      Quite interested 
 ##                   842                   228                   785 
 ##       Very interested 
 ##                   144</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="in-class-exercises-1.html#cb167-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>polintr <span class="ot">&lt;-</span> <span class="fu">ordered</span>(df_finland<span class="sc">$</span>polintr, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Not at all interested&quot;</span>, <span class="st">&quot;Hardly interested&quot;</span>, <span class="st">&quot;Quite interested&quot;</span>, <span class="st">&quot;Very interested&quot;</span>))</span>
-<span id="cb167-2"><a href="in-class-exercises-1.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_finland<span class="sc">$</span>polintr)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="in-class-exercises-1.html#cb178-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>polintr <span class="ot">&lt;-</span> <span class="fu">ordered</span>(ess_finland<span class="sc">$</span>polintr, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Not at all interested&quot;</span>, <span class="st">&quot;Hardly interested&quot;</span>, <span class="st">&quot;Quite interested&quot;</span>, <span class="st">&quot;Very interested&quot;</span>))</span>
+<span id="cb178-2"><a href="in-class-exercises-1.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess_finland<span class="sc">$</span>polintr)</span></code></pre></div>
 <pre><code>## 
 ## Not at all interested     Hardly interested      Quite interested 
 ##                   228                   842                   785 
 ##       Very interested 
 ##                   144</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="in-class-exercises-1.html#cb169-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>polintr <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_finland<span class="sc">$</span>polintr)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="in-class-exercises-1.html#cb180-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>polintr <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ess_finland<span class="sc">$</span>polintr)</span></code></pre></div>
 <p>For political orientation, only the two extreme values of the scale are labeled as text. Thus, we can replace these labels with numbers, and then convert the entire variable to numeric.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="in-class-exercises-1.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_finland<span class="sc">$</span>lrscale)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="in-class-exercises-1.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess_finland<span class="sc">$</span>lrscale)</span></code></pre></div>
 <pre><code>## 
 ##     1     2     3    4      5     6     7     8     9  Left Right 
 ##    25    62   148   183   599   199   296   217    79    24    59</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="in-class-exercises-1.html#cb172-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>lrscale[df_finland<span class="sc">$</span>lrscale <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb172-2"><a href="in-class-exercises-1.html#cb172-2" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>lrscale[df_finland<span class="sc">$</span>lrscale <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb172-3"><a href="in-class-exercises-1.html#cb172-3" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>lrscale <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_finland<span class="sc">$</span>lrscale)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="in-class-exercises-1.html#cb183-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>lrscale[ess_finland<span class="sc">$</span>lrscale <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb183-2"><a href="in-class-exercises-1.html#cb183-2" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>lrscale[ess_finland<span class="sc">$</span>lrscale <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb183-3"><a href="in-class-exercises-1.html#cb183-3" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>lrscale <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ess_finland<span class="sc">$</span>lrscale)</span></code></pre></div>
 <p>Furthermore, Kestilä recoded <code>polintr</code> in such a way that there are only two categories. The lowest two and highest two categories were combined. Here is how to do this in R, so you can replicate their analysis:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="in-class-exercises-1.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df_finland<span class="sc">$</span>polintr_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_finland<span class="sc">$</span>polintr <span class="sc">&lt;=</span> <span class="dv">2</span>,</span>
-<span id="cb173-2"><a href="in-class-exercises-1.html#cb173-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Not or hardly interested&quot;</span>,</span>
-<span id="cb173-3"><a href="in-class-exercises-1.html#cb173-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Quite or very interested&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="in-class-exercises-1.html#cb184-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>polintr_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(ess_finland<span class="sc">$</span>polintr <span class="sc">&lt;=</span> <span class="dv">2</span>,</span>
+<span id="cb184-2"><a href="in-class-exercises-1.html#cb184-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Not or hardly interested&quot;</span>,</span>
+<span id="cb184-3"><a href="in-class-exercises-1.html#cb184-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Quite or very interested&quot;</span>)</span></code></pre></div>
 <p>Next, run a number of multiple linear regression analyses with the (sub-)scales of attitudes towards immigrants and political trust as subsequent dependent variables, and the same predictors as Kestilä. Inspect your output.</p>
 <p>Compare your results with the results from Kestilä. How do your results differ or agree with the results by Kestilä?</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-1.html#cb174-1" aria-hidden="true" tabindex="-1"></a>fit_trust1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(trustinstEFA <span class="sc">~</span> gndr <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_dummy <span class="sc">+</span> lrscale, <span class="at">data =</span> df_finland, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb174-2"><a href="in-class-exercises-1.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_trust1)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="in-class-exercises-1.html#cb185-1" aria-hidden="true" tabindex="-1"></a>fit_trust1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(trustinstEFA <span class="sc">~</span> gndr <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_dummy <span class="sc">+</span> lrscale, <span class="at">data =</span> ess_finland, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb185-2"><a href="in-class-exercises-1.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_trust1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = trustinstEFA ~ gndr + age + eduyrs + polintr_dummy + 
-##     lrscale, data = df_finland, na.action = na.omit)
+##     lrscale, data = ess_finland, na.action = na.omit)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -4.0364 -0.4740  0.1394  0.6379  2.3394 
+## -3.6185 -0.4519  0.1278  0.5827  2.8276 
 ## 
 ## Coefficients:
 ##                                        Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                           -0.100441   0.125066  -0.803   0.4220    
-## gndrMale                               0.010228   0.044386   0.230   0.8178    
-## age                                   -0.001053   0.001356  -0.776   0.4377    
-## eduyrs                                 0.027904   0.006277   4.445 9.34e-06 ***
-## polintr_dummyQuite or very interested  0.090948   0.045642   1.993   0.0465 *  
-## lrscale                                0.051650   0.011037   4.680 3.10e-06 ***
+## (Intercept)                            0.450351   0.113407   3.971 7.45e-05 ***
+## gndrMale                               0.122805   0.040248   3.051  0.00231 ** 
+## age                                   -0.005010   0.001230  -4.073 4.85e-05 ***
+## eduyrs                                -0.003403   0.005692  -0.598  0.55002    
+## polintr_dummyQuite or very interested  0.071832   0.041387   1.736  0.08281 .  
+## lrscale                                0.085176   0.010008   8.511  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9159 on 1734 degrees of freedom
+## Residual standard error: 0.8306 on 1734 degrees of freedom
 ##   (260 observations deleted due to missingness)
-## Multiple R-squared:  0.03377,    Adjusted R-squared:  0.03099 
-## F-statistic: 12.12 on 5 and 1734 DF,  p-value: 1.454e-11</code></pre>
+## Multiple R-squared:  0.05488,    Adjusted R-squared:  0.05215 
+## F-statistic: 20.14 on 5 and 1734 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div id="section-46" class="section level3" number="2.5.12">
-<h3><span class="header-section-number">2.5.12</span> </h3>
+<div id="section-47" class="section level3" number="2.5.13">
+<h3><span class="header-section-number">2.5.13</span> </h3>
 <p>Save your syntax and your data, you will need it next week.</p>
 
 </div>
