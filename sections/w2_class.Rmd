@@ -6,18 +6,21 @@ redo the analysis using *exploratory factor analysis* (EFA).
 
 ---
 
-### Load the *ESSround1-a.csv* dataset
+### 
+
+Load the *ESSround1-b.csv* dataset.
+
+- These are the same data that you analyzed for the At-Home Exercises, but the
+processing/recoding that you should have done for those exercises has already
+been implemented.
+
 
 ``` {r, eval = FALSE}
-library(foreign)
-ess <- read.csv("ESSround1-b.csv", to.data.frame = TRUE)
+ess <- read.csv("ESSround1-b.csv")
 ```
 
 ``` {r, echo = FALSE}
-#dataDir <- "../../data/"
 ess <- read.csv(paste0(dataDir, "ESSround1-b.csv"))
-
-summary(ess)
 ```
 
 ---
@@ -72,10 +75,9 @@ rotation.
 ---
 
 We will now rerun the two PCAs that you conducted for the 
-[At-Home Exercises](at-home-exercises-1.html) using EFA.
-
-We need to know how many factors to extract to estimate an EFA using the 
-`psych::fa()` function.
+[At-Home Exercises](at-home-exercises-1.html) using EFA. We will estimate the 
+EFA models using the `psych::fa()` function, but we need to know how many factors 
+to extract.
 
 - We could simply estimate a range of solutions and compare the results.
 - We can restrict the range of plausible solutions and save some time by first 
@@ -90,14 +92,9 @@ eigenvalues, the scree plot, and parallel analysis.
 
 - How many factors are suggested by each method?
 
-*Hints*:
-
-- You can estimate the eigenvalues of a data matrix with the `eigen()` function 
-from Base-R.
-    - Check the *Value* section of the documentation for `eigen()` to find 
-    information on how to extract the eigenvalues.
-- You can create a scree plot by supplying the vector of eigenvalues to the
-`qplot()` function from the `ggplot2` package and applying the `geom_path()` geometry.
+*Hint:* You can create a scree plot by supplying the vector of eigenvalues to 
+the `qplot()` function from the `ggplot2` package and applying the `geom_path()` 
+geometry.
 
 <details>
   <summary>Click for explanation</summary>
@@ -111,7 +108,7 @@ First, we'll run a trivial EFA using the `psych::fa()` function to get eigenvalu
 ## Load the psych package:
 library(psych)
 
-## Run a trival EFA on the 'trust' items
+## Run a trivial EFA on the 'trust' items
 efa_trust0 <- fa(ess[7:19], nfactors = 1, rotate = "none")
 ```
 
@@ -291,9 +288,9 @@ for(i in 3:6)
 
 ---
 
-### {#att_efa}
+###
 
-Repeat the analysis from \@ref(trust_efa) for the *attitudes* items.
+Repeat the above analysis for the *attitudes* items.
 
 <details>
   <summary>Click for explanation</summary>
@@ -313,8 +310,8 @@ for(i in 3:7)
 
 ###
 
-Compare the factor loading matrices from the models estimated in \@ref(trust_efa), 
-and select the best solution for the *Trust* model.
+Compare the factor loading matrices from the models estimated from the *Trust* 
+items, and select the best solution.
 
 *Hints:*
 
@@ -329,7 +326,7 @@ by `psych::fa()`.
 for(x in efa_trust) print(x$loadings)
 ```
 
-Note that any factor loadings with magnitude lower than 0.1 are suppressed in
+*Note:* Any factor loadings with magnitude lower than 0.1 are suppressed in
 above output.
 
 The factor loadings matrix indicates how strongly each latent factor (columns) 
@@ -345,8 +342,8 @@ factor linked by that loading.
 - Items with only very low loadings do not provide much information about any factor.
     - You may want to exclude such items from your analysis.
     - Note that the size of the factor loadings depends on the number of factors. 
-    So, you should consider excluding an observed item after you have chosen the
-    number of latent factors.
+    So, you should only consider excluding an observed item after you have
+    chosen the number of latent factors.
 
 When we print the loading matrix, we see additional information printed below
 the factor loadings.
@@ -363,8 +360,8 @@ of the factors.
 
 ###
 
-Compare the factor loading matrices from the models estimated in \@ref(att_efa), 
-and select the best solution for the *Attitudes* model.
+Compare the factor loading matrices from the models estimated from the *Attitudes* 
+items, and select the best solution.
 
 <details>
   <summary>Click for explanation</summary>
@@ -447,7 +444,7 @@ significantly differ between countries, but this test cannot tell us between
 which countries the differences lie. 
 
 One way to test for differences between the individual countries would be a 
-posthoc test of all pairwise comparisons. Since we'll be doing `r choose(10, 2)` 
+post hoc test of all pairwise comparisons. Since we'll be doing `r choose(10, 2)` 
 tests, we need to apply a correction for repeated testing. Below, we use Tukey's 
 HSD correction.
 
@@ -461,7 +458,7 @@ TukeyHSD(out)
 
 The second part of the Kestilä (2006) analysis was to evaluate how 
 socio-demographic characteristics affected attitudes towards immigrants and 
-trust in politics among the Finlish electorate. Before we can replicate this part
+trust in politics among the Finnish electorate. Before we can replicate this part
 of the analysis, we need to subset the data to only the Finnish cases.
 
 ---
@@ -488,7 +485,7 @@ our variables for analysis.
 
 - Our dependent variables will be the factor scores generated above. So, we do 
 not need to apply any further processing.
-- We have not yet used any of the indepdendent variables, though. So, we should 
+- We have not yet used any of the independent variables, though. So, we should 
 inspect those variables to see if they require any processing. 
 
 In the `ess` data, the relevant variables have the following names:
@@ -510,7 +507,7 @@ Inspect the independent variables listed above.
 
 ```{r}
 library(tidySEM)
-descriptives(ess_finland[, c("gndr", "yrbrn", "eduyrs", "polintr", "lrscale")])
+descriptives(ess_finland[c("gndr", "yrbrn", "eduyrs", "polintr", "lrscale")])
 ```
 
 It looks like we still need some recoding. 
@@ -518,7 +515,7 @@ It looks like we still need some recoding.
 **1. Age**
 
 The data contain the participants' years of birth instead of their age, but 
-Kesilä analyzed age. Fortunately, we know that the data were collected in 2002, 
+Kestilä analyzed age. Fortunately, we know that the data were collected in 2002, 
 so we can simply subtract each participant's value of `yrbrn` from the 2002 to
 compute their age.
 
@@ -535,9 +532,9 @@ factors and make dummy codes for each distinct value; we definitely don't want t
 
 We need to convert `polintr` and `lrscale` to numeric vectors, but we cannot
 naively apply the `as.numeric()` function, because R doesn't know how to convert
-a word into a number (or, at least, how we want the operation to be done). There
+a word into a number (or, at least, not how we want the operation to be done). There
 are many ways that we could go about this conversion, but the `recode()` function 
-from the `dplyr` package is particularly useful arbitrary recoding tasks such as 
+from the `dplyr` package is particularly useful for arbitrary recoding tasks such as 
 we have here.
 
 Kestilä (2006) dichotomized `polintr` by combining the lowest two and highest 
@@ -558,7 +555,7 @@ ess_finland$polintr_bin <- recode_factor(ess_finland$polintr,
                                          "Very interested" = "High Interest")
 
 ## Check the conversion:
-table(new = ess_finland$polint_bin, old = ess_finland$polintr)
+table(old = ess_finland$polintr, new = ess_finland$polintr_bin)
 ```
 
 For political orientation, only the two extreme values of the scale are labeled 
@@ -576,7 +573,7 @@ tmp <- recode(ess_finland$lrscale,
               )
 
 ## Check the conversion:
-table(new = tmp, old = ess_finland$lrscale)
+table(old = ess_finland$lrscale, new = tmp)
 
 ## Overwrite the old variable:
 ess_finland$lrscale <- tmp
@@ -610,6 +607,9 @@ used by Kestilä (2006).
 
 - Do your results agree with those reported by Kestilä (2006)?
 
+<details>
+  <summary>Click for explanation</summary>
+
 ```{r}
 ## Predicting 'Trust in Institutions':
 out_trust_inst <- lm(trust_inst ~ sex + age + eduyrs + polintr_bin + lrscale, 
@@ -635,7 +635,7 @@ That does it for our replication of the Kesilä (2006) analyses, but we still ha
 one more topic to consider in this practical. One of the most common applications
 of EFA is *scale development*. Given a pool of items without a known factor
 structure, we try to estimate the underlying latent factors that define the
-(sub)scales defined by our items.
+(sub)scales represented by our items.
 
 In such applications, we use the factor loading matrix for our optimal solution 
 to make "bright-line" assignments of items to putative factors according to the 
@@ -653,35 +653,56 @@ the *internal consistency* (a type of reliability) of the hypothesized subscales
 ###
 
 Estimate the internal consistency of the three *Trust* subscales and five 
-*Attitudes* subscales implied by your EFA solutions from \@ref(efa_trust) and \@ref(efa_att).
+*Attitudes* subscales implied by your EFA solutions from above.
 
 - Use *Cronbach's Alpha* to quantify internal consistency.
 - Use the `alpha()` function from the `psych()` package to conduct the analysis.
+- Run your analysis on the full `ess` dataset, not the Finnish subset.
 
-The next step is to assert whether the items that together form one factor, also form a reliable scale. Run separate reliability analyses by means of the function `alpha` for the items that together form one factor, and evaluate Cronbach's alpha to see whether the scales are internally consistent. The "Reliability if an item is dropped (alpha.drop)" information may be handy to inspect what would happen if you would delete one item; you can find it inside the reliability analysis object. If Cronbach's alpha is not ok, deselect one survey item and run the analyses under question 4 and question 5 again.
+Are the subscales implied by your EFA reliable, in the sense of good internal 
+consistency?
 
-*Hint: Cronbach's alpha > .7 are deemed to be ok, > .8 is good.* 
-
-If Cronbach's alpha is not ok, deselect one survey item and run the analyses under question 4 and question 5 again.
+- Note that $\alpha > 0.7$ is generally considered acceptable, and $\alpha > 0.8$ 
+is usually considered good.
 
 <details>
   <summary>Click for explanation</summary>
 
-If you want to assess the reliability of the variables `pltcare`, `pltinvt`, `trstprl`, `trstplt`, and `trstep` you can run a reliability analysis as follows. 
+Let's estimate the reliability of the *Satisfaction* subscale from the *Trust* 
+analysis. According to our EFA, the *Satisfaction* subscale should be indicated
+by the following five variables:
 
-*Hint: name the new objects substantively, instead of numbering them.*
+- `stfeco`
+- `stfgov`
+- `stfdem`
+- `stfedu`
+- `stfhlth`
+
+To estimate the internal consistency of this subscale, we simply provide a data 
+frame containing only the subscale data to the `alpha()` function.
 
 ```{r}
-reli_1 <- psych::alpha(ess[, c(7, 8, 9, 12, 13)])
-reli_1
+## Define a vector of subscale item names:
+(targets <- paste0("stf", c("eco", "gov", "dem", "edu", "hlth")))
+
+## Run the reliability analysis on the subscale data:
+(out <- psych::alpha(ess[targets]))
 ```
 
-Sometimes, the table "Reliability if an item is dropped" will indicate that Cronbach's alpha increases when you drop a variable out of the analysis. Note, however, that doing so is an exploratory approach to analysis, and it may make your work incomparable to other publications using the same scale.
+The `raw_alpha` value is the estimate of Cronbach's Alpha. In this case 
+$\alpha = `r round(out$total$raw_alpha, 3)`$, so the subscale is pretty reliable.
 
-`r if(knitr::is_html_output()){"\\details"}`
+The table labeled "Reliability if an item is dropped" shows what Cronbach's Alpha
+would be if each item were excluded from the scale. If this value is notably 
+higher than the `raw_alpha` value, it could indicate a bad item.
 
+- Note that reliability is only one aspect of scale quality, though. So, you 
+shouldn't throw out items just because they perform poorly in reliability analysis. 
 
+</details>
 
-###
+---
 
-Save your syntax and your data, you will need it next week.
+End of In-Class Exercises
+
+---
