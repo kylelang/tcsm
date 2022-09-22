@@ -355,7 +355,322 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="formative-assessment-2" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Formative Assessment<a href="formative-assessment-2.html#formative-assessment-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
+<p>A formative assessment helps you judge your progress in the course and helps you
+address any blind spots in your understanding of the material.</p>
+<ul>
+<li>This assessment does not contribute to your course grade.</li>
+<li>If you get a question wrong, you will receive a hint on how to improve your
+understanding of the material.</li>
+</ul>
+<p>Ideally, you should complete this assessment <em>after</em> you have watched the
+lecture recording, but <em>before</em> the lecture meeting.</p>
+<ul>
+<li>This way, if you discover gaps in your understanding, we can discuss any
+topics that need more attention during the lecture meeting.</li>
+</ul>
+<hr />
+<p><strong>Question 1:</strong>
+A researcher has developed a new questionnaire that should measure depression, and wants to know how many factors there are. Which technique would you use?</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question1" id="opt1" value="1" onchange="check_answer1()">
+EFA
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question1" id="opt2" value="2" onchange="check_answer1()">
+PCA
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question1" id="opt3" value="3" onchange="check_answer1()">
+CFA
+</label></p>
+</div>
+<div id="collapseExample1" class="collapse">
+<div id="answerFeedback1" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer1()
+{
+    var radioButtons1 = document.getElementsByName("question1");
+    document.getElementById("answerFeedback1").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons1.length; i++)
+    {
+        if(radioButtons1[i].checked == true)
+        {
+            var feedback1 = "<p style='color:red'>Wrong; EFA would be a good choice, because there is a theory about a latent construct, but that construct might be multidimensional. This is yet to be established - and EFA is a good technique for establishing that. Remember:  PCA – summary of variance of items; EFA – given the data, how many factors are there?; CFA – is my theoretical model supported by my data?</p>";
+            if(radioButtons1[i].value == "1") {
+              feedback1 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback1").innerHTML = feedback1;
+            return true;
+        }
+    }
+}
+</script>
+<p><strong>Question 2:</strong>
+In CFA, some parameters must be constrained in order to make the model identified.</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question2" id="opt1" value="1" onchange="check_answer2()">
+TRUE
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question2" id="opt2" value="2" onchange="check_answer2()">
+FALSE
+</label></p>
+</div>
+<div id="collapseExample2" class="collapse">
+<div id="answerFeedback2" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer2()
+{
+    var radioButtons2 = document.getElementsByName("question2");
+    document.getElementById("answerFeedback2").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons2.length; i++)
+    {
+        if(radioButtons2[i].checked == true)
+        {
+            var feedback2 = "<p style='color:red'>Wrong; Your latent variable does not have a scale; you must give it one by either fixing the variance to 1, or fixing one loading to 1, which makes the scale equal to the scale of that item. See Lecture, slide 8.</p>";
+            if(radioButtons2[i].value == "1") {
+              feedback2 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback2").innerHTML = feedback2;
+            return true;
+        }
+    }
+}
+</script>
+<p><strong>Question 3:</strong>
+PCA and EFA both assume that indicator variables do not have measurement error</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question3" id="opt1" value="1" onchange="check_answer3()">
+FALSE
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question3" id="opt2" value="2" onchange="check_answer3()">
+TRUE
+</label></p>
+</div>
+<div id="collapseExample3" class="collapse">
+<div id="answerFeedback3" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer3()
+{
+    var radioButtons3 = document.getElementsByName("question3");
+    document.getElementById("answerFeedback3").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons3.length; i++)
+    {
+        if(radioButtons3[i].checked == true)
+        {
+            var feedback3 = "<p style='color:red'>Wrong; False; PCA is simply a rotation of the data; it does not fit a model and therefore does not split up the variance into explained- and unexplained (error) variance. EFA does fit a model, and thus leaves unexplained error variance.</p>";
+            if(radioButtons3[i].value == "1") {
+              feedback3 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback3").innerHTML = feedback3;
+            return true;
+        }
+    }
+}
+</script>
+<p><strong>Question 4:</strong>
+Which of these methods is valid for choosing the correct number of factors in CFA?</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question4" id="opt1" value="1" onchange="check_answer4()">
+Parallel analysis
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question4" id="opt2" value="2" onchange="check_answer4()">
+Scree plot
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question4" id="opt3" value="3" onchange="check_answer4()">
+Ability to predict a criterion scale.
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question4" id="opt4" value="4" onchange="check_answer4()">
+Kaiser’s criterion
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question4" id="opt5" value="5" onchange="check_answer4()">
+Theory
+</label></p>
+</div>
+<div id="collapseExample4" class="collapse">
+<div id="answerFeedback4" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer4()
+{
+    var radioButtons4 = document.getElementsByName("question4");
+    document.getElementById("answerFeedback4").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons4.length; i++)
+    {
+        if(radioButtons4[i].checked == true)
+        {
+            var feedback4 = "<p style='color:red'>Wrong; The only method suitable for determining the correct number of factors in CFA is theory; you are fitting a theoretical model to the data. Of course, that theory may be inspired by prior exploratory work - but you should not use exploration and confirmation on the same dataset.</p>";
+            if(radioButtons4[i].value == "5") {
+              feedback4 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback4").innerHTML = feedback4;
+            return true;
+        }
+    }
+}
+</script>
+<p><strong>Question 5:</strong>
+The minimum number of items for a CFA is…</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question5" id="opt1" value="1" onchange="check_answer5()">
+2
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question5" id="opt2" value="2" onchange="check_answer5()">
+3
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question5" id="opt3" value="3" onchange="check_answer5()">
+5
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question5" id="opt4" value="4" onchange="check_answer5()">
+1
+</label></p>
+</div>
+<div id="collapseExample5" class="collapse">
+<div id="answerFeedback5" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer5()
+{
+    var radioButtons5 = document.getElementsByName("question5");
+    document.getElementById("answerFeedback5").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons5.length; i++)
+    {
+        if(radioButtons5[i].checked == true)
+        {
+            var feedback5 = "<p style='color:red'>Wrong; You must have three items, which gives you 6 pieces of information, in order to have a just-identified CFA.</p>";
+            if(radioButtons5[i].value == "2") {
+              feedback5 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback5").innerHTML = feedback5;
+            return true;
+        }
+    }
+}
+</script>
+<p><strong>Question 6:</strong>
+Generally, more factor loadings are estimated in a EFA model than in a CFA model</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question6" id="opt1" value="1" onchange="check_answer6()">
+FALSE
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question6" id="opt2" value="2" onchange="check_answer6()">
+TRUE
+</label></p>
+</div>
+<div id="collapseExample6" class="collapse">
+<div id="answerFeedback6" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer6()
+{
+    var radioButtons6 = document.getElementsByName("question6");
+    document.getElementById("answerFeedback6").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons6.length; i++)
+    {
+        if(radioButtons6[i].checked == true)
+        {
+            var feedback6 = "<p style='color:red'>Wrong; The EFA model estimates all possible cross-loadings; the CFA model does not.</p>";
+            if(radioButtons6[i].value == "2") {
+              feedback6 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback6").innerHTML = feedback6;
+            return true;
+        }
+    }
+}
+</script>
+<p><strong>Question 7:</strong>
+Rotation can be applied to the loadings of both EFA and CFA.</p>
+<div class="radio">
+<p><label>
+<input type="radio" name="question7" id="opt1" value="1" onchange="check_answer7()">
+FALSE
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question7" id="opt2" value="2" onchange="check_answer7()">
+TRUE
+</label></p>
+</div>
+<div id="collapseExample7" class="collapse">
+<div id="answerFeedback7" class="card card-body">
+
+</div>
+</div>
+<script type="text/javascript">
+function check_answer7()
+{
+    var radioButtons7 = document.getElementsByName("question7");
+    document.getElementById("answerFeedback7").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons7.length; i++)
+    {
+        if(radioButtons7[i].checked == true)
+        {
+            var feedback7 = "<p style='color:red'>Wrong; In order to rotate the loadings, you need a matrix with loadings for all items on all factors. With CFA, the cross-loadings are fixed at zero. See Lecture, slide 3.</p>";
+            if(radioButtons7[i].value == "1") {
+              feedback7 = "<p style='color:green'>Correct!</p>"
+            }
+            document.getElementById("answerFeedback7").innerHTML = feedback7;
+            return true;
+        }
+    }
+}
+</script>
 </div>
             </section>
 
