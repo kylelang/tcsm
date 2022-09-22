@@ -1,0 +1,25 @@
+## Lecture
+
+```{r}
+knitr::include_url("https://www.youtube.com/embed/GTEmuveyJ1k")
+```
+
+[Download slides](pdf/tcsm_week_3.pdf)
+
+Often, we work with scales that have a validated or hypothesized factor structure. 
+In the former case, the scale structure has been validated through previous 
+psychometric studies. In the latter case, we may have conducted an EFA to 
+estimate the factor structure on prior data, or theory/intuition may suggest a 
+plausible structure. Regardless of how we come to expect a given factor structure, 
+such situations represent *confirmatory* modeling problems, because we are 
+attempting to empirically confirm an a priori expectation. Hence, exploratory 
+methods like EFA are not appropriate, and we should employ confirmatory modeling 
+techniques.
+
+This week we consider one such technique: *confirmatory factor analysis* (CFA). 
+As the name suggests, CFA is related to the EFA methods we discussed last week
+in that both methods are flavors of factor analysis. However, the two methods 
+address fundamentally different research questions. Rather than attempting to 
+estimate an unknown factor structure (as in EFA), we now want to compare a 
+hypothesized measurement model (i.e., factor structure) to observed data in order
+to evaluate the model's plausibility.

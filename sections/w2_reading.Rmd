@@ -109,7 +109,13 @@ research question)?
     moral values, social norms, the role of the family, and the importance of 
     national culture. 
 1. The anti-immigration issue and protest voting
-1. NEED AN ANSWER HERE
+1. Of course, this conclusion is debatable, but I don't think the empirical and 
+theoretical aspects of the paper align very well. The way the key constructs are 
+operationalized (i.e., via orthogonally rotated component scores) is not a very 
+good way to get sensible estimates of the true hypothetical constructs. 
+Furthermore, the idea of defining the outcome for the final regression analysis 
+as the naive sum of the component scores casts considerable doubt on the validity 
+of that analysis (in terms of the DV accurately representing its putative construct).
 1. No, Finland is very similar to other (Nordic) European countries. 
 1. Anti-immigrant and anti-politics attitudes cannot explain why there is no RRP 
 in Finland. 

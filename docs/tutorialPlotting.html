@@ -285,8 +285,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-1"><i class="fa fa-check"></i>Reference 1</a></li>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-1"><i class="fa fa-check"></i>Questions 1</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-1"><i class="fa fa-check"></i>Answers 1</a></li>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-2"><i class="fa fa-check"></i>Reference 2</a></li>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-2"><i class="fa fa-check"></i>Questions 2</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-2"><i class="fa fa-check"></i>Answers 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="formative-assessment-1.html"><a href="formative-assessment-1.html"><i class="fa fa-check"></i><b>2.3</b> Formative Assessment</a></li>
 <li class="chapter" data-level="2.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html"><i class="fa fa-check"></i><b>2.4</b> At-Home Exercises</a>
@@ -320,6 +322,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.14" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-46"><i class="fa fa-check"></i><b>2.5.14</b> </a></li>
 <li class="chapter" data-level="2.5.15" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-47"><i class="fa fa-check"></i><b>2.5.15</b> </a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>3</b> CFA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lecture-2.html"><a href="lecture-2.html"><i class="fa fa-check"></i><b>3.1</b> Lecture</a></li>
+<li class="chapter" data-level="3.2" data-path="reading-2.html"><a href="reading-2.html"><i class="fa fa-check"></i><b>3.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#reference-3"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-3"><i class="fa fa-check"></i>Questions</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#answers-3"><i class="fa fa-check"></i>Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="formative-assessment-2.html"><a href="formative-assessment-2.html"><i class="fa fa-check"></i><b>3.3</b> Formative Assessment</a></li>
+<li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="3.5" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html"><i class="fa fa-check"></i><b>3.5</b> In-Class Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -386,7 +401,7 @@ distributed.</p>
 <span id="cb10-2"><a href="tutorialPlotting.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the &#39;LifeSat$LifSat&#39; variable to define the X-axis</span></span>
 <span id="cb10-3"><a href="tutorialPlotting.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat)) <span class="sc">+</span></span>
 <span id="cb10-4"><a href="tutorialPlotting.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="co"># Create a histogram from the data/variable defined above</span></span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="boxplot" class="section level3 hasAnchor" number="0.9.3">
@@ -396,7 +411,7 @@ distribution. We can also use boxplots to detect outliers.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="tutorialPlotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Same data/variable setup as above:</span></span>
 <span id="cb11-2"><a href="tutorialPlotting.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat)) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="tutorialPlotting.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="co"># Create a boxplot</span></span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="scatterplot" class="section level3 hasAnchor" number="0.9.4">
@@ -410,7 +425,7 @@ addition to the<code>x</code> variable specified in the previous examples.</li>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tutorialPlotting.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the &#39;age&#39; variable on the Y-axis:</span></span>
 <span id="cb12-2"><a href="tutorialPlotting.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LifeSat, <span class="fu">aes</span>(<span class="at">x =</span> LifSat, <span class="at">y =</span> age)) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="tutorialPlotting.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="co"># Create a scatterplot</span></span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <!---------------------------------------------------------------------------->
 </div>
 </div>

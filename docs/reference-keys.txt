@@ -113,3 +113,9 @@ section-44
 section-45
 section-46
 section-47
+cfa
+lecture-2
+reading-2
+formative-assessment-2
+at-home-exercises-2
+in-class-exercises-2

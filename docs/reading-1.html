@@ -285,8 +285,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-1"><i class="fa fa-check"></i>Reference 1</a></li>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-1"><i class="fa fa-check"></i>Questions 1</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-1"><i class="fa fa-check"></i>Answers 1</a></li>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-2"><i class="fa fa-check"></i>Reference 2</a></li>
 <li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-2"><i class="fa fa-check"></i>Questions 2</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-2"><i class="fa fa-check"></i>Answers 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="formative-assessment-1.html"><a href="formative-assessment-1.html"><i class="fa fa-check"></i><b>2.3</b> Formative Assessment</a></li>
 <li class="chapter" data-level="2.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html"><i class="fa fa-check"></i><b>2.4</b> At-Home Exercises</a>
@@ -320,6 +322,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.14" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-46"><i class="fa fa-check"></i><b>2.5.14</b> </a></li>
 <li class="chapter" data-level="2.5.15" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-47"><i class="fa fa-check"></i><b>2.5.15</b> </a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>3</b> CFA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lecture-2.html"><a href="lecture-2.html"><i class="fa fa-check"></i><b>3.1</b> Lecture</a></li>
+<li class="chapter" data-level="3.2" data-path="reading-2.html"><a href="reading-2.html"><i class="fa fa-check"></i><b>3.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#reference-3"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-3"><i class="fa fa-check"></i>Questions</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#answers-3"><i class="fa fa-check"></i>Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="formative-assessment-2.html"><a href="formative-assessment-2.html"><i class="fa fa-check"></i><b>3.3</b> Formative Assessment</a></li>
+<li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="3.5" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html"><i class="fa fa-check"></i><b>3.5</b> In-Class Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -362,6 +377,54 @@ of doing factor analysis. Briefly describe this little jiffy—or bad practice�
 and Exploratory Factor Analyses (EFA).</li>
 <li>What is the purpose of factor rotation?</li>
 </ol>
+</div>
+<div id="answers-1" class="section level3 unnumbered hasAnchor">
+<h3>Answers 1<a href="reading-1.html#answers-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>A latent variable is a variable (i.e. something that differs between research
+subjects or changes within the same subject over time) that we cannot observe
+directly. Rather, we infer the value of a latent variable by combining observed
+variables that each tap into different aspects of the latent variable.
+<ol style="list-style-type: lower-alpha">
+<li>Almost all psychological, sociological, or cultural constructs are latent
+variables. Some common examples include IQ, personality, political or racial
+attitudes, mathematical or artistic ability, etc.</li>
+</ol></li>
+<li>(Exploratory) factor analysis is a statistical method for estimating the
+latent measurement structure that generates a set of measured variables. In other
+words, when doing EFA, we’re trying to estimate how many latent variables underlie
+a set of observed data and which observed items “belong to” which latent variable.</li>
+<li>The “little jiffy” method consists of the following steps:
+<ol style="list-style-type: lower-alpha">
+<li>Run a PCA to extract factors</li>
+<li>Apply no subsequent rotation or the varimax rotation</li>
+<li>Retain all components with eigenvalues greater than 1.0</li>
+</ol>
+This approach results from running “factor analysis” with the SPSS defaults.
+In most situations, however, this setup won’t give a meaningful answer to
+the substantive research questions we’re investigating when doing EFA.</li>
+<li>The main difference between PCA and EFA comes down to how the observed
+variance is factored between the latent variables and the unique (residual)
+factors.
+<ul>
+<li>PCA directly explains the observed variances. So, if you extract enough
+components, the latent variables will explain 100% of the observed variance.</li>
+<li>EFA allows each observed item to retain its own unique factor to quantify
+the item variance not explained by the latent variables. Unless you constrain
+the model, the variance explained by the latent factors should not reach
+100% of the observed variance.</li>
+</ul></li>
+<li>Factor rotation entails applying linear transformations to “rotate” the
+factor axes (i.e., the geometric representations of the latent variables) through
+the data space to produce a so-called “simple structure” in which each observed
+item loads onto only one factor (to the extent that this is possible).
+There are two flavors of rotations:
+<ul>
+<li>Orthogonal rotation: All latent factors are uncorrelated (i.e. the factor
+axes describe a 90 degree angle)</li>
+<li>Oblique rotation: The latent factors are allowed to correlate</li>
+</ul></li>
+</ol>
 <hr />
 </div>
 <div id="reference-2" class="section level3 unnumbered hasAnchor">
@@ -384,6 +447,44 @@ Why or why not?</li>
 countries on the main dependent variables?</li>
 <li>What is the author’s conclusion (i.e., how does the author answer the
 research question)?</li>
+</ol>
+</div>
+<div id="answers-2" class="section level3 unnumbered hasAnchor">
+<h3>Answers 2<a href="reading-1.html#answers-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Why is there no Radical Right Party in Finland?
+<ul>
+<li>To explore this question, the author considers how similar the attitudes
+of the Finnish electorate about trust in politics and immigration are to
+other Western-European countries.</li>
+</ul></li>
+<li>Pages 175–177 provide the relevant information. Briefly:
+<ul>
+<li>RRPs emphasize anti-immigrant attitudes and connect immigration to
+feelings of insecurity, spurring debates about crime.</li>
+<li>RRPs are anti-elitist, protest parties that often push for lower taxes
+while protecting the welfare state.</li>
+<li>RRPs represent the antitheses of green parties.</li>
+<li>RRPs represent the ‘losers’ of modernization and emphasize traditional
+moral values, social norms, the role of the family, and the importance of
+national culture.</li>
+</ul></li>
+<li>The anti-immigration issue and protest voting</li>
+<li>Of course, this conclusion is debatable, but I don’t think the empirical and
+theoretical aspects of the paper align very well. The way the key constructs are
+operationalized (i.e., via orthogonally rotated component scores) is not a very
+good way to get sensible estimates of the true hypothetical constructs.
+Furthermore, the idea of defining the outcome for the final regression analysis
+as the naive sum of the component scores casts considerable doubt on the validity
+of that analysis (in terms of the DV accurately representing its putative construct).</li>
+<li>No, Finland is very similar to other (Nordic) European countries.</li>
+<li>Anti-immigrant and anti-politics attitudes cannot explain why there is no RRP
+in Finland.
+<ul>
+<li>The author finds reasons for the absence of such a link in history and the
+fact that politicians from mainstream political parties have caught the
+populist voters.</li>
+</ul></li>
 </ol>
 </div>
 </div>
