@@ -1,6 +1,6 @@
 ## Lecture
 
-```{r}
+```{r echo = FALSE}
 knitr::include_url("https://www.youtube.com/embed/GTEmuveyJ1k")
 ```
 
