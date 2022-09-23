@@ -1,133 +1,254 @@
 ## At-Home Exercises
 
-Last week, you have worked on the data used by Kestilä in a paper that discussed two possible 
-reasons why there is no Radical Right party in Finland. You have attempted to 1) replicate her 
-study by doing a Principal Component Analysis and 2) a factor analysis (exploratory) of the same 
-data. 
+```{r include = FALSE}
+library(readxl)
+library(dplyr)
+```
 
-This week you also learned that it is possible to do Confirmatory Factor Analysis within the structural 
-equation modeling (SEM) framework.  We use the R-package `lavaan` to fit these kinds of models. 
-Before we will analyze the Kestilä data, you first need to learn some of the basic principles of doing 
-analyses using `lavaan`. Using syntax, you need to tell `lavaan` exactly 
-what kind of model you want it to estimate This opens up many more possibilities to do Theory Construction and then 
-subsequently test your theory using Statistical Modeling. 
+Last week, you used PCA and EFA to replicate the results of Kestilä (2006). In 
+this week's [In-Class Exercises](in-class-exercises-2.html), you will revisit
+the Kestilä (2006) analysis one more time, now using *confirmatory factor 
+analysis* (CFA). 
 
-As a preparation for the next practical, work your way through this tutorial (part of which consists of the official `lavaan` tutorial). You will find that `lavaan` is a very user-friendly software package.
+In this course, we will use the R-package `lavaan` to fit CFA models (as well as
+the path models and structural equation models you'll learn about in the coming
+weeks). Before you can jump into fitting a CFA to the Kestilä (2006) data, 
+however, you need to learn the basics of working with `lavaan`. 
 
-### Get started with lavaan
+To prepare for the In-Class Exercises, work your way through this introduction
+to `lavaan` (part of which originates from the official `lavaan` tutorial). 
 
-To get started with lavaan, read and run the following two chapters of the official `lavaan` tutorial:
+---
 
-* [Installing lavaan](http://lavaan.ugent.be/tutorial/install.html)
-* [Lavaan syntax](http://lavaan.ugent.be/tutorial/syntax1.html) (you just have to read this one)
+### Getting started
 
-### Regression models in lavaan
+To get started with lavaan, complete the following two chapters from the 
+official `lavaan` tutorial:
 
-Download the data file *Hamilton.csv*, or *Hamilton.xls* [here](https://github.com/cjvanlissa/TCSM_student). The data are as follows:
+- [Installing lavaan](http://lavaan.ugent.be/tutorial/install.html)
+- [Lavaan syntax](http://lavaan.ugent.be/tutorial/syntax1.html)
+    - You only need to read this one
 
-Hamilton (1990) provided several measurements on each of 21 states. Three of the
-measurements will be used in this tutorial:
+---
 
-1. Average SAT score
-2. Per capita income expressed in $1,000 units
-3. Median education for residents 25 years of age or older
+Now, we'll demonstrate the basic `lavaan` workflow by estimating a linear 
+regression model using observed variables. We will analyze data from Hamilton 
+(1990) which quantify several attributes of 21 states in the US. We will use 
+three of these variables in this tutorial:
 
-Load the data from the .csv or .xls file into R.
+1. `SAT`: Average SAT score
+1. `Income`: Per capita income expressed in $1000 units
+1. `Education`: Median education for residents 25 years of age or older
 
-*Hint: Use* `read.csv()` *or* `readxl::read_excel()`
+The data are available in either CSV or XLSX format via the *Hamilton.csv* or 
+*Hamilton.xlsx* files, respectively.
+
+---
+
+###
+
+Load the Hamilton (1990) data.
+
+*Hints:* 
+
+- Use the `read.csv()` function to load the data from CSV.
+- Use the `readxl::read_excel()` function to load the data from XLSX.
+- Both files contain the same data; you only need to load one version.
 
 <details>
   <summary>Click for explanation</summary>
-```{r, message=FALSE, eval=FALSE}
+  
+```{r eval = FALSE}
+## Load the readxl library:
 library(readxl)
-df <- read_excel("Hamilton.xlsx", 1)
+
+## Read the first sheet from 'Hamilton.xlsx' into a data frame called 'hamilton'
+hamilton <- read_excel("Hamilton.xlsx", sheet = 1)
+
+## OR ##
+
+## Read the data from 'Hamilton.csv' into a data frame called 'hamilton'
+hamilton <- read.csv("Hamilton.csv")
 ```
 
-```{r, message=FALSE, echo=FALSE}
-library(readxl)
-df <- read_excel("TCSM_student/Hamilton.xlsx", 1)
+```{r echo = FALSE}
+hamilton <- read_excel(paste0(dataDir, "Hamilton.xlsx"), sheet = 1)
 ```
 
-Or 
+</details>
 
-```{r, eval=FALSE}
-df <- read.csv("Hamilton.csv")
-```
-\details
+---
 
-### Conceptual model
+The following path diagram shows the model we will fit to these data.
 
-The following path diagram shows a model for these data:
+![](../images/AMOS_path.png)
 
-![](AMOS_path.png)
+This diagram represents a linear regression wherein `Education` and `Income` 
+predict `SAT`. Furthermore, `Education` and `Income` are modeled as correlated 
+random variables. As with any sensible model, `Education` and `Income` will not
+perfectly explain `SAT` (if this claim doesn't make sense, think back to our 
+discussions of model complexity and the strengths of parsimonious formal models 
+in Week 1). Consequently, the variable `Other` represents the residual of `SAT` 
+(i.e., all aspects of `SAT` that are not, linearly, related to `Education` or 
+`Income`).
 
-This is a simple regression model where one observed variable, SAT, is predicted as a
-linear combination of the other two observed variables, Education and Income. As with
-nearly all empirical data, the prediction will not be perfect. The variable Other
-represents variables other than Education and Income that affect SAT.
-Each single-headed arrow represents a regression weight. The number 1 in the
-figure specifies that Other must have a weight of 1 in the prediction of SAT. This constraint is imposed by default in `lavaan`.
+Although not related to the mechanics of using `lavaan`, you may find the
+following equivalencies interesting.
 
-### Lavaan syntax
+- The regression model we're considering here is actually a simple example of a 
+*path model* such as those we'll start with in Week 5 of this course.
+- The `Other` factor shown in the diagram is equivalent to the residual term in 
+a linear regression model.
+- The `Other` factor is also equivalent to the *unique factor* or *uniqueness* 
+for an observed indicator in an EFA or CFA model.
 
-Based on the `lavaan` tutorial, write down (just as text) the model syntax that describes the model in the picture. How many regressions are there? How many covariances?
+---
 
-<details>
-  <summary>Click for explanation</summary>
-The syntax for this model is:
+### {#syntax}
 
-```{r, eval = FALSE}
-"SAT ~ Income + Education
-Income ~~ Education"
-```
+Based on what you learning from the `lavaan` tutorial, write out the `lavaan` 
+model syntax for the model represented by the path diagram above. 
 
-Or, equivalently:
-
-```{r, eval = FALSE}
-"SAT ~ Income 
-SAT ~ Education
-Income ~~ Education"
-```
-
-This syntax specifies two regression equations and one covariance. However, three more parameters are included by lavaan per default:
-
-1. The **residual** (unexplained) variance in SAT
-2. The variance of Income
-3. The variance of Education
-
-So, strictly speaking, if you don't want to rely on the default settings, the syntax would be:
-
-```{r, eval = FALSE}
-"SAT ~ Income + Education
-Income ~~ Education
-SAT~~SAT
-Income~~Income
-Education~~Education"
-```
-\details
-
-
-### Performing the analysis
-
-In `lavaan`, models are fit using the `sem()` function. Run the command `?sem` to open the help file for this function. Try to figure out how to take the syntax you wrote for the previous question, and fit it to the Hamilton data.
+- Write the syntax as a character string.
+- Save this string as an object in your environment.
 
 <details>
   <summary>Click for explanation</summary>
 
 ```{r}
-# Load the lavaan package
-library(lavaan)
-# Fit the model to df, and store the result in an object called 'fit'
-fit <- sem(model = "SAT ~ Income + Education
-                    Income ~~ Education",
-           data = df)
+mod <- '
+SAT ~ Income + Education
+Income ~~ Education
+'
 ```
-This will result in a warning about the variances. You can ignore this.
-\details
 
-### Viewing the output
+This syntax specifies two regression slopes and one covariance. However, our
+specification also implies three variances which `lavaan` will automatically 
+estimate.
 
-Most of the relevant output of a `lavaan` analysis can be extracted using the `summary()` function. Get a summary for the analysis now. Do either of the predictors have a significant effect on SA? By specifying the option `rsquare = TRUE` in the `summary()` function, you can additionally get squared multiple correlations for the dependent variables.
+1. The **residual** variance of `SAT`
+1. The variance of `Income`
+1. The variance of `Education`
+
+Note that in the path diagram, all three variables have arrows pointing *toward* 
+them. Hence, all three variables are random, which means we must model their 
+variances. 
+
+- If we had not correlated `Income` and `Education`, we could have modeled them 
+as fixed predictors and not estimated their variance.
+- `SAT` is the DV in our model, so it must be random, and we must estimate its 
+(residual) variance.
+
+If we wanted to fully explicate all paths in terms of `lavaan` syntax, we could 
+do so as follows.
+
+```{r, eval = FALSE}
+mod <- '
+SAT ~ Income + Education
+
+Income ~~ Education
+
+SAT ~~ SAT
+Income ~~ Income
+Education ~~ Education
+'
+```
+
+</details>
+
+---
+
+In `lavaan`, we fit structural models (i.e., models with directional, causal 
+relations) using the `sem()` function. We will use the `sem()` function to fit
+the model you specified in \@ref(syntax) to the *Hamilton* data. 
+
+---
+
+###
+
+Consult the documentation for `lavaan::sem()` to learn what you must do to 
+estimate your model.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r eval = FALSE}
+?lavaan::sem
+```
+
+---
+
+### {#estimate}
+
+Use the `sem()` function to fit the model you defined in \@ref(syntax) to the 
+*Hamilton* data.
+
+- Use the default settings, for now.
+- Save the result to an object in your environment.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+## Load the lavaan package:
+library(lavaan)
+
+## Fit the model, and store the result in an object called 'fit':
+fit <- sem(mod, data = hamilton)
+```
+
+You can safely ignore the warning about the variances' scales.
+
+</details>
+
+---
+
+###
+
+Summarize the fitted model by running `summary()` on the results object from 
+\@ref(estimate).
+
+- Do either of the predictors have a significant effect on SAT? 
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+summary(fit)
+```
+
+```{r, echo = FALSE}
+tmp <- summary(fit)$pe %>% filter(op == "~")
+
+inc <- tmp[1, ]
+edu <- tmp[2, ]
+```
+
+Yes, `Education` significantly affects `SAT` (
+$\beta = `r edu[["est"]] %>% round(2)`$,
+$z = `r edu[["z"]] %>% round(2)`$,
+$p < 0.001$
+), but `Income` does not (
+$\beta = `r inc[["est"]] %>% round(2)`$,
+$z = `r inc[["z"]] %>% round(3)`$,
+$p = `r inc[["pvalue"]] %>% round(3)`$
+).
+
+</details>
+
+---
+
+We can also request additional results. For example, by specifying the option 
+`rsquare = TRUE` in the `summary()` function, we can see the estimated squared 
+multiple correlations for each dependent variable.
+
+---
+
+###
+
+Summarize the model again, and add the `rsquare = TRUE` argument.
+
+- What proportion of the variance in `SAT` is explained by `Income` and `Education`?
 
 <details>
   <summary>Click for explanation</summary>
@@ -135,25 +256,69 @@ Most of the relevant output of a `lavaan` analysis can be extracted using the `s
 ```{r}
 summary(fit, rsquare = TRUE)
 ```
-\details
 
+```{r, echo = FALSE}
+r2 <- summary(fit, rsquare = TRUE)$pe %>% 
+  filter(op == "r2") %>% 
+  select(est) %>% 
+  as.numeric()
+```
 
-### Plotting the output
+`Income` and `Education` explain `r (r2 * 100) %>% round(2)`% of the variance in 
+`SAT`.
 
-The package `semPlot` can automatically plot simple SEM models, like path models and CFA models. To visualize this SEM model, install the semPlot package, and use the function `semPaths`:
+</details>
+
+---
+
+The `semPlot` package can automatically generate a path diagram for some types
+of fitted SEMs (e.g., path models, CFA models). For the purposes of visualizing 
+our results, we will use the `semPlot::semPaths()` function.
+
+---
+
+###
+
+Review the documentation for `semPlot::semPaths()`.
+
+<details>
+  <summary>Click for explanation</summary>
 
 ```{r, eval = FALSE}
-install.packages("semPlot")
-library(semPlot)
-semPaths(fit)
+?semPlot::semPaths
 ```
-```{r, echo = FALSE}
+
+</details>
+
+---
+
+###
+
+Use the `semPaths()` function to create a basic path diagram of your fitted model.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+## Load the `semPlot` package:
 library(semPlot)
+
+## Create a basic path diagram:
 semPaths(fit)
 ```
 
-The default plot can be improved upon, for example, by plotting the parameter estimates onto the paths, and rotating it to match our initial conceptual model at the start of this tutorial:
+We can improve this basic diagram in several ways. For example, we can add the 
+values of the estimates for the paths. We can also rotate the diagram to match 
+the orientation of our theoretical path diagram from above.
 
 ```{r}
 semPaths(fit, whatLabels = "est", rotation = 2)
 ```
+
+</details>
+
+---
+
+End of At-Home Exercises
+
+---

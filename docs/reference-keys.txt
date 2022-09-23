@@ -118,4 +118,13 @@ lecture-2
 reading-2
 formative-assessment-2
 at-home-exercises-2
+getting-started
+section-48
+syntax
+section-49
+estimate
+section-50
+section-51
+section-52
+section-53
 in-class-exercises-2

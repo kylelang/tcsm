@@ -332,7 +332,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-3"><i class="fa fa-check"></i>Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="formative-assessment-2.html"><a href="formative-assessment-2.html"><i class="fa fa-check"></i><b>3.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#getting-started"><i class="fa fa-check"></i><b>3.4.1</b> Getting started</a></li>
+<li class="chapter" data-level="3.4.2" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-48"><i class="fa fa-check"></i><b>3.4.2</b> </a></li>
+<li class="chapter" data-level="3.4.3" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#syntax"><i class="fa fa-check"></i><b>3.4.3</b> </a></li>
+<li class="chapter" data-level="3.4.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-49"><i class="fa fa-check"></i><b>3.4.4</b> </a></li>
+<li class="chapter" data-level="3.4.5" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#estimate"><i class="fa fa-check"></i><b>3.4.5</b> </a></li>
+<li class="chapter" data-level="3.4.6" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-50"><i class="fa fa-check"></i><b>3.4.6</b> </a></li>
+<li class="chapter" data-level="3.4.7" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-51"><i class="fa fa-check"></i><b>3.4.7</b> </a></li>
+<li class="chapter" data-level="3.4.8" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-52"><i class="fa fa-check"></i><b>3.4.8</b> </a></li>
+<li class="chapter" data-level="3.4.9" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-53"><i class="fa fa-check"></i><b>3.4.9</b> </a></li>
+</ul></li>
 <li class="chapter" data-level="3.5" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html"><i class="fa fa-check"></i><b>3.5</b> In-Class Exercises</a></li>
 </ul></li>
 </ul>
@@ -354,7 +365,328 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="at-home-exercises-2" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> At-Home Exercises<a href="at-home-exercises-2.html#at-home-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
+<p>Last week, you used PCA and EFA to replicate the results of Kestilä (2006). In
+this week’s <a href="in-class-exercises-2.html">In-Class Exercises</a>, you will revisit
+the Kestilä (2006) analysis one more time, now using <em>confirmatory factor
+analysis</em> (CFA).</p>
+<p>In this course, we will use the R-package <code>lavaan</code> to fit CFA models (as well as
+the path models and structural equation models you’ll learn about in the coming
+weeks). Before you can jump into fitting a CFA to the Kestilä (2006) data,
+however, you need to learn the basics of working with <code>lavaan</code>.</p>
+<p>To prepare for the In-Class Exercises, work your way through this introduction
+to <code>lavaan</code> (part of which originates from the official <code>lavaan</code> tutorial).</p>
+<hr />
+<div id="getting-started" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Getting started<a href="at-home-exercises-2.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To get started with lavaan, complete the following two chapters from the
+official <code>lavaan</code> tutorial:</p>
+<ul>
+<li><a href="http://lavaan.ugent.be/tutorial/install.html">Installing lavaan</a></li>
+<li><a href="http://lavaan.ugent.be/tutorial/syntax1.html">Lavaan syntax</a>
+<ul>
+<li>You only need to read this one</li>
+</ul></li>
+</ul>
+<hr />
+<p>Now, we’ll demonstrate the basic <code>lavaan</code> workflow by estimating a linear
+regression model using observed variables. We will analyze data from Hamilton
+(1990) which quantify several attributes of 21 states in the US. We will use
+three of these variables in this tutorial:</p>
+<ol style="list-style-type: decimal">
+<li><code>SAT</code>: Average SAT score</li>
+<li><code>Income</code>: Per capita income expressed in $1000 units</li>
+<li><code>Education</code>: Median education for residents 25 years of age or older</li>
+</ol>
+<p>The data are available in either CSV or XLSX format via the <em>Hamilton.csv</em> or
+<em>Hamilton.xlsx</em> files, respectively.</p>
+<hr />
+</div>
+<div id="section-48" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> </h3>
+<p>Load the Hamilton (1990) data.</p>
+<p><em>Hints:</em></p>
+<ul>
+<li>Use the <code>read.csv()</code> function to load the data from CSV.</li>
+<li>Use the <code>readxl::read_excel()</code> function to load the data from XLSX.</li>
+<li>Both files contain the same data; you only need to load one version.</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="at-home-exercises-2.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the readxl library:</span></span>
+<span id="cb184-2"><a href="at-home-exercises-2.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb184-3"><a href="at-home-exercises-2.html#cb184-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="at-home-exercises-2.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Read the first sheet from &#39;Hamilton.xlsx&#39; into a data frame called &#39;hamilton&#39;</span></span>
+<span id="cb184-5"><a href="at-home-exercises-2.html#cb184-5" aria-hidden="true" tabindex="-1"></a>hamilton <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Hamilton.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb184-6"><a href="at-home-exercises-2.html#cb184-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-7"><a href="at-home-exercises-2.html#cb184-7" aria-hidden="true" tabindex="-1"></a><span class="do">## OR ##</span></span>
+<span id="cb184-8"><a href="at-home-exercises-2.html#cb184-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-9"><a href="at-home-exercises-2.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Read the data from &#39;Hamilton.csv&#39; into a data frame called &#39;hamilton&#39;</span></span>
+<span id="cb184-10"><a href="at-home-exercises-2.html#cb184-10" aria-hidden="true" tabindex="-1"></a>hamilton <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Hamilton.csv&quot;</span>)</span></code></pre></div>
+</details>
+<hr />
+<p>The following path diagram shows the model we will fit to these data.</p>
+<p><img src="../images/AMOS_path.png" /></p>
+<p>This diagram represents a linear regression wherein <code>Education</code> and <code>Income</code>
+predict <code>SAT</code>. Furthermore, <code>Education</code> and <code>Income</code> are modeled as correlated
+random variables. As with any sensible model, <code>Education</code> and <code>Income</code> will not
+perfectly explain <code>SAT</code> (if this claim doesn’t make sense, think back to our
+discussions of model complexity and the strengths of parsimonious formal models
+in Week 1). Consequently, the variable <code>Other</code> represents the residual of <code>SAT</code>
+(i.e., all aspects of <code>SAT</code> that are not, linearly, related to <code>Education</code> or
+<code>Income</code>).</p>
+<p>Although not related to the mechanics of using <code>lavaan</code>, you may find the
+following equivalencies interesting.</p>
+<ul>
+<li>The regression model we’re considering here is actually a simple example of a
+<em>path model</em> such as those we’ll start with in Week 5 of this course.</li>
+<li>The <code>Other</code> factor shown in the diagram is equivalent to the residual term in
+a linear regression model.</li>
+<li>The <code>Other</code> factor is also equivalent to the <em>unique factor</em> or <em>uniqueness</em>
+for an observed indicator in an EFA or CFA model.</li>
+</ul>
+<hr />
+</div>
+<div id="syntax" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> </h3>
+<p>Based on what you learning from the <code>lavaan</code> tutorial, write out the <code>lavaan</code>
+model syntax for the model represented by the path diagram above.</p>
+<ul>
+<li>Write the syntax as a character string.</li>
+<li>Save this string as an object in your environment.</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="at-home-exercises-2.html#cb185-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb185-2"><a href="at-home-exercises-2.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="st">SAT ~ Income + Education</span></span>
+<span id="cb185-3"><a href="at-home-exercises-2.html#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="st">Income ~~ Education</span></span>
+<span id="cb185-4"><a href="at-home-exercises-2.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<p>This syntax specifies two regression slopes and one covariance. However, our
+specification also implies three variances which <code>lavaan</code> will automatically
+estimate.</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>residual</strong> variance of <code>SAT</code></li>
+<li>The variance of <code>Income</code></li>
+<li>The variance of <code>Education</code></li>
+</ol>
+<p>Note that in the path diagram, all three variables have arrows pointing <em>toward</em>
+them. Hence, all three variables are random, which means we must model their
+variances.</p>
+<ul>
+<li>If we had not correlated <code>Income</code> and <code>Education</code>, we could have modeled them
+as fixed predictors and not estimated their variance.</li>
+<li><code>SAT</code> is the DV in our model, so it must be random, and we must estimate its
+(residual) variance.</li>
+</ul>
+<p>If we wanted to fully explicate all paths in terms of <code>lavaan</code> syntax, we could
+do so as follows.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="at-home-exercises-2.html#cb186-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb186-2"><a href="at-home-exercises-2.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="st">SAT ~ Income + Education</span></span>
+<span id="cb186-3"><a href="at-home-exercises-2.html#cb186-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-4"><a href="at-home-exercises-2.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="st">Income ~~ Education</span></span>
+<span id="cb186-5"><a href="at-home-exercises-2.html#cb186-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-6"><a href="at-home-exercises-2.html#cb186-6" aria-hidden="true" tabindex="-1"></a><span class="st">SAT ~~ SAT</span></span>
+<span id="cb186-7"><a href="at-home-exercises-2.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="st">Income ~~ Income</span></span>
+<span id="cb186-8"><a href="at-home-exercises-2.html#cb186-8" aria-hidden="true" tabindex="-1"></a><span class="st">Education ~~ Education</span></span>
+<span id="cb186-9"><a href="at-home-exercises-2.html#cb186-9" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+</details>
+<hr />
+<p>In <code>lavaan</code>, we fit structural models (i.e., models with directional, causal
+relations) using the <code>sem()</code> function. We will use the <code>sem()</code> function to fit
+the model you specified in <a href="at-home-exercises-2.html#syntax">3.4.3</a> to the <em>Hamilton</em> data.</p>
+<hr />
+</div>
+<div id="section-49" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> </h3>
+<p>Consult the documentation for <code>lavaan::sem()</code> to learn what you must do to
+estimate your model.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="at-home-exercises-2.html#cb187-1" aria-hidden="true" tabindex="-1"></a>?lavaan<span class="sc">::</span>sem</span></code></pre></div>
+<hr />
+</div>
+<div id="estimate" class="section level3" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> </h3>
+<p>Use the <code>sem()</code> function to fit the model you defined in <a href="at-home-exercises-2.html#syntax">3.4.3</a> to the
+<em>Hamilton</em> data.</p>
+<ul>
+<li>Use the default settings, for now.</li>
+<li>Save the result to an object in your environment.</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="at-home-exercises-2.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the lavaan package:</span></span>
+<span id="cb188-2"><a href="at-home-exercises-2.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb188-3"><a href="at-home-exercises-2.html#cb188-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-4"><a href="at-home-exercises-2.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Fit the model, and store the result in an object called &#39;fit&#39;:</span></span>
+<span id="cb188-5"><a href="at-home-exercises-2.html#cb188-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> hamilton)</span></code></pre></div>
+<p>You can safely ignore the warning about the variances’ scales.</p>
+</details>
+<hr />
+</div>
+<div id="section-50" class="section level3" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> </h3>
+<p>Summarize the fitted model by running <code>summary()</code> on the results object from
+<a href="at-home-exercises-2.html#estimate">3.4.5</a>.</p>
+<ul>
+<li>Do either of the predictors have a significant effect on SAT?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="at-home-exercises-2.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 19 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         6
+## 
+##   Number of observations                            21
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   SAT ~                                               
+##     Income            2.156    3.050    0.707    0.480
+##     Education       136.022   29.819    4.562    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   Income ~~                                           
+##     Education         0.127    0.064    2.000    0.046
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .SAT             382.736  118.115    3.240    0.001
+##     Income            2.562    0.791    3.240    0.001
+##     Education         0.027    0.008    3.240    0.001</code></pre>
+<p>Yes, <code>Education</code> significantly affects <code>SAT</code> (
+<span class="math inline">\(\beta = 136.02\)</span>,
+<span class="math inline">\(z = 4.56\)</span>,
+<span class="math inline">\(p &lt; 0.001\)</span>
+), but <code>Income</code> does not (
+<span class="math inline">\(\beta = 2.16\)</span>,
+<span class="math inline">\(z = 0.707\)</span>,
+<span class="math inline">\(p = 0.48\)</span>
+).</p>
+</details>
+<hr />
+<p>We can also request additional results. For example, by specifying the option
+<code>rsquare = TRUE</code> in the <code>summary()</code> function, we can see the estimated squared
+multiple correlations for each dependent variable.</p>
+<hr />
+</div>
+<div id="section-51" class="section level3" number="3.4.7">
+<h3><span class="header-section-number">3.4.7</span> </h3>
+<p>Summarize the model again, and add the <code>rsquare = TRUE</code> argument.</p>
+<ul>
+<li>What proportion of the variance in <code>SAT</code> is explained by <code>Income</code> and <code>Education</code>?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="at-home-exercises-2.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 19 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         6
+## 
+##   Number of observations                            21
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   SAT ~                                               
+##     Income            2.156    3.050    0.707    0.480
+##     Education       136.022   29.819    4.562    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   Income ~~                                           
+##     Education         0.127    0.064    2.000    0.046
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .SAT             382.736  118.115    3.240    0.001
+##     Income            2.562    0.791    3.240    0.001
+##     Education         0.027    0.008    3.240    0.001
+## 
+## R-Square:
+##                    Estimate
+##     SAT               0.603</code></pre>
+<p><code>Income</code> and <code>Education</code> explain 60.34% of the variance in
+<code>SAT</code>.</p>
+</details>
+<hr />
+<p>The <code>semPlot</code> package can automatically generate a path diagram for some types
+of fitted SEMs (e.g., path models, CFA models). For the purposes of visualizing
+our results, we will use the <code>semPlot::semPaths()</code> function.</p>
+<hr />
+</div>
+<div id="section-52" class="section level3" number="3.4.8">
+<h3><span class="header-section-number">3.4.8</span> </h3>
+<p>Review the documentation for <code>semPlot::semPaths()</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="at-home-exercises-2.html#cb193-1" aria-hidden="true" tabindex="-1"></a>?semPlot<span class="sc">::</span>semPaths</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-53" class="section level3" number="3.4.9">
+<h3><span class="header-section-number">3.4.9</span> </h3>
+<p>Use the <code>semPaths()</code> function to create a basic path diagram of your fitted model.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="at-home-exercises-2.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the `semPlot` package:</span></span>
+<span id="cb194-2"><a href="at-home-exercises-2.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb194-3"><a href="at-home-exercises-2.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-4"><a href="at-home-exercises-2.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a basic path diagram:</span></span>
+<span id="cb194-5"><a href="at-home-exercises-2.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit)</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p>We can improve this basic diagram in several ways. For example, we can add the
+values of the estimates for the paths. We can also rotate the diagram to match
+the orientation of our theoretical path diagram from above.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="at-home-exercises-2.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit, <span class="at">whatLabels =</span> <span class="st">&quot;est&quot;</span>, <span class="at">rotation =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+</details>
+<hr />
+<p>End of At-Home Exercises</p>
+<hr />
+</div>
 </div>
             </section>
 
