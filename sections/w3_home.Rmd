@@ -81,7 +81,7 @@ hamilton <- read_excel(paste0(dataDir, "Hamilton.xlsx"), sheet = 1)
 
 The following path diagram shows the model we will fit to these data.
 
-![](../images/AMOS_path.png)
+![](images/AMOS_path.png)
 
 This diagram represents a linear regression wherein `Education` and `Income` 
 predict `SAT`. Furthermore, `Education` and `Income` are modeled as correlated 
