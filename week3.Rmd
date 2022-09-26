@@ -7,6 +7,7 @@ dataDir  <- "../../../data/"
 quizDir  <- "../assess/"
 partDir  <- "sections/"
 imageDir <- "../images/"
+codeDir  <- "../code/"
 ```
 
 **Homework before the lecture**
@@ -39,6 +40,6 @@ knitr::knit_child(paste0(partDir, "w3_assess.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knitr::knit_child(paste0(partDir, "w3_home.Rmd"), quiet = TRUE) %>% 
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "class-placeholder.Rmd"), quiet = TRUE) %>% 
+knitr::knit_child(paste0(partDir, "w3_class.Rmd"), quiet = TRUE) %>% 
   cat(sep = "\n")
 ```

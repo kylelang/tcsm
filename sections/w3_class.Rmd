@@ -1,4 +1,4 @@
-# In-Class Exercises
+## In-Class Exercises
 
 This week, we will wrap up our re-analysis of the Kestilä (2006) results. During 
 this practical, you will conduct a CFA of the *Trust in Politics* items and 
@@ -7,7 +7,7 @@ replications of Kestilä (2006).
 
 ---
 
-##
+###
 
 Load the ESS data.
 
@@ -21,8 +21,7 @@ Load the ESS data.
 <details>
   <summary>Click for explanation</summary>
   
-```{r, echo = FALSE, eval = TRUE}
-dataDir <- "../../data/"
+```{r, echo = FALSE}
 ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
 ```
 
@@ -45,7 +44,7 @@ items in these exercises.
 
 ---
 
-## {#cfa_syntax}
+### {#cfaSyntax}
 
 Define the `lavaan` model syntax for the CFA implied by the three-factor EFA 
 solution you found in the Week 2 In-Class Exercises.
@@ -72,7 +71,7 @@ institutions =~ trstlgl + trstplc + trstun + trstprl
 
 ---
 
-##
+###
 
 Estimate the CFA model you defined above, and summarize the results.
 
@@ -105,13 +104,20 @@ fit_3f <- cfa(mod_3f, data = ess)
 summary(fit_3f, fit.measures = TRUE, standardized = TRUE)
 ```
 
+No, the model does not seem to fit the data well.
+
+- The SRMR looks good, but one good looking fit statistic is not enough.
+- The RMSEA, TLI, and CFI are all in the "unacceptable" range.
+- The $\chi^2$ is highly significant, but we don't care.
+
 The `cfa()` function is just a wrapper for the `lavaan()` function with several 
 options set at the defaults you would want for a standard CFA. 
 
-- By default, all latent variances and covariances are freely estimated (due to 
-the default argument `auto.cov.lv.x = TRUE`)
-- By default, the model is identified by fixing the first factor loading of each 
-factor to 1 (due to the default argument `auto.fix.first = TRUE`)
+- By default:
+    - All latent variances and covariances are freely estimated (due to the 
+    argument `auto.cov.lv.x = TRUE`)
+    - The model is identified by fixing the first factor loading of each factor 
+    to 1 (due to the argument `auto.fix.first = TRUE`)
 
 To see a full list of the (many) options you can specify to tweak the behavior
 of `lavaan` estimation functions run `?lavOptions`.
@@ -126,7 +132,7 @@ model wherein all *Trust* items are explained by a single latent variable.
 
 ---
 
-##
+###
 
 Define the `lavaan` model syntax for a one-factor model of the *Trust* items.
 
@@ -158,7 +164,7 @@ political_trust =~
 
 ---
 
-##
+###
 
 Estimate the one-factor model, and summarize the results.
 
@@ -207,23 +213,23 @@ Given the CFA results above, would a second order CFA be appropriate for the
 <details>
   <summary>Click for explanation</summary>
 
-Yes, a second order CFA model is a theoretically apporopriate representation of 
+Yes, a second order CFA model is a theoretically appropriate representation of 
 the *Trust* items. 
 
 - The first order latent variables in the three-factor model are all 
 significantly correlated.
 - The first order latent variables in the three-factor model seem to tap 
-different aspects of an some single underlying construct. 
+different aspects of some single underlying construct. 
 
 </details>
 
 ---
 
-##
+###
 
 Define the `lavaan` model syntax for a second-order CFA model of the *Trust* items.
 
-- Use the three factors defined in \@ref(l1_syntax) as the first order factors.
+- Use the three factors defined in \@ref(cfaSyntax) as the first order factors.
     
 <details>
   <summary>Click for explanation</summary>
@@ -247,7 +253,7 @@ trust =~ politicians + satisfaction + institutions
 
 ---
 
-##
+###
 
 Estimate the second order CFA model, and summarize the results.
 
@@ -293,7 +299,7 @@ following questions:
 
 - What do we mean when we say that these two models are *equivalent*?
 - How is it possible for these two models to be *equivalent* when one contains 
-an entire additional latent variable?
+an additional latent variable?
 - Why are the degrees of freedom equal for these two models?
 - Why are the fit statistics equal for these two models?
 - How can we go about picking the "better" of these two models?
@@ -304,9 +310,9 @@ We'll take some time to discuss these ideas in the next lecture session.
 
 ---
 
-The above represents the extent to which we will replicate the EFA/PCA components 
-of Kastelä (2006) with CFA. We will now use the latent variables defined above
-to revisit---for the last time---the regression analysis from Kastelä (2006).
+The above represents the extent to which we will use CFA to replicate the 
+EFA/PCA components of the Kastelä (2006) analysis. We will now use the latent 
+variables defined above to revisit the regression analysis from Kastelä (2006).
 
 Note that we will now be specifying regression models involving latent variables,
 so this is actually your first taste of full structural equation modeling (SEM).
@@ -334,13 +340,13 @@ dummy codes.
 
 - We could use the `dplyr::recode()` function as we did last week.
 - We can use the `model.matrix()` function to define a design matrix based on 
-the inherent constrast attirbute of the factor.
+the inherent contrast attribute of the factor.
     - Missing data will cause problems here.
 - We can us `as.numeric()` to revert the factor to its underlying numeric 
 representation {Male = 1, Female = 2} and use arithmetic to convert {1, 2} 
 $\rightarrow$ {0, 1}.
 
-When we our factor only has two levels, though, the `ifelse()` function is the 
+When our factor only has two levels, though, the `ifelse()` function is the 
 simplest way.
 
 ```{r}
@@ -359,11 +365,16 @@ with(ess, table(dummy = hi_pol_interest, factor = polintr_bin))
 
 ###
 
-We also need to subset the data to only Finnish participants. Do so now.
+Finally, subset the data to only Finnish participants.
+
+<details>
+  <summary>Click for explanation</summary>
 
 ```{r}
 ess_fin <- ess[ess$cntry == "Finland", ]
 ```
+
+</details>
 
 ---
 
@@ -371,8 +382,9 @@ We are now ready to estimate our latent regression model. Specifically, we want
 to implement the following regression as an SEM in `lavaan`.
 
 \[
-Y_{Trust_Inst} = \beta_1 X_{age} + \beta_2 X_{female} + \beta_3 X_{edu_years} +
-                 \beta_4 X_{hi_pol_interest} + \beta_5 X_{lrscale} + \varepsilon_Y
+Y_{trust\_inst} = \beta_1 X_{age} + \beta_2 X_{female} + \beta_3 X_{edu\_years} +
+                  \beta_4 X_{hi\_pol\_interest} + \beta_5 X_{lrscale} + 
+                  \varepsilon_Y
 \]
 
 ---
@@ -381,7 +393,7 @@ Y_{Trust_Inst} = \beta_1 X_{age} + \beta_2 X_{female} + \beta_3 X_{edu_years} +
 
 Define the `lavaan` model syntax for the regression shown above.
 
-- Use the definition of the `institutions` factor from \@ref(cfa_syntax) to 
+- Use the definition of the `institutions` factor from \@ref(cfaSyntax) to 
 define the DV.
 
 *Hint:* You can simply copy the line of syntax that defines the latent factor 
@@ -411,6 +423,9 @@ Estimate the SEM, and summarize the results.
 - Fit the model to the processed Finnish subsample from above.
 - Estimate the model using `lavaan::sem()`.
 - Use the default settings in the `sem()` function.
+- Request the standardized parameter estimates with the summary.
+- Request the $R^2$ estimates with the summary by supplying the `rsquare = TRUE` 
+argument to `summary()`.
 
 <details>
   <summary>Click for explanation</summary>
@@ -440,6 +455,8 @@ with the factor score for *Trust in Institutions* as the DV.
     the path model.
 - Rerun the above SEM with the EFA-derived *Trust in Institutions* factor score
 taking the place of the analagous latent variable as DV.
+    - Request the standardized parameter estimates with the summary.
+    - Request the $R^2$ estimates with the summary.
 
 <details>
   <summary>Click for explanation</summary>
@@ -447,15 +464,24 @@ taking the place of the analagous latent variable as DV.
 First, we'll quickly reproduce the *Trust in Institutions* factor score that we
 estimated last week.
 
+- Note that `psych::fa()` returns the factor scores in a different order than it
+did for the Week 2 analyses. 
+
 ```{r}
 ## Load the psych library:
 library(psych)
 
+## Rerun the three-factor EFA from last week:
+fit_efa <- fa(ess[7:19], 
+              nfactors = 3,          
+              rotate   = "promax",   
+              scores   = "Bartlett")
+
+## View the factor loadings:
+print(fit_efa$loadings, cut = 0.3)
+
 ## Reproduce the factor score from last week:
-ess$trust_inst_efa <- fa(ess[7:19], 
-                         nfactors = 3,          
-                         rotate   = "promax",   
-                         scores   = "Bartlett")$scores[ , 1]
+ess$trust_inst_efa <- fit_efa$scores[ , 1]
 
 ## Subset the data again:
 ess_fin <- ess[ess$cntry == "Finland", ]
@@ -479,6 +505,8 @@ summary(fit_pa, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
 
 ---
 
+###
+
 Compare the results from the path analysis to the SEM-based results.
 
 - Does it matter whether we use a latent variable or a factor score to define 
@@ -494,10 +522,16 @@ First, we'll source a script that defines a bunch of convenience functions. One
 of these functions, `partSummary()`, will allow us to print only the interesting
 pieces of the model summary.
 
-```{r}
+```{r, eval = FALSE}
 ## Source a script of convenience function definitions:
-source("code/supportFunctions.R")
+source("supportFunctions.R")
+```
 
+```{r, echo = FALSE}
+source(paste0(codeDir, "supportFunctions.R"))
+```
+
+```{r}
 ## The partSummary() function requires the dplyr package:
 library(dplyr)
 ```
