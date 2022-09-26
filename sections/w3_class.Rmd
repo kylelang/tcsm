@@ -1,136 +1,317 @@
-# Week 3 - Class
+# In-Class Exercises
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-show_answers <- TRUE
-```
-This week, we will analyze the data from the European social survey, and the paper by Kestilä for the last time. Last week, you first replicated the results by Kestilä, and then ran your own set of factor analyses. Hopefully you experienced yourself that it matters quite a bit what type of factor analysis method you choose; both for the interpretation of your factors, and analyses that incorporate factor scores. 
+This week, we will wrap up our re-analysis of the Kestilä (2006) results. During 
+this practical, you will conduct a CFA of the *Trust in Politics* items and 
+compare the results to those obtained from your previous EFA- and PCA-based 
+replications of Kestilä (2006).
 
-Instead of doing Exploratory Factor Analysis, another way of analyzing the data from the European Social Survey would be to use Confirmatory Factor Analysis. During this practical, you will conduct a CFA and compare your results to earlier EFA and PCA results and the article by Kestilä.
+---
 
-### Question 1
+##
 
-Load the ESS data into R,  into an object called `df`. The data are in the file `"week3_class.csv"`. You can load it into R using the syntax:
+Load the ESS data.
 
-```{r, echo = FALSE, eval = TRUE}
-if(FALSE){
-  load("essround1-c.RData")
-data <- essround1_c
-data[c(7:44, 48, 49, 50)] <- lapply(data[c(7:44, 48, 49, 50)], as.numeric)
-data$yrbrn <- as.numeric(as.character(data$yrbrn))
-df <- data[data$cntry %in% c("Austria", "Belgium", "Denmark", "Finland", "Germany", "Italy", "Netherlands", "Norway", "Sweden"), ]
-df$cntry <- factor(df$cntry)
-df <- df[, -c(which(names(data) == "filter_."):which(names(data)=="immieco"))]
-write.csv(df, "TCSM_student/week3_class.csv", row.names = FALSE)
-}
-df <- read.csv("TCSM_student/week3_class.csv", stringsAsFactors = TRUE)
-```
-```{r, eval = FALSE}
-df <- read.csv("week3_class.csv", stringsAsFactors = TRUE)
-```
-
-Furthermore, you will have to load the package `lavaan` before starting with the exercises.
-
-<details>
-  <summary>Click for explanation</summary>
-```{r, warning = FALSE, message = FALSE}
-library(lavaan)
-
-```
-\details
-
-Furthermore, we want to work with numeric variables instead of factors once again, and with the countries of interest only.
-
-<details>
-  <summary>Click for explanation</summary>
-```{r}
-
-```
-\details
-
-### Question 2
-
-First, review your EFA-results for the 'trust in politics' items, as well as the question wordings of the items. How many factors do you expect?
-
-### Question 3
-
-Build a CFA model for the trust in politics items by means of the R-package `lavaan`. A tutorial example is available here: http://lavaan.ugent.be/tutorial/cfa.html
-
-Make sure to ask for model fit statistics. What do you find for the value of Chi-square, df, RMSEA and CFI? Any idea why you find this Chi-square value? Does the model fit the data?
-
-<details>
-  <summary>Click for explanation</summary>
-```{r, message = FALSE}
-trust_model_3f <- 'trustpol  =~ pltcare + pltinvt + trstplt
-                   satcntry  =~ stfeco + stfgov + stfdem + stfedu + stfhlth
-                   trustinst =~ trstlgl + trstplc + trstun + trstprl'
-
-fit_trust_model_3f <- cfa(trust_model_3f, data = df)
-summary(fit_trust_model_3f, fit.measures = TRUE)
-```
-\details
-
-### Question 4
-
-As an alternative model, build a 1-factor model, with the same items as you used before, and one trust in politics factor. Evaluate the Chi-square, df, RMSEA and CFI again. Does the one factor-model fit better or worse than the factor model you previously estimated?
-
-*Note, there is also a formal way to test whether a difference between two chi-square values is significant; more on that in the practicals of week 4.*
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r, message = FALSE}
-trust_model_1f <- 'political_trust =~ pltcare + pltinvt + trstprl + trstplt + stfeco + stfgov + stfdem + stfedu + stfhlth + trstlgl + trstplc + trstun + trstep'
-
-fit_trust_model_1f <- sem(trust_model_1f, data = df)
-summary(fit_trust_model_1f, fit.measures = TRUE)
-```
-\details
-
-### Question 5
-
-Similarly, can you think of a 2-factor model that would explain political trust? Build this model as well, and compare Chi-square, df, RMSEA and CFI to both the 1-factor and the 3-factor model. Which of the models is the best in your opinion?
-
-By now, you should be able to perform your own two-factor CFA, based on substantive grounds. If you do not know how to do this immediately, please have a look at question 3.
-
-**Note: None of the models fit really well. In practice, this would mean that you would have to change the model. For now, stick with the best model you have.**
-
-### Question 6
-
-Choose your best model, and ask for the standardized estimates by means of the addition `standardized = TRUE` in the summary command. Which item is the best predictor of the first factor?
+- The relevant data are contained in the *ess_round1.rds* file.
+    - This file is in R Data Set (RDS) format.
+    - The dataset is already stored as a data frame with the processing and 
+    cleaning that you should have done for previous practicals completed.
+    - Check the documentation for the `readRDS()` function to see how you can 
+    load data stored in an RDS file.
 
 <details>
   <summary>Click for explanation</summary>
   
-```{r}
-summary(fit_trust_model_3f, fit.measures = TRUE, standardized = TRUE)
-standardizedsolution(fit_trust_model_3f)
+```{r, echo = FALSE, eval = TRUE}
+ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
 ```
-\details
 
+```{r, eval = FALSE}
+ess <- readRDS("ess_round1.rds")
+```
 
-### Question 7
+</details>
 
-Byrne (2005) states that under certain conditions, a second order CFA can be specified. Would the political trust model qualify for a second order factor model?
+---
 
-### Question 8
+Although you may have settled on any number of EFA solutions during the 
+[Week 2 In-Class Exercises](in-class-exercises-1.html), we are going to base the 
+following CFA on a three-factor model of *Trust in Politics* similar to the 
+original PCA results from Kastelä (2006).
 
-Specify a second-order factor model and run this model. What do you conclude when you evaluate model fit? Is this model better than your model that you selected in question 6?
+*Note:* Unless otherwise specified, all following questions refer to the *Trust 
+in Politics* items. We will not consider the *Attitudes toward Immigration* 
+items in these exercises.
+
+---
+
+##
+
+Define the `lavaan` model syntax for the CFA implied by the three-factor EFA 
+solution you found in the Week 2 In-Class Exercises.
+
+- Covary the three latent factors.
+- Do not specify any mean structure.
+- As in \@ref(syntax), save this model syntax as an object in your environment.
 
 <details>
   <summary>Click for explanation</summary>
-To run a second-order factor model, you can simply add an additional line within the single quotes containing the factors that you want in the second-order factor model, like in the example below.
 
-```{r, message = FALSE}
-trust_model_3f2o <- 'trustpol  =~ pltcare + pltinvt + trstprl + trstplt
-                     satcntry  =~ stfeco + stfgov + stfdem + stfedu + stfhlth
-                     trustinst =~ trstlgl + trstplc + trstun + trstep
-                     trust     =~ trustpol + trustinst'
+We don't have to specify the latent covariances in the model syntax, we can tell 
+`lavaan` to estimate all latent covariances when we fit the model.
 
-fit_trust_model_3f2o <- sem(trust_model_3f2o, data = df)
-summary(fit_trust_model_3f2o, fit.measures = TRUE)
+```{r}
+mod_3f <- '
+politicians  =~ pltcare + pltinvt + trstplt
+satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth
+institutions =~ trstlgl + trstplc + trstun + trstprl
+'
 ```
-\details
+
+</details>
+
+---
+
+##
+
+Estimate the CFA model you defined above, and summarize the results.
+
+- Use the `lavaan::cfa()` function to estimate the model.
+- Use the default settings for the `cfa()` function.
+- Request the model fit statistics with the summary by supplying the 
+`fit.measures = TRUE` argument to `summary()`.
+- Request the standardized parameter estimates with the summary by supplying the 
+`standardized = TRUE` argument to `summary()`.
+
+Check the results, and answer the following questions:
+
+- Does the model fit the data well?
+- How are the latent variances and covariances specified when using the default 
+settings?
+- How is the model identified when using the default settings?
+
+<details>
+  <summary>Click for explanation</summary>
+
+
+```{r}
+## Load the lavaan package:
+library(lavaan)
+
+## Estimate the CFA model:
+fit_3f <- cfa(mod_3f, data = ess)
+
+## Summarize the fitted model:
+summary(fit_3f, fit.measures = TRUE, standardized = TRUE)
+```
+
+The `cfa()` function is just a wrapper for the `lavaan()` function with several 
+options set at the defaults you would want for a standard CFA. 
+
+- By default, all latent variances and covariances are freely estimated (due to 
+the default argument `auto.cov.lv.x = TRUE`)
+- By default, the model is identified by fixing the first factor loading of each 
+factor to 1 (due to the default argument `auto.fix.first = TRUE`)
+
+To see a full list of the (many) options you can specify to tweak the behavior
+of `lavaan` estimation functions run `?lavOptions`.
+
+</details>
+
+---
+
+Now, we will consider a couple of alternative factor structures for the *Trust 
+in Politics* CFA. First, we will go extremely simple by estimating a one-factor 
+model wherein all *Trust* items are explained by a single latent variable.
+
+---
+
+##
+
+Define the `lavaan` model syntax for a one-factor model of the *Trust* items.
+
+- Save this syntax as an object in your environment.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+mod_1f <- '
+political_trust =~ 
+  pltcare + 
+  pltinvt + 
+  trstprl + 
+  trstplt + 
+  stfeco + 
+  stfgov + 
+  stfdem + 
+  stfedu + 
+  stfhlth + 
+  trstlgl + 
+  trstplc + 
+  trstun + 
+  trstep
+'
+```
+
+</details>
+
+---
+
+##
+
+Estimate the one-factor model, and summarize the results.
+
+- Does this model appear to fit better or worse than the three-factor model?
+
+*Notes:* 
+
+- We can also conduct a formal significance test for the difference between two 
+$\chi^2$ values, but we won't introduce those ideas until Week 5.
+- You can use the `lavaan::fitMeasures()` function to extract only the model fit 
+information from a fitted `lavaan` object.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+## Estimate the one factor model:
+fit_1f <- cfa(mod_1f, data = ess)
+
+## Summarize the results:
+summary(fit_1f, fit.measures = TRUE)
+
+
+## Compare fit statistics:
+fitMeasures(fit_3f)
+fitMeasures(fit_1f)
+```
+
+The one-factor model definitely seems to fit worse than the three-factor model.
+
+</details>
+
+---
+
+A second order CFA model is another way of representing the latent structure 
+underlying a set of items. As you read in Byrne (2005), however, the second 
+order CFA is only appropriate in certain circumstances.
+
+---
+
+###
+
+Given the CFA results above, would a second order CFA be appropriate for the 
+*Trust* data? Why or why not?
+
+<details>
+  <summary>Click for explanation</summary>
+
+Yes, a second order CFA model is a theoretically apporopriate representation of 
+the *Trust* items. 
+
+- The first order latent variables in the three-factor model are all 
+significantly correlated.
+- The first order latent variables in the three-factor model seem to tap 
+different aspects of an some single underlying construct. 
+
+</details>
+
+---
+
+##
+
+Define the `lavaan` model syntax for a second-order CFA model of the *Trust* items.
+
+- Use the three factors defined in \@ref(l1_syntax) as the first order factors.
+    
+<details>
+  <summary>Click for explanation</summary>
+
+To define the second order factor, we use the same syntactic conventions that we
+employ to define a first order factor. The only differences is that the 
+"indicators" of the second order factor (i.e., the variables listed on the RHS 
+of the `=~` operator) are previously defined first order latent variables.
+
+```{r}
+mod_2nd <- '
+politicians  =~ pltcare + pltinvt + trstplt
+satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth
+institutions =~ trstlgl + trstplc + trstun + trstprl
+
+trust =~ politicians + satisfaction + institutions
+'
+```
+
+</details>
+
+---
+
+##
+
+Estimate the second order CFA model, and summarize the results.
+
+- Does this model fit better or worse than the three-factor model?
+- Is this model more or less complex than the three-factor model?
+    - What information can you use to quantify this difference in complexity?
+
+<details>
+  <summary>Click for explanation</summary>
+
+We don't have to do anything special here. We can estimate and summarize the 
+second order CFA exactly as we did the first order CFA.
+
+```{r}
+fit_2nd <- cfa(mod_2nd, data = ess)
+summary(fit_2nd, fit.measures = TRUE, standardized = TRUE)
+
+## Compare fit between the first and second order models:
+fitMeasures(fit_3f)
+fitMeasures(fit_2nd)
+```
+
+You should quickly notice something strange about the model fit statistics 
+compared above. If you don't see it, consider the following:
+
+```{r}
+fitMeasures(fit_3f) - fitMeasures(fit_2nd)
+```
+
+The two models produce identical fit statistics! We also see that the degrees of 
+freedom are identical between the two models. Hence, the two models have equal
+complexity.
+
+This result taps into a critical idea in statistical modeling, namely, *model 
+equivalency*. It turns out the two models we're comparing here are *equivalent* 
+in the sense that they are statistically indistinguishable representations of 
+the data.
+
+Since this is a very important idea, I want to spend some time discussing it in 
+person. So, spend some time between now and the next lecture session thinking 
+about the implications of this model equivalence. Specifically, consider the 
+following questions:
+
+- What do we mean when we say that these two models are *equivalent*?
+- How is it possible for these two models to be *equivalent* when one contains 
+an entire additional latent variable?
+- Why are the degrees of freedom equal for these two models?
+- Why are the fit statistics equal for these two models?
+- How can we go about picking the "better" of these two models?
+
+We'll take some time to discuss these ideas in the next lecture session.
+
+</details>
+
+---
+
+The above represents the extent to which we will replicate the EFA/PCA components 
+of Kastelä (2006) with CFA. We will now use the latent variables defined above
+to revisit---for the last time---the regression analysis from Kastelä (2006).
+
+Note that we will now be specifying regression models involving latent variables,
+so this is actually your first taste of full structural equation modeling (SEM).
+Enjoy!
+
+---
 
 ### Question 9
 
@@ -149,37 +330,7 @@ Estimate the model. The model doesn't fit very well, but for now, we will stick 
 
 We will first have to do some recoding again. You might want to make an age variable instead of a yearborn variable, which eases the interpretation. Furthermore, a dummy for gender is more informative than just the variable `gndr`, although this will be treated as a dummy. You will also have to recode the variables `eduyrs` and `lrscale` to numerical variables, and you will have to make a two-category dummy for the variable `polintr`.
 
-
 ```{r}
-df$age <- 2002 - df$yrbrn
-
-model_q9 <- 'trustinst =~ trstlgl + trstplc + trstun
-             trustinst ~ gndr + age + eduyrs + polintr + lrscale'
-
-fit_model_q9 <- sem(model_q9, data = df)
-summary(fit_model_q9, fit.measures = TRUE, standardized = TRUE)
-```
-
-```{r, echo = FALSE, eval = FALSE}
-df$age <- 2002 - as.numeric(as.character(df$yrbrn))
-
-df$female <- as.numeric(df$gndr)
-df$female <- as.numeric(df$female == 2)
-df$female <- factor(df$female,
-                      levels = c(0,1),
-                      labels = c("Male",
-                                 "Female"))
-
-df$eduyrs <- as.numeric(df$eduyrs)
-df$polintr_dummy <- as.numeric(df$polintr)
-df$polintr_dummy <- as.numeric(df$polintr_dummy <= 2)
-df$polintr_dummy <- factor(df$polintr_dummy,
-                                   levels = c(0,1),
-                                   labels = c("Not or hardly interested",
-                                              "Quite or very interested"))
-
-df$lrscale <- as.numeric(df$lrscale)
-
 model_q9 <- 'trustinst =~ trstlgl + trstplc + trstun
              trustinst ~ female + age + eduyrs + polintr_dummy + lrscale'
 
