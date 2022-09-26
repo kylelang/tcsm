@@ -51,7 +51,8 @@ tests this hypothesized structure statistically.” (p. 17)
     correlated (oblique). In CFA, arbitrary latent covariance structures can be 
     specified by the researcher 
     a. In EFA, all observed variables are influenced by all latent variables. In
-    CFA, each observed variable is typically explained by only one latent variable. 
+    CFA, each observed variable is explained by only the latent variables 
+    (usually only one) specified by the researcher. 
     a. In EFA, the unique factors are uncorrelated. In CFA, theoretically 
     interesting residual correlations can be estimated between unique factors. 
     a. In EFA, we very limited options when it comes to testing model fit. In 

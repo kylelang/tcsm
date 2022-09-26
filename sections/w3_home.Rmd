@@ -20,7 +20,7 @@ to `lavaan` (part of which originates from the official `lavaan` tutorial).
 
 ---
 
-### Getting started
+###
 
 To get started with lavaan, complete the following two chapters from the 
 official `lavaan` tutorial:
