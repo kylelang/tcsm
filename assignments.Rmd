@@ -29,15 +29,20 @@ first assignment are described below.
 1. State the research question, and define the theoretical latent variable 
 model. **(150 words)**
     a. Be sure to clearly explicate all parts of your model.
-1. Translate your theoretical latent variable model into `lavaan` syntax, and 
-estimate the model.
-    a. Provide relevant output in a suitable format.
+    a. If you do an EFA, you won't have a single pre-defined model to describe.
+        - Describe your analytic process.
+        - Explicate all the settings you will use (e.g., items analyzed, 
+        estimation method, rotation).
+1. Translate your theoretical latent variable model into R code, and estimate 
+the model.
+    a. Include the code used to define and estimate your model as an appendix.
 1. Explain your rationale for important modeling decisions. **(300 words)**
     a. Motivate your choice of latent variable model (i.e., EFA, CFA, PCA).
     a. Discuss assumptions.
     a. Discuss other important decisions that could have influence your results.
 1. Report and interpret the results in APA style.
-    a. Include measures of model fit.
+    a. Provide relevant output in a suitable format.
+    a. Include measures of model fit, if applicable.
 1. Discuss the results. **(300 words)**
     a. Use your results to answer the research question.
     a. Consider the strengths and limitations of your analysis.
@@ -68,7 +73,7 @@ of the second assignment are described below.
     tested using regression or ANOVA in a published paper.
 1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
 model.
-    a. Provide relevant output in a suitable format.
+    a. Include the code used to define and estimate your model as an appendix.
 1. Explain your rationale for important modeling decisions. **(300 words)**
     a. Discuss the conceptual fit between your theory and your model.
     a. Evaluate the model assumptions.
@@ -76,6 +81,7 @@ model.
     path model and the regression or ANOVA results from the original paper.
     a. Discuss other important decisions that could have influence your results.
 1. Report and interpret the results in APA style.
+    a. Provide relevant output in a suitable format.
     a. Include measures of explained variance for the dependent variables.
 1. Discuss the results. **(300 words)**
     a. Use your results to answer the research question.
@@ -109,7 +115,7 @@ components of the third assignment are described below.
     variables.
     a. The model must include, at least, one latent variable.
 1. Translate your theoretical SEM into `lavaan` syntax, and estimate the model.
-    a. Provide relevant output in a suitable format.
+    a. Include the code used to define and estimate your model as an appendix.
 1. Explain your rationale for important modeling decisions. **(300 words)**
     a. Discuss the conceptual fit between your theory and your model.
     a. Evaluate the model assumptions.
@@ -117,6 +123,7 @@ components of the third assignment are described below.
     model and the regression or ANOVA results from the original paper.
     a. Discuss other important decisions that could have influence your results.
 1. Report and interpret the results in APA style.
+    a. Provide relevant output in a suitable format.
     a. Include measures of model fit.
     a. Include measures of explained variance for the dependent variables.
 1. Discuss the results. **(500 words)**
@@ -205,7 +212,10 @@ if it will work for the assignments.
     - The names of all assignment authors (i.e., all group members for 
     Assignments 1 & 2, your name for Assignment 3).
     - The Assignment Group number (only for Assignments 1 & 2).
-
+- You must include the code used to define and run your model(s) as an appendix.
+    - Try to format the text in this appendix clearly.
+    - Use a monospace font.
+    
 ---
 
 ### Length {-}
@@ -254,13 +264,15 @@ the assignment descriptions).
     - Insufficient (0 points)
     - Sufficient (1 point)
     - Excellent (1.5 points)
-    
+- There is also one point awarded for satisfying the formatting and submission 
+requirements.
+
 The individual assignment grades will be computed as follows:
 
 1. Sum the 6 component grades.
-1. Add 1 to the sum of the component grades.
+1. Add the formatting/submission score to the sum of the component grades.
 
-Consequently, we have the following landmarks:
+So, given a full point for formatting/submission, we have the following landmarks:
 
 - All components marked as *Insufficient* $\rightarrow$ Assignment Grade = 1
 - All components marked as *Sufficient* $\rightarrow$ Assignment Grade = 7
