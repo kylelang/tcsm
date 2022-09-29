@@ -9,7 +9,6 @@ rsconnect
 *.sav
 *.xls
 *.xlsx
-*.pdf
 *.RData
 !pdf/*.pdf
 !docs/pdf/*.pdf
