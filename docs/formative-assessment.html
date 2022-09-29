@@ -166,6 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="assignment-1-latent-variable-model.html"><a href="assignment-1-latent-variable-model.html"><i class="fa fa-check"></i>Assignment 1: Latent Variable Model</a>
 <ul>
+<li class="chapter" data-level="" data-path="assignment-1-latent-variable-model.html"><a href="assignment-1-latent-variable-model.html#evaluation"><i class="fa fa-check"></i>Evaluation</a></li>
 <li class="chapter" data-level="" data-path="assignment-1-latent-variable-model.html"><a href="assignment-1-latent-variable-model.html#submission"><i class="fa fa-check"></i>Submission</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="assignment-2-path-model.html"><a href="assignment-2-path-model.html"><i class="fa fa-check"></i>Assignment 2: Path Model</a>
@@ -396,17 +397,17 @@ topics that need more attention during the lecture meeting.</li>
 </ul>
 <hr />
 <p><strong>Question 1:</strong>
-A model with more degrees of freedom is…</p>
+A model with more degrees of freedom will…</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question1" id="opt1" value="1" onchange="check_answer1()">
-more complex
+fit the data worse
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question1" id="opt2" value="2" onchange="check_answer1()">
-more simple
+fit the data better
 </label></p>
 </div>
 <div id="collapseExample1" class="collapse">
@@ -423,8 +424,8 @@ function check_answer1()
     {
         if(radioButtons1[i].checked == true)
         {
-            var feedback1 = "<p style='color:red'>Wrong; More degrees of freedom means fewer parameters are estimated, so the model is simpler. Topic: fit vs complexity, see lecture.</p>";
-            if(radioButtons1[i].value == "2") {
+            var feedback1 = "<p style='color:red'>Wrong; The simpler a model is, the more poorly it will represent the data. The most complex model possible exactly reproduces the observed data, and has 0 degrees of freedom. Topic: fit vs complexity, see lecture.</p>";
+            if(radioButtons1[i].value == "1") {
               feedback1 = "<p style='color:green'>Correct!</p>"
             }
             document.getElementById("answerFeedback1").innerHTML = feedback1;
@@ -434,7 +435,7 @@ function check_answer1()
 }
 </script>
 <p><strong>Question 2:</strong>
-Multiple regression and ANCOVA are statistically equivalent.</p>
+The error term (<span class="math inline">\(\epsilon_i\)</span>) in regression equations reflects how much the observed scores of individuals differ from their predicted scores.</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question2" id="opt1" value="1" onchange="check_answer2()">
@@ -461,7 +462,7 @@ function check_answer2()
     {
         if(radioButtons2[i].checked == true)
         {
-            var feedback2 = "<p style='color:red'>Wrong; ANCOVA can be represented as multiple regression with dummies for all response categories, and one continuous predictor. Topic: background knowledge.</p>";
+            var feedback2 = "<p style='color:red'>Wrong; This term e_i represents the 'residuals'; the variance not explained by the regression line. We assume that these residuals are normally distributed around 0, which means people's scores are normally distributed around the regression line. Topic: background knowledge.</p>";
             if(radioButtons2[i].value == "2") {
               feedback2 = "<p style='color:green'>Correct!</p>"
             }
@@ -472,29 +473,29 @@ function check_answer2()
 }
 </script>
 <p><strong>Question 3:</strong>
-What are degrees of freedom?</p>
+In the equation <span class="math inline">\(Y_i = a + bX_i + e_i\)</span>, what are the ‘model parameters’?</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question3" id="opt1" value="1" onchange="check_answer3()">
-The number of unique pieces of information
+<span class="math inline">\(a\)</span> and <span class="math inline">\(bX_i\)</span>
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question3" id="opt2" value="2" onchange="check_answer3()">
-The number of unique pieces of information minus number of parameters
+<span class="math inline">\(Y_i, X_i\)</span> and <span class="math inline">\(e_i\)</span>
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question3" id="opt3" value="3" onchange="check_answer3()">
-Number of participants minus number of parameters
+<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question3" id="opt4" value="4" onchange="check_answer3()">
-The number of parameters
+<span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>
 </label></p>
 </div>
 <div id="collapseExample3" class="collapse">
@@ -511,8 +512,8 @@ function check_answer3()
     {
         if(radioButtons3[i].checked == true)
         {
-            var feedback3 = "<p style='color:red'>Wrong; Degrees of freedom are the number of remaining parameters you *could* estimate, given a number of unique pieces of information. For example, if you have 10 participants, you could estimate maximum 10 parameters. If you then estimate 2 parameters, you have 8 remaining degrees of freedom. Note that in SEM, the pieces of information are not individual participants, but the observed (co)variances and sometimes means. Topic: degrees of freedom, see lecture.</p>";
-            if(radioButtons3[i].value == "2") {
+            var feedback3 = "<p style='color:red'>Wrong; The 'parameters' are the quantities we want to estimate. In this case, we have observed data for X_i and Y_i. We then estimate the intercept a and slope b. Then, we can calculate the residuals e_i. Topic: Model parameters, see lecture.</p>";
+            if(radioButtons3[i].value == "3") {
               feedback3 = "<p style='color:green'>Correct!</p>"
             }
             document.getElementById("answerFeedback3").innerHTML = feedback3;
@@ -559,33 +560,30 @@ function check_answer4()
     }
 }
 </script>
-<strong>Question 5:</strong>
-<p>
-<img src="images/formative1.png" style="width:50.0%" />
-</p>
-<p>What kind of model is depicted above?</p>
+<p><strong>Question 5:</strong>
+A psychologist administers a test intended to measure intelligence. Participants complete different puzzles and answer different questions. From a measurement theory point of view, what kind of variable is intelligence in this context?</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question5" id="opt1" value="1" onchange="check_answer5()">
-A measurement model
+A measurement variable
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question5" id="opt2" value="2" onchange="check_answer5()">
-Multiple regression
+An observed variable
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question5" id="opt3" value="3" onchange="check_answer5()">
-ANOVA with dummies
+A latent variable
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question5" id="opt4" value="4" onchange="check_answer5()">
-A path model
+A dependent variable
 </label></p>
 </div>
 <div id="collapseExample5" class="collapse">
@@ -602,8 +600,8 @@ function check_answer5()
     {
         if(radioButtons5[i].checked == true)
         {
-            var feedback5 = "<p style='color:red'>Wrong; In SEM, latent variables are typically indicated by circles. Observed variables are indicated by rectangles. Regression paths are indicated by single-headed arrows. A measurement model specifies that a latent variable causes variance in several observed indicators, as in this picture. Topic: SEM graphing conventions, see <https://cjvanlissa.github.io/tidySEM/articles/sem_graph.html></p>";
-            if(radioButtons5[i].value == "1") {
+            var feedback5 = "<p style='color:red'>Wrong; The puzzles and questions are observed variables. These are intended to measure an unobserved, 'latent' construct: intelligence. From a modeling perspective, the observed variables are dependent on the latent variable, not the other way around. Topic: factor analysis, see lecture.</p>";
+            if(radioButtons5[i].value == "3") {
               feedback5 = "<p style='color:green'>Correct!</p>"
             }
             document.getElementById("answerFeedback5").innerHTML = feedback5;
@@ -613,29 +611,17 @@ function check_answer5()
 }
 </script>
 <p><strong>Question 6:</strong>
-A psychologist administers a test intended to measure intelligence. Participants complete different puzzles and answer different questions. From a measurement theory point of view, what kind of variable is intelligence in this context?</p>
+A model with more degrees of freedom is…</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question6" id="opt1" value="1" onchange="check_answer6()">
-A measurement variable
+more complex
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question6" id="opt2" value="2" onchange="check_answer6()">
-An observed variable
-</label></p>
-</div>
-<div class="radio">
-<p><label>
-<input type="radio" name="question6" id="opt3" value="3" onchange="check_answer6()">
-A dependent variable
-</label></p>
-</div>
-<div class="radio">
-<p><label>
-<input type="radio" name="question6" id="opt4" value="4" onchange="check_answer6()">
-A latent variable
+more simple
 </label></p>
 </div>
 <div id="collapseExample6" class="collapse">
@@ -652,8 +638,8 @@ function check_answer6()
     {
         if(radioButtons6[i].checked == true)
         {
-            var feedback6 = "<p style='color:red'>Wrong; The puzzles and questions are observed variables. These are intended to measure an unobserved, 'latent' construct: intelligence. From a modeling perspective, the observed variables are dependent on the latent variable, not the other way around. Topic: factor analysis, see lecture.</p>";
-            if(radioButtons6[i].value == "4") {
+            var feedback6 = "<p style='color:red'>Wrong; More degrees of freedom means fewer parameters are estimated, so the model is simpler. Topic: fit vs complexity, see lecture.</p>";
+            if(radioButtons6[i].value == "2") {
               feedback6 = "<p style='color:green'>Correct!</p>"
             }
             document.getElementById("answerFeedback6").innerHTML = feedback6;
@@ -663,17 +649,17 @@ function check_answer6()
 }
 </script>
 <p><strong>Question 7:</strong>
-A model with more degrees of freedom will…</p>
+Multiple regression and ANCOVA are statistically equivalent.</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question7" id="opt1" value="1" onchange="check_answer7()">
-fit the data worse
+FALSE
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question7" id="opt2" value="2" onchange="check_answer7()">
-fit the data better
+TRUE
 </label></p>
 </div>
 <div id="collapseExample7" class="collapse">
@@ -690,8 +676,8 @@ function check_answer7()
     {
         if(radioButtons7[i].checked == true)
         {
-            var feedback7 = "<p style='color:red'>Wrong; The simpler a model is, the more poorly it will represent the data. The most complex model possible exactly reproduces the observed data, and has 0 degrees of freedom. Topic: fit vs complexity, see lecture.</p>";
-            if(radioButtons7[i].value == "1") {
+            var feedback7 = "<p style='color:red'>Wrong; ANCOVA can be represented as multiple regression with dummies for all response categories, and one continuous predictor. Topic: background knowledge.</p>";
+            if(radioButtons7[i].value == "2") {
               feedback7 = "<p style='color:green'>Correct!</p>"
             }
             document.getElementById("answerFeedback7").innerHTML = feedback7;
@@ -700,30 +686,33 @@ function check_answer7()
     }
 }
 </script>
-<p><strong>Question 8:</strong>
-In the equation <span class="math inline">\(Y_i = a + bX_i + e_i\)</span>, what are the ‘model parameters’?</p>
+<strong>Question 8:</strong>
+<p>
+<img src="images/formative1.png" style="width:50.0%" />
+</p>
+<p>What kind of model is depicted above?</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question8" id="opt1" value="1" onchange="check_answer8()">
-<span class="math inline">\(a\)</span> and <span class="math inline">\(bX_i\)</span>
+Multiple regression
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question8" id="opt2" value="2" onchange="check_answer8()">
-<span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>
+A path model
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question8" id="opt3" value="3" onchange="check_answer8()">
-<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>
+ANOVA with dummies
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question8" id="opt4" value="4" onchange="check_answer8()">
-<span class="math inline">\(Y_i, X_i\)</span> and <span class="math inline">\(e_i\)</span>
+A measurement model
 </label></p>
 </div>
 <div id="collapseExample8" class="collapse">
@@ -740,8 +729,8 @@ function check_answer8()
     {
         if(radioButtons8[i].checked == true)
         {
-            var feedback8 = "<p style='color:red'>Wrong; The 'parameters' are the quantities we want to estimate. In this case, we have observed data for X_i and Y_i. We then estimate the intercept a and slope b. Then, we can calculate the residuals e_i. Topic: Model parameters, see lecture.</p>";
-            if(radioButtons8[i].value == "3") {
+            var feedback8 = "<p style='color:red'>Wrong; In SEM, latent variables are typically indicated by circles. Observed variables are indicated by rectangles. Regression paths are indicated by single-headed arrows. A measurement model specifies that a latent variable causes variance in several observed indicators, as in this picture. Topic: SEM graphing conventions, see <https://cjvanlissa.github.io/tidySEM/articles/sem_graph.html></p>";
+            if(radioButtons8[i].value == "4") {
               feedback8 = "<p style='color:green'>Correct!</p>"
             }
             document.getElementById("answerFeedback8").innerHTML = feedback8;
@@ -751,17 +740,29 @@ function check_answer8()
 }
 </script>
 <p><strong>Question 9:</strong>
-The error term (<span class="math inline">\(\epsilon_i\)</span>) in regression equations reflects how much the observed scores of individuals differ from their predicted scores.</p>
+What are degrees of freedom?</p>
 <div class="radio">
 <p><label>
 <input type="radio" name="question9" id="opt1" value="1" onchange="check_answer9()">
-TRUE
+The number of unique pieces of information minus number of parameters
 </label></p>
 </div>
 <div class="radio">
 <p><label>
 <input type="radio" name="question9" id="opt2" value="2" onchange="check_answer9()">
-FALSE
+The number of unique pieces of information
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question9" id="opt3" value="3" onchange="check_answer9()">
+The number of parameters
+</label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question9" id="opt4" value="4" onchange="check_answer9()">
+Number of participants minus number of parameters
 </label></p>
 </div>
 <div id="collapseExample9" class="collapse">
@@ -778,7 +779,7 @@ function check_answer9()
     {
         if(radioButtons9[i].checked == true)
         {
-            var feedback9 = "<p style='color:red'>Wrong; This term e_i represents the 'residuals'; the variance not explained by the regression line. We assume that these residuals are normally distributed around 0, which means people's scores are normally distributed around the regression line. Topic: background knowledge.</p>";
+            var feedback9 = "<p style='color:red'>Wrong; Degrees of freedom are the number of remaining parameters you *could* estimate, given a number of unique pieces of information. For example, if you have 10 participants, you could estimate maximum 10 parameters. If you then estimate 2 parameters, you have 8 remaining degrees of freedom. Note that in SEM, the pieces of information are not individual participants, but the observed (co)variances and sometimes means. Topic: degrees of freedom, see lecture.</p>";
             if(radioButtons9[i].value == "1") {
               feedback9 = "<p style='color:green'>Correct!</p>"
             }
