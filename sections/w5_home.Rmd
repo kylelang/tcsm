@@ -1,0 +1,276 @@
+## At-Home Exercises
+
+```{r include = FALSE}
+library(foreign)
+library(semTools)
+library(lavaan)
+
+dataDir <- "../../data/"########################################################
+
+se <- read.spss(paste0(dataDir, "SelfEsteem.sav"), to.data.frame = TRUE)
+```
+
+In this practical, we will analyze the data contained in *SelfEsteem.sav*. These
+data comprise 143 observations of the following variables. 
+
+- *case*: Participant ID number
+- *ParAtt*: Parental Attachment
+- *PeerAtt*: Peer Attachment
+- *Emp*: Empathy
+- *ProSoc*: Prosocial behavior
+- *Aggr*: Aggression
+- *SelfEst*: Self-esteem
+
+---
+
+###
+
+Load the *SelfEsteem.sav* data.
+
+*Note*: Unless otherwise specified, all following analyses apply to these data.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+library(foreign)
+se <- read.spss("SelfEsteem.sav", to.data.frame = TRUE)
+```
+
+</details>
+
+---
+
+For this analysis, we are interested in the (indirect) effects of parental and 
+peer attachment on self-esteem. Furthermore, we want to evaluate the mediating 
+roles of empathy and social behavior (i.e., prosocial behavior and aggression).
+
+Specifically, we have the following hypotheses.
+
+1. Better peer relationships will promote higher self-esteem via a three-step 
+indirect process.
+    a. Better peer relationships will increase empathy levels.
+    a. Higher empathy will increase prosocial behavior and decrease aggressive 
+    behavior.
+    a. More prosocial behaviors and less aggressive behavior will both produce 
+    higher self-esteem.
+1. Better relationships with parents directly increase self-esteem.
+
+---
+
+To evaluate these hypotheses, we will use **lavaan** to estimate the following 
+multiple mediator model as a path model. 
+
+![](../images/week5home.png)
+---
+
+### {#syntax1}
+
+Specify the lavaan model syntax implied by the path diagram shown above.
+
+- Save the resulting character string as an object in your environment.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+mod <- '
+SelfEst ~ ProSoc + Aggr + Emp + ParAtt + PeerAtt
+
+ProSoc ~ PeerAtt + ParAtt + Emp
+Aggr ~ PeerAtt + ParAtt + Emp
+
+Emp ~ ParAtt + PeerAtt
+
+ProSoc ~~ Aggr
+ParAtt ~~ PeerAtt
+'
+```
+
+</details>
+
+---
+
+###
+
+Given the model represented by the path diagram above: 
+
+1. How many paths could we define to transmit the effect of Parental Attachment 
+to Self-esteem? 
+1. How many paths connect Peer Attachment to Self-esteem? 
+
+<details>
+  <summary>Click for explanation</summary>
+Parental Attachment
+
+- One direct effect
+    - DE = `ParAtt` $\rightarrow$ `SelfEst`.
+- Two indirect effects
+    - IE1 = `ParAtt` $\rightarrow$ `ProSoc` $\rightarrow$ `SelfEst`
+    - IE2 = `ParAtt` $\rightarrow$ `Aggr` $\rightarrow$ `SelfEst`
+- One total effect
+    - TE = DE + IE1 + IE2
+
+Peer Attachment
+
+- One direct effect
+    - DE = `PeerAtt` $\rightarrow$ `SelfEst`.
+- Two indirect effects
+    - IE1 = `PeerAtt` $\rightarrow$ `ProSoc` $\rightarrow$ `SelfEst`
+    - IE2 = `PeerAtt` $\rightarrow$ `Aggr` $\rightarrow$ `SelfEst`
+- One total effect
+    - TE = DE + IE1 + IE2
+
+</details>
+
+---
+
+### {#fit1}
+
+Use the `lavaan::sem()` function to estimate the model defined in \@ref(syntax1).
+
+- Use the default settings in `sem()`.
+- Summarize the fitted model.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+library(lavaan)
+out <- sem(mod, data = se)
+summary(out, fit.measures = TRUE)
+```
+
+</details>
+
+---
+
+### 
+
+Considering the parameter estimates from \@ref(fit1), what can you say about the 
+hypotheses? 
+
+<details>
+  <summary>Click for explanation</summary>
+
+The patterns of individual estimates conform with the hypotheses (e.g., all of 
+the individual paths comprising the indirect effects of `PeerAtt` on `SelfEst` 
+are significant). We cannot make any firm conclusions until we actually estimate
+and test the indirect effects, though.
+
+</details>
+
+---
+
+### Estimating indirect effects
+
+Remember that an indirect effect is the product of several chained direct effects. Therefore, to obtain an indirect effect, you can multiply the two (or more) direct effects it consists of. Based on this knowledge - and you previous experience labelling parameters - the way to estimate indirect effects may be obvious:
+
+1. You label the direct effects
+2. You multiply the labels
+
+There is a tutorial on this on the lavaan website: http://lavaan.ugent.be/tutorial/mediation.html
+
+Additionally, a total effect is the sum of all direct and indirect effects that connect one predictor and one outcome. So, for example, in this week's model, two indirect effects link Empathy and Self-esteem (through prosocial and aggression). The total effect of empathy on self-esteem is therefore the sum of these two indirect effects (and no direct effect).
+
+### Question 4
+
+Estimate the indirect effects of Emp on SelfEst, mediated through ProSoc and Aggr. Also estimate the total effect.
+
+*Note: A new parameter is defined in lavaan using the* `:=` *operator.*
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+mediation_model <- "SelfEst ~ bse_pro * ProSoc + bse_agg * Aggr + ParAtt + PeerAtt
+                    ProSoc ~ bpro_emp * Emp
+                    Aggr ~ bagg_emp * Emp
+                    Emp ~ ParAtt + PeerAtt
+                    ProSoc ~~ Aggr
+                    ParAtt ~~ PeerAtt
+                    ind_pro := bse_pro * bpro_emp
+                    ind_agg := bse_agg * bagg_emp
+                    total := ind_pro + ind_agg"
+fit_mediation <- sem(mediation_model,
+                     data = data)
+summary(fit_mediation, fit.measures = TRUE)
+```
+\details
+
+### Question 5
+
+Estimate all indirect effects and the total effects of Parental Attachment and Peer Attachment on Self-esteem.
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+mediation_model <- "SelfEst ~ bse_pro * ProSoc + bse_agg * Aggr + bse_par * ParAtt + bse_peer * PeerAtt
+                    ProSoc ~ bpro_emp * Emp
+                    Aggr ~ bagg_emp * Emp
+                    Emp ~ bemp_par * ParAtt + bemp_peer * PeerAtt
+                    ProSoc ~~ Aggr
+                    ParAtt ~~ PeerAtt
+                    ind_par_emp_pro := bse_pro * bpro_emp * bemp_par
+                    ind_peer_emp_pro := bse_pro * bpro_emp * bemp_peer
+                    ind_par_emp_agg := bse_agg * bagg_emp * bemp_par
+                    ind_peer_emp_agg := bse_agg * bagg_emp * bemp_peer
+                    
+                    total_par := bse_par + ind_par_emp_pro + ind_par_emp_agg
+                    total_peer := bse_peer + ind_peer_emp_pro + ind_peer_emp_agg"
+fit_mediation <- sem(mediation_model,
+                     data = data)
+summary(fit_mediation)
+```
+
+\details
+
+### Question 6
+
+To compare the total effect of parental attachment versus peer attachment on self esteem, should you use the standardized or unstandardized parameters? Obtain the appropriate output, and draw a conclusion.
+
+<details>
+  <summary>Click for explanation</summary>
+
+You should use the standardized results:
+
+```{r}
+summary(fit_mediation, fit.measures = TRUE, standardize = TRUE)
+```
+\details
+
+### Difference between parameters
+
+To test the difference between parameters, you can constrain them to be equal and do a chi-square difference test to compare the constrained and unconstrained models. However, you can also calculate the difference between parameters, and test if it's significant:
+
+```{r, eval = F}
+"dif_par_peer := total_par - total_peer"
+```
+
+### Bootstrapping
+
+You may have learned before that the sampling distribution of indirect effects is not normal. Consequently, you cannot use parameteric p-values to determine the significance of indirect effects because they are biased. If you want to know whether the indirect effects are significant, you can bootstrap them to obtain a 95% confidence interval.
+
+Bootstrapping means that lavaan will draw 1000 samples from the data and estimate the model on each sample. There will thus be 1000 estimates for every parameter. The lower and upper bounds of a 95% confidence interval are determined by taking the 2.5% and 97.5% quantiles of the 1000 samples for each parameter.
+
+The confidence interval is interpreted the same as a normal confidence interval: If zero lies inside the interval (e.g., lower bound is -.4 and upper bound is .9), we conclude that the parameter is not significantly different from zero, but if zero does not lie in this interval (e.g., lower bound is .4 and upper bound is 1.3), we can say the parameter differs from zero (at an alpha of .05 since we are considering a 95% confidence interval). 
+
+We will get these intervals for all the parameters in the model, but we are specifically interested in the intervals for the indirect effects, because we want to know if they differ from zero (i.e., whether there is a mediated effect).
+
+In lavaan, bootstrap standard errors are requested by specifying se = "bootstrap" in the fitting function, and specifying the number of bootstrap samples as `bootstrap = 1000`. First, just get your code running by specifying a low number, like 100 or even 10. **Note: To draw reliable conclusions from the results, you should always use 1000+ bootstrap samples - but it can take a long time.**
+
+```{r}
+fit_mediation <- sem(mediation_model,
+                     data = data,
+                     se = "bootstrap",
+                     bootstrap = 100)
+```
+
+To obtain the confidence intervals for your model, use the following syntax:
+
+```{r, warning=FALSE}
+parameterestimates(fit_mediation, boot.ci.type = "bca.simple", standardized = TRUE)
+```
+
+### Question 7 
+
+What do you conclude about the indirect and total effects of Parental attachment and Peer attachment on Self-esteem? Report your conclusions as you would report them in a paper (in words and statistics).
