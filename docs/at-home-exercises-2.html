@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.4 At-Home Exercises | Theory Construction and Statistical Modeling</title>
   <meta name="description" content="3.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.4 At-Home Exercises | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
@@ -331,6 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#reference-3"><i class="fa fa-check"></i>Reference</a></li>
 <li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-3"><i class="fa fa-check"></i>Questions</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#answers-3"><i class="fa fa-check"></i>Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="formative-assessment-2.html"><a href="formative-assessment-2.html"><i class="fa fa-check"></i><b>3.3</b> Formative Assessment</a></li>
 <li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a>
@@ -362,6 +363,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.13" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-66"><i class="fa fa-check"></i><b>3.5.13</b> </a></li>
 <li class="chapter" data-level="3.5.14" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-67"><i class="fa fa-check"></i><b>3.5.14</b> </a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i><b>4</b> Mediation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lecture-3.html"><a href="lecture-3.html"><i class="fa fa-check"></i><b>4.1</b> Lecture</a></li>
+<li class="chapter" data-level="4.2" data-path="reading-3.html"><a href="reading-3.html"><i class="fa fa-check"></i><b>4.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#reference-4"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#questions-4"><i class="fa fa-check"></i>Questions</a></li>
+<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#reference-5"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#questions-5"><i class="fa fa-check"></i>Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="formative-assessment-3.html"><a href="formative-assessment-3.html"><i class="fa fa-check"></i><b>4.3</b> Formative Assessment</a></li>
+<li class="chapter" data-level="4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html"><i class="fa fa-check"></i><b>4.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.5</b> In-Class Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -693,12 +708,12 @@ Click for explanation
 <span id="cb194-3"><a href="at-home-exercises-2.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb194-4"><a href="at-home-exercises-2.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a basic path diagram:</span></span>
 <span id="cb194-5"><a href="at-home-exercises-2.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>We can improve this basic diagram in several ways. For example, we can add the
 values of the estimates for the paths. We can also rotate the diagram to match
 the orientation of our theoretical path diagram from above.</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="at-home-exercises-2.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit, <span class="at">whatLabels =</span> <span class="st">&quot;est&quot;</span>, <span class="at">rotation =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 </details>
 <hr />
 <p>End of At-Home Exercises</p>
@@ -772,7 +787,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

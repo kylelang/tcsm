@@ -5,7 +5,8 @@ rmd_files: [
   "week0.Rmd",
   "week1.Rmd",
   "week2.Rmd",
-  "week3.Rmd"
+  "week3.Rmd",
+  "week5.Rmd"
   ]
 delete_merged_file: true
 output_dir: "docs"

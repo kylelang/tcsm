@@ -1,9 +1,7 @@
-# Week 6 - Reading questions
+## Reading
 
-```{r include=FALSE}
-knitr::opts_chunk$set(warning=FALSE, message=FALSE)
-config <- yaml::yaml.load_file("config.yml")
-showanswers = FALSE
+```{r include = FALSE}
+answers <- yaml::yaml.load_file("../answers.yml")$rq6
 ```
 
 #### Reference {-}
@@ -11,7 +9,7 @@ showanswers = FALSE
 [Baron, R.M and Kenny, D.A. (1986) The moderator-Mediator Variable Distinction 
 in Social Psychological Research: Conceptual, Strategic, and Statistical 
 Considerations, Journal of Personality and Individual Differences, 51(6), p. 1173-
-1182](http://webcom.upmf-grenoble.fr/LIP/Perso/DMuller/GSERM/Articles/Journal%20of%20Personality%20and%20Social%20Psychology%201986%20Baron.pdf)
+1182](https://doi.org/10.1037//0022-3514.51.6.1173)
 
 #### Questions: {-}
 

@@ -142,3 +142,9 @@ section-64
 section-65
 section-66
 section-67
+mediation
+lecture-3
+reading-3
+formative-assessment-3
+at-home-exercises-3
+in-class-exercises-3
