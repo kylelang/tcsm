@@ -61,32 +61,6 @@ multiple mediator model as a path model.
 
 ![](images/week5_home_full_model.png)
 
-###
-
-Given the stated hypotheses and the model represented by the path diagram above: 
-
-1. How many paths do we expect to transmit the effect of Parental Attachment 
-to Self-esteem? 
-1. How many paths do we expect to transmit the effect of Peer Attachment to 
-Self-esteem? 
-
-<details>
-  <summary>Click for explanation</summary>
-
-***Parental Attachment***
-
-- We only hypothesize a single direct effect: `ParAtt` $\rightarrow$ `SelfEst`.
-
-***Peer Attachment***
-
-We hypothesize two indirect effects
-    - IE1 = `PeerAtt` $\rightarrow$ `ProSoc` $\rightarrow$ `SelfEst`
-    - IE2 = `PeerAtt` $\rightarrow$ `Aggr` $\rightarrow$ `SelfEst`
-
-We could also consider the total indirect effect: IE1 + IE2
-
-</details>
-
 ---
 
 ### {#syntax1}
