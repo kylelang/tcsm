@@ -147,4 +147,15 @@ lecture-3
 reading-3
 formative-assessment-3
 at-home-exercises-3
+section-68
+section-69
+syntax1
+fit1
+section-70
+section-71
+test1
+boot
+section-72
+section-73
+section-74
 in-class-exercises-3

@@ -375,7 +375,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#questions-5"><i class="fa fa-check"></i>Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="formative-assessment-3.html"><a href="formative-assessment-3.html"><i class="fa fa-check"></i><b>4.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html"><i class="fa fa-check"></i><b>4.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html"><i class="fa fa-check"></i><b>4.4</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-68"><i class="fa fa-check"></i><b>4.4.1</b> </a></li>
+<li class="chapter" data-level="4.4.2" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-69"><i class="fa fa-check"></i><b>4.4.2</b> </a></li>
+<li class="chapter" data-level="4.4.3" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#syntax1"><i class="fa fa-check"></i><b>4.4.3</b> </a></li>
+<li class="chapter" data-level="4.4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#fit1"><i class="fa fa-check"></i><b>4.4.4</b> </a></li>
+<li class="chapter" data-level="4.4.5" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-70"><i class="fa fa-check"></i><b>4.4.5</b> </a></li>
+<li class="chapter" data-level="4.4.6" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-71"><i class="fa fa-check"></i><b>4.4.6</b> </a></li>
+<li class="chapter" data-level="4.4.7" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#test1"><i class="fa fa-check"></i><b>4.4.7</b> </a></li>
+<li class="chapter" data-level="4.4.8" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#boot"><i class="fa fa-check"></i><b>4.4.8</b> </a></li>
+<li class="chapter" data-level="4.4.9" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-72"><i class="fa fa-check"></i><b>4.4.9</b> </a></li>
+<li class="chapter" data-level="4.4.10" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-73"><i class="fa fa-check"></i><b>4.4.10</b> </a></li>
+<li class="chapter" data-level="4.4.11" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-74"><i class="fa fa-check"></i><b>4.4.11</b> </a></li>
+</ul></li>
 <li class="chapter" data-level="4.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.5</b> In-Class Exercises</a></li>
 </ul></li>
 </ul>
@@ -397,7 +410,566 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="at-home-exercises-3" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> At-Home Exercises<a href="at-home-exercises-3.html#at-home-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
+<p>In this practical, we will analyze the data contained in <em>SelfEsteem.sav</em>. These
+data comprise 143 observations of the following variables.</p>
+<ul>
+<li><em>case</em>: Participant ID number</li>
+<li><em>ParAtt</em>: Parental Attachment</li>
+<li><em>PeerAtt</em>: Peer Attachment</li>
+<li><em>Emp</em>: Empathy</li>
+<li><em>ProSoc</em>: Prosocial behavior</li>
+<li><em>Aggr</em>: Aggression</li>
+<li><em>SelfEst</em>: Self-esteem</li>
+</ul>
+<hr />
+<div id="section-68" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> </h3>
+<p>Load the <em>SelfEsteem.sav</em> data.</p>
+<p><em>Note</em>: Unless otherwise specified, all following analyses apply to these data.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="at-home-exercises-3.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb239-2"><a href="at-home-exercises-3.html#cb239-2" aria-hidden="true" tabindex="-1"></a>seData<span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;SelfEsteem.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
+<hr />
+<p>For this analysis, we are interested in the (indirect) effects of parental and
+peer attachment on self-esteem. Furthermore, we want to evaluate the mediating
+roles of empathy and social behavior (i.e., prosocial behavior and aggression).</p>
+<p>Specifically, we have the following hypotheses.</p>
+<ol style="list-style-type: decimal">
+<li>Better peer relationships will promote higher self-esteem via a three-step
+indirect process.
+<ol style="list-style-type: lower-alpha">
+<li>Better peer relationships will increase empathy levels.</li>
+<li>Higher empathy will increase prosocial behavior and decrease aggressive
+behavior.</li>
+<li>More prosocial behaviors and less aggressive behavior will both produce
+higher self-esteem.</li>
+</ol></li>
+<li>Better relationships with parents directly increase self-esteem.</li>
+</ol>
+<hr />
+<p>To evaluate these hypotheses, we will use <strong>lavaan</strong> to estimate the following
+multiple mediator model as a path model.</p>
+<p><img src="images/week5_home_full_model.png" /></p>
+</div>
+<div id="section-69" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> </h3>
+<p>Given the stated hypotheses and the model represented by the path diagram above:</p>
+<ol style="list-style-type: decimal">
+<li>How many paths do we expect to transmit the effect of Parental Attachment
+to Self-esteem?</li>
+<li>How many paths do we expect to transmit the effect of Peer Attachment to
+Self-esteem?</li>
+</ol>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p><strong><em>Parental Attachment</em></strong></p>
+<ul>
+<li>We only hypothesize a single direct effect: <code>ParAtt</code> <span class="math inline">\(\rightarrow\)</span> <code>SelfEst</code>.</li>
+</ul>
+<p><strong><em>Peer Attachment</em></strong></p>
+<p>We hypothesize two indirect effects
+- IE1 = <code>PeerAtt</code> <span class="math inline">\(\rightarrow\)</span> <code>ProSoc</code> <span class="math inline">\(\rightarrow\)</span> <code>SelfEst</code>
+- IE2 = <code>PeerAtt</code> <span class="math inline">\(\rightarrow\)</span> <code>Aggr</code> <span class="math inline">\(\rightarrow\)</span> <code>SelfEst</code></p>
+<p>We could also consider the total indirect effect: IE1 + IE2</p>
+</details>
+<hr />
+</div>
+<div id="syntax1" class="section level3" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> </h3>
+<p>Specify the lavaan model syntax implied by the path diagram shown above.</p>
+<ul>
+<li>Save the resulting character string as an object in your environment.</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="at-home-exercises-3.html#cb240-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb240-2"><a href="at-home-exercises-3.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
+<span id="cb240-3"><a href="at-home-exercises-3.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ ProSoc + Aggr + Emp + ParAtt + PeerAtt</span></span>
+<span id="cb240-4"><a href="at-home-exercises-3.html#cb240-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-5"><a href="at-home-exercises-3.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
+<span id="cb240-6"><a href="at-home-exercises-3.html#cb240-6" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ PeerAtt + ParAtt + Emp</span></span>
+<span id="cb240-7"><a href="at-home-exercises-3.html#cb240-7" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ PeerAtt + ParAtt + Emp</span></span>
+<span id="cb240-8"><a href="at-home-exercises-3.html#cb240-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-9"><a href="at-home-exercises-3.html#cb240-9" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
+<span id="cb240-10"><a href="at-home-exercises-3.html#cb240-10" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ ParAtt + PeerAtt</span></span>
+<span id="cb240-11"><a href="at-home-exercises-3.html#cb240-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-12"><a href="at-home-exercises-3.html#cb240-12" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
+<span id="cb240-13"><a href="at-home-exercises-3.html#cb240-13" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
+<span id="cb240-14"><a href="at-home-exercises-3.html#cb240-14" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
+<span id="cb240-15"><a href="at-home-exercises-3.html#cb240-15" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="fit1" class="section level3" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> </h3>
+<p>Use the <code>lavaan::sem()</code> function to estimate the model defined in <a href="at-home-exercises-3.html#syntax1">4.4.3</a>.</p>
+<ul>
+<li>Use the default settings in <code>sem()</code>.</li>
+<li>Summarize the fitted model.</li>
+<li>Do you notice anything special about the model fit? If so, can you explain?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="at-home-exercises-3.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb241-2"><a href="at-home-exercises-3.html#cb241-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> seData)</span>
+<span id="cb241-3"><a href="at-home-exercises-3.html#cb241-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 16 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        21
+## 
+##   Number of observations                           143
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                               174.959
+##   Degrees of freedom                                15
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.000
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -1125.399
+##   Loglikelihood unrestricted model (H1)      -1125.399
+##                                                       
+##   Akaike (AIC)                                2292.797
+##   Bayesian (BIC)                              2355.017
+##   Sample-size adjusted Bayesian (BIC)         2288.570
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.000
+##   P-value RMSEA &lt;= 0.05                             NA
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   SelfEst ~                                           
+##     ProSoc            0.252    0.096    2.634    0.008
+##     Aggr              0.185    0.085    2.172    0.030
+##     Emp               0.143    0.098    1.460    0.144
+##     ParAtt            0.244    0.078    3.133    0.002
+##     PeerAtt           0.051    0.091    0.555    0.579
+##   ProSoc ~                                            
+##     PeerAtt          -0.037    0.080   -0.469    0.639
+##     ParAtt            0.193    0.067    2.886    0.004
+##     Emp               0.477    0.074    6.411    0.000
+##   Aggr ~                                              
+##     PeerAtt          -0.095    0.090   -1.055    0.291
+##     ParAtt           -0.034    0.075   -0.454    0.650
+##     Emp              -0.309    0.084   -3.697    0.000
+##   Emp ~                                               
+##     ParAtt            0.078    0.075    1.045    0.296
+##     PeerAtt           0.306    0.086    3.557    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##  .ProSoc ~~                                           
+##    .Aggr             -0.086    0.058   -1.476    0.140
+##   ParAtt ~~                                           
+##     PeerAtt           0.537    0.103    5.215    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .SelfEst           0.796    0.094    8.456    0.000
+##    .ProSoc            0.618    0.073    8.456    0.000
+##    .Aggr              0.777    0.092    8.456    0.000
+##    .Emp               0.779    0.092    8.456    0.000
+##     ParAtt            1.277    0.151    8.456    0.000
+##     PeerAtt           0.963    0.114    8.456    0.000</code></pre>
+<p>The model fits the data perfectly because the model is saturated (i.e., we have
+estimated all possible paths). So, the model-implied covariance matrix exactly
+replicates the observed covariance matrix. We can tell that the model is
+saturated because the degrees of freedom for the <span class="math inline">\(\chi^2\)</span> statistic are 0.</p>
+</details>
+<hr />
+</div>
+<div id="section-70" class="section level3" number="4.4.5">
+<h3><span class="header-section-number">4.4.5</span> </h3>
+<p>Considering the parameter estimates from <a href="at-home-exercises-3.html#fit1">4.4.4</a>, what can you say about the
+hypotheses?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Notice that all of the hypotheses stated above are explicitly directional. Hence,
+when evaluating the significance of the structural paths that speak to these
+hypotheses, we should use one-tailed tests. We cannot ask <strong>lavaan</strong> to return
+one-tailed p-values, but we have no need to do so. We can simply divide the
+two-tailed p-values in half.</p>
+<p>The significant direct effect of <code>ParAtt</code> on <code>SelfEst</code> (
+<span class="math inline">\(\beta = 0.244\)</span>,
+<span class="math inline">\(Z = 3.13\)</span>,
+<span class="math inline">\(p = 0.001\)</span>
+) and the lack of a significant direct effect of <code>PeerAtt</code> on <code>SelfEst</code> (
+<span class="math inline">\(\beta = 0.051\)</span>,
+<span class="math inline">\(Z = 0.555\)</span>,
+<span class="math inline">\(p = 0.29\)</span>
+) align with our hypotheses.</p>
+<p>The remaining patterns of individual estimates also seem to conform with the
+hypotheses (e.g., all of the individual paths comprising the indirect effects of
+<code>PeerAtt</code> on <code>SelfEst</code> are significant). We cannot make any firm conclusions
+until we actually estimate and test the indirect effects, though.</p>
+</details>
+<hr />
+<p>Remember that an indirect effect (IE) is the product of multiple regression
+slopes. Therefore, to estimate an IE, we must define these products in our
+model syntax. In <strong>lavaan</strong>, we define the new IE parameters in two steps.</p>
+<ol style="list-style-type: decimal">
+<li>Label the relevant regression paths.</li>
+<li>Use the labels to define new parameters that represent the desired IEs.</li>
+</ol>
+<p>We can define new parameters in lavaan model syntax via the <code>:=</code> operator. The
+<strong>lavaan</strong> website contains a tutorial on this procedure: <a href="http://lavaan.ugent.be/tutorial/mediation.html" class="uri">http://lavaan.ugent.be/tutorial/mediation.html</a></p>
+<hr />
+</div>
+<div id="section-71" class="section level3" number="4.4.6">
+<h3><span class="header-section-number">4.4.6</span> </h3>
+<p>Use the procedure described above to modify the model syntax from <a href="at-home-exercises-3.html#syntax1">4.4.3</a>
+by adding definitions of the two hypothesized IEs from <code>PeerAtt</code> to <code>SelfEst</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>You can use any labeling scheme that makes sense to you, but I recommend adopting
+some kind of systematic rule. Here, I will label the individual estimates in
+terms of the short variable names used in the path diagram above.</p>
+<p>Notice that I only label the parameters that I will use to define the IEs. You
+are free to label any parameter that you like, but I choose the to label only
+the minimally sufficient set to avoid cluttering the code/output.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="at-home-exercises-3.html#cb243-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb243-2"><a href="at-home-exercises-3.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
+<span id="cb243-3"><a href="at-home-exercises-3.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + y_m22 * Aggr + Emp + ParAtt + PeerAtt</span></span>
+<span id="cb243-4"><a href="at-home-exercises-3.html#cb243-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-5"><a href="at-home-exercises-3.html#cb243-5" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
+<span id="cb243-6"><a href="at-home-exercises-3.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_x2 * PeerAtt + ParAtt + m21_m1 * Emp</span></span>
+<span id="cb243-7"><a href="at-home-exercises-3.html#cb243-7" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_x2 * PeerAtt + ParAtt + m22_m1 * Emp</span></span>
+<span id="cb243-8"><a href="at-home-exercises-3.html#cb243-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-9"><a href="at-home-exercises-3.html#cb243-9" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
+<span id="cb243-10"><a href="at-home-exercises-3.html#cb243-10" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ ParAtt + m1_x2 * PeerAtt</span></span>
+<span id="cb243-11"><a href="at-home-exercises-3.html#cb243-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-12"><a href="at-home-exercises-3.html#cb243-12" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
+<span id="cb243-13"><a href="at-home-exercises-3.html#cb243-13" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
+<span id="cb243-14"><a href="at-home-exercises-3.html#cb243-14" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
+<span id="cb243-15"><a href="at-home-exercises-3.html#cb243-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-16"><a href="at-home-exercises-3.html#cb243-16" aria-hidden="true" tabindex="-1"></a><span class="st">## Indirect effects:</span></span>
+<span id="cb243-17"><a href="at-home-exercises-3.html#cb243-17" aria-hidden="true" tabindex="-1"></a><span class="st">ie_pro := m1_x2 * m21_m1 * y_m21</span></span>
+<span id="cb243-18"><a href="at-home-exercises-3.html#cb243-18" aria-hidden="true" tabindex="-1"></a><span class="st">ie_agg := m1_x2 * m22_m1 * y_m22</span></span>
+<span id="cb243-19"><a href="at-home-exercises-3.html#cb243-19" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="test1" class="section level3" number="4.4.7">
+<h3><span class="header-section-number">4.4.7</span> </h3>
+<p>Use <code>lavaan::sem()</code> to estimate the model with the IEs defined.</p>
+<ul>
+<li>Use the default settings for <code>sem()</code>.</li>
+<li>Are the hypothesized IEs significant according to the default tests?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="at-home-exercises-3.html#cb244-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> seData)</span>
+<span id="cb244-2"><a href="at-home-exercises-3.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 16 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        21
+## 
+##   Number of observations                           143
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   SelfEst ~                                           
+##     ProSoc  (y_21)    0.252    0.096    2.634    0.008
+##     Aggr    (y_22)    0.185    0.085    2.172    0.030
+##     Emp               0.143    0.098    1.460    0.144
+##     ParAtt            0.244    0.078    3.133    0.002
+##     PerAtt            0.051    0.091    0.555    0.579
+##   ProSoc ~                                            
+##     PerAtt (m21_2)   -0.037    0.080   -0.469    0.639
+##     ParAtt            0.193    0.067    2.886    0.004
+##     Emp    (m21_1)    0.477    0.074    6.411    0.000
+##   Aggr ~                                              
+##     PerAtt (m22_2)   -0.095    0.090   -1.055    0.291
+##     ParAtt           -0.034    0.075   -0.454    0.650
+##     Emp    (m22_1)   -0.309    0.084   -3.697    0.000
+##   Emp ~                                               
+##     ParAtt            0.078    0.075    1.045    0.296
+##     PerAtt  (m1_2)    0.306    0.086    3.557    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##  .ProSoc ~~                                           
+##    .Aggr             -0.086    0.058   -1.476    0.140
+##   ParAtt ~~                                           
+##     PeerAtt           0.537    0.103    5.215    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .SelfEst           0.796    0.094    8.456    0.000
+##    .ProSoc            0.618    0.073    8.456    0.000
+##    .Aggr              0.777    0.092    8.456    0.000
+##    .Emp               0.779    0.092    8.456    0.000
+##     ParAtt            1.277    0.151    8.456    0.000
+##     PeerAtt           0.963    0.114    8.456    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     ie_pro            0.037    0.018    2.010    0.044
+##     ie_agg           -0.017    0.011   -1.657    0.098</code></pre>
+<p>The IE of <em>Peer Attachment</em> on <em>Self Esteem</em> through <em>Empathy</em> and <em>Prosocial
+Behavior</em> is significant (
+<span class="math inline">\(\beta = 0.037\)</span>,
+<span class="math inline">\(Z = 2.01\)</span>,
+<span class="math inline">\(p = 0.022\)</span>
+), as is the analogous IE through <em>Aggressive Behavior</em> (
+<span class="math inline">\(\beta = -0.017\)</span>,
+<span class="math inline">\(Z = -1.66\)</span>,
+<span class="math inline">\(p = 0.049\)</span>
+).</p>
+</details>
+<hr />
+<p>The tests we used to evaluate the significance of the IEs in <a href="at-home-exercises-3.html#test1">4.4.7</a> are
+flawed because they assume normal sampling distributions for the IEs. However,
+the IEs are defined as products of multiple, normally distributed, regression
+slopes. So, the IEs themselves cannot be normally distributed (at least in
+finite samples), and the results of the normal-theory significance tests may be
+misleading.</p>
+<p>To get an accurate test of the IEs, we should use <em>bootstrapping</em> to generate an
+empirical sampling distribution for each IE. In <strong>lavaan</strong>, we implement
+bootstrapping by specifying the <code>se = "bootstrap"</code> option in the fitting
+function (i.e., the <code>cfa()</code> or <code>sem()</code> function) and specifying the number of
+bootstrap samples via the <code>bootstrap</code> option.</p>
+<p><strong><em>Workflow Tip</em></strong></p>
+<p>To draw reliable conclusions from bootstrapped results, we need many
+bootstrap samples (i.e., B &gt; 1000), but we must estimate the full model for each
+of these samples, so the estimation can take a long time. To avoid too much
+frustration, you should first estimate the model without bootstrapping to make
+sure everything is specified correctly. Only after you are certain that your
+code is correct do you want to run the full bootstrapped version.</p>
+<hr />
+</div>
+<div id="boot" class="section level3" number="4.4.8">
+<h3><span class="header-section-number">4.4.8</span> </h3>
+<p>Re-estimate the model from <a href="at-home-exercises-3.html#test1">4.4.7</a> using 1000 bootstrap samples.</p>
+<ul>
+<li>Other than the <code>se</code> and <code>bootstrap</code> options, use the defaults.</li>
+<li>Are the hypothesized IEs significant according to the bootstrap-based test
+statistics?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="at-home-exercises-3.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
+<span id="cb246-2"><a href="at-home-exercises-3.html#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb246-3"><a href="at-home-exercises-3.html#cb246-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-4"><a href="at-home-exercises-3.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model with bootstrapping:</span></span>
+<span id="cb246-5"><a href="at-home-exercises-3.html#cb246-5" aria-hidden="true" tabindex="-1"></a>out_boot <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb246-6"><a href="at-home-exercises-3.html#cb246-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-7"><a href="at-home-exercises-3.html#cb246-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
+<span id="cb246-8"><a href="at-home-exercises-3.html#cb246-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_boot)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 16 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        21
+## 
+##   Number of observations                           143
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   SelfEst ~                                           
+##     ProSoc  (y_21)    0.252    0.098    2.566    0.010
+##     Aggr    (y_22)    0.185    0.085    2.175    0.030
+##     Emp               0.143    0.098    1.465    0.143
+##     ParAtt            0.244    0.084    2.925    0.003
+##     PerAtt            0.051    0.096    0.526    0.599
+##   ProSoc ~                                            
+##     PerAtt (m21_2)   -0.037    0.078   -0.482    0.630
+##     ParAtt            0.193    0.070    2.740    0.006
+##     Emp    (m21_1)    0.477    0.080    5.995    0.000
+##   Aggr ~                                              
+##     PerAtt (m22_2)   -0.095    0.086   -1.099    0.272
+##     ParAtt           -0.034    0.078   -0.438    0.662
+##     Emp    (m22_1)   -0.309    0.090   -3.449    0.001
+##   Emp ~                                               
+##     ParAtt            0.078    0.068    1.147    0.251
+##     PerAtt  (m1_2)    0.306    0.077    3.968    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##  .ProSoc ~~                                           
+##    .Aggr             -0.086    0.056   -1.527    0.127
+##   ParAtt ~~                                           
+##     PeerAtt           0.537    0.124    4.318    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .SelfEst           0.796    0.083    9.587    0.000
+##    .ProSoc            0.618    0.068    9.044    0.000
+##    .Aggr              0.777    0.104    7.488    0.000
+##    .Emp               0.779    0.091    8.554    0.000
+##     ParAtt            1.277    0.200    6.399    0.000
+##     PeerAtt           0.963    0.108    8.953    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     ie_pro            0.037    0.019    1.931    0.054
+##     ie_agg           -0.017    0.010   -1.678    0.093</code></pre>
+<p>As with the normal-theory tests, both of the hypothesized IEs of <em>Peer Attachment</em>
+on <em>Self Esteem</em> are significant (<em>Prosocial Behavior</em>:
+<span class="math inline">\(\beta = 0.037\)</span>,
+<span class="math inline">\(Z = 1.93\)</span>,
+<span class="math inline">\(p = 0.027\)</span>
+; <em>Aggressive Behavior</em>:
+<span class="math inline">\(\beta = -0.017\)</span>,
+<span class="math inline">\(Z = -1.68\)</span>,
+<span class="math inline">\(p = 0.047\)</span>
+).</p>
+</details>
+<hr />
+<p>When you use the <code>summary()</code> function to summarize the bootstrapped model from
+<a href="at-home-exercises-3.html#boot">4.4.8</a>, the output will probably look pretty much the same as it did in
+<a href="at-home-exercises-3.html#test1">4.4.7</a>, but it’s not. The standard errors and test statistics in the
+bootstrapped summary are derived from empirical sampling distributions, whereas
+these values are based on an assumed normal sampling distribution in <a href="at-home-exercises-3.html#test1">4.4.7</a>.</p>
+<p>The standard method of testing IEs with bootstrapping is to compute confidence
+intervals (CIs) from the empirical sampling distribution of the IEs. In <strong>lavaan</strong>,
+we can compute basic (percentile, 95%) CIs by adding the <code>ci = TRUE</code> option to
+the <code>summary()</code> function. To evaluate our directional hypotheses at an
+<span class="math inline">\(\alpha = 0.05\)</span> level, however, we need to compute 90% CIs. We can get more
+control over the summary statistics (include the CIs) with the
+<code>parameterEstimates()</code> function.</p>
+<hr />
+</div>
+<div id="section-72" class="section level3" number="4.4.9">
+<h3><span class="header-section-number">4.4.9</span> </h3>
+<p>Check the documentation for <code>lavaan::parameterEstimates()</code>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="at-home-exercises-3.html#cb248-1" aria-hidden="true" tabindex="-1"></a>?parameterEstimates</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-73" class="section level3" number="4.4.10">
+<h3><span class="header-section-number">4.4.10</span> </h3>
+<p>Use the <code>parameterEstimates()</code> function to compute bootstrapped CIs for the
+hypothesized IEs.</p>
+<ul>
+<li>Compute percentile CIs.</li>
+<li>Are the IEs significant according to the bootstrapped CIs?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="at-home-exercises-3.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out_boot, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["lhs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["op"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rhs"],"name":[3],"type":["chr"],"align":["left"]},{"label":["label"],"name":[4],"type":["chr"],"align":["left"]},{"label":["est"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["pvalue"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["ci.lower"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ci.upper"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"SelfEst","2":"~","3":"ProSoc","4":"y_m21","5":"0.25200921","6":"0.09821982","7":"2.5657674","8":"1.029478e-02","9":"0.08099914","10":"0.408130318"},{"1":"SelfEst","2":"~","3":"Aggr","4":"y_m22","5":"0.18525728","6":"0.08516362","7":"2.1753102","8":"2.960688e-02","9":"0.05188156","10":"0.331822610"},{"1":"SelfEst","2":"~","3":"Emp","4":"","5":"0.14323882","6":"0.09778492","7":"1.4648354","8":"1.429658e-01","9":"-0.01645822","10":"0.308863900"},{"1":"SelfEst","2":"~","3":"ParAtt","4":"","5":"0.24426409","6":"0.08350577","7":"2.9251164","8":"3.443274e-03","9":"0.09733187","10":"0.370719063"},{"1":"SelfEst","2":"~","3":"PeerAtt","4":"","5":"0.05057274","6":"0.09614845","7":"0.5259860","8":"5.988980e-01","9":"-0.11197026","10":"0.203321778"},{"1":"ProSoc","2":"~","3":"PeerAtt","4":"m21_x2","5":"-0.03743961","6":"0.07762341","7":"-0.4823236","8":"6.295761e-01","9":"-0.16704049","10":"0.088251522"},{"1":"ProSoc","2":"~","3":"ParAtt","4":"","5":"0.19267407","6":"0.07031363","7":"2.7402095","8":"6.140003e-03","9":"0.07351823","10":"0.305501782"},{"1":"ProSoc","2":"~","3":"Emp","4":"m21_m1","5":"0.47748439","6":"0.07964951","7":"5.9948187","8":"2.037126e-09","9":"0.34827803","10":"0.608741378"},{"1":"Aggr","2":"~","3":"PeerAtt","4":"m22_x2","5":"-0.09454515","6":"0.08602543","7":"-1.0990372","8":"2.717519e-01","9":"-0.23284674","10":"0.052021749"},{"1":"Aggr","2":"~","3":"ParAtt","4":"","5":"-0.03397870","6":"0.07763807","7":"-0.4376552","8":"6.616363e-01","9":"-0.16607291","10":"0.091329817"},{"1":"Aggr","2":"~","3":"Emp","4":"m22_m1","5":"-0.30878775","6":"0.08952685","7":"-3.4491078","8":"5.624422e-04","9":"-0.45385871","10":"-0.162448719"},{"1":"Emp","2":"~","3":"ParAtt","4":"","5":"0.07807473","6":"0.06807684","7":"1.1468618","8":"2.514387e-01","9":"-0.03508232","10":"0.189035871"},{"1":"Emp","2":"~","3":"PeerAtt","4":"m1_x2","5":"0.30581697","6":"0.07706296","7":"3.9684042","8":"7.235554e-05","9":"0.17536860","10":"0.427983386"},{"1":"ProSoc","2":"~~","3":"Aggr","4":"","5":"-0.08619117","6":"0.05645746","7":"-1.5266568","8":"1.268464e-01","9":"-0.17994270","10":"0.005928394"},{"1":"ParAtt","2":"~~","3":"PeerAtt","4":"","5":"0.53737654","6":"0.12444836","7":"4.3180685","8":"1.574006e-05","9":"0.33970530","10":"0.746040545"},{"1":"SelfEst","2":"~~","3":"SelfEst","4":"","5":"0.79618780","6":"0.08304943","7":"9.5869141","8":"0.000000e+00","9":"0.62875158","10":"0.898742469"},{"1":"ProSoc","2":"~~","3":"ProSoc","4":"","5":"0.61802926","6":"0.06833591","7":"9.0439902","8":"0.000000e+00","9":"0.49252043","10":"0.711922106"},{"1":"Aggr","2":"~~","3":"Aggr","4":"","5":"0.77720501","6":"0.10378653","7":"7.4884957","8":"6.972201e-14","9":"0.60257015","10":"0.940189533"},{"1":"Emp","2":"~~","3":"Emp","4":"","5":"0.77910040","6":"0.09108197","7":"8.5538379","8":"0.000000e+00","9":"0.62381598","10":"0.933618420"},{"1":"ParAtt","2":"~~","3":"ParAtt","4":"","5":"1.27669945","6":"0.19951971","7":"6.3988638","8":"1.565374e-10","9":"0.97840285","10":"1.626758537"},{"1":"PeerAtt","2":"~~","3":"PeerAtt","4":"","5":"0.96308503","6":"0.10757596","7":"8.9526049","8":"0.000000e+00","9":"0.78496524","10":"1.141095831"},{"1":"ie_pro","2":":=","3":"m1_x2*m21_m1*y_m21","4":"ie_pro","5":"0.03679910","6":"0.01906037","7":"1.9306599","8":"5.352512e-02","9":"0.00944953","10":"0.072029328"},{"1":"ie_agg","2":":=","3":"m1_x2*m22_m1*y_m22","4":"ie_agg","5":"-0.01749431","6":"0.01042326","7":"-1.6783914","8":"9.327072e-02","9":"-0.03701284","10":"-0.003438632"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>When evaluating a directional hypothesis with a CI, we only consider one of the
+interval’s boundaries.</p>
+<ul>
+<li>For a hypothesized positive effect, we check only if the lower boundary is
+greater than zero.</li>
+<li>For a hypothesized negative effect, we check if the upper boundary is less
+than zero.</li>
+</ul>
+<p>As with the previous tests, the IE of <em>Peer Attachment</em> on <em>Self Esteem</em> through
+<em>Empathy</em> and <em>Prosocial Behavior</em> is significant (
+<span class="math inline">\(\beta = 0.037\)</span>,
+<span class="math inline">\(95\% ~ CI = [0.006; \infty]\)</span>
+), as is the analogous IE through <em>Aggressive Behavior</em> (
+<span class="math inline">\(\beta = -0.017\)</span>,
+<span class="math inline">\(95\% ~ CI = [-\infty; -0.002]\)</span>
+).</p>
+</details>
+<hr />
+</div>
+<div id="section-74" class="section level3" number="4.4.11">
+<h3><span class="header-section-number">4.4.11</span> </h3>
+<p>Based on the analyses you’ve conducted here, what do you conclude vis-à-vis the
+original hypotheses?</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>The hypothesized indirect effects between <em>Peer Attachment</em> and <em>Self Esteem</em>
+were supported in that the IE through <em>Empathy</em> and <em>Prosocial Behavior</em> as well
+as the IE through <em>Empathy</em> and <em>Aggressive Behavior</em> were both significant. The
+hypothesized direct effect of <em>Parent Attachment</em> on <em>Self Esteem</em> was also born
+out via a significant direct effect in the model.</p>
+<p>These results may not tell the whole story, though. We have not tested for
+indirect effects between <em>Parent Attachment</em> and <em>Self Esteem</em>, and we have not
+evaluated simpler indirect effects between <em>Peer Attachment</em> and <em>Self Esteem</em>
+(e.g., <code>PeerAtt</code> <span class="math inline">\(\rightarrow\)</span> <code>Emp</code> <span class="math inline">\(\rightarrow\)</span> <code>SelfEst</code>). We’ll consider
+these points during the In-Class Exercises.</p>
+</details>
+<hr />
+<p>End of At-Home Exercises</p>
+<hr />
+</div>
 </div>
             </section>
 
