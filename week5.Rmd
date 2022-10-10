@@ -6,7 +6,7 @@ library(dplyr)
 dataDir  <- "../../../data/"
 quizDir  <- "../assess/"
 partDir  <- "sections/"
-imageDir <- "../images/"
+imageDir <- "images/"
 codeDir  <- "../code/"
 ```
 

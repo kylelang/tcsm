@@ -1,3 +1,5 @@
+fig:fullDiagram
+fig:resDiagram
 typographic-conventions
 installing-software
 installing-r
@@ -158,11 +160,16 @@ section-71
 section-72
 section-73
 in-class-exercises-3
+section-74
 diagram
 resMod
 estimateRes
-section-74
 section-75
 section-76
 section-77
+ieMod
 section-78
+qualComp
+testMod
+section-79
+section-80

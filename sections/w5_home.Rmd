@@ -141,15 +141,13 @@ hypotheses, we should use one-tailed tests. We cannot ask **lavaan** to return
 one-tailed p-values, but we have no need to do so. We can simply divide the 
 two-tailed p-values in half.
 
-The significant direct effect of `ParAtt` on `SelfEst` (
-$\beta = `r parent$est %>% round(3)`$, 
+The significant direct effect of `ParAtt` on `SelfEst` 
+($\beta = `r parent$est %>% round(3)`$, 
 $Z = `r parent$z %>% round(2)`$,
-$p = `r (parent$p / 2) %>% round(3)`$
-) and the lack of a significant direct effect of `PeerAtt` on `SelfEst` (
-$\beta = `r peer$est %>% round(3)`$, 
+$p = `r (parent$p / 2) %>% round(3)`$) and the lack of a significant direct 
+effect of `PeerAtt` on `SelfEst` ($\beta = `r peer$est %>% round(3)`$, 
 $Z = `r peer$z %>% round(3)`$,
-$p = `r (peer$p / 2) %>% round(3)`$
-) align with our hypotheses.
+$p = `r (peer$p / 2) %>% round(3)`$) align with our hypotheses.
 
 The remaining patterns of individual estimates also seem to conform with the 
 hypotheses (e.g., all of the individual paths comprising the indirect effects of 
@@ -237,15 +235,11 @@ agg <- tmp %>% filter(label == "ie_agg")
 ```
 
 The IE of *Peer Attachment* on *Self Esteem* through *Empathy* and *Prosocial 
-Behavior* is significant (
-$\beta = `r pro$est %>% round(3)`$, 
-$Z = `r pro$z %>% round(2)`$,
-$p = `r (pro$p / 2) %>% round(3)`$
-), as is the analogous IE through *Aggressive Behavior* (
-$\beta = `r agg$est %>% round(3)`$, 
-$Z = `r agg$z %>% round(2)`$,
-$p = `r (agg$p / 2) %>% round(3)`$
-).
+Behavior* is significant ($\hat{\textit{IE}} = `r pro$est %>% round(3)`$, 
+$Z = `r pro$z %>% round(2)`$, $p = `r (pro$p / 2) %>% round(3)`$), as is the 
+analogous IE through *Aggressive Behavior* 
+($\hat{\textit{IE}} = `r agg$est %>% round(3)`$, 
+$Z = `r agg$z %>% round(2)`$, $p = `r (agg$p / 2) %>% round(3)`$).
 
 </details>
 
@@ -306,14 +300,13 @@ agg <- tmp %>% filter(label == "ie_agg")
 
 As with the normal-theory tests, both of the hypothesized IEs of *Peer Attachment* 
 on *Self Esteem* are significant (*Prosocial Behavior*:
-$\beta = `r pro$est %>% round(3)`$, 
+$\hat{\textit{IE}} = `r pro$est %>% round(3)`$, 
 $Z = `r pro$z %>% round(2)`$,
 $p = `r (pro$p / 2) %>% round(3)`$
 ; *Aggressive Behavior*: 
-$\beta = `r agg$est %>% round(3)`$, 
+$\hat{\textit{IE}} = `r agg$est %>% round(3)`$, 
 $Z = `r agg$z %>% round(2)`$,
-$p = `r (agg$p / 2) %>% round(3)`$
-).
+$p = `r (agg$p / 2) %>% round(3)`$).
 
 </details>
 
@@ -381,13 +374,11 @@ greater than zero.
 than zero.
 
 As with the previous tests, the IE of *Peer Attachment* on *Self Esteem* through 
-*Empathy* and *Prosocial Behavior* is significant (
-$\beta = `r pro$est %>% round(3)`$, 
-$95\% ~ CI = [`r pro$ci.lower %>% round(3)`; \infty]$
-), as is the analogous IE through *Aggressive Behavior* (
-$\beta = `r agg$est %>% round(3)`$, 
-$95\% ~ CI = [-\infty; `r agg$ci.upper %>% round(3)`]$
-).
+*Empathy* and *Prosocial Behavior* is significant 
+($\hat{\textit{IE}} = `r pro$est %>% round(3)`$, 
+$95\% ~ CI = [`r pro$ci.lower %>% round(3)`; \infty]$), as is the analogous IE 
+through *Aggressive Behavior* ($\hat{\textit{IE}} = `r agg$est %>% round(3)`$, 
+$95\% ~ CI = [-\infty; `r agg$ci.upper %>% round(3)`]$).
 
 </details>
 

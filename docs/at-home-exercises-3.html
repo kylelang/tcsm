@@ -390,14 +390,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.5</b> In-Class Exercises</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#diagram"><i class="fa fa-check"></i><b>4.5.1</b> </a></li>
-<li class="chapter" data-level="4.5.2" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#resMod"><i class="fa fa-check"></i><b>4.5.2</b> </a></li>
-<li class="chapter" data-level="4.5.3" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#estimateRes"><i class="fa fa-check"></i><b>4.5.3</b> </a></li>
-<li class="chapter" data-level="4.5.4" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-74"><i class="fa fa-check"></i><b>4.5.4</b> </a></li>
+<li class="chapter" data-level="4.5.1" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-74"><i class="fa fa-check"></i><b>4.5.1</b> </a></li>
+<li class="chapter" data-level="4.5.2" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#diagram"><i class="fa fa-check"></i><b>4.5.2</b> </a></li>
+<li class="chapter" data-level="4.5.3" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#resMod"><i class="fa fa-check"></i><b>4.5.3</b> </a></li>
+<li class="chapter" data-level="4.5.4" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#estimateRes"><i class="fa fa-check"></i><b>4.5.4</b> </a></li>
 <li class="chapter" data-level="4.5.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-75"><i class="fa fa-check"></i><b>4.5.5</b> </a></li>
 <li class="chapter" data-level="4.5.6" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-76"><i class="fa fa-check"></i><b>4.5.6</b> </a></li>
 <li class="chapter" data-level="4.5.7" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-77"><i class="fa fa-check"></i><b>4.5.7</b> </a></li>
-<li class="chapter" data-level="4.5.8" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-78"><i class="fa fa-check"></i><b>4.5.8</b> </a></li>
+<li class="chapter" data-level="4.5.8" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#ieMod"><i class="fa fa-check"></i><b>4.5.8</b> </a></li>
+<li class="chapter" data-level="4.5.9" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-78"><i class="fa fa-check"></i><b>4.5.9</b> </a></li>
+<li class="chapter" data-level="4.5.10" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#qualComp"><i class="fa fa-check"></i><b>4.5.10</b> </a></li>
+<li class="chapter" data-level="4.5.11" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#testMod"><i class="fa fa-check"></i><b>4.5.11</b> </a></li>
+<li class="chapter" data-level="4.5.12" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-79"><i class="fa fa-check"></i><b>4.5.12</b> </a></li>
+<li class="chapter" data-level="4.5.13" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-80"><i class="fa fa-check"></i><b>4.5.13</b> </a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -613,15 +618,13 @@ when evaluating the significance of the structural paths that speak to these
 hypotheses, we should use one-tailed tests. We cannot ask <strong>lavaan</strong> to return
 one-tailed p-values, but we have no need to do so. We can simply divide the
 two-tailed p-values in half.</p>
-<p>The significant direct effect of <code>ParAtt</code> on <code>SelfEst</code> (
-<span class="math inline">\(\beta = 0.244\)</span>,
+<p>The significant direct effect of <code>ParAtt</code> on <code>SelfEst</code>
+(<span class="math inline">\(\beta = 0.244\)</span>,
 <span class="math inline">\(Z = 3.13\)</span>,
-<span class="math inline">\(p = 0.001\)</span>
-) and the lack of a significant direct effect of <code>PeerAtt</code> on <code>SelfEst</code> (
-<span class="math inline">\(\beta = 0.051\)</span>,
+<span class="math inline">\(p = 0.001\)</span>) and the lack of a significant direct
+effect of <code>PeerAtt</code> on <code>SelfEst</code> (<span class="math inline">\(\beta = 0.051\)</span>,
 <span class="math inline">\(Z = 0.555\)</span>,
-<span class="math inline">\(p = 0.29\)</span>
-) align with our hypotheses.</p>
+<span class="math inline">\(p = 0.29\)</span>) align with our hypotheses.</p>
 <p>The remaining patterns of individual estimates also seem to conform with the
 hypotheses (e.g., all of the individual paths comprising the indirect effects of
 <code>PeerAtt</code> on <code>SelfEst</code> are significant). We cannot make any firm conclusions
@@ -748,15 +751,11 @@ Click for explanation
 ##     ie_pro            0.037    0.018    2.010    0.044
 ##     ie_agg           -0.017    0.011   -1.657    0.098</code></pre>
 <p>The IE of <em>Peer Attachment</em> on <em>Self Esteem</em> through <em>Empathy</em> and <em>Prosocial
-Behavior</em> is significant (
-<span class="math inline">\(\beta = 0.037\)</span>,
-<span class="math inline">\(Z = 2.01\)</span>,
-<span class="math inline">\(p = 0.022\)</span>
-), as is the analogous IE through <em>Aggressive Behavior</em> (
-<span class="math inline">\(\beta = -0.017\)</span>,
-<span class="math inline">\(Z = -1.66\)</span>,
-<span class="math inline">\(p = 0.049\)</span>
-).</p>
+Behavior</em> is significant (<span class="math inline">\(\hat{\textit{IE}} = 0.037\)</span>,
+<span class="math inline">\(Z = 2.01\)</span>, <span class="math inline">\(p = 0.022\)</span>), as is the
+analogous IE through <em>Aggressive Behavior</em>
+(<span class="math inline">\(\hat{\textit{IE}} = -0.017\)</span>,
+<span class="math inline">\(Z = -1.66\)</span>, <span class="math inline">\(p = 0.049\)</span>).</p>
 </details>
 <hr />
 <p>The tests we used to evaluate the significance of the IEs in <a href="at-home-exercises-3.html#test1">4.4.6</a> are
@@ -860,14 +859,13 @@ Click for explanation
 ##     ie_agg           -0.017    0.010   -1.678    0.093</code></pre>
 <p>As with the normal-theory tests, both of the hypothesized IEs of <em>Peer Attachment</em>
 on <em>Self Esteem</em> are significant (<em>Prosocial Behavior</em>:
-<span class="math inline">\(\beta = 0.037\)</span>,
+<span class="math inline">\(\hat{\textit{IE}} = 0.037\)</span>,
 <span class="math inline">\(Z = 1.93\)</span>,
 <span class="math inline">\(p = 0.027\)</span>
 ; <em>Aggressive Behavior</em>:
-<span class="math inline">\(\beta = -0.017\)</span>,
+<span class="math inline">\(\hat{\textit{IE}} = -0.017\)</span>,
 <span class="math inline">\(Z = -1.68\)</span>,
-<span class="math inline">\(p = 0.047\)</span>
-).</p>
+<span class="math inline">\(p = 0.047\)</span>).</p>
 </details>
 <hr />
 <p>When you use the <code>summary()</code> function to summarize the bootstrapped model from
@@ -922,13 +920,11 @@ greater than zero.</li>
 than zero.</li>
 </ul>
 <p>As with the previous tests, the IE of <em>Peer Attachment</em> on <em>Self Esteem</em> through
-<em>Empathy</em> and <em>Prosocial Behavior</em> is significant (
-<span class="math inline">\(\beta = 0.037\)</span>,
-<span class="math inline">\(95\% ~ CI = [0.009; \infty]\)</span>
-), as is the analogous IE through <em>Aggressive Behavior</em> (
-<span class="math inline">\(\beta = -0.017\)</span>,
-<span class="math inline">\(95\% ~ CI = [-\infty; -0.003]\)</span>
-).</p>
+<em>Empathy</em> and <em>Prosocial Behavior</em> is significant
+(<span class="math inline">\(\hat{\textit{IE}} = 0.037\)</span>,
+<span class="math inline">\(95\% ~ CI = [0.009; \infty]\)</span>), as is the analogous IE
+through <em>Aggressive Behavior</em> (<span class="math inline">\(\hat{\textit{IE}} = -0.017\)</span>,
+<span class="math inline">\(95\% ~ CI = [-\infty; -0.003]\)</span>).</p>
 </details>
 <hr />
 </div>

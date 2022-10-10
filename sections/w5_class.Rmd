@@ -1,21 +1,43 @@
 ## In-Class Exercises
 
-```{r echo = FALSE}
+```{r, echo = FALSE}
 library(foreign)
-#library(semTools)
-#library(kableExtra)
 library(lavaan)
-#library(psych)
 library(dplyr)
 
-#dataDir <- "../../data/"
+knitr::opts_chunk$set(fig.align = "center", out.width = "100%")
+
 seData <- read.spss(paste0(dataDir, "SelfEsteem.sav"), to.data.frame = TRUE)
 ```
+
+In This practical, we will continue with our mediation analysis of the data 
+provided by the *SelfEsteem.sav* file.
+
+---
+
+###
+
+Load the *SelfEsteem.sav* data.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r, eval = FALSE}
+library(foreign)
+seData <- read.spss("SelfEsteem.sav", to.data.frame = TRUE)
+```
+
+</details>
+
+---
 
 To begin this practical, recall the path model that we estimated for the 
 [At-Home Exercises](at-home-exercises-3.html).
 
-![Full Model{#fullModel}](images/week5_home_full_model.png)
+```{r fullDiagram, fig.cap = "Full Model", echo = FALSE}
+knitr::include_graphics(paste0(imageDir, "week5_full_model.png"))
+#![](images/week5_home_full_model.png)
+```
 
 Further, recall the research questions for our analysis.
 
@@ -47,7 +69,10 @@ effects implied by the above hypotheses.
 <details>
   <summary>Click for explanation</summary>
 
-![Restricted Model](images/week5_home_res_model.png)
+```{r resDiagram, fig.cap = "Restricted Model", echo = FALSE}
+knitr::include_graphics(paste0(imageDir, "week5_res_model.png"))
+#![](images/week5_home_res_model.png)
+```
 
 </details>
 
@@ -126,25 +151,20 @@ pro <- tmp %>% filter(label == "ie_pro")
 agg <- tmp %>% filter(label == "ie_agg")
 ```
 
-- The fit of the model is marginal. The $\chi^2$ is pretty small and the CFI 
+- The fit of the model is marginal. The $\chi^2$ is pretty small, and the CFI 
 looks good, but the TLI is below the threshold of acceptable fit. The RMSEA and 
 SRMR are toward the upper end of the range for "acceptable" fit.
 
-- Yes, the total effect of *Parent Attachment* on *Self Esteem*  is significant 
-(
-$\beta = `r par$est %>% round(3)`$, 
+- Yes, the direct effect of *Parent Attachment* on *Self Esteem*  is significant 
+($\beta = `r par$est %>% round(3)`$, 
 $Z = `r par$z %>% round(2)`$,
-$p < 0.001$
-).
+$p < 0.001$).
 
 - The IE of *Peer Attachment* on *Self Esteem* through *Empathy* and *Prosocial 
-Behavior* is significant (
-$\beta = `r pro$est %>% round(3)`$, 
-$95\% ~ CI = [`r pro$ci.lower %>% round(3)`; \infty]$
-), as is the analogous IE through *Aggressive Behavior* (
-$\beta = `r agg$est %>% round(3)`$, 
-$95\% ~ CI = [-\infty; `r agg$ci.upper %>% round(3)`]$
-).
+Behavior* is significant ($\hat{\textit{IE}} = `r pro$est %>% round(3)`$, 
+$95\% ~ CI = [`r pro$ci.lower %>% round(3)`; \infty]$), as is the analogous IE 
+through *Aggressive Behavior* ($\hat{\textit{IE}} = `r agg$est %>% round(3)`$, 
+$95\% ~ CI = [-\infty; `r agg$ci.upper %>% round(3)`]$).
 
 </details>
 
@@ -156,7 +176,7 @@ Re-estimate the model from \@ref(boot) in the At-Home Exercises.
 
 - Use B = 1000 bootstrap samples.
 - Other than the `se` and `bootstrap` options, use the defaults.
-- Does this model give the same answers (vis-á-vis the hypotheses) as the 
+- Does this model give the same answers (vis-à-vis the hypotheses) as the 
 restricted model from \@ref(estimateRes)?
 
 <details>
@@ -206,7 +226,7 @@ restricted model.
 ---
 
 If you found that the inferential conclusions were the same in the full and 
-restricted models, considerations of parsimony may be tempt you to base your 
+restricted models, considerations of parsimony may tempt you to base your 
 conclusions on the restricted model. However, to do so at this point would be 
 premature.
 
@@ -223,7 +243,7 @@ sufficiently well.
 
 - What do you conclude?
 - Do you notice anything about the relation between the $\Delta \chi^2$ in this 
-test and the $\chi^2$ model fit statistic from \@ref(estimateFull)?
+test and the $\chi^2$ model fit statistic from \@ref(estimateRes)?
 
 *Hint:* You can use the `anova()` function to conduct a $\Delta \chi^2$ test 
 between two fitted **lavaan** objects.
@@ -240,7 +260,7 @@ model. Constraining the full model has produced too much loss of fit.
 - The $\Delta \chi^2$ (and it's associated degrees of freedom and p-value) is
 identical to the model fit statistic from \@ref(estimateRes). Of course, we should
 not find this surprising. Since the full model is saturated, it has $\chi^2 = 0$.
-So, our $\Delta \chi^2$ statistic was computed by sutracting zero from the $\chi^2$
+So, our $\Delta \chi^2$ statistic was computed by subtracting zero from the $\chi^2$
 for the restricted model. Hence, we didn't really need to do this test; we 
 already had the answer.
 
@@ -260,7 +280,7 @@ Take note of the following points.
 
 - If we have multiple inputs and/or outcomes, we can each pair of X and Y will
 be linked through a set of these four effects.
-- If any of the multiple mediators are arranged serially in the process these 
+- If any of the multiple mediators are arranged serially in the process, these 
 four flavors of effect can connect an input to a mediator, connect a mediator 
 to an outcome, or connect two mediators.  
 
@@ -272,7 +292,7 @@ models.
 ###
 
 List all possible effects (i.e., direct, total, [specific/total] indirect) that 
-we can define based on the full model represented in \@ref(fullModel).
+we can define based on the full model represented in Figure \@ref(fig:fullDiagram).
 
 - Do not include the paths that attach variables that are adjacent in the process 
 (e.g., a and b paths).
@@ -363,7 +383,7 @@ Esteem*
 
 ---
 
-###
+### {#ieMod}
 
 Modify the model syntax for the full model to define all possible specific and 
 total indirect effects between *Parent Attachment* and *Self Esteem* and between 
@@ -462,23 +482,20 @@ tmp4 <- tmp %>% filter(label == "y_x1")
 tmp5 <- tmp %>% filter(label == "y_x2")
 ```
 
-- Both three-step IEs from *Peer Attachment* to *Self Esteem* are significant (
-*Prosocial Behavior*: 
+- Both three-step IEs from *Peer Attachment* to *Self Esteem* are significant 
+(*Prosocial Behavior*: 
 $\hat{\textit{IE}} = `r tmp1$est %>% round(3)`$, 
 $95\% ~ CI = [`r tmp1$ci.lower %>% round(3)`; \infty]$
 ; *Aggressive Behavior*:
 $\hat{\textit{IE}} = `r tmp2$est %>% round(3)`$, 
-$95\% ~ CI = [-\infty; `r tmp2$ci.upper %>% round(3)`]$
-).
+$95\% ~ CI = [-\infty; `r tmp2$ci.upper %>% round(3)`]$).
 - The two-step IE from *Parent Attachment* to *Self Esteem* through *Prosocial 
-Behavior* is significant (
-$\hat{\textit{IE}} = `r tmp3$est %>% round(3)`$, 
-$95\% ~ CI = [`r tmp3$ci.lower %>% round(3)`; \infty]$
-).
-- The total IE from *Parent Attachment* to *Self Esteem* is significant (
-$\hat{\textit{IE}} = `r tmp4$est %>% round(3)`$, 
-$95\% ~ CI = [`r tmp4$ci.lower %>% round(3)`; \infty]$
-).
+Behavior* is significant 
+($\hat{\textit{IE}} = `r tmp3$est %>% round(3)`$, 
+$95\% ~ CI = [`r tmp3$ci.lower %>% round(3)`; \infty]$).
+- The total IE from *Parent Attachment* to *Self Esteem* is significant 
+($\hat{\textit{IE}} = `r tmp4$est %>% round(3)`$, 
+$95\% ~ CI = [`r tmp4$ci.lower %>% round(3)`; \infty]$).
 
 Interestingly, the total IE from *Peer Attachment* to *Self Esteem* is not 
 significant even though two of the underlying specific indirect effects are 
@@ -494,6 +511,8 @@ effect is interpreted as the expected change in Y for each unit of change in X
 that is transmitted through M; the scaling of the mediators does not enter into
 the interpretation.
 
+---
+
 ### {#qualComp}
 
 In terms of a qualitative comparison of effect sizes, which of each of the 
@@ -507,16 +526,11 @@ following pairs of IEs is larger?
 <details>
   <summary>Click for explanation</summary>
 
-- The specific IE through *Prosocial Behavior* (
-`r tmp1$est %>% round(3)`
-) is stronger than the specific IE through *Aggressive Behavior* (
-`r tmp2$est %>% round(3)`
-).
-- The total IE for *Parent Attachment* (
-`r tmp4$est %>% round(3)`
-) is stronger than the total IE for *Peer Attachment* (
-`r tmp5$est %>% round(3)`
-).
+- The specific IE through *Prosocial Behavior* (`r tmp1$est %>% round(3)`) is 
+stronger than the specific IE through *Aggressive Behavior* 
+(`r tmp2$est %>% round(3)`).
+- The total IE for *Parent Attachment* (`r tmp4$est %>% round(3)`) is stronger 
+than the total IE for *Peer Attachment* (`r tmp5$est %>% round(3)`).
 
 </details>
 
@@ -529,7 +543,109 @@ We then make the inferences exactly as we did for the IEs.
 
 ---
 
-###
+### {#testMod}
 
 Modify the model syntax from \@ref(ieMod) to include parameters that quantify
 the differences need to test the comparisons in \@ref(qualComp).
+
+<details>
+  <summary>Click for explanation</summary>
+
+Rather than copying the entire syntax string, I'll use the `paste()` function to
+add only the two new lines to the existing syntax.
+
+```{r}
+## Modify the model syntax:
+mod <- paste(mod, 
+             'sie_diff := ie_m21_m1_x2 + ie_m22_m1_x2',
+             'tie_diff := y_x1 - y_x2',
+             sep = "\n")
+
+## Check the result:
+cat(mod)
+```
+
+When defining the difference between the two specific indirect effects, 
+`sie_diff`, we *add* the effects because the second specific IE (through 
+*Aggressive Behavior*) is negative. We want to test the difference in magnitude, 
+not the difference between the signed estimates. So, we need to define the 
+difference in terms of the absolute values of the specific indirect effects.
+
+</details>
+
+---
+
+###
+
+Use `lavaan::sem()` to estimate the model you defined in \@ref(testMod).
+
+- Use B = 1000 bootstrap samples.
+- Other than the `se` and `bootstrap` options, use the defaults.
+- Are the tested specific and total indirect effects are significant different
+according to the bootstrapped CIs?
+
+<details>
+  <summary>Click for explanation</summary>
+
+Note that we now need to use two-tailed tests again, since we do not have any 
+particular reason to expect that one effect will be stronger than the other.
+
+```{r test_boot, cache = TRUE}
+## Set a seed to get replicable bootstrap samples:
+set.seed(235711)
+
+## Estimate the model with bootstrapping:
+out <- sem(mod, data = seData, se = "bootstrap", bootstrap = 1000)
+
+## Summarize the model:
+summary(out)
+
+parameterEstimates(out, ci = TRUE) %>% 
+  filter(label %in% c("sie_diff", "tie_diff")) %>% 
+  select(label, est, ci.lower, ci.upper)
+```
+
+Neither the two three-step specific indirect effects from *Peer Attachment* to
+*Self Esteem* nor the two total effects from the inputs to *Self Esteem* are 
+significantly different.
+
+</details>
+
+---
+
+###
+
+Reconsider the answers you gave to the research questions after the At-Home 
+Exercise analyses.
+
+- Do the new results you've found here change your conclusions?
+- What are your conclusions vis-à-vis the stated hypotheses?
+
+<details>
+  <summary>Click for explanation</summary>
+
+The new results further support the hypotheses regarding the indirect effect of 
+*Peer Attachment* on *Self Esteem*.
+
+- Both three-step specific indirect effects were significant.
+- None of the other potential specific indirect effects from *Peer Attachment*
+to *Self Esteem* was significant.
+- As far as our model can tell, it appears that *Peer Attachment* really does 
+influence *Self Esteem* primarily through the two hypothesized three-step
+IEs.
+
+The new results provide evidence against the hypothesized stand-alone direct
+effect of *Parent Attachment* on *Self Esteem*.
+
+- Although the hypothesized direct effect is significant, so is the total
+indirect effect and the specific indirect effect through *Prosocial Behavior*.
+- Our model suggests that *Parent Attachment* influences *Self Esteem* both
+directly and indirectly.
+
+</details>
+
+---
+
+End of In-Class Exercises
+
+---

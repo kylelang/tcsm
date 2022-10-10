@@ -390,14 +390,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.5</b> In-Class Exercises</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#diagram"><i class="fa fa-check"></i><b>4.5.1</b> </a></li>
-<li class="chapter" data-level="4.5.2" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#resMod"><i class="fa fa-check"></i><b>4.5.2</b> </a></li>
-<li class="chapter" data-level="4.5.3" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#estimateRes"><i class="fa fa-check"></i><b>4.5.3</b> </a></li>
-<li class="chapter" data-level="4.5.4" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-74"><i class="fa fa-check"></i><b>4.5.4</b> </a></li>
+<li class="chapter" data-level="4.5.1" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-74"><i class="fa fa-check"></i><b>4.5.1</b> </a></li>
+<li class="chapter" data-level="4.5.2" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#diagram"><i class="fa fa-check"></i><b>4.5.2</b> </a></li>
+<li class="chapter" data-level="4.5.3" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#resMod"><i class="fa fa-check"></i><b>4.5.3</b> </a></li>
+<li class="chapter" data-level="4.5.4" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#estimateRes"><i class="fa fa-check"></i><b>4.5.4</b> </a></li>
 <li class="chapter" data-level="4.5.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-75"><i class="fa fa-check"></i><b>4.5.5</b> </a></li>
 <li class="chapter" data-level="4.5.6" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-76"><i class="fa fa-check"></i><b>4.5.6</b> </a></li>
 <li class="chapter" data-level="4.5.7" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-77"><i class="fa fa-check"></i><b>4.5.7</b> </a></li>
-<li class="chapter" data-level="4.5.8" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-78"><i class="fa fa-check"></i><b>4.5.8</b> </a></li>
+<li class="chapter" data-level="4.5.8" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#ieMod"><i class="fa fa-check"></i><b>4.5.8</b> </a></li>
+<li class="chapter" data-level="4.5.9" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-78"><i class="fa fa-check"></i><b>4.5.9</b> </a></li>
+<li class="chapter" data-level="4.5.10" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#qualComp"><i class="fa fa-check"></i><b>4.5.10</b> </a></li>
+<li class="chapter" data-level="4.5.11" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#testMod"><i class="fa fa-check"></i><b>4.5.11</b> </a></li>
+<li class="chapter" data-level="4.5.12" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-79"><i class="fa fa-check"></i><b>4.5.12</b> </a></li>
+<li class="chapter" data-level="4.5.13" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-80"><i class="fa fa-check"></i><b>4.5.13</b> </a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -419,11 +424,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="in-class-exercises-3" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> In-Class Exercises<a href="in-class-exercises-3.html#in-class-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In This practical, we will continue with our mediation analysis of the data
+provided by the <em>SelfEsteem.sav</em> file.</p>
+<hr />
+<div id="section-74" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> </h3>
+<p>Load the <em>SelfEsteem.sav</em> data.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="in-class-exercises-3.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb250-2"><a href="in-class-exercises-3.html#cb250-2" aria-hidden="true" tabindex="-1"></a>seData <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">&quot;SelfEsteem.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
+<hr />
 <p>To begin this practical, recall the path model that we estimated for the
 <a href="at-home-exercises-3.html">At-Home Exercises</a>.</p>
-<div class="figure">
-<img src="images/week5_home_full_model.png" alt="" />
-<p class="caption">Full Model{#fullModel}</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fullDiagram"></span>
+<img src="images/week5_full_model.png" alt="Full Model" width="100%" />
+<p class="caption">
+Figure 4.1: Full Model
+</p>
 </div>
 <p>Further, recall the research questions for our analysis.</p>
 <ol style="list-style-type: decimal">
@@ -442,8 +463,9 @@ higher self-esteem.</li>
 hypotheses. We could still calculate the relevant direct/indirect/total effects
 from a simpler model.</p>
 <hr />
-<div id="diagram" class="section level3" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> </h3>
+</div>
+<div id="diagram" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> </h3>
 <p>Draw a path diagram for the simplest model that you could use to define the
 effects implied by the above hypotheses.</p>
 <ul>
@@ -456,17 +478,19 @@ effects implied by the above hypotheses.</p>
 <summary>
 Click for explanation
 </summary>
-<div class="figure">
-<img src="images/week5_home_res_model.png" alt="" />
-<p class="caption">Restricted Model</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:resDiagram"></span>
+<img src="images/week5_res_model.png" alt="Restricted Model" width="100%" />
+<p class="caption">
+Figure 4.2: Restricted Model
+</p>
 </div>
 </details>
 <hr />
 </div>
-<div id="resMod" class="section level3" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> </h3>
+<div id="resMod" class="section level3" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> </h3>
 <p>Define the <strong>lavaan</strong> model syntax for the path model you diagrammed in
-<a href="in-class-exercises-3.html#diagram">4.5.1</a>.</p>
+<a href="in-class-exercises-3.html#diagram">4.5.2</a>.</p>
 <ul>
 <li>Label any relevant paths</li>
 <li>Specify any relevant indirect effects as defined parameters.</li>
@@ -476,31 +500,31 @@ Click for explanation
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="in-class-exercises-3.html#cb250-1" aria-hidden="true" tabindex="-1"></a>resMod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb250-2"><a href="in-class-exercises-3.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
-<span id="cb250-3"><a href="in-class-exercises-3.html#cb250-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + y_m22 * Aggr + ParAtt</span></span>
-<span id="cb250-4"><a href="in-class-exercises-3.html#cb250-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb250-5"><a href="in-class-exercises-3.html#cb250-5" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
-<span id="cb250-6"><a href="in-class-exercises-3.html#cb250-6" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_m1 * Emp</span></span>
-<span id="cb250-7"><a href="in-class-exercises-3.html#cb250-7" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_m1 * Emp</span></span>
-<span id="cb250-8"><a href="in-class-exercises-3.html#cb250-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb250-9"><a href="in-class-exercises-3.html#cb250-9" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
-<span id="cb250-10"><a href="in-class-exercises-3.html#cb250-10" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ m1_x2 * PeerAtt</span></span>
-<span id="cb250-11"><a href="in-class-exercises-3.html#cb250-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb250-12"><a href="in-class-exercises-3.html#cb250-12" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
-<span id="cb250-13"><a href="in-class-exercises-3.html#cb250-13" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
-<span id="cb250-14"><a href="in-class-exercises-3.html#cb250-14" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
-<span id="cb250-15"><a href="in-class-exercises-3.html#cb250-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb250-16"><a href="in-class-exercises-3.html#cb250-16" aria-hidden="true" tabindex="-1"></a><span class="st">## Indirect effects:</span></span>
-<span id="cb250-17"><a href="in-class-exercises-3.html#cb250-17" aria-hidden="true" tabindex="-1"></a><span class="st">ie_pro := m1_x2 * m21_m1 * y_m21</span></span>
-<span id="cb250-18"><a href="in-class-exercises-3.html#cb250-18" aria-hidden="true" tabindex="-1"></a><span class="st">ie_agg := m1_x2 * m22_m1 * y_m22</span></span>
-<span id="cb250-19"><a href="in-class-exercises-3.html#cb250-19" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="in-class-exercises-3.html#cb251-1" aria-hidden="true" tabindex="-1"></a>resMod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb251-2"><a href="in-class-exercises-3.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
+<span id="cb251-3"><a href="in-class-exercises-3.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + y_m22 * Aggr + ParAtt</span></span>
+<span id="cb251-4"><a href="in-class-exercises-3.html#cb251-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-5"><a href="in-class-exercises-3.html#cb251-5" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
+<span id="cb251-6"><a href="in-class-exercises-3.html#cb251-6" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_m1 * Emp</span></span>
+<span id="cb251-7"><a href="in-class-exercises-3.html#cb251-7" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_m1 * Emp</span></span>
+<span id="cb251-8"><a href="in-class-exercises-3.html#cb251-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-9"><a href="in-class-exercises-3.html#cb251-9" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
+<span id="cb251-10"><a href="in-class-exercises-3.html#cb251-10" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ m1_x2 * PeerAtt</span></span>
+<span id="cb251-11"><a href="in-class-exercises-3.html#cb251-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-12"><a href="in-class-exercises-3.html#cb251-12" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
+<span id="cb251-13"><a href="in-class-exercises-3.html#cb251-13" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
+<span id="cb251-14"><a href="in-class-exercises-3.html#cb251-14" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
+<span id="cb251-15"><a href="in-class-exercises-3.html#cb251-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-16"><a href="in-class-exercises-3.html#cb251-16" aria-hidden="true" tabindex="-1"></a><span class="st">## Indirect effects:</span></span>
+<span id="cb251-17"><a href="in-class-exercises-3.html#cb251-17" aria-hidden="true" tabindex="-1"></a><span class="st">ie_pro := m1_x2 * m21_m1 * y_m21</span></span>
+<span id="cb251-18"><a href="in-class-exercises-3.html#cb251-18" aria-hidden="true" tabindex="-1"></a><span class="st">ie_agg := m1_x2 * m22_m1 * y_m22</span></span>
+<span id="cb251-19"><a href="in-class-exercises-3.html#cb251-19" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 </details>
 <hr />
 </div>
-<div id="estimateRes" class="section level3" number="4.5.3">
-<h3><span class="header-section-number">4.5.3</span> </h3>
-<p>Estimate the model defined in <a href="in-class-exercises-3.html#resMod">4.5.2</a> using 1000 bootstrap samples.</p>
+<div id="estimateRes" class="section level3" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> </h3>
+<p>Estimate the model defined in <a href="in-class-exercises-3.html#resMod">4.5.3</a> using 1000 bootstrap samples.</p>
 <ul>
 <li>Other than the <code>se</code> and <code>bootstrap</code> options, use the defaults.</li>
 <li>How does the model fit?</li>
@@ -511,14 +535,14 @@ Click for explanation
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="in-class-exercises-3.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
-<span id="cb251-2"><a href="in-class-exercises-3.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb251-3"><a href="in-class-exercises-3.html#cb251-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-4"><a href="in-class-exercises-3.html#cb251-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the restricted model with bootstrapping:</span></span>
-<span id="cb251-5"><a href="in-class-exercises-3.html#cb251-5" aria-hidden="true" tabindex="-1"></a>out_res <span class="ot">&lt;-</span> <span class="fu">sem</span>(resMod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb251-6"><a href="in-class-exercises-3.html#cb251-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-7"><a href="in-class-exercises-3.html#cb251-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
-<span id="cb251-8"><a href="in-class-exercises-3.html#cb251-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_res, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="in-class-exercises-3.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
+<span id="cb252-2"><a href="in-class-exercises-3.html#cb252-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb252-3"><a href="in-class-exercises-3.html#cb252-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-4"><a href="in-class-exercises-3.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the restricted model with bootstrapping:</span></span>
+<span id="cb252-5"><a href="in-class-exercises-3.html#cb252-5" aria-hidden="true" tabindex="-1"></a>out_res <span class="ot">&lt;-</span> <span class="fu">sem</span>(resMod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb252-6"><a href="in-class-exercises-3.html#cb252-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-7"><a href="in-class-exercises-3.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
+<span id="cb252-8"><a href="in-class-exercises-3.html#cb252-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_res, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-12 ended normally after 15 iterations
 ## 
 ##   Estimator                                         ML
@@ -603,76 +627,71 @@ Click for explanation
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##     ie_pro            0.058    0.025    2.278    0.023
 ##     ie_agg           -0.018    0.012   -1.579    0.114</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="in-class-exercises-3.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute CIs:</span></span>
-<span id="cb253-2"><a href="in-class-exercises-3.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out_res, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="in-class-exercises-3.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute CIs:</span></span>
+<span id="cb254-2"><a href="in-class-exercises-3.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out_res, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["lhs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["op"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rhs"],"name":[3],"type":["chr"],"align":["left"]},{"label":["label"],"name":[4],"type":["chr"],"align":["left"]},{"label":["est"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["pvalue"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["ci.lower"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ci.upper"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"SelfEst","2":"~","3":"ProSoc","4":"y_m21","5":"0.31739850","6":"0.09392339","7":"3.379334","8":"7.266172e-04","9":"0.16456766","10":"0.466903147"},{"1":"SelfEst","2":"~","3":"Aggr","4":"y_m22","5":"0.14713214","6":"0.08290086","7":"1.774796","8":"7.593151e-02","9":"0.01562008","10":"0.286995141"},{"1":"SelfEst","2":"~","3":"ParAtt","4":"","5":"0.27189976","6":"0.07683905","7":"3.538562","8":"4.023122e-04","9":"0.13408641","10":"0.387725184"},{"1":"ProSoc","2":"~","3":"Emp","4":"m21_m1","5":"0.51988493","6":"0.07774752","7":"6.686836","8":"2.280465e-11","9":"0.39271529","10":"0.646931737"},{"1":"Aggr","2":"~","3":"Emp","4":"m22_m1","5":"-0.35397177","6":"0.08099406","7":"-4.370342","8":"1.240520e-05","9":"-0.48251811","10":"-0.218349522"},{"1":"Emp","2":"~","3":"PeerAtt","4":"m1_x2","5":"0.34938065","6":"0.07152763","7":"4.884555","8":"1.036627e-06","9":"0.21985109","10":"0.463264572"},{"1":"ProSoc","2":"~~","3":"Aggr","4":"","5":"-0.09851656","6":"0.05799411","7":"-1.698734","8":"8.936934e-02","9":"-0.19917302","10":"-0.000646118"},{"1":"ParAtt","2":"~~","3":"PeerAtt","4":"","5":"0.53737618","6":"0.12444835","7":"4.318066","8":"1.574025e-05","9":"0.33970534","10":"0.746040514"},{"1":"SelfEst","2":"~~","3":"SelfEst","4":"","5":"0.81294354","6":"0.08488053","7":"9.577503","8":"0.000000e+00","9":"0.64859442","10":"0.928476239"},{"1":"ProSoc","2":"~~","3":"ProSoc","4":"","5":"0.65739886","6":"0.07753596","7":"8.478632","8":"0.000000e+00","9":"0.52212105","10":"0.771200596"},{"1":"Aggr","2":"~~","3":"Aggr","4":"","5":"0.78889776","6":"0.10740146","7":"7.345317","8":"2.051692e-13","9":"0.61677556","10":"0.968385791"},{"1":"Emp","2":"~~","3":"Emp","4":"","5":"0.78505499","6":"0.09465971","7":"8.293444","8":"0.000000e+00","9":"0.62917312","10":"0.946856593"},{"1":"ParAtt","2":"~~","3":"ParAtt","4":"","5":"1.27669904","6":"0.19951970","7":"6.398862","8":"1.565392e-10","9":"0.97840290","10":"1.626758212"},{"1":"PeerAtt","2":"~~","3":"PeerAtt","4":"","5":"0.96308477","6":"0.10757597","7":"8.952601","8":"0.000000e+00","9":"0.78496527","10":"1.141095788"},{"1":"ie_pro","2":":=","3":"m1_x2*m21_m1*y_m21","4":"ie_pro","5":"0.05765155","6":"0.02530971","7":"2.277843","8":"2.273593e-02","9":"0.02197520","10":"0.104909980"},{"1":"ie_agg","2":":=","3":"m1_x2*m22_m1*y_m22","4":"ie_agg","5":"-0.01819596","6":"0.01152131","7":"-1.579331","8":"1.142600e-01","9":"-0.03942469","10":"-0.001792308"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ul>
-<li><p>The fit of the model is marginal. The <span class="math inline">\(\chi^2\)</span> is pretty small and the CFI
+<li><p>The fit of the model is marginal. The <span class="math inline">\(\chi^2\)</span> is pretty small, and the CFI
 looks good, but the TLI is below the threshold of acceptable fit. The RMSEA and
 SRMR are toward the upper end of the range for “acceptable” fit.</p></li>
-<li><p>Yes, the total effect of <em>Parent Attachment</em> on <em>Self Esteem</em> is significant
-(
-<span class="math inline">\(\beta = 0.272\)</span>,
+<li><p>Yes, the direct effect of <em>Parent Attachment</em> on <em>Self Esteem</em> is significant
+(<span class="math inline">\(\beta = 0.272\)</span>,
 <span class="math inline">\(Z = 3.54\)</span>,
-<span class="math inline">\(p &lt; 0.001\)</span>
-).</p></li>
+<span class="math inline">\(p &lt; 0.001\)</span>).</p></li>
 <li><p>The IE of <em>Peer Attachment</em> on <em>Self Esteem</em> through <em>Empathy</em> and <em>Prosocial
-Behavior</em> is significant (
-<span class="math inline">\(\beta = 0.058\)</span>,
-<span class="math inline">\(95\% ~ CI = [0.022; \infty]\)</span>
-), as is the analogous IE through <em>Aggressive Behavior</em> (
-<span class="math inline">\(\beta = -0.018\)</span>,
-<span class="math inline">\(95\% ~ CI = [-\infty; -0.002]\)</span>
-).</p></li>
+Behavior</em> is significant (<span class="math inline">\(\hat{\textit{IE}} = 0.058\)</span>,
+<span class="math inline">\(95\% ~ CI = [0.022; \infty]\)</span>), as is the analogous IE
+through <em>Aggressive Behavior</em> (<span class="math inline">\(\hat{\textit{IE}} = -0.018\)</span>,
+<span class="math inline">\(95\% ~ CI = [-\infty; -0.002]\)</span>).</p></li>
 </ul>
 </details>
 <hr />
 </div>
-<div id="section-74" class="section level3" number="4.5.4">
-<h3><span class="header-section-number">4.5.4</span> </h3>
+<div id="section-75" class="section level3" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> </h3>
 <p>Re-estimate the model from <a href="at-home-exercises-3.html#boot">4.4.7</a> in the At-Home Exercises.</p>
 <ul>
 <li>Use B = 1000 bootstrap samples.</li>
 <li>Other than the <code>se</code> and <code>bootstrap</code> options, use the defaults.</li>
-<li>Does this model give the same answers (vis-á-vis the hypotheses) as the
-restricted model from <a href="in-class-exercises-3.html#estimateRes">4.5.3</a>?</li>
+<li>Does this model give the same answers (vis-à-vis the hypotheses) as the
+restricted model from <a href="in-class-exercises-3.html#estimateRes">4.5.4</a>?</li>
 </ul>
 <details>
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="in-class-exercises-3.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define the model syntax:</span></span>
-<span id="cb254-2"><a href="in-class-exercises-3.html#cb254-2" aria-hidden="true" tabindex="-1"></a>fullMod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb254-3"><a href="in-class-exercises-3.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
-<span id="cb254-4"><a href="in-class-exercises-3.html#cb254-4" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + y_m22 * Aggr + Emp + ParAtt + PeerAtt</span></span>
-<span id="cb254-5"><a href="in-class-exercises-3.html#cb254-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-6"><a href="in-class-exercises-3.html#cb254-6" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
-<span id="cb254-7"><a href="in-class-exercises-3.html#cb254-7" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_x2 * PeerAtt + ParAtt + m21_m1 * Emp</span></span>
-<span id="cb254-8"><a href="in-class-exercises-3.html#cb254-8" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_x2 * PeerAtt + ParAtt + m22_m1 * Emp</span></span>
-<span id="cb254-9"><a href="in-class-exercises-3.html#cb254-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-10"><a href="in-class-exercises-3.html#cb254-10" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
-<span id="cb254-11"><a href="in-class-exercises-3.html#cb254-11" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ ParAtt + m1_x2 * PeerAtt</span></span>
-<span id="cb254-12"><a href="in-class-exercises-3.html#cb254-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-13"><a href="in-class-exercises-3.html#cb254-13" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
-<span id="cb254-14"><a href="in-class-exercises-3.html#cb254-14" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
-<span id="cb254-15"><a href="in-class-exercises-3.html#cb254-15" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
-<span id="cb254-16"><a href="in-class-exercises-3.html#cb254-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-17"><a href="in-class-exercises-3.html#cb254-17" aria-hidden="true" tabindex="-1"></a><span class="st">## Indirect effects:</span></span>
-<span id="cb254-18"><a href="in-class-exercises-3.html#cb254-18" aria-hidden="true" tabindex="-1"></a><span class="st">ie_pro := m1_x2 * m21_m1 * y_m21</span></span>
-<span id="cb254-19"><a href="in-class-exercises-3.html#cb254-19" aria-hidden="true" tabindex="-1"></a><span class="st">ie_agg := m1_x2 * m22_m1 * y_m22</span></span>
-<span id="cb254-20"><a href="in-class-exercises-3.html#cb254-20" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
-<span id="cb254-21"><a href="in-class-exercises-3.html#cb254-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
-<span id="cb254-22"><a href="in-class-exercises-3.html#cb254-22" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb254-23"><a href="in-class-exercises-3.html#cb254-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-24"><a href="in-class-exercises-3.html#cb254-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model with bootstrapping:</span></span>
-<span id="cb254-25"><a href="in-class-exercises-3.html#cb254-25" aria-hidden="true" tabindex="-1"></a>out_full <span class="ot">&lt;-</span> <span class="fu">sem</span>(fullMod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb254-26"><a href="in-class-exercises-3.html#cb254-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-27"><a href="in-class-exercises-3.html#cb254-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
-<span id="cb254-28"><a href="in-class-exercises-3.html#cb254-28" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_full)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="in-class-exercises-3.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define the model syntax:</span></span>
+<span id="cb255-2"><a href="in-class-exercises-3.html#cb255-2" aria-hidden="true" tabindex="-1"></a>fullMod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb255-3"><a href="in-class-exercises-3.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
+<span id="cb255-4"><a href="in-class-exercises-3.html#cb255-4" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + y_m22 * Aggr + Emp + ParAtt + PeerAtt</span></span>
+<span id="cb255-5"><a href="in-class-exercises-3.html#cb255-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-6"><a href="in-class-exercises-3.html#cb255-6" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
+<span id="cb255-7"><a href="in-class-exercises-3.html#cb255-7" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_x2 * PeerAtt + ParAtt + m21_m1 * Emp</span></span>
+<span id="cb255-8"><a href="in-class-exercises-3.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_x2 * PeerAtt + ParAtt + m22_m1 * Emp</span></span>
+<span id="cb255-9"><a href="in-class-exercises-3.html#cb255-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-10"><a href="in-class-exercises-3.html#cb255-10" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
+<span id="cb255-11"><a href="in-class-exercises-3.html#cb255-11" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ ParAtt + m1_x2 * PeerAtt</span></span>
+<span id="cb255-12"><a href="in-class-exercises-3.html#cb255-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-13"><a href="in-class-exercises-3.html#cb255-13" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
+<span id="cb255-14"><a href="in-class-exercises-3.html#cb255-14" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
+<span id="cb255-15"><a href="in-class-exercises-3.html#cb255-15" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
+<span id="cb255-16"><a href="in-class-exercises-3.html#cb255-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-17"><a href="in-class-exercises-3.html#cb255-17" aria-hidden="true" tabindex="-1"></a><span class="st">## Indirect effects:</span></span>
+<span id="cb255-18"><a href="in-class-exercises-3.html#cb255-18" aria-hidden="true" tabindex="-1"></a><span class="st">ie_pro := m1_x2 * m21_m1 * y_m21</span></span>
+<span id="cb255-19"><a href="in-class-exercises-3.html#cb255-19" aria-hidden="true" tabindex="-1"></a><span class="st">ie_agg := m1_x2 * m22_m1 * y_m22</span></span>
+<span id="cb255-20"><a href="in-class-exercises-3.html#cb255-20" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb255-21"><a href="in-class-exercises-3.html#cb255-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
+<span id="cb255-22"><a href="in-class-exercises-3.html#cb255-22" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb255-23"><a href="in-class-exercises-3.html#cb255-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-24"><a href="in-class-exercises-3.html#cb255-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model with bootstrapping:</span></span>
+<span id="cb255-25"><a href="in-class-exercises-3.html#cb255-25" aria-hidden="true" tabindex="-1"></a>out_full <span class="ot">&lt;-</span> <span class="fu">sem</span>(fullMod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb255-26"><a href="in-class-exercises-3.html#cb255-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-27"><a href="in-class-exercises-3.html#cb255-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
+<span id="cb255-28"><a href="in-class-exercises-3.html#cb255-28" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_full)</span></code></pre></div>
 <pre><code>## lavaan 0.6-12 ended normally after 16 iterations
 ## 
 ##   Estimator                                         ML
@@ -732,7 +751,7 @@ Click for explanation
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##     ie_pro            0.037    0.019    1.931    0.054
 ##     ie_agg           -0.017    0.010   -1.678    0.093</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="in-class-exercises-3.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out_full, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="in-class-exercises-3.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out_full, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["lhs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["op"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rhs"],"name":[3],"type":["chr"],"align":["left"]},{"label":["label"],"name":[4],"type":["chr"],"align":["left"]},{"label":["est"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["pvalue"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["ci.lower"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ci.upper"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"SelfEst","2":"~","3":"ProSoc","4":"y_m21","5":"0.25200921","6":"0.09821982","7":"2.5657674","8":"1.029478e-02","9":"0.08099914","10":"0.408130318"},{"1":"SelfEst","2":"~","3":"Aggr","4":"y_m22","5":"0.18525728","6":"0.08516362","7":"2.1753102","8":"2.960688e-02","9":"0.05188156","10":"0.331822610"},{"1":"SelfEst","2":"~","3":"Emp","4":"","5":"0.14323882","6":"0.09778492","7":"1.4648354","8":"1.429658e-01","9":"-0.01645822","10":"0.308863900"},{"1":"SelfEst","2":"~","3":"ParAtt","4":"","5":"0.24426409","6":"0.08350577","7":"2.9251164","8":"3.443274e-03","9":"0.09733187","10":"0.370719063"},{"1":"SelfEst","2":"~","3":"PeerAtt","4":"","5":"0.05057274","6":"0.09614845","7":"0.5259860","8":"5.988980e-01","9":"-0.11197026","10":"0.203321778"},{"1":"ProSoc","2":"~","3":"PeerAtt","4":"m21_x2","5":"-0.03743961","6":"0.07762341","7":"-0.4823236","8":"6.295761e-01","9":"-0.16704049","10":"0.088251522"},{"1":"ProSoc","2":"~","3":"ParAtt","4":"","5":"0.19267407","6":"0.07031363","7":"2.7402095","8":"6.140003e-03","9":"0.07351823","10":"0.305501782"},{"1":"ProSoc","2":"~","3":"Emp","4":"m21_m1","5":"0.47748439","6":"0.07964951","7":"5.9948187","8":"2.037126e-09","9":"0.34827803","10":"0.608741378"},{"1":"Aggr","2":"~","3":"PeerAtt","4":"m22_x2","5":"-0.09454515","6":"0.08602543","7":"-1.0990372","8":"2.717519e-01","9":"-0.23284674","10":"0.052021749"},{"1":"Aggr","2":"~","3":"ParAtt","4":"","5":"-0.03397870","6":"0.07763807","7":"-0.4376552","8":"6.616363e-01","9":"-0.16607291","10":"0.091329817"},{"1":"Aggr","2":"~","3":"Emp","4":"m22_m1","5":"-0.30878775","6":"0.08952685","7":"-3.4491078","8":"5.624422e-04","9":"-0.45385871","10":"-0.162448719"},{"1":"Emp","2":"~","3":"ParAtt","4":"","5":"0.07807473","6":"0.06807684","7":"1.1468618","8":"2.514387e-01","9":"-0.03508232","10":"0.189035871"},{"1":"Emp","2":"~","3":"PeerAtt","4":"m1_x2","5":"0.30581697","6":"0.07706296","7":"3.9684042","8":"7.235554e-05","9":"0.17536860","10":"0.427983386"},{"1":"ProSoc","2":"~~","3":"Aggr","4":"","5":"-0.08619117","6":"0.05645746","7":"-1.5266568","8":"1.268464e-01","9":"-0.17994270","10":"0.005928394"},{"1":"ParAtt","2":"~~","3":"PeerAtt","4":"","5":"0.53737654","6":"0.12444836","7":"4.3180685","8":"1.574006e-05","9":"0.33970530","10":"0.746040545"},{"1":"SelfEst","2":"~~","3":"SelfEst","4":"","5":"0.79618780","6":"0.08304943","7":"9.5869141","8":"0.000000e+00","9":"0.62875158","10":"0.898742469"},{"1":"ProSoc","2":"~~","3":"ProSoc","4":"","5":"0.61802926","6":"0.06833591","7":"9.0439902","8":"0.000000e+00","9":"0.49252043","10":"0.711922106"},{"1":"Aggr","2":"~~","3":"Aggr","4":"","5":"0.77720501","6":"0.10378653","7":"7.4884957","8":"6.972201e-14","9":"0.60257015","10":"0.940189533"},{"1":"Emp","2":"~~","3":"Emp","4":"","5":"0.77910040","6":"0.09108197","7":"8.5538379","8":"0.000000e+00","9":"0.62381598","10":"0.933618420"},{"1":"ParAtt","2":"~~","3":"ParAtt","4":"","5":"1.27669945","6":"0.19951971","7":"6.3988638","8":"1.565374e-10","9":"0.97840285","10":"1.626758537"},{"1":"PeerAtt","2":"~~","3":"PeerAtt","4":"","5":"0.96308503","6":"0.10757596","7":"8.9526049","8":"0.000000e+00","9":"0.78496524","10":"1.141095831"},{"1":"ie_pro","2":":=","3":"m1_x2*m21_m1*y_m21","4":"ie_pro","5":"0.03679910","6":"0.01906037","7":"1.9306599","8":"5.352512e-02","9":"0.00944953","10":"0.072029328"},{"1":"ie_agg","2":":=","3":"m1_x2*m22_m1*y_m22","4":"ie_agg","5":"-0.01749431","6":"0.01042326","7":"-1.6783914","8":"9.327072e-02","9":"-0.03701284","10":"-0.003438632"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -748,7 +767,7 @@ restricted model.</p>
 </details>
 <hr />
 <p>If you found that the inferential conclusions were the same in the full and
-restricted models, considerations of parsimony may be tempt you to base your
+restricted models, considerations of parsimony may tempt you to base your
 conclusions on the restricted model. However, to do so at this point would be
 premature.</p>
 <p>We must first show that the restricted model is an equally good representation
@@ -756,14 +775,14 @@ of the data. The restricted model is nested within the full model, so we can use
 a <span class="math inline">\(\Delta \chi^2\)</span> test to evaluate the loss of fit.</p>
 <hr />
 </div>
-<div id="section-75" class="section level3" number="4.5.5">
-<h3><span class="header-section-number">4.5.5</span> </h3>
+<div id="section-76" class="section level3" number="4.5.6">
+<h3><span class="header-section-number">4.5.6</span> </h3>
 <p>Conduct a <span class="math inline">\(\Delta \chi^2\)</span> test to check if the restricted model still fits
 sufficiently well.</p>
 <ul>
 <li>What do you conclude?</li>
 <li>Do you notice anything about the relation between the <span class="math inline">\(\Delta \chi^2\)</span> in this
-test and the <span class="math inline">\(\chi^2\)</span> model fit statistic from <a href="#estimateFull"><strong>??</strong></a>?</li>
+test and the <span class="math inline">\(\chi^2\)</span> model fit statistic from <a href="in-class-exercises-3.html#estimateRes">4.5.4</a>?</li>
 </ul>
 <p><em>Hint:</em> You can use the <code>anova()</code> function to conduct a <span class="math inline">\(\Delta \chi^2\)</span> test
 between two fitted <strong>lavaan</strong> objects.</p>
@@ -771,7 +790,7 @@ between two fitted <strong>lavaan</strong> objects.</p>
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="in-class-exercises-3.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(out_full, out_res)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="in-class-exercises-3.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(out_full, out_res)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[6],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"2292.797","3":"2355.017","4":"2.540190e-13","5":"NA","6":"NA","7":"NA","_rn_":"out_full"},{"1":"7","2":"2293.358","3":"2334.838","4":"1.456079e+01","5":"14.56079","6":"7","7":"0.04206021","_rn_":"out_res"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -781,9 +800,9 @@ Click for explanation
 <li>The <span class="math inline">\(\Delta \chi^2\)</span> is significant, so we should not prefer the restricted
 model. Constraining the full model has produced too much loss of fit.</li>
 <li>The <span class="math inline">\(\Delta \chi^2\)</span> (and it’s associated degrees of freedom and p-value) is
-identical to the model fit statistic from <a href="in-class-exercises-3.html#estimateRes">4.5.3</a>. Of course, we should
+identical to the model fit statistic from <a href="in-class-exercises-3.html#estimateRes">4.5.4</a>. Of course, we should
 not find this surprising. Since the full model is saturated, it has <span class="math inline">\(\chi^2 = 0\)</span>.
-So, our <span class="math inline">\(\Delta \chi^2\)</span> statistic was computed by sutracting zero from the <span class="math inline">\(\chi^2\)</span>
+So, our <span class="math inline">\(\Delta \chi^2\)</span> statistic was computed by subtracting zero from the <span class="math inline">\(\chi^2\)</span>
 for the restricted model. Hence, we didn’t really need to do this test; we
 already had the answer.</li>
 </ul>
@@ -801,7 +820,7 @@ mediation model.</p>
 <ul>
 <li>If we have multiple inputs and/or outcomes, we can each pair of X and Y will
 be linked through a set of these four effects.</li>
-<li>If any of the multiple mediators are arranged serially in the process these
+<li>If any of the multiple mediators are arranged serially in the process, these
 four flavors of effect can connect an input to a mediator, connect a mediator
 to an outcome, or connect two mediators.</li>
 </ul>
@@ -809,10 +828,10 @@ to an outcome, or connect two mediators.</li>
 models.</p>
 <hr />
 </div>
-<div id="section-76" class="section level3" number="4.5.6">
-<h3><span class="header-section-number">4.5.6</span> </h3>
+<div id="section-77" class="section level3" number="4.5.7">
+<h3><span class="header-section-number">4.5.7</span> </h3>
 <p>List all possible effects (i.e., direct, total, [specific/total] indirect) that
-we can define based on the full model represented in <a href="#fullModel"><strong>??</strong></a>.</p>
+we can define based on the full model represented in Figure <a href="in-class-exercises-3.html#fig:fullDiagram">4.1</a>.</p>
 <ul>
 <li>Do not include the paths that attach variables that are adjacent in the process
 (e.g., a and b paths).</li>
@@ -892,8 +911,8 @@ Esteem</em></p></li>
 </details>
 <hr />
 </div>
-<div id="section-77" class="section level3" number="4.5.7">
-<h3><span class="header-section-number">4.5.7</span> </h3>
+<div id="ieMod" class="section level3" number="4.5.8">
+<h3><span class="header-section-number">4.5.8</span> </h3>
 <p>Modify the model syntax for the full model to define all possible specific and
 total indirect effects between <em>Parent Attachment</em> and <em>Self Esteem</em> and between
 <em>Peer Attachment</em> and <em>Self Esteem</em>.</p>
@@ -901,55 +920,55 @@ total indirect effects between <em>Parent Attachment</em> and <em>Self Esteem</e
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="in-class-exercises-3.html#cb258-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb258-2"><a href="in-class-exercises-3.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
-<span id="cb258-3"><a href="in-class-exercises-3.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + </span></span>
-<span id="cb258-4"><a href="in-class-exercises-3.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="st">          y_m22 * Aggr   + </span></span>
-<span id="cb258-5"><a href="in-class-exercises-3.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="st">          y_m1  * Emp    + </span></span>
-<span id="cb258-6"><a href="in-class-exercises-3.html#cb258-6" aria-hidden="true" tabindex="-1"></a><span class="st">                  ParAtt + </span></span>
-<span id="cb258-7"><a href="in-class-exercises-3.html#cb258-7" aria-hidden="true" tabindex="-1"></a><span class="st">                  PeerAtt</span></span>
-<span id="cb258-8"><a href="in-class-exercises-3.html#cb258-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-9"><a href="in-class-exercises-3.html#cb258-9" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
-<span id="cb258-10"><a href="in-class-exercises-3.html#cb258-10" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_x2 * PeerAtt + </span></span>
-<span id="cb258-11"><a href="in-class-exercises-3.html#cb258-11" aria-hidden="true" tabindex="-1"></a><span class="st">         m21_x1 * ParAtt  + </span></span>
-<span id="cb258-12"><a href="in-class-exercises-3.html#cb258-12" aria-hidden="true" tabindex="-1"></a><span class="st">         m21_m1 * Emp</span></span>
-<span id="cb258-13"><a href="in-class-exercises-3.html#cb258-13" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_x2 * PeerAtt + </span></span>
-<span id="cb258-14"><a href="in-class-exercises-3.html#cb258-14" aria-hidden="true" tabindex="-1"></a><span class="st">       m22_x1 * ParAtt  +</span></span>
-<span id="cb258-15"><a href="in-class-exercises-3.html#cb258-15" aria-hidden="true" tabindex="-1"></a><span class="st">       m22_m1 * Emp</span></span>
-<span id="cb258-16"><a href="in-class-exercises-3.html#cb258-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-17"><a href="in-class-exercises-3.html#cb258-17" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
-<span id="cb258-18"><a href="in-class-exercises-3.html#cb258-18" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ m1_x1 * ParAtt + m1_x2 * PeerAtt</span></span>
-<span id="cb258-19"><a href="in-class-exercises-3.html#cb258-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-20"><a href="in-class-exercises-3.html#cb258-20" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
-<span id="cb258-21"><a href="in-class-exercises-3.html#cb258-21" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
-<span id="cb258-22"><a href="in-class-exercises-3.html#cb258-22" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
-<span id="cb258-23"><a href="in-class-exercises-3.html#cb258-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-24"><a href="in-class-exercises-3.html#cb258-24" aria-hidden="true" tabindex="-1"></a><span class="st">## Specific indirect effects:</span></span>
-<span id="cb258-25"><a href="in-class-exercises-3.html#cb258-25" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_m1_x1 := m1_x1 * m21_m1 * y_m21</span></span>
-<span id="cb258-26"><a href="in-class-exercises-3.html#cb258-26" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_m1_x1 := m1_x1 * m22_m1 * y_m22</span></span>
-<span id="cb258-27"><a href="in-class-exercises-3.html#cb258-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-28"><a href="in-class-exercises-3.html#cb258-28" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_m1_x2 := m1_x2 * m21_m1 * y_m21</span></span>
-<span id="cb258-29"><a href="in-class-exercises-3.html#cb258-29" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_m1_x2 := m1_x2 * m22_m1 * y_m22</span></span>
-<span id="cb258-30"><a href="in-class-exercises-3.html#cb258-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-31"><a href="in-class-exercises-3.html#cb258-31" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_x2 := m21_x2 * y_m21</span></span>
-<span id="cb258-32"><a href="in-class-exercises-3.html#cb258-32" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_x2 := m22_x2 * y_m22</span></span>
-<span id="cb258-33"><a href="in-class-exercises-3.html#cb258-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-34"><a href="in-class-exercises-3.html#cb258-34" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_x1 := m21_x1 * y_m21</span></span>
-<span id="cb258-35"><a href="in-class-exercises-3.html#cb258-35" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_x1 := m22_x1 * y_m22</span></span>
-<span id="cb258-36"><a href="in-class-exercises-3.html#cb258-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-37"><a href="in-class-exercises-3.html#cb258-37" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m1_x1 := m1_x1 * y_m1</span></span>
-<span id="cb258-38"><a href="in-class-exercises-3.html#cb258-38" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m1_x2 := m1_x2 * y_m1</span></span>
-<span id="cb258-39"><a href="in-class-exercises-3.html#cb258-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-40"><a href="in-class-exercises-3.html#cb258-40" aria-hidden="true" tabindex="-1"></a><span class="st">## Total indirect effects:</span></span>
-<span id="cb258-41"><a href="in-class-exercises-3.html#cb258-41" aria-hidden="true" tabindex="-1"></a><span class="st">y_x1 := ie_m21_m1_x1 + ie_m22_m1_x1 + ie_m21_x1 + ie_m22_x1 + ie_m1_x1</span></span>
-<span id="cb258-42"><a href="in-class-exercises-3.html#cb258-42" aria-hidden="true" tabindex="-1"></a><span class="st">y_x2 := ie_m21_m1_x2 + ie_m22_m1_x2 + ie_m21_x2 + ie_m22_x2 + ie_m1_x2</span></span>
-<span id="cb258-43"><a href="in-class-exercises-3.html#cb258-43" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="in-class-exercises-3.html#cb259-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb259-2"><a href="in-class-exercises-3.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
+<span id="cb259-3"><a href="in-class-exercises-3.html#cb259-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ y_m21 * ProSoc + </span></span>
+<span id="cb259-4"><a href="in-class-exercises-3.html#cb259-4" aria-hidden="true" tabindex="-1"></a><span class="st">          y_m22 * Aggr   + </span></span>
+<span id="cb259-5"><a href="in-class-exercises-3.html#cb259-5" aria-hidden="true" tabindex="-1"></a><span class="st">          y_m1  * Emp    + </span></span>
+<span id="cb259-6"><a href="in-class-exercises-3.html#cb259-6" aria-hidden="true" tabindex="-1"></a><span class="st">                  ParAtt + </span></span>
+<span id="cb259-7"><a href="in-class-exercises-3.html#cb259-7" aria-hidden="true" tabindex="-1"></a><span class="st">                  PeerAtt</span></span>
+<span id="cb259-8"><a href="in-class-exercises-3.html#cb259-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-9"><a href="in-class-exercises-3.html#cb259-9" aria-hidden="true" tabindex="-1"></a><span class="st">## Equations for stage 2 mediators:</span></span>
+<span id="cb259-10"><a href="in-class-exercises-3.html#cb259-10" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~ m21_x2 * PeerAtt + </span></span>
+<span id="cb259-11"><a href="in-class-exercises-3.html#cb259-11" aria-hidden="true" tabindex="-1"></a><span class="st">         m21_x1 * ParAtt  + </span></span>
+<span id="cb259-12"><a href="in-class-exercises-3.html#cb259-12" aria-hidden="true" tabindex="-1"></a><span class="st">         m21_m1 * Emp</span></span>
+<span id="cb259-13"><a href="in-class-exercises-3.html#cb259-13" aria-hidden="true" tabindex="-1"></a><span class="st">Aggr ~ m22_x2 * PeerAtt + </span></span>
+<span id="cb259-14"><a href="in-class-exercises-3.html#cb259-14" aria-hidden="true" tabindex="-1"></a><span class="st">       m22_x1 * ParAtt  +</span></span>
+<span id="cb259-15"><a href="in-class-exercises-3.html#cb259-15" aria-hidden="true" tabindex="-1"></a><span class="st">       m22_m1 * Emp</span></span>
+<span id="cb259-16"><a href="in-class-exercises-3.html#cb259-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-17"><a href="in-class-exercises-3.html#cb259-17" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for stage 1 mediator:</span></span>
+<span id="cb259-18"><a href="in-class-exercises-3.html#cb259-18" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ m1_x1 * ParAtt + m1_x2 * PeerAtt</span></span>
+<span id="cb259-19"><a href="in-class-exercises-3.html#cb259-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-20"><a href="in-class-exercises-3.html#cb259-20" aria-hidden="true" tabindex="-1"></a><span class="st">## Covariances:</span></span>
+<span id="cb259-21"><a href="in-class-exercises-3.html#cb259-21" aria-hidden="true" tabindex="-1"></a><span class="st">ProSoc ~~ Aggr</span></span>
+<span id="cb259-22"><a href="in-class-exercises-3.html#cb259-22" aria-hidden="true" tabindex="-1"></a><span class="st">ParAtt ~~ PeerAtt</span></span>
+<span id="cb259-23"><a href="in-class-exercises-3.html#cb259-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-24"><a href="in-class-exercises-3.html#cb259-24" aria-hidden="true" tabindex="-1"></a><span class="st">## Specific indirect effects:</span></span>
+<span id="cb259-25"><a href="in-class-exercises-3.html#cb259-25" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_m1_x1 := m1_x1 * m21_m1 * y_m21</span></span>
+<span id="cb259-26"><a href="in-class-exercises-3.html#cb259-26" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_m1_x1 := m1_x1 * m22_m1 * y_m22</span></span>
+<span id="cb259-27"><a href="in-class-exercises-3.html#cb259-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-28"><a href="in-class-exercises-3.html#cb259-28" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_m1_x2 := m1_x2 * m21_m1 * y_m21</span></span>
+<span id="cb259-29"><a href="in-class-exercises-3.html#cb259-29" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_m1_x2 := m1_x2 * m22_m1 * y_m22</span></span>
+<span id="cb259-30"><a href="in-class-exercises-3.html#cb259-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-31"><a href="in-class-exercises-3.html#cb259-31" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_x2 := m21_x2 * y_m21</span></span>
+<span id="cb259-32"><a href="in-class-exercises-3.html#cb259-32" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_x2 := m22_x2 * y_m22</span></span>
+<span id="cb259-33"><a href="in-class-exercises-3.html#cb259-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-34"><a href="in-class-exercises-3.html#cb259-34" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m21_x1 := m21_x1 * y_m21</span></span>
+<span id="cb259-35"><a href="in-class-exercises-3.html#cb259-35" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m22_x1 := m22_x1 * y_m22</span></span>
+<span id="cb259-36"><a href="in-class-exercises-3.html#cb259-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-37"><a href="in-class-exercises-3.html#cb259-37" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m1_x1 := m1_x1 * y_m1</span></span>
+<span id="cb259-38"><a href="in-class-exercises-3.html#cb259-38" aria-hidden="true" tabindex="-1"></a><span class="st">ie_m1_x2 := m1_x2 * y_m1</span></span>
+<span id="cb259-39"><a href="in-class-exercises-3.html#cb259-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-40"><a href="in-class-exercises-3.html#cb259-40" aria-hidden="true" tabindex="-1"></a><span class="st">## Total indirect effects:</span></span>
+<span id="cb259-41"><a href="in-class-exercises-3.html#cb259-41" aria-hidden="true" tabindex="-1"></a><span class="st">y_x1 := ie_m21_m1_x1 + ie_m22_m1_x1 + ie_m21_x1 + ie_m22_x1 + ie_m1_x1</span></span>
+<span id="cb259-42"><a href="in-class-exercises-3.html#cb259-42" aria-hidden="true" tabindex="-1"></a><span class="st">y_x2 := ie_m21_m1_x2 + ie_m22_m1_x2 + ie_m21_x2 + ie_m22_x2 + ie_m1_x2</span></span>
+<span id="cb259-43"><a href="in-class-exercises-3.html#cb259-43" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 </details>
 <hr />
 </div>
-<div id="section-78" class="section level3" number="4.5.8">
-<h3><span class="header-section-number">4.5.8</span> </h3>
-<p>Use <code>lavaan::sem()</code> to estimate the model from <a href="#ieMod"><strong>??</strong></a>.</p>
+<div id="section-78" class="section level3" number="4.5.9">
+<h3><span class="header-section-number">4.5.9</span> </h3>
+<p>Use <code>lavaan::sem()</code> to estimate the model from <a href="in-class-exercises-3.html#ieMod">4.5.8</a>.</p>
 <ul>
 <li>Use B = 1000 bootstrap samples.</li>
 <li>Other than the <code>se</code> and <code>bootstrap</code> options, use the defaults.</li>
@@ -960,17 +979,17 @@ bootstrapped CIs?</li>
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="in-class-exercises-3.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the dplyr package to help parse the results:</span></span>
-<span id="cb259-2"><a href="in-class-exercises-3.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb259-3"><a href="in-class-exercises-3.html#cb259-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb259-4"><a href="in-class-exercises-3.html#cb259-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
-<span id="cb259-5"><a href="in-class-exercises-3.html#cb259-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb259-6"><a href="in-class-exercises-3.html#cb259-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb259-7"><a href="in-class-exercises-3.html#cb259-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model with bootstrapping:</span></span>
-<span id="cb259-8"><a href="in-class-exercises-3.html#cb259-8" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb259-9"><a href="in-class-exercises-3.html#cb259-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb259-10"><a href="in-class-exercises-3.html#cb259-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
-<span id="cb259-11"><a href="in-class-exercises-3.html#cb259-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="in-class-exercises-3.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the dplyr package to help parse the results:</span></span>
+<span id="cb260-2"><a href="in-class-exercises-3.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb260-3"><a href="in-class-exercises-3.html#cb260-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-4"><a href="in-class-exercises-3.html#cb260-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
+<span id="cb260-5"><a href="in-class-exercises-3.html#cb260-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb260-6"><a href="in-class-exercises-3.html#cb260-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-7"><a href="in-class-exercises-3.html#cb260-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model with bootstrapping:</span></span>
+<span id="cb260-8"><a href="in-class-exercises-3.html#cb260-8" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb260-9"><a href="in-class-exercises-3.html#cb260-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-10"><a href="in-class-exercises-3.html#cb260-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
+<span id="cb260-11"><a href="in-class-exercises-3.html#cb260-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## lavaan 0.6-12 ended normally after 16 iterations
 ## 
 ##   Estimator                                         ML
@@ -1040,34 +1059,282 @@ Click for explanation
 ##     ie_m1_x2          0.044    0.033    1.315    0.189
 ##     y_x1              0.058    0.034    1.706    0.088
 ##     y_x2              0.036    0.043    0.840    0.401</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="in-class-exercises-3.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-2"><a href="in-class-exercises-3.html#cb261-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">&quot;:=&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-3"><a href="in-class-exercises-3.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(label, est, ci.lower, ci.upper)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="in-class-exercises-3.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out, <span class="at">ci =</span> <span class="cn">TRUE</span>, <span class="at">level =</span> <span class="fl">0.9</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-2"><a href="in-class-exercises-3.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">&quot;:=&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-3"><a href="in-class-exercises-3.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(label, est, ci.lower, ci.upper)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["label"],"name":[1],"type":["chr"],"align":["left"]},{"label":["est"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ci.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ci.upper"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"ie_m21_m1_x1","2":"0.009394769","3":"-0.003734658","4":"0.026906787"},{"1":"ie_m22_m1_x1","2":"-0.004466279","3":"-0.014600615","4":"0.001795683"},{"1":"ie_m21_m1_x2","2":"0.036799099","3":"0.009449530","4":"0.072029328"},{"1":"ie_m22_m1_x2","2":"-0.017494314","3":"-0.037012837","4":"-0.003438632"},{"1":"ie_m21_x2","2":"-0.009435126","3":"-0.042585440","4":"0.026694559"},{"1":"ie_m22_x2","2":"-0.017515176","3":"-0.054197580","4":"0.009366787"},{"1":"ie_m21_x1","2":"0.048555640","3":"0.010182004","4":"0.091988119"},{"1":"ie_m22_x1","2":"-0.006294802","3":"-0.034864482","4":"0.016189557"},{"1":"ie_m1_x1","2":"0.011183332","3":"-0.006228865","4":"0.034868800"},{"1":"ie_m1_x2","2":"0.043804861","3":"-0.005107801","4":"0.100302833"},{"1":"y_x1","2":"0.058372660","3":"0.002298855","4":"0.110599922"},{"1":"y_x2","2":"0.036159344","3":"-0.029766123","4":"0.109827705"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ul>
-<li>Both three-step IEs from <em>Peer Attachment</em> to <em>Self Esteem</em> are significant (
-<em>Prosocial Behavior</em>:
+<li>Both three-step IEs from <em>Peer Attachment</em> to <em>Self Esteem</em> are significant
+(<em>Prosocial Behavior</em>:
 <span class="math inline">\(\hat{\textit{IE}} = 0.037\)</span>,
 <span class="math inline">\(95\% ~ CI = [0.009; \infty]\)</span>
 ; <em>Aggressive Behavior</em>:
 <span class="math inline">\(\hat{\textit{IE}} = -0.017\)</span>,
-<span class="math inline">\(95\% ~ CI = [-\infty; -0.003]\)</span>
-).</li>
+<span class="math inline">\(95\% ~ CI = [-\infty; -0.003]\)</span>).</li>
 <li>The two-step IE from <em>Parent Attachment</em> to <em>Self Esteem</em> through <em>Prosocial
-Behavior</em> is significant (
-<span class="math inline">\(\hat{\textit{IE}} = 0.049\)</span>,
-<span class="math inline">\(95\% ~ CI = [0.01; \infty]\)</span>
-).</li>
-<li>The total IE from <em>Parent Attachment</em> to <em>Self Esteem</em> is significant (
-<span class="math inline">\(\hat{\textit{IE}} = 0.058\)</span>,
-<span class="math inline">\(95\% ~ CI = [0.002; \infty]\)</span>
-).</li>
+Behavior</em> is significant
+(<span class="math inline">\(\hat{\textit{IE}} = 0.049\)</span>,
+<span class="math inline">\(95\% ~ CI = [0.01; \infty]\)</span>).</li>
+<li>The total IE from <em>Parent Attachment</em> to <em>Self Esteem</em> is significant
+(<span class="math inline">\(\hat{\textit{IE}} = 0.058\)</span>,
+<span class="math inline">\(95\% ~ CI = [0.002; \infty]\)</span>).</li>
+</ul>
+<p>Interestingly, the total IE from <em>Peer Attachment</em> to <em>Self Esteem</em> is not
+significant even though two of the underlying specific indirect effects are
+significant. Can you think of an explanation for this (apparent) inconsistency?</p>
+</details>
+<hr />
+<p>If we want to compare the size of indirect effects (specific or total), we only
+need to consider the scaling of the input and outcome variables. The indirect
+effect is interpreted as the expected change in Y for each unit of change in X
+that is transmitted through M; the scaling of the mediators does not enter into
+the interpretation.</p>
+<hr />
+</div>
+<div id="qualComp" class="section level3" number="4.5.10">
+<h3><span class="header-section-number">4.5.10</span> </h3>
+<p>In terms of a qualitative comparison of effect sizes, which of each of the
+following pairs of IEs is larger?</p>
+<ul>
+<li>The two three-step IEs from <em>Peer Attachment</em> to <em>Self Esteem</em>.</li>
+<li>The total IEs from <em>Parent Attachment</em> vs. <em>Peer Attachment</em> to <em>Self Esteem</em>.</li>
+</ul>
+<p><em>Note:</em> Both <em>Parent Attachment</em> and <em>Peer Attachment</em> have the same scale.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<ul>
+<li>The specific IE through <em>Prosocial Behavior</em> (0.037) is
+stronger than the specific IE through <em>Aggressive Behavior</em>
+(-0.017).</li>
+<li>The total IE for <em>Parent Attachment</em> (0.058) is stronger
+than the total IE for <em>Peer Attachment</em> (0.036).</li>
 </ul>
 </details>
+<hr />
+<p>If we want to conduct a formal statistical test for these comparisons, we can
+define a new parameter that quantifies the difference we wish to evaluate and
+use bootstrapping to estimate a sampling distribution for this defined parameter.
+We then make the inferences exactly as we did for the IEs.</p>
+<hr />
+</div>
+<div id="testMod" class="section level3" number="4.5.11">
+<h3><span class="header-section-number">4.5.11</span> </h3>
+<p>Modify the model syntax from <a href="in-class-exercises-3.html#ieMod">4.5.8</a> to include parameters that quantify
+the differences need to test the comparisons in <a href="in-class-exercises-3.html#qualComp">4.5.10</a>.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Rather than copying the entire syntax string, I’ll use the <code>paste()</code> function to
+add only the two new lines to the existing syntax.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="in-class-exercises-3.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Modify the model syntax:</span></span>
+<span id="cb263-2"><a href="in-class-exercises-3.html#cb263-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">paste</span>(mod, </span>
+<span id="cb263-3"><a href="in-class-exercises-3.html#cb263-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;sie_diff := ie_m21_m1_x2 + ie_m22_m1_x2&#39;</span>,</span>
+<span id="cb263-4"><a href="in-class-exercises-3.html#cb263-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;tie_diff := y_x1 - y_x2&#39;</span>,</span>
+<span id="cb263-5"><a href="in-class-exercises-3.html#cb263-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb263-6"><a href="in-class-exercises-3.html#cb263-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-7"><a href="in-class-exercises-3.html#cb263-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the result:</span></span>
+<span id="cb263-8"><a href="in-class-exercises-3.html#cb263-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(mod)</span></code></pre></div>
+<pre><code>## 
+## ## Equation for outcome:
+## SelfEst ~ y_m21 * ProSoc + 
+##           y_m22 * Aggr   + 
+##           y_m1  * Emp    + 
+##                   ParAtt + 
+##                   PeerAtt
+## 
+## ## Equations for stage 2 mediators:
+## ProSoc ~ m21_x2 * PeerAtt + 
+##          m21_x1 * ParAtt  + 
+##          m21_m1 * Emp
+## Aggr ~ m22_x2 * PeerAtt + 
+##        m22_x1 * ParAtt  +
+##        m22_m1 * Emp
+## 
+## ## Equation for stage 1 mediator:
+## Emp ~ m1_x1 * ParAtt + m1_x2 * PeerAtt
+## 
+## ## Covariances:
+## ProSoc ~~ Aggr
+## ParAtt ~~ PeerAtt
+## 
+## ## Specific indirect effects:
+## ie_m21_m1_x1 := m1_x1 * m21_m1 * y_m21
+## ie_m22_m1_x1 := m1_x1 * m22_m1 * y_m22
+## 
+## ie_m21_m1_x2 := m1_x2 * m21_m1 * y_m21
+## ie_m22_m1_x2 := m1_x2 * m22_m1 * y_m22
+## 
+## ie_m21_x2 := m21_x2 * y_m21
+## ie_m22_x2 := m22_x2 * y_m22
+## 
+## ie_m21_x1 := m21_x1 * y_m21
+## ie_m22_x1 := m22_x1 * y_m22
+## 
+## ie_m1_x1 := m1_x1 * y_m1
+## ie_m1_x2 := m1_x2 * y_m1
+## 
+## ## Total indirect effects:
+## y_x1 := ie_m21_m1_x1 + ie_m22_m1_x1 + ie_m21_x1 + ie_m22_x1 + ie_m1_x1
+## y_x2 := ie_m21_m1_x2 + ie_m22_m1_x2 + ie_m21_x2 + ie_m22_x2 + ie_m1_x2
+## 
+## sie_diff := ie_m21_m1_x2 + ie_m22_m1_x2
+## tie_diff := y_x1 - y_x2</code></pre>
+<p>When defining the difference between the two specific indirect effects,
+<code>sie_diff</code>, we <em>add</em> the effects because the second specific IE (through
+<em>Aggressive Behavior</em>) is negative. We want to test the difference in magnitude,
+not the difference between the signed estimates. So, we need to define the
+difference in terms of the absolute values of the specific indirect effects.</p>
+</details>
+<hr />
+</div>
+<div id="section-79" class="section level3" number="4.5.12">
+<h3><span class="header-section-number">4.5.12</span> </h3>
+<p>Use <code>lavaan::sem()</code> to estimate the model you defined in <a href="in-class-exercises-3.html#testMod">4.5.11</a>.</p>
+<ul>
+<li>Use B = 1000 bootstrap samples.</li>
+<li>Other than the <code>se</code> and <code>bootstrap</code> options, use the defaults.</li>
+<li>Are the tested specific and total indirect effects are significant different
+according to the bootstrapped CIs?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Note that we now need to use two-tailed tests again, since we do not have any
+particular reason to expect that one effect will be stronger than the other.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="in-class-exercises-3.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set a seed to get replicable bootstrap samples:</span></span>
+<span id="cb265-2"><a href="in-class-exercises-3.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb265-3"><a href="in-class-exercises-3.html#cb265-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-4"><a href="in-class-exercises-3.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model with bootstrapping:</span></span>
+<span id="cb265-5"><a href="in-class-exercises-3.html#cb265-5" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> seData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb265-6"><a href="in-class-exercises-3.html#cb265-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-7"><a href="in-class-exercises-3.html#cb265-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
+<span id="cb265-8"><a href="in-class-exercises-3.html#cb265-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 16 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        21
+## 
+##   Number of observations                           143
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   SelfEst ~                                           
+##     ProSc   (y_21)    0.252    0.098    2.566    0.010
+##     Aggr    (y_22)    0.185    0.085    2.175    0.030
+##     Emp     (y_m1)    0.143    0.098    1.465    0.143
+##     PrAtt             0.244    0.084    2.925    0.003
+##     PrAtt             0.051    0.096    0.526    0.599
+##   ProSoc ~                                            
+##     PrAtt  (m21_2)   -0.037    0.078   -0.482    0.630
+##     PrAtt (m21_x1)    0.193    0.070    2.740    0.006
+##     Emp   (m21_m1)    0.477    0.080    5.995    0.000
+##   Aggr ~                                              
+##     PrAtt  (m22_2)   -0.095    0.086   -1.099    0.272
+##     PrAtt (m22_x1)   -0.034    0.078   -0.438    0.662
+##     Emp   (m22_m1)   -0.309    0.090   -3.449    0.001
+##   Emp ~                                               
+##     PrAtt   (m1_1)    0.078    0.068    1.147    0.251
+##     PrAtt   (m1_2)    0.306    0.077    3.968    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##  .ProSoc ~~                                           
+##    .Aggr             -0.086    0.056   -1.527    0.127
+##   ParAtt ~~                                           
+##     PeerAtt           0.537    0.124    4.318    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .SelfEst           0.796    0.083    9.587    0.000
+##    .ProSoc            0.618    0.068    9.044    0.000
+##    .Aggr              0.777    0.104    7.488    0.000
+##    .Emp               0.779    0.091    8.554    0.000
+##     ParAtt            1.277    0.200    6.399    0.000
+##     PeerAtt           0.963    0.108    8.953    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     ie_m21_m1_x1      0.009    0.010    0.907    0.364
+##     ie_m22_m1_x1     -0.004    0.005   -0.840    0.401
+##     ie_m21_m1_x2      0.037    0.019    1.931    0.054
+##     ie_m22_m1_x2     -0.017    0.010   -1.678    0.093
+##     ie_m21_x2        -0.009    0.021   -0.451    0.652
+##     ie_m22_x2        -0.018    0.020   -0.882    0.378
+##     ie_m21_x1         0.049    0.025    1.913    0.056
+##     ie_m22_x1        -0.006    0.016   -0.397    0.691
+##     ie_m1_x1          0.011    0.014    0.815    0.415
+##     ie_m1_x2          0.044    0.033    1.315    0.189
+##     y_x1              0.058    0.034    1.706    0.088
+##     y_x2              0.036    0.043    0.840    0.401
+##     sie_diff          0.019    0.018    1.057    0.290
+##     tie_diff          0.022    0.059    0.380    0.704</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="in-class-exercises-3.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(out, <span class="at">ci =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb267-2"><a href="in-class-exercises-3.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(label <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;sie_diff&quot;</span>, <span class="st">&quot;tie_diff&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb267-3"><a href="in-class-exercises-3.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(label, est, ci.lower, ci.upper)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["label"],"name":[1],"type":["chr"],"align":["left"]},{"label":["est"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ci.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ci.upper"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"sie_diff","2":"0.01930478","3":"-0.01111436","4":"0.06148546"},{"1":"tie_diff","2":"0.02221332","3":"-0.10029737","4":"0.13295281"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Neither the two three-step specific indirect effects from <em>Peer Attachment</em> to
+<em>Self Esteem</em> nor the two total effects from the inputs to <em>Self Esteem</em> are
+significantly different.</p>
+</details>
+<hr />
+</div>
+<div id="section-80" class="section level3" number="4.5.13">
+<h3><span class="header-section-number">4.5.13</span> </h3>
+<p>Reconsider the answers you gave to the research questions after the At-Home
+Exercise analyses.</p>
+<ul>
+<li>Do the new results you’ve found here change your conclusions?</li>
+<li>What are your conclusions vis-à-vis the stated hypotheses?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>The new results further support the hypotheses regarding the indirect effect of
+<em>Peer Attachment</em> on <em>Self Esteem</em>.</p>
+<ul>
+<li>Both three-step specific indirect effects were significant.</li>
+<li>None of the other potential specific indirect effects from <em>Peer Attachment</em>
+to <em>Self Esteem</em> was significant.</li>
+<li>As far as our model can tell, it appears that <em>Peer Attachment</em> really does
+influence <em>Self Esteem</em> primarily through the two hypothesized three-step
+IEs.</li>
+</ul>
+<p>The new results provide evidence against the hypothesized stand-alone direct
+effect of <em>Parent Attachment</em> on <em>Self Esteem</em>.</p>
+<ul>
+<li>Although the hypothesized direct effect is significant, so is the total
+indirect effect and the specific indirect effect through <em>Prosocial Behavior</em>.</li>
+<li>Our model suggests that <em>Parent Attachment</em> influences <em>Self Esteem</em> both
+directly and indirectly.</li>
+</ul>
+</details>
+<hr />
+<p>End of In-Class Exercises</p>
 <hr />
 
 </div>
