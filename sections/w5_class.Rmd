@@ -15,7 +15,7 @@ seData <- read.spss(paste0(dataDir, "SelfEsteem.sav"), to.data.frame = TRUE)
 To begin this practical, recall the path model that we estimated for the 
 [At-Home Exercises](at-home-exercises-3.html).
 
-![](images/week5_home_full_model.png)
+![Full Model{#fullModel}](images/week5_home_full_model.png)
 
 Further, recall the research questions for our analysis.
 
@@ -47,7 +47,7 @@ effects implied by the above hypotheses.
 <details>
   <summary>Click for explanation</summary>
 
-![](images/week5_home_res_model.png)
+![Restricted Model](images/week5_home_res_model.png)
 
 </details>
 
@@ -272,7 +272,7 @@ models.
 ###
 
 List all possible effects (i.e., direct, total, [specific/total] indirect) that 
-we can define based on the full model represented in XXX.
+we can define based on the full model represented in \@ref(fullModel).
 
 - Do not include the paths that attach variables that are adjacent in the process 
 (e.g., a and b paths).
@@ -282,51 +282,254 @@ we can define based on the full model represented in XXX.
 
 ***Three-Step Specific Indirect Effects***
 
-1. *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Prosocial Behavior*
-$\rightarrow$ *Self Esteem*
-1. *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Aggressive Behavior*
-$\rightarrow$ *Self Esteem*
-1. *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Prosocial Behavior*
-$\rightarrow$ *Self Esteem*
-1. *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Aggressive Behavior*
-$\rightarrow$ *Self Esteem*
+1. Y_M21_M1_X1 = *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Prosocial Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M22_M1_X1 = *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Aggressive Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M21_M1_X2 = *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Prosocial Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M22_M1_X2 = *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Aggressive Behavior* $\rightarrow$ *Self Esteem*
 
 ***Two-Step Specific Indirect Effects***
 
-1. *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Self Esteem*
+1. Y_M1_X1 = *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Self Esteem*
 
-1. *Parent Attachment* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ *Self Esteem*
-1. *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Prosocial Behavior*
-1. *Empathy* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M21_X1 = *Parent Attachment* $\rightarrow$ *Prosocial Behavior* 
+$\rightarrow$ *Self Esteem*
+1. M21_M1_X1 = *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Prosocial Behavior*
+1. Y_M21_M1 = *Empathy* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ 
+*Self Esteem*
 
-1. *Parent Attachment* $\rightarrow$ *Aggressive Behavior* $\rightarrow$ *Self Esteem*
-1. *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Aggressive Behavior*
-1. *Empathy* $\rightarrow$ *Aggressive Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M22_X1 = *Parent Attachment* $\rightarrow$ *Aggressive Behavior* 
+$\rightarrow$ *Self Esteem*
+1. M22_M1_X1 = *Parent Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Aggressive Behavior*
+1. Y_M22_M1 = *Empathy* $\rightarrow$ *Aggressive Behavior* $\rightarrow$ 
+*Self Esteem*
 
-1. *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Self Esteem*
+1. Y_M1_X2 = *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Self Esteem*
 
-1. *Peer Attachment* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ *Self Esteem*
-1. *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Prosocial Behavior*
-1. *Empathy* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M21_X2 = *Peer Attachment* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ 
+*Self Esteem*
+1. M21_M1_X2 = *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Prosocial Behavior*
+1. Y_M21_M1 = *Empathy* $\rightarrow$ *Prosocial Behavior* $\rightarrow$ 
+*Self Esteem*
 
-1. *Peer Attachment* $\rightarrow$ *Aggressive Behavior* $\rightarrow$ *Self Esteem*
-1. *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ *Aggressive Behavior*
-1. *Empathy* $\rightarrow$ *Aggressive Behavior* $\rightarrow$ *Self Esteem*
+1. Y_M22_X2 = *Peer Attachment* $\rightarrow$ *Aggressive Behavior* 
+$\rightarrow$ *Self Esteem*
+1. M22_M1_X2 = *Peer Attachment* $\rightarrow$ *Empathy* $\rightarrow$ 
+*Aggressive Behavior*
+1. Y_M22_M1 = *Empathy* $\rightarrow$ *Aggressive Behavior* $\rightarrow$ *Self 
+Esteem*
+
+***Total Indirect Effects***
+
+1. IE_Y_X1 = Y_M21_M1_X1 + Y_M22_M1_X1 + Y_M1_X1 + Y_M21_X1 + Y_M22_X1
+1. IE_Y_X2 = Y_M21_M1_X2 + Y_M22_M1_X2 + Y_M1_X2 + Y_M21_X2 + Y_M22_X2
+
+1. IE_Y_M1 = Y_M21_M1 + Y_M22_M1
 
 ***Direct Effects***
 
-1. *Parent Attachment* $\rightarrow$ *Self Esteem*
-1. *Parent Attachment* $\rightarrow$ *Prosocial Behavior*
-1. *Parent Attachment* $\rightarrow$ *Aggressive Behavior*
+1. DE_Y_X1 = *Parent Attachment* $\rightarrow$ *Self Esteem*
+1. DE_M21_X1 = *Parent Attachment* $\rightarrow$ *Prosocial Behavior*
+1. DE_M22_X1 = *Parent Attachment* $\rightarrow$ *Aggressive Behavior*
 
-1. *Peer Attachment* $\rightarrow$ *Self Esteem*
-1. *Peer Attachment* $\rightarrow$ *Prosocial Behavior*
-1. *Peer Attachment* $\rightarrow$ *Aggressive Behavior*
+1. DE_Y_X2 = *Peer Attachment* $\rightarrow$ *Self Esteem*
+1. DE_M21_X2 = *Peer Attachment* $\rightarrow$ *Prosocial Behavior*
+1. DE_M22_X2 = *Peer Attachment* $\rightarrow$ *Aggressive Behavior*
 
-1. *Empathy* $\rightarrow$ *Self Esteem*
+1. DE_Y_M1 = *Empathy* $\rightarrow$ *Self Esteem*
 
 ***Total Effects***
+
+1. TE_Y_X1 = IE_Y_X1 + DE_Y_X1
+1. TE_Y_X2 = IE_Y_X2 + DE_Y_X2
+
+1. TE_Y_M1 = IE_Y_M1 + DE_Y_M1
+
+1. TE_M21_X1 = M21_M1_X1 + DE_M21_X1
+1. TE_M21_X2 = M21_M1_X2 + DE_M21_X2
+
+1. TE_M22_X1 = M22_M1_X1 + DE_M22_X1
+1. TE_M22_X2 = M22_M1_X2 + DE_M22_X2
 
 </details>
 
 ---
+
+###
+
+Modify the model syntax for the full model to define all possible specific and 
+total indirect effects between *Parent Attachment* and *Self Esteem* and between 
+*Peer Attachment* and *Self Esteem*.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+mod <- '
+## Equation for outcome:
+SelfEst ~ y_m21 * ProSoc + 
+          y_m22 * Aggr   + 
+          y_m1  * Emp    + 
+                  ParAtt + 
+                  PeerAtt
+
+## Equations for stage 2 mediators:
+ProSoc ~ m21_x2 * PeerAtt + 
+         m21_x1 * ParAtt  + 
+         m21_m1 * Emp
+Aggr ~ m22_x2 * PeerAtt + 
+       m22_x1 * ParAtt  +
+       m22_m1 * Emp
+
+## Equation for stage 1 mediator:
+Emp ~ m1_x1 * ParAtt + m1_x2 * PeerAtt
+
+## Covariances:
+ProSoc ~~ Aggr
+ParAtt ~~ PeerAtt
+
+## Specific indirect effects:
+ie_m21_m1_x1 := m1_x1 * m21_m1 * y_m21
+ie_m22_m1_x1 := m1_x1 * m22_m1 * y_m22
+
+ie_m21_m1_x2 := m1_x2 * m21_m1 * y_m21
+ie_m22_m1_x2 := m1_x2 * m22_m1 * y_m22
+
+ie_m21_x2 := m21_x2 * y_m21
+ie_m22_x2 := m22_x2 * y_m22
+
+ie_m21_x1 := m21_x1 * y_m21
+ie_m22_x1 := m22_x1 * y_m22
+
+ie_m1_x1 := m1_x1 * y_m1
+ie_m1_x2 := m1_x2 * y_m1
+
+## Total indirect effects:
+y_x1 := ie_m21_m1_x1 + ie_m22_m1_x1 + ie_m21_x1 + ie_m22_x1 + ie_m1_x1
+y_x2 := ie_m21_m1_x2 + ie_m22_m1_x2 + ie_m21_x2 + ie_m22_x2 + ie_m1_x2
+'
+```
+
+</details>
+
+---
+
+###
+
+Use `lavaan::sem()` to estimate the model from \@ref(ieMod).
+
+- Use B = 1000 bootstrap samples.
+- Other than the `se` and `bootstrap` options, use the defaults.
+- Which specific and total indirect effects are significant according to the 
+bootstrapped CIs?
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r ie_boot, cache = TRUE}
+## Load the dplyr package to help parse the results:
+library(dplyr)
+
+## Set a seed to get replicable bootstrap samples:
+set.seed(235711)
+
+## Estimate the model with bootstrapping:
+out <- sem(mod, data = seData, se = "bootstrap", bootstrap = 1000)
+
+## Summarize the model:
+summary(out)
+
+parameterEstimates(out, ci = TRUE, level = 0.9) %>% 
+  filter(op == ":=") %>% 
+  select(label, est, ci.lower, ci.upper)
+```
+
+```{r, include = FALSE}
+tmp <- parameterEstimates(out, ci = TRUE, level = 0.9)
+
+tmp1 <- tmp %>% filter(label == "ie_m21_m1_x2")
+tmp2 <- tmp %>% filter(label == "ie_m22_m1_x2")
+tmp3 <- tmp %>% filter(label == "ie_m21_x1")
+tmp4 <- tmp %>% filter(label == "y_x1")
+tmp5 <- tmp %>% filter(label == "y_x2")
+```
+
+- Both three-step IEs from *Peer Attachment* to *Self Esteem* are significant (
+*Prosocial Behavior*: 
+$\hat{\textit{IE}} = `r tmp1$est %>% round(3)`$, 
+$95\% ~ CI = [`r tmp1$ci.lower %>% round(3)`; \infty]$
+; *Aggressive Behavior*:
+$\hat{\textit{IE}} = `r tmp2$est %>% round(3)`$, 
+$95\% ~ CI = [-\infty; `r tmp2$ci.upper %>% round(3)`]$
+).
+- The two-step IE from *Parent Attachment* to *Self Esteem* through *Prosocial 
+Behavior* is significant (
+$\hat{\textit{IE}} = `r tmp3$est %>% round(3)`$, 
+$95\% ~ CI = [`r tmp3$ci.lower %>% round(3)`; \infty]$
+).
+- The total IE from *Parent Attachment* to *Self Esteem* is significant (
+$\hat{\textit{IE}} = `r tmp4$est %>% round(3)`$, 
+$95\% ~ CI = [`r tmp4$ci.lower %>% round(3)`; \infty]$
+).
+
+Interestingly, the total IE from *Peer Attachment* to *Self Esteem* is not 
+significant even though two of the underlying specific indirect effects are 
+significant. Can you think of an explanation for this (apparent) inconsistency?
+
+</details>
+
+---
+
+If we want to compare the size of indirect effects (specific or total), we only 
+need to consider the scaling of the input and outcome variables. The indirect
+effect is interpreted as the expected change in Y for each unit of change in X
+that is transmitted through M; the scaling of the mediators does not enter into
+the interpretation.
+
+### {#qualComp}
+
+In terms of a qualitative comparison of effect sizes, which of each of the 
+following pairs of IEs is larger?
+
+- The two three-step IEs from *Peer Attachment* to *Self Esteem*.
+- The total IEs from *Parent Attachment* vs. *Peer Attachment* to *Self Esteem*.
+
+*Note:* Both *Parent Attachment* and *Peer Attachment* have the same scale.
+
+<details>
+  <summary>Click for explanation</summary>
+
+- The specific IE through *Prosocial Behavior* (
+`r tmp1$est %>% round(3)`
+) is stronger than the specific IE through *Aggressive Behavior* (
+`r tmp2$est %>% round(3)`
+).
+- The total IE for *Parent Attachment* (
+`r tmp4$est %>% round(3)`
+) is stronger than the total IE for *Peer Attachment* (
+`r tmp5$est %>% round(3)`
+).
+
+</details>
+
+---
+
+If we want to conduct a formal statistical test for these comparisons, we can
+define a new parameter that quantifies the difference we wish to evaluate and 
+use bootstrapping to estimate a sampling distribution for this defined parameter. 
+We then make the inferences exactly as we did for the IEs.
+
+---
+
+###
+
+Modify the model syntax from \@ref(ieMod) to include parameters that quantify
+the differences need to test the comparisons in \@ref(qualComp).
