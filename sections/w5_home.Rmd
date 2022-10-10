@@ -366,7 +366,7 @@ parameterEstimates(out_boot, ci = TRUE, level = 0.9)
 ```
 
 ```{r, include = FALSE}
-tmp <- summary(out_boot, ci = TRUE)$pe
+tmp <- parameterEstimates(out_boot, ci = TRUE, level = 0.9)
 
 pro <- tmp %>% filter(label == "ie_pro")
 agg <- tmp %>% filter(label == "ie_agg")

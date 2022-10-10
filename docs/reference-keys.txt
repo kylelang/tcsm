@@ -158,3 +158,9 @@ section-71
 section-72
 section-73
 in-class-exercises-3
+diagram
+resMod
+estimateRes
+section-74
+section-75
+section-76
