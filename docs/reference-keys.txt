@@ -173,3 +173,9 @@ qualComp
 testMod
 section-79
 section-80
+moderation
+lecture-4
+reading-4
+formative-assessment-4
+at-home-exercises-4
+in-class-exercises-4

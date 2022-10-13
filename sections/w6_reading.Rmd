@@ -15,40 +15,54 @@ Considerations. *Journal of Personality and Individual Differences, 51*(6),
 
 ### Questions {-}
 
-1. What is according to Baron and Kenny the nature of a moderation effect? 
-(and can you give an example from an article or theory you had in a 
-previous course? 
-2. List the four methods hat according to Baron and Kenny are available to 
-study interaction effects in SPSS given different levels of measurement 
-(categorical or continuous) for the independent and moderating variable? 
-3. On page 1177, Baron Kenny mention the most common approach to deal 
-with unreliability in the mediating variable is to use multiple indicators. 
-Thinking back to the readings and lectures about factor analysis, can you 
-shortly explain why this is a good method? 
-4. The framework that Baron and Kenny present on page 1179 is one way to 
-study complicated models (mediating moderation, or moderating 
-mediation). They do not discuss alternatives to this framework, but 
-(surprise!) Structural Equation Modeling is one of them. What would you 
-think be the main advantage of SEM over the framework of Baropn and 
-Kenny. 
-5. How can you determine whether a variable is a mediator or moderator? 
+1. What is "moderation", and how is it different from "mediation"? 
+1. Give an example of moderation.
+1. What are the four methods given by Baron and Kenny as suitable ways to to 
+study interaction effects?  
+1. The authors suggest that one of the most common ways to address unreliability
+is to use multiple indicators. Thinking back to what you've learned about factor 
+analysis, briefly explain why multiple indicators can improve reliability.
+1. How can you determine whether a variable is a mediator or moderator? 
 
 ```{asis, echo = answers}
 ### Answers {-}
 
-1. What is according to Baron and Kenny the nature of a moderation effect? (and can you give an example from an article or theory you had in a previous course?
-    * A: A moderator is a third variable that affects the relation between two other variables. E.g. the relation between drinking a lot of alcohol while going out and trying to pick up a one night stand might be different for boys and girls. It could be that there is a relation for boys, and not for girls, but also, it might be that the relation is linear for boys, while for girls, there is a quadratic effect (indicating girls one try to pick up a one-night stand when they are really drunk), or a stepwise effect for girls (indicating that girls need to drink more than a specific amount to engage in this behavior 
-2. List the four methods hat according to Baron and Kenny are available to study interaction effects in SPSS given different levels of measurement (categorical or continuous) for the independent and moderating variable?
-    * Case 1: IV dich, Mod dich -> 2x2 ANOVA
-    * Case 2: IV cont, mod dich-> test correlation for each level of the moderator
-    * Case 3: IV dich, mod cont -> include interaction effect (with quadratic or dichotomized term term if necessary -> theorize about this!)
-    * Case 4: IV cont, Mode. Cont. -> include interaction effect. (with possible quadratic term)
-3. On page 1177, Baron Kenny mention the most common approach to deal with unreliability in the mediatimng variable is to use multiple indicators. Thinking back to the readings and lectures about factor analysis, can you shortly explain why this is a good method?
-    * Each variable contains measurement error. In factor analysis, scales are formed using multiple indicators. The idea is that random measurement errors here cancel eachother out, while at the same time, a better operationalization of the latent variable is achieved. In this way, measurement error in a mediating variable, would be incorporated in the model, and corrected for.
-4. The framework that Baron and Kenny present on page 1179 is one way to study complicated models (mediating moderation, or moderating mediation). They do not discuss alternatives to this framework, but (surprise!) Structural Equation Modeling is one of them. What would you think be the main advantage of SEM over the framework of Baropn and Kenny.
-    * It is  much more simple (practically), and all model parameters are estimated at once, so that complex interdependencies can be modeled in a better and more sophisticated way
-5. How can you determine whether a variable is a mediator or moderator?
-    * this should not be done statistically, but theoretically. Is it a intermitting variable (mediator), or really an external variable that cannot be explained by something else (moderator)?. Statistically, one would want moderators to be unrelated to both X and Y, while in mediation, one wants a strong relation of the mediator with both X and Y
+1. A moderator is a variable that affects the relation between two other variables. 
+Moderation is about context: *when* does X affect Y (where we define *when* in 
+terms of the level of some moderator variable). Mediation, on the other hand, is 
+concerned with explaining *how* X transmits its effect to Y (in terms of 
+intermediary variables).
+1. A few possibilities:
+    - Quality of recovery moderates the relation between training intensity and 
+    strength gains for power lifters.
+    - Amount of income moderates the relation between length of employment and 
+    level of job satisfaction.
+    - Level of fatalistic thinking moderates the efficacy of a new therapy for 
+    treating depression.
+1. The different recommendations are broken down according to the measurement
+levels of the IV and moderator.
+    - *Case 1:* Discrete IV, Discrete Moderator $\rightarrow$ Factorial ANOVA
+    - *Case 2:* Continuous IV, Discrete Moderator $\rightarrow$ Test the focal
+    effect within each level of the moderator.
+    - *Case 3:* Discrete IV, Continuous Moderator $\rightarrow$ Include (an) 
+    interaction effect(s) in your model.
+    - *Case 4:* Continuous IV, Continuous Moderator $\rightarrow$ Include an 
+    interaction effect in your model.
+1. Each observed variable contains measurement error. When forming scales using 
+multiple indicators, random measurement errors should cancel out. Measuring each
+hypothetical construct with multiple items also produces better operationalizations 
+of constructs.
+1. The data cannot tell us if some variable, say Z, should be a moderator or a 
+mediator; we must base this decision on theory and substantive expertise. We must 
+think about the process by which X affects Y and ask: 
+    - Is Z an intermediary step in the causal chain linking X and Y?
+        - If so, we should include Z as a mediator.
+    - Does Z stand apart from the causal chain linking X and Y but affect the
+    nature of that linkage via contextual influences?
+        - If so, we should include Z as a moderator.
+    
+    Statistically speaking, we would prefer our moderators to be unrelated to X 
+    and Y, while we want mediators to relate strongly with both X and Y.
 ```
 
 ---
@@ -60,97 +74,97 @@ Weston, R. & Gore, P. A. (2006). A brief guide to structural equation modeling.
 *The Counseling Psychologist 34*, 719--752.
 ](http://tcp.sagepub.com/content/34/5/719.full.pdf+html)
 
-Notes before reading:
+*Notes:*
 
-* To all you non-counseling psychologists: this article is very general, don’t 
-worry 
-* this article is quite general, and you might recognize a lot of things we have 
-discussed. This article provides an overview of things we discussed, but also 
-adds an important aspect: the combination of factor model and path models 
-into one Structural Equation Model 
-* skip the part on GFI (p. 741) – this index has been shown to be dependent 
-on sample size after all and is old-fashioned (in a bad way, in statistics we 
-don’t do vintage). 
-* skip the part on missing data – there is nothing wrong with this section, but 
-missing data is a very difficult topic, and there is a lot more to say about this. 
-
-Take the course ”Conducting a Survey” if you want to know more on missing 
-data! 
+- This article is quite general and provides an overview of things we have 
+discussed so far in this course. This article also also adds an important new 
+idea: combining factor analysis with path modeling to produce a full Structural 
+Equation Model (SEM). 
+- Skip the part on GFI (p. 741).
+    - The GFI has been shown to be too dependent on sample size and is not 
+    recommended any longer.
+- Skip the part on missing data.
+    - There is nothing wrong with this section, but missing data analysis is a 
+    broad and difficult topic that we cannot adequately cover in this course.
+    - If you would like to learn more about missing data and how to treat them, 
+    you can take two courses offered by our department:
+        - *Conducting a Survey*
+        - *Missing Data Theory and Causal Effects*
 
 ### Questions {-}
 
-1. The authors (Weston and Gore) state three similarities and two 
-big differences between SEM and other multivariate statistical techniques 
-(ANCOVA, regression). What are they? 
-2. The second difference that Weston and Gore mention is 
-presented as being a disadvantage, while some would think of it as an 
-advantage. Tests for the model fit can indicate whether your theory can be 
-confirmed or rejected based on your data! Along with this, the authors 
-miss another big difference between SEM and other general linear model 
-(ANOVA, regression). Any idea what this is? 
-3. Structural Equation Models are called hybrid models when 
-they contain a measurement and structural model. Can you explain what 
-is meant by the terms “measurement” and “structural” model?
-4. On p. 726-726, the authors introduce the term item parcels. 
-Look up (on the internet) what is meant with an item parcel. Can you 
-think of an example of item parceling that you used during on of the 
-practicals of this course?  Revisit this practical, and try to thank about the 
-disadvantages of item parceling in SEM.
-5. The authors identify 6 steps in doing SEM-analyses. What are 
-they? 
-6. Go back to the unconstrained multigroup path model 
-estimated in the class exercise of practical 6 (question 8. last week). Try 
-to work out for yourself how many degrees of freedom there are based on 
-pages 732-733 of the article. 
-7. On page 745 the authors mention in the 6th line from the bottom of the 
-page, that it is a good idea to test the model using cross-validation. 
-Look up what cross-validation in SEM is about, and explain when it is a 
-good idea to do a cross-validation check 
-8. The model that the authors use as an example does not fit the data very 
-well (see figure 4 on page 740) and the discussion of the authors of their 
-model. 
-Without having the data, nor a good theories on the constructs used in 
-this paper, can you think of a possible reason why this model might not 
-fit? (there is no one right answer here). 
-Hint: have a look at the results that are presented and those not 
-presented in the paper 
-
+1. The authors state three similarities and two big differences between SEM and 
+other multivariate statistical techniques (e.g., ANCOVA, regression). What are 
+these similarities and differences? 
+1. Do you agree with the relative strengths and weaknesses of SEM vs. other 
+methods that the authors present?
+1. The authors miss at least one additional advantage of SEM over other 
+multivariate methods. What is this missing advantage? 
+1. Explain what the terms “measurement model” and “structural model" mean in the 
+SEM context.
+1. What are the 6 steps of doing an SEM-based analysis given by the authors? 
+1. The authors claim that testing an SEM using cross-validation is a good idea. 
+When is cross-validation helpful in SEM? 
+    - Hint: You may have to do some independent (internet, literature) research
+    to learn how cross-validation can be implemented in SEM.
 
 ```{asis, echo = answers}
 ### Answers {-}
 
-1. The authors (Weston and Gore) state three similarities and two big differences between SEM and other multivariate statistical techniques (ANCOVA, regression). What are they?
-    * Similarities:  
-      they are all general linear models  
-      they are only valid when the assumptions are met (PL: and many assumptions are very similar!)  
-      they cannot “prove” or imply causality 
-    * Differences:  
-      latent constructs van be included, that provide a better operationalisation of the theoretical construct and contain less measurement error  
-      test for the model fit
-2. the second difference that Weston and Gore mention is presented as being a disadvantage, while some would think of it as an advantage. Tests for the model fit can indicate whether your theory can be confirmed or rejected based on your data! Along with this, the authors miss another big difference between SEM and other general linear model (ANOVA, regression). Any idea what this is?
-    * In SEM, more complex interdependencies between your constructs can be modeled.
-3. Structural Equation Models are called hybrid models when they contain a measurement and structural model. Can you explain what is meant by the terms “measurement” and “structural” model?
-    * measurement model = factor model, the parts where latent constructs are operationalised using two or more observed variables  
-      Structural model = the path model, the part where regression coefficients are estimated.          This often includes regression coefficients between latent variables!
-4. On p. 726-726, the authors introduce the term item parcels. Look up (on the internet) what is meant with an item parcel. Can you think of an example of item parceling that you used during on of the practicals of this course?  Revisit this practical, and try to thank about the disadvantages of item parceling in SEM.
-    * we used this in the first practical, where we analysed the data from the paper by Kestila. During the practical, we did EFA analysis on items in trust in politics and attitudes towardas immigrants, and saved the factor scores, which we later used in a regression model. This is a form of item parceling. The disadvantage to this approach is that the factor scores contain a lot of measurement model, which (generally) deflate (also called attenuate) the size of the regression coefficients to or from the factor scores.
-5. The authors identify 6 steps in doing SEM-analyses. What are they?
-    * data collection
-    * specification
-    * identification
-    * estimation
-    * evaluation
-    * modification
-6. Go back to the unconstrained multigroup path model estimated in the class exercise of practical 6 (question 8. last week). Try to work out for yourself how many degrees of freedom there are based on pages 732-733 of the article.
-    * 6 regression coefficients, 4 disturbances, 1 variance(depression) -> 6+4+1=11  
-      Two groups = 11 X 2 = 22 parameters to be estimated.  
-      The number of free parameters is 2x(5x(5+1)/2 = 2 x 5x6/2 = 5x6 = 30 sample moments  
-      Degrees of freedom = sample moments – estimated parameters = 30-22 = 8
-7. On page 745 the authors mention in the 6th line from the bottom of the page, that it is a good idea to test the model using cross-validation.
-Look up what cross-validation in SEM is about, and explain when it is a good idea to do a cross-validation check
-    * after many alterations to the model, you might be modeling more data driven than theory driven, and you risk ending up with a theory that replicates badly (for example by blindly following modification indices). If you then check your model against a fresh (sub)sample from the same population, you can actually check whether that model fits!
-8. The model that the authors use as an example does not fit the data very well (see figure 4 on page 740) and the discussion of the authors of their model.
-Without having the data, nor a good theories on the concstructs used in this paper, can you think of a possible reason why this model might not fit? (there is no one right answer here).
-Hint: have a look at the results that are presented and those not presented in the paper
-    * it probably has to do something with the factor structure, as that is not reported in the paper
+**Q1:**
+
+- Similarities:
+    1. All these methods are different flavors of the general linear model.
+    1. These methods only produce valid results when their assumptions are met.
+    1. None of these methods can prove causality. 
+- Differences:
+    1. We can include latent constructs in SEM.
+        - Latent variables provide a better operationalization of theoretical 
+        constructs than observed scale scores.
+        - Latent variables contain less measurement error than observed scale
+        scores.
+    1. We can test for the model fit in SEM.
+
+**Q2:** 
+
+The ability to test model fit is presented as a disadvantage, but that doesn't 
+make much sense. Tests for the model fit can tell us how well our theory comports 
+with the data! 
+
+**Q3:** 
+
+In SEM, we can model more complex relations between constructs/variables.
+
+**Q4:**
+
+- *Measurement model* = The factor model part of the overall SEM wherein the 
+latent constructs are defined in terms of their relations to the observed 
+indicators
+    
+- *Structural model* = The path model part of the overall SEM wherein causal 
+linkages between the constructs/variables are defined and estimated as
+path/regression coefficients
+
+**Q5:**
+
+1. Data collection
+1. Model specification
+1. Model identification
+1. Model estimation
+1. Model evaluation
+1. Model modification
+    
+**Q6:**
+
+Any time you make post hoc modifications to your model based on the model's 
+estimates/results, you step out of the realm of confirmatory modeling and enter 
+the exploratory regime. If you treat your modified model as though you had 
+hypothesized and estimated the modified structure from the beginning, you risk 
+overfitting the data, and you cannot fully trust the inferential conclusions. 
+
+After making post hoc model modifications, you can check their effect by 
+refitting your modified model to a set of hold-out validation data. If the 
+modified model still fits the validation data well and the results align with 
+those from the original data, you can safely use the model to evaluate your 
+theoretical questions.
 ```
