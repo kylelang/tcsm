@@ -178,4 +178,14 @@ lecture-4
 reading-4
 formative-assessment-4
 at-home-exercises-4
+section-81
+section-82
+section-83
+olsMod
+section-84
+section-85
+pathMod
+section-86
+section-87
+section-88
 in-class-exercises-4

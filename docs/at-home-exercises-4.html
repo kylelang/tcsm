@@ -418,7 +418,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#questions-7"><i class="fa fa-check"></i>Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="formative-assessment-4.html"><a href="formative-assessment-4.html"><i class="fa fa-check"></i><b>5.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="5.4" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html"><i class="fa fa-check"></i><b>5.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="5.4" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html"><i class="fa fa-check"></i><b>5.4</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-81"><i class="fa fa-check"></i><b>5.4.1</b> </a></li>
+<li class="chapter" data-level="5.4.2" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-82"><i class="fa fa-check"></i><b>5.4.2</b> </a></li>
+<li class="chapter" data-level="5.4.3" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-83"><i class="fa fa-check"></i><b>5.4.3</b> </a></li>
+<li class="chapter" data-level="5.4.4" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#olsMod"><i class="fa fa-check"></i><b>5.4.4</b> </a></li>
+<li class="chapter" data-level="5.4.5" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-84"><i class="fa fa-check"></i><b>5.4.5</b> </a></li>
+<li class="chapter" data-level="5.4.6" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-85"><i class="fa fa-check"></i><b>5.4.6</b> </a></li>
+<li class="chapter" data-level="5.4.7" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#pathMod"><i class="fa fa-check"></i><b>5.4.7</b> </a></li>
+<li class="chapter" data-level="5.4.8" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-86"><i class="fa fa-check"></i><b>5.4.8</b> </a></li>
+<li class="chapter" data-level="5.4.9" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-87"><i class="fa fa-check"></i><b>5.4.9</b> </a></li>
+<li class="chapter" data-level="5.4.10" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-88"><i class="fa fa-check"></i><b>5.4.10</b> </a></li>
+</ul></li>
 <li class="chapter" data-level="5.5" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html"><i class="fa fa-check"></i><b>5.5</b> In-Class Exercises</a></li>
 </ul></li>
 </ul>
@@ -440,7 +452,432 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="at-home-exercises-4" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> At-Home Exercises<a href="at-home-exercises-4.html#at-home-exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
+<p>In these exercise we will analyze the <em>suicide_risk.rds</em> dataset. These analyses
+are based on the following paper.</p>
+<p>Metha, A., Chen, E, Mulvenon, S., and Dode, I. (1998). A theoretical model of
+suicide risk. <em>Archives of Suicide Research, 4</em>, 115–133.</p>
+<p>The <em>suicide_risk.rds</em> dataset was simulated from the covariance matrices
+presented on p.123 of the above paper. These data contain the following variables.</p>
+<ol style="list-style-type: decimal">
+<li><code>suirisk</code>: A numeric variable representing suicide risk</li>
+<li><code>subabuse</code>: A numeric variable representing severity of substance abuse</li>
+<li><code>hopeless</code>: A numeric variable representing degree of hopelessness</li>
+<li><code>selfesteem</code>: A numeric variable representing levels of self-esteem</li>
+<li><code>depression</code>: A numeric variable representing depression levels</li>
+<li><code>sex</code>: A factor recording biological sex</li>
+</ol>
+<p>We will use these data to investigate if <em>sex</em> moderates the effects of
+<em>substance abuse</em>, <em>hopelessness</em>, <em>self-esteem</em>, and <em>depression</em> on <em>suicide
+risk</em>.</p>
+<hr />
+<div id="section-81" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> </h3>
+<p>Load the <em>suicide_risk.rds</em> dataset.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="at-home-exercises-4.html#cb268-1" aria-hidden="true" tabindex="-1"></a>suicide <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;suicide_risk.rds&quot;</span>)</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-82" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> </h3>
+<p>Use <code>ggplot()</code> to visualize the bivariate relations between the four continuous
+predictors and <em>suicide risk</em>.</p>
+<ul>
+<li>Based on these figures, do you think a linear relation between <em>suicide risk</em>
+and the four continuous predictors is reasonable?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="at-home-exercises-4.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb269-2"><a href="at-home-exercises-4.html#cb269-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-3"><a href="at-home-exercises-4.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Create the basic plots for each predictor:</span></span>
+<span id="cb269-4"><a href="at-home-exercises-4.html#cb269-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> subabuse, <span class="at">y =</span> suirisk)) </span>
+<span id="cb269-5"><a href="at-home-exercises-4.html#cb269-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> hopeless, <span class="at">y =</span> suirisk)) </span>
+<span id="cb269-6"><a href="at-home-exercises-4.html#cb269-6" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> selfesteem, <span class="at">y =</span> suirisk)) </span>
+<span id="cb269-7"><a href="at-home-exercises-4.html#cb269-7" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> depression, <span class="at">y =</span> suirisk)) </span>
+<span id="cb269-8"><a href="at-home-exercises-4.html#cb269-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-9"><a href="at-home-exercises-4.html#cb269-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the details and print:</span></span>
+<span id="cb269-10"><a href="at-home-exercises-4.html#cb269-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span></span>
+<span id="cb269-11"><a href="at-home-exercises-4.html#cb269-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># Add the scatterplot points</span></span>
+<span id="cb269-12"><a href="at-home-exercises-4.html#cb269-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="co"># Add a smoothed trend</span></span>
+<span id="cb269-13"><a href="at-home-exercises-4.html#cb269-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># Use a nicer theme</span></span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="at-home-exercises-4.html#cb270-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="at-home-exercises-4.html#cb271-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="at-home-exercises-4.html#cb272-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We can also use the <code>grid.arrange()</code> function from the <strong>gridExtra</strong> package to
+join these four plots into a single figure.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="at-home-exercises-4.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb273-2"><a href="at-home-exercises-4.html#cb273-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-3"><a href="at-home-exercises-4.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
+<span id="cb273-4"><a href="at-home-exercises-4.html#cb273-4" aria-hidden="true" tabindex="-1"></a>             p2 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
+<span id="cb273-5"><a href="at-home-exercises-4.html#cb273-5" aria-hidden="true" tabindex="-1"></a>             p3 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
+<span id="cb273-6"><a href="at-home-exercises-4.html#cb273-6" aria-hidden="true" tabindex="-1"></a>             p4 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(), </span>
+<span id="cb273-7"><a href="at-home-exercises-4.html#cb273-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-200-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>There does appear to be an association between each of the predictors and
+<em>suicide risk</em>. The trends don’t look perfectly linear, but they don’t look too
+systematically nonlinear either, so modeling these relationships as linear seems
+sensible.</p>
+</details>
+<hr />
+</div>
+<div id="section-83" class="section level3" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> </h3>
+<p>Modify the scatterplots from above by coloring the points and trend lines
+according to <code>sex</code>.</p>
+<ul>
+<li>Based on these figures, do you think <em>sex</em> may moderate (some of) these
+bivariate relations?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>In the <code>ggplot()</code> call, we simply need to define assign <code>sex</code> to the “colour”
+aesthetic.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="at-home-exercises-4.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create the basic plots for each predictor:</span></span>
+<span id="cb274-2"><a href="at-home-exercises-4.html#cb274-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> subabuse, <span class="at">y =</span> suirisk, <span class="at">colour =</span> sex)) </span>
+<span id="cb274-3"><a href="at-home-exercises-4.html#cb274-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> hopeless, <span class="at">y =</span> suirisk, <span class="at">colour =</span> sex)) </span>
+<span id="cb274-4"><a href="at-home-exercises-4.html#cb274-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> selfesteem, <span class="at">y =</span> suirisk, <span class="at">colour =</span> sex)) </span>
+<span id="cb274-5"><a href="at-home-exercises-4.html#cb274-5" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suicide, <span class="fu">aes</span>(<span class="at">x =</span> depression, <span class="at">y =</span> suirisk, <span class="at">colour =</span> sex))</span>
+<span id="cb274-6"><a href="at-home-exercises-4.html#cb274-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-7"><a href="at-home-exercises-4.html#cb274-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
+<span id="cb274-8"><a href="at-home-exercises-4.html#cb274-8" aria-hidden="true" tabindex="-1"></a>             p2 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
+<span id="cb274-9"><a href="at-home-exercises-4.html#cb274-9" aria-hidden="true" tabindex="-1"></a>             p3 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
+<span id="cb274-10"><a href="at-home-exercises-4.html#cb274-10" aria-hidden="true" tabindex="-1"></a>             p4 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(), </span>
+<span id="cb274-11"><a href="at-home-exercises-4.html#cb274-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-201-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Of all the predictors, it looks like <em>substance abuse</em> shows the greatest
+differences between the male and female trends. The other three predictors
+demonstrate pretty similar effects for both sexes.</p>
+</details>
+<hr />
+<p>To test moderation, we need to include interactions (i.e., product terms)
+between the moderator variable(s) and the focal predictor(s) on the RHS of our
+regression equation. If we’re using the <code>lm()</code> function to estimate our models
+via OLS regression, we need only specify the appropriate product terms in the
+model syntax.</p>
+<hr />
+</div>
+<div id="olsMod" class="section level3" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> </h3>
+<p>Use the <code>lm()</code> function to test the moderating influence of <code>sex</code> on the four
+focal effects with OLS regression.</p>
+<ul>
+<li>Does <em>sex</em> significantly moderate the four focal effects?</li>
+</ul>
+<p><em>Hint:</em> To specify an interaction, simply “multiply” the variable names for the
+moderator and focal predictor using the <code>*</code> symbol in the formula syntax.</p>
+<ul>
+<li>E.g., <code>y ~ x * z</code></li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="at-home-exercises-4.html#cb275-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">lm</span>(suirisk <span class="sc">~</span> sex <span class="sc">*</span> subabuse <span class="sc">+</span> sex <span class="sc">*</span> hopeless <span class="sc">+</span> sex <span class="sc">*</span> selfesteem <span class="sc">+</span> sex <span class="sc">*</span> depression, </span>
+<span id="cb275-2"><a href="at-home-exercises-4.html#cb275-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> suicide)</span>
+<span id="cb275-3"><a href="at-home-exercises-4.html#cb275-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-4"><a href="at-home-exercises-4.html#cb275-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = suirisk ~ sex * subabuse + sex * hopeless + sex * 
+##     selfesteem + sex * depression, data = suicide)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.9171 -1.1597  0.0047  1.1552  4.1531 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         1.9862150  0.8119207   2.446  0.01477 *  
+## sexmale            -0.8688675  1.4350193  -0.605  0.54513    
+## subabuse            0.0587404  0.0149445   3.931 9.64e-05 ***
+## hopeless            0.0452029  0.0444629   1.017  0.30980    
+## selfesteem         -0.0001569  0.0230584  -0.007  0.99458    
+## depression          0.0502616  0.0157588   3.189  0.00151 ** 
+## sexmale:subabuse    0.0631559  0.0489630   1.290  0.19768    
+## sexmale:hopeless   -0.0116150  0.0787379  -0.148  0.88278    
+## sexmale:selfesteem  0.0128741  0.0388335   0.332  0.74039    
+## sexmale:depression  0.0651349  0.0284552   2.289  0.02248 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.62 on 511 degrees of freedom
+## Multiple R-squared:  0.2208, Adjusted R-squared:  0.2071 
+## F-statistic: 16.09 on 9 and 511 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>It doesn’t look like <em>sex</em> has too much affect. Only the effect of <em>depression</em>
+on <em>suicide risk</em> was significantly moderated by <em>sex</em> (<span class="math inline">\(\beta = 0.065\)</span>,
+<span class="math inline">\(t[511] = 2.29\)</span>, <span class="math inline">\(p = 0.022\)</span>)</p>
+</details>
+<hr />
+<p>Of course, we can do an analogous analysis via path modeling in <strong>lavaan</strong>.
+Unfortunately, <strong>lavaan</strong> will not (yet) dummy code our factors, so we need to
+manually create a dummy coded version of <em>sex</em>.</p>
+<hr />
+</div>
+<div id="section-84" class="section level3" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> </h3>
+<p>Dummy code the <code>sex</code> factor.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>You have seen several ways of doing this in previous practicals. Here, I’ll use
+the quick-and-dirty <code>ifelse()</code> approach.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="at-home-exercises-4.html#cb277-1" aria-hidden="true" tabindex="-1"></a>suicide<span class="sc">$</span>female <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(suicide<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-85" class="section level3" number="5.4.6">
+<h3><span class="header-section-number">5.4.6</span> </h3>
+<p>Define the <strong>lavaan</strong> model syntax for the same moderated regression model you
+estimated in <a href="at-home-exercises-4.html#olsMod">5.4.4</a>.</p>
+<p><em>Hints:</em></p>
+<ul>
+<li>To define an interaction term in lavaan syntax, use the <code>:</code> operator instead
+of <code>*</code>.</li>
+<li>You will need to explicitly include the variable names for the individual
+predictors (as well as the interaction terms) in the model syntax.</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="at-home-exercises-4.html#cb278-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb278-2"><a href="at-home-exercises-4.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="st">suirisk ~ subabuse + hopeless + selfesteem + depression + female</span></span>
+<span id="cb278-3"><a href="at-home-exercises-4.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="st">suirisk ~ female:subabuse + female:hopeless + female:selfesteem + female:depression</span></span>
+<span id="cb278-4"><a href="at-home-exercises-4.html#cb278-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<p>Note that I’ve broken the formula definition into two lines. Doing so has no
+effect on the model’s specification or estimation but keeps the syntax a bit
+tidier (by keeping the lines from getting too long).</p>
+</details>
+<hr />
+</div>
+<div id="pathMod" class="section level3" number="5.4.7">
+<h3><span class="header-section-number">5.4.7</span> </h3>
+<p>Use <code>lavaan::sem()</code> to estimate the above model.</p>
+<ul>
+<li>What are your conclusions vis-à-vis the moderating influence of <em>sex</em>?</li>
+<li>Do these results differ from those of the OLS regression?</li>
+<li>What proportion of the variability in <em>suicide risk</em> is explained by this model?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="at-home-exercises-4.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb279-2"><a href="at-home-exercises-4.html#cb279-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-3"><a href="at-home-exercises-4.html#cb279-3" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> suicide)</span>
+<span id="cb279-4"><a href="at-home-exercises-4.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 1 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        10
+## 
+##   Number of observations                           521
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   suirisk ~                                           
+##     subabuse          0.122    0.046    2.640    0.008
+##     hopeless          0.034    0.064    0.522    0.602
+##     selfesteem        0.013    0.031    0.411    0.681
+##     depression        0.115    0.023    4.918    0.000
+##     female            0.869    1.421    0.611    0.541
+##     female:subabus   -0.063    0.048   -1.302    0.193
+##     female:hopelss    0.012    0.078    0.149    0.882
+##     female:selfstm   -0.013    0.038   -0.335    0.738
+##     female:deprssn   -0.065    0.028   -2.311    0.021
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .suirisk           2.575    0.160   16.140    0.000
+## 
+## R-Square:
+##                    Estimate
+##     suirisk           0.221</code></pre>
+<ul>
+<li>The path analysis gives the same results as the OLS regression. So, the
+conclusions are also the same.</li>
+<li>The model explains 22.08%
+of the variability in <em>suicide risk</em>.</li>
+</ul>
+</details>
+<hr />
+<p>Based on the results above, it looks like <em>sex</em> does not have much moderating
+influence. If we are trying to build a statistical model of <em>suicide risk</em>, we
+may question if the overall moderating effect of <em>sex</em> really improves the model.</p>
+<p>We may also want to evaluate the significance of the focal effects, themselves.
+In the moderated model, the estimates for the focal predictors are <em>conditional
+effects</em>, not ordinary partial regression weights. In this particular case, these
+conditional effects represent the effect of each focal predictor on the outcome
+for males (i.e., the reference group of the moderator).</p>
+<p>If we simply want to know if these focal predictors significantly affect <em>suicide
+risk</em>, without conditioning on <em>sex</em>, we need to estimate a restricted model
+containing no moderation (i.e., the additive model with all the same predictors
+but no interactions).</p>
+<hr />
+</div>
+<div id="section-86" class="section level3" number="5.4.8">
+<h3><span class="header-section-number">5.4.8</span> </h3>
+<p>Specify the <strong>lavaan</strong> model syntax for the restricted model described above.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="at-home-exercises-4.html#cb281-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb281-2"><a href="at-home-exercises-4.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="st">suirisk ~ subabuse + hopeless + selfesteem + depression + female</span></span>
+<span id="cb281-3"><a href="at-home-exercises-4.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-87" class="section level3" number="5.4.9">
+<h3><span class="header-section-number">5.4.9</span> </h3>
+<p>Use <code>lavaan::sem()</code> to estimate the above model.</p>
+<ul>
+<li>Are the focal predictors significantly associated with <em>suicide risk</em>?</li>
+<li>Is <em>sex</em> significantly associated with <em>suicide risk</em>?</li>
+<li>How much variability in <em>suicide risk</em> is explained by these predictors?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="at-home-exercises-4.html#cb282-1" aria-hidden="true" tabindex="-1"></a>out_res <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> suicide)</span>
+<span id="cb282-2"><a href="at-home-exercises-4.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_res, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-12 ended normally after 1 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         6
+## 
+##   Number of observations                           521
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   suirisk ~                                           
+##     subabuse          0.058    0.014    4.093    0.000
+##     hopeless          0.046    0.037    1.254    0.210
+##     selfesteem       -0.004    0.018   -0.211    0.833
+##     depression        0.072    0.013    5.508    0.000
+##     female           -0.133    0.154   -0.862    0.389
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .suirisk           2.636    0.163   16.140    0.000
+## 
+## R-Square:
+##                    Estimate
+##     suirisk           0.202</code></pre>
+<ul>
+<li>Only <em>substance abuse</em> (<span class="math inline">\(\beta = 0.058\)</span>, <span class="math inline">\(z = 4.09\)</span>,
+<span class="math inline">\(p &lt; 0.001\)</span>) and <em>depression</em> (<span class="math inline">\(\beta = 0.072\)</span>, <span class="math inline">\(z = 5.51\)</span>,
+<span class="math inline">\(p &lt; 0.001\)</span>) are significant predictors of <em>suicide risk</em>.</li>
+<li>No, <em>sex</em> is not a significant predictor of <em>suicide risk</em>
+(<span class="math inline">\(\beta = -0.133\)</span>, <span class="math inline">\(z = -0.86\)</span>, <span class="math inline">\(p = 0.389\)</span>).</li>
+<li>These five predictors explain 20.23%
+of the variability in <em>suicide risk</em>.</li>
+</ul>
+</details>
+<hr />
+</div>
+<div id="section-88" class="section level3" number="5.4.10">
+<h3><span class="header-section-number">5.4.10</span> </h3>
+<p>Compare the full model (including interactions) and the restricted model (without
+interactions).</p>
+<ul>
+<li>How much additional variability in <em>suicide risk</em> do we explain by including the
+four interaction terms?</li>
+<li>Can we conduct a <span class="math inline">\(\Delta \chi^2\)</span> test to compare these two models?
+<ul>
+<li>If you think so, conduct the test and interpret the results.</li>
+<li>If you do not think so, explain why not.</li>
+</ul></li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>To see how much additional variability we explain, we simply subtract the <span class="math inline">\(R^2\)</span>
+for the restricted model from the <span class="math inline">\(R^2\)</span> for the full model.</p>
+<ul>
+<li>Adding the interaction terms explains 1.85% more
+variability in <em>suicide risk</em>.</li>
+</ul>
+<p>Unfortunately, we cannot use a <span class="math inline">\(\Delta \chi^2\)</span> test to compare these models
+because they are both saturated (hence, they both have perfect fit). Also, these
+models are not nested because we added four new variables (hence, added four new
+columns and rows to the covariance matrix) when adding the interaction terms.</p>
+<ul>
+<li>If we want, we can manually implement a <span class="math inline">\(\Delta R^2\)</span> test analogous to what
+we would do in OLS regression, but doing so is a bit of a faff.</li>
+</ul>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="at-home-exercises-4.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract the residual variance:</span></span>
+<span id="cb284-2"><a href="at-home-exercises-4.html#cb284-2" aria-hidden="true" tabindex="-1"></a>eF <span class="ot">&lt;-</span> <span class="fu">lavInspect</span>(out, <span class="st">&quot;theta&quot;</span>)[<span class="st">&quot;suirisk&quot;</span>, <span class="st">&quot;suirisk&quot;</span>]</span>
+<span id="cb284-3"><a href="at-home-exercises-4.html#cb284-3" aria-hidden="true" tabindex="-1"></a>eR <span class="ot">&lt;-</span> <span class="fu">lavInspect</span>(out_res, <span class="st">&quot;theta&quot;</span>)[<span class="st">&quot;suirisk&quot;</span>, <span class="st">&quot;suirisk&quot;</span>]</span>
+<span id="cb284-4"><a href="at-home-exercises-4.html#cb284-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-5"><a href="at-home-exercises-4.html#cb284-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the residual DF:</span></span>
+<span id="cb284-6"><a href="at-home-exercises-4.html#cb284-6" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">&lt;-</span> <span class="fu">lavInspect</span>(out, <span class="st">&quot;nobs&quot;</span>)</span>
+<span id="cb284-7"><a href="at-home-exercises-4.html#cb284-7" aria-hidden="true" tabindex="-1"></a>dfF <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="fu">fitMeasures</span>(out, <span class="st">&quot;npar&quot;</span>)</span>
+<span id="cb284-8"><a href="at-home-exercises-4.html#cb284-8" aria-hidden="true" tabindex="-1"></a>dfR <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="fu">fitMeasures</span>(out_res, <span class="st">&quot;npar&quot;</span>)</span>
+<span id="cb284-9"><a href="at-home-exercises-4.html#cb284-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-10"><a href="at-home-exercises-4.html#cb284-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the F statistic for the R^2 difference:</span></span>
+<span id="cb284-11"><a href="at-home-exercises-4.html#cb284-11" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> ((eR <span class="sc">-</span> eF) <span class="sc">/</span> (dfR <span class="sc">-</span> dfF)) <span class="sc">/</span> (eF <span class="sc">/</span> dfF))</span></code></pre></div>
+<pre><code>##  npar 
+## 3.027</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="at-home-exercises-4.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the p-value by comparing to an F-distribution</span></span>
+<span id="cb286-2"><a href="at-home-exercises-4.html#cb286-2" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">pf</span>(f, dfR <span class="sc">-</span> dfF, dfF, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<pre><code>##  npar 
+## 0.017</code></pre>
+<p>The F-statistic for the <span class="math inline">\(\Delta R^2\)</span> test is significant
+(<span class="math inline">\(\Delta R^2 = 0.018\)</span>,
+<span class="math inline">\(F[4, 511] = 3.03\)</span>,
+<span class="math inline">\(p = 0.017\)</span>), so we can say that including the moderating influence of
+<em>sex</em> explains significantly more variability in <em>suicide risk</em>. Of course, you
+could certainly question if an additional 1.85% of
+variance explained is a meaningful increase. Regardless of how you judge the
+increase in explained variance, though, we cannot necessarily say that adding
+the interaction terms produces a “better” model. Both models perfectly recreate
+the observed data; they are statistically equivalent representations of the
+phenomenon.</p>
+</details>
+<hr />
+<p>End of At-Home Exercises</p>
+<hr />
+</div>
 </div>
             </section>
 
