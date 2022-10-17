@@ -38,7 +38,7 @@ suicide <- readRDS("suicide_risk.rds")
 
 ---
 
-According to Mehta et al (1998), the process of suicide risk is more complicated 
+According to Metha et al (1998), the process of suicide risk is more complicated 
 than what we modeling in the At-Home Exercises. On page 117--118 the authors 
 summarize their expectations in five hypotheses. These hypotheses imply a path
 model that describes how the four continuous predictors relate to *suicide risk*. 
@@ -48,7 +48,7 @@ model that describes how the four continuous predictors relate to *suicide risk*
 ### {#syntax1}
 
 Write the **lavaan** model syntax for the path model implied by the hypotheses
-of Mehta et al (1998). 
+of Metha et al (1998). 
 
 - Leave *sex* out of the model for now. 
 
@@ -109,7 +109,7 @@ for *depression* and *hopelessness* ().
 
 ---
 
-After failing to support H2, Mehta et al (1998) modified there model based on 
+After failing to support H2, Metha et al (1998) modified there model based on 
 post hoc analyses. They made two changes to the model structure:
 
 1. Added a path from *hopelessness* to *substance abuse*.
@@ -166,7 +166,7 @@ play therein. We will discuss these ideas in the plenary lecture session.
 
 ---
 
-Sex-based differences were a key component of the Mehta et al (1998) analysis.
+Sex-based differences were a key component of the Metha et al (1998) analysis.
 In the original paper, *sex* was conceptualized as a moderator, and the
 differences induced thereby were evaluated by analyzing the male and female
 subsamples separately.
@@ -225,6 +225,25 @@ summary(fit, standardized = TRUE)
 The direct effect of *depression* on *suicide risk* and the effect of 
 *depression* on *self esteem* both seem to be quite a bit stronger for males 
 than for females ().
+
+</details>
+
+---
+
+###
+
+Qualitatively compare the $R^2$ for *suicide risk* in the two groups. What do 
+you conclude?
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+summary(fit, rsquare = TRUE)
+```
+
+The $R^2$ for males () is larger than the $R^2$ for females. The model better
+explains suicide risk for males than it does for females.
 
 </details>
 
@@ -305,94 +324,175 @@ omnibus test. While this approach will certainly work, we would have to specify
 and estimate a separate restricted model for every path that we wanted to test.
 Thankfully, we have a couple simpler alternatives.
 
-Each of these approaches will require labeling the paths we want to test.
+Each of these approaches will require labeling the paths we want to test. The
+most direct approach entails the following steps:
 
-After doing this omnibus (overall) test, it is interesting to know which parameters, speciffically, differ. We can do this by computing new parameters for the difference between men and women. These new parameters will be tested using Z-tests and corresponding p-values. For a non-parametric test, you will have to bootstrap your analysis (see the explanation about bootstrapping indirect effects).
+1. Label the relevant parameters
+1. Define new parameters that represent the differences between the 
+group-specific versions of whatever parameters we want to test
+1. Estimate the model and evaluate the path-specific moderation by the 
+significance tests for these difference parameters
 
-We use a similar approach to the one we used to compute indirect effects:
+---
 
-1. Label every path in your model
-2. Define new parameters as the difference between corresponding parameters for men and women 
+### 
 
-```{r}
-model_diff <- "
-suirisk ~ c(m1, f1)*hopeless + c(m2, f2)*depression + c(m3, f3)*subabuse
-hopeless ~ c(m4, f4)*depression + c(m5, f5)*selfesteem
-selfesteem ~ c(m6, f6)*depression
-subabuse ~~ 0*depression
+Define the **lavaan** model syntax that uses the approach described above to 
+test if *sex* moderates the following effects
 
-D1 := m1-f1
-D2 := m2-f2
-D3 := m3-f3
-D4 := m4-f4
-D5 := m5-f5
-D6 := m6-f6
-"
-```
-
-### Question 7
-
-Fit this model, and inspect the results for the defined parameters. What are your conclusions?
+1. *depression* $\rightarrow$ *suicide risk*
+1. *substance abuse* $\rightarrow$ *suicide risk*
+1. *hopelessness* $\rightarrow$ *substance abuse*
 
 <details>
   <summary>Click for explanation</summary>
+
 ```{r}
-fit_dif <- sem(model_diff, data, 
-                   group = "gender")
-summary(fit_dif)
+mod <- '
+suirisk ~ c(m1, f1) * depression + c(m2, f2) * subabuse
+hopeless ~ depression + selfesteem
+subabuse ~ c(m3, f3) * hopeless
+selfesteem ~ depression
+
+d1 := m1 - f1
+d2 := m2 - f2
+d3 := m3 - f3
+'
 ```
+
+</details>
+
+---
+
+###
+
+Estimate the model defined above.
+
+- Does *sex* moderate these three focal effects?
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+fit <- sem(mod, data = suicide, group = "sex")
+summary(fit)
+```
+
+- *Sex* significantly moderates the effect of *depression* on *suicide risk* () such 
+that males have significantly stronger associations.
+- *Sex* also moderates the effect of hopelessness on *substance abuse* () such that males have significantly weaker associations.
+- *Sex* does not moderate the effect of *substance abuse* on *suicide risk* ().
 
 Only the effect of depression on suicide risk, and the effect of depression on selfesteem, are significantly different between the sexes.
-\details
 
-### Question 8
+</details>
 
-Is there anything we should consider when inspecting these p-values?
+---
 
-<details>
-  <summary>Click for explanation</summary>
-You should consider the potential risk of multiple testing, and whether the assumption of normality holds.
-\details
+We can also conduct analogous tests without explicitly defining the parameter 
+differences as new parameters. To do so, we use the `lavaan::lavTestWald()` 
+function and the following procedure.
 
-### Results table
+1. Label the relevant paths
+1. Estimate the model
+1. Submit the fitted model object and a syntax segment defining the desired 
+constraint(s) to `lavTestWald()`.
 
-When you want to include your results in a paper, it's a lot of work to copy-paste everything. There are many ways to get R results directly into a paper, including writing the entire paper in R and automatically updating the results. I will show you a very basic way to make a table and export it to a spreadsheet. We will use the functions `parameterEstimates(fit, standardized = TRUE)` to get the unstandardized and standardized estimates, and then put them into a nice table:
+This approach is nice when we have already estimated the model with the paths 
+labeled but no difference parameters defined. In such situations, we can do our
+tests without rewriting the model syntax and re-estimating the model.
 
-```{r}
-table_results <- parameterEstimates(fit, standardized = TRUE)
-head(table_results)
-```
+---
 
-Then, we take only the labeled parameters (which are the regression coefficients and difference parameters):
+###
 
-```{r}
-table_results <- table_results[table_results$label != "", ]
-table_results <- cbind(table_results[1:6, 1:3],
-               Est_men = table_results[1:6, "std.all"],
-               Est_women = table_results[7:12, "std.all"],
-               p_diff = table_results[13:18, "pvalue"])
-write.csv(table_results, "table_results.csv", row.names = FALSE)
-```
+Use `lavTestWald()` to for moderation in the same three paths as above.
 
+- What are your conclusions?
+- Are the results the same as what you get when defining difference parameters?
 
-### Question 9
+*Hints:* 
 
-Interpret the effect sizes (standardized estimates) for males and females. What are your conclusions?
-
-### Question 10
-
-Evaluate R-square for suicide risk for males and females. What do you find?
-
-
+- You do not need to re-specify your model syntax, you can use the fitted model 
+from \@ref(test1) as input to `lavTestWald()`.
+- To get tests of moderation for individual paths, you need to run `lavTestWald()` 
+with a single parameter constraint specified.
+    - You will need to call `lavTestWald()` three times to replicate the results 
+    from \@ref(test1).
+    
 <details>
   <summary>Click for explanation</summary>
 
 ```{r}
-summary(fit, rsquare = TRUE)
-```
-The R-square for suicide risk is .29 for males, and .12 for females. The model predicts suicide risk better for females.
+## Depression -> Suicide Risk:
+lavTestWald(fit, constraints = 'm1 == f1')
 
-\details
+## Substance Abuse -> Suicide Risk:
+lavTestWald(fit, constraints = 'm2 == f2')
+
+## Hopelessness -> Substance Abuse:
+lavTestWald(fit, constraints = 'm3 == f3')
+```
+
+This approach produces the same inference as the defined parameters approach. In
+fact the p-values are identical across the two approaches, and the test 
+statistics produced by `lavTestWald()` are equal to the square of those produced 
+by the defined parameters approach.
+
+- This latter equivalence arises because the test statistic in the summarized 
+`sem()` output is a Z-test while the test statistic in the `lavTestWald()` output 
+is a $\chi^2$ statistic.
+
+</details>
+
+---
+
+Notice that although Metha et al (1998) only hypothesize a single indirect effect,
+their model implies several potential indirect effects. Further notice that the
+original model and the modified model imply different sets of indirect effects.
+
+---
+
+###
+
+List the potential indirect effects implied by the original and modified models 
+from Metha et al (1998).
+
+<details>
+  <summary>Click for explanation</summary>
+
+***Original:***
+
+- *Depression* $\rightarrow$ *Self-Esteem* $\rightarrow$ *Hopelessness* $\rightarrow$ *Suicide Risk*
+- *Depression* $\rightarrow$ *Hopelessness* $\rightarrow$ *Suicide Risk*
+- *Self-Esteem* $\rightarrow$ *Hopelessness* $\rightarrow$ *Suicide Risk*
+
+***Modified:***
+
+- *Depression* $\rightarrow$ *Self-Esteem* $\rightarrow$ *Hopelessness* $\rightarrow$ *Substance Abuse* $\rightarrow$ *Suicide Risk*
+- *Depression* $\rightarrow$ *Hopelessness* $\rightarrow$ *Substance Abuse* $\rightarrow$ *Suicide Risk*
+- *Self-Esteem* $\rightarrow$ *Hopelessness* $\rightarrow$ *Substance Abuse* $\rightarrow$ *Suicide Risk*
+
+</details>
+
+---
+
+An indirect effect is defined by the product of some set of regression paths.
+These underlying regression paths can be moderated by a grouping factor, so 
+indirect effects can also be moderated by grouping factors.
+
+We can use the same logic that we applied above to test the moderating influence
+of *sex* on individual regression paths to test if *sex* moderates the indirect
+effects represented in our model.
+
+There is one caveat to this generalization, though. The validity of the Wald test
+implemented by the `lavTestWald()` function depends on the tested parameters 
+having normal sampling distributions. The sampling distributions for indirect 
+effects are not normal, so we should not use the `lavTestWald()` approach to 
+evaluate moderation of the indirect effects. Rather, we should use the defined
+parameter approach with bootstrapping.
+
+---
 
 ### Question 12
 
@@ -407,7 +507,7 @@ The total effects of depression and substance use on suicide risk are higher for
 
 ### Question 13
 
-Compare your conclusion in the previous question with that of Mehta and colleagues (1998). Are your conclusions any different? Why?
+Compare your conclusion in the previous question with that of Metha and colleagues (1998). Are your conclusions any different? Why?
 
 <details>
   <summary>Click for explanation</summary>
