@@ -607,8 +607,9 @@ parameter approach in combination with bootstrapping.
 
 ### {#ieFreeSyntax}
 
-Modify the syntax for the restricted model to specify sex-specific versions of 
-the the potential indirect effects you listed in \@ref(ieList).
+Modify the syntax for the modified model (i.e., the model estimated in 
+\@ref(fullMgModel)) to specify sex-specific versions of the the potential 
+indirect effects you listed in \@ref(ieList).
 
 <details>
   <summary>Click for explanation</summary>
