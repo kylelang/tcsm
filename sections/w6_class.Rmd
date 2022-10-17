@@ -1,0 +1,417 @@
+## In-Class Exercises
+
+```{r echo = FALSE, warning=FALSE, message=FALSE}
+library(lavaan)
+library(semTools)
+library(dplyr)
+library(magrittr)
+```
+
+As in the At-Home Exercises, these exercises are based on the following paper.
+
+[
+Metha, A., Chen, E, Mulvenon, S., and Dode, I. (1998). A theoretical model of 
+suicide risk. *Archives of Suicide Research, 4*, 115--133.
+](https://doi.org/10.1080/13811119808260442)
+
+We will now pick-up where we left off with the At-Home Exercises.
+
+---
+
+### 
+
+Load the *suicide_risk.rds* dataset.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r, echo = FALSE}
+dataDir <- "../../data/"########################################################
+suicide <- readRDS(paste0(dataDir, "suicide_risk.rds"))
+```
+
+```{r, eval = FALSE}
+suicide <- readRDS("suicide_risk.rds")
+```
+
+</details>
+
+---
+
+According to Mehta et al (1998), the process of suicide risk is more complicated 
+than what we modeling in the At-Home Exercises. On page 117--118 the authors 
+summarize their expectations in five hypotheses. These hypotheses imply a path
+model that describes how the four continuous predictors relate to *suicide risk*. 
+
+---
+
+### {#syntax1}
+
+Write the **lavaan** model syntax for the path model implied by the hypotheses
+of Mehta et al (1998). 
+
+- Leave *sex* out of the model for now. 
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+mod <- '
+suirisk ~ depression + b * hopeless + subabuse
+hopeless ~ a * depression + selfesteem
+selfesteem ~ depression
+
+ie := a*b
+'
+```
+
+</details>
+
+---
+
+###
+
+Use `lavaan::sem()` to estimate the model.
+
+- Does the model fit well?
+- Are the hypothesized effects significant?
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r fit1, cache = TRUE}
+library(lavaan)
+
+## First fit without bootstrapping to check model adequacy:
+fit <- sem(mod, data = suicide)
+summary(fit, fit.measures = TRUE)
+
+## Now bootstrap to get appropriate test of indirect effect:
+set.seed(235711)
+fit_boot <- sem(mod, data = suicide, se = "boot", bootstrap = 1000)
+```
+
+The model fits the data well (). All but the second hypothesis are supported.
+
+- H1: The direct effect of *depression* on *suicide risk* is significant ().
+- H2: The indirect effect of *depression* on *suicide risk* through 
+*hopelessness* is not significant ().
+    - *Depression* significantly predicts *hopelessness*, after controlling for 
+    *self-esteem* ().
+    - *Hopelessness* does not significantly predict *suicide risk*, after 
+    controlling for *depression* and *substance abuse* ().
+- H3: *Depression* significantly predicts decreases in *self-esteem* ().
+- H4: *Self-esteem* significantly predicts *hopelessness* ().
+- H5: *Substance abuse* significantly predicts *suicide risk*, after controlling
+for *depression* and *hopelessness* ().
+
+</details>
+
+---
+
+After failing to support H2, Mehta et al (1998) modified there model based on 
+post hoc analyses. They made two changes to the model structure:
+
+1. Added a path from *hopelessness* to *substance abuse*.
+1. Removed the path from *hopelessness* to *suicide risk*.
+
+---
+
+### 
+
+Modify the model syntax from \@ref(syntax1) to reflect the post hoc 
+modifications described above.
+
+```{r}
+mod <- '
+suirisk ~ depression + subabuse
+hopeless ~ depression + selfesteem
+subabuse ~ hopeless
+selfesteem ~ depression
+'
+```
+
+</details>
+
+---
+
+### {#modifiedModel}
+
+Use `lavaan::sem()` to estimate the modified model.
+
+- Does the model fit well?
+- Are the structural paths significant?
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+## First fit without bootstrapping to check model adequacy:
+fit <- sem(mod, data = suicide)
+summary(fit, fit.measures = TRUE)
+```
+
+Yes, the modified model also fits the data well (), and all structural paths are 
+now statistically significant.
+
+</details>
+
+---
+
+Although the modified model seems to be a good representation of the data, the
+original and modified models imply substantially different theoretical processes.
+Think about what the two models say regarding the process by which *depression* 
+influences *suicide risk* and the role that *hopelessness* and *substance abuse*
+play therein. We will discuss these ideas in the plenary lecture session.
+
+---
+
+Sex-based differences were a key component of the Mehta et al (1998) analysis.
+In the original paper, *sex* was conceptualized as a moderator, and the
+differences induced thereby were evaluated by analyzing the male and female
+subsamples separately.
+
+As a general rule, subsample analysis is rarely advisable (especially in SEM). 
+We hypothesize moderation by *sex*, but the subsample analysis only allows us to
+infer this moderation indirectly through qualitative comparisons of the 
+sex-specific estimates. We will be much better off directly modeling the influence
+of *sex* by specifying a multiple-group model.
+
+In **lavaan**, we can easily estimate any model as an unrestricted multiple-group
+model by adding the `group = "grouping_variable_name"` to the fitting function.
+You can find a tutorial at <https://lavaan.ugent.be/tutorial/groups.html>.
+
+---
+
+### 
+
+Re-estimate the model from \@ref(modifiedModel) as a multiple-group model with 
+`sex` as the grouping factor.
+
+- Specify the same model structure in each group.
+- Do not place any between-group constraints on the estimates.
+- Does the model fit well?
+- In which group does the model fit better? 
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+fit <- sem(mod, data = suicide, group = "sex")
+summary(fit, fit.measures = TRUE)
+```
+
+Overall, the model fits the data well (), but it fits better for males than for 
+females ().
+
+</details>
+
+---
+
+###
+
+Qualitatively compare the effects in each group. Do you notice any salient 
+differences?
+
+*Hint:* The standardized estimates are probably useful here. 
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+summary(fit, standardized = TRUE)
+```
+
+The direct effect of *depression* on *suicide risk* and the effect of 
+*depression* on *self esteem* both seem to be quite a bit stronger for males 
+than for females ().
+
+</details>
+
+---
+
+To test the moderating influence of the grouping variable, we need to test for
+significant differences between the group-specific estimates of the structural 
+paths. If a path differs significantly between the two groups, we conclude that 
+the group *moderates* that path.
+
+We can conceptualize these test in two general ways.
+
+1. An omnibus test: Does group affect any of the structural paths?
+1. Path-specific tests: Does group affect an individual path?
+
+To implement an omnibus test for moderation by group, we simply need to compare 
+the fit of the full, unrestricted model (such as the one we estimated in 
+\@ref(fullMgModel)) to the fit of a restricted model wherein each structural 
+path is constrained to be equal in both groups.
+
+The `group.equal` argument in **lavaan** fitting functions makes this process 
+very easy.
+
+---
+
+###
+
+Conduct an omnibus test to see if *sex* moderates any of the paths the model 
+from \@ref(fullMgModel).
+
+- Does *sex* have a significant, overall moderating influence on the model?
+
+*Hints:*
+
+- Check the documentation for `sem()` to see how you need to specify the 
+`group.equal` argument.
+- You can use the `anova()` function to compare the full and restricted models.
+
+<details>
+  <summary>Click for explanation</summary>
+
+First, estimate the restricted model.
+
+```{r}
+fit_res <- sem(mod, 
+               data = suicide,
+               group = "sex",
+               group.equal = "regressions")
+
+## Summarize the results to check that everything went well:
+summary(fit_res, fit.measures = TRUE)
+```
+
+OK, that looks good. The regression paths are constrained to be equal across 
+groups. Now, we need to compare the full and restricted models to see if we've
+lost a significant amount of model fit through the constraints.
+
+```{r}
+anova(fit, fit_res)
+```
+  
+The $\Delta chi^2$ test tells us that we have lost a significant level of fit by 
+constraining the paths to equality across groups (). Hence, we can infer overall
+moderation by *sex*.
+
+</details>
+
+---
+
+Finding significant omnibus moderation is interesting, but we probably want to 
+know which paths, in particular, show significant sex-based differences. Hence,
+we need to test for path-specific moderation.
+
+We have several options when it comes to implementing such tests. One obvious
+idea would be to specify a restricted model that constrains only one path to 
+equality and conduct the same type of $\Delta \chi^2$ test that we used for the 
+omnibus test. While this approach will certainly work, we would have to specify
+and estimate a separate restricted model for every path that we wanted to test.
+Thankfully, we have a couple simpler alternatives.
+
+Each of these approaches will require labeling the paths we want to test.
+
+After doing this omnibus (overall) test, it is interesting to know which parameters, speciffically, differ. We can do this by computing new parameters for the difference between men and women. These new parameters will be tested using Z-tests and corresponding p-values. For a non-parametric test, you will have to bootstrap your analysis (see the explanation about bootstrapping indirect effects).
+
+We use a similar approach to the one we used to compute indirect effects:
+
+1. Label every path in your model
+2. Define new parameters as the difference between corresponding parameters for men and women 
+
+```{r}
+model_diff <- "
+suirisk ~ c(m1, f1)*hopeless + c(m2, f2)*depression + c(m3, f3)*subabuse
+hopeless ~ c(m4, f4)*depression + c(m5, f5)*selfesteem
+selfesteem ~ c(m6, f6)*depression
+subabuse ~~ 0*depression
+
+D1 := m1-f1
+D2 := m2-f2
+D3 := m3-f3
+D4 := m4-f4
+D5 := m5-f5
+D6 := m6-f6
+"
+```
+
+### Question 7
+
+Fit this model, and inspect the results for the defined parameters. What are your conclusions?
+
+<details>
+  <summary>Click for explanation</summary>
+```{r}
+fit_dif <- sem(model_diff, data, 
+                   group = "gender")
+summary(fit_dif)
+```
+
+Only the effect of depression on suicide risk, and the effect of depression on selfesteem, are significantly different between the sexes.
+\details
+
+### Question 8
+
+Is there anything we should consider when inspecting these p-values?
+
+<details>
+  <summary>Click for explanation</summary>
+You should consider the potential risk of multiple testing, and whether the assumption of normality holds.
+\details
+
+### Results table
+
+When you want to include your results in a paper, it's a lot of work to copy-paste everything. There are many ways to get R results directly into a paper, including writing the entire paper in R and automatically updating the results. I will show you a very basic way to make a table and export it to a spreadsheet. We will use the functions `parameterEstimates(fit, standardized = TRUE)` to get the unstandardized and standardized estimates, and then put them into a nice table:
+
+```{r}
+table_results <- parameterEstimates(fit, standardized = TRUE)
+head(table_results)
+```
+
+Then, we take only the labeled parameters (which are the regression coefficients and difference parameters):
+
+```{r}
+table_results <- table_results[table_results$label != "", ]
+table_results <- cbind(table_results[1:6, 1:3],
+               Est_men = table_results[1:6, "std.all"],
+               Est_women = table_results[7:12, "std.all"],
+               p_diff = table_results[13:18, "pvalue"])
+write.csv(table_results, "table_results.csv", row.names = FALSE)
+```
+
+
+### Question 9
+
+Interpret the effect sizes (standardized estimates) for males and females. What are your conclusions?
+
+### Question 10
+
+Evaluate R-square for suicide risk for males and females. What do you find?
+
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+summary(fit, rsquare = TRUE)
+```
+The R-square for suicide risk is .29 for males, and .12 for females. The model predicts suicide risk better for females.
+
+\details
+
+### Question 12
+
+Calculate the total, direct and indirect effects (see practical week 5). The model we have made is a typical example of moderated mediation (i.e. the mediation effects are moderated by gender). In your own words, what are the differences in the mediation between males and females?
+
+*Note: Because the paths are different for males and females, you should also calculate the total, direct and indirect effects (see practical week 5) for males and females separately.* 
+
+<details>
+  <summary>Click for explanation</summary>
+The total effects of depression and substance use on suicide risk are higher for females than males, but the total effect for selfesteem and hopelessness are very similar. 
+\details
+
+### Question 13
+
+Compare your conclusion in the previous question with that of Mehta and colleagues (1998). Are your conclusions any different? Why?
+
+<details>
+  <summary>Click for explanation</summary>
+Should be different: They do not test moderation explicitly, and report differences in all paths between males and females. In fact, the paths leading to suicide risk are different for males and females, but the mediation of depression through hopelessness is similar.
+\details
+
+
