@@ -74,12 +74,12 @@ For the second assignment, **you will work in groups** to apply a *path model*
 that describes how several variables could be causally related. The components 
 of the second assignment are described below.
 
-1. Find a suitable dataset, and describe the data. **(150 words)**
+1. Find a suitable dataset, and describe the data. **(250 words)**
     a. Data you have collected yourself (e.g., for a previous course)
     a. Open data (e.g., data provided with a published paper)
     a. The “Coping with COVID-19” dataset (if you can’t find anything else)
 1. State the research question, and define the theoretical path model. 
-**(150 words)**
+**(200 words)**
     a. This model can be a re-analysis of a question that was originally 
     tested using regression or ANOVA in a published paper.
 1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
@@ -100,6 +100,17 @@ model.
 
 ---
 
+### Evaluation {-}
+
+You can find a rubric delineating the evaluation criteria for each component of 
+the first assignment [here](data/a2_rubric.pdf).
+
+- See the [Grading](grading-1.html) section below for more information on how 
+the component scores represented in the rubric are combined into an overall 
+assignment grade.
+
+---
+
 ### Submission {-}
 
 Assignment 2 is due at 23:59 on Friday 28 October 2022
@@ -114,12 +125,12 @@ In the third assignment, **you will work individually** to apply a full *SEM*
 that describes how several (latent) variables could be causally related. The 
 components of the third assignment are described below.
 
-1. Find a suitable dataset, and describe the data. **(150 words)**
+1. Find a suitable dataset, and describe the data. **(250 words)**
     a. Data you have collected yourself (e.g., for a previous course)
     a. Open data (e.g., data provided with a published paper)
     a. The “Coping with COVID-19” dataset (if you can’t find anything else)
 1. State the research question, and define the theoretical SEM. 
-**(200 words)**
+**(300 words)**
     a. This model can be a re-analysis of a question that was originally tested 
     using regression or ANOVA in a published paper.
     a. The structural component of this model must include, at least, three
@@ -127,7 +138,7 @@ components of the third assignment are described below.
     a. The model must include, at least, one latent variable.
 1. Translate your theoretical SEM into `lavaan` syntax, and estimate the model.
     a. Include the code used to define and estimate your model as an appendix.
-1. Explain your rationale for important modeling decisions. **(300 words)**
+1. Explain your rationale for important modeling decisions. **(400 words)**
     a. Discuss the conceptual fit between your theory and your model.
     a. Evaluate the model assumptions.
     a. If applicable, discuss the differences and similarities between your path 
@@ -238,6 +249,10 @@ assignments concluded with a word count.
     - E.g., the *Data* section of Assignment 1 must contain no more that 150 
     words, and the *Discussion* section of Assignment 3 must contain no more 
     than 500 words.
+- Include the word counts for these sections as part of the section heading 
+(e.g., in parentheses following the section title).
+    - You only need to include word counts for the sections for which a word 
+    count is indicated above.
 - In all other sections, you may use as many words as necessary to adequately 
 explain yourself (though concision and parsimony are still encouraged).
 
@@ -275,6 +290,7 @@ the assignment descriptions).
     - Insufficient (0 points)
     - Sufficient (1 point)
     - Excellent (1.5 points)
+- The grader may also choose to assign partial points for some sections.
 - There is also one point awarded for satisfying the formatting and submission 
 requirements.
 
