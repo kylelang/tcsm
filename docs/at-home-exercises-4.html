@@ -453,6 +453,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.17" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-98"><i class="fa fa-check"></i><b>5.5.17</b> </a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="full-sem.html"><a href="full-sem.html"><i class="fa fa-check"></i><b>6</b> Full SEM</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html"><i class="fa fa-check"></i><b>6.1</b> At-Home Exercises</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -526,13 +530,13 @@ Click for explanation
 <span id="cb269-11"><a href="at-home-exercises-4.html#cb269-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># Add the scatterplot points</span></span>
 <span id="cb269-12"><a href="at-home-exercises-4.html#cb269-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="co"># Add a smoothed trend</span></span>
 <span id="cb269-13"><a href="at-home-exercises-4.html#cb269-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># Use a nicer theme</span></span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-200-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="at-home-exercises-4.html#cb270-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-200-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="at-home-exercises-4.html#cb271-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-200-3.png" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="at-home-exercises-4.html#cb272-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-199-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-200-4.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>We can also use the <code>grid.arrange()</code> function from the <strong>gridExtra</strong> package to
 join these four plots into a single figure.</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="at-home-exercises-4.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
@@ -542,7 +546,7 @@ join these four plots into a single figure.</p>
 <span id="cb273-5"><a href="at-home-exercises-4.html#cb273-5" aria-hidden="true" tabindex="-1"></a>             p3 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
 <span id="cb273-6"><a href="at-home-exercises-4.html#cb273-6" aria-hidden="true" tabindex="-1"></a>             p4 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(), </span>
 <span id="cb273-7"><a href="at-home-exercises-4.html#cb273-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-200-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-201-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>There does appear to be an association between each of the predictors and
 <em>suicide risk</em>. The trends don’t look perfectly linear, but they don’t look too
 systematically nonlinear either, so modeling these relationships as linear seems
@@ -575,7 +579,7 @@ aesthetic.</p>
 <span id="cb274-9"><a href="at-home-exercises-4.html#cb274-9" aria-hidden="true" tabindex="-1"></a>             p3 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(),</span>
 <span id="cb274-10"><a href="at-home-exercises-4.html#cb274-10" aria-hidden="true" tabindex="-1"></a>             p4 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>(), </span>
 <span id="cb274-11"><a href="at-home-exercises-4.html#cb274-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-201-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="duddly_bumble_pocket_files/figure-html/unnamed-chunk-202-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Of all the predictors, it looks like <em>substance abuse</em> shows the greatest
 differences between the male and female trends. The other three predictors
 demonstrate pretty similar effects for both sexes.</p>

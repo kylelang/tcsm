@@ -206,3 +206,5 @@ ieFreeSyntax
 section-97
 ieTestSyntax
 section-98
+full-sem
+at-home-exercises-5
