@@ -208,3 +208,12 @@ ieTestSyntax
 section-98
 full-sem
 at-home-exercises-5
+section-99
+section-100
+section-101
+updatedModel
+section-102
+section-103
+section-104
+section-105
+section-106

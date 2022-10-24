@@ -1,4 +1,4 @@
-## Full SEM
+## At-Home Exercises
 
 In these exercises, you will use full structural equation modeling (SEM) to
 evaluate the *Theory of Reasoned Action* (TORA), which is a popular psychological 
@@ -27,7 +27,7 @@ The data contain the following variables:
 - `norm_1`:`norm_3`: Three indicators of social norms about condom use
     - Measured on a 5-point rating scale (e.g., I think most of my friends would 
     use...)
-- `control_1`:`control_3`: Three indicators of percieved behavioral control 
+- `control_1`:`control_3`: Three indicators of perceived behavioral control 
     - Measured on a 5-point rating scale (e.g., I know well how to use a condom)
 - `sex`: Binary factor indicating biological sex
 
@@ -44,7 +44,7 @@ condom <- read.csv("toradata.csv", stringsAsFactors = TRUE)
 ```
 
 ```{r, echo = FALSE}
-dataDir <- "../../data/"
+#dataDir <- "../../data/"
 condom <- read.csv(paste0(dataDir, "toradata.csv"), stringsAsFactors = TRUE)
 ```
 
@@ -54,12 +54,12 @@ condom <- read.csv(paste0(dataDir, "toradata.csv"), stringsAsFactors = TRUE)
 
 ###
 
-The data contain 3 observed indicators of *attitudes*, *norms*, and *control*.
+The data contain multiple indicators of *attitudes*, *norms*, and *control*.
 Run a CFA for these three latent variables.
 
 - Correlate the latent factors.
 - Do the data support the measurement model for these latent factors?
-- Are the three latent factor significantly correlated?
+- Are the three latent factors significantly correlated?
 - Is it reasonable to proceed with our evaluation of the TORA theory?
 
 <details>
@@ -79,7 +79,9 @@ fit <- cfa(mod_cfa, data = condom)
 summary(fit, fit.measures = TRUE)
 ```
 
-- Yes, the model fits the data well, so the data support this measurement structure.
+- Yes, the model fits the data well, and the measurement parameters (e.g., factor
+loadings, residual variances) look reasonable. So, the data seem to support this 
+measurement structure.
 - Yes, all three latent variables are significantly, positively correlated.
 - Yes. 
    - The measurement structure is supported, so we can use the latent variables
@@ -131,8 +133,8 @@ tmp <- inspect(fit, "r2")
 - Yes, the estimates all align with the TORA. Specifically, *attitudes* and 
 *norms* both significantly predict *intention*, and *intention* significantly 
 predicts *condom use*.
-- The model explains `r (100 * tmp$intent) %>% round(3)`% of the variance in 
-*intention* and `r (100 * tmp$behavior) %>% round(3)`% of the variance in 
+- The model explains `r (100 * tmp[["intent"]]) %>% round(2)`% of the variance in 
+*intention* and `r (100 * tmp[["behavior"]]) %>% round(2)`% of the variance in 
 *condom use*.
 
 </details>
@@ -177,8 +179,8 @@ tmp <- inspect(fit, "r2")
 - Yes, the estimates all align with the updated TORA. Specifically, *attitudes* 
 and *norms* both significantly predict *intention*, while *intention* and 
 *control* both significantly predict *condom use*.
-- The model explains `r (100 * tmp$intent) %>% round(3)`% of the variance in 
-*intention* and `r (100 * tmp$behavior) %>% round(3)`% of the variance in 
+- The model explains `r (100 * tmp[["intent"]]) %>% round(2)`% of the variance in 
+*intention* and `r (100 * tmp[["behavior"]]) %>% round(2)`% of the variance in 
 *condom use*.
 
 </details>
@@ -220,6 +222,8 @@ ie_att  := a1 * b
 ie_norm := a2 * b
 '
 
+set.seed(235711)
+
 fit <- sem(mod, data = condom, se = "bootstrap", bootstrap = 1000)
 
 summary(fit, ci = TRUE)
@@ -246,13 +250,18 @@ accurately represent the data, or are they "dead weight".
 
 ###
 
-Use a $\Delta \chi^2$ test to evaluate the necessity of modeling the direct
-effects of *attitudes* and *norms* on *condom use*.
+Use a $\Delta \chi^2$ test to evaluate the necessity of including the direct
+effects of *attitudes* and *norms* on *condom use* in the model.
 
 - What is your conclusion?
 
 <details>
   <summary>Click for explanation</summary>
+
+We only need to compare the fit of the model with the direct effects included
+to the fit of the model without the direct effects. We've already estimated both
+models, so we can simply submit the fitted **lavaan** objects to the `anova()` 
+function.
 
 ```{r}
 anova(fit, fit_tora)
@@ -260,7 +269,7 @@ anova(fit, fit_tora)
 
 The $\Delta \chi^2$ test is not significant. So, we have not lost a significant
 amount of fit by fixing the direct effects to zero. In other words, the complete
-mediation model explains the data just as well as the partial mediatio model. So,
+mediation model explains the data just as well as the partial mediation model. So,
 we should probably prefer the more parsimonious model.
 
 </details>
@@ -273,12 +282,11 @@ Use some statistical means of evaluating the most plausible way to include
 *perceived behavioral control* into the model.
 
 - Choose between the following three options:
-
-1. *control* predicts *behavior* via a direct, un-mediated effect.
-1. *control* predicts *behavior* via an indirect effect that is completely 
-mediated by *intention*.
-1. *control* predicts *behavior* via both an indirect effect through *intention*
-and a residual direct effect.
+    1. *control* predicts *behavior* via a direct, un-mediated effect.
+    1. *control* predicts *behavior* via an indirect effect that is completely 
+    mediated by *intention*.
+    1. *control* predicts *behavior* via both an indirect effect through 
+    *intention* and a residual direct effect.
 
 *Hint:* There is more than one way to approach this problem.
 
@@ -339,15 +347,11 @@ intent   ~ attitudes + norms
 behavior ~ intent + control
 '
 
-## Re-estimate the partial mediation model without bootstrapping:
-fit1 <- sem(mod1, data = condom)
-
 ## Estimate the two restricted models:
 fit2 <- sem(mod2, data = condom)
 fit3 <- sem(mod3, data = condom)
 
 ## Check the results:
-summary(fit1)
 summary(fit2)
 summary(fit3)
 
@@ -377,8 +381,6 @@ specification to the other. Also, both models have the same degrees of freedom,
 so we cannot define a sampling distribution against which we would compare the 
 $\Delta \chi^2$, anyway.
 
----
-
 We are not completely without options, though. We can use *information criteria*
 to compare non-nested models. The two most popular information criteria are the
 *Akaike's Information Criterion* (AIC) and the *Bayesian Information Criterion*
@@ -405,21 +407,49 @@ predictor of *condom* use.
 
 ---
 
-Measurement invariance comes in three (useful) levels:
+Up to this point, we've implemented multiple group models simply by specifying 
+some grouping factor in the **lavaan** fitting function and proceeding with our
+primary analysis (e.g., testing for moderation by group). When we have latent 
+variables in our model, however, we get a new opportunity: we can test 
+*measurement invariance*. 
+
+Basically, measurement invariance testing allows us to empirically test for 
+differences in the measurement model between the groups. If we can establish 
+measurement invariance, we can draw the following (equivalent) conclusions: 
+
+- Our latent constructs are defined equivalently in all groups.
+- The participants in every group are interpreting our items in the same way. 
+- Participants in different groups who have the same values for the observed 
+indicators will also have the same score on the latent variable.
+- Between-group differences in latent parameters are due to true differences in
+the underlying latent constructs and not caused by differences in measurement.
+
+Anytime we make between-group comparisons (e.g., ANOVA, t-tests, moderation by 
+group, etc.) we assume invariant measurement. That is, we assume that the scores
+we're comparing have the same meaning in each group. When doing multiple group 
+SEM, however, we're apprised of the incredibly powerful capability of actually 
+testing this---very important, and often violated---assumption.
+
+
+The process of testing measurement invariance can get quite complex, but the 
+basic procedure boils down to using model comparison tests to evaluate the 
+plausibility of increasingly strong between-group constraints. For most problems,
+these constraints amount to the following three levels:
 
 1. *Configural:* The same pattern of free and fixed effects in all groups
-1. *Weak:* Configural + Equal factor loadings in all groups
-1. *Strong:* Weak + Equal item intercepts in all groups
+1. *Weak (aka Metric):* Configural + Equal factor loadings in all groups
+1. *Strong (aka Scalar):* Weak + Equal item intercepts in all groups
 
 You can read more about measurement invariance [here][van_de_schoot_et_al] and
 [here][putnick_bornstein], and you can find a brief discussion of how to 
-conduct measurement invarince testing in **lavaan** [here][mi_tutorial].
+conduct measurement invariance tests in **lavaan** [here][mi_tutorial].
 
 ---
 
 ###
 
-Test for measurement invariance across *sex* groups.
+Test for measurement invariance across *sex* groups in the three latent variables
+of the TORA model above.
 
 - Test configural, weak, and strong invariance.
 - Test for invariance in all three latent factors simultaneously.
@@ -445,7 +475,7 @@ strong <- cfa(mod_cfa,
               )
 
 ## Check that everything went well:
-summary(config)
+summary(config, fit.measures = TRUE)
 summary(weak)
 summary(strong)
 
@@ -467,10 +497,16 @@ invariance constraints.
 
 ---
 
+Once you've established measurement invariance, you can move on to testing 
+hypotheses about between-group differences secure in the knowledge that your 
+latent factors represent the same hypothetical constructs in all groups.
+
+---
+
 ###
 
 Using a strongly invariant model, conduct an omnibus test to see if *sex* 
-moderates any of the regression paths the TORA model.
+moderates any of the regression paths in the TORA model.
 
 - What do you conclude.
 
