@@ -172,7 +172,7 @@ summary(fit_tora, fit.measures = TRUE, rsquare = TRUE)
 ```
 
 ```{r, echo = FALSE}
-tmp <- inspect(fit, "r2")
+tmp <- inspect(fit_tora, "r2")
 ```
 
 - Yes, the model still fits the data very well.
