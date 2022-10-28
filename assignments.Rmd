@@ -397,6 +397,6 @@ will apply.
 <!----------------------------------------------------------------------------->
 
 [a1]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4261056_1&course_id=_141610_1
-[a2]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4261057_1&course_id=_141610_1
+[a2]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4294883_1&course_id=_141610_1
 [a3]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4261058_1&course_id=_141610_1
 [group]: https://uu.blackboard.com/webapps/bb-group-mgmt-LEARN/execute/groupInventoryList?course_id=_141610_1
