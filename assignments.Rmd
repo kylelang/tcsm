@@ -103,7 +103,7 @@ model.
 ### Evaluation {-}
 
 You can find a rubric delineating the evaluation criteria for each component of 
-the first assignment [here](data/a2_rubric.pdf).
+the second assignment [here](data/a2_rubric.pdf).
 
 - See the [Grading](grading-1.html) section below for more information on how 
 the component scores represented in the rubric are combined into an overall 
@@ -151,6 +151,17 @@ components of the third assignment are described below.
 1. Discuss the results. **(500 words)**
     a. Use your results to answer the research question.
     a. Consider the strengths and limitations of your analysis.
+
+---
+
+### Evaluation {-}
+
+You can find a rubric delineating the evaluation criteria for each component of 
+the third assignment [here](data/a3_rubric.pdf).
+
+- See the [Grading](grading-1.html) section below for more information on how 
+the component scores represented in the rubric are combined into an overall 
+assignment grade.
 
 ---
 
