@@ -31,7 +31,7 @@ Complete the [At-Home Exercises](at-home-exercises-2.html).
 During the practical you will work on the [In-Class Exercises](in-class-exercises-2.html).
 
 <!------------------------------------------------------------------------------
-```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+```{r, eval = FALSE, message = FALSE, warning = FALSE, results = "asis"}
 knitr::knit_child(paste0(partDir, "w5_lecture.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knitr::knit_child(paste0(partDir, "w5_reading.Rmd"), quiet = TRUE) %>%
@@ -48,12 +48,12 @@ knitr::knit_child(paste0(partDir, "w5_class.Rmd"), quiet = TRUE) %>%
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
 knitr::knit_child(paste0(partDir, "lecture-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "reading-placeholder..Rmd"), quiet = TRUE) %>%
+knitr::knit_child(paste0(partDir, "reading-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "assess-placeholder..Rmd"), quiet = TRUE) %>%
+knitr::knit_child(paste0(partDir, "assess-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "home-placeholder..Rmd"), quiet = TRUE) %>%
+knitr::knit_child(paste0(partDir, "home-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "class-placeholder..Rmd"), quiet = TRUE) %>%
+knitr::knit_child(paste0(partDir, "class-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 ```

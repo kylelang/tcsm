@@ -1,6 +1,5 @@
 --- 
 title: "Theory Construction and Statistical Modeling"
-#subtitle: "A guide to structural equation modeling in R"
 author: "Kyle M. Lang"
 date: "Last updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -13,10 +12,6 @@ output:
     split_by: section
     df_print: paged
 documentclass: book
-#bibliography: [../bibtex/book.bib, ../bibtex/packages.bib]
-#biblio-style: apalike
-#link-citations: yes
-#description: "This is a guide for the elective course TCSM."
 ---
 
 ```{r global_options, include = FALSE}

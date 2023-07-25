@@ -59,7 +59,7 @@ will only need the *base* package.
 ```{r, echo = FALSE, fig.width = 3, fig.height = 2}
 library(png)
 library(grid)
-img <- readPNG(paste0(imageDir, "rstudiologo.PNG"))
+img <- readPNG(paste0(imageDir, "rstudiologo.png"))
 grid.raster(img)
 ```
 

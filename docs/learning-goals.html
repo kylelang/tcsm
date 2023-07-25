@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Learning goals | Theory Construction and Statistical Modeling</title>
   <meta name="description" content="Learning goals | Theory Construction and Statistical Modeling" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Learning goals | Theory Construction and Statistical Modeling" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,7 @@
   
 <link rel="prev" href="course-overview.html"/>
 <link rel="next" href="resources.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,8 +53,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -95,7 +93,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +106,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
@@ -164,43 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i>Assignments</a>
 <ul>
-<li class="chapter" data-level="" data-path="assignment-1-latent-variable-model.html"><a href="assignment-1-latent-variable-model.html"><i class="fa fa-check"></i>Assignment 1: Latent Variable Model</a>
-<ul>
-<li class="chapter" data-level="" data-path="assignment-1-latent-variable-model.html"><a href="assignment-1-latent-variable-model.html#evaluation"><i class="fa fa-check"></i>Evaluation</a></li>
-<li class="chapter" data-level="" data-path="assignment-1-latent-variable-model.html"><a href="assignment-1-latent-variable-model.html#submission"><i class="fa fa-check"></i>Submission</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="assignment-2-path-model.html"><a href="assignment-2-path-model.html"><i class="fa fa-check"></i>Assignment 2: Path Model</a>
-<ul>
-<li class="chapter" data-level="" data-path="assignment-2-path-model.html"><a href="assignment-2-path-model.html#evaluation-1"><i class="fa fa-check"></i>Evaluation</a></li>
-<li class="chapter" data-level="" data-path="assignment-2-path-model.html"><a href="assignment-2-path-model.html#submission-1"><i class="fa fa-check"></i>Submission</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a>
-<ul>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html#evaluation-2"><i class="fa fa-check"></i>Evaluation</a></li>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html#submission-2"><i class="fa fa-check"></i>Submission</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i>Data</a>
-<ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#sources"><i class="fa fa-check"></i>Sources</a></li>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#tips"><i class="fa fa-check"></i>Tips</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html"><i class="fa fa-check"></i>Procedures</a>
-<ul>
-<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html#formating"><i class="fa fa-check"></i>Formating</a></li>
-<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html#length"><i class="fa fa-check"></i>Length</a></li>
-<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html#submission-3"><i class="fa fa-check"></i>Submission</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html"><i class="fa fa-check"></i>Grading</a>
-<ul>
-<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html#example-assignment"><i class="fa fa-check"></i>Example Assignment</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html"><i class="fa fa-check"></i>Rules</a>
-<ul>
-<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#resources-1"><i class="fa fa-check"></i>Resources</a></li>
-<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#collaboration"><i class="fa fa-check"></i>Collaboration</a></li>
-<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#academic-integrity"><i class="fa fa-check"></i>Academic integrity</a></li>
-<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#strict-stuff"><i class="fa fa-check"></i>Strict stuff</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="assignment-1-path-analysis.html"><a href="assignment-1-path-analysis.html"><i class="fa fa-check"></i>Assignment 1: Path Analysis</a></li>
+<li class="chapter" data-level="" data-path="assignment-2-factor-analysis.html"><a href="assignment-2-factor-analysis.html"><i class="fa fa-check"></i>Assignment 2: Factor Analysis</a></li>
+<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i>Software Setup</a>
 <ul>
@@ -256,224 +224,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="0.11" data-path="getting-help.html"><a href="getting-help.html"><i class="fa fa-check"></i><b>0.11</b> Getting Help</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="lecture.html"><a href="lecture.html"><i class="fa fa-check"></i><b>1.1</b> Lecture</a></li>
-<li class="chapter" data-level="1.2" data-path="reading.html"><a href="reading.html"><i class="fa fa-check"></i><b>1.2</b> Reading</a>
-<ul>
-<li class="chapter" data-level="" data-path="reading.html"><a href="reading.html#reference"><i class="fa fa-check"></i>Reference</a></li>
-<li class="chapter" data-level="" data-path="reading.html"><a href="reading.html#questions"><i class="fa fa-check"></i>Questions</a></li>
-<li class="chapter" data-level="" data-path="reading.html"><a href="reading.html#answers"><i class="fa fa-check"></i>Answers</a></li>
-</ul></li>
+<li class="chapter" data-level="1.2" data-path="reading.html"><a href="reading.html"><i class="fa fa-check"></i><b>1.2</b> Reading</a></li>
 <li class="chapter" data-level="1.3" data-path="formative-assessment.html"><a href="formative-assessment.html"><i class="fa fa-check"></i><b>1.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="1.4" data-path="at-home-exercises.html"><a href="at-home-exercises.html"><i class="fa fa-check"></i><b>1.4</b> At-Home Exercises</a>
-<ul>
-<li class="chapter" data-level="1.4.1" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section"><i class="fa fa-check"></i><b>1.4.1</b> </a></li>
-<li class="chapter" data-level="1.4.2" data-path="at-home-exercises.html"><a href="at-home-exercises.html#slr1"><i class="fa fa-check"></i><b>1.4.2</b> </a></li>
-<li class="chapter" data-level="1.4.3" data-path="at-home-exercises.html"><a href="at-home-exercises.html#slr2"><i class="fa fa-check"></i><b>1.4.3</b> </a></li>
-<li class="chapter" data-level="1.4.4" data-path="at-home-exercises.html"><a href="at-home-exercises.html#slr3"><i class="fa fa-check"></i><b>1.4.4</b> </a></li>
-<li class="chapter" data-level="1.4.5" data-path="at-home-exercises.html"><a href="at-home-exercises.html#mlr"><i class="fa fa-check"></i><b>1.4.5</b> </a></li>
-<li class="chapter" data-level="1.4.6" data-path="at-home-exercises.html"><a href="at-home-exercises.html#section-1"><i class="fa fa-check"></i><b>1.4.6</b> </a></li>
+<li class="chapter" data-level="1.4" data-path="at-home-exercises.html"><a href="at-home-exercises.html"><i class="fa fa-check"></i><b>1.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="1.5" data-path="in-class-exercises.html"><a href="in-class-exercises.html"><i class="fa fa-check"></i><b>1.5</b> In-Class Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="in-class-exercises.html"><a href="in-class-exercises.html"><i class="fa fa-check"></i><b>1.5</b> In-Class Exercises</a>
-<ul>
-<li class="chapter" data-level="1.5.1" data-path="in-class-exercises.html"><a href="in-class-exercises.html#part-1-data-exploration"><i class="fa fa-check"></i><b>1.5.1</b> Part 1: Data Exploration</a></li>
-<li class="chapter" data-level="1.5.2" data-path="in-class-exercises.html"><a href="in-class-exercises.html#part-2-regression-analysis"><i class="fa fa-check"></i><b>1.5.2</b> Part 2: Regression Analysis</a></li>
-<li class="chapter" data-level="1.5.3" data-path="in-class-exercises.html"><a href="in-class-exercises.html#part-3-anova"><i class="fa fa-check"></i><b>1.5.3</b> Part 3: ANOVA</a></li>
-<li class="chapter" data-level="1.5.4" data-path="in-class-exercises.html"><a href="in-class-exercises.html#part-4-ancova"><i class="fa fa-check"></i><b>1.5.4</b> Part 4: ANCOVA</a></li>
-<li class="chapter" data-level="1.5.5" data-path="in-class-exercises.html"><a href="in-class-exercises.html#part-5-back-to-regression"><i class="fa fa-check"></i><b>1.5.5</b> Part 5: Back to Regression</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="efa.html"><a href="efa.html"><i class="fa fa-check"></i><b>2</b> EFA</a>
+<li class="chapter" data-level="2" data-path="statistical-modeling-path-analysis.html"><a href="statistical-modeling-path-analysis.html"><i class="fa fa-check"></i><b>2</b> Statistical Modeling &amp; Path Analysis</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="lecture-1.html"><a href="lecture-1.html"><i class="fa fa-check"></i><b>2.1</b> Lecture</a></li>
-<li class="chapter" data-level="2.2" data-path="reading-1.html"><a href="reading-1.html"><i class="fa fa-check"></i><b>2.2</b> Reading</a>
-<ul>
-<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-1"><i class="fa fa-check"></i>Reference 1</a></li>
-<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-1"><i class="fa fa-check"></i>Questions 1</a></li>
-<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-1"><i class="fa fa-check"></i>Answers 1</a></li>
-<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference-2"><i class="fa fa-check"></i>Reference 2</a></li>
-<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions-2"><i class="fa fa-check"></i>Questions 2</a></li>
-<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#answers-2"><i class="fa fa-check"></i>Answers 2</a></li>
-</ul></li>
+<li class="chapter" data-level="2.2" data-path="reading-1.html"><a href="reading-1.html"><i class="fa fa-check"></i><b>2.2</b> Reading</a></li>
 <li class="chapter" data-level="2.3" data-path="formative-assessment-1.html"><a href="formative-assessment-1.html"><i class="fa fa-check"></i><b>2.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="2.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html"><i class="fa fa-check"></i><b>2.4</b> At-Home Exercises</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-27"><i class="fa fa-check"></i><b>2.4.1</b> </a></li>
-<li class="chapter" data-level="2.4.2" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-28"><i class="fa fa-check"></i><b>2.4.2</b> </a></li>
-<li class="chapter" data-level="2.4.3" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-29"><i class="fa fa-check"></i><b>2.4.3</b> </a></li>
-<li class="chapter" data-level="2.4.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-30"><i class="fa fa-check"></i><b>2.4.4</b> </a></li>
-<li class="chapter" data-level="2.4.5" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-31"><i class="fa fa-check"></i><b>2.4.5</b> </a></li>
-<li class="chapter" data-level="2.4.6" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-32"><i class="fa fa-check"></i><b>2.4.6</b> </a></li>
-<li class="chapter" data-level="2.4.7" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-33"><i class="fa fa-check"></i><b>2.4.7</b> </a></li>
-<li class="chapter" data-level="2.4.8" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#run_pca"><i class="fa fa-check"></i><b>2.4.8</b> </a></li>
-<li class="chapter" data-level="2.4.9" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#pcScores"><i class="fa fa-check"></i><b>2.4.9</b> </a></li>
-<li class="chapter" data-level="2.4.10" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-34"><i class="fa fa-check"></i><b>2.4.10</b> </a></li>
+<li class="chapter" data-level="2.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html"><i class="fa fa-check"></i><b>2.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="2.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> In-Class Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> In-Class Exercises</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-35"><i class="fa fa-check"></i><b>2.5.1</b> </a></li>
-<li class="chapter" data-level="2.5.2" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-36"><i class="fa fa-check"></i><b>2.5.2</b> </a></li>
-<li class="chapter" data-level="2.5.3" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-37"><i class="fa fa-check"></i><b>2.5.3</b> </a></li>
-<li class="chapter" data-level="2.5.4" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-38"><i class="fa fa-check"></i><b>2.5.4</b> </a></li>
-<li class="chapter" data-level="2.5.5" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-39"><i class="fa fa-check"></i><b>2.5.5</b> </a></li>
-<li class="chapter" data-level="2.5.6" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#trust_efa"><i class="fa fa-check"></i><b>2.5.6</b> </a></li>
-<li class="chapter" data-level="2.5.7" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-40"><i class="fa fa-check"></i><b>2.5.7</b> </a></li>
-<li class="chapter" data-level="2.5.8" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-41"><i class="fa fa-check"></i><b>2.5.8</b> </a></li>
-<li class="chapter" data-level="2.5.9" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-42"><i class="fa fa-check"></i><b>2.5.9</b> </a></li>
-<li class="chapter" data-level="2.5.10" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#factorScores"><i class="fa fa-check"></i><b>2.5.10</b> </a></li>
-<li class="chapter" data-level="2.5.11" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-43"><i class="fa fa-check"></i><b>2.5.11</b> </a></li>
-<li class="chapter" data-level="2.5.12" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-44"><i class="fa fa-check"></i><b>2.5.12</b> </a></li>
-<li class="chapter" data-level="2.5.13" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-45"><i class="fa fa-check"></i><b>2.5.13</b> </a></li>
-<li class="chapter" data-level="2.5.14" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-46"><i class="fa fa-check"></i><b>2.5.14</b> </a></li>
-<li class="chapter" data-level="2.5.15" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#section-47"><i class="fa fa-check"></i><b>2.5.15</b> </a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>3</b> CFA</a>
+<li class="chapter" data-level="3" data-path="mediation-moderation.html"><a href="mediation-moderation.html"><i class="fa fa-check"></i><b>3</b> Mediation &amp; Moderation</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="lecture-2.html"><a href="lecture-2.html"><i class="fa fa-check"></i><b>3.1</b> Lecture</a></li>
-<li class="chapter" data-level="3.2" data-path="reading-2.html"><a href="reading-2.html"><i class="fa fa-check"></i><b>3.2</b> Reading</a>
-<ul>
-<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#reference-3"><i class="fa fa-check"></i>Reference</a></li>
-<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-3"><i class="fa fa-check"></i>Questions</a></li>
-<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#answers-3"><i class="fa fa-check"></i>Answers</a></li>
-</ul></li>
+<li class="chapter" data-level="3.2" data-path="reading-2.html"><a href="reading-2.html"><i class="fa fa-check"></i><b>3.2</b> Reading</a></li>
 <li class="chapter" data-level="3.3" data-path="formative-assessment-2.html"><a href="formative-assessment-2.html"><i class="fa fa-check"></i><b>3.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-48"><i class="fa fa-check"></i><b>3.4.1</b> </a></li>
-<li class="chapter" data-level="3.4.2" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-49"><i class="fa fa-check"></i><b>3.4.2</b> </a></li>
-<li class="chapter" data-level="3.4.3" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#syntax"><i class="fa fa-check"></i><b>3.4.3</b> </a></li>
-<li class="chapter" data-level="3.4.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-50"><i class="fa fa-check"></i><b>3.4.4</b> </a></li>
-<li class="chapter" data-level="3.4.5" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#estimate"><i class="fa fa-check"></i><b>3.4.5</b> </a></li>
-<li class="chapter" data-level="3.4.6" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-51"><i class="fa fa-check"></i><b>3.4.6</b> </a></li>
-<li class="chapter" data-level="3.4.7" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-52"><i class="fa fa-check"></i><b>3.4.7</b> </a></li>
-<li class="chapter" data-level="3.4.8" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-53"><i class="fa fa-check"></i><b>3.4.8</b> </a></li>
-<li class="chapter" data-level="3.4.9" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#section-54"><i class="fa fa-check"></i><b>3.4.9</b> </a></li>
+<li class="chapter" data-level="3.4" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="3.5" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html"><i class="fa fa-check"></i><b>3.5</b> In-Class Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html"><i class="fa fa-check"></i><b>3.5</b> In-Class Exercises</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-55"><i class="fa fa-check"></i><b>3.5.1</b> </a></li>
-<li class="chapter" data-level="3.5.2" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#cfaSyntax"><i class="fa fa-check"></i><b>3.5.2</b> </a></li>
-<li class="chapter" data-level="3.5.3" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-56"><i class="fa fa-check"></i><b>3.5.3</b> </a></li>
-<li class="chapter" data-level="3.5.4" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-57"><i class="fa fa-check"></i><b>3.5.4</b> </a></li>
-<li class="chapter" data-level="3.5.5" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-58"><i class="fa fa-check"></i><b>3.5.5</b> </a></li>
-<li class="chapter" data-level="3.5.6" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-59"><i class="fa fa-check"></i><b>3.5.6</b> </a></li>
-<li class="chapter" data-level="3.5.7" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-60"><i class="fa fa-check"></i><b>3.5.7</b> </a></li>
-<li class="chapter" data-level="3.5.8" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-61"><i class="fa fa-check"></i><b>3.5.8</b> </a></li>
-<li class="chapter" data-level="3.5.9" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-62"><i class="fa fa-check"></i><b>3.5.9</b> </a></li>
-<li class="chapter" data-level="3.5.10" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-63"><i class="fa fa-check"></i><b>3.5.10</b> </a></li>
-<li class="chapter" data-level="3.5.11" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-64"><i class="fa fa-check"></i><b>3.5.11</b> </a></li>
-<li class="chapter" data-level="3.5.12" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-65"><i class="fa fa-check"></i><b>3.5.12</b> </a></li>
-<li class="chapter" data-level="3.5.13" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-66"><i class="fa fa-check"></i><b>3.5.13</b> </a></li>
-<li class="chapter" data-level="3.5.14" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#section-67"><i class="fa fa-check"></i><b>3.5.14</b> </a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i><b>4</b> Mediation</a>
+<li class="chapter" data-level="4" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>4</b> CFA</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="lecture-3.html"><a href="lecture-3.html"><i class="fa fa-check"></i><b>4.1</b> Lecture</a></li>
-<li class="chapter" data-level="4.2" data-path="reading-3.html"><a href="reading-3.html"><i class="fa fa-check"></i><b>4.2</b> Reading</a>
-<ul>
-<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#reference-4"><i class="fa fa-check"></i>Reference</a></li>
-<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#questions-4"><i class="fa fa-check"></i>Questions</a></li>
-<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#answers-4"><i class="fa fa-check"></i>Answers</a></li>
-<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#reference-5"><i class="fa fa-check"></i>Reference</a></li>
-<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#questions-5"><i class="fa fa-check"></i>Questions</a></li>
-<li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#answers-5"><i class="fa fa-check"></i>Answers</a></li>
-</ul></li>
+<li class="chapter" data-level="4.2" data-path="reading-3.html"><a href="reading-3.html"><i class="fa fa-check"></i><b>4.2</b> Reading</a></li>
 <li class="chapter" data-level="4.3" data-path="formative-assessment-3.html"><a href="formative-assessment-3.html"><i class="fa fa-check"></i><b>4.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html"><i class="fa fa-check"></i><b>4.4</b> At-Home Exercises</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-68"><i class="fa fa-check"></i><b>4.4.1</b> </a></li>
-<li class="chapter" data-level="4.4.2" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#syntax1"><i class="fa fa-check"></i><b>4.4.2</b> </a></li>
-<li class="chapter" data-level="4.4.3" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#fit1"><i class="fa fa-check"></i><b>4.4.3</b> </a></li>
-<li class="chapter" data-level="4.4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-69"><i class="fa fa-check"></i><b>4.4.4</b> </a></li>
-<li class="chapter" data-level="4.4.5" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-70"><i class="fa fa-check"></i><b>4.4.5</b> </a></li>
-<li class="chapter" data-level="4.4.6" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#test1"><i class="fa fa-check"></i><b>4.4.6</b> </a></li>
-<li class="chapter" data-level="4.4.7" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#boot"><i class="fa fa-check"></i><b>4.4.7</b> </a></li>
-<li class="chapter" data-level="4.4.8" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-71"><i class="fa fa-check"></i><b>4.4.8</b> </a></li>
-<li class="chapter" data-level="4.4.9" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-72"><i class="fa fa-check"></i><b>4.4.9</b> </a></li>
-<li class="chapter" data-level="4.4.10" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html#section-73"><i class="fa fa-check"></i><b>4.4.10</b> </a></li>
+<li class="chapter" data-level="4.4" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html"><i class="fa fa-check"></i><b>4.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.5</b> In-Class Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.5</b> In-Class Exercises</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-74"><i class="fa fa-check"></i><b>4.5.1</b> </a></li>
-<li class="chapter" data-level="4.5.2" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#diagram"><i class="fa fa-check"></i><b>4.5.2</b> </a></li>
-<li class="chapter" data-level="4.5.3" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#resMod"><i class="fa fa-check"></i><b>4.5.3</b> </a></li>
-<li class="chapter" data-level="4.5.4" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#estimateRes"><i class="fa fa-check"></i><b>4.5.4</b> </a></li>
-<li class="chapter" data-level="4.5.5" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-75"><i class="fa fa-check"></i><b>4.5.5</b> </a></li>
-<li class="chapter" data-level="4.5.6" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-76"><i class="fa fa-check"></i><b>4.5.6</b> </a></li>
-<li class="chapter" data-level="4.5.7" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-77"><i class="fa fa-check"></i><b>4.5.7</b> </a></li>
-<li class="chapter" data-level="4.5.8" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#ieMod"><i class="fa fa-check"></i><b>4.5.8</b> </a></li>
-<li class="chapter" data-level="4.5.9" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-78"><i class="fa fa-check"></i><b>4.5.9</b> </a></li>
-<li class="chapter" data-level="4.5.10" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#qualComp"><i class="fa fa-check"></i><b>4.5.10</b> </a></li>
-<li class="chapter" data-level="4.5.11" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#testMod"><i class="fa fa-check"></i><b>4.5.11</b> </a></li>
-<li class="chapter" data-level="4.5.12" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-79"><i class="fa fa-check"></i><b>4.5.12</b> </a></li>
-<li class="chapter" data-level="4.5.13" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-80"><i class="fa fa-check"></i><b>4.5.13</b> </a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="moderation.html"><a href="moderation.html"><i class="fa fa-check"></i><b>5</b> Moderation</a>
+<li class="chapter" data-level="5" data-path="full-sem.html"><a href="full-sem.html"><i class="fa fa-check"></i><b>5</b> Full SEM</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="lecture-4.html"><a href="lecture-4.html"><i class="fa fa-check"></i><b>5.1</b> Lecture</a></li>
-<li class="chapter" data-level="5.2" data-path="reading-4.html"><a href="reading-4.html"><i class="fa fa-check"></i><b>5.2</b> Reading</a>
-<ul>
-<li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#reference-6"><i class="fa fa-check"></i>Reference</a></li>
-<li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#questions-6"><i class="fa fa-check"></i>Questions</a></li>
-<li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#answers-6"><i class="fa fa-check"></i>Answers</a></li>
-<li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#reference-7"><i class="fa fa-check"></i>Reference</a></li>
-<li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#questions-7"><i class="fa fa-check"></i>Questions</a></li>
-<li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#answers-7"><i class="fa fa-check"></i>Answers</a></li>
-</ul></li>
+<li class="chapter" data-level="5.2" data-path="reading-4.html"><a href="reading-4.html"><i class="fa fa-check"></i><b>5.2</b> Reading</a></li>
 <li class="chapter" data-level="5.3" data-path="formative-assessment-4.html"><a href="formative-assessment-4.html"><i class="fa fa-check"></i><b>5.3</b> Formative Assessment</a></li>
-<li class="chapter" data-level="5.4" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html"><i class="fa fa-check"></i><b>5.4</b> At-Home Exercises</a>
+<li class="chapter" data-level="5.4" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html"><i class="fa fa-check"></i><b>5.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html"><i class="fa fa-check"></i><b>5.5</b> In-Class Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multiple-group-models.html"><a href="multiple-group-models.html"><i class="fa fa-check"></i><b>6</b> Multiple Group Models</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-81"><i class="fa fa-check"></i><b>5.4.1</b> </a></li>
-<li class="chapter" data-level="5.4.2" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-82"><i class="fa fa-check"></i><b>5.4.2</b> </a></li>
-<li class="chapter" data-level="5.4.3" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-83"><i class="fa fa-check"></i><b>5.4.3</b> </a></li>
-<li class="chapter" data-level="5.4.4" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#olsMod"><i class="fa fa-check"></i><b>5.4.4</b> </a></li>
-<li class="chapter" data-level="5.4.5" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-84"><i class="fa fa-check"></i><b>5.4.5</b> </a></li>
-<li class="chapter" data-level="5.4.6" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-85"><i class="fa fa-check"></i><b>5.4.6</b> </a></li>
-<li class="chapter" data-level="5.4.7" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#pathMod"><i class="fa fa-check"></i><b>5.4.7</b> </a></li>
-<li class="chapter" data-level="5.4.8" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-86"><i class="fa fa-check"></i><b>5.4.8</b> </a></li>
-<li class="chapter" data-level="5.4.9" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-87"><i class="fa fa-check"></i><b>5.4.9</b> </a></li>
-<li class="chapter" data-level="5.4.10" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html#section-88"><i class="fa fa-check"></i><b>5.4.10</b> </a></li>
+<li class="chapter" data-level="6.1" data-path="lecture-5.html"><a href="lecture-5.html"><i class="fa fa-check"></i><b>6.1</b> Lecture</a></li>
+<li class="chapter" data-level="6.2" data-path="reading-5.html"><a href="reading-5.html"><i class="fa fa-check"></i><b>6.2</b> Reading</a></li>
+<li class="chapter" data-level="6.3" data-path="formative-assessment-5.html"><a href="formative-assessment-5.html"><i class="fa fa-check"></i><b>6.3</b> Formative Assessment</a></li>
+<li class="chapter" data-level="6.4" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html"><i class="fa fa-check"></i><b>6.4</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html"><i class="fa fa-check"></i><b>6.5</b> In-Class Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html"><i class="fa fa-check"></i><b>5.5</b> In-Class Exercises</a>
-<ul>
-<li class="chapter" data-level="5.5.1" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-89"><i class="fa fa-check"></i><b>5.5.1</b> </a></li>
-<li class="chapter" data-level="5.5.2" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#ieSyntax1"><i class="fa fa-check"></i><b>5.5.2</b> </a></li>
-<li class="chapter" data-level="5.5.3" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-90"><i class="fa fa-check"></i><b>5.5.3</b> </a></li>
-<li class="chapter" data-level="5.5.4" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-91"><i class="fa fa-check"></i><b>5.5.4</b> </a></li>
-<li class="chapter" data-level="5.5.5" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#modifiedModel"><i class="fa fa-check"></i><b>5.5.5</b> </a></li>
-<li class="chapter" data-level="5.5.6" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#fullMgModel"><i class="fa fa-check"></i><b>5.5.6</b> </a></li>
-<li class="chapter" data-level="5.5.7" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-92"><i class="fa fa-check"></i><b>5.5.7</b> </a></li>
-<li class="chapter" data-level="5.5.8" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-93"><i class="fa fa-check"></i><b>5.5.8</b> </a></li>
-<li class="chapter" data-level="5.5.9" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-94"><i class="fa fa-check"></i><b>5.5.9</b> </a></li>
-<li class="chapter" data-level="5.5.10" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-95"><i class="fa fa-check"></i><b>5.5.10</b> </a></li>
-<li class="chapter" data-level="5.5.11" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#modTest1"><i class="fa fa-check"></i><b>5.5.11</b> </a></li>
-<li class="chapter" data-level="5.5.12" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-96"><i class="fa fa-check"></i><b>5.5.12</b> </a></li>
-<li class="chapter" data-level="5.5.13" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#ieList"><i class="fa fa-check"></i><b>5.5.13</b> </a></li>
-<li class="chapter" data-level="5.5.14" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#ieFreeSyntax"><i class="fa fa-check"></i><b>5.5.14</b> </a></li>
-<li class="chapter" data-level="5.5.15" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-97"><i class="fa fa-check"></i><b>5.5.15</b> </a></li>
-<li class="chapter" data-level="5.5.16" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#ieTestSyntax"><i class="fa fa-check"></i><b>5.5.16</b> </a></li>
-<li class="chapter" data-level="5.5.17" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-98"><i class="fa fa-check"></i><b>5.5.17</b> </a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="full-sem.html"><a href="full-sem.html"><i class="fa fa-check"></i><b>6</b> Full SEM</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html"><i class="fa fa-check"></i><b>6.1</b> At-Home Exercises</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-99"><i class="fa fa-check"></i><b>6.1.1</b> </a></li>
-<li class="chapter" data-level="6.1.2" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-100"><i class="fa fa-check"></i><b>6.1.2</b> </a></li>
-<li class="chapter" data-level="6.1.3" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-101"><i class="fa fa-check"></i><b>6.1.3</b> </a></li>
-<li class="chapter" data-level="6.1.4" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#updatedModel"><i class="fa fa-check"></i><b>6.1.4</b> </a></li>
-<li class="chapter" data-level="6.1.5" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-102"><i class="fa fa-check"></i><b>6.1.5</b> </a></li>
-<li class="chapter" data-level="6.1.6" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-103"><i class="fa fa-check"></i><b>6.1.6</b> </a></li>
-<li class="chapter" data-level="6.1.7" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-104"><i class="fa fa-check"></i><b>6.1.7</b> </a></li>
-<li class="chapter" data-level="6.1.8" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-105"><i class="fa fa-check"></i><b>6.1.8</b> </a></li>
-<li class="chapter" data-level="6.1.9" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html#section-106"><i class="fa fa-check"></i><b>6.1.9</b> </a></li>
-</ul></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="wrap-up.html"><a href="wrap-up.html"><i class="fa fa-check"></i><b>7</b> Wrap-Up</a></li>
 </ul>
 
       </nav>
@@ -560,7 +359,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["duddly_bumble_pocket.pdf"],
+"download": ["willy_wallaby_from_wasatch.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
@@ -573,20 +372,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
