@@ -3,6 +3,8 @@
 This chapter contains the details and binding information about the three 
 assignments that comprise the portfolio upon which your course grade is based.
 
+<!------------------------------------------------------------------------------
+
 - For each assignment, you will use R to analyze some real-world data, and you 
 will write up your results in a concise report.
     - The required components of these analyses/reports are delineated in the 
@@ -15,12 +17,69 @@ will write up your results in a concise report.
 
 <!----------------------------------------------------------------------------->
 
-## Assignment 1: Latent Variable Model {-}
+## Assignment 1: Path Analysis {-}
 
-In the first assignment, **you will work in groups** to apply a *latent variable 
+For the first assignment, **you will work in groups** to apply a *path model* 
+that describes how several variables could be causally related. 
+
+<!------------------------------------------------------------------------------
+
+The components of the second assignment are described below.
+
+1. Find a suitable dataset, and describe the data. **(250 words)**
+    a. Data you have collected yourself (e.g., for a previous course)
+    a. Open data (e.g., data provided with a published paper)
+    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
+1. State the research question, and define the theoretical path model. 
+**(200 words)**
+    a. This model can be a re-analysis of a question that was originally 
+    tested using regression or ANOVA in a published paper.
+1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
+model.
+    a. Include the code used to define and estimate your model as an appendix.
+1. Explain your rationale for important modeling decisions. **(300 words)**
+    a. Discuss the conceptual fit between your theory and your model.
+    a. Evaluate the model assumptions.
+    a. If applicable, discuss the differences and similarities between your
+    path model and the regression or ANOVA results from the original paper.
+    a. Discuss other important decisions that could have influence your results.
+1. Report and interpret the results in APA style.
+    a. Provide relevant output in a suitable format.
+    a. Include measures of explained variance for the dependent variables.
+1. Discuss the results. **(300 words)**
+    a. Use your results to answer the research question.
+    a. Consider the strengths and limitations of your analysis.
+
+---
+
+### Evaluation {-}
+
+You can find a rubric delineating the evaluation criteria for each component of 
+the second assignment [here](data/a2_rubric.pdf).
+
+- See the [Grading](grading-1.html) section below for more information on how 
+the component scores represented in the rubric are combined into an overall 
+assignment grade.
+
+---
+
+### Submission {-}
+
+Assignment 2 is due at 23:59 on Friday 28 October 2022
+
+- Submit your report via the [Assignment 2][a2] portal on Blackboard.
+
+<!----------------------------------------------------------------------------->
+
+## Assignment 2: Factor Analysis {-}
+
+In the second assignment, **you will work in groups** to apply a *latent variable 
 model* to a real-world problem wherein the observed variables are indirect 
-indicators of an unobserved social scientific construct. The components of the 
-first assignment are described below.
+indicators of an unobserved social scientific construct. 
+
+<!------------------------------------------------------------------------------
+
+The components of the first assignment are described below.
 
 1. Find a suitable dataset, and describe the data. **(150 words)**.
     a. Data you have collected yourself (e.g., for a previous course)
@@ -68,62 +127,16 @@ Assignment 1 is due at 23:59 on Friday 7 October 2022
 
 <!----------------------------------------------------------------------------->
 
-## Assignment 2: Path Model {-}
-
-For the second assignment, **you will work in groups** to apply a *path model* 
-that describes how several variables could be causally related. The components 
-of the second assignment are described below.
-
-1. Find a suitable dataset, and describe the data. **(250 words)**
-    a. Data you have collected yourself (e.g., for a previous course)
-    a. Open data (e.g., data provided with a published paper)
-    a. The “Coping with COVID-19” dataset (if you can’t find anything else)
-1. State the research question, and define the theoretical path model. 
-**(200 words)**
-    a. This model can be a re-analysis of a question that was originally 
-    tested using regression or ANOVA in a published paper.
-1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
-model.
-    a. Include the code used to define and estimate your model as an appendix.
-1. Explain your rationale for important modeling decisions. **(300 words)**
-    a. Discuss the conceptual fit between your theory and your model.
-    a. Evaluate the model assumptions.
-    a. If applicable, discuss the differences and similarities between your
-    path model and the regression or ANOVA results from the original paper.
-    a. Discuss other important decisions that could have influence your results.
-1. Report and interpret the results in APA style.
-    a. Provide relevant output in a suitable format.
-    a. Include measures of explained variance for the dependent variables.
-1. Discuss the results. **(300 words)**
-    a. Use your results to answer the research question.
-    a. Consider the strengths and limitations of your analysis.
-
----
-
-### Evaluation {-}
-
-You can find a rubric delineating the evaluation criteria for each component of 
-the second assignment [here](data/a2_rubric.pdf).
-
-- See the [Grading](grading-1.html) section below for more information on how 
-the component scores represented in the rubric are combined into an overall 
-assignment grade.
-
----
-
-### Submission {-}
-
-Assignment 2 is due at 23:59 on Friday 28 October 2022
-
-- Submit your report via the [Assignment 2][a2] portal on Blackboard.
-
-<!----------------------------------------------------------------------------->
-
 ## Assignment 3: Full Structural Equation Model {-}
 
 In the third assignment, **you will work individually** to apply a full *SEM* 
-that describes how several (latent) variables could be causally related. The 
-components of the third assignment are described below.
+that describes how several (latent) variables could be causally related. 
+
+***Further details on the assignments is coming soon.***
+
+<!------------------------------------------------------------------------------
+
+The components of the third assignment are described below.
 
 1. Find a suitable dataset, and describe the data. **(250 words)**
     a. Data you have collected yourself (e.g., for a previous course)
@@ -171,7 +184,7 @@ Assignment 3 is due at 23:59 on Friday 11 November 2022
 
 - Submit your report via the [Assignment 3][a3] portal on Blackboard.
 
-<!----------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------
 
 ## Data {-}
 
@@ -230,7 +243,7 @@ When searching for a suitable dataset, consider the following tips:
 me ([Kyle](mailto:k.m.lang@uu.nl)) a link to the dataset, and I'll let you know 
 if it will work for the assignments.
         
-<!----------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------
 
 ## Procedures {-}
 
@@ -290,7 +303,7 @@ report.
     - We will grade the final submitted version.
 - The submissions will be screened with SafeAssign.
 
-<!----------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------
 
 ## Grading {-}
 
@@ -299,7 +312,7 @@ the assignment descriptions).
 
 - Each of these 6 elements will be scored as:
     - Insufficient (0 points)
-    - Sufficient (1 point)
+          - Sufficient (1 point)
     - Excellent (1.5 points)
 - The grader may also choose to assign partial points for some sections.
 - There is also one point awarded for satisfying the formatting and submission 
@@ -332,7 +345,7 @@ improved. That being said, this submission exemplifies what we're looking for
 in your project reports. So, following the spirit of this example would earn you
 a high grade.
 
-<!----------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------
 
 ## Rules {-}
 

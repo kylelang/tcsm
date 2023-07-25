@@ -1,6 +1,6 @@
 # Introduction
 
-```{r week2_global_options, include = FALSE}
+```{r week1_global_options, include = FALSE}
 library(dplyr)
 
 dataDir  <- "../../../data/"
@@ -15,22 +15,30 @@ imageDir <- "../images/"
     a. Read over the [Course Information](index.html) chapter
     a. Work through the [Software Setup](software-setup.html) chapter
     a. Work through the [R Tutorial](r-tutorial.html) chapter
-1. Watch the [Lecture Recording](lecture-1.html) for this week.
-1. Complete the [Reading](reading-1.html) for this week, and answer the associated 
+1. Watch the [Lecture Recording](lecture.html) for this week.
+1. Complete the [Reading](reading.html) for this week, and answer the associated 
 reading questions.
-1. Complete the [Formative Assessment](formative-assessment-1.html) for this week.
+1. Complete the [Formative Assessment](formative-assessment.html) for this week.
 
 **Lecture content**
 
-This week, we will cover statistical modeling and path analysis.
+We start with a brief introduction to the course, the course goals and rules, 
+and the general idea of statistical modeling. 
+
+- We will introduce the type of models that we will consider in this course.
+- We will shortly discuss several related concepts:
+    - Model simplicity/complexity
+    - Model fit
+    - Graphical representations of model parameters
+    - Interpretations of model parameters   
 
 **Homework before the practical**
 
-Complete the [At-Home Exercises](at-home-exercises-1.html). 
+Complete the [At-Home Exercises](at-home-exercises.html). 
 
 **Practical content**
 
-During the practical you will work on the [In-Class Exercises](in-class-exercises-1.html).
+During the practical you will work on the [In-Class Exercises](in-class-exercises.html).
 
 <!------------------------------------------------------------------------------
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
