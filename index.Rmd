@@ -53,8 +53,7 @@ student ID and password).
 
 This course was originally developed by 
 [dr. Caspar van Lissa](https://www.tilburguniversity.edu/staff/c-j-vanlissa). 
-Indeed, you will still see Caspar in the lecture recordings. I 
-([dr. Kyle M. Lang](https://www.kylemlang.com)) have modified Caspar's original 
+I ([dr. Kyle M. Lang](https://www.kylemlang.com)) have modified Caspar's original 
 materials and take full responsibility for any errors or inaccuracies introduced 
 through these modifications. Credit for any particularly effective piece of 
 pedagogy should probably go to Caspar.
@@ -80,7 +79,7 @@ pedagogy should probably go to Caspar.
 
 [Daniëlle Remmerswaal](https://www.uu.nl/staff/DMRemmerswaal)
 
-Laura Jochim
+[Danielle McCool](https://www.uu.nl/staff/DMMcCool)
 
 <!----------------------------------------------------------------------------->
 
@@ -88,16 +87,16 @@ Laura Jochim
 
 This course comprises three parts:
 
+1. *Path analysis*: You will learn how to estimate complex path models of observed 
+   variables (e.g., linked linear regressions) as structural equation models.
 1. *Factor analysis*: You will learn different ways of defining and estimating
-unobserved constructs.
-1. *Path analysis*: You will learn how to conduct regressions and ANOVAs as 
-structural equation models with observed variables.
-1. *Full structural equation modeling*: You will combine the first two topics by 
-estimating path models using latent variables.
+   latent (unobserved) constructs.
+1. *Full structural equation modeling*: You will combine the first two topics to 
+   estimate path models describing the associations among latent constructs.
 
-Each of these three themes will be evaluated with a separate assignment. Your 
-course grade will be based on the weighted average of these three assignment 
-grades.
+Each of these three themes will be evaluated with a separate assignment. The
+first two assignments will be graded on a pass/fail basis. Your course grade 
+will be based on the final assignment grade.
 
 ### Schedule {-}
 
@@ -158,9 +157,8 @@ the trick.
 You will do all of your statistical analyses with the statistical programming 
 language/environment [R][r] and the add-on package [`lavaan`][lavaan].
 
-- If you want to expand your learning, you can follow this excellent 
-[`lavaan` tutorial](https://lavaan.ugent.be/tutorial/). Doing so is entirely 
-optional, though.
+- If you want to expand your learning, you can follow this optional 
+[`lavaan` tutorial](https://lavaan.ugent.be/tutorial/). 
 
 <!----------------------------------------------------------------------------->
 
@@ -209,22 +207,22 @@ past statistics courses. You could also try one of the following open-access opt
 Your grade for the course is based on a “portfolio” composed of the three 
 take-home assignments:
 
-1. Latent variable modeling 
-    - Deadline: **2022-10-07 23:59**
-    - Group assignment
-    - Contributes 25% of your course grade
-
 1. Path modeling 
-    - Deadline: **2022-10-28 23:59**
+    - Deadline: **TBA**
     - Group assignment
-    - Contributes 25% of your course grade
+    - Pass/Fail
+
+1. Latent variable modeling 
+    - Deadline: **TBA**
+    - Group assignment
+    - Pass/Fail 
 
 1. Full Structural equation modeling 
-    - Deadline: **2022-11-11 23:59**
+    - Deadline: **TBA**
     - Individual assignment
-    - Contributes 50% of your course grade
+    - Comprises your entire numeric course grade
 
-**The specifics of the assignments are explicated in the 
+**The specifics of the assignments will be explicated in the 
 [Assignments](assignments.html) chapter of this GitBook**
 
 <!----------------------------------------------------------------------------->
