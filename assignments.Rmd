@@ -3,6 +3,10 @@
 This chapter contains the details and binding information about the three 
 assignments that comprise the portfolio upon which your course grade is based.
 
+***More details will be coming soon.***
+
+Below, you can find a brief idea of what each assignment will cover.
+
 <!------------------------------------------------------------------------------
 
 - For each assignment, you will use R to analyze some real-world data, and you 

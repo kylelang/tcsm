@@ -110,6 +110,9 @@ readxl::read_excel("data/schedule.xlsx") %>%
   )
 ```
 
+*NOTE:* The schedule (including topics covered and assignment deadlines) is
+subject to change at the instructors' discretion.
+
 <!----------------------------------------------------------------------------->
 
 ## Learning goals {-}
@@ -211,17 +214,17 @@ Your grade for the course is based on a “portfolio” composed of the three
 take-home assignments:
 
 1. Path modeling 
-    - Deadline: **TBA**
+    - Deadline: **Friday 2023-10-06 at 23:59**
     - Group assignment
     - Pass/Fail
 
 1. Latent variable modeling 
-    - Deadline: **TBA**
+    - Deadline: **Friday 2023-10-20 at 23:59**
     - Group assignment
     - Pass/Fail 
 
 1. Full Structural equation modeling 
-    - Deadline: **TBA**
+    - Deadline: **Friday 2023-11-10 at 23:59**
     - Individual assignment
     - Comprises your entire numeric course grade
 
