@@ -1,20 +1,12 @@
 # Statistical Modeling & Path Analysis
 
 ```{r week2_global_options, include = FALSE}
-library(dplyr)
-
-dataDir  <- "../../../data/"
-quizDir  <- "../assess/"
-partDir  <- "sections/"
-imageDir <- "../images/"
+source("code/chapter_setup.R")
+partDir <- paste0(partDir0, "week2/")
 ```
 
 **Homework before the lecture**
 
-1. Complete the preparatory material:
-    a. Read over the [Course Information](index.html) chapter
-    a. Work through the [Software Setup](software-setup.html) chapter
-    a. Work through the [R Tutorial](r-tutorial.html) chapter
 1. Watch the [Lecture Recording](lecture-1.html) for this week.
 1. Complete the [Reading](reading-1.html) for this week, and answer the associated 
 reading questions.
@@ -48,14 +40,14 @@ knitr::knit_child(paste0(partDir, "w1_class.Rmd"), quiet = TRUE) %>%
 ------------------------------------------------------------------------------->
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
-knitr::knit_child(paste0(partDir, "lecture-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../lecture-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "reading-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../reading-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "assess-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "home-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../home-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "class-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../class-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 ```

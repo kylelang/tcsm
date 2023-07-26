@@ -494,7 +494,7 @@ is.numeric(LifeSat$gender)
 class(LifeSat$gender)
 ```
 
-The `gender` varible is a binary grouping variable, so it should be stored as a 
+The `gender` variable is a binary grouping variable, so it should be stored as a 
 factor.
 
 - To convert `gender` to a factor, we can use the `factor()` function.

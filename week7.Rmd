@@ -1,13 +1,8 @@
 # Multiple Group Models 
 
 ```{r week7_global_options, include = FALSE}
-library(dplyr)
-
-dataDir  <- "../../../data/"
-quizDir  <- "../assess/"
-partDir  <- "sections/"
-imageDir <- "images/"
-codeDir  <- "../code/"
+source("code/chapter_setup.R")
+partDir <- paste0(partDir0, "week7/")
 ```
 
 **Homework before the lecture**
@@ -31,14 +26,14 @@ Complete the [At-Home Exercises](at-home-exercises-6.html).
 During the practical you will work on the [In-Class Exercises](in-class-exercises-6.html).
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
-knitr::knit_child(paste0(partDir, "lecture-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../lecture-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "reading-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../reading-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "assess-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "home-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../home-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knitr::knit_child(paste0(partDir, "class-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "../class-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 ```

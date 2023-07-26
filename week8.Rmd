@@ -1,15 +1,5 @@
 # Wrap-Up 
 
-```{r week8_global_options, include = FALSE}
-library(dplyr)
-
-dataDir  <- "../../../data/"
-quizDir  <- "../assess/"
-partDir  <- "sections/"
-imageDir <- "images/"
-codeDir  <- "../code/"
-```
-
 **Information**
 
 This is an open week that we'll use to tie up any loose ends and wrap up the course content.

@@ -89,17 +89,25 @@ This course comprises three parts:
 1. *Full structural equation modeling*: You will combine the first two topics to 
    estimate path models describing the associations among latent constructs.
 
-Each of these three themes will be evaluated with a separate assignment. The
-first two assignments will be graded on a pass/fail basis. Your course grade 
-will be based on the final assignment grade.
+Each of these three themes will be evaluated with a separate assignment. 
 
-### Schedule {-}
+- The first two assignments will be graded on a pass/fail basis. 
+- Your course grade will be based on your third assignment grade.
+
+<!----------------------------------------------------------------------------->
+
+## Schedule {-}
 
 ```{r print_schedule, echo = FALSE}
-schedule <- read.csv2("data/schedule.csv")
-knitr::kable(schedule, 
-             col.names = gsub("\\.", " ", colnames(schedule))
-             )
+options(knitr.kable.NA = "")
+
+readxl::read_excel("data/schedule.xlsx") %>%
+  knitr::kable(col.names = c("Course Week",
+                             "Calendar Week",
+                             "Lecture/Practical Topic",
+                             "Workgroup Activity",
+                             "Assignment Deadline")
+  )
 ```
 
 <!----------------------------------------------------------------------------->
