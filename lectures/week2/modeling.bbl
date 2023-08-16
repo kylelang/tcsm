@@ -1,0 +1,27 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Breiman%
+}{%
+Breiman%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+breiman:2001}
+\APACinsertmetastar {%
+breiman:2001}%
+\begin{APACrefauthors}%
+Breiman, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{Statistical modeling: The two cultures (with comments
+  and a rejoinder by the author)}} {{Statistical modeling: The two cultures
+  (with comments and a rejoinder by the author)}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Statistical Science}{16}{3}{199--231}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
