@@ -66,23 +66,23 @@ lightGold <- rgb(195, 146, 48, max = 255)
   seasons to optimize the baseline setup of your team's car.
   \va
   \begin{itemize}
-  \item Suppose you have two candidate setups that you want to compare.
-    \va
-  \item For each setup, you have 100 past lap times.
-    \va
-  \item How do you distill those 200 lap times into a succinct decision between 
-    the two setups?
+    \item Suppose you have two candidate setups that you want to compare.
+      \va
+    \item For each setup, you have 100 past lap times.
+      \va
+    \item How do you distill those 200 lap times into a succinct decision between 
+      the two setups?
   \end{itemize}
-  
+
   \pagebreak
-  
+
   Suppose I tell you that the mean lap time for Setup A is 118 seconds and the 
   mean lap time for Setup B is 110 seconds.
   \va
   \begin{itemize}
-  \item Can you confidently recommend Setup B?
-    \va
-  \item What caveats might you consider?
+    \item Can you confidently recommend Setup B?
+      \va
+    \item What caveats might you consider?
   \end{itemize}
 
 \end{frame}
@@ -95,7 +95,7 @@ lightGold <- rgb(195, 146, 48, max = 255)
   7 seconds and the standard deviation for the times under Setup B is 5 seconds.
   \va
   \begin{itemize}
-  \item How would you incorporate this new information into your decision?
+    \item How would you incorporate this new information into your decision?
   \end{itemize}
   \va
   \pause
@@ -103,10 +103,14 @@ lightGold <- rgb(195, 146, 48, max = 255)
   seconds and the standard deviation under setup B is 25 seconds.
   \va
   \begin{itemize}
-  \item How should you adjust your appraisal of the setups' relative benefits?
+    \item How should you adjust your appraisal of the setups' relative benefits?
   \end{itemize}
 
 \end{frame}
+
+%------------------------------------------------------------------------------%
+
+\section{Statistical Reasoning}
 
 %------------------------------------------------------------------------------%
 
@@ -115,17 +119,17 @@ lightGold <- rgb(195, 146, 48, max = 255)
   The preceding example calls for \emph{statistical reasoning}.
   \va
   \begin{itemize}
-  \item The foundation of all good statistical analyses is a deliberate,
-    careful, and thorough consideration of uncertainty.
-    \va
-  \item In the previous example, the mean lap time for Setup A is clearly longer
-    than the mean lap time for Setup B.
-    \va
-  \item If the times are highly variable, with respect to the size of the mean
-    difference, we may not care much about the mean difference.
-    \va
-  \item The purpose of statistics is to systematize the way that we account
-    for uncertainty when making data-based decisions.
+    \item The foundation of all good statistical analyses is a deliberate,
+      careful, and thorough consideration of uncertainty.
+      \va
+    \item In the previous example, the mean lap time for Setup A is clearly longer
+      than the mean lap time for Setup B.
+      \va
+    \item If the times are highly variable, with respect to the size of the mean
+      difference, we may not care much about the mean difference.
+      \va
+    \item The purpose of statistics is to systematize the way that we account
+      for uncertainty when making data-based decisions.
   \end{itemize}
 
 \end{frame}
@@ -138,13 +142,13 @@ lightGold <- rgb(195, 146, 48, max = 255)
   probability distributions.
   \va
   \begin{itemize}
-  \item Probability distributions quantify how likely it is to observe each 
-    possible value of some probabilistic entity.
-    \va
-  \item Probability distributions are re-scaled frequency distributions.
-    \va
-  \item We can build up the intuition of a probability density by beginning with
-    a histogram.
+    \item Probability distributions quantify how likely it is to observe each 
+      possible value of some probabilistic entity.
+      \va
+    \item Probability distributions are re-scaled frequency distributions.
+      \va
+    \item We can build up the intuition of a probability density by beginning with
+      a histogram.
   \end{itemize}
 
 \end{frame}
@@ -159,7 +163,7 @@ myBins <- c(10, 25, 50, 100)
 
 dat1 <- data.frame(x = rep(rnorm(n), length(myBins)),
                    y = rep(myBins, each = n)
-                   )
+)
 @
 
 \begin{columns}
@@ -167,7 +171,7 @@ dat1 <- data.frame(x = rep(rnorm(n), length(myBins)),
 
 <<echo = FALSE, cache = TRUE, out.width = '\\linewidth'>>=
 p1 <- ggplot(dat1, aes(x = x)) + theme_classic() +
-    coord_cartesian(xlim = c(-4, 4))
+coord_cartesian(xlim = c(-4, 4))
 
 geomList <- mapply(function(x, b) geom_histogram(data = x,
                                                  bins = b,
@@ -175,7 +179,7 @@ geomList <- mapply(function(x, b) geom_histogram(data = x,
                                                  fill = midBlue),
                    dlply(dat1, .(y)),
                    b = myBins
-                   )
+)
 
 labs <- c("10"  = "10 Bins",
           "25"  = "25 Bins",
@@ -183,61 +187,76 @@ labs <- c("10"  = "10 Bins",
           "100" = "100 Bins")
 
 p1 + geomList +
-    facet_wrap(~y, scales = "free_y", labeller = as_labeller(labs)) +
-    theme(strip.background = element_blank(),
-          strip.placement = "outside",
-          text = element_text(size = 16, family = "Courier"))
+  facet_wrap(~y, scales = "free_y", labeller = as_labeller(labs)) +
+  theme(strip.background = element_blank(),
+        strip.placement = "outside",
+        text = element_text(size = 16, family = "Courier"))
 @
 
   \end{column}
   \begin{column}{0.5\textwidth}
+    
+<<echo = FALSE, cache = TRUE>>=
 
-<<echo = FALSE, cache = TRUE, out.width = '\\linewidth'>>=
-p2 <- ggplot(dat1, aes(x = x, y = ..density..)) + theme_classic() +
-    coord_cartesian(xlim = c(-4, 4))
+x <- seq(-4.0, 4.0, 0.001)
 
-geomList <- mapply(function(x, b) geom_histogram(data = x,
-                                                 bins = b,
-                                                 col = "white",
-                                                 fill = midBlue),
-                   dlply(dat1, .(y)),
-                   b = myBins
-                   )
+dat2 <- data.frame(X = x, density = dnorm(x))
 
-labs <- c("10"  = "10 Bins",
-          "25"  = "25 Bins",
-          "50"  = "50 Bins",
-          "100" = "100 Bins")
+p3 <- ggplot(dat2, aes(x = X, y = density)) + theme_classic() +
+  coord_cartesian(xlim = c(-4, 4))
 
-p2 + geomList +
-    facet_wrap(~y, scales = "free_y", labeller = as_labeller(labs)) +
-    theme(strip.background = element_blank(),
-          strip.placement = "outside",
-          text = element_text(size = 16, family = "Courier"))
+p4 <- p3 + geom_area(fill = midBlue) +
+  theme(text = element_text(size = 16, family = "Courier"))
+
+p4
 @
 
-\end{column}
+%<<echo = FALSE, cache = TRUE, out.width = '\\linewidth'>>=
+%p2 <- ggplot(dat1, aes(x = x, y = after_stat(density))) + theme_classic() +
+%coord_cartesian(xlim = c(-4, 4))
+%
+%geomList <- mapply(function(x, b) geom_histogram(data = x,
+%                                                 bins = b,
+%                                                 col = "white",
+%                                                 fill = midBlue),
+%                   dlply(dat1, .(y)),
+%                   b = myBins
+%)
+%
+%labs <- c("10"  = "10 Bins",
+%          "25"  = "25 Bins",
+%          "50"  = "50 Bins",
+%          "100" = "100 Bins")
+%
+%p2 + geomList +
+%  facet_wrap(~y, scales = "free_y", labeller = as_labeller(labs)) +
+%  theme(strip.background = element_blank(),
+%        strip.placement = "outside",
+%        text = element_text(size = 16, family = "Courier"))
+%@
+
+  \end{column}
 \end{columns}
 
 \end{frame}
 
 %------------------------------------------------------------------------------%
-
+\comment{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Probability Distributions}
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      
+
       With an infinite number of bins, a histogram smooths into a continuous 
       curve.
       \va
       \begin{itemize}
-      \item In a loose sense, each point on the curve gives the probability of 
-        observing the corresponding $X$ value in any given sample.
-        \va
-      \item The area under the curve must integrate to 1.0.
+        \item In a loose sense, each point on the curve gives the probability of 
+          observing the corresponding $X$ value in any given sample.
+          \va
+        \item The area under the curve must integrate to 1.0.
       \end{itemize}
-    
+
     \end{column}
     \begin{column}{0.5\textwidth}
 
@@ -248,19 +267,19 @@ x <- seq(-4.0, 4.0, 0.001)
 dat2 <- data.frame(X = x, density = dnorm(x))
 
 p3 <- ggplot(dat2, aes(x = X, y = density)) + theme_classic() +
-    coord_cartesian(xlim = c(-4, 4))
+  coord_cartesian(xlim = c(-4, 4))
 
 p4 <- p3 + geom_area(fill = midBlue) +
-    theme(text = element_text(size = 16, family = "Courier"))
+  theme(text = element_text(size = 16, family = "Courier"))
 
 p4
 @
 
-\end{column}
-\end{columns}
+    \end{column}
+  \end{columns}
 
 \end{frame}
-
+}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %------------------------------------------------------------------------------%
 
 \begin{frame}{Reasoning with Distributions}
@@ -276,7 +295,7 @@ x    <- seq(90, 145, length.out = 10000)
 dat4 <- data.frame(x  = x,
                    yA = dnorm(x, 118, 7),
                    yB = dnorm(x, 110, 5)
-                   )
+)
 
 p5 <- ggplot(data = dat4) + coord_cartesian(xlim = c(90, 145)) + theme_classic()
 p6 <- p5 + geom_area(mapping = aes(x = x, y = yA),
@@ -286,39 +305,43 @@ p7 <- p6 + geom_area(mapping = aes(x = x, y = yB),
                      fill = "blue")
 
 p7 + labs(title = "Instance 1 Visualized", y = "density", x = "Lap Time") +
-     theme(text = element_text(size = 16, family = "Courier"),
-           plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
-           )
+  theme(text = element_text(size = 16, family = "Courier"),
+        plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
+  )
 @
 
-\end{column}
-\begin{column}{0.5\textwidth}
+    \end{column}
+    \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE>>=
 x    <- seq(-20, 260, length.out = 10000)
 dat5 <- data.frame(x  = x,
                    yA = dnorm(x, 118, 35),
                    yB = dnorm(x, 110, 25)
-                   )
+)
 
 p8 <- ggplot(data = dat5) + 
-    coord_cartesian(xlim = c(-20, 260)) + 
-    theme_classic()
+  coord_cartesian(xlim = c(-20, 260)) + 
+  theme_classic()
 p9 <- p8 + geom_area(mapping = aes(x = x, y = yA), fill = "red")
 p10 <- p9 + geom_area(mapping = aes(x = x, y = yB), alpha = 0.80, fill = "blue")
 
 p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
-    theme(text = element_text(size = 16, family = "Courier"),
-          plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
-          )
+  theme(text = element_text(size = 16, family = "Courier"),
+        plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
+  )
 @
 
-\end{column}
-\end{columns}
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
 \watermarkon %-----------------------------------------------------------------%
+
+\section{Statistical Testing}
+
+%------------------------------------------------------------------------------%
 
 \begin{frame}{Statistical Testing}
 
@@ -326,34 +349,33 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
   into a simple statistic so we can make a judgment.
   \vb
   \begin{itemize}
-  \item One way to distill this information and control for uncertainty when
-    generating knowledge is through statistical testing.
-    \vc
-    \begin{itemize}
-    \item When we conduct statistical tests, we weight the estimated effect by 
-      the precision of the estimate.
-    \end{itemize}
-    \vc
-  \item A common type of statistical test, the \emph{Wald Test}, follows this 
-    pattern:
+    \item One way to distill this information and control for uncertainty when
+      generating knowledge is through statistical testing.
+      \vc
+      \begin{itemize}
+        \item When we conduct statistical tests, we weight the estimated effect by 
+          the precision of the estimate.
+      \end{itemize}
+      \vc
+    \item A common type of statistical test, \emph{Student's t-test}, follows this 
+      pattern:
   \end{itemize}
   \begin{align*}
-    T = \frac{\textit{Estimate} - \textit{Null-Hypothesized Value}}
+    t = \frac{\textit{Estimate} - \textit{Null-Hypothesized Value}}
     {\textit{Variability}}
   \end{align*}
-  
+
 \end{frame}
 
 %------------------------------------------------------------------------------%
 
 \begin{frame}{Statistical Testing}
- 
-  If we want to test the null hypothesis of a zero mean difference, applying 
-  Wald test logic to control for the uncertainty in our estimate results in the 
-  familiar \emph{t-test}:
+
+  If we want to test the nil-null hypothesis of a zero mean difference, we get
+  the following values for our example:
   \begin{align*}
     t = \frac{\left(\bar{X}_A - \bar{X}_B\right) - 0}{\sqrt{S^2_{A - B} 
-        \left(n_A^{-1} + n_B^{-1} \right)}}
+    \left(n_A^{-1} + n_B^{-1} \right)}}
   \end{align*}
   where
   \begin{align*}
@@ -363,8 +385,8 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
   \begin{align*}
     \textit{Variability} &= \sqrt{S^2_{A - B} \left(n_A^{-1} + n_B^{-1} \right)}\\
     &= \sqrt{\frac{(n_A - 1) S^2_A + (n_B - 1) S^2_B}
-      {n_A + n_B - 2} \left(\frac{1}{n_A} + \frac{1}{n_B}
-      \right)}
+    {n_A + n_B - 2} \left(\frac{1}{n_A} + \frac{1}{n_B}
+    \right)}
   \end{align*}
 
 \end{frame}
@@ -377,9 +399,9 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
   problem produces:
   \begin{align*}
     t &= \frac{118 - 110 - 0}{\sqrt{\frac{(100 - 1) 7^2 + (100 - 1) 5^2}{100 +
-        100 - 2} \left( \frac{1}{100} + \frac{1}{100} \right)}}\\
-      &\approx \frac{8}{0.86}\\
-      &\approx 9.30
+    100 - 2} \left( \frac{1}{100} + \frac{1}{100} \right)}}\\
+    &\approx \frac{8}{0.86}\\
+    &\approx 9.30
   \end{align*}
 
 \end{frame}
@@ -392,8 +414,8 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
   does not change, but our measure of variability does:
   \begin{align*}
     V &= \sqrt{\frac{(100 - 1) \red{35}^2 + (100 - 1) \red{25}^2}{100 + 100 - 2}
-        \left( \frac{1}{100} + \frac{1}{100} \right)}\\
-      &\approx 4.30
+    \left( \frac{1}{100} + \frac{1}{100} \right)}\\
+    &\approx 4.30
   \end{align*}
   As a results, our test statistic changes to reflect our decreased certainty:
   \begin{align*}
@@ -402,6 +424,7 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
 
 \end{frame}
 
+\comment{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}[fragile, allowframebreaks]{Statistical Testing}
@@ -452,72 +475,75 @@ wrap(out)
   under Setups A and B?
   \vb
   \begin{itemize}
-  \item A test statistic, by itself, is just an arbitrary number.
-    \vb
-  \item To conduct the test, we need to compare the test statistic to some
-    objective reference.
-    \vb
-  \item This objective reference needs to tell us something about how
-    exceptional our test statistic is.
-    \vb
-  \item The specific reference we will be employing is known as a \emph{sampling
+    \item A test statistic, by itself, is just an arbitrary number.
+      \vb
+    \item To conduct the test, we need to compare the test statistic to some
+      objective reference.
+      \vb
+    \item This objective reference needs to tell us something about how
+      exceptional our test statistic is.
+      \vb
+    \item The specific reference we will be employing is known as a \emph{sampling
       distribution} of the test statistic.
   \end{itemize}
 
 \end{frame}
+}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \watermarkoff %----------------------------------------------------------------%
 
-\begin{frame}[shrink = 5]{Sampling Distribution}
+\begin{frame}{Sampling Distributions}
 
-  A sampling distribution is simply the probability distribution of a parameter.
+To evaluate the extremity of our test statistics, we compare our estimated 
+statistic to its null-hypothesized sampling distribution.
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
 
       \begin{itemize}
-      \item The \emph{population} is defined by an infinite sequence of repeated 
-        tests.
-        \vb
-        \begin{itemize}
-        \item The sampling distribution quantifies the possible values of the
-          test statistic over infinite repeated sampling.
-        \end{itemize}
-        \vb
-      \item The area of a region under the curve represents the probability of 
-        observing a \emph{test statistic} within the corresponding interval.
+        \item The \emph{population} is defined by an infinite sequence of repeated 
+          tests.
+          \begin{itemize}
+            \item The sampling distribution quantifies the relative frequencies of 
+              possible values the test statistic can take.
+          \end{itemize}
+        \item The area of a region under the curve represents the probability of 
+          observing a \emph{test statistic} within the corresponding interval.
       \end{itemize}
-      
+
     \end{column}
     \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE>>=
-dat3 <- data.frame(T = dat2$X, density = dt(x = dat2$X, df = 100))
-                                 
-p11 <- ggplot(dat3, aes(x = T, y = density)) + theme_classic() +
-    coord_cartesian(xlim = c(-4, 4))
+dat3 <- data.frame(t = dat2$X, density = dt(x = dat2$X, df = 100))
+
+p11 <- ggplot(dat3, aes(x = t, y = density)) + theme_classic() +
+  coord_cartesian(xlim = c(-4, 4))
 p11 + geom_area(fill = midBlue) +
-    theme(text = element_text(size = 16, family = "Courier"))
+  theme(text = element_text(size = 16, family = "Courier"))
 @
 
-\end{column}
-\end{columns}
+    \end{column}
+  \end{columns}
+
+    Nice demo: \url{http://onlinestatbook.com/stat_sim/sampling_dist/}
 
 \end{frame}
 
 \watermarkon %-----------------------------------------------------------------%
 
+\comment{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[shrink = 5]{Sampling Distributions}
 
   Note that a sampling distribution is a slightly different concept than the
   distribution of a random variable.
   \vc
   \begin{itemize}
-  \item The sampling distribution quantifies the possible values of a
-    statistic (e.g., mean, t-statistic, correlation coefficient, etc.).
-    \vc
-  \item The distribution of a random variable quantifies the possible values of
-    a variable (e.g., age, gender, income, movie preferences, etc.).
+    \item The sampling distribution quantifies the possible values of a
+      statistic (e.g., mean, t-statistic, correlation coefficient, etc.).
+      \vc
+    \item The distribution of a random variable quantifies the possible values of
+      a variable (e.g., age, gender, income, movie preferences, etc.).
   \end{itemize}
   \vb
   \pause
@@ -525,11 +551,11 @@ p11 + geom_area(fill = midBlue) +
   variables' distributions.
   \vc
   \begin{itemize}
-  \item The t-statistic also has a sampling distribution that quantifies the 
-    possible t-values we could get if we repeatedly drew samples from the 
-    variables' distributions and re-computed a t-statistic each time.
-    \vc
-  \item \url{http://onlinestatbook.com/stat_sim/sampling_dist/}
+    \item The t-statistic also has a sampling distribution that quantifies the 
+      possible t-values we could get if we repeatedly drew samples from the 
+      variables' distributions and re-computed a t-statistic each time.
+      \vc
+    \item \url{http://onlinestatbook.com/stat_sim/sampling_dist/}
   \end{itemize}
 
 \end{frame}
@@ -540,33 +566,33 @@ p11 + geom_area(fill = midBlue) +
 
   To quantify how exceptional our estimated t-statistic is, we compare the 
   estimated value to a sampling distribution of t-statistics \emph{assuming no
-    effect}.
+  effect}.
   \vb
   \begin{itemize}
-  \item This distribution quantifies the \emph{null hypothesis}.
-    \vb
-    \begin{itemize}
-    \item The special case of a null hypothesis of no effect is called
-      the \emph{nil-null}.
-    \end{itemize}
-    \vb
-  \item If our estimated statistic would be very unusual in a population where
-    the null hypothesis is true, we reject the null and claim a ``statistically
-    significant'' effect.
+    \item This distribution quantifies the \emph{null hypothesis}.
+      \vb
+      \begin{itemize}
+        \item The special case of a null hypothesis of no effect is called
+          the \emph{nil-null}.
+      \end{itemize}
+      \vb
+    \item If our estimated statistic would be very unusual in a population where
+      the null hypothesis is true, we reject the null and claim a ``statistically
+      significant'' effect.
   \end{itemize}
 
 \end{frame}
 
 \watermarkoff %----------------------------------------------------------------%
 
-\begin{frame}{Computing the Probability of Events}
+  \begin{frame}{Computing the Probability of Events}
 
-  We can find the probability associated with a range of values (i.e., a range
-  of possible events, variable values, or statistics) by computing the area of 
-  the corresponding slice from the distribution.
+    We can find the probability associated with a range of values (i.e., a range
+    of possible events, variable values, or statistics) by computing the area of 
+    the corresponding slice from the distribution.
 
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE, out.width = '\\linewidth'>>=
 dat2.2 <- dat2[dat2$X > -1.0 & dat2$X <= 1.0, ]
@@ -576,8 +602,8 @@ p4 + geom_ribbon(data = dat2.2,
                  fill = "red")
 @
 
-\end{column}
-\begin{column}{0.5\textwidth}
+      \end{column}
+      \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE, out.width = '\\linewidth'>>=
 
@@ -588,79 +614,79 @@ p4 + geom_ribbon(data = dat2.3,
                  fill = "red")
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
 
-\watermarkon %-----------------------------------------------------------------%
+  \watermarkon %-----------------------------------------------------------------%
 
-\begin{frame}{P-Values}
+  \begin{frame}{P-Values}
 
-  By calculating the area in the null distribution that exceeds our estimated
-  test statistic, we can compute the probability of observing the given test
-  statistic, or one more extreme, if the null hypothesis were true.
-  \va
-  \begin{itemize}
-  \item In other words, we can compute the probability of having
-    sampled the data we observed, or more unusual data, from a
-    population wherein there is no true mean difference in lap times.
-  \end{itemize}
-  \va
-  This value is the infamous \emph{p-value}.
+    By calculating the area in the null distribution that exceeds our estimated
+    test statistic, we can compute the probability of observing the given test
+    statistic, or one more extreme, if the null hypothesis were true.
+    \va
+    \begin{itemize}
+      \item In other words, we can compute the probability of having
+        sampled the data we observed, or more unusual data, from a
+        population wherein there is no true mean difference in lap times.
+    \end{itemize}
+    \va
+    This value is the infamous \emph{p-value}.
 
-\end{frame}
+  \end{frame}
 
-\watermarkoff
+  \watermarkoff
 
-\begin{frame}[fragile]{P-Values}
+  \begin{frame}[fragile]{P-Values}
 
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
 
 <<>>=
 tOut <-
-    t.test(x         = xA2,
-           y         = xB2,
-           var.equal = TRUE)
+  t.test(x         = xA2,
+         y         = xB2,
+         var.equal = TRUE)
 tHat <- tOut$statistic
 tHat
 @
 
-\end{column}
-\begin{column}{0.5\textwidth}
+      \end{column}
+      \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE>>=
 x <- seq(-4, 4, 0.01)
 
 dat5 <- data.frame(x = x,
                    y = dt(x, df = 198, ncp = 0)
-                   )
+)
 
 p12 <- ggplot(data = dat5, aes(x = x, y = y)) +
-    theme_classic() +
-    theme(text = element_text(size = 16, family = "Courier"))
+  theme_classic() +
+  theme(text = element_text(size = 16, family = "Courier"))
 
 p13 <- p12 + geom_area(fill = midBlue)
 p13 + labs(title = "Sampling distribution of central\nt-statistic with df = 198",
            x     = "t",
            y     = "density") +
-    theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
+                   theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{P-Values}
+  \begin{frame}[fragile]{P-Values}
 
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
 
-      Find the area higher than $\hat{t}$:
+        Find the area higher than $\hat{t}$:
 
 <<>>=
 pt(q          = tHat,
@@ -670,37 +696,37 @@ pt(q          = tHat,
 
 Hmm...this value looks too small. Why?
 
-\end{column}
-\begin{column}{0.5\textwidth}
+      \end{column}
+      \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE>>=
 p13 + geom_ribbon(data = dat5[dat5$x >= tHat, ],
                   mapping = aes(x = x, ymin = 0, ymax = y),
                   fill = "red") +
-    labs(title = "Sampling distribution of central\nt-statistic with df = 198",
-         x     = "t",
-         y     = "density") +
-    theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
+                   labs(title = "Sampling distribution of central\nt-statistic with df = 198",
+                        x     = "t",
+                        y     = "density") +
+                   theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{P-Values}
+  \begin{frame}[fragile]{P-Values}
 
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      The preceding test is \emph{one-tailed}.
-      \vc
-      \begin{itemize}
-        \item We use a one-tailed test when we have directional hypotheses.
-          \vc
-        \item Since we didn't expect Setup B to out-perform Setup A, we need to 
-          use a two-tailed test.
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        The preceding test is \emph{one-tailed}.
+        \vc
+        \begin{itemize}
+          \item We use a one-tailed test when we have directional hypotheses.
+            \vc
+          \item Since we didn't expect Setup B to out-perform Setup A, we need to 
+            use a two-tailed test.
         \end{itemize}
 
 <<>>=
@@ -709,194 +735,198 @@ p13 + geom_ribbon(data = dat5[dat5$x >= tHat, ],
        lower.tail = FALSE)
 @
 
-\end{column}
-\begin{column}{0.5\textwidth}
+      \end{column}
+      \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE>>=
 p13 + geom_ribbon(data = dat5[dat5$x >= tHat, ],
                   mapping = aes(x = x, ymin = 0, ymax = y),
                   fill = "red") +
-    geom_ribbon(data = dat5[dat5$x <= -tHat, ],
-                mapping = aes(x = x, ymin = 0, ymax = y),
-                fill = "red") +
-    labs(title = "Sampling distribution of central\nt-statistic with df = 198",
-         x     = "t",
-         y     = "density") +
-    theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
+                   geom_ribbon(data = dat5[dat5$x <= -tHat, ],
+                               mapping = aes(x = x, ymin = 0, ymax = y),
+                               fill = "red") +
+                   labs(title = "Sampling distribution of central\nt-statistic with df = 198",
+                        x     = "t",
+                        y     = "density") +
+                   theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
 
-\watermarkon %-----------------------------------------------------------------%
+  \watermarkon %-----------------------------------------------------------------%
 
-\begin{frame}{Interpreting P-Values}
-  
+  \begin{frame}{Interpreting P-Values}
+
 <<echo = FALSE>>=
 pv <- pt(q          = tHat,
          df         = 198,
          lower.tail = FALSE)
 @
- 
+
 Consider the one-tailed test for our estimated test-statistic of $\hat{t} = 
 \Sexpr{round(tHat, 2)}$ that produces a p-value of $p = \Sexpr{round(pv, 3)}$.
 \vc
 \begin{itemize}
-\item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
-  probability that the true mean difference is greater than zero.
-  \vc
-\item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
-  probability that the alternative hypothesis is true.
-  \vc
-\item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
-  probability that the null hypothesis is false.
-  \vc
-\item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
-  probability that the observed result is due to chance alone.
-  \vc
-\item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
-  probability of replicating the observed effect in future studies.
+  \item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
+    probability that the true mean difference is greater than zero.
+    \vc
+  \item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
+    probability that the alternative hypothesis is true.
+    \vc
+  \item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
+    probability that the null hypothesis is false.
+    \vc
+  \item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
+    probability that the observed result is due to chance alone.
+    \vc
+  \item We \emph{\underline{cannot}} say that there is a $\Sexpr{round(pv, 3)}$ 
+    probability of replicating the observed effect in future studies.
 \end{itemize}
 
-\end{frame}
+  \end{frame}
 
-\watermarkoff %----------------------------------------------------------------%
+  \watermarkoff %----------------------------------------------------------------%
 
-\begin{frame}{Interpreting P-Values}
-  
-\begin{columns}
-  \begin{column}{0.5\textwidth}
-    
-    The p-value tells us $P(t \geq \hat{t}|H_0)$
-    \begin{itemize}
-    \item What we really want to know is $P(H_0|t \geq \hat{t})$.
-    \end{itemize}
-    \vb
-    All that we \emph{\underline{can}} say is that there is a 
-    $\Sexpr{round(pv, 3)}$ probability of observing a test statistic at least as 
-    large as $\hat{t}$, if the null hypothesis is true.
-    \vc
-    \begin{itemize}
-    \item Our test uses the same logic as \emph{proof by contradiction}.
-    \end{itemize}
-    
-  \end{column}
-  \begin{column}{0.5\textwidth}
-    
+  \begin{frame}{Interpreting P-Values}
+
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+
+        The p-value tells us $P(t \geq \hat{t}|H_0)$
+        \begin{itemize}
+          \item What we really want to know is $P(H_0|t \geq \hat{t})$.
+        \end{itemize}
+        \vb
+        All that we \emph{\underline{can}} say is that there is a 
+        $\Sexpr{round(pv, 3)}$ probability of observing a test statistic at least as 
+        large as $\hat{t}$, if the null hypothesis is true.
+        \vc
+        \begin{itemize}
+          \item Our test uses the same logic as \emph{proof by contradiction}.
+        \end{itemize}
+
+      \end{column}
+      \begin{column}{0.5\textwidth}
+
 <<echo = FALSE>>=
 p13 + geom_ribbon(data = dat5[dat5$x >= tHat, ],
                   mapping = aes(x = x, ymin = 0, ymax = y),
                   fill = "red") +
-    labs(x = "t", y = "density")
+                   labs(x = "t", y = "density")
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}{Interpreting P-Values}
-  
-\begin{columns}
-  \begin{column}{0.5\textwidth}
-    
-    Note that $P(t \geq \hat{t}|H_0) \neq P(t = \hat{t}|H_0)$
-    \vx{-12}
-    \begin{itemize}
-    \item We \emph{\underline{cannot}} say that there is a 
-      $\Sexpr{round(pv, 3)}$ probability of observing $\hat{t}$, if the null 
-      hypothesis is true.
-    \end{itemize}
-    \vb
-    The probability of observing any individual point on a continuous 
-    distribution is exactly zero.
-    \vc
-    \begin{itemize}
-    \item $P(t = \hat{t}|H_0) = 0$
-    \end{itemize}
-    
-  \end{column}
-  \begin{column}{0.5\textwidth}
-    
+  \begin{frame}{Interpreting P-Values}
+
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+
+        Note that $P(t \geq \hat{t}|H_0) \neq P(t = \hat{t}|H_0)$
+        \vx{-12}
+        \begin{itemize}
+          \item We \emph{\underline{cannot}} say that there is a 
+            $\Sexpr{round(pv, 3)}$ probability of observing $\hat{t}$, if the null 
+            hypothesis is true.
+        \end{itemize}
+        \vb
+        The probability of observing any individual point on a continuous 
+        distribution is exactly zero.
+        \vc
+        \begin{itemize}
+          \item $P(t = \hat{t}|H_0) = 0$
+        \end{itemize}
+
+      \end{column}
+      \begin{column}{0.5\textwidth}
+
 <<echo = FALSE>>=
 p13 + geom_ribbon(data = dat5[dat5$x >= tHat, ],
                   mapping = aes(x = x, ymin = 0, ymax = y),
                   fill = "red") +
-    labs(x = "t", y = "density")
+                   labs(x = "t", y = "density")
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
+  \watermarkon %-----------------------------------------------------------------%
+  }%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\watermarkon %-----------------------------------------------------------------%
+  \section{Statistical Modeling}
 
-\begin{frame}{Statistical Modeling}
+  %------------------------------------------------------------------------------%
+  
+  \begin{frame}{Statistical Modeling}
 
-  Statistical testing is a very useful tool, but it quickly reaches a limit.
-  \vb
-  \begin{itemize}
-  \item In experimental contexts, real-world ``messiness'' is controlled through
-    random assignment, and statistical testing is a sufficient method of
-    knowledge generation.
+    Statistical testing is a very useful tool, but it quickly reaches a limit.
     \vb
-  \item Data scientists rarely have the luxury of being able to conduct
-    experiments.
-    \vb
-  \item Data scientists work with messy observational data and usually don't
-    have questions that lend themselves to rigorous testing.
-  \end{itemize}
-  \va
-  Data scientists need \emph{statistical modeling}.
+    \begin{itemize}
+      \item In experimental contexts, real-world ``messiness'' is controlled through
+        random assignment, and statistical testing is a sufficient method of
+        knowledge generation.
+        \vb
+      \item Data scientists rarely have the luxury of being able to conduct
+        experiments.
+        \vb
+      \item Data scientists work with messy observational data and usually don't
+        have questions that lend themselves to rigorous testing.
+    \end{itemize}
+    \va
+    Data scientists need \emph{statistical modeling}.
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}{Statistical Modeling}
+  \begin{frame}{Statistical Modeling}
 
-  \begin{itemize}
-  \item Modelers attempt to build a mathematical representation
-    of the (interesting aspects) of a data distribution.
-    \vb
-  \item The model succinctly describes whatever system is being
-    analyzed.
-    \vb
-  \item Beginning with a model ensures that we are learning the
-    important features of a distribution.
-    \vb
-  \item The modeling approach is especially important in messy
-    data science applications where clear a priori hypotheses are
-    rare.
-  \end{itemize}
+    \begin{itemize}
+      \item Modelers attempt to build a mathematical representation
+        of the (interesting aspects) of a data distribution.
+        \vb
+      \item The model succinctly describes whatever system is being
+        analyzed.
+        \vb
+      \item Beginning with a model ensures that we are learning the
+        important features of a distribution.
+        \vb
+      \item The modeling approach is especially important in messy
+        data science applications where clear a priori hypotheses are
+        rare.
+    \end{itemize}
 
-\end{frame}
+  \end{frame}
 
-\watermarkoff %----------------------------------------------------------------%
+  \watermarkoff %----------------------------------------------------------------%
 
-\begin{frame}{Statistical Modeling}
+  \begin{frame}{Statistical Modeling}
 
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
 
-      To apply a modeling approach to our example problem we consider the 
-      combined distribution of lap times.
-      \va
-      \begin{itemize}
-      \item The model we construct will explain variation in lap times  based on 
-        interesting features.
+        To apply a modeling approach to our example problem we consider the 
+        combined distribution of lap times.
         \va
-      \item In this simple case, the only feature we consider is the type of 
-        setup.
-      \end{itemize}
+        \begin{itemize}
+          \item The model we construct will explain variation in lap times  based on 
+            interesting features.
+            \va
+          \item In this simple case, the only feature we consider is the type of 
+            setup.
+        \end{itemize}
 
-    \end{column}
-    \begin{column}{0.5\textwidth}
+      \end{column}
+      \begin{column}{0.5\textwidth}
 
 <<echo = FALSE, cache = TRUE>>=
 dat6 <- data.frame(time             = c(xA, xB), 
@@ -904,21 +934,21 @@ dat6 <- data.frame(time             = c(xA, xB),
                    stringsAsFactors = TRUE)
 
 p14 <- ggplot(data = dat6, mapping = aes(x = time)) +
-    theme_classic() +
-    theme(text = element_text(size = 16, family = "Courier"))
+  theme_classic() +
+  theme(text = element_text(size = 16, family = "Courier"))
 
 p14 + geom_density() + xlim(c(85, 145))
 @
 
-\end{column}
-\end{columns}
+      \end{column}
+    \end{columns}
 
-\end{frame}
+  \end{frame}
 
-\watermarkon %-----------------------------------------------------------------%
+  \watermarkon %-----------------------------------------------------------------%
 
-\begin{frame}[allowframebreaks]{Modeling our Example}
-  
+  \begin{frame}[allowframebreaks]{Modeling our Example}
+
 <<echo = FALSE>>=
 exData       <- dat6
 exData$setup <- relevel(exData$setup, ref = "B")
@@ -935,35 +965,35 @@ times is normal.
   Y_{time} \sim \text{N}\left(\mu, \sigma^2\right)
 \end{align*}
 
-  To get the same answer as our statistical test, we model the mean of the distribution of 
-  lap times, $\mu$, using a single grouping factor.
-  \begin{align*}
-    \mu &= \beta_0 + \beta_1 X_{setup}\\[5pt]
-    Y_{time} &\sim \text{N} \left( \beta_0 + \beta_1 X_{setup}, \sigma^2 \right)
-  \end{align*}
+To get the same answer as our statistical test, we model the mean of the distribution of 
+lap times, $\mu$, using a single grouping factor.
+\begin{align*}
+  \mu &= \beta_0 + \beta_1 X_{setup}\\[5pt]
+  Y_{time} &\sim \text{N} \left( \beta_0 + \beta_1 X_{setup}, \sigma^2 \right)
+\end{align*}
 
-  \pagebreak
+\pagebreak
 
-  Since we're mostly interested in describing the mean lap time, we can express the above differently:
-  \begin{align*}
-    Y_{time} &= \beta_0 + \beta_1 X_{setup} + \varepsilon\\[5pt]
-    \varepsilon &\sim \text{N}\left(0, \sigma^2\right)
-  \end{align*}
-  
-  After we fit this model to a sample, the parameters $\beta_0$ and $\beta_1$ 
-  are replaced by estimated statistics.
-  \begin{align*}
-    \hat{Y}_{time} &= \hat{\beta}_0 + \hat{\beta}_1 X_{setup}\\[5pt]
-    &= \Sexpr{b0} + \Sexpr{b1} X_{setup}
-  \end{align*}
+Since we're mostly interested in describing the mean lap time, we can express the above differently:
+\begin{align*}
+  Y_{time} &= \beta_0 + \beta_1 X_{setup} + \varepsilon\\[5pt]
+  \varepsilon &\sim \text{N}\left(0, \sigma^2\right)
+\end{align*}
 
-\end{frame}
+After we fit this model to a sample, the parameters $\beta_0$ and $\beta_1$ 
+are replaced by estimated statistics.
+\begin{align*}
+  \hat{Y}_{time} &= \hat{\beta}_0 + \hat{\beta}_1 X_{setup}\\[5pt]
+  &= \Sexpr{b0} + \Sexpr{b1} X_{setup}
+\end{align*}
 
-\watermarkoff %----------------------------------------------------------------%
+  \end{frame}
 
-\begin{frame}[fragile]{Modeling our Example}
+  \watermarkoff %----------------------------------------------------------------%
 
-  We can easily fit this model in R:
+  \begin{frame}[fragile]{Modeling our Example}
+
+    We can easily fit this model in R:
 
 <<>>=
 lmOut <- lm(time ~ setup, data = exData)
@@ -971,103 +1001,103 @@ lmOut <- lm(time ~ setup, data = exData)
 partSummary(lmOut, -c(1, 2))
 @
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}{Two Modeling Traditions}
+  \begin{frame}{Two Modeling Traditions}
 
-  \citet{breiman:2001} defines two cultures of statistical modeling:
-  \begin{itemize}
-  \item Data models
-  \item Algorithmic models
-  \end{itemize}
-  \vb
-  \pause
-  Data scientists use both types of models.
-  \begin{itemize}
-  \item Both types of model have strengths and weaknesses.
+    \citet{breiman:2001} defines two cultures of statistical modeling:
     \begin{itemize}
-    \item Data models tend to support a priori hypothesis testing more easily.
-    \item Data models also tend to provide more interpretable results.
-    \item Algorithmic models can't be beat for pure power.
+      \item Data models
+      \item Algorithmic models
     \end{itemize}
     \vb
     \pause
-  \item Algorithmic models are currently preferred in cutting edge
-    prediction/classification applications.  
-    \vb
+    Data scientists use both types of models.
+    \begin{itemize}
+      \item Both types of model have strengths and weaknesses.
+        \begin{itemize}
+          \item Data models tend to support a priori hypothesis testing more easily.
+          \item Data models also tend to provide more interpretable results.
+          \item Algorithmic models can't be beat for pure power.
+        \end{itemize}
+        \vb
+        \pause
+      \item Algorithmic models are currently preferred in cutting edge
+        prediction/classification applications.  
+        \vb
+        \pause
+      \item Many models can be viewed as data models or algorithmic models,
+        depending on how they're used.
+    \end{itemize}
+
+  \end{frame}
+
+  %------------------------------------------------------------------------------%
+
+  \begin{frame}{Characteristics of Models}
+
+    Data models share several core features:
+    \begin{itemize}
+      \item Data models are built from probability distributions.
+        \begin{itemize}
+          \item Data models are modular.
+        \end{itemize}
+        \vc
+      \item Data models encode our hypothesized understanding of the system we're 
+        exploring.
+        \begin{itemize}
+          \item Data models are constructed in a ``top-down'', theory-driven way.
+        \end{itemize}
+    \end{itemize}
+
     \pause
-  \item Many models can be viewed as data models or algorithmic models,
-    depending on how they're used.
-  \end{itemize}
-  
-\end{frame}
+    \vb
 
-%------------------------------------------------------------------------------%
-
-\begin{frame}{Characteristics of Models}
-
-  Data models share several core features:
-  \begin{itemize}
-  \item Data models are built from probability distributions.
+    Algorithmic models are distinct from data models in several ways:
     \begin{itemize}
-    \item Data models are modular.
+      \item Algorithmic models do not have to be built from probability
+        distributions.
+        \begin{itemize}
+          \item Often, they are based on a set of decision rules (i.e., an algorithm).
+        \end{itemize}
+        \vc
+      \item Algorithmic models begin with an objective (i.e., a problem to solve)
+        and seek the optimal solution, given the data.
+        \begin{itemize}
+          \item They are built in a ``bottom-up'', data-driven way.
+        \end{itemize}
     \end{itemize}
-    \vc
-  \item Data models encode our hypothesized understanding of the system we're 
-    exploring.
-    \begin{itemize}
-    \item Data models are constructed in a ``top-down'', theory-driven way.
-    \end{itemize}
-  \end{itemize}
 
-  \pause
-  \vb
-  
-  Algorithmic models are distinct from data models in several ways:
-  \begin{itemize}
-  \item Algorithmic models do not have to be built from probability
-    distributions.
-    \begin{itemize}
-    \item Often, they are based on a set of decision rules (i.e., an algorithm).
-    \end{itemize}
-    \vc
-  \item Algorithmic models begin with an objective (i.e., a problem to solve)
-    and seek the optimal solution, given the data.
-    \begin{itemize}
-    \item They are built in a ``bottom-up'', data-driven way.
-    \end{itemize}
-  \end{itemize}
-  
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Data Modeling Example}
+  \begin{frame}[fragile]{Data Modeling Example}
 
-  Suppose we believe the following:
-  \begin{enumerate}
-  \item BMI is positively associated with disease progression in diabetic 
-    patients after controlling for age and average blood pressure.
-  \item After controlling for age and average blood pressure, the effect of BMI 
-    on disease progression is different for men and women.
-  \end{enumerate}
-  \vb
-  We can represent these beliefs with a moderated regression model:
-  \begin{align*}
-    Y_{prog} = \beta_0 + \beta_1 X_{BMI} + \beta_2 X_{sex} + \beta_3 X_{age} + \beta_4 X_{BP} + \beta_5 X_{BMI} X_{sex} + \varepsilon
-  \end{align*}
-  
-\end{frame}
+    Suppose we believe the following:
+    \begin{enumerate}
+      \item BMI is positively associated with disease progression in diabetic 
+        patients after controlling for age and average blood pressure.
+      \item After controlling for age and average blood pressure, the effect of BMI 
+        on disease progression is different for men and women.
+    \end{enumerate}
+    \vb
+    We can represent these beliefs with a moderated regression model:
+    \begin{align*}
+      Y_{prog} = \beta_0 + \beta_1 X_{BMI} + \beta_2 X_{sex} + \beta_3 X_{age} + \beta_4 X_{BP} + \beta_5 X_{BMI} X_{sex} + \varepsilon
+    \end{align*}
 
-\watermarkoff %----------------------------------------------------------------%
+  \end{frame}
 
-\begin{frame}[fragile]{Data Modeling Example}
-  
-  We can use R to fit our model to some patient data:
-  
-<<messages = FALSE>>=
+  \watermarkoff %----------------------------------------------------------------%
+
+  \begin{frame}[fragile]{Data Modeling Example}
+
+    We can use R to fit our model to some patient data:
+
+<<message = FALSE>>=
 library(rockchalk)
 
 ## Load the data:
@@ -1078,25 +1108,25 @@ dDat    <- readRDS(paste0(dataDir, "diabetes.rds"))
 fit <- lm(progress ~ bmi * sex + age + bp, data = dDat)
 @ 
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Data Modeling Example}
+  \begin{frame}[fragile]{Data Modeling Example}
 
 <<>>=
 partSummary(fit, -c(1, 2))
 @ 
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Data Modeling Example}
-  
-  We can do a simple slopes analysis to test the group-specific effects of BMI 
-  on disease progression:
-  
+  \begin{frame}[fragile]{Data Modeling Example}
+
+    We can do a simple slopes analysis to test the group-specific effects of BMI 
+    on disease progression:
+
 <<include = FALSE>>=
 psOut <- plotSlopes(fit, plotx = "bmi", modx = "sex")
 tsOut <- testSlopes(psOut)
@@ -1111,63 +1141,63 @@ tsOut <- testSlopes(psOut)
 tsOut$hypotests[ , -1]
 @ 
 
-\end{frame}
+  \end{frame}
 
-\watermarkon %-----------------------------------------------------------------%
+  \watermarkon %-----------------------------------------------------------------%
 
-\begin{frame}[fragile]{Data Modeling Example}
+  \begin{frame}[fragile]{Data Modeling Example}
 
-  We can also visualize the simple slopes:
-  
+    We can also visualize the simple slopes:
+
 <<echo = FALSE, out.width = '6.5cm'>>=
 plotSlopes(fit, plotx = "bmi", modx = "sex")
 @
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}{Algorithmic Modeling Example}
-  
-  Suppose we want to find the best predictors of disease progression among the
-  variables contained in our dataset:
-  \begin{columns}
-    \begin{column}{0.4\textwidth}
-      \begin{itemize}
-      \item Age
-      \item BMI
-      \item Blood Pressure
-      \item Blood Glucose
-      \item Sex
-      \end{itemize}
-      
-    \end{column}
-    \begin{column}{0.4\textwidth}
-      
-      \begin{itemize}
-      \item Total Cholesterol
-      \item LDL Cholesterol
-      \item HDL Cholesterol
-      \item Triglycerides
-      \item Lamorigine 
-      \end{itemize}
-      
-    \end{column}
-  \end{columns}
-  \va
-  We could try \emph{best-subset selection}.
-  \begin{itemize}
-  \item Fit a series of regression models wherein disease progression is
-    predicted by all possible subsets of X variables.
-  \item Choose the set of X variables that minimizes the prediction error.
-  \end{itemize}
-  
-\end{frame}
+  \begin{frame}{Algorithmic Modeling Example}
 
-\watermarkoff %----------------------------------------------------------------%
+    Suppose we want to find the best predictors of disease progression among the
+    variables contained in our dataset:
+    \begin{columns}
+      \begin{column}{0.4\textwidth}
+        \begin{itemize}
+          \item Age
+          \item BMI
+          \item Blood Pressure
+          \item Blood Glucose
+          \item Sex
+        \end{itemize}
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
-  
+      \end{column}
+      \begin{column}{0.4\textwidth}
+
+        \begin{itemize}
+          \item Total Cholesterol
+          \item LDL Cholesterol
+          \item HDL Cholesterol
+          \item Triglycerides
+          \item Lamorigine 
+        \end{itemize}
+
+      \end{column}
+    \end{columns}
+    \va
+    We could try \emph{best-subset selection}.
+    \begin{itemize}
+      \item Fit a series of regression models wherein disease progression is
+        predicted by all possible subsets of X variables.
+      \item Choose the set of X variables that minimizes the prediction error.
+    \end{itemize}
+
+  \end{frame}
+
+  \watermarkoff %----------------------------------------------------------------%
+
+  \begin{frame}[fragile]{Algorithmic Modeling Example}
+
 <<>>=
 library(leaps)
 
@@ -1186,21 +1216,21 @@ fit <- regsubsets(x     = progress ~ .,
 sum <- summary(fit)
 @ 
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
+  \begin{frame}[fragile]{Algorithmic Modeling Example}
 
 <<>>=
 sum$outmat
 @ 
 
-\end{frame}
+  \end{frame}
 
-%------------------------------------------------------------------------------%
+  %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
+  \begin{frame}[fragile]{Algorithmic Modeling Example}
 
 <<>>=
 ## Variables selected by BIC:
@@ -1213,57 +1243,124 @@ xNames[with(sum, which[which.max(adjr2), -1])]
 xNames[with(sum, which[which.min(cp), -1])]
 @
 
-\end{frame}
+  \end{frame}
 
-\watermarkon %-----------------------------------------------------------------%
+  \watermarkon %-----------------------------------------------------------------%
 
-\begin{frame}{Algorithmic Modeling Example}
+  \begin{frame}{Prediction \& Estimation}
 
-  The results seem to be highly sensitive to the error measure. What should we
-  do?
-  \pause
-  \begin{itemize}
-  \item We could pick our favorite error measure and use its results.
-  \item We could throw our hands up in defeat and quit.
-  \item We could look at the results and pick the answer we like best.
+    There are two other common objectives of statistical analyses.
+    \begin{enumerate}
+      \item Prediction/Classification
+      \item Estimation
+    \end{enumerate}
+
+    \vb
+
+    \emph{Prediction/Classification} involves building a statistical model to "guess" 
+    future values of some outcome.
     \begin{itemize}
-    \item The previous two suggestions are sub-optimal, but this one is
-      actually unethical. Don't do this!
+      \item Weather forcasting
+      \item Predicting the winner of an election
+      \item Financial projections
     \end{itemize}
-  \end{itemize}
-  \pause
-  \vb
-  If we think like a data scientist and get creative, we don't need to settle
-  for these ambiguous results.
-  \begin{itemize}
-  \item We could implement a more robust method of calculating prediction error 
-    like \emph{K-fold cross validation}.
-  \item We can use resampling methods to quantify uncertainty in the variable
-    selection process.
-  \end{itemize}
-  
-\end{frame}
 
-\watermarkoff %----------------------------------------------------------------%
+    \vb
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
+    \emph{Estimation} focusses on getting the most accurate possible estimate of some 
+    real-world quantity.
+    \begin{itemize}
+      \item The number of refugees in a country
+      \item The rates of obesity in a certain population
+      \item The number of traffic accidents in a given area
+    \end{itemize}
+
+  \end{frame}
+
+  %------------------------------------------------------------------------------%
+
+  \begin{frame}{Formal Modeling}
+
+    \citet{smaldino:2017} distinguishes between two ways in which we can translate 
+    theories into models.
+
+    \vb
+
+    \rmsc{Verbal Models}
+    \begin{itemize}
+      \item Vague descriptions of the theory or phenomenon
+      \item The description does not describe the theory explicitly enough to
+        define a single, unambiguous representation
+      \item The model could describe multiple phenomena
+    \end{itemize}
+
+    \vb
+
+    \rmsc{Formal Models}
+    \begin{itemize}
+      \item Rigorously defines all the important aspects of a system
+      \item Implies only one representation of the phenomenon
+      \item Can be used to rule-out potential theories by comparing models
+    \end{itemize}
+
+  \end{frame}
+
+  %------------------------------------------------------------------------------%
+
+  \begin{frame}{Example}
+
+  \end{frame}
+
+  %------------------------------------------------------------------------------%
+
+  \comment{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}{Algorithmic Modeling Example}
+
+      The results seem to be highly sensitive to the error measure. What should we
+      do?
+      \pause
+      \begin{itemize}
+        \item We could pick our favorite error measure and use its results.
+        \item We could throw our hands up in defeat and quit.
+        \item We could look at the results and pick the answer we like best.
+          \begin{itemize}
+            \item The previous two suggestions are sub-optimal, but this one is
+              actually unethical. Don't do this!
+          \end{itemize}
+      \end{itemize}
+      \pause
+      \vb
+      If we think like a data scientist and get creative, we don't need to settle
+      for these ambiguous results.
+      \begin{itemize}
+        \item We could implement a more robust method of calculating prediction error 
+          like \emph{K-fold cross validation}.
+        \item We can use resampling methods to quantify uncertainty in the variable
+          selection process.
+      \end{itemize}
+
+    \end{frame}
+
+    \watermarkoff %----------------------------------------------------------------%
+
+    \begin{frame}[fragile]{Algorithmic Modeling Example}
 
 <<>>=
 bic <- r2 <- cp <- matrix(NA, 100, ncol(dDat) - 1)
 for(rp in 1 : 100) {
-    ## Resample the data:
-    tmp <- dDat[sample(1 : nrow(dDat), nrow(dDat), TRUE), ]
-    
-    ## Train the models:
-    fit <- regsubsets(x     = progress ~ ., 
-                      data  = tmp, 
-                      nvmax = ncol(tmp) - 1)
-    sum <- summary(fit)
-    
-    ## Save the optimal selections:
-    bic[rp, ] <- with(sum, which[which.min(bic), -1])
-    r2[rp, ]  <- with(sum, which[which.max(adjr2), -1])
-    cp[rp, ]  <- with(sum, which[which.min(cp), -1])
+  ## Resample the data:
+  tmp <- dDat[sample(1 : nrow(dDat), nrow(dDat), TRUE), ]
+
+  ## Train the models:
+  fit <- regsubsets(x     = progress ~ ., 
+                    data  = tmp, 
+                    nvmax = ncol(tmp) - 1)
+  sum <- summary(fit)
+
+  ## Save the optimal selections:
+  bic[rp, ] <- with(sum, which[which.min(bic), -1])
+  r2[rp, ]  <- with(sum, which[which.max(adjr2), -1])
+  cp[rp, ]  <- with(sum, which[which.min(cp), -1])
 }
 @ 
 
@@ -1271,11 +1368,11 @@ for(rp in 1 : 100) {
 colnames(bic) <- colnames(r2) <- colnames(cp) <- colnames(sum$which)[-1]
 @
 
-\end{frame}
+    \end{frame}
 
-%------------------------------------------------------------------------------%
+    %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
+    \begin{frame}[fragile]{Algorithmic Modeling Example}
 
 <<size = 'scriptsize'>>=
 colMeans(bic)
@@ -1283,11 +1380,11 @@ colMeans(r2)
 colMeans(cp)
 @
 
-\end{frame}
+    \end{frame}
 
-%------------------------------------------------------------------------------%
+    %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
+    \begin{frame}[fragile]{Algorithmic Modeling Example}
 
 <<>>=
 ## Find the best subset via majority vote:
@@ -1298,86 +1395,86 @@ preds <- xNames[votes > 0.5]; preds
 ## Fit the winning model to the original data:
 form <- paste0("progress ~ ", 
                paste(preds, collapse = " + ")
-               )
+)
 fit  <- lm(form, data = dDat)
 @ 
 
-\end{frame}
+    \end{frame}
 
-%------------------------------------------------------------------------------%
+    %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{Algorithmic Modeling Example}
+    \begin{frame}[fragile]{Algorithmic Modeling Example}
 
 <<>>=
 partSummary(fit, -c(1, 2))
 @   
 
-\end{frame}
+    \end{frame}
 
-%------------------------------------------------------------------------------%
+    %------------------------------------------------------------------------------%
 
-\begin{frame}{Model-Based Prediction}
+    \begin{frame}{Model-Based Prediction}
 
-  So far, our discussion has centered on inference about estimated model
-  parameters.
-  \vb
-  \begin{itemize}
-  \item The mean difference between lap times under Setups A and B.
-    \vb
-  \item We modeled the system and scrutinized $\hat{\beta}_1$ to make inferences 
-    about the mean difference in lap times.
-  \end{itemize}
-  \va
-  \pause
-  In data science applications, we're often more interested in predicting the 
-  outcome for new observations.
-  \vb
-  \begin{itemize}
-  \item After we estimate $\hat{\beta}_0$ and $\hat{\beta}_1$, we can plug in 
-    new predictor data and get a predicted outcome value for any new case.
-  \vb
-  \item In our example, these predictions represent the projected lap times 
-    under the different setups.
-  \end{itemize}
+      So far, our discussion has centered on inference about estimated model
+      parameters.
+      \vb
+      \begin{itemize}
+        \item The mean difference between lap times under Setups A and B.
+          \vb
+        \item We modeled the system and scrutinized $\hat{\beta}_1$ to make inferences 
+          about the mean difference in lap times.
+      \end{itemize}
+      \va
+      \pause
+      In data science applications, we're often more interested in predicting the 
+      outcome for new observations.
+      \vb
+      \begin{itemize}
+        \item After we estimate $\hat{\beta}_0$ and $\hat{\beta}_1$, we can plug in 
+          new predictor data and get a predicted outcome value for any new case.
+          \vb
+        \item In our example, these predictions represent the projected lap times 
+          under the different setups.
+      \end{itemize}
 
-\end{frame}
+    \end{frame}
 
-%------------------------------------------------------------------------------%
+    %------------------------------------------------------------------------------%
 
-\begin{frame}{Inference vs. Prediction}
-  
-  When doing statistical inference, we focus on how certain variables relate to 
-  the outcome.
-  \begin{itemize}
-  \item Do men have higher job-satisfaction than women?
-  \item Does increased spending on advertising correlate with more sales?
-  \item Is there a relationship between the number of liquor stores in a 
-    neighborhood and the amount of crime?
-  \end{itemize}
-  
-  \vb
-  \pause
-  
-  When doing prediction, we want to build a tool that can accurately guess 
-  future values.
-  \begin{itemize}
-  \item Will it rain tomorrow? 
-  \item Will this investment turn a profit within one year?
-  \item Will increasing the number of contact hours improve grades?
-  \end{itemize}
-  
-\end{frame}
+    \begin{frame}{Inference vs. Prediction}
 
-%------------------------------------------------------------------------------%
+      When doing statistical inference, we focus on how certain variables relate to 
+      the outcome.
+      \begin{itemize}
+        \item Do men have higher job-satisfaction than women?
+        \item Does increased spending on advertising correlate with more sales?
+        \item Is there a relationship between the number of liquor stores in a 
+          neighborhood and the amount of crime?
+      \end{itemize}
 
-\begin{frame}[allowframebreaks]{References}
+      \vb
+      \pause
 
-  \bibliographystyle{apacite}
-  \bibliography{../../bibtex/idsRefs.bib}
+      When doing prediction, we want to build a tool that can accurately guess 
+      future values.
+      \begin{itemize}
+        \item Will it rain tomorrow? 
+        \item Will this investment turn a profit within one year?
+        \item Will increasing the number of contact hours improve grades?
+      \end{itemize}
 
-\end{frame}
+    \end{frame}
+    }%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------------------------------------------------------------------------%
 
-%------------------------------------------------------------------------------%
+    \begin{frame}[allowframebreaks]{References}
 
-\end{document}
+      \bibliographystyle{apacite}
+      \bibliography{../../bibtex/tcsm.bib}
+
+    \end{frame}
+
+    %------------------------------------------------------------------------------%
+
+  \end{document}
 

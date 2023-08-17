@@ -1,7 +1,10 @@
 ### Title:    Support Functions for Examples
 ### Author:   Kyle M. Lang
 ### Created:  2017-08-24
-### Modified: 2022-07-01
+### Modified: 2023-08-17
+
+library(dplyr)
+library(ggplot2)
 
 ###--------------------------------------------------------------------------###
 

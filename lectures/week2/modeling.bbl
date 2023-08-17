@@ -24,4 +24,27 @@ Breiman, L.%
 \APACjournalVolNumPages{Statistical Science}{16}{3}{199--231}.
 \PrintBackRefs{\CurrentBib}
 
+\bibitem [\protect \citeauthoryear {%
+Smaldino%
+}{%
+Smaldino%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+smaldino:2017}
+\APACinsertmetastar {%
+smaldino:2017}%
+\begin{APACrefauthors}%
+Smaldino, P\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Models are stupid, and we need more of them} {Models are
+  stupid, and we need more of them}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computational Social Psychology}{}{}{311--331}.
+\PrintBackRefs{\CurrentBib}
+
 \end{thebibliography}
