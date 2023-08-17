@@ -73,15 +73,34 @@
 \headcommand {\beamer@framepages {37}{37}}
 \headcommand {\slideentry {3}{0}{18}{38/38}{}{0}}
 \headcommand {\beamer@framepages {38}{38}}
-\headcommand {\slideentry {3}{0}{19}{39/39}{}{0}}
+\headcommand {\beamer@sectionpages {16}{38}}
+\headcommand {\beamer@subsectionpages {16}{38}}
+\headcommand {\sectionentry {4}{Path Modeling}{39}{Path Modeling}{0}}
+\headcommand {\slideentry {4}{0}{1}{39/39}{}{0}}
 \headcommand {\beamer@framepages {39}{39}}
-\headcommand {\beamer@sectionpages {16}{39}}
-\headcommand {\beamer@subsectionpages {16}{39}}
-\headcommand {\sectionentry {4}{References}{40}{References}{0}}
-\headcommand {\slideentry {4}{0}{0}{40/40}{}{0}}
+\headcommand {\slideentry {4}{0}{2}{40/40}{}{0}}
 \headcommand {\beamer@framepages {40}{40}}
-\headcommand {\beamer@partpages {1}{40}}
-\headcommand {\beamer@subsectionpages {16}{40}}
-\headcommand {\beamer@sectionpages {16}{40}}
-\headcommand {\beamer@documentpages {40}}
-\headcommand {\gdef \inserttotalframenumber {35}}
+\headcommand {\slideentry {4}{0}{3}{41/41}{}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {4}{0}{4}{42/42}{}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {4}{0}{4}{42/43}{}{0}}
+\headcommand {\beamer@framepages {42}{43}}
+\headcommand {\slideentry {4}{0}{4}{42/44}{}{0}}
+\headcommand {\beamer@framepages {42}{44}}
+\headcommand {\slideentry {4}{0}{5}{45/45}{}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\slideentry {4}{0}{6}{46/46}{}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\slideentry {4}{0}{7}{47/47}{}{0}}
+\headcommand {\beamer@framepages {47}{47}}
+\headcommand {\beamer@sectionpages {39}{47}}
+\headcommand {\beamer@subsectionpages {39}{47}}
+\headcommand {\sectionentry {5}{References}{48}{References}{0}}
+\headcommand {\slideentry {5}{0}{0}{48/48}{}{0}}
+\headcommand {\beamer@framepages {48}{48}}
+\headcommand {\beamer@partpages {1}{48}}
+\headcommand {\beamer@subsectionpages {39}{48}}
+\headcommand {\beamer@sectionpages {39}{48}}
+\headcommand {\beamer@documentpages {48}}
+\headcommand {\gdef \inserttotalframenumber {43}}
