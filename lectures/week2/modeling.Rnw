@@ -1,7 +1,7 @@
 %%% Title:    TCSM Lecture 2: Statistical Modeling & Path Analysis
 %%% Author:   Kyle M. Lang
 %%% Created:  2017-05-19
-%%% Modified: 2023-08-17
+%%% Modified: 2023-08-19
 
 \documentclass[10pt]{beamer}
 \usetheme{Utrecht}
@@ -60,6 +60,10 @@ lightGold <- rgb(195, 146, 48, max = 255)
 
 %------------------------------------------------------------------------------%
 
+\section{Flavors of Statistical Analysis}
+
+%------------------------------------------------------------------------------%
+
 \begin{frame}[allowframebreaks]{Motivating Example}
 
   Imagine you are working for an F1 team. You're job is to use data from past 
@@ -110,7 +114,7 @@ lightGold <- rgb(195, 146, 48, max = 255)
 
 %------------------------------------------------------------------------------%
 
-\section{Statistical Reasoning}
+\subsection{Statistical Reasoning}
 
 %------------------------------------------------------------------------------%
 
@@ -275,7 +279,7 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
 
 \watermarkon %-----------------------------------------------------------------%
 
-\section{Statistical Testing}
+\subsection{Statistical Testing}
 
 %------------------------------------------------------------------------------%
 
@@ -289,12 +293,12 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
       generating knowledge is through statistical testing.
       \vc
       \begin{itemize}
-        \item When we conduct statistical tests, we weight the estimated effect by 
-          the precision of the estimate.
+        \item When we conduct statistical tests, we define a \emph{test statistic}
+          by weighting the estimated effect by the precision of the estimate.
       \end{itemize}
       \vc
-    \item A common type of statistical test, \emph{Student's t-test}, follows this 
-      pattern:
+    \item One of the most common test statistics, \emph{Student's t-test}, 
+      follows this pattern:
   \end{itemize}
   \begin{align*}
     t = \frac{\textit{Estimate} - \textit{Null-Hypothesized Value}}
@@ -307,8 +311,8 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
 
 \begin{frame}{Statistical Testing}
 
-  If we want to test the nil-null hypothesis of a zero mean difference, we get
-  the following values for our example:
+  To test the nil-null hypothesis of a zero mean difference, we define the
+  t-statistic as follows:
   \begin{align*}
     t = \frac{\left(\bar{X}_A - \bar{X}_B\right) - 0}{\sqrt{S^2_{A - B} 
     \left(n_A^{-1} + n_B^{-1} \right)}}
@@ -360,6 +364,7 @@ p10 + labs(title = "Instance 2 Visualized", y = "density", x = "Lap Time") +
 
 \end{frame}
 
+\comment{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{Sampling Distributions}
@@ -401,8 +406,9 @@ p11 + geom_area(fill = midBlue) +
 \end{frame}
 
 \watermarkon %-----------------------------------------------------------------%
+}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Statistical Modeling}
+\subsection{Statistical Modeling}
 
 %------------------------------------------------------------------------------%
 
@@ -411,38 +417,54 @@ p11 + geom_area(fill = midBlue) +
   Statistical testing is a very useful tool, but it quickly reaches a limit.
   \vb
   \begin{itemize}
-    \item In experimental contexts, real-world ``messiness'' is controlled through
-      random assignment, and statistical testing is a sufficient method of
-      knowledge generation.
+    \item In experimental contexts (with successful random assignment) real-world 
+      ``messiness'' is controlled through random assignment.
+      \vc
+      \begin{itemize}
+        \item Researchers working with messy observational data, usually don't
+          have questions that lend themselves to rigorous testing.
+      \end{itemize}
       \vb
-    \item Data scientists rarely have the luxury of being able to conduct
-      experiments.
-      \vb
-    \item Data scientists work with messy observational data and usually don't
-      have questions that lend themselves to rigorous testing.
+    \item Unless embedded in a larger model, statistical tests can only answer
+      simple yes/no questions about single parameters.
+      \vc
+      \begin{itemize}
+        \item Researchers studying complex processes need more elaborate means of
+          representing the phenomena under study.
+      \end{itemize}
   \end{itemize}
   \va
-  Data scientists need \emph{statistical modeling}.
+  Such situations call for \emph{statistical modeling}.
 
 \end{frame}
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}{Statistical Modeling}
+\begin{frame}{What is a Statistical Model?}
 
+  A statistical model is a mathematical representation of the thing we're trying
+  to study.
   \begin{itemize}
-    \item Modelers attempt to build a mathematical representation
-      of the (interesting aspects) of a data distribution.
+    \item We can basically model anything.
+      \begin{itemize}
+      \item Theoretical process
+      \item Social or physical system
+      \item Natural phenomenon
+      \end{itemize}
       \vb
-    \item The model succinctly describes whatever system is being
-      analyzed.
+    \item The model succinctly describes whatever system is being analyzed.
+      \begin{itemize}
+        \item The model is an abstraction of reality.
+        \item We only include the \emph{interesting} parts of the process.
+      \end{itemize}
       \vb
-    \item Beginning with a model ensures that we are learning the
-      important features of a distribution.
-      \vb
-    \item The modeling approach is especially important in messy
-      data science applications where clear a priori hypotheses are
-      rare.
+    \item For our purposes, a statistical model is a probability distribution
+      that describes the possible ways our focal system can "behave".
+      \begin{itemize}
+        \item Such model are a rigorous, unambiguous quantification of a 
+          theory.
+        \item We can evaluate theories by comparing models.
+      \end{itemize}
   \end{itemize}
 
 \end{frame}
@@ -546,31 +568,30 @@ partSummary(lmOut, -c(1, 2))
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \begin{frame}{Two Modeling Traditions}
 
   \citet{breiman:2001} defines two cultures of statistical modeling:
+  \vc
   \begin{itemize}
-    \item Data models
-    \item Algorithmic models
+    \item Data models \& Algorithmic models
+      \vc
+    \item Our definition of \emph{statistical models} matches Breiman's 
+      definition of \emph{data models}.
   \end{itemize}
-  \vb
   \pause
-  Data scientists use both types of models.
+  \vb
+  Both approaches have strengths and weaknesses.
+  \vc
   \begin{itemize}
-    \item Both types of model have strengths and weaknesses.
-      \begin{itemize}
-        \item Data models tend to support a priori hypothesis testing more easily.
-        \item Data models also tend to provide more interpretable results.
-        \item Algorithmic models can't be beat for pure power.
-      \end{itemize}
-      \vb
-      \pause
+    \item Data models tend to support a priori hypothesis testing more easily.
+      \vc
+    \item Data models also tend to provide more interpretable results.
+      \vc
     \item Algorithmic models are currently preferred in cutting edge
       prediction/classification applications.  
-      \vb
-      \pause
+      \vc
     \item Many models can be viewed as data models or algorithmic models,
       depending on how they're used.
   \end{itemize}
@@ -581,7 +602,7 @@ partSummary(lmOut, -c(1, 2))
 
 \begin{frame}{Characteristics of Models}
 
-  Data models share several core features:
+  \rmsc{Data Models}
   \begin{itemize}
     \item Data models are built from probability distributions.
       \begin{itemize}
@@ -598,7 +619,7 @@ partSummary(lmOut, -c(1, 2))
   \pause
   \vb
 
-  Algorithmic models are distinct from data models in several ways:
+  \rmsc{Algorithmic Models}
   \begin{itemize}
     \item Algorithmic models do not have to be built from probability
       distributions.
@@ -620,9 +641,11 @@ partSummary(lmOut, -c(1, 2))
 \begin{frame}[fragile]{Data Modeling Example}
 
   Suppose we believe the following:
+  \vc
   \begin{enumerate}
     \item BMI is positively associated with disease progression in diabetic 
       patients after controlling for age and average blood pressure.
+      \vc
     \item After controlling for age and average blood pressure, the effect of BMI 
       on disease progression is different for men and women.
   \end{enumerate}
@@ -640,9 +663,7 @@ partSummary(lmOut, -c(1, 2))
 
   We can use R to fit our model to some patient data:
 
-<<message = FALSE>>=
-library(rockchalk)
-
+<<>>=
 ## Load the data:
 dataDir <- "../../data/"
 diabetes    <- readRDS(paste0(dataDir, "diabetes.rds"))
@@ -671,11 +692,16 @@ partSummary(fit, -c(1, 2))
   on disease progression:
 
 <<include = FALSE>>=
+library(rockchalk)
+
 psOut <- plotSlopes(fit, plotx = "bmi", modx = "sex")
 tsOut <- testSlopes(psOut)
 @ 
 
+
 <<eval = FALSE>>=
+library(rockchalk)
+
 psOut <- plotSlopes(fit, plotx = "bmi", modx = "sex")
 tsOut <- testSlopes(psOut)
 @ 
@@ -729,9 +755,11 @@ plotSlopes(fit, plotx = "bmi", modx = "sex")
   \end{columns}
   \va
   We could try \emph{best-subset selection}.
+  \vc
   \begin{itemize}
     \item Fit a series of regression models wherein disease progression is
       predicted by all possible subsets of X variables.
+      \vc
     \item Choose the set of X variables that minimizes the prediction error.
   \end{itemize}
 
@@ -800,17 +828,17 @@ xNames[with(sum, which[which.min(cp), -1])]
 
   \vb
 
-  \emph{Prediction/Classification} involves building a statistical model to "guess" 
-  future values of some outcome.
+  \emph{Prediction/Classification} involves building a model to "guess" future 
+  values of some outcome.
   \begin{itemize}
-    \item Weather forcasting
+    \item Weather forecasting
     \item Predicting the winner of an election
     \item Financial projections
   \end{itemize}
 
   \vb
 
-  \emph{Estimation} focusses on getting the most accurate possible estimate of some 
+  \emph{Estimation} focuses on getting the most accurate possible estimate of some 
   real-world quantity.
   \begin{itemize}
     \item The number of refugees in a country
@@ -850,22 +878,26 @@ xNames[with(sum, which[which.min(cp), -1])]
 
 %------------------------------------------------------------------------------%
 
-\section{Path Modeling}
+\sectionslide{Path Analysis}
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}{Path Modeling}
+\begin{frame}{Path Analysis}
 
   Suppose we have the following theory about diabetic patients.
+  \vc
   \begin{itemize}
     \item A patient's age and sex affect their blood pressure and blood
       glucose levels.
+      \vc
     \item After accounting for age and sex, blood pressure and blood glucose 
       levels retain some residual correlation.
+      \vc
     \item Age and sex are not correlated.
   \end{itemize}
   \vb
   This theory implies two correlated outcome variables.
+  \vc
   \begin{itemize}
     \item We cannot model this theory with univariate regression models.
   \end{itemize}
