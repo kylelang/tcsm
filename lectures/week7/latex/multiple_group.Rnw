@@ -1,7 +1,7 @@
 %%% Title:    TCSM: Multiple Group Models
 %%% Author:   Kyle M. Lang
 %%% Created:  ? (Adapted from Rebecca's Summer School slides)
-%%% Modified: 2023-08-23
+%%% Modified: 2023-08-24
 
 \documentclass[10pt]{beamer}
 \usetheme{Utrecht}
@@ -15,11 +15,14 @@
 \usepackage{xcolor}
 \usepackage{mathtools}
 \usepackage{amsmath}
+\usepackage{hyperref}
 
-\graphicspath{{../figures/}}
-\usepackage{tikz} 
-\usetikzlibrary{arrows,calc,patterns,positioning,shapes,decorations.markings} 
-\usetikzlibrary{decorations.pathmorphing} 
+\hypersetup{urlcolor = blue}
+
+%\graphicspath{{../figures/}}
+%\usepackage{tikz} 
+%\usetikzlibrary{arrows,calc,patterns,positioning,shapes,decorations.markings} 
+%\usetikzlibrary{decorations.pathmorphing} 
 
 \newcommand{\eqit}[1]{\textrm{\textit{#1}}}
 \newcommand{\pkg}[1]{\textbf{#1}}
@@ -78,6 +81,23 @@ knit_theme$set('edit-kwrite')
 
 %------------------------------------------------------------------------------%
 
+\begin{frame}{Acknowledgement}
+
+  I have adapted much of the material in this lecture from material prepared by 
+  \href{https://www.uu.nl/staff/RMKuiper}{\color{uured}Rebecca Kuiper} for the 
+  \href{https://utrechtsummerschool.nl/}{\color{uured}UU Summer School} course
+  \href{https://utrechtsummerschool.nl/courses/social-sciences/structural-equation-modeling-in-r-using-lavaan-e-learning-course}{\color{uured}Structural Equation Modeling in R with lavaan}.
+  
+  \vb
+  
+  \begin{itemize}
+    \item You can find the original slides \href{https://github.com/kylelang/lavaan-e-learning/blob/main/3_multiple_groups/Lecture\%203\%20-\%20Slides/Slides_Muligroup_and_MeasInvar.pdf}{\color{uured}here}.
+  \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
 \section{Multiple Group Models}
 
 %------------------------------------------------------------------------------%
@@ -92,16 +112,31 @@ knit_theme$set('edit-kwrite')
     \item Constrain parameters across groups to test for between-group differences.
   \end{enumerate}
 
-  \vb
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Example}
 
   To fix ideas, let's start with an example of multiple group path analysis.
   \vc
   \begin{itemize}
-    \item Outcome: sw
+    \item Outcome: \src{sw}
+      \begin{itemize}
+        \item The extent to which adolescent participants provide socially 
+          desirable responses.
+      \end{itemize}
       \vc
-    \item Predictors: overt and covert
+    \item Predictors: \src{overt}, \src{covert}
+      \begin{itemize}
+        \item The level of overt and covert antisocial behavior exhibited by 
+          the participants.
+      \end{itemize}
       \vc
-    \item Group: sex
+    \item Group: \src{sex}
+      \begin{itemize}
+        \item Biological sex of the participants
+      \end{itemize}
   \end{itemize}
 
 \end{frame}
@@ -206,6 +241,14 @@ partSummary(fit1, 13:16)
 
 \begin{frame}[fragile]{Comparing Nested Models}
 
+  We use nested model tests to evaluate between-group differences.
+  \begin{itemize}
+    \item $\Delta \chi^2 = \chi^2_0 - \chi^2_1$
+    \item $\Delta \chi^2 \sim \chi^2 \left( df_0 - df_1 \right)$
+  \end{itemize}
+
+  \vb
+
   Hypotheses
   \begin{itemize}
     \item $H_0$: Unconstrained Model Fit = Constrained Model Fit
@@ -239,6 +282,12 @@ partSummary(fit1, 13:16)
 lavTestWald(fit1, constraints = 'b1m == b1f; b2m == b2f')
 @ 
 
+Technically, the above is a multiparameter Wald test.
+  \begin{itemize}
+    \item The multivariate generalization of the \emph{Student's} t-test
+    \item Equivalent to a $\Delta \chi^2$ test
+  \end{itemize}
+
 \end{frame}
 
 %------------------------------------------------------------------------------%
@@ -253,7 +302,7 @@ We can also fit the restricted model manually.
 <<>>=
 ## Define the restricted model syntax:
 mod0 <- '
-sw ~ c("b0", "b0") * 1 + 
+sw ~ c("b0m", "b0f") * 1 + 
      c("b1", "b1") * overt + 
      c("b2", "b2") * covert
 '
@@ -299,6 +348,11 @@ partSummary(fit0, 13:16)
 lavTestLRT(fit0, fit1)
 @ 
 
+This one is a true $\Delta \chi^2$ test.
+\begin{itemize}
+  \item Also known as a \emph{likelihood ratio test}
+\end{itemize}
+
 \end{frame}
 
 \watermarkoff %----------------------------------------------------------------%
@@ -311,7 +365,7 @@ lavTestLRT(fit0, fit1)
 
   When fitting multiple group models with latent factors, we need to establish
   \emph{measurement invariance} across groups.
-  \vc
+  \vb
   \begin{itemize}
     \item Construct validity:
       \begin{itemize}
@@ -433,7 +487,7 @@ lavTestLRT(fit0, fit1)
       \vb
     \item Test equality of measurement error variances (\textbf{strict invariance}).
       \begin{itemize}
-        \item Controversal
+        \item Controversial
         \item Generally considered to be too restrictive
       \end{itemize}
   \end{enumerate}
@@ -591,7 +645,7 @@ Scalar/Strong invariance holds.
 \begin{frame}{Partial Invariance}
 
   When weak or strong invariance fail, we can sometimes establish satisfactory
-  \emph{parital invariance}.
+  \emph{partial invariance}.
   \vc 
   \begin{itemize}
     \item Free the fewest possible number of constraints.
@@ -696,7 +750,7 @@ tail(tmp, -x) %>% cat(sep = "\n")
 @
 
 Invariance doesn't really hold here, but we'll move forward for the sake of
-pedogogical demonstration.
+pedagogical demonstration.
 
 \end{frame}
 
@@ -783,7 +837,7 @@ In this case, we don't have evidence of moderation.
 
 \pagebreak
 
-We could also fit an analagous model using OLS regression.
+We could also fit an analogous model using OLS regression.
 
 <<warning = FALSE>>=
 readRDS("../data/bfiData1.rds") %>% 
