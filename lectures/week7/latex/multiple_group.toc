@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Multiple Group Models}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Between-Group Comparisons}{8}{0}{1}
+\beamer@sectionintoc {2}{Measurement Invariance}{19}{0}{2}
+\beamer@subsectionintoc {2}{1}{Testing MI with \textbf {lavaan}}{34}{0}{2}
+\beamer@sectionintoc {3}{Moderation via Multiple Group SEM}{41}{0}{3}

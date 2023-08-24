@@ -1,0 +1,30 @@
+\frametitle{Simple Slopes \& Intercepts}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.878, 0.918, 0.933}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+Group 1 [highSchool]:
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  agree ~
+    open             -0.321    0.040   -7.957    0.000
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .agree             0.000
+
+Group 2 [college]:
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  agree ~
+    open             -0.203    0.051   -3.972    0.000
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .agree             0.170    0.056    3.058    0.002
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
