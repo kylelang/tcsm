@@ -726,7 +726,7 @@ rawData <- readRDS("../data/daysData.rds")
 
 <<boot1, cache = TRUE>>=
 ## Define the number of bootstrap samples:
-nSams <- 500 
+nSams <- 5000 
 
 ## Set a seed for the RNG:
 set.seed(235711)
