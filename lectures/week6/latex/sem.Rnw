@@ -385,7 +385,7 @@ ab := a*b
 
 ## Fit the structural model and test the indirect effect:
 out5.2 <- 
-  sem(mod5.2, data = dat1, std.lv = TRUE, se = "boot", bootstrap = 500)
+  sem(mod5.2, data = dat1, std.lv = TRUE, se = "boot", bootstrap = 5000)
 @
 
 \end{frame}

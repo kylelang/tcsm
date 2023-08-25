@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Structural Equation Modeling}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Measurement Model}{5}{0}{1}
-\beamer@subsectionintoc {1}{2}{Structural Model}{10}{0}{1}
-\beamer@sectionintoc {2}{Mediation with SEM}{16}{0}{2}
