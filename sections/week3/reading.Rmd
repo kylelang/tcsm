@@ -1,7 +1,7 @@
 ## Reading
 
 ```{r include = FALSE}
-answers <- yaml::yaml.load_file("../answers.yml")$rq5
+answers <- yaml::yaml.load_file("../../answers.yml")$rq3
 ```
 
 ### Reference {-}
@@ -13,17 +13,19 @@ Considerations. *Journal of Personality and Individual Differences, 51*(6),
 1173--1182
 ](https://doi.org/10.1037//0022-3514.51.6.1173)
 
-*Note:* We will use this reading again next week. This week, we are only 
-considering *mediation*, so you only need to read the introduction section (p. 
-1173) and the *Nature of Mediator Variables* section (pp. 1176--1177). Next week, 
-we will discuss moderation in more detail. So, you will read the remaining 
-sections of this paper as part of next week's reading assignment.
-
 ### Questions {-}
 
 1. What is *mediation*? Give an example of mediation.
 1. According to the authors, we must satisfy four criteria to infer mediation.
 What are these criteria?
+1. What is "moderation", and how is it different from "mediation"? 
+1. Give an example of moderation.
+1. What are the four methods given by Baron and Kenny as suitable ways to to 
+study interaction effects?  
+1. The authors suggest that one of the most common ways to address unreliability
+is to use multiple indicators. Thinking back to what you've learned about factor 
+analysis, briefly explain why multiple indicators can improve reliability.
+1. How can you determine whether a variable is a mediator or moderator? 
 
 ```{asis, echo = answers}
 ### Answers {-}
@@ -41,6 +43,42 @@ following criteria.
     a. X significantly predicts M.
     a. M significantly predicts Y.
     a. The size of the effect of X on Y decreases after controlling for M.
+1. A moderator is a variable that affects the relation between two other variables. 
+Moderation is about context: *when* does X affect Y (where we define *when* in 
+terms of the level of some moderator variable). Mediation, on the other hand, is 
+concerned with explaining *how* X transmits its effect to Y (in terms of 
+intermediary variables).
+1. A few possibilities:
+    - Quality of recovery moderates the relation between training intensity and 
+    strength gains for power lifters.
+    - Amount of income moderates the relation between length of employment and 
+    level of job satisfaction.
+    - Level of fatalistic thinking moderates the efficacy of a new therapy for 
+    treating depression.
+1. The different recommendations are broken down according to the measurement
+levels of the IV and moderator.
+    - *Case 1:* Discrete IV, Discrete Moderator $\rightarrow$ Factorial ANOVA
+    - *Case 2:* Continuous IV, Discrete Moderator $\rightarrow$ Test the focal
+    effect within each level of the moderator.
+    - *Case 3:* Discrete IV, Continuous Moderator $\rightarrow$ Include (an) 
+    interaction effect(s) in your model.
+    - *Case 4:* Continuous IV, Continuous Moderator $\rightarrow$ Include an 
+    interaction effect in your model.
+1. Each observed variable contains measurement error. When forming scales using 
+multiple indicators, random measurement errors should cancel out. Measuring each
+hypothetical construct with multiple items also produces better operationalizations 
+of constructs.
+1. The data cannot tell us if some variable, say Z, should be a moderator or a 
+mediator; we must base this decision on theory and substantive expertise. We must 
+think about the process by which X affects Y and ask: 
+    - Is Z an intermediary step in the causal chain linking X and Y?
+        - If so, we should include Z as a mediator.
+    - Does Z stand apart from the causal chain linking X and Y but affect the
+    nature of that linkage via contextual influences?
+        - If so, we should include Z as a moderator.
+    
+    Statistically speaking, we would prefer our moderators to be unrelated to X 
+    and Y, while we want mediators to relate strongly with both X and Y.
 ```
 
 ---
@@ -98,59 +136,3 @@ IE rather than assuming some parametric form.
     > different from zero, in spite of the existence of specific indirect effects 
     > that are not zero.
 ```
-
-<!------------------------------------------------------------------------------
-
----
-
-### Reference {-}
-
-[
-Holbert, R. L., & Stephenson, M. T. (2003). The importance of indirect effects 
-in media effects research: Testing for mediation in structural equation modeling. 
-*Journal of Broadcasting & Electronic Media, 47*, 556--572.
-](http://www.academia.edu/download/30909266/JOBEM.pdf)
-
-
-### Questions {-}
-
-1. On p. 560 the four steps for complex mediation are discussed. The first three 
-steps are for partial mediation. What is the difference between these two forms 
-of mediation? 
-1. What is the advantage of the *Product of Coefficients* approach (p. 561--562) 
-in comparison to the *Causal Steps* approach (p. 560--561) and the *Difference 
-in Coefficients* approach (p. 561)? 
-1. How does the *Product of Coefficients* approach work, and why is it problematic? 
-1. How many effects are there from Debate Viewing on Political Participation? 
-Which effects can you easily obtain from SEM software?
-
-
-```{asis, echo = answers}
-### Answers {-}
-
-1. Four steps are given:  
-    a. X should predict Y  
-    b. M should be correlated with X
-    c. M should predict Y
-    d. X is no longer a significant predictor of Y once M is included
-
-    Partial mediation $\Rightarrow$ there is still a significant direct effect 
-    of X on Y, after controlling for the mediator.  
-    
-    Full mediation $\Rightarrow$ The entire effect of X on Y is transmitted 
-    through M, so the direct effect is nonsignificant after controlling for the 
-    mediator.
-
-1. The Product of Coefficients approach produces an actual statistical test with 
-a corresponding p-value.
-1. Define the indirect effect by the product of paths, and divide this estimate
-by the Sobel's standard error.
-    - The IE is defined by the product of two normally distributed paths, so it 
-    cannot be normally distributed. Hence the p-values for the test are derived 
-    from an incorrect sampling distribution.
-1. 1 direct effect and 2 indirect effects.  
-    - We can use SEM/path modeling to estimate the direct effect, the total 
-    effect, each individual indirect effect, and the total indirect effect.
-```
-
-------------------------------------------------------------------------------->

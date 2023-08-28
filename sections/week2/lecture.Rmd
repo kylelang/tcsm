@@ -5,10 +5,16 @@ paradigm and contextualizing statistical modeling relative to other ways that we
 can conduct statistical analyses. We will conclude with an introduction to 
 \emph{path analysis}.
 
-Once it's ready, the lecture recording will be linked below.
+### Recordings
 
-```{r, echo = FALSE}
-knitr::include_url("https://gifer.com/embed/7gRx")
+*Once it's ready, the lecture recording will be embedded below.*
+
+![](https://i.gifer.com/Ek.gif)
+
+```{r, echo = FALSE, eval = FALSE}
+knitr::include_graphics(paste0(""))
 ```
+
+### Slides
 
 You can download the lectures slides [here](pdf/modeling.pdf)

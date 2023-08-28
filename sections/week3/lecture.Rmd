@@ -1,0 +1,36 @@
+## Lecture
+
+Researchers often have theories about possible causal processes linking multiple
+variables. Mediation is a particularly important example of such a process in
+which in an input variable, X, influences the outcome, Y, through an intermediary
+variable, M (the mediator). For instance, psychotherapy (X), may affect thoughts
+(M), which in turn affects mood (Y).
+
+We can investigate mediation via a specific sequence of linear regression
+equations, but path modeling will make our lives much easier. We can use path
+models to simultaneously estimate multiple related regression equations. So,
+mediation analysis is an ideal application of path modeling. In this lecture, we
+consider both approaches and discuss their relative strengths and weaknesses.
+
+As with mediation, researchers often posit theories involving moderation.
+Moderation implies that the effect of X on Y depends on another variable, Z. For
+instance, the effect of feedback (X) on performance (Y) may depend on age (Z).
+Older children might process feedback more effectively than younger children.
+Hence, the feedback is more effective for older children than for younger
+children, and the effect of feedback on performance is stronger for older
+children than for younger children. In such a case, we would say that age
+*moderates* the effect of feedback on performance.
+
+### Recordings
+
+*Once it's ready, the lecture recording will be embedded below.*
+
+![](https://i.gifer.com/AyuA.gif)
+
+```{r, echo = FALSE, eval = FALSE}
+knitr::include_url("")
+```
+
+### Slides
+
+You can download the lecture slides [here](pdf/mediation_moderation.pdf)
