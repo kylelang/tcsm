@@ -8,16 +8,26 @@ In the practical this week, we'll go a little further into what it's possible to
 
 If you've been reading or watching some R Tutorials, you may have come across the concept of "the tidyverse," which refers to a set of packages that work well together and make it easier to do some common tasks. This first set of tutorials demonstrates how to use the functions in these packages to look at, manipulate, and visualize your data in basic ways.
 
+
+#### Working with Tibbles
+
 This first primer introduces you to the special data format called a tibble, as well as some functions for looking at your whole data set.
 
 [Working with Tibbles](https://posit.cloud/learn/primers/2.1)
 
+```{r}
+knitr::include_url("https://posit.cloud/learn/primers/2.1")
+```
+
+
+#### Isolating Data with dplyr
 In this next primer, we'll discuss how to look at specific parts of the data using `select()`, `filter()` and `arrange()`.
 
 [Isolating Data with dplyr](https://posit.cloud/learn/primers/2.2)
 
-#### *Advanced*
-<span style="background-color: #e7eb90">If you made it through the previous two sections with ease and want to challenge yourselves, go ahead with this next section. If you're running short on time, you can skip this.</span>
+#### Derive Information with dplyr 
+**Advanced**
+<div style="background-color: #e7eb90">If you made it through the previous two sections with ease and want to challenge yourselves, go ahead with this next section. If you're running short on time, you can skip this.</div>
 
 This section shows you how to manipulate your data by grouping it according to variables using `group_by()`, create summary statistics using `summarize()`, and new variables using `mutate()`. 
 
@@ -27,17 +37,19 @@ This section shows you how to manipulate your data by grouping it according to v
 
 Visualizing data is a great way to start to understand the information in a data set. The library ggplot2, which you saw in the previous primers, can be used to do a lot of amazing things. In this section, we'll just pick out a few examples, but they are all available [here at Posit.cloud](https://posit.cloud/learn/primers/3) in case you want to go check out the rest yourself.
 
+#### Bar Charts
 
 [Bar Charts](https://posit.cloud/learn/primers/3.2) are good for displaying counts of things, which is often useful when we're looking at categorical variables.
 
-[Scatterplots](https://posit.cloud/learn/primers/3.5) can show the relationship between two continuous variables. Feel free to skim the last two sections on Layers and Coordinate Systems.
+#### Scatterplots
 
+[Scatterplots](https://posit.cloud/learn/primers/3.5) can show the relationship between two continuous variables. Feel free to skim the last two sections on Layers and Coordinate Systems.
 
 ### Tidy Your Data -- Primer 4
 
 [Reshape Data](https://posit.cloud/learn/primers/4.1) This Primer will provide an overview of what's meant by "tidy data". You only need to complete the Tidy Data section -- the sections Gathering columns and Spreading columns may be useful to keep in mind, but we won't ask you to do these things in this course.
 
-### Recap
+### Recap {-}
 
 Hopefully by now, you feel more comfortable working with data in R using some of the basic functionality and packages. 
 
