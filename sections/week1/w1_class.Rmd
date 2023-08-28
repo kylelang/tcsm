@@ -1,0 +1,90 @@
+## In-Class Exercises
+
+In the practical this week, we'll go a little further into what it's possible to do with R. Don't worry if you aren't able to remember everything in these primers -- they're meant to familiarize you with what is possible and to get you some experience interacting with R and RStudio.
+
+---
+
+### Work with Data - Primer 2
+
+If you've been reading or watching some R Tutorials, you may have come across the concept of "the tidyverse," which refers to a set of packages that work well together and make it easier to do some common tasks. This first set of tutorials demonstrates how to use the functions in these packages to look at, manipulate, and visualize your data in basic ways.
+
+This first primer introduces you to the special data format called a tibble, as well as some functions for looking at your whole data set.
+
+[Working with Tibbles](https://posit.cloud/learn/primers/2.1)
+
+In this next primer, we'll discuss how to look at specific parts of the data using `select()`, `filter()` and `arrange()`.
+
+[Isolating Data with dplyr](https://posit.cloud/learn/primers/2.2)
+
+#### *Advanced*
+<span style="background-color: #e7eb90">If you made it through the previous two sections with ease and want to challenge yourselves, go ahead with this next section. If you're running short on time, you can skip this.</span>
+
+This section shows you how to manipulate your data by grouping it according to variables using `group_by()`, create summary statistics using `summarize()`, and new variables using `mutate()`. 
+
+[Derive Information with dplyr](https://posit.cloud/learn/primers/2.3)
+
+### Visualize Data -- Primer 3
+
+Visualizing data is a great way to start to understand the information in a data set. The library ggplot2, which you saw in the previous primers, can be used to do a lot of amazing things. In this section, we'll just pick out a few examples, but they are all available [here at Posit.cloud](https://posit.cloud/learn/primers/3) in case you want to go check out the rest yourself.
+
+
+[Bar Charts](https://posit.cloud/learn/primers/3.2) are good for displaying counts of things, which is often useful when we're looking at categorical variables.
+
+[Scatterplots](https://posit.cloud/learn/primers/3.5) can show the relationship between two continuous variables. Feel free to skim the last two sections on Layers and Coordinate Systems.
+
+
+### Tidy Your Data -- Primer 4
+
+[Reshape Data](https://posit.cloud/learn/primers/4.1) This Primer will provide an overview of what's meant by "tidy data". You only need to complete the Tidy Data section -- the sections Gathering columns and Spreading columns may be useful to keep in mind, but we won't ask you to do these things in this course.
+
+### Recap
+
+Hopefully by now, you feel more comfortable working with data in R using some of the basic functionality and packages. 
+
+Here's a brief description of the functions covered above:
+
+  - `install.packages()` for installing packages
+    - Remember to put the package names in quotes
+  - `library()` for loading packages
+  - `View()` for viewing your whole dataset
+  - `select()` for picking only certain columns 
+  - `filter()` for picking only certain rows
+  - `arrange()` for changing the display order
+  - `%>%` aka "the pipe" for chaining commands together
+    - In RStudio, you can hit ctrl+shift+m as a key combination which is pretty handy. 
+  - `?` for help files
+  
+Logical tests and Boolean operators
+
+  - `==` equal to
+  - `!=` not equal to
+  - `<` less than
+  - `<=` less than or equal to
+  - `>` greater than
+  - `>=` greater than or equal to
+  - `is.na()` is the value NA (not available)
+  - `!is.na` is the value not NA 
+  - `&` and (true only if the left and right are both true)
+  - `|` or (true if either the left or right are true)
+  - `!` not (invert true/false)
+  - `%in%` in (is left in the larger set of right values)
+  - `any()` any (true if any in the set are true)
+  - `all()` all (true if all in the set are true)
+  - `xor()` xor (true if one and only one of the set are true)
+
+ggplot2 
+
+  - `ggplot()` is the base building layer for the plot
+  - `aes()` contains the aesthetic mappings (like x and y)
+  - `geom_bar()` bar plots for distributions of categorical variables
+  - `geom_point()` scatterplots for plotting two continuous variables
+  - `geom_label_repel()` for plotting text
+  - `facet_wrap()` for spreading multiple plots across a variable
+  
+
+
+---
+
+End of In-Class Exercises
+
+---
