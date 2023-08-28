@@ -5,17 +5,15 @@ source("code/chapter_setup.R")
 partDir <- paste0(partDir0, "week6/")
 ```
 
+This week, we will focus on integrating all of the disparate methods we've
+covered so far into full-fledged *structural equation models*.
+
 **Homework before the lecture**
 
 1. Watch the [Lecture Recording](lecture-5.html) for this week.
 1. Complete the [Reading](reading-5.html) for this week, and answer the 
 associated reading questions.
-1. Complete the [Formative Assessment](formative-assessment-5.html) for this week.
-
-**Lecture content**
-
-This week, you will focus on integrating all of the disparate methods we've
-covered so far into full-fledged *structural equation models*.
+<!-- 1. Complete the [Formative Assessment](formative-assessment-5.html) for this week. -->
 
 **Homework before the practical**
 
@@ -30,8 +28,8 @@ knit_child(paste0(partDir, "../lecture-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knit_child(paste0(partDir, "../reading-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
-  cat(sep = "\n")
+# knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
+#   cat(sep = "\n")
 knit_child(paste0(partDir, "../home-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knit_child(paste0(partDir, "../class-placeholder.Rmd"), quiet = TRUE) %>%

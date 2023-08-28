@@ -14,6 +14,11 @@ output:
 documentclass: book
 ---
 
+\newcommand{\va}{\\[12pt]}
+\newcommand{\vb}{\\[6pt]}
+\newcommand{\vc}{\\[3pt]}
+\newcommand{\vx}[1]{\\[#1pt]}
+
 ```{r global_options, include = FALSE}
 library(knitr)
 library(dplyr)
