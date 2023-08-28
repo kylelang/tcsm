@@ -6,7 +6,8 @@
 library(knitr)
 library(dplyr)
 
-dataDir  <- "../../../../data/"
+# dataDir  <- "../../../../data/"
+dataDir <- "../../data/"
 quizDir  <- "../../assess/"
 partDir0 <- "sections/"
 imageDir <- "../../images/"
