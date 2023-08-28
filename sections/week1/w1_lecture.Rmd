@@ -5,7 +5,7 @@ One of the many benefits of R is its community of users and developers, and the 
 ### Basic Basics 1
 
 ```{r, echo = FALSE}
-knitr::include_url("https://www.youtube.com/watch?v=kfcX5DEMAp4")
+knitr::include_url("https://www.youtube.com/embed/kfcX5DEMAp4")
 ```
 
 This first lecture above introduces the layout of RStudio, projects and management, setting up and saving scripts, running your code, managing your environment, 
@@ -15,7 +15,7 @@ Optionally, use the [website](https://rladiessydney.org/courses/ryouwithme/01-ba
 ### Basic Basics 2
 
 ```{r, echo = FALSE}
-knitr::include_url("https://www.youtube.com/watch?v=v6VygIgvoZU")
+knitr::include_url("https://www.youtube.com/embed/v6VygIgvoZU")
 ```
 
 The second lecture demonstrates installing and loading packages, and how to add comments to a script.
@@ -26,7 +26,7 @@ Optionally, use the [website](https://rladiessydney.org/courses/ryouwithme/01-ba
 ### Basic Basics 3
 
 ```{r, echo = FALSE}
-knitr::include_url("https://youtu.be/2MVolYETR5Q")
+knitr::include_url("https://www.youtube.com/embed/2MVolYETR5Q")
 ```
 
 Finally, in the third lecture, we learn how to load data from a file, and explore it using some basic functions. 

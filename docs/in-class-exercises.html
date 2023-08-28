@@ -232,9 +232,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="in-class-exercises.html"><a href="in-class-exercises.html"><i class="fa fa-check"></i><b>1.2</b> In-Class Exercises</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="in-class-exercises.html"><a href="in-class-exercises.html#work-with-data---primer-2"><i class="fa fa-check"></i><b>1.2.1</b> Work with Data - Primer 2</a></li>
-<li class="chapter" data-level="1.2.2" data-path="in-class-exercises.html"><a href="in-class-exercises.html#visualize-data-primer-3"><i class="fa fa-check"></i><b>1.2.2</b> Visualize Data – Primer 3</a></li>
-<li class="chapter" data-level="1.2.3" data-path="in-class-exercises.html"><a href="in-class-exercises.html#tidy-your-data-primer-4"><i class="fa fa-check"></i><b>1.2.3</b> Tidy Your Data – Primer 4</a></li>
+<li class="chapter" data-level="1.2.1" data-path="in-class-exercises.html"><a href="in-class-exercises.html#work-with-data-primers"><i class="fa fa-check"></i><b>1.2.1</b> Work with Data Primers</a></li>
+<li class="chapter" data-level="1.2.2" data-path="in-class-exercises.html"><a href="in-class-exercises.html#visualize-data"><i class="fa fa-check"></i><b>1.2.2</b> Visualize Data</a></li>
+<li class="chapter" data-level="1.2.3" data-path="in-class-exercises.html"><a href="in-class-exercises.html#tidy-data"><i class="fa fa-check"></i><b>1.2.3</b> Tidy data</a></li>
 <li class="chapter" data-level="" data-path="in-class-exercises.html"><a href="in-class-exercises.html#recap"><i class="fa fa-check"></i>Recap</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="reading.html"><a href="reading.html"><i class="fa fa-check"></i><b>1.3</b> Reading</a></li>
@@ -310,48 +310,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="in-class-exercises" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> In-Class Exercises<a href="in-class-exercises.html#in-class-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the practical this week, we’ll go a little further into what it’s possible to do with R. Don’t worry if you aren’t able to remember everything in these primers – they’re meant to familiarize you with what is possible and to get you some experience interacting with R and RStudio.</p>
+<p>All primers in these exercises come from <a href="%22https://posit.cloud/learn/primers/%22">Posit.cloud</a> (the company behind RStudio), and were created with the <a href="%22https://rstudio.github.io/learnr/%22">learnr package</a>.</p>
 <hr />
-<div id="work-with-data---primer-2" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Work with Data - Primer 2<a href="in-class-exercises.html#work-with-data---primer-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="work-with-data-primers" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Work with Data Primers<a href="in-class-exercises.html#work-with-data-primers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you’ve been reading or watching some R Tutorials, you may have come across the concept of “the tidyverse,” which refers to a set of packages that work well together and make it easier to do some common tasks. This first set of tutorials demonstrates how to use the functions in these packages to look at, manipulate, and visualize your data in basic ways.</p>
-<div id="working-with-tibbles" class="section level4 hasAnchor" number="1.2.1.1">
-<h4><span class="header-section-number">1.2.1.1</span> Working with Tibbles<a href="in-class-exercises.html#working-with-tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>This first primer introduces you to the special data format called a tibble, as well as some functions for looking at your whole data set.</p>
-<p><a href="https://posit.cloud/learn/primers/2.1">Working with Tibbles</a></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="in-class-exercises.html#cb38-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_url</span>(<span class="st">&quot;https://posit.cloud/learn/primers/2.1&quot;</span>)</span></code></pre></div>
-<iframe src="https://posit.cloud/learn/primers/2.1" width="672" height="400px" data-external="1">
+<div id="looking-at-your-data" class="section level4 hasAnchor" number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> Looking at your data<a href="in-class-exercises.html#looking-at-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<!-- This first primer introduces you to the special data format called a tibble, as well as some functions for looking at your whole data set. -->
+<!-- [Working with Tibbles](https://posit.cloud/learn/primers/2.1) -->
+<iframe id="01tibbles" width="100%" height="500" src="https://tutorials.shinyapps.io/01-tibbles/" scrolling="auto" data-external="1" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer">
 </iframe>
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_url("https://tutorials.shinyapps.io/01-tibbles/", height = 600) -->
+<!-- ``` -->
 </div>
-<div id="isolating-data-with-dplyr" class="section level4 hasAnchor" number="1.2.1.2">
-<h4><span class="header-section-number">1.2.1.2</span> Isolating Data with dplyr<a href="in-class-exercises.html#isolating-data-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In this next primer, we’ll discuss how to look at specific parts of the data using <code>select()</code>, <code>filter()</code> and <code>arrange()</code>.</p>
-<p><a href="https://posit.cloud/learn/primers/2.2">Isolating Data with dplyr</a></p>
+<div id="dissecting-your-data" class="section level4 hasAnchor" number="1.2.1.2">
+<h4><span class="header-section-number">1.2.1.2</span> Dissecting your data<a href="in-class-exercises.html#dissecting-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<!-- In this next primer, we'll discuss how to look at specific parts of the data using `select()`, `filter()` and `arrange()`. -->
+<!-- [Isolating Data with dplyr](https://posit.cloud/learn/primers/2.2) -->
+<iframe id="02isolating" width="100%" height="500" src="https://tutorials.shinyapps.io/02-isolating/" scrolling="auto" data-external="1" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer">
+</iframe>
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_url("https://tutorials.shinyapps.io/02-isolating/", height = 600) -->
+<!-- ``` -->
 </div>
-<div id="derive-information-with-dplyr" class="section level4 hasAnchor" number="1.2.1.3">
-<h4><span class="header-section-number">1.2.1.3</span> Derive Information with dplyr<a href="in-class-exercises.html#derive-information-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<strong>Advanced</strong>
-<div style="background-color: #e7eb90">
-If you made it through the previous two sections with ease and want to challenge yourselves, go ahead with this next section. If you’re running short on time, you can skip this.
+<div id="grouping-and-manipulating-your-data" class="section level4 hasAnchor" number="1.2.1.3">
+<h4><span class="header-section-number">1.2.1.3</span> Grouping and manipulating your data<a href="in-class-exercises.html#grouping-and-manipulating-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div style="padding:10px;
+            background-color: #FFFACD;
+            color: black;
+            margin-bottom: 5px;">
+<p><strong>Advanced</strong></p>
+<p>If you made it through the previous two sections with ease and want to challenge yourselves, go ahead with this next section. If you’re running short on time, you can skip this.</p>
 </div>
-<p>This section shows you how to manipulate your data by grouping it according to variables using <code>group_by()</code>, create summary statistics using <code>summarize()</code>, and new variables using <code>mutate()</code>.</p>
-<p><a href="https://posit.cloud/learn/primers/2.3">Derive Information with dplyr</a></p>
+<!-- <div style="background-color: #e7eb90">If you made it through the previous two sections with ease and want to challenge yourselves, go ahead with this next section. If you're running short on time, you can skip this.</div> -->
+<p></br>
+<!-- This section shows you how to manipulate your data by grouping it according to variables using `group_by()`, create summary statistics using `summarize()`, and new variables using `mutate()`.  --></p>
+<!-- [Derive Information with dplyr](https://posit.cloud/learn/primers/2.3) -->
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_url("https://tutorials.shinyapps.io/03-deriving/", height = 600) -->
+<!-- ``` -->
+<iframe id="03deriving" width="100%" height="500" src="https://tutorials.shinyapps.io/03-deriving/" scrolling="auto" data-external="1" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer">
+</iframe>
+<hr />
 </div>
 </div>
-<div id="visualize-data-primer-3" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Visualize Data – Primer 3<a href="in-class-exercises.html#visualize-data-primer-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Visualizing data is a great way to start to understand the information in a data set. The library ggplot2, which you saw in the previous primers, can be used to do a lot of amazing things. In this section, we’ll just pick out a few examples, but they are all available <a href="https://posit.cloud/learn/primers/3">here at Posit.cloud</a> in case you want to go check out the rest yourself.</p>
-<div id="bar-charts" class="section level4 hasAnchor" number="1.2.2.1">
-<h4><span class="header-section-number">1.2.2.1</span> Bar Charts<a href="in-class-exercises.html#bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><a href="https://posit.cloud/learn/primers/3.2">Bar Charts</a> are good for displaying counts of things, which is often useful when we’re looking at categorical variables.</p>
+<div id="visualize-data" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Visualize Data<a href="in-class-exercises.html#visualize-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Visualizing data is a great way to start to understand the information in a data set. The library ggplot2, which you saw in the previous primers, can be used to do a lot of amazing things. In this section, we’ll just pick out a few examples, but Primers are available on many other visualizations as well at <a href="https://posit.cloud/learn/primers/3">Posit.cloud</a>.</p>
+<div id="bar-charts-for-categorical-distributions" class="section level4 hasAnchor" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Bar charts for categorical distributions<a href="in-class-exercises.html#bar-charts-for-categorical-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<!-- [Bar Charts](https://posit.cloud/learn/primers/3.2) are good for displaying counts of things, which is often useful when we're looking at categorical variables. -->
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_url("https://tutorials.shinyapps.io/01-bar-charts/", height = 600) -->
+<!-- ``` -->
+<iframe id="04barchart" width="100%" height="500" src="https://tutorials.shinyapps.io/01-bar-charts/" scrolling="auto" data-external="1" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer">
+</iframe>
+<p></br>
+</br></p>
 </div>
-<div id="scatterplots" class="section level4 hasAnchor" number="1.2.2.2">
-<h4><span class="header-section-number">1.2.2.2</span> Scatterplots<a href="in-class-exercises.html#scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><a href="https://posit.cloud/learn/primers/3.5">Scatterplots</a> can show the relationship between two continuous variables. Feel free to skim the last two sections on Layers and Coordinate Systems.</p>
+<div id="scatterplots-for-continuous-variables" class="section level4 hasAnchor" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> Scatterplots for continuous variables<a href="in-class-exercises.html#scatterplots-for-continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<!-- [Scatterplots](https://posit.cloud/learn/primers/3.5) can show the relationship between two continuous variables. Feel free to skim the last two sections on Layers and Coordinate Systems. -->
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_url("https://tutorials.shinyapps.io/05-scatterplots/", height = 600) -->
+<!-- ``` -->
+<iframe id="05scatter" width="100%" height="500" src="https://tutorials.shinyapps.io/05-scatterplots/" scrolling="auto" data-external="1" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer">
+</iframe>
+<p></br>
+</br></p>
 </div>
 </div>
-<div id="tidy-your-data-primer-4" class="section level3 hasAnchor" number="1.2.3">
-<h3><span class="header-section-number">1.2.3</span> Tidy Your Data – Primer 4<a href="in-class-exercises.html#tidy-your-data-primer-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><a href="https://posit.cloud/learn/primers/4.1">Reshape Data</a> This Primer will provide an overview of what’s meant by “tidy data”. You only need to complete the Tidy Data section – the sections Gathering columns and Spreading columns may be useful to keep in mind, but we won’t ask you to do these things in this course.</p>
+<div id="tidy-data" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Tidy data<a href="in-class-exercises.html#tidy-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- [Reshape Data](https://posit.cloud/learn/primers/4.1)  -->
+<p>This Primer will provide an overview of what’s meant by “tidy data”. You only need to complete the Tidy Data section – the sections Gathering columns and Spreading columns may be useful to keep in mind, but we won’t ask you to do these things in this course.</p>
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_app("https://tutorials.shinyapps.io/01-reshape-data/", height = 600) -->
+<!-- ``` -->
+<iframe id="06tidy" width="100%" height="500" src="https://tutorials.shinyapps.io/01-reshape-data/" scrolling="auto" data-external="1" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer">
+</iframe>
+<p></br>
+</br></p>
 </div>
 <div id="recap" class="section level3 unnumbered hasAnchor">
 <h3>Recap<a href="in-class-exercises.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
