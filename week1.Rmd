@@ -31,8 +31,8 @@ During the practical you will work on the [In-Class Exercises](in-class-exercise
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
 knit_child(paste0(partDir, "lecture.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
-# knit_child(paste0(partDir, "../reading-placeholder.Rmd"), quiet = TRUE) %>%
-#   cat(sep = "\n")
+knit_child(paste0(partDir, "../reading-placeholder.Rmd"), quiet = TRUE) %>%
+  cat(sep = "\n")
 # knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
 #   cat(sep = "\n")
 knit_child(paste0(partDir, "home.Rmd"), quiet = TRUE) %>% cat(sep = "\n")

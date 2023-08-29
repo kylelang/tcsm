@@ -7,13 +7,55 @@ can conduct statistical analyses. We will conclude with an introduction to
 
 ### Recordings
 
-*Once it's ready, the lecture recording will be embedded below.*
+#### Statistical Reasoning {-}
 
-![](https://i.gifer.com/Ek.gif)
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/nH-4ND_Ao1M?si=FKi7XcbIh0rYYhqc"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
 
-```{r, echo = FALSE, eval = FALSE}
-knitr::include_graphics(paste0(""))
-```
+#### Statistical Modeling {-}
+
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/53a05z5FpH4?si=rcJqQF7a4tCJkkTt"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
+
+#### Path Analysis {-}
+
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/eESVMmF9cEc?si=YdrsMqkGbY3eqiTG"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
+
+<!-- ![](https://i.gifer.com/Ek.gif) -->
 
 ### Slides
 
