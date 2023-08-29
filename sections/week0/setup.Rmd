@@ -10,7 +10,7 @@ this chapter will be crucial for getting your computer ready for the course.
 
 ![](images/chap2.jpg)
 
-## Typographic Conventions
+## Typographic Conventions {-}
 
 Throughout this GitBook, we (try to) use a consistent set of typographic 
 conventions:
@@ -29,7 +29,7 @@ package.
 
 <!----------------------------------------------------------------------------->
 
-## Installing software 
+## Installing software {-}
 
 Before we start the course, we have to install three things:
 
@@ -42,7 +42,7 @@ how to use their functions and sample data.
 
 ---
 
-### Installing R
+### Installing R {-}
 
 The latest version of R is available [here](https://cran.r-project.org).
 
@@ -54,7 +54,7 @@ will only need the *base* package.
 
 ---
 
-### Installing RStudio
+### Installing RStudio {-}
 
 ```{r, echo = FALSE, fig.width = 3, fig.height = 2}
 library(png)
@@ -69,26 +69,30 @@ Download the Free Desktop version of RStudio from the
 
 ---
 
-### Installing packages {#installPackages}
+### Installing packages {-}
 
 To participate in this course, you will need a few essential **R packages**. 
 Here's an overview of the packages and why we need them:
 
 ```{r, echo = FALSE}
 data.frame(
-  Package = c("lavaan", 
-              "ggplot2", 
-              "tidySEM", 
-              "semTools", 
-              "psych", 
-              "foreign", 
+  Package = c("lavaan",
+              "dplyr",
+              "ggplot2",
+              "tidySEM",
+              "semTools",
+              "psych",
+              "rockchalk",
+              "foreign",
               "readxl"),
-  Description = c("A sophisticated and user-friendly package for structural equation modeling", 
-                  "A flexible and user-friendly package for making graphs", 
-                  "Plotting and tabulating the output of SEM-models", 
-                  "Comparing models, establishing measurement invariance across groups", 
-                  "Descriptive statistics", 
-                  "Loading data from SPSS '.sav' files", 
+  Description = c("A sophisticated and user-friendly package for structural equation modeling",
+                  "A powerful suite of data-processing tools",
+                  "A flexible and user-friendly package for making graphs",
+                  "Plotting and tabulating the output of SEM-models",
+                  "Comparing models, establishing measurement invariance across groups",
+                  "Descriptive statistics and EFA",
+                  "Probing interactions",
+                  "Loading data from SPSS '.sav' files",
                   "Loading data from Excel '.xslx' files")
   ) %>%
   knitr::kable()
@@ -102,23 +106,16 @@ To install these packages, we use the `install.packages()` function in R.
 command.
 
 ```{r, eval = FALSE}
-install.packages(c("lavaan", 
-                   "ggplot2", 
-                   "tidySEM", 
-                   "semTools", 
-                   "psych", 
-                   "foreign", 
-                   "readxl"), 
+install.packages(c("lavaan",
+                   "dplyr",
+                   "ggplot2",
+                   "tidySEM",
+                   "semTools",
+                   "psych",
+                   "rockchalk",
+                   "foreign",
+                   "readxl"),
                  dependencies = TRUE)
 ```
 
 <!----------------------------------------------------------------------------->
-
-## Getting the course data
-
-All of the data files you will need for the course are available in this 
-[SurfDrive directory](https://surfdrive.surf.nl/files/index.php/s/93FzuSnGidunEVA).
-
-- Follow the link to download a ZIP archive containing the data you will need to 
-complete the practical exercises.
-- Extract these data files to a convenient location on your computer.

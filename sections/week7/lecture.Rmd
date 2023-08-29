@@ -1,0 +1,18 @@
+## Lecture
+
+In this lecture, we will explore how you can incorporate grouping factors into
+your CFA and SEM analyses. We'll cover three general topics:
+
+1. The multiple group modeling framework
+1. Measurement invariance testing
+1. Using multiple group models to test for moderation
+
+### Recordings
+
+*Once it's ready, the lecture recording will be embedded below.*
+
+![](https://i.gifer.com/Z58I.gif)
+
+### Slides
+
+You can download the lecture slides [here](../../pdf/multiple_group.pdf)

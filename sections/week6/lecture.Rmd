@@ -1,0 +1,21 @@
+## Lecture
+
+This week, we will begin with our final theme and discuss structural equation
+modeling (SEM). This powerful technique joins the strengths of CFA and path 
+analysis to produce a highly flexible and theoretically appealing modeling tool.
+Essentially, SEM allows us to build structural path models using the latent
+variables defined by a CFA.
+
+### Recordings
+
+*Once it's ready, the lecture recording will be embedded below.*
+
+![](https://i.gifer.com/3F2S.gif)
+
+```{r, echo = FALSE, eval = FALSE}
+knitr::include_url("")
+```
+
+### Slides
+
+You can download the lectures slides [here](pdf/sem.pdf)

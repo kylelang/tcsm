@@ -1,0 +1,20 @@
+## Lecture
+
+In this lecture, we will begin by discussing the \emph{statistical modeling} 
+paradigm and contextualizing statistical modeling relative to other ways that we 
+can conduct statistical analyses. We will conclude with an introduction to 
+\emph{path analysis}.
+
+### Recordings
+
+*Once it's ready, the lecture recording will be embedded below.*
+
+![](https://i.gifer.com/Ek.gif)
+
+```{r, echo = FALSE, eval = FALSE}
+knitr::include_graphics(paste0(""))
+```
+
+### Slides
+
+You can download the lectures slides [here](pdf/modeling.pdf)
