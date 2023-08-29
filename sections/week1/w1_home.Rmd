@@ -1,6 +1,6 @@
 ## At-Home Exercises
 
-This week is all about gaining familiarity with R and RStudio. We'll be using the Primers available on [Posit]("http://posit.cloud") to work through some basic elements of visualization and programming. Although you should already have R working, all the at-home exercises (as well as the in-class exercises) don't require that you have R installed on your system.
+This week is all about gaining familiarity with R and RStudio. We'll be using the Primers available on <a href="https://posit.cloud">Posit.cloud</a> to work through some basic elements of visualization and programming. Although you should already have R working, all the at-home exercises (as well as the in-class exercises) don't require that you have R installed on your system.
 
 If following along within this gitbook doesn't work for you, you can also find the tutorials online on [Posit Primers](https://posit.cloud/learn/primers/1).
 
