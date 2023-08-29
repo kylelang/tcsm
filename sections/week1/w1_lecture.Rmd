@@ -1,6 +1,6 @@
 ## Lecture
 
-One of the many benefits of R is its community of users and developers, and the enormous quantity of learning materials that have been developed for teaching new users. For today's lecture [R Basic Basics](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/), we turn to the group R-Ladies Sydney who have produced a series of in-depth online learning resources oriented towards beginners. This series of three lectures covers everything that we need to know for this course to get started using R. 
+One of the many benefits of R is its community of users and developers, and the enormous quantity of learning materials that have been developed for teaching new users. For today's lecture [R Basic Basics](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/), we turn to the group R-Ladies Sydney that has produced a series of in-depth online learning resources oriented towards beginners. This series of three lectures covers everything that we need to know for this course to get started using R. 
 
 ### Basic Basics 1
 

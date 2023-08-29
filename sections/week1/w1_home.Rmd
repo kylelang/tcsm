@@ -1,0 +1,45 @@
+## At-Home Exercises
+
+This week is all about gaining familiarity with R and RStudio. We'll be using the Primers available on [Posit]("http://posit.cloud") to work through some basic elements of visualization and programming. Although you should already have R working, all the at-home exercises (as well as the in-class exercises) don't require that you have R installed on your system.
+
+If following along within this gitbook doesn't work for you, you can also find the tutorials online on [Posit Primers](https://posit.cloud/learn/primers/1).
+
+---
+
+### Visualizations with R
+
+<iframe 
+  id="01visualization"
+  width="100%"
+  height="500"
+  src="https://tutorials.shinyapps.io/02-Vis-Basics/"
+  scrolling="auto"
+  data-external="1"
+  allow="fullscreen"
+  loading="lazy"
+  referrerpolicy="no-referrer">
+</iframe>
+
+---
+
+### Programming with R
+
+<iframe 
+  id="02programming"
+  width="100%"
+  height="500"
+  src="https://tutorials.shinyapps.io/04-Programming-Basics/"
+  scrolling="auto"
+  data-external="1"
+  allow="fullscreen"
+  loading="lazy"
+  referrerpolicy="no-referrer">
+</iframe>
+
+---
+
+---
+
+End of At-Home Exercises
+
+---
