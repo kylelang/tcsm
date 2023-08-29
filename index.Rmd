@@ -219,12 +219,12 @@ Your grade for the course is based on a “portfolio” composed of the three
 take-home assignments:
 
 1. Path modeling 
-    - Deadline: **Friday 2023-10-06 at 23:59**
+    - Deadline: **Wednesday 2023-10-04 at 23:59**
     - Group assignment
     - Pass/Fail
 
 1. Latent variable modeling 
-    - Deadline: **Friday 2023-10-20 at 23:59**
+    - Deadline: **Wednesday 2023-10-18 at 23:59**
     - Group assignment
     - Pass/Fail 
 

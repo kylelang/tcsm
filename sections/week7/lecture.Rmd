@@ -15,4 +15,4 @@ your CFA and SEM analyses. We'll cover three general topics:
 
 ### Slides
 
-You can download the lecture slides [here](../../pdf/multiple_group.pdf)
+You can download the lecture slides [here](pdf/multiple_group.pdf)
