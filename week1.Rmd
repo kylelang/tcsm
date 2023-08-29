@@ -4,17 +4,18 @@
 source("code/chapter_setup.R")
 partDir <- paste0(partDir0, "week1/")
 ```
+This week is all about getting up-and-running with R and RStudio.
 
 **Homework before the lecture**
 
 1. Complete the preparatory material:
     a. Read over the [Course Information](index.html) chapter
     a. Work through the [Software Setup](software-setup.html) chapter
-2. Watch the [Lecture Recording](lecture.html) for this week.
-3. Complete the [Reading](reading.html) for this week, and answer the associated 
+1. Watch the [Lecture Recordings](lecture.html) for this week.
+<!-- 1. Complete the [Reading](reading.html) for this week, and answer the associated 
 reading questions.
-4. Complete the [Formative Assessment](formative-assessment.html) for this week.
-
+1. Complete the [Formative Assessment](formative-assessment.html) for this week.
+ -->
 
 **Homework before the practical**
 

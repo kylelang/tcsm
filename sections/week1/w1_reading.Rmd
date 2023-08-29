@@ -1,0 +1,27 @@
+## Reading
+
+This week, to help you gain fluency with R, you will read a chapter from Hadley 
+Wickham's excellent book [*R for Data Science*](https://r4ds.hadley.nz/). 
+
+Depending on what you find easier, you can either
+[read the chapter online](https://r4ds.hadley.nz/eda.html) or follow
+along with the primer below. Both cover the same material.
+
+
+<iframe 
+  id="01datascience"
+  width="100%"
+  height="500"
+  src="https://tutorials.shinyapps.io/01-Exploratory-Data-Analysis/"
+  scrolling="auto"
+  data-external="1"
+  allow="fullscreen"
+  loading="lazy"
+  referrerpolicy="no-referrer">
+</iframe>
+
+### Reference {-}
+[
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). 
+*R for data science.* O'Reilly Media, Inc.
+](https://r4ds.hadley.nz)

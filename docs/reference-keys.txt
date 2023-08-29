@@ -4,9 +4,15 @@ recordings
 slides
 reading
 at-home-exercises
+visualizations-with-r
+programming-with-r
 in-class-exercises
-required-modules
-optional-modules
+viewing-data
+dissecting-data
+grouping-and-manipulating-data
+exploratory-data-analysis
+visualizing-data
+tidying-data
 statistical-modeling-path-analysis
 lecture-1
 recordings-1

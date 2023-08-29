@@ -1,0 +1,11 @@
+## At-Home Exercises
+
+For this week's at-home exercises, you will work through the first of the RStudio 
+(Posit) Primers. This first primer comes in two parts covering the basics of 
+data visualization and statistical programming.
+
+The Posit.Cloud service won't allow us to embed the primer pages here. So, we've
+provided links to each primer below.
+
+- [**Primer 1.1: Data Visualization Basics**](https://posit.cloud/learn/primers/1.1)
+- [**Primer 1.2: Programming Basics**](https://posit.cloud/learn/primers/1.2)
