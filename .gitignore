@@ -10,7 +10,5 @@ rsconnect
 *.xls
 *.xlsx
 *.RData
-planning.txt
-changes.txt
 !pdf/*.pdf
 !docs/pdf/*.pdf
