@@ -1,4 +1,4 @@
-## Lecture
+## Lecture {#w2-lecture}
 
 In this lecture, we will begin by discussing the \emph{statistical modeling} 
 paradigm and contextualizing statistical modeling relative to other ways that we 
