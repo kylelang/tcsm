@@ -71,7 +71,7 @@ data and the above variables.
 
 --------------------------------------------------------------------------------
 
-####
+#### 
 
 What is the measurement level of each variable?
 
@@ -484,7 +484,7 @@ language, history, and logic tests can predict the math test score.
 
 --------------------------------------------------------------------------------
 
-### Part 3: Including nominal independent variables
+### Part 3: The linear model with categorical IVs
 
 --------------------------------------------------------------------------------
 
@@ -525,7 +525,7 @@ participant's reaction time (in milliseconds) during a driving simulation.
 
 Use the package `ggplot2` to create a density plot for the variable *RT*. 
 
-  - What concept are we representing with this plot? 
+-   What concept are we representing with this plot? 
 
 *Hint:* Consider the lap times example from [Lecture 2.2](#statistical-modeling)
 
@@ -620,7 +620,6 @@ regression; we simply summarize the results differently.
 Perform the ANOVA to test the research question
 
     Does talking on the phone interfere with people's driving skills?
-
 
 *Hint:* After estimating the model with `lm()`, you can use the `anova()`
 function to compute the sums-of-squares and significance tests for each factor
@@ -818,190 +817,16 @@ anova(results)
 ```
   
   The effect of *condition* on *RT* was nonsignificant
-  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Therefore, based on these results,
-  we do not have evidence for an effect of mobile phone usage on driving
-  performance.
+  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Therefore, based on these
+  results, we do not have evidence for an effect of mobile phone usage on
+  driving performance.
   </details>
 
 </details>
 
 --------------------------------------------------------------------------------
 
-### Part 4: Linear regressions with interactions/ANCOVA
-
---------------------------------------------------------------------------------
-
-We will now construct a model to assess the following research question.
-
-    Are there differences in reaction times between the phone conditions after controlling for age?
-
-As with ANOVA, the statistical model underlying an ANCOVA is simply a linear
-regression model. The model for an ANCOVA, however, includes at least one
-continuous covariate in addition to the categorical IVs.
-
-Consequently, when we conduct ANCOVA in R, we again use the `lm()` function to
-estimate the model.
-
---------------------------------------------------------------------------------
-
-#### {#ancova1}
-
-Estimate the ANCOVA model needed to test the above research question.
-
-<details>
-
-<summary>Click to show code</summary>
-
-```{r}
-## Estimate the model:
-results <- lm(RT ~ condition + age, data = drivers)
-
-## Conduct the statistical tests:
-anova(results)
-```
-
-</details>
-
---------------------------------------------------------------------------------
-
-##### ANCOVA and Interactions {.unnumbered}
-
-As you can see above, when we run an ANCOVA, we're just estimating a multiple
-linear regression model. We call the analysis ANCOVA because we are interested
-in a specific hypothesis.
-
--   Our substantive interest lies in the categorical IVs.
--   The continuous covariates are uninteresting, nuisance variables that we are
-    controlling for to get better estimates of the interesting treatment
-    effects.
-
-One implication of this hypothesis is the absence of any interaction between the
-covariates and grouping factors.
-
--   If the covariate moderates the treatment effect, the covariate has a direct
-    impact on the substantively interesting group differences. Such a covariate
-    is not a covariate; it's a substantively integral feature of the model.
-
-If we want to report our analysis as an ANCOVA, we need to show that the
-covariate effects are equivalent in each group. In other words, there is no
-interaction between the grouping factors and the covariates.
-
---------------------------------------------------------------------------------
-
-#### {#ancova2}
-
-Test for an interaction between *age* and *condition* in the
-[model from earlier](#ancova1).
-
--   What is your conclusion?
--   Can we report our analysis as an ANCOVA?
-
-*Hint:* You can include an interaction term in an R formulas 'multiplying' the
-two variable names using the `*` operator.
-
-<details>
-
-<summary>Click to show code</summary>
-
-```{r}
-## Add the interaction between 'age' and 'condition' to the model:
-results_int <- lm(RT ~ condition * age, data = drivers)
-
-## Conduct the hypothesis tests.
-anova(results_int)
-```
-  
-  <details>
-  
-  <summary>Click for explanation</summary>
-  
-```{r, include = FALSE}
-  tmp <- anova(results_int)
-  
-  f <- tmp[3, 4] %>% round(2)
-  df1 <- tmp[3, 1]
-  df2 <- tmp[4, 1]
-  p <- tmp[3, 5] %>% round(3)
-```
-  
-  The interaction between *condition* and *age* is not significant
-  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Therefore, the covariate effects
-  should be more-or-less equivalent in each group, and we can report our analysis
-  as an ANCOVA.
-  
-  </details>
-
-</details>
-
---------------------------------------------------------------------------------
-
-#### 
-
-Answer the research from above question.
-
--   If you did find a significant, partial effect of condition, do a post hoc
-    comparison of pairwise mean differences to see which groups showed
-    significantly different reaction times, after controlling for age.
--   Use Tukey's HSD correction for all pairwise comparisons to control the Type
-    I error rate.
-
-*Hints:*
-
--   You can conduct the appropriate post hoc test with the `TukeyHSD()`
-    function.
--   The `TukeyHSD()` function only works on models estimated using the `aov()`
-    function (which is the same as `lm()` but summarizes the results in ANOVA
-    style).
--   To satisfy `TukeyHSD()`, you can either rerun your model with `aov()` or
-    convert your `results` object to the correct format via `aov(results)`.
-
-<details>
-
-<summary>Click to show code</summary>
-
-```{r}
-## Check the hypothesis tests for the ANCOVA from above:
-anova(results)
-
-## Run the post hoc comparisons:
-TukeyHSD(aov(results))
-```
-  <details>
-  
-  <summary>Click for explanation</summary>
-  
-```{r, include = FALSE}
-  tmp <- anova(results)
-  
-  f   <- tmp[1, 4] %>% round(2)
-  df1 <- tmp[1, 1]
-  df2 <- tmp[3, 1]
-  p   <- tmp[1, 5] %>% round(3)
-```
-  
-  After controlling for age, phone usage significantly affects driving performance
-  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Specifically, the hand-held
-  condition has a significant **higher** reaction time than the control condition.
-  </details>
-
-</details>
-
---------------------------------------------------------------------------------
-
-### Part 5: Back to Regression
-
---------------------------------------------------------------------------------
-
-As we saw above, we can use ANOVA or ANCOVA to test hypotheses about differences
-between groups in some continuous outcome. AN(C)OVA is a type of statistical
-test, though, not a type of model. The statistical model underlying an AN(C)OVA
-is just a linear regression model. Since this class is about statistical
-modeling, it won't do us much good to keep thinking in terms of statistical
-tests; we're better off approaching these problems from a modeling perspective.
-
-We can just as easily make the inferences from above by working directly within
-a regression modeling framework. In this section, we will explore linear
-regression models with categorical predictors.
+### Part 4: The linear model with interactions
 
 --------------------------------------------------------------------------------
 
@@ -1125,32 +950,6 @@ summary(results)
   </details>
 
 </details>
-
---------------------------------------------------------------------------------
-
-#### {.unnumbered}
-
-If we compare the box plot, density, and model output below, the relationships
-between the regression coefficient estimates for the viewing categories and
-the group means should be evident.
-
-```{r, echo = FALSE}
-library(gridExtra)
-
-p1 <- ggplot(sesam2, aes(x = VIEWCAT, y = POSTNUMB, color = VIEWCAT)) +
-  theme_minimal() +
-  geom_boxplot()
-p2 <- ggplot(sesam2) +
-  geom_density(aes(x = POSTNUMB, fill = VIEWCAT), alpha = .5) +
-  theme_minimal()
-p3 <- results %>%
-  summary() %>%
-  broom::tidy() %>%
-  mutate_if(is.numeric, round, 2) %>%
-  tableGrob()
-grid.arrange(arrangeGrob(p1, p2, ncol = 2), p3)
-```
-
 
 --------------------------------------------------------------------------------
 
@@ -1295,6 +1094,46 @@ anova(results_add, results_mod)
   </details>
 
 </details>
+
+--------------------------------------------------------------------------------
+
+##### ANCOVA vs linear regression
+
+As we saw in [Part 3][Part 3: The linear model with categorical IVs], we can use
+ANOVA to test hypotheses about differences between groups in some continuous
+outcome. The model for an ANCOVA, however, includes at least one continuous
+covariate in addition to the categorical IVs.
+
+As with ANOVA, the statistical model underlying an ANCOVA is simply a linear
+regression model. We call the analysis ANCOVA because we are interested
+in a specific hypothesis.
+
+-   Our substantive interest lies in the categorical IVs.
+-   The continuous covariates are uninteresting, nuisance variables that we are
+    controlling for to get better estimates of the interesting treatment
+    effects.
+
+Seen through this framework, the set of models above could have been used to
+answer the ANCOVA research question:
+    
+        Are there differences in increased numeracy between the viewing conditions after controlling for age?
+
+One implication of this hypothesis is the absence of any interaction between the
+covariates and grouping factors.
+
+-   If the covariate moderates the treatment effect, the covariate has a direct
+    impact on the substantively interesting group differences. Such a covariate
+    is not a covariate; it's a substantively integral feature of the model.
+    
+If we want to report our analysis as an ANCOVA, we need to show that the
+covariate effects are equivalent in each group. In other words, there is no
+interaction between the grouping factors and the covariates.
+
+AN(C)OVA is a type of statistical test, though, not a type of model. The
+statistical model underlying an AN(C)OVA is just a linear regression model.
+Since this class is about statistical modeling, it won't do us much good to keep
+thinking in terms of statistical tests; we're better off approaching these
+problems from a modeling perspective.
 
 --------------------------------------------------------------------------------
 
