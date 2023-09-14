@@ -2,95 +2,114 @@
 
 ```{r include = FALSE}
 opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
-
-answer <- yaml::yaml.load_file("../answers.yml")$class1
+dataDir <- "../../data/"
+# answer <- yaml::yaml.load_file("../answers.yml")$class1
 ```
 
-During this practical, you will work through some exercises about ANOVA, ANCOVA, and regression. 
+During this practical, you will work through some exercises meant to expand your
+statistical reasoning skills and improve your understanding of linear models.
 
-- Note that ANOVA and ANCOVA are special cases of regression.
-- Or, more accurately, ANOVA, ANCOVA, and regression are all different flavors 
-of the *general linear model*.
+For this exercise, having some familiarity with regression will be helpful. If
+you feel like you need to refresh your knowledge in this area, consider the
+resources listed in the [Background knowledge](#background) section.
 
-If you need to refresh your knowledge on ANOVA, ANCOVA, or regression consider
-the resources listed in the [Background knowledge](#background) section. 
+**Data:**
 
----
+-   [Sesam.sav](https://surfdrive.surf.nl/files/index.php/s/93FzuSnGidunEVA/download?path=%2F&files=Sesam.sav)
+
+-   
+    [Sesam2.sav](https://surfdrive.surf.nl/files/index.php/s/93FzuSnGidunEVA/download?path=%2F&files=Sesam2.sav)
+
+--------------------------------------------------------------------------------
 
 ### Part 1: Data Exploration
 
----
+--------------------------------------------------------------------------------
 
-####
+#### {.unnumbered}
 
-Open the file Sesam.sav:
+Open the file "Sesam.sav"
 
 ```{r, eval = FALSE}
-## Load the 'foreign' library for reading SPSS files:
-library(foreign)
+# Load `dplyr` for the pipe ( %>% )
+library(dplyr)
 
-## Load the 'Sesam.sav' data into an object called 'sesam':
-sesam <- read.spss("Sesam.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+# Load the `haven` library for reading in SPSS files:
+library(haven)
+
+## Load the 'Sesam.sav' data into an object called 'sesam' and remove SPSS attributes:
+sesam <- read_sav(file = "Sesam.sav") %>% zap_formats()
 ```
 
 ```{r, echo = FALSE}
-library(foreign)
-sesam <- read.spss(paste0(dataDir, "Sesam.sav"), 
-                   to.data.frame    = TRUE, 
-                   use.value.labels = FALSE)
+library(dplyr)
+library(haven)
+sesam <- read_sav(paste0(dataDir, "Sesam.sav")) %>% zap_formats()
 ```
 
----
+--------------------------------------------------------------------------------
 
-This file is part of a larger dataset that evaluates the impact of the first 
-year of the Sesame Street television series. Sesame Street is mainly concerned 
+This file is part of a larger dataset that evaluates the impact of the first
+year of the Sesame Street television series. Sesame Street is mainly concerned
 with teaching preschool related skills to children in the 3--5 year age range.
 
 The following variables will be used in this exercise:
 
-- **age**: measured in months
-- **prelet**: knowledge of letters before watching Sesame Street (range 0--58)
-- **prenumb**: knowledge of numbers before watching Sesame Street (range 0--54)
-- **prerelat**: knowledge of relations before watching Sesame Street (range 0--17)
-- **peabody**: vocabulary maturity before watching Sesame Street (range 20--120)
-- **postnumb**: knowledge of numbers after a year of Sesame Street (range 0--54)
+-   **age**: measured in months
+-   **prelet**: knowledge of letters before watching Sesame Street (range 0--58)
+-   **prenumb**: knowledge of numbers before watching Sesame Street (range
+    0--54)
+-   **prerelat**: knowledge of size/amount/position relationships before
+    watching Sesame Street (range 0--17)
+-   **peabody**: vocabulary maturity before watching Sesame Street (range
+    20--120)
+-   **postnumb**: knowledge of numbers after a year of Sesame Street (range
+    0--54)
 
-*Note*: Unless otherwise noted, the following questions refer to the `sesam` 
+*Note*: Unless otherwise noted, the following questions refer to the `sesam`
 data and the above variables.
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-What is the  measurement level of each variable?
+What is the measurement level of each variable?
 
 *Hint:* The output of the `str()` function should be helpful here.
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 ## Examine the data structure:
 str(sesam)
 ```
 
-All variables are numeric.
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  All variables are numeric. `str()` uses the abbreviation "num" for this.
+  
+  </details>
 
-</details> 
+</details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-- What is the average age in the sample? 
-- What is the age range (youngest and oldest child)? 
+-   What is the average age in the sample?
+-   What is the age range (youngest and oldest child)?
 
 *Hint:* Use `tidySEM::descriptives()`
 
 <details>
-  <summary>Click for explanation</summary>
 
-As in the take home exercises, you can use the `descriptives()` function from 
+<summary>Click to show code</summary>
+
+As in the take home exercises, you can use the `descriptives()` function from
 the `tidySEM` package to describe the data:
 
 ```{r}
@@ -99,52 +118,71 @@ library(tidySEM)
 descriptives(sesam)
 ```
 
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  We can get the average age from the "mean" column in the table (
+  `r round(mean(sesam$age), 1)`), and the age range from the columns "min" and
+  "max", (`r round(min(sesam$age), 1)` and `r round(max(sesam$age), 1)`
+  respectively.)
+  </details>
+
 </details>
 
----
+--------------------------------------------------------------------------------
 
 #### {#changeScore}
 
-- What is the average gain in knowledge of numbers? 
-- What is the standard deviation of this gain?  
+-   What is the average gain in knowledge of numbers?
+-   What is the standard deviation of this gain?
 
-*Hints:* 
+*Hints:*
 
-- You will need to compute the gain and save the change score as a new object. 
-- You can then use the base-R functions mean() and sd() to do the calculations.
+-   You will need to compute the gain and save the change score as a new object.
+-   You can then use the base-R functions mean() and sd() to do the
+    calculations.
 
 <details>
-  <summary>Click for explanation</summary>
 
-Create a new variable that represents the difference between pre- and post-test 
+<summary>Click to show code</summary>
+
+Create a new variable that represents the difference between pre- and post-test
 scores on knowledge of numbers:
 
 ```{r}
-sesam$ndif <- sesam$postnumb - sesam$prenumb
+sesam <-
+  sesam %>%
+  mutate(ndif = postnumb - prenumb)
 ```
 
 Compute the mean and SD of the change score:
 
 ```{r}
-mean(sesam$ndif)
-sd(sesam$ndif)
+sesam %>%
+  summarise(
+    mean(ndif),
+    sd(ndif)
+  )
 ```
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-- Create an appropriate visualization of the gain scores you computed in 
-\@ref(changeScore). 
-- Justify your choice of visualization.
+-   Create an appropriate visualization of the gain scores you computed [in the
+    previous section](#changeScore).
 
-*Hint:* Some applicable visualizations are explained in \@ref(tutorialPlotting).
+-   Justify your choice of visualization.
+
+*Hint:* Some applicable visualizations are explained in the section [Visualizations with R].
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click to show code</summary>
+
 ```{r}
 library(ggplot2)
 
@@ -156,64 +194,104 @@ p + geom_histogram()
 p + geom_density()
 p + geom_boxplot()
 ```
-
-</details>
-
----
-
-####
-
-- Create a visualization that provides information about the bivariate 
-relationship between two of the variables.
-- Justify your choice of visualization.
-
-*Hint:* Again, Section \@ref(tutorialPlotting) may provide some useful insights.
-
-<details>
+  <details>
+  
   <summary>Click for explanation</summary>
   
-```{r}
-## Create a scatterplot of the pre- and post-test number knowledge
-ggplot(sesam, aes(x = prenumb, y = postnumb)) + geom_point()
-```
+  Because the gain score is numeric, we should use something appropriate for
+  showing the distribution of a continuous variable. In this case, we can use
+  either a density plot, or a histogram (remember from the lecture, this is
+  like a density plot, but binned).
+    
+  We can also use a box plot, which can be a concise way to display a lot of
+  information about a variable in a little less space.
+  
+  </details>
 
 </details>
 
----
+--------------------------------------------------------------------------------
+
+#### 
+
+-   Create a visualization that provides information about the bivariate
+    relationship between the pre- and post-test number knowledge.
+-   Justify your choice of visualization.
+-   Describe the relationship based on what you see in your visualization.
+
+*Hint:* Again, the [Visualizations with R] section may provide some useful insights.
+
+<details>
+
+<summary>Click to show code</summary>
+
+```{r}
+## Create a scatterplot of the pre- and post-test number knowledge
+ggplot(sesam, aes(x = prenumb, y = postnumb)) +
+  geom_point()
+```
+
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  A scatterplot is a good tool for showing patterns in the way that two
+  continuous variables relate to each other. From it, we can quickly gather
+  information about whether a relationship exists, its direction, its
+  strength, how much variation there is, and whether or not a relationship
+  might be non-linear.
+  
+  Based on this scatterplot, we see a positive relationship between the prior
+  knowledge of numbers and the knowledge of numbers at the end of the study.
+  Children who started with a higher level of numeracy also ended with a 
+  higher level of numeracy. 
+    
+  There is a considerable amount of variance in the relationship. Not every
+  child increases their numeracy between pre-test and post-test. Children show
+  differing amounts of increase. 
+  
+  </details>
+
+</details>
+
+--------------------------------------------------------------------------------
 
 ### Part 2: Regression Analysis
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-Are there significant, bivariate associations between *postnumb* and the 
+Are there significant, bivariate associations between *postnumb* and the
 following variables?
 
-- *age*
-- *prelet*
-- *prenumb*
-- *prerelat*
-- *peabody*
+-   *age*
+-   *prelet*
+-   *prenumb*
+-   *prerelat*
+-   *peabody*
 
 Use Pearson correlations to answer this question.
 
-- You do not need to check the assumptions here (though you would in real life).
+-   You do not need to check the assumptions here (though you would in real
+    life).
 
 *Hint:* The base-R `cor.test()` function and the `corr.test()` function from the
-`psych` package will both conduct hypothesis tests for a correlation 
+`psych` package will both conduct hypothesis tests for a correlation
 coefficients (the base-R `cor()` function only computes the coefficients).
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click to show code</summary>
+
 ```{r}
 library(psych)
 
 ## Test the correlations using psych::corr.test():
-corr.test(
-  sesam[ , c("postnumb", "age", "prelet", "prenumb", "prerelat", "peabody")]
-  )
+sesam %>%
+  select(postnumb, age, prelet, prenumb, prerelat, peabody) %>%
+  corr.test()
+
 
 ## OR ##
 
@@ -225,25 +303,39 @@ cor.test(sesam$postnumb, sesam$prerelat)
 cor.test(sesam$postnumb, sesam$peabody)
 ```
 
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  Yes, based on the p-values (remember that 0 here really means very small,
+  making it less than .05), we would say that there are significant
+  correlations between postnumb and all other variables in the data. (In fact,
+  all variables in the data are significantly correlated with one another.)
+  
+  </details>
+
 </details>
 
----
+--------------------------------------------------------------------------------
 
 #### {#reg1}
 
-Do *age* and *prenumb* explain a significant proportion of the variance in *postnumb*? 
+Do *age* and *prenumb* explain a significant proportion of the variance in
+*postnumb*?
 
-- What statistic did you use to justify your conclusion?
-- Interpret the model fit.
+-   What statistic did you use to justify your conclusion?
+-   Interpret the model fit.
 
-*Hints:* 
+*Hints:*
 
-- The `lm()` function (short for linear model) estimates linear regression models. 
-- The `summary()` function provides relevant summary statistics for the model.
+-   The `lm()` function (short for linear model) estimates linear regression
+    models.
+-   The `summary()` function provides relevant summary statistics for the model.
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click to show code</summary>
+
 ```{r}
 results <- lm(postnumb ~ age + prenumb, data = sesam)
 summary(results)
@@ -252,158 +344,293 @@ summary(results)
 ```{r, include = FALSE}
 s <- summary(results)
 
-r2  <- s$r.squared %>% round(3)
-f   <- s$fstatistic
+r2 <- s$r.squared %>% round(3)
+f <- s$fstatistic
 df1 <- f[2]
 df2 <- f[3]
-f   <- f[1] %>% round(3)
+f <- f[1] %>% round(3)
 ```
 
-- Yes, *age* and *prenumb* explain a significant amount of variability in *postnumb* 
-($R^2 = `r r2`$, $F[`r df1`, `r df2`] = `r f`$, $p < 0.001$).
-- We use the F statistic for the overall test of model fit to support this conclusion.
-- The variables *age* and *prenumb* together explain `r 100 * r2`% of the 
-variability in *postnumb*. 
+  <details>
+  
+  <summary>Click for explanation</summary>
+  -   Yes, *age* and *prenumb* explain a significant amount of variability in
+    *postnumb* ($R^2 = `r r2`$, $F[`r df1`, `r df2`] = `r f`$, $p < 0.001$).
+  -   We use the F statistic for the overall test of model fit to support this
+    conclusion.
+  -   The variables *age* and *prenumb* together explain `r 100 * r2`% of the
+    variability in *postnumb*.
+    
+  </details>
+
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-Write the null and alternative hypotheses for tested in \@ref(reg1).
+Write the null and alternative hypotheses tested for in [the previous section](#reg1).
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click for explanation</summary>
+
 Since we are testing for explained variance, our hypotheses concern the $R^2$.
 
-\[
+$$
 \begin{align*}
 H_0: R^2 = 0\\
 H_1: R^2 > 0
 \end{align*}
-\]
+$$
 
 Note that this is a directional hypotheses because the $R^2$ cannot be negative.
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-Consider the path model below. 
+Consider the path model below.
 
-- How many regression coefficients are estimated in this model? 
-- How many variances are estimated? 
-- How many covariances are estimated? 
-- How many degrees of freedom does this model have? 
-
-*Hint:* As you learned in [Lecture 1](pdf/tcsm_week_1.pdf), $df = N_{obs} – N_{par}$. 
+-   How many regression coefficients are estimated in this model?
+-   How many variances are estimated?
+-   How many covariances are estimated?
 
 ```{r, echo = FALSE}
-mod <- '
+mod <- "
 postnumb ~ prerelat + prelet + prenumb
 prerelat ~ age
 prelet ~ age
 prenumb ~ age
-'
+"
 
 res <- lavaan::sem(mod, data = sesam)
-p   <- prepare_graph(res, 
-                     layout = get_layout("", "prerelat", "",
-                                         "age", "prelet", "postnumb",
-                                         "", "prenumb", "", 
-                                         rows = 3), 
-                     angle = 1)
-edges(p)$label <- NA
-plot(p)
+
+prepare_graph(res,
+  layout = get_layout("",    "prerelat", "",
+                      "age", "prelet",   "postnumb",
+                      "",    "prenumb",  "",
+    rows = 3
+  ),
+  angle = 1,
+  curvature = 60) %>% 
+  if_edges({show == TRUE}, {label = NA}) %>% 
+  if_edges({to == "postnumb" & op == "~"}, {connect_to = c("top", "left", "bottom")}) %>%
+  if_edges({to == "postnumb" & op == "~~"}, {connect_to = "right"; connect_from = "right"}) %>% 
+  plot()
+
 ```
 
----
+<details>
+  
+<summary>Click for explanation</summary>
 
-####
+There are:
 
-Consider a multiple regression analysis with three continuous independent 
-variables: scores on tests of language, history, and logic, and one continuous 
-dependent variable: score on a math test. We want to know if scores on the language, history, and logic tests can predict the math test score. 
+- six regression coefficients (red)
+- five variances
+  - four residual variances (blue)
+  - one other variance component, for the variable *age* (orange)
+- No covariances
 
-- Sketch a path model that you could use to answer this question
-- How many regression parameters are there? 
-- How many variances could you estimate? 
-- How many covariances could you estimate? 
-- How many degrees of freedom does this model have?
+```{r, echo = FALSE}
+  mod <- "
+  postnumb ~ prerelat + prelet + prenumb
+  prerelat ~ age
+  prelet ~ age
+  prenumb ~ age
+  "
+  
+res <- lavaan::sem(mod, data = sesam)
+prepare_graph(res,
+              layout = get_layout("",    "prerelat", "",
+                                  "age", "prelet",   "postnumb",
+                                  "",    "prenumb",  "",
+                                  rows = 3
+              ),
+              angle = 1,
+              curvature = 60) %>% 
+  if_edges({show == TRUE}, {label = NA}) %>% 
+  if_edges({to == "postnumb" & op == "~"}, {connect_to = c("top", "left", "bottom")}) %>%
+  if_edges({to == "postnumb" & op == "~~"}, {connect_to = "right"; connect_from = "right"}) %>% 
+  color_reg("red") %>%
+  color_var("blue") %>%
+  edit_nodes({
+    color <- "black"
+  }) %>%
+  if_nodes(condition = {
+    name == "age"
+  }, expr = {
+    color <- "orange"
+  }) %>% 
+  plot(p)
+```
 
----
+</details>
 
-### Part 3: ANOVA
+--------------------------------------------------------------------------------
 
----
+####  
 
-####
+Consider a multiple regression analysis with three continuous independent
+variables: scores on tests of language, history, and logic, and one continuous
+dependent variable: score on a math test. We want to know if scores on the
+language, history, and logic tests can predict the math test score.
+
+-   Sketch a path model that you could use to answer this question
+-   How many regression parameters are there?
+-   How many variances could you estimate?
+-   How many covariances could you estimate?
+
+--------------------------------------------------------------------------------
+
+### Part 3: The linear model with categorical IVs
+
+--------------------------------------------------------------------------------
+
+#### {.unnumbered}
 
 Load the `Drivers.sav` data.
 
 ```{r, eval = FALSE}
 # Read the data into a data frame named 'drivers':
-drivers <- read.spss("Drivers.sav", to.data.frame = TRUE)
+drivers <- read_sav("Drivers.sav") %>%
+  as_factor() # This preserves the SPSS labels for nominal variables
 ```
 
 ```{r, echo = FALSE}
-drivers <- read.spss(paste0(dataDir, "Drivers.sav"), to.data.frame = TRUE)
+drivers <- read_sav(paste0(dataDir, "Drivers.sav")) %>%
+  as_factor()
 ```
 
----
+--------------------------------------------------------------------------------
 
-In this section, we will use ANOVA to evaluate the following research question:
+In this section, we will evaluate the following research question:
 
-- Does talking on the phone interfere with people’s driving skills?
+    Does talking on the phone interfere with people's driving skills?
 
-These data come from an experiment. The *condition* variable represents the 
+These data come from an experiment. The *condition* variable represents the
 three experimental conditions:
 
-- Hand-held phone
-- Hands-free phone 
-- Control (no phone)
+-   Hand-held phone
+-   Hands-free phone
+-   Control (no phone)
 
-We will use *condition* as the IV in our ANOVA models. The DV, *RT*, represents
-the participant's reaction time (in milliseconds) during a driving simulation.
+We will use *condition* as the IV in our models. The DV, *RT*, represents the
+participant's reaction time (in milliseconds) during a driving simulation.
 
----
+--------------------------------------------------------------------------------
 
-##### ANOVA vs. Linear Regression {-}
+#### 
+
+Use the package `ggplot2` to create a density plot for the variable *RT*. 
+
+-   What concept are we representing with this plot? 
+
+*Hint:* Consider the lap times example from [Lecture 2.2](#statistical-modeling)
+
+<details>
+
+<summary>Click to show code</summary>
+
+```{r}
+ggplot(drivers, aes(x = RT)) +
+  geom_density()
+```
+  
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  This shows the distribution of all the combined reaction times from drivers
+  in all three categories. 
+  
+  </details>
+
+</details>
+
+--------------------------------------------------------------------------------
+
+#### 
+
+Modify this density plot by mapping the variable *condition* from your data to
+the `fill` aesthetic in `ggplot`.
+
+-   What is the difference between this plot and the previous plot? 
+-   Do you think there is evidence for differences between the groups?
+-   How might we test this by fitting a model to our sample?
+
+<details>
+
+<summary>Click to show code</summary>
+
+*Hint*: To reduce the transparency of the densities, use the aesthetic `alpha`.
+
+```{r}
+ggplot(drivers, aes(x = RT, fill = condition)) +
+  geom_density(alpha = .5)
+```
+  
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  This figure models the conditional distribution of reaction time, where the
+  type of cell phone usage is the grouping factor. 
+  
+  Things you can look at to visually assess whether the three groups differ are
+  the amount of overlap of the distributions, how much distance there is between
+  the individual means, and whether the combined distribution is much different
+  than the conditional distributions.
+
+  If we are willing to assume that these conditional distributions are normally
+  distributed and have equivalent variances, we could use an ANOVA or a linear
+  regression with dummy variables. 
+  
+  </details>
+
+</details>
+
+--------------------------------------------------------------------------------
+
+##### ANOVA vs. Linear Regression {.unnumbered}
 
 As you may know, the mathematical model underlying ANOVA is just a linear
 regression model with nominal IVs. So, in terms of the underlying statistical
 models, there is no difference between ANOVA and regression; the differences lie
 in the focus of the analysis.
 
-- ANOVA is really a type of statistical test wherein we are testing hypotheses
-about the effects of some set of nominal grouping factors on some continuous
-outcome.
-    - When doing an ANOVA, we usually don't interact directly with the parameter
-    estimates from the underlying model.
-- Regression is a type of statistical model (i.e., a way to represent a
-univariate distribution with a conditional mean and fixed variance).
-    - When we do a regression analysis, we primarily focus on the estimated 
-    parameters of the underling linear model.
-    
+-   ANOVA is really a type of statistical test wherein we are testing hypotheses
+    about the effects of some set of nominal grouping factors on some continuous
+    outcome.
+    -   When doing an ANOVA, we usually don't interact directly with the
+        parameter estimates from the underlying model.
+-   Regression is a type of statistical model (i.e., a way to represent a
+    univariate distribution with a conditional mean and fixed variance).
+    -   When we do a regression analysis, we primarily focus on the estimated
+        parameters of the underling linear model.
+
 When doing ANOVA in R, we estimate the model exactly as we would for linear
 regression; we simply summarize the results differently.
 
----
+--------------------------------------------------------------------------------
 
 #### {#anova1}
 
-Perform the ANOVA to test the above research question.
+Perform the ANOVA to test the research question
+
+    Does talking on the phone interfere with people's driving skills?
 
 *Hint:* After estimating the model with `lm()`, you can use the `anova()`
 function to compute the sums-of-squares and significance tests for each factor
 in your model.
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 ## Estimate the underlying model:
@@ -418,32 +645,33 @@ anova(results)
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
 Of course the results of any analysis are only valid if the assumptions of the
 analysis/model are satisfied. In particular, we should probably check at least
 three conditions:
 
-1. There are no overly influential cases
-1. The residual variance is homogonous across groups
-1. The residuals are normally distributed
+1.  There are no overly influential cases
+2.  The residual variance is homogeneous across groups
+3.  The residuals are normally distributed
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
 Check for influential cases.
 
-*Hint:* You can use the `cooks.distance()` function to compute Cook's Distance 
-statistic  for each observation.
+*Hint:* You can use the `cooks.distance()` function to compute Cook's Distance
+statistic for each observation.
 
-- Observations with Cook's D values substantially larger than, and qualitatively
-distinct from, the rest of the data may be overly influential.
-- You can evaluate the relative sizes of the distances by making an index plot
-of the estimated distance statistics.
+-   Observations with Cook's D values substantially larger than, and
+    qualitatively distinct from, the rest of the data may be overly influential.
+-   You can evaluate the relative sizes of the distances by making an index plot
+    of the estimated distance statistics.
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 ## Compute the Cook's distances:
@@ -452,16 +680,21 @@ d <- cooks.distance(results)
 ## Plot the distances:
 plot(d)
 ```
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+  In the figure above, we're looking for any distances that clearly "stand out
+  from the crowd".
 
-In the figure above, we're looking for any distances that clearly "stand out
-from the crowd".
-
-- None of the distances in the above figure look notable.
-- We do not see evidence of influential observations.
+  -   None of the distances in the above figure look notable.
+  -   We do not see evidence of influential observations.
+  
+  </details>
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
 ####
 
@@ -469,352 +702,351 @@ Check the normality of the residuals.
 
 *Hints:*
 
-- One of the best ways to check the normality of residuals is with a Normal QQplot.
-- We can easily create a Normal QQ-Plot of the residuals by plotting the `results` object from \@ref(anova1).
+-   One of the best ways to check the normality of residuals is with a Normal
+    QQplot.
+-   We can easily create a Normal QQ-Plot of the residuals by plotting the
+    `results` object from [before](#anova1).
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 plot(results, 2)
-``` 
-
-In the QQ-Plot created above, we want to see all of the points follow the
-diagonal, dashed line.
-
-- Perfectly normal residuals will fall exactly along this line
-- Deviations away from the line indicate devations from normality.
-
-The residuals in this figure look quite good. 
-
-- We only see very minor deviations from the idealized line.
-- The residuals appear to be more-or-less normally distributed.
+```
+  <details>
+  <summary>Click for explanation</summary>
+  
+  In the QQ-Plot created above, we want to see all of the points follow the
+  diagonal, dashed line.
+  
+  -   Perfectly normal residuals will fall exactly along this line
+  -   Deviations away from the line indicate deviations from normality.
+  
+  The residuals in this figure look quite good.
+  
+  -   We only see very minor deviations from the idealized line.
+  -   The residuals appear to be more-or-less normally distributed.
+  
+  </details>
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
 Check the homogeneity of the residual variances.
 
 *Hints:*
 
-- A *scale-location plot* is one of the best ways to check the homogeneity 
-of variances assumption. 
-- Plot an estimate of the residual variance against the predicted values
-   - Any trend indicates differences in residual variance between groups
-- Plotting the `results` object from \@ref(anova1) will also produce a
-scale-location plot.
+-   A *scale-location plot* is one of the best ways to check the homogeneity of
+    variances assumption.
+-   Plot an estimate of the residual variance against the predicted values
+    -   Any trend indicates differences in residual variance between groups
+-   Plotting the `results` object from [before](#anova1) will also produce a
+    scale-location plot.
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 plot(results, 3)
 ```
+  <details>
+  
+  <summary>Click for explanation</summary>
 
-The red line in this figure is a *loess line* which represents the trend of the
-plotted data.
+  The red line in this figure is a *loess line* which represents the trend of the
+  plotted data.
+  
+  -   If this loess line is flat, there is no evidence of differences in the
+      residual variances between groups.
+  -   Trends in this line indicate violations of the homogeneity assumption.
+  
+  In this case, the line is pretty much flat and we have little-to-no evidence of
+  heterogeneous residual variances.
 
-- If this loess line is flat, there is no evidence of differences in the residual variances between groups.
-- Trends in this line indicate violations of the homogeneity assumption.
-
-In this case, the line is pretty much flat and we have little-to-no evidence of
-heterogeneous residual variances.
+  </details>
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
-Summarize your conclusions regarding the assumption.
+Summarize your conclusions regarding the assumptions.
 
-- Are the assumptions satisfied?
-- Can we trust the model results?
+-   Are the assumptions satisfied?
+-   Can we trust the model results?
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click for explanation</summary>
+
 There are no observations that stand out as particularly influential.
 Furthermore, we have no evidence of heterogeneous residual variances or
 substantial violations of normality for the residuals. Hence, the assumptions
 appear to be satisfied, and we can trust the conclusions of our analysis.
 
-</details> 
-
----
-
-####
-
-Use your results to answer the research question. 
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r}
-anova(results)
-```
-
-```{r, include = FALSE}
-tmp <- anova(results)
-
-f   <- tmp[1, 4] %>% round(2)
-df1 <- tmp[1, 1]
-df2 <- tmp[2, 1]
-p   <- tmp[1, 5] %>% round(3)
-```
-
-The effect of *condition* on *RT* was nonsignificant ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Therefore, based on these results, we do not have evidence
-for an effect of mobile phone usage on driving performance.
-
 </details>
 
----
-
-### Part 4: ANCOVA
-
----
-
-We will now conduct an ANCOVA to assess the following research question. 
-
-- Are there differences in reaction times between the phone conditions after 
-controlling for age? 
-
-As with ANOVA, the statistical model underlying an ANCOVA is simply a linear
-regression model. The model for an ANCOVA, however, includes at least one
-continuous covariate in addition to the categorical IVs.
-
-Consequently, when we conduct ANCOVA in R, we again use the `lm()` function to
-estimate the model.
-
----
-
-#### {#ancova1}
-
-Estimate the ANCOVA model needed to test the above research question.
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r}
-## Estimate the model:
-results <- lm(RT ~ condition + age, data = drivers)
-
-## Conduct the statistical tests:
-anova(results)
-```
-
-</details>
-
----
-
-##### ANCOVA and Interactions {-}
-
-As you can see above, when we run an ANCOVA, we're just estimating a multiple
-linear regression model. We call the analysis ANCOVA because we are interested
-in a specific hypothesis.
-
-- Our substantive interest lies in the categorical IVs.
-- The continuous covariates are uninteresting, nuisance variables that we are
-controlling for to get better estimates of the interesting treatment effects.
-
-One implication of this hypothesis is the absence of any interaction between the
-covariates and grouping factors.
-
-- If the covariate moderates the treatment effect, the covariate has a direct impact on the substantively interesting group differences. Such a covariate is not a covariate; it's a substantively integral feature of the model.
-
-If we want to report our analysis as an ANCOVA, we need to show that the covariate effects are equivalent in each group. In other words, there is no interaction between the grouping factors and the covariates.
-
----
-
-#### {#ancova2}
-
-Test for an interaction between *age* and *condition* in the model from
-\@ref(ancova1). 
-
-- What is your conclusion?
-- Can we report our analysis as an ANCOVA?
-
-*Hint:* You can include an interaction term in an R formulas 'multiplying' the two variable names using the `*` operator.
-
-<details>
-  <summary>Click for explanation</summary>
-  
-```{r}
-## Add the interaction between 'age' and 'condition' to the model:
-results_int <- lm(RT ~ condition * age, data = drivers)
-
-## Conduct the hypothesis tests.
-anova(results_int)
-```
-
-```{r, include = FALSE}
-tmp <- anova(results_int)
-
-f   <- tmp[3, 4] %>% round(2)
-df1 <- tmp[3, 1]
-df2 <- tmp[4, 1]
-p   <- tmp[3, 5] %>% round(3)
-```
-
-The interaction between *condition* and *age* is not significant 
-($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Therefore, the covariate effects should be more-or-less equivalent in each group, and we can report our analysis
-as an ANCOVA.
-
-</details>
-
----
-
-####
-
-Answer the research from above question. 
-
-- If you did find a significant, partial effect of condition, do a post hoc
-comparison of pairwise mean differences to see which groups showed significantly
-different reaction times, after controlling for age.
-- Use Tukey's HSD correction for all pairwise comparisons to control the Type I error rate.
-
-*Hints:*
-
-- You can conduct the appropriate post hoc test with the `TukeyHSD()` function.
-- The `TukeyHSD()` function only works on models estimated using the `aov()`
-function (which is the same as `lm()` but summarizes the results in ANOVA
-style).
-- To satisfy `TukeyHSD()`, you can either rerun your model with `aov()` or
-convert your `results` object to the correct format via `aov(results)`.
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r}
-## Check the hypothesis tests for the ANCOVA from above:
-anova(results)
-
-## Run the post hoc comparisons:
-TukeyHSD(aov(results))
-```
-
-
-```{r, include = FALSE}
-tmp <- anova(results)
-
-f   <- tmp[1, 4] %>% round(2)
-df1 <- tmp[1, 1]
-df2 <- tmp[3, 1]
-p   <- tmp[1, 5] %>% round(3)
-```
-
-After controlling for age, phone usage significantly affects driving performance
-($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Specifically, the hand-held
-condition has a significant **higher** reaction time than the control condition.
-
----
-
-### Part 5: Back to Regression
-
----
-
-As we saw above, we can use ANOVA or ANCOVA to test hypotheses about differences
-between groups in some continuous outcome. AN(C)OVA is a type of statistical 
-test, though, not a type of model. The statistical model underlying an AN(C)OVA
-is just a linear regression model. Since this class is about statistical
-modeling, it won't do us much good to keep thinking in terms of statistical
-tests; we're better off approaching these problems from a modeling perspective. 
-
-We can just as easily make the inferences from above by working directly within 
-a regression modeling framework. In this section, we will explore linear
-regression models with categorical predictors.
-
----
+--------------------------------------------------------------------------------
 
 #### 
 
-Load the `Sesam2.sav` data. 
+Use your results to answer the research question.
+
+<details>
+
+<summary>Click to show code</summary>
+
+```{r}
+anova(results)
+```
+
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+```{r, include = FALSE}
+  tmp <- anova(results)
+  
+  f <- tmp[1, 4] %>% round(2)
+  df1 <- tmp[1, 1]
+  df2 <- tmp[2, 1]
+  p <- tmp[1, 5] %>% round(3)
+```
+  
+  The effect of *condition* on *RT* was nonsignificant
+  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). Therefore, based on these
+  results, we do not have evidence for an effect of mobile phone usage on
+  driving performance.
+  </details>
+
+</details>
+
+--------------------------------------------------------------------------------
+
+### Part 4: Linear Models and Multiple Variables
+
+--------------------------------------------------------------------------------
+
+#### {.unnumbered}
+
+Load the `Sesam2.sav` data.
 
 ```{r, eval = FALSE}
 # Read the data into an object called 'sesam2':
-sesam2 <- read.spss("Sesam2.sav", to.data.frame = TRUE)
+sesam2 <- read_sav("Sesam2.sav")
 ```
 
 ```{r, echo = FALSE}
-sesam2 <- read.spss(paste0(dataDir, "Sesam2.sav"), to.data.frame = TRUE)
+sesam2 <- read_sav(paste0(dataDir, "Sesam2.sav"))
 ```
 
-####
+#### 
 
 *VIEWCAT* is a nominal grouping variable, but it is represented as a numeric
-variable in the `sesam2` data. 
+variable in the `sesam2` data. The levels represent the following frequencies of
+Sesame Street viewership of the children in the data:
 
-- Convert *VIEWCAT* into a factor. 
-- Make sure that `VIEWCAT = 1` is the reference group.
+1.    Rarely/never
+1.    2-3 times a week
+1.    4-5 times a week
+1.    \> 5 times a week
 
-*Hints:* 
+-   Convert *VIEWCAT* into a factor.
+-   Make sure that `VIEWCAT = 1` is the reference group.
 
-- You can identify the reference group with the `levels()` or `contrasts()` functions.
-- The reference group is the group labelled with the first level printed by
-`levels()`.
-- When you run `contrasts()`, you will see a pattern matrix that defines a
-certain dummy coding scheme. The reference group is the group that has zeros in
-each column of this matrix.
-- If you need to change the reference group, you can use the `relevel()` function.
+*Hints:*
+
+-   You can identify the reference group with the `levels()` or `contrasts()`
+    functions.
+-   The reference group is the group labelled with the first level printed by
+    `levels()`.
+-   When you run `contrasts()`, you will see a pattern matrix that defines a
+    certain dummy coding scheme. The reference group is the group that has zeros
+    in each column of this matrix.
+-   If you need to change the reference group, you can use the `relevel()`
+    function.
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click to show code</summary>
+
 ```{r}
+# library(forcats)
 ## Convert 'VIEWCAT' to a factor:
-sesam2$VIEWCAT <- factor(sesam2$VIEWCAT)
+sesam2 <-
+  sesam2 %>%
+  mutate(VIEWCAT = factor(VIEWCAT))
+
+## Optionally specify the labels
+# sesam2 <-
+#   sesam2 %>%
+#   mutate(VIEWCAT = factor(VIEWCAT,
+#                           levels = c(1, 2, 3, 4),
+#                           labels = c("Rarely/never",
+#                                      "2-3 times per week",
+#                                      "4-5 times per week",
+#                                      "> 5 times per week")))
+
 
 ## Check the reference group:
 levels(sesam2$VIEWCAT)
 contrasts(sesam2$VIEWCAT)
+
+## If necessary, relevel
+# sesam <-
+#   sesam2 %>%
+#   mutate(VIEWCAT = relevel(VIEWCAT, 1))
 ```
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
 #### {#reg2}
 
 Estimate a multiple regression model wherein *VIEWCAT* predicts *POSTNUMB*.
 
-- Summarize the model.
-- Interpret the estimates.
+-   Summarize the model.
+-   Interpret the estimates.
 
 <details>
-  <summary>Click for explanation</summary>
-  
+
+<summary>Click to show code</summary>
+
 ```{r}
 results <- lm(POSTNUMB ~ VIEWCAT, data = sesam2)
 summary(results)
 ```
 
+  <details>
+  
+  <summary>Click for explanation</summary>
+  
+```{r, include = FALSE}
+  tmp <- round(coef(results), 1)
+  ci  <- round(confint(results), 1)
+  srr <- round(summary(results)$r.squared, 2)
+  srf <- summary(results)$fstatistic
+```
+
+  A linear model predicting the post-test score of numbers learned based on how
+  often a child watched Sesame Street was fit to the data. Viewing category 
+  explains a statistically significant proportion of the variance in the data
+  ($R^2$ = `r srr`, F(`r srf[2]`, `r srf[3]`) = `r srf[1]`, p = 
+  `r pf(srf[1],srf[2],srf[3],lower.tail=F)`).
+  
+  Kids who never or rarely watched Sesame Street had an average score of
+  `r tmp[1]` on the post test for numbers learned. Kids with weekly viewing
+  habits of 2-3, 4-5, or 5+ times per week all had significantly higher scores
+  on the post-test than kids who never or rarely watched Sesame Street,
+  scoring respectively `r tmp[2]`, 95% CI [`r ci[2, 1]`, `r ci[2, 2]`], 
+  `r tmp[3]` 95% CI [`r ci[3, 1]`, `r ci[3, 2]`], and `r tmp[4]` 95% CI 
+  [`r ci[4, 1]`,`r ci[4, 2]`] higher on the post test than the lowest category
+  viewers. 
+  
+  </details>
+
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
+
+Sketch (on paper) a path diagram that represents the model from
+[the previous section](#reg2).
+
+<details>
+
+<summary>Click for explanation</summary>
+
+```{r, echo = FALSE, eval = TRUE}
+library(tidySEM)
+library(lavaan)
+
+set.seed(6)
+
+tmp <- data.frame(model.matrix(~ . - 1, sesam2))
+res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4", data = tmp)
+prepare_graph(res,
+  layout = get_layout("VIEWCAT2", "VIEWCAT3", "VIEWCAT4",
+     NA, "POSTNUMB", NA,
+    rows = 2
+  ),
+  angle = 45
+) %>%
+  edit_edges({
+    label <- NA
+  }) %>%
+  plot()
+
+```
+</details>
+
+--------------------------------------------------------------------------------
+
+
+<div style = "padding:10px;
+              background-color: #FFFACD;
+              color: black;
+              margin-bottom: 5px;">
+
+**Advanced**
+ 
+If you made it through the previous two sections with ease and want to challenge
+yourself, go ahead with this next section. We will cover all the necessary
+material next week in [Mediation & Moderation], but if you're interested, this
+can provide some extra insight into the process.
+
+</div>
+
+#### Linear Models with Interactions {.unnumbered}
+
+Based on the figure we just created, we may want to test for an interaction in
+our regression model. To do so, we need to add an interaction between *AGE* and
+*VIEWCAT*. The *VIEWCAT* factor is represented by
+`r (nDum <- nlevels(sesam2$VIEWCAT) - 1)` levels in our model, though. So, when
+we interact *AGE* and *VIEWCAT*, we will create `r nDum` interaction terms.
+
+To test for an interaction between *VIEWCAT* and *AGE*, we need to conduct a
+hypothesis test that includes all `r nDum` interaction terms between each level
+of *VIEWCAT* and *AGE*. One way to do this is to set up a hierarchical
+regression analysis with three steps:
+
+1.  Estimate the additive model wherein we regress *POSTNUMB* onto *AGE* and
+    *VIEWCAT* without any interaction.
+2.  Estimate the model with an interaction between *POSTNUMB* and *AGE* by
+    adding it into the additive model
+3.  Conduct a $\Delta R^2$ test to compare the fit of the two models.
+
+--------------------------------------------------------------------------------
+
+#### 
 
 Use `ggplot()` to make a scatterplot with *AGE* on the x-axis and *POSTNUMB* on
-the y-axis. 
+the y-axis.
 
-- Color the points according to the their *VIEWCAT* level. 
-- Save the plot object to a variable in your environment.
+-   Color the points according to the their *VIEWCAT* level.
+-   Save the plot object to a variable in your environment.
 
 *Hint:* You can map color to the levels of a variable on your dataset by
 assigning the variable names to the `color` argument of the `aes()` function in
 `ggplot()`.
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 library(ggplot2)
 
 ## Add aes(..., color = VIEWCAT) to get different colors for each group:
-p <- ggplot(sesam2, aes(x = AGE, y = POSTNUMB, color = VIEWCAT)) + 
+p <- ggplot(sesam2, aes(x = AGE, y = POSTNUMB, color = VIEWCAT)) +
   geom_point() # Add points for scatterplot
 
 ## Print the plot stored as 'p':
@@ -826,79 +1058,63 @@ are colored based on their group.
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
 Add linear regression lines for each group to the above scatterplot.
 
-*Hints:* 
+*Hints:*
 
-- You can add regression lines with `ggplot2::geom_smooth()`
-    - To get linear regression lines, set the argument `method = "lm"`
-    - To omit error envelopes, set the argument `se = FALSE`
+-   You can add regression lines with `ggplot2::geom_smooth()`
+    -   To get linear regression lines, set the argument `method = "lm"`
+    -   To omit error envelopes, set the argument `se = FALSE`
 
 <details>
-  <summary>Click for explanation</summary>
-    
+
+<summary>Click to show code</summary>
+
 ```{r}
 ## Add OLS best-fit lines:
 p + geom_smooth(method = "lm", se = FALSE)
 ```
 
 The global color aesthetic assignment from above carries through to any
-additional plot elements that we add, including the regression lines. So, we 
+additional plot elements that we add, including the regression lines. So, we
 also get a separate regression line for each *VIEWCAT* group.
 
 </details>
 
----
+--------------------------------------------------------------------------------
 
-####
+#### 
 
 How would you interpret the pattern of regression lines above?
 
 <details>
-  <summary>Click for explanation</summary>
 
-All the lines show a positive slope, so post-test number recognition appears to 
+<summary>Click for explanation</summary>
+
+All the lines show a positive slope, so post-test number recognition appears to
 increase along with increasing age. The lines are not parallel, though. So,
 *VIEWCAT* may be moderating the effect of *AGE* on *POSTNUMB*.
 
 </details>
 
----
-
-##### Moderated Regression {-}
-
-Based on the figure we just created, we may want to test for moderation in our
-regression model. To do so, we need to add an interaction between *AGE* and 
-*VIEWCAT*. The *VIEWCAT* factor is represented by 
-`r (nDum <- nlevels(sesam2$VIEWCAT) - 1)` in our model, though. So, when we
-interact *AGE* and *VIEWCAT*, we will create `r nDum` interaction terms.
-
-To test the overall moderating influence of *VIEWCAT*, we need to conduct a
-multiparameter hypothesis test of all `r nDum` interaction terms. One way that
-we can go about implementing such a test is through a hierarchical regression
-analysis entailing three steps:
-
-1. Estimate the additive model wherein we regress *POSTNUMB* onto *AGE* and
-*VIEWCAT* without any interaction.
-1. Estimate the moderated model by adding the interaction between *AGE* and
-*VIEWCAT* into the additive model.
-1. Conduct a $\Delta R^2$ test to compare the fit of the two models.
-
----
+--------------------------------------------------------------------------------
 
 #### {#hReg}
 
-Conduct the hierarchical regression analysis described above.
+Conduct the hierarchical regression analysis described
+[above](#linear-models-with-interactions])
 
-- Does *VIEWCAT* significantly moderate the effect of *AGE* on *POSTNUMB*?
-- Provide statistical justification for your conclusion.
+-   Is there a significant interaction effect between *VIEWCAT* and *AGE* when
+    predicting *POSTNUMB*?
+-   Provide statistical justification for your conclusion.
 
 <details>
-  <summary>Click for explanation</summary>
+
+<summary>Click to show code</summary>
 
 ```{r}
 ## Estimate the additive model a view the results:
@@ -913,191 +1129,152 @@ summary(results_mod)
 anova(results_add, results_mod)
 ```
 
+  <details>
+
+  <summary>Click for explanation</summary>
+
 ```{r, include = FALSE}
-tmp <- anova(results_add, results_mod)
+  tmp <- anova(results_add, results_mod)
 
-f   <- tmp[2, 5] %>% round(3)
-df1 <- tmp[2, 3]
-df2 <- tmp[2, 1]
-p   <- tmp[2, 6] %>% round(3)
+  f   <- tmp[2, 5] %>% round(3)
+  df1 <- tmp[2, 3]
+  df2 <- tmp[2, 1]
+  p   <- tmp[2, 6] %>% round(3)
 ```
 
-*VIEWCAT* does not significantly moderate the effect of *AGE* on *POSTNUMB* 
-($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$). 
+  *VIEWCAT* does not significantly moderate the effect of *AGE* on *POSTNUMB*
+  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$).
+
+  </details>
 
 </details>
 
----
+<!-- ##### ANCOVA vs linear regression -->
 
-<!------------------------------------------------------------------------------
-####
+<!-- As we saw in [Part 3][Part 3: The linear model with categorical IVs], we can use -->
+<!-- ANOVA to test hypotheses about differences between groups in some continuous -->
+<!-- outcome. The model for an ANCOVA, however, includes at least one continuous -->
+<!-- covariate in addition to the categorical IVs. -->
 
-Sketch path diagrams for the additive and moderated models you estimated in
-\@ref(hReg) (on paper).
+<!-- As with ANOVA, the statistical model underlying an ANCOVA is simply a linear -->
+<!-- regression model. We call the analysis ANCOVA because we are interested -->
+<!-- in a specific hypothesis. -->
 
-```{r, echo = FALSE, eval = FALSE}
-library(tidySEM)
-library(lavaan)
+<!-- -   Our substantive interest lies in the categorical IVs. -->
+<!-- -   The continuous covariates are uninteresting, nuisance variables that we are -->
+<!--     controlling for to get better estimates of the interesting treatment -->
+<!--     effects. -->
 
-tmp <- data.frame(model.matrix(~ . -1, sesam2))
-res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE", data = tmp)
+<!-- Seen through this framework, the set of models above could have been used to -->
+<!-- answer the ANCOVA research question: -->
 
-set.seed(6)
+<!--         Are there differences in increased numeracy between the viewing conditions after controlling for age? -->
 
-p        <- prepare_graph(res, angle = 179)
-edges(p) <- 
-  edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
+<!-- One implication of this hypothesis is the absence of any interaction between the -->
+<!-- covariates and grouping factors. -->
 
-ggsave(paste0(imageDir, "3_g1.png"), plot(p))
+<!-- -   If the covariate moderates the treatment effect, the covariate has a direct -->
+<!--     impact on the substantively interesting group differences. Such a covariate -->
+<!--     is not a covariate; it's a substantively integral feature of the model. -->
 
-tmp <- data.frame(POSTNUMB = sesam2$POSTNUMB, 
-                  model.matrix(POSTNUMB ~ -1 + VIEWCAT * AGE, sesam2)
-                  )
-res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE + VIEWCAT2.AGE + VIEWCAT3.AGE + VIEWCAT4.AGE", 
-  data = tmp)
+<!-- If we want to report our analysis as an ANCOVA, we need to show that the -->
+<!-- covariate effects are equivalent in each group. In other words, there is no -->
+<!-- interaction between the grouping factors and the covariates. -->
 
-set.seed(6)
+<!-- AN(C)OVA is a type of statistical test, though, not a type of model. The -->
+<!-- statistical model underlying an AN(C)OVA is just a linear regression model. -->
+<!-- Since this class is about statistical modeling, it won't do us much good to keep -->
+<!-- thinking in terms of statistical tests; we're better off approaching these -->
+<!-- problems from a modeling perspective. -->
 
-p        <- prepare_graph(res, angle = 179)
-edges(p) <- 
-  edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
+<!-- -------------------------------------------------------------------------------- -->
 
-ggsave(paste0(imageDir, "3_g2.png"), plot(p))
-```
+<!-- ####  -->
 
-<details>
-<summary>Click for explanation</summary>
+<!-- Sketch path diagrams for the additive and moderated models you estimated in -->
+<!-- [the previous section](#hReg) (on paper). -->
 
-**Additive Model**
+<!-- <details> -->
 
-![](images/3_g1.png)
+<!-- <summary>Click for explanation</summary> -->
 
-**Moderated Model**
+<!-- ```{r, echo = FALSE, eval = TRUE} -->
+<!-- library(tidySEM) -->
+<!-- library(lavaan) -->
 
-![](images/3_g2.png)
+<!-- set.seed(6) -->
 
-</details>
+<!-- tmp <- data.frame(model.matrix(~ . - 1, sesam2)) -->
+<!-- res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE", data = tmp) -->
+<!-- p1 <- prepare_graph(res, -->
+<!--   layout = get_layout("VIEWCAT2", "VIEWCAT3", "VIEWCAT4", -->
+<!--     "AGE", NA, "POSTNUMB", -->
+<!--     rows = 2 -->
+<!--   ), -->
+<!--   angle = 180 -->
+<!-- ) %>% -->
+<!--   edit_edges({ -->
+<!--     label <- NA -->
+<!--   }) %>% -->
+<!--   plot() -->
 
----
-------------------------------------------------------------------------------->
+<!-- set.seed(6) -->
 
-####
+<!-- # p        <- prepare_graph(res, angle = 179) -->
+<!-- # edges(p) <- -->
+<!-- #   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ] -->
 
-Write the regression equations for the additive and moderated models from
-\@ref(hReg). 
+<!-- # ggsave(paste0(imageDir, "3_g1.png"), plot(p)) -->
+
+<!-- tmp <- data.frame( -->
+<!--   POSTNUMB = sesam2$POSTNUMB, -->
+<!--   model.matrix(POSTNUMB ~ -1 + VIEWCAT * AGE, sesam2) -->
+<!-- ) -->
+<!-- res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE + VIEWCAT2.AGE + VIEWCAT3.AGE + VIEWCAT4.AGE", -->
+<!--   data = tmp -->
+<!-- ) -->
+
+<!-- # set.seed(6) -->
+
+<!-- p2 <- prepare_graph(res, -->
+<!--   layout = get_layout("VIEWCAT2", NA, "VIEWCAT3", NA, "VIEWCAT4", NA, "AGE", -->
+<!--     NA, "VIEWCAT2.AGE", NA, "VIEWCAT3.AGE", NA, "VIEWCAT4.AGE", NA, -->
+<!--     NA, NA, NA, "POSTNUMB", NA, NA, NA, -->
+<!--     rows = 3 -->
+<!--   ), -->
+<!--   angle = 60, -->
+<!--   rect_width = 3, -->
+<!--   spacing_y = 1.5 -->
+<!-- ) %>% -->
+<!--   edit_edges({ -->
+<!--     label <- NA -->
+<!--   }) %>% -->
+<!--   plot() -->
 
 
-<details>
-  <summary>Click for explanation</summary>
-  
-**Additive Model**
+<!-- # p        <- prepare_graph(res, angle = 179) -->
+<!-- # edges(p) <- -->
+<!-- #   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ] -->
+<!-- # -->
+<!-- # ggsave(paste0(imageDir, "3_g2.png"), plot(p)) -->
+<!-- ``` -->
 
-\[
-\begin{align*}
-Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} + \varepsilon
-\end{align*}
-\]
+<!-- **Additive Model** -->
 
-**Moderated Model**
+<!-- ```{r, echo=FALSE} -->
+<!-- p1 -->
+<!-- ``` -->
 
-\[
-\begin{align*}
-Y_{postnumb} = \beta_0 + &\beta_1 X_{view2} + \beta_2 X_{view3} + \beta_3 X_{view4} + \beta_4 X_{age} +\\
-&\beta_5 X_{view2} X_{age} + \beta_6 X_{view3} X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon
-\end{align*}
-\]
+<!-- **Moderated Model** -->
 
-</details>
+<!-- ```{r, echo=FALSE} -->
+<!-- p2 -->
+<!-- ``` -->
 
----
+<!-- </details> -->
 
-#### 
+--------------------------------------------------------------------------------
 
-Write the null and alternative hypotheses for the test of moderation you
-conducted in \@ref(hReg).
+End of In-Class Exercises 2
 
-<details>
-  <summary>Click for explanation</summary>
-
-\[
-\begin{align*}
-H_0: \Delta R^2 = 0\\
-H_1: \Delta R^2 > 0
-\end{align*}
-\]
-
-</details>
-
----
-
-####
-
-Write the regression equation for each of the four *VIEWCAT* groups.
-
-<details>
-  <summary>Click for explanation</summary>
-
-***VIEWCAT* 1:**
-
-\[
-Y_{postnumb} = \beta_0 + \beta_4 X_{age} + \varepsilon
-\]
-
-***VIEWCAT* 2:**
-
-\[
-Y_{postnumb} = \beta_0 + \beta_1 X_{view2} + \beta_4 X_{age} + \beta_5 X_{view2} X_{age} + \varepsilon
-\]
-
-***VIEWCAT* 3:**
-
-\[
-Y_{postnumb} = \beta_0 + \beta_2 X_{view3} + \beta_4 X_{age} + \beta_6 X_{view3} X_{age} + \varepsilon
-\]
-
-***VIEWCAT* 4:**
-
-\[
-Y_{postnumb} = \beta_0 + \beta_3 X_{view4} + \beta_4 X_{age} + \beta_7 X_{view4} X_{age} + \varepsilon
-\]
-
-</details>
-
----
-
-####
-
-Run the `anova()` function on only the moderated regression model from \@ref(hReg).
-
-- Compare the result to the `anova()` output from \@ref(hReg). 
-- What do you notice when comparing the two `anova()` outputs?
-- Does this comparison offer any insight into the relation between regression
-and AN(C)OVA?
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r}
-anova(results_mod)
-anova(results_add, results_mod)
-```
-
-When we run the `anova()` function on only the moderated regression model, we
-get ANCOVA-style tests like those we used in \@ref(ancova2). The marginal test
-for the interaction between *AGE* and *VIEWCAT* in this ANCOVA-style result is identical to the model comparison test from \@ref(hReg).
-
-This comparison shows that the significance tests for marginal effects in an
-AN(C)OVA model can be equivalent to certain model comparison tests in a
-regression model. 
-
-- Indeed, although you cannot know this from only the examples explored here,
-any significance test in an AN(C)OVA can be reformulated as a comparison
-between two appropriately nested linear regression models.
-
-</details>
-
----
-
-End of In-Class Exercises 1
-
----
+--------------------------------------------------------------------------------

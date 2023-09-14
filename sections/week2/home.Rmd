@@ -7,14 +7,16 @@ opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
 Load the `LifeSat.sav` data. 
 
 ```{r, echo = FALSE}
-library(foreign)
-data <- read.spss(paste0(dataDir, "LifeSat.sav"), to.data.frame = TRUE)
+library(dplyr)
+library(haven)
+LifeSat <- read_spss(paste0(dataDir, "LifeSat.sav"))
 ```
 
 ```{r, eval = FALSE}
-library(foreign)
+library(dplyr)
+library(haven)
 
-LifeSat <- read.spss("LifeSat.sav", to.data.frame = TRUE)
+LifeSat <- read_spss("LifeSat.sav") 
 ```
 
 ---
@@ -25,7 +27,7 @@ Make a table of descriptive statistics for the variables: `LifSat`, `educ`,
 `ChildSup`, `SpouSup`, and `age`. 
 
 - What is the average age in the sample? 
-- What is the ange (youngest and oldest child)? 
+- What is the range (youngest and oldest child)? 
 
 *Hint:* Use the `tidySEM::descriptives()` function.`
 
@@ -113,7 +115,6 @@ model formula.
 results <- lm(LifSat ~ educ + age + ChildSup, data = LifeSat)
 summary(results)
 ```
-
 </details>
 
 ---

@@ -1,4 +1,4 @@
-## Lecture
+## Lecture {#w1-lecture}
 
 This week, you will learn the basics of R and RStudio. Rather than re-inventing 
 the proverbial wheel, we're linked to existing resources developed by 
