@@ -408,16 +408,20 @@ prenumb ~ age
 "
 
 res <- lavaan::sem(mod, data = sesam)
-p <- prepare_graph(res,
+
+prepare_graph(res,
   layout = get_layout("",    "prerelat", "",
                       "age", "prelet",   "postnumb",
                       "",    "prenumb",  "",
     rows = 3
   ),
-  angle = 1
-)
-edges(p)$label <- NA
-plot(p)
+  angle = 1,
+  curvature = 60) %>% 
+  if_edges({show == TRUE}, {label = NA}) %>% 
+  if_edges({to == "postnumb" & op == "~"}, {connect_to = c("top", "left", "bottom")}) %>%
+  if_edges({to == "postnumb" & op == "~~"}, {connect_to = "right"; connect_from = "right"}) %>% 
+  plot()
+
 ```
 
 <details>
@@ -440,29 +444,28 @@ There are:
   prenumb ~ age
   "
   
-  res <- lavaan::sem(mod, data = sesam)
-  p <- prepare_graph(res,
-    layout = get_layout("",    "prerelat", "",
-                        "age", "prelet",   "postnumb",
-                        "",    "prenumb",  "",
-                        rows = 3
-    ),
-    angle = 1
-  ) %>%
-    color_reg("red") %>%
-    color_var("blue") %>%
-    edit_nodes({
-      color <- "black"
-    }) %>%
-    if_nodes(condition = {
-      name == "age"
-    }, expr = {
-      color <- "orange"
-    }) %>%
-    edit_edges({
-      label <- NA
-    })
-  
+res <- lavaan::sem(mod, data = sesam)
+prepare_graph(res,
+              layout = get_layout("",    "prerelat", "",
+                                  "age", "prelet",   "postnumb",
+                                  "",    "prenumb",  "",
+                                  rows = 3
+              ),
+              angle = 1,
+              curvature = 60) %>% 
+  if_edges({show == TRUE}, {label = NA}) %>% 
+  if_edges({to == "postnumb" & op == "~"}, {connect_to = c("top", "left", "bottom")}) %>%
+  if_edges({to == "postnumb" & op == "~~"}, {connect_to = "right"; connect_from = "right"}) %>% 
+  color_reg("red") %>%
+  color_var("blue") %>%
+  edit_nodes({
+    color <- "black"
+  }) %>%
+  if_nodes(condition = {
+    name == "age"
+  }, expr = {
+    color <- "orange"
+  }) %>% 
   plot(p)
 ```
 
@@ -826,7 +829,7 @@ anova(results)
 
 --------------------------------------------------------------------------------
 
-### Part 4: The linear model with interactions
+### Part 4: Linear Models and Multiple Variables
 
 --------------------------------------------------------------------------------
 
@@ -955,6 +958,76 @@ summary(results)
 
 #### 
 
+Sketch (on paper) a path diagram that represents the model from
+[the previous section](#reg2).
+
+<details>
+
+<summary>Click for explanation</summary>
+
+```{r, echo = FALSE, eval = TRUE}
+library(tidySEM)
+library(lavaan)
+
+set.seed(6)
+
+tmp <- data.frame(model.matrix(~ . - 1, sesam2))
+res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4", data = tmp)
+prepare_graph(res,
+  layout = get_layout("VIEWCAT2", "VIEWCAT3", "VIEWCAT4",
+     NA, "POSTNUMB", NA,
+    rows = 2
+  ),
+  angle = 45
+) %>%
+  edit_edges({
+    label <- NA
+  }) %>%
+  plot()
+
+```
+</details>
+
+--------------------------------------------------------------------------------
+
+
+<div style = "padding:10px;
+              background-color: #FFFACD;
+              color: black;
+              margin-bottom: 5px;">
+
+**Advanced**
+ 
+If you made it through the previous two sections with ease and want to challenge
+yourself, go ahead with this next section. We will cover all the necessary
+material next week in [Mediation & Moderation], but if you're interested, this
+can provide some extra insight into the process.
+
+</div>
+
+#### Linear Models with Interactions {.unnumbered}
+
+Based on the figure we just created, we may want to test for an interaction in
+our regression model. To do so, we need to add an interaction between *AGE* and
+*VIEWCAT*. The *VIEWCAT* factor is represented by
+`r (nDum <- nlevels(sesam2$VIEWCAT) - 1)` levels in our model, though. So, when
+we interact *AGE* and *VIEWCAT*, we will create `r nDum` interaction terms.
+
+To test for an interaction between *VIEWCAT* and *AGE*, we need to conduct a
+hypothesis test that includes all `r nDum` interaction terms between each level
+of *VIEWCAT* and *AGE*. One way to do this is to set up a hierarchical
+regression analysis with three steps:
+
+1.  Estimate the additive model wherein we regress *POSTNUMB* onto *AGE* and
+    *VIEWCAT* without any interaction.
+2.  Estimate the model with an interaction between *POSTNUMB* and *AGE* by
+    adding it into the additive model
+3.  Conduct a $\Delta R^2$ test to compare the fit of the two models.
+
+--------------------------------------------------------------------------------
+
+#### 
+
 Use `ggplot()` to make a scatterplot with *AGE* on the x-axis and *POSTNUMB* on
 the y-axis.
 
@@ -1030,32 +1103,13 @@ increase along with increasing age. The lines are not parallel, though. So,
 
 --------------------------------------------------------------------------------
 
-#### Moderated Regression {.unnumbered}
-
-Based on the figure we just created, we may want to test for moderation in our
-regression model. To do so, we need to add an interaction between *AGE* and
-*VIEWCAT*. The *VIEWCAT* factor is represented by
-`r (nDum <- nlevels(sesam2$VIEWCAT) - 1)` levels in our model, though. So, when
-we interact *AGE* and *VIEWCAT*, we will create `r nDum` interaction terms.
-
-To test the overall moderating influence of *VIEWCAT*, we need to conduct a
-multiparameter hypothesis test of all `r nDum` interaction terms. One way that
-we can go about implementing such a test is through a hierarchical regression
-analysis entailing three steps:
-
-1.  Estimate the additive model wherein we regress *POSTNUMB* onto *AGE* and
-    *VIEWCAT* without any interaction.
-2.  Estimate the moderated model by adding the interaction between *AGE* and
-    *VIEWCAT* into the additive model.
-3.  Conduct a $\Delta R^2$ test to compare the fit of the two models.
-
---------------------------------------------------------------------------------
-
 #### {#hReg}
 
-Conduct the hierarchical regression analysis described above.
+Conduct the hierarchical regression analysis described
+[above](#linear-models-with-interactions])
 
--   Does *VIEWCAT* significantly moderate the effect of *AGE* on *POSTNUMB*?
+-   Is there a significant interaction effect between *VIEWCAT* and *AGE* when
+    predicting *POSTNUMB*?
 -   Provide statistical justification for your conclusion.
 
 <details>
@@ -1078,16 +1132,16 @@ anova(results_add, results_mod)
   <details>
 
   <summary>Click for explanation</summary>
-  
+
 ```{r, include = FALSE}
   tmp <- anova(results_add, results_mod)
-  
+
   f   <- tmp[2, 5] %>% round(3)
   df1 <- tmp[2, 3]
   df2 <- tmp[2, 1]
   p   <- tmp[2, 6] %>% round(3)
 ```
-  
+
   *VIEWCAT* does not significantly moderate the effect of *AGE* on *POSTNUMB*
   ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$).
 
@@ -1095,131 +1149,129 @@ anova(results_add, results_mod)
 
 </details>
 
---------------------------------------------------------------------------------
+<!-- ##### ANCOVA vs linear regression -->
 
-##### ANCOVA vs linear regression
+<!-- As we saw in [Part 3][Part 3: The linear model with categorical IVs], we can use -->
+<!-- ANOVA to test hypotheses about differences between groups in some continuous -->
+<!-- outcome. The model for an ANCOVA, however, includes at least one continuous -->
+<!-- covariate in addition to the categorical IVs. -->
 
-As we saw in [Part 3][Part 3: The linear model with categorical IVs], we can use
-ANOVA to test hypotheses about differences between groups in some continuous
-outcome. The model for an ANCOVA, however, includes at least one continuous
-covariate in addition to the categorical IVs.
+<!-- As with ANOVA, the statistical model underlying an ANCOVA is simply a linear -->
+<!-- regression model. We call the analysis ANCOVA because we are interested -->
+<!-- in a specific hypothesis. -->
 
-As with ANOVA, the statistical model underlying an ANCOVA is simply a linear
-regression model. We call the analysis ANCOVA because we are interested
-in a specific hypothesis.
+<!-- -   Our substantive interest lies in the categorical IVs. -->
+<!-- -   The continuous covariates are uninteresting, nuisance variables that we are -->
+<!--     controlling for to get better estimates of the interesting treatment -->
+<!--     effects. -->
 
--   Our substantive interest lies in the categorical IVs.
--   The continuous covariates are uninteresting, nuisance variables that we are
-    controlling for to get better estimates of the interesting treatment
-    effects.
+<!-- Seen through this framework, the set of models above could have been used to -->
+<!-- answer the ANCOVA research question: -->
 
-Seen through this framework, the set of models above could have been used to
-answer the ANCOVA research question:
-    
-        Are there differences in increased numeracy between the viewing conditions after controlling for age?
+<!--         Are there differences in increased numeracy between the viewing conditions after controlling for age? -->
 
-One implication of this hypothesis is the absence of any interaction between the
-covariates and grouping factors.
+<!-- One implication of this hypothesis is the absence of any interaction between the -->
+<!-- covariates and grouping factors. -->
 
--   If the covariate moderates the treatment effect, the covariate has a direct
-    impact on the substantively interesting group differences. Such a covariate
-    is not a covariate; it's a substantively integral feature of the model.
-    
-If we want to report our analysis as an ANCOVA, we need to show that the
-covariate effects are equivalent in each group. In other words, there is no
-interaction between the grouping factors and the covariates.
+<!-- -   If the covariate moderates the treatment effect, the covariate has a direct -->
+<!--     impact on the substantively interesting group differences. Such a covariate -->
+<!--     is not a covariate; it's a substantively integral feature of the model. -->
 
-AN(C)OVA is a type of statistical test, though, not a type of model. The
-statistical model underlying an AN(C)OVA is just a linear regression model.
-Since this class is about statistical modeling, it won't do us much good to keep
-thinking in terms of statistical tests; we're better off approaching these
-problems from a modeling perspective.
+<!-- If we want to report our analysis as an ANCOVA, we need to show that the -->
+<!-- covariate effects are equivalent in each group. In other words, there is no -->
+<!-- interaction between the grouping factors and the covariates. -->
 
---------------------------------------------------------------------------------
+<!-- AN(C)OVA is a type of statistical test, though, not a type of model. The -->
+<!-- statistical model underlying an AN(C)OVA is just a linear regression model. -->
+<!-- Since this class is about statistical modeling, it won't do us much good to keep -->
+<!-- thinking in terms of statistical tests; we're better off approaching these -->
+<!-- problems from a modeling perspective. -->
 
-#### 
+<!-- -------------------------------------------------------------------------------- -->
 
-Sketch path diagrams for the additive and moderated models you estimated in
-[the previous section](#hReg) (on paper).
+<!-- ####  -->
 
-<details>
+<!-- Sketch path diagrams for the additive and moderated models you estimated in -->
+<!-- [the previous section](#hReg) (on paper). -->
 
-<summary>Click for explanation</summary>
+<!-- <details> -->
 
-```{r, echo = FALSE, eval = TRUE}
-library(tidySEM)
-library(lavaan)
+<!-- <summary>Click for explanation</summary> -->
 
-set.seed(6)
+<!-- ```{r, echo = FALSE, eval = TRUE} -->
+<!-- library(tidySEM) -->
+<!-- library(lavaan) -->
 
-tmp <- data.frame(model.matrix(~ . - 1, sesam2))
-res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE", data = tmp)
-p1 <- prepare_graph(res,
-  layout = get_layout("VIEWCAT2", "VIEWCAT3", "VIEWCAT4",
-    "AGE", NA, "POSTNUMB",
-    rows = 2
-  ),
-  angle = 180
-) %>%
-  edit_edges({
-    label <- NA
-  }) %>%
-  plot()
+<!-- set.seed(6) -->
 
-set.seed(6)
+<!-- tmp <- data.frame(model.matrix(~ . - 1, sesam2)) -->
+<!-- res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE", data = tmp) -->
+<!-- p1 <- prepare_graph(res, -->
+<!--   layout = get_layout("VIEWCAT2", "VIEWCAT3", "VIEWCAT4", -->
+<!--     "AGE", NA, "POSTNUMB", -->
+<!--     rows = 2 -->
+<!--   ), -->
+<!--   angle = 180 -->
+<!-- ) %>% -->
+<!--   edit_edges({ -->
+<!--     label <- NA -->
+<!--   }) %>% -->
+<!--   plot() -->
 
-# p        <- prepare_graph(res, angle = 179)
-# edges(p) <-
-#   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
+<!-- set.seed(6) -->
 
-# ggsave(paste0(imageDir, "3_g1.png"), plot(p))
+<!-- # p        <- prepare_graph(res, angle = 179) -->
+<!-- # edges(p) <- -->
+<!-- #   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ] -->
 
-tmp <- data.frame(
-  POSTNUMB = sesam2$POSTNUMB,
-  model.matrix(POSTNUMB ~ -1 + VIEWCAT * AGE, sesam2)
-)
-res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE + VIEWCAT2.AGE + VIEWCAT3.AGE + VIEWCAT4.AGE",
-  data = tmp
-)
+<!-- # ggsave(paste0(imageDir, "3_g1.png"), plot(p)) -->
 
-# set.seed(6)
+<!-- tmp <- data.frame( -->
+<!--   POSTNUMB = sesam2$POSTNUMB, -->
+<!--   model.matrix(POSTNUMB ~ -1 + VIEWCAT * AGE, sesam2) -->
+<!-- ) -->
+<!-- res <- sem("POSTNUMB ~ VIEWCAT2 + VIEWCAT3 + VIEWCAT4 + AGE + VIEWCAT2.AGE + VIEWCAT3.AGE + VIEWCAT4.AGE", -->
+<!--   data = tmp -->
+<!-- ) -->
 
-p2 <- prepare_graph(res,
-  layout = get_layout("VIEWCAT2", NA, "VIEWCAT3", NA, "VIEWCAT4", NA, "AGE",
-    NA, "VIEWCAT2.AGE", NA, "VIEWCAT3.AGE", NA, "VIEWCAT4.AGE", NA,
-    NA, NA, NA, "POSTNUMB", NA, NA, NA,
-    rows = 3
-  ),
-  angle = 60,
-  rect_width = 3,
-  spacing_y = 1.5
-) %>%
-  edit_edges({
-    label <- NA
-  }) %>%
-  plot()
+<!-- # set.seed(6) -->
+
+<!-- p2 <- prepare_graph(res, -->
+<!--   layout = get_layout("VIEWCAT2", NA, "VIEWCAT3", NA, "VIEWCAT4", NA, "AGE", -->
+<!--     NA, "VIEWCAT2.AGE", NA, "VIEWCAT3.AGE", NA, "VIEWCAT4.AGE", NA, -->
+<!--     NA, NA, NA, "POSTNUMB", NA, NA, NA, -->
+<!--     rows = 3 -->
+<!--   ), -->
+<!--   angle = 60, -->
+<!--   rect_width = 3, -->
+<!--   spacing_y = 1.5 -->
+<!-- ) %>% -->
+<!--   edit_edges({ -->
+<!--     label <- NA -->
+<!--   }) %>% -->
+<!--   plot() -->
 
 
-# p        <- prepare_graph(res, angle = 179)
-# edges(p) <-
-#   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
-#
-# ggsave(paste0(imageDir, "3_g2.png"), plot(p))
-```
+<!-- # p        <- prepare_graph(res, angle = 179) -->
+<!-- # edges(p) <- -->
+<!-- #   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ] -->
+<!-- # -->
+<!-- # ggsave(paste0(imageDir, "3_g2.png"), plot(p)) -->
+<!-- ``` -->
 
-**Additive Model**
+<!-- **Additive Model** -->
 
-```{r, echo=FALSE}
-p1
-```
+<!-- ```{r, echo=FALSE} -->
+<!-- p1 -->
+<!-- ``` -->
 
-**Moderated Model**
+<!-- **Moderated Model** -->
 
-```{r, echo=FALSE}
-p2
-```
+<!-- ```{r, echo=FALSE} -->
+<!-- p2 -->
+<!-- ``` -->
 
-</details>
+<!-- </details> -->
 
 --------------------------------------------------------------------------------
 
