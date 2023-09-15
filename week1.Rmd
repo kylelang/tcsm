@@ -11,7 +11,7 @@ This week is all about getting up-and-running with R and RStudio.
 1. Complete the preparatory material:
     a. Read over the [Course Information](index.html) chapter
     a. Work through the [Software Setup](software-setup.html) chapter
-1. Watch the [Lecture Recordings](lecture.html) for this week.
+1. Watch the [Lecture Recording](lecture.html) for this week.
 <!-- 1. Complete the [Reading](reading.html) for this week, and answer the associated 
 reading questions.
 1. Complete the [Formative Assessment](formative-assessment.html) for this week.
