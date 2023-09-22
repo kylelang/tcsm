@@ -23,13 +23,97 @@ children than for younger children. In such a case, we would say that age
 
 ### Recordings
 
-*Once it's ready, the lecture recording will be embedded below.*
+<!-- ![](https://i.gifer.com/AyuA.gif) -->
 
-![](https://i.gifer.com/AyuA.gif)
+*Note:* In the following recordings, the slide numbers are a bit of a mess, 
+because I made these videos by cutting together recordings that used different 
+slide decks. My apologies to those who are particularly distracted by 
+continuity errors.
 
-```{r, echo = FALSE, eval = FALSE}
-knitr::include_url("")
-```
+#### Mediation Basics {-}
+
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/tGUDKsEo5kU?si=GiqwUrNjL1bE92HQ"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
+
+#### Mediation Testing {-}
+
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/du0t_brdB2A?si=IU3CWqRLwbelKxTU" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
+
+#### Bootstrapping {-}
+
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/NkU0OWLfxtk?si=wwfeVI61kdVvkb5n"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
+
+#### Moderation Basics {-}
+
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/u6-nGdPKwEE?si=XXxMirxToSo7vDzm"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
+
+#### Moderation Probing {-}
+
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/7ZgoxkKfbFs?si=CeeNIbgB3lOMxxkL"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
 
 ### Slides
 
