@@ -5,7 +5,7 @@ assignments that comprise the portfolio upon which your course grade is based.
 
 Below, you can find a brief idea of what each assignment will cover.
 
-<!------------------------------------------------------------------------------
+<!----------------------------------------------------------------------------->
 
 - For each assignment, you will use R to analyze some real-world data, and you 
 will write up your results in a concise report (not a full research paper).
@@ -28,27 +28,23 @@ that describes how several variables could be causally related.
 The components of the first assignment are described below.
 
 1. Choose a suitable dataset, and describe the data.
-   - You can use any of the 6 datasets linked [below](#data_options).
-1. State the research question; define and explicate the theoretical path model.
+   - You can use any of the 8 datasets linked [below](#data_options).
+1. State the [research question](#rq); define and explicate the theoretical path model.
    - This model must include, at least, three variables.
    - Use a path diagram to show your theoretical model.
 1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
 model.
-    a. Include the code used to define and estimate your model as an appendix.
+   - Include the code used to define and estimate your model as an appendix.
 1. Explain your rationale for important modeling decisions.
-    a. Discuss the conceptual fit between your theory and your model.
-    a. Evaluate the model assumptions.
-    a. Discuss other important decisions that could have influence your results.
+    - Discuss the conceptual fit between your theory and your model.
+    - Evaluate the model [assumptions](#model_assumptions).
+    - Discuss other important decisions that could have influence your results.
 1. Report the results in APA style.
-    a. Provide relevant output in a suitable format.
-      - Tabulate your results; don't directly copy the R output.
-      - Don't include everything **lavaan** gives you.
-      - Include only the output needed to understand your results and support
-        your conclusions.
-    a. Include measures of explained variance for the dependent variables.
+    - Provide relevant output in a [suitable format](#results_format).
+    - Include measures of explained variance for the dependent variables.
 1. Discuss the results.
-    a. Use your results to answer the research question.
-    a. Consider the strengths and limitations of your analysis.
+    - Use your results to answer the research question.
+    - Consider the strengths and limitations of your analysis.
 
 ---
 
@@ -77,27 +73,23 @@ The components of the second assignment are described below.
 
 1. Choose a suitable dataset, and describe the data.
    - Ideally, you will work with the same data that you analyzed in Assignment 1.
-   - If you want to switch, you can use any of the 6 datasets linked [below](#data_options).
-1. State the research question; define and explicate the theoretical CFA model.
+   - If you want to switch, you can use any of the 8 datasets linked [below](#data_options).
+1. State the [research question](#rq); define and explicate the theoretical CFA model.
     - This model must include, at least, two latent constructs.
     - Use a path diagram to represent your model.
 1. Translate your theoretical model into **lavaan** syntax, and estimate the 
    model.
-    a. Include the code used to define and estimate your model as an appendix.
+    - Include the code used to define and estimate your model as an appendix.
 1. Explain your rationale for important modeling decisions.
-    a. Discuss the conceptual fit between your theory and your model.
-    a. Evaluate the model assumptions.
-    a. Discuss other important decisions that could have influence your results.
+    - Discuss the conceptual fit between your theory and your model.
+    - Evaluate the [model assumptions](#model_assumptions).
+    - Discuss other important decisions that could have influence your results.
 1. Report the results in APA style.
-    a. Provide relevant output in a suitable format.
-      - Tabulate your results; don't directly copy the R output.
-      - Don't include everything **lavaan** gives you.
-      - Include only the output needed to understand your results and support
-        your conclusions.
-    a. Include measures of model fit.
+    - Provide relevant output in a [suitable format](#results_format).
+    - Include measures of model fit.
 1. Discuss the results.
-    a. Use your results to answer the research question.
-    a. Consider the strengths and limitations of your analysis.
+   - Use your results to answer the research question.
+   - Consider the strengths and limitations of your analysis.
 
 ---
 
@@ -126,29 +118,25 @@ The components of the third assignment are described below.
 1. Choose a suitable dataset, and describe the data.
    - Ideally, you will work with the same data that you analyzed in Assignments 
      1 & 2.
-   - If you want to switch, you can use any of the 6 datasets linked [below](#data_options).
-1. State the research question; define and explicate the theoretical SEM. 
-    a. The structural component of this model must include, at least, three
-    variables.
-    a. The model must include, at least, two latent variables.
-    a. Use a path diagram to represent your model.
+   - If you want to switch, you can use any of the 8 datasets linked [below](#data_options).
+1. State the [research question](#rq); define and explicate the theoretical SEM. 
+   - The structural component of this model must include, at least, three
+   variables.
+   - The model must include, at least, two latent variables.
+   - Use a path diagram to represent your model.
 1. Translate your theoretical SEM into **lavaan** syntax, and estimate the model.
-    a. Include the code used to define and estimate your model as an appendix.
+   - Include the code used to define and estimate your model as an appendix.
 1. Explain your rationale for important modeling decisions.
-    a. Discuss the conceptual fit between your theory and your model.
-    a. Evaluate the model assumptions.
-    a. Discuss other important decisions that could have influence your results.
+   - Discuss the conceptual fit between your theory and your model.
+   - Evaluate the model [assumptions](#model_assumptions).
+   - Discuss other important decisions that could have influence your results.
 1. Report the results in APA style.
-    a. Provide relevant output in a suitable format.
-      - Tabulate your results; don't directly copy the R output.
-      - Don't include everything **lavaan** gives you.
-      - Include only the output needed to understand your results and support
-        your conclusions.
-    a. Include measures of model fit.
-    a. Include measures of explained variance for the dependent variables.
+   - Provide relevant output in a [suitable format](#results_format).
+   - Include measures of model fit.
+   - Include measures of explained variance for the dependent variables.
 1. Discuss the results.
-    a. Use your results to answer the research question.
-    a. Consider the strengths and limitations of your analysis.
+   - Use your results to answer the research question.
+   - Consider the strengths and limitations of your analysis.
 
 ---
 
@@ -171,10 +159,72 @@ Assignment 3 is due at 23:59 on Friday 10 November 2023.
 
 <!----------------------------------------------------------------------------->
 
+## Elaboration & Tips {-}
+
+### Motivation, Literature Review, & Research Question {- #rq}
+
+You need to provide some justification for your model and research question, but
+only enough to demonstrate that you...
+
+- Show that your model is plausible, but don't provide a rigorous 
+  literature-supported theoretical motivation.
+
+You are free to test any plausible model that meets the size requirements.
+
+- You can derive your own model/research question or you can replicate a
+  published analysis.
+
+---
+
+### Assumptions {- #model_assumptions}
+
+You need to show that you're thinking about the assumptions and their impact on
+your results, but you don't need to run thorough model diagnostics. Basically, 
+we're looking for the following:
+
+#### Data
+
+- Consider whether the measurement level of your data matches the assumptions of
+  your model.
+- Check your variables for univariate outliers.
+- Check for missing data.
+
+#### Model
+
+- Evaluate the univariate normality of any random, observed variables in your
+  model
+  - E.g., DVs in path models, observed IVs modeled as random variables, 
+    indicators of latent factors
+  - If you fit a multiple-group model for Assignment 3, do this evaluation 
+    within groups.
+  - Use graphical tools to evaluate the normality assumption.
+     - Normal QQ-Plots
+     - Histograms
+
+---
+
+### Results {- #results_format}
+
+What do we mean by reporting your results "in a suitable format"? Basically,
+put some effort into making your results readable, and don't include a bunch of
+superfluous information. Part of demonstrating that you understand the analysis
+is showing that you know which pieces of output convey the important information.
+
+- Tabulate your results; don't directly copy the R output.
+- Don't include everything **lavaan** gives you.
+- Include only the output needed to understand your results and support
+your conclusions.
+ 
+
+<!----------------------------------------------------------------------------->
+
 ## Data {- #data_options}
 
 Below, you can find links to a few suitable datasets that you can use for the 
 assignments.
+
+- You *must* use one of the following datasets. You may not choose your own data
+  from the wild.
 
 ---
 
@@ -212,6 +262,15 @@ assignments.
 
 - [Dataset][dass_data]
 - [DASS Information][dass_info]
+
+### Nomophobia
+
+- [Dataset][nomophobia_data]
+
+### Recylced Water Acceptance 
+
+- [Dataset][rwa_data]
+- [Article][rwa_paper]
 
 <!------------------------------------------------------------------------------
 
@@ -317,18 +376,20 @@ report.
 
 ### Group Assignments {-}
 
-Assignments 1 & 2 are simply graded as pass/fail. To pass, your assignment must:
+Assignments 1 & 2 are simply graded as pass/fail. To pass, your submission must:
 
 1. Do a reasonable job of addressing the relevant components listed above
 1. Be submitted before the deadline
 
-Otherwise, you will fail.
+Otherwise, you will fail the assignment.
 
 ---
 
 ### Individual Assignment {-}
 
-Assignment 3 will be fully graded using the indicated rubric.
+Assignment 3 will be fully graded on the usual 10-point scale.
+
+<!------------------------------------------------------------------------------
 
 Assignment 3 comprises 6 components (i.e., the line-items labelled 1--6 in 
 the description above).
@@ -352,8 +413,13 @@ So, given a full point for formatting/submission, we have the following landmark
 - All components marked as *Sufficient* $\rightarrow$ Assignment Grade = 7
 - All components marked as *Excellent* $\rightarrow$ Assignment Grade = 10
 
+------------------------------------------------------------------------------->
+
 Assuming your group passes the first two assignments, your final course grade
 will simply be your Assignment 3 grade.
+
+*Note:* Details over the grading procedures for Assignment 3 will be provided 
+at a later date.
 
 ---
 
@@ -470,4 +536,6 @@ will apply.
 [dass_data]: https://www.kaggle.com/datasets/lucasgreenwell/depression-anxiety-stress-scales-responses
 [dass_info]: https://www2.psy.unsw.edu.au/dass/
 [pwe_data]: https://www.kaggle.com/datasets/lucasgreenwell/protestant-work-ethic-scale-responses
-
+[nomophobia_data]: https://zenodo.org/record/8209987
+[rwa_data]: https://data.mendeley.com/datasets/k9pvh7rc9n/5
+[rwa_paper]: https://www.sciencedirect.com/science/article/pii/S2352340922005996

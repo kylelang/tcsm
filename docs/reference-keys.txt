@@ -1,3 +1,7 @@
+data
+model
+nomophobia
+recylced-water-acceptance
 introduction-to-r
 lecture
 recordings
