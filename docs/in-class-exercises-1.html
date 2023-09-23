@@ -174,14 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html#evaluation-1"><i class="fa fa-check"></i>Evaluation</a></li>
 <li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html#submission-1"><i class="fa fa-check"></i>Submission</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a>
 <ul>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html#evaluation-2"><i class="fa fa-check"></i>Evaluation</a></li>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html#submission-2"><i class="fa fa-check"></i>Submission</a></li>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html#evaluation-2"><i class="fa fa-check"></i>Evaluation</a></li>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html#submission-2"><i class="fa fa-check"></i>Submission</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html"><i class="fa fa-check"></i>Elaboration &amp; Tips</a>
 <ul>
-<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#rq"><i class="fa fa-check"></i>Motivation, Literature Review, &amp; Research Question</a></li>
+<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#rq"><i class="fa fa-check"></i>Theoretical Model &amp; Research Question</a></li>
 <li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#model_assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
 <li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#results_format"><i class="fa fa-check"></i>Results</a></li>
 </ul></li>
@@ -192,8 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#hypersensitive-narcissism-scale-dirty-dozen"><i class="fa fa-check"></i>Hypersensitive Narcissism Scale &amp; Dirty Dozen</a></li>
 <li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#kentucky-inventory-of-mindfulness-skills"><i class="fa fa-check"></i>Kentucky Inventory of Mindfulness Skills</a></li>
 <li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#depression-anxiety-stress-scale"><i class="fa fa-check"></i>Depression Anxiety Stress Scale</a></li>
-<li class="chapter" data-level="0.0.1" data-path="data_options.html"><a href="data_options.html#nomophobia"><i class="fa fa-check"></i><b>0.0.1</b> Nomophobia</a></li>
-<li class="chapter" data-level="0.0.2" data-path="data_options.html"><a href="data_options.html#recylced-water-acceptance"><i class="fa fa-check"></i><b>0.0.2</b> Recylced Water Acceptance</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#nomophobia"><i class="fa fa-check"></i>Nomophobia</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#recylced-water-acceptance"><i class="fa fa-check"></i>Recylced Water Acceptance</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html"><i class="fa fa-check"></i>Procedures</a>
 <ul>
@@ -375,15 +375,15 @@ resources listed in the <a href="weekly-preparation.html#background">Background 
 <h3><span class="header-section-number">2.4.1</span> Data Exploration<a href="in-class-exercises-1.html#data-exploration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <hr />
 <p>Open the file “Sesam.sav”</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="in-class-exercises-1.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load `dplyr` for data processing:</span></span>
-<span id="cb12-2"><a href="in-class-exercises-1.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb12-3"><a href="in-class-exercises-1.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="in-class-exercises-1.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the `haven` library for reading in SPSS files:</span></span>
-<span id="cb12-5"><a href="in-class-exercises-1.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb12-6"><a href="in-class-exercises-1.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="in-class-exercises-1.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the &#39;Sesam.sav&#39; data</span></span>
-<span id="cb12-8"><a href="in-class-exercises-1.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Use haven::zap_formats() to remove SPSS attributes</span></span>
-<span id="cb12-9"><a href="in-class-exercises-1.html#cb12-9" aria-hidden="true" tabindex="-1"></a>sesam <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="at">file =</span> <span class="st">&quot;Sesam.sav&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">zap_formats</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="in-class-exercises-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load `dplyr` for data processing:</span></span>
+<span id="cb13-2"><a href="in-class-exercises-1.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-3"><a href="in-class-exercises-1.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="in-class-exercises-1.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the `haven` library for reading in SPSS files:</span></span>
+<span id="cb13-5"><a href="in-class-exercises-1.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb13-6"><a href="in-class-exercises-1.html#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="in-class-exercises-1.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the &#39;Sesam.sav&#39; data</span></span>
+<span id="cb13-8"><a href="in-class-exercises-1.html#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Use haven::zap_formats() to remove SPSS attributes</span></span>
+<span id="cb13-9"><a href="in-class-exercises-1.html#cb13-9" aria-hidden="true" tabindex="-1"></a>sesam <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="at">file =</span> <span class="st">&quot;Sesam.sav&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">zap_formats</span>()</span></code></pre></div>
 <hr />
 <p>This file is part of a larger dataset that evaluates the impact of the first
 year of the Sesame Street television series. Sesame Street is mainly concerned
@@ -412,8 +412,8 @@ data and the above variables.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="in-class-exercises-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Examine the data structure:</span></span>
-<span id="cb13-2"><a href="in-class-exercises-1.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sesam)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="in-class-exercises-1.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Examine the data structure:</span></span>
+<span id="cb14-2"><a href="in-class-exercises-1.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sesam)</span></code></pre></div>
 <pre><code>## tibble [240 × 8] (S3: tbl_df/tbl/data.frame)
 ##  $ id      : num [1:240] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ age     : num [1:240] 66 67 56 49 69 54 47 51 69 53 ...
@@ -447,9 +447,9 @@ Click to show code
 </summary>
 <p>As in the take home exercises, you can use the <code>descriptives()</code> function from
 the <code>tidySEM</code> package to describe the data:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="in-class-exercises-1.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb15-2"><a href="in-class-exercises-1.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="in-class-exercises-1.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(sesam)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="in-class-exercises-1.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb16-2"><a href="in-class-exercises-1.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="in-class-exercises-1.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(sesam)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["min"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"id","2":"numeric","3":"240","4":"0","5":"240","6":"120.500000","7":"120.5","8":"120.5","9":"NA","10":"69.426220","11":"NA","12":"1","13":"240","14":"239","15":"0.000000000","16":"0.000000000","17":"1.799958","18":"2.875227"},{"1":"age","2":"numeric","3":"240","4":"0","5":"33","6":"51.525000","7":"52.0","8":"52.0","9":"NA","10":"6.281356","11":"NA","12":"34","13":"69","14":"35","15":"-0.235003270","16":"-0.747762788","17":"3.339069","18":"5.333779"},{"1":"prelet","2":"numeric","3":"240","4":"0","5":"40","6":"15.937500","7":"14.0","8":"14.0","9":"NA","10":"8.536425","11":"NA","12":"1","13":"55","14":"54","15":"1.981806867","16":"6.305960895","17":"7.832143","18":"12.510950"},{"1":"prenumb","2":"numeric","3":"240","4":"0","5":"47","6":"20.895833","7":"19.0","8":"19.0","9":"NA","10":"10.685382","11":"NA","12":"1","13":"52","14":"51","15":"0.734200826","16":"2.336171994","17":"3.104313","18":"4.958784"},{"1":"prerelat","2":"numeric","3":"240","4":"0","5":"16","6":"9.937500","7":"10.0","8":"10.0","9":"NA","10":"3.073753","11":"NA","12":"2","13":"17","14":"15","15":"-0.178387187","16":"-0.567614656","17":"2.546326","18":"4.067464"},{"1":"peabody","2":"numeric","3":"240","4":"0","5":"46","6":"46.775000","7":"42.0","8":"42.0","9":"NA","10":"15.986900","11":"NA","12":"27","13":"99","14":"72","15":"1.033333375","16":"3.287989340","17":"3.494736","18":"5.582440"},{"1":"postnumb","2":"numeric","3":"240","4":"0","5":"50","6":"30.054167","7":"29.0","8":"29.0","9":"NA","10":"12.845769","11":"NA","12":"0","13":"54","14":"54","15":"0.002777598","16":"0.008838108","17":"1.913904","18":"3.057243"},{"1":"gain","2":"numeric","3":"240","4":"0","5":"45","6":"9.158333","7":"9.0","8":"9.0","9":"NA","10":"9.682401","11":"NA","12":"-35","13":"33","14":"68","15":"-0.396366070","16":"-1.261207125","17":"4.917478","18":"7.855107"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -485,9 +485,9 @@ Click to show code
 </summary>
 <p>Create a new variable that represents the difference between pre- and post-test
 scores on knowledge of numbers:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="in-class-exercises-1.html#cb16-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sesam, <span class="at">ndif =</span> postnumb <span class="sc">-</span> prenumb)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="in-class-exercises-1.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sesam, <span class="at">ndif =</span> postnumb <span class="sc">-</span> prenumb)</span></code></pre></div>
 <p>Compute the mean and SD of the change score:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="in-class-exercises-1.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(ndif), <span class="fu">sd</span>(ndif))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="in-class-exercises-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(ndif), <span class="fu">sd</span>(ndif))</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["mean(ndif)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sd(ndif)"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"9.158333","2":"9.682401"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -509,17 +509,17 @@ scores on knowledge of numbers:</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="in-class-exercises-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb18-2"><a href="in-class-exercises-1.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="in-class-exercises-1.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Create an empty baseline plot object:</span></span>
-<span id="cb18-4"><a href="in-class-exercises-1.html#cb18-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sesam, <span class="fu">aes</span>(<span class="at">x =</span> ndif))</span>
-<span id="cb18-5"><a href="in-class-exercises-1.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="in-class-exercises-1.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some appropriate geoms:</span></span>
-<span id="cb18-7"><a href="in-class-exercises-1.html#cb18-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="in-class-exercises-1.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-2"><a href="in-class-exercises-1.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="in-class-exercises-1.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Create an empty baseline plot object:</span></span>
+<span id="cb19-4"><a href="in-class-exercises-1.html#cb19-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sesam, <span class="fu">aes</span>(<span class="at">x =</span> ndif))</span>
+<span id="cb19-5"><a href="in-class-exercises-1.html#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="in-class-exercises-1.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some appropriate geoms:</span></span>
+<span id="cb19-7"><a href="in-class-exercises-1.html#cb19-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="in-class-exercises-1.html#cb19-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="in-class-exercises-1.html#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-33-2.png" width="672" /></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="in-class-exercises-1.html#cb20-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="in-class-exercises-1.html#cb21-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-33-3.png" width="672" />
 <details>
 <summary>
@@ -548,9 +548,9 @@ relationship between the pre- and post-test number knowledge.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="in-class-exercises-1.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a scatterplot of the pre- and post-test number knowledge</span></span>
-<span id="cb21-2"><a href="in-class-exercises-1.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sesam, <span class="fu">aes</span>(<span class="at">x =</span> prenumb, <span class="at">y =</span> postnumb)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="in-class-exercises-1.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="in-class-exercises-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a scatterplot of the pre- and post-test number knowledge</span></span>
+<span id="cb22-2"><a href="in-class-exercises-1.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sesam, <span class="fu">aes</span>(<span class="at">x =</span> prenumb, <span class="at">y =</span> postnumb)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="in-class-exercises-1.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <details>
 <summary>
@@ -598,12 +598,12 @@ coefficients (the base-R <code>cor()</code> function only computes the coefficie
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="in-class-exercises-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb22-2"><a href="in-class-exercises-1.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="in-class-exercises-1.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Test the correlations using psych::corr.test():</span></span>
-<span id="cb22-4"><a href="in-class-exercises-1.html#cb22-4" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="in-class-exercises-1.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(postnumb, age, prelet, prenumb, prerelat, peabody) <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a href="in-class-exercises-1.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corr.test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="in-class-exercises-1.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb23-2"><a href="in-class-exercises-1.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="in-class-exercises-1.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Test the correlations using psych::corr.test():</span></span>
+<span id="cb23-4"><a href="in-class-exercises-1.html#cb23-4" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="in-class-exercises-1.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(postnumb, age, prelet, prenumb, prerelat, peabody) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="in-class-exercises-1.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corr.test</span>()</span></code></pre></div>
 <pre><code>## Call:corr.test(x = .)
 ## Correlation matrix 
 ##          postnumb  age prelet prenumb prerelat peabody
@@ -625,12 +625,12 @@ Click to show code
 ## peabody         0   0      0       0        0       0
 ## 
 ##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="in-class-exercises-1.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## OR ##</span></span>
-<span id="cb24-2"><a href="in-class-exercises-1.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="in-class-exercises-1.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb24-4"><a href="in-class-exercises-1.html#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="in-class-exercises-1.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Test the correlations using multiple cor.test() calls:</span></span>
-<span id="cb24-6"><a href="in-class-exercises-1.html#cb24-6" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, age)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="in-class-exercises-1.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## OR ##</span></span>
+<span id="cb25-2"><a href="in-class-exercises-1.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="in-class-exercises-1.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb25-4"><a href="in-class-exercises-1.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="in-class-exercises-1.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Test the correlations using multiple cor.test() calls:</span></span>
+<span id="cb25-6"><a href="in-class-exercises-1.html#cb25-6" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, age)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -642,7 +642,7 @@ Click to show code
 ## sample estimates:
 ##       cor 
 ## 0.3410578</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="in-class-exercises-1.html#cb26-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, prelet)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="in-class-exercises-1.html#cb27-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, prelet)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -654,7 +654,7 @@ Click to show code
 ## sample estimates:
 ##       cor 
 ## 0.5038464</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="in-class-exercises-1.html#cb28-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, prenumb)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="in-class-exercises-1.html#cb29-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, prenumb)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -666,7 +666,7 @@ Click to show code
 ## sample estimates:
 ##       cor 
 ## 0.6755051</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="in-class-exercises-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, prerelat)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="in-class-exercises-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, prerelat)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -678,7 +678,7 @@ Click to show code
 ## sample estimates:
 ##       cor 
 ## 0.5433818</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="in-class-exercises-1.html#cb32-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, peabody)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="in-class-exercises-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a>sesam <span class="sc">%$%</span> <span class="fu">cor.test</span>(postnumb, peabody)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -715,8 +715,8 @@ all variables in the data are significantly correlated with one another.)</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="in-class-exercises-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a>lmOut <span class="ot">&lt;-</span> <span class="fu">lm</span>(postnumb <span class="sc">~</span> age <span class="sc">+</span> prenumb, <span class="at">data =</span> sesam)</span>
-<span id="cb34-2"><a href="in-class-exercises-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmOut)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="in-class-exercises-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a>lmOut <span class="ot">&lt;-</span> <span class="fu">lm</span>(postnumb <span class="sc">~</span> age <span class="sc">+</span> prenumb, <span class="at">data =</span> sesam)</span>
+<span id="cb35-2"><a href="in-class-exercises-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmOut)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = postnumb ~ age + prenumb, data = sesam)
@@ -778,7 +778,7 @@ analysis using <code>lavaan</code>.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="in-class-exercises-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;postnumb ~ 1 + age + prenumb&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="in-class-exercises-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;postnumb ~ 1 + age + prenumb&#39;</span></span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -792,9 +792,9 @@ Click to show code
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="in-class-exercises-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb37-2"><a href="in-class-exercises-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="in-class-exercises-1.html#cb37-3" aria-hidden="true" tabindex="-1"></a>lavOut1 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> sesam)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="in-class-exercises-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb38-2"><a href="in-class-exercises-1.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="in-class-exercises-1.html#cb38-3" aria-hidden="true" tabindex="-1"></a>lavOut1 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> sesam)</span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -808,7 +808,7 @@ Click to show code
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="in-class-exercises-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut1)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="in-class-exercises-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut1)</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
@@ -863,16 +863,16 @@ not covary. We can easily relax this assumption in path analysis.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="in-class-exercises-1.html#cb40-1" aria-hidden="true" tabindex="-1"></a>lavOut2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> sesam, <span class="at">fixed.x =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb40-2"><a href="in-class-exercises-1.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="in-class-exercises-1.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="do">## OR ##</span></span>
-<span id="cb40-4"><a href="in-class-exercises-1.html#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="in-class-exercises-1.html#cb40-5" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb40-6"><a href="in-class-exercises-1.html#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="st">postnumb ~ 1 + age + prenumb</span></span>
-<span id="cb40-7"><a href="in-class-exercises-1.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="st">age ~~ prenumb</span></span>
-<span id="cb40-8"><a href="in-class-exercises-1.html#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
-<span id="cb40-9"><a href="in-class-exercises-1.html#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-10"><a href="in-class-exercises-1.html#cb40-10" aria-hidden="true" tabindex="-1"></a>lavOut2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> sesam)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="in-class-exercises-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>lavOut2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> sesam, <span class="at">fixed.x =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb41-2"><a href="in-class-exercises-1.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="in-class-exercises-1.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="do">## OR ##</span></span>
+<span id="cb41-4"><a href="in-class-exercises-1.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="in-class-exercises-1.html#cb41-5" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb41-6"><a href="in-class-exercises-1.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="st">postnumb ~ 1 + age + prenumb</span></span>
+<span id="cb41-7"><a href="in-class-exercises-1.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="st">age ~~ prenumb</span></span>
+<span id="cb41-8"><a href="in-class-exercises-1.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb41-9"><a href="in-class-exercises-1.html#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="in-class-exercises-1.html#cb41-10" aria-hidden="true" tabindex="-1"></a>lavOut2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> sesam)</span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -887,7 +887,7 @@ path model in <a href="in-class-exercises-1.html#path1">2.4.2.5</a>.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="in-class-exercises-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut2)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="in-class-exercises-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut2)</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 26 iterations
 ## 
 ##   Estimator                                         ML
@@ -929,7 +929,7 @@ Click to show code
 ##    .postnumb         88.864    8.112   10.954    0.000
 ##     age              39.291    3.587   10.954    0.000
 ##     prenumb         113.702   10.379   10.954    0.000</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="in-class-exercises-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut1)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="in-class-exercises-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut1)</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
@@ -962,7 +962,7 @@ Click to show code
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##    .postnumb         88.864    8.112   10.954    0.000</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="in-class-exercises-1.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmOut)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="in-class-exercises-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmOut)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = postnumb ~ age + prenumb, data = sesam)
@@ -1026,9 +1026,9 @@ language, history, and logic tests can predict the math test score.</p>
 <h3><span class="header-section-number">2.4.3</span> Categorical IVs<a href="in-class-exercises-1.html#categorical-ivs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <hr />
 <p>Load the <code>Drivers.sav</code> data.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="in-class-exercises-1.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data into a data frame named &#39;drivers&#39;:</span></span>
-<span id="cb47-2"><a href="in-class-exercises-1.html#cb47-2" aria-hidden="true" tabindex="-1"></a>drivers <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">&quot;Drivers.sav&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="in-class-exercises-1.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_factor</span>() <span class="co"># This preserves the SPSS labels for nominal variables</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="in-class-exercises-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data into a data frame named &#39;drivers&#39;:</span></span>
+<span id="cb48-2"><a href="in-class-exercises-1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>drivers <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">&quot;Drivers.sav&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="in-class-exercises-1.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_factor</span>() <span class="co"># This preserves the SPSS labels for nominal variables</span></span></code></pre></div>
 <hr />
 <p>In this section, we will evaluate the following research question:</p>
 <pre><code>Does talking on the phone interfere with people&#39;s driving skills?</code></pre>
@@ -1054,8 +1054,8 @@ participant’s reaction time (in milliseconds) during a driving simulation.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="in-class-exercises-1.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drivers, <span class="fu">aes</span>(<span class="at">x =</span> RT)) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="in-class-exercises-1.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="in-class-exercises-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drivers, <span class="fu">aes</span>(<span class="at">x =</span> RT)) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="in-class-exercises-1.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <details>
 <summary>
@@ -1081,8 +1081,8 @@ the <code>fill</code> aesthetic in <code>ggplot</code>.</p>
 Click to show code
 </summary>
 <p><em>Hint</em>: To modify the transparency of the densities, use the aesthetic <code>alpha</code>.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="in-class-exercises-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drivers, <span class="fu">aes</span>(<span class="at">x =</span> RT, <span class="at">fill =</span> condition)) <span class="sc">+</span></span>
-<span id="cb50-2"><a href="in-class-exercises-1.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="in-class-exercises-1.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drivers, <span class="fu">aes</span>(<span class="at">x =</span> RT, <span class="at">fill =</span> condition)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="in-class-exercises-1.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>)</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <details>
 <summary>
@@ -1145,13 +1145,13 @@ beginning of this section.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="in-class-exercises-1.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb51-2"><a href="in-class-exercises-1.html#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="in-class-exercises-1.html#cb51-3" aria-hidden="true" tabindex="-1"></a>lmOut <span class="ot">&lt;-</span> drivers <span class="sc">%&gt;%</span></span>
-<span id="cb51-4"><a href="in-class-exercises-1.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condition =</span> <span class="fu">relevel</span>(condition, <span class="at">ref =</span> <span class="st">&quot;control&quot;</span>)) <span class="sc">%$%</span></span>
-<span id="cb51-5"><a href="in-class-exercises-1.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(RT <span class="sc">~</span> condition)</span>
-<span id="cb51-6"><a href="in-class-exercises-1.html#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-7"><a href="in-class-exercises-1.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmOut)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="in-class-exercises-1.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb52-2"><a href="in-class-exercises-1.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="in-class-exercises-1.html#cb52-3" aria-hidden="true" tabindex="-1"></a>lmOut <span class="ot">&lt;-</span> drivers <span class="sc">%&gt;%</span></span>
+<span id="cb52-4"><a href="in-class-exercises-1.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condition =</span> <span class="fu">relevel</span>(condition, <span class="at">ref =</span> <span class="st">&quot;control&quot;</span>)) <span class="sc">%$%</span></span>
+<span id="cb52-5"><a href="in-class-exercises-1.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(RT <span class="sc">~</span> condition)</span>
+<span id="cb52-6"><a href="in-class-exercises-1.html#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="in-class-exercises-1.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmOut)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = RT ~ condition)
@@ -1171,7 +1171,7 @@ Click to show code
 ## Residual standard error: 130.1 on 57 degrees of freedom
 ## Multiple R-squared:  0.09729,    Adjusted R-squared:  0.06562 
 ## F-statistic: 3.072 on 2 and 57 DF,  p-value: 0.05408</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="in-class-exercises-1.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lmOut)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="in-class-exercises-1.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lmOut)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"103908.7","3":"51954.35","4":"3.071729","5":"0.05408477","_rn_":"condition"},{"1":"57","2":"964081.7","3":"16913.71","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1198,15 +1198,15 @@ you will need to create your own dummy codes.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="in-class-exercises-1.html#cb54-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;RT ~ 1 + HH + HF&#39;</span></span>
-<span id="cb54-2"><a href="in-class-exercises-1.html#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="in-class-exercises-1.html#cb54-3" aria-hidden="true" tabindex="-1"></a>lavOut <span class="ot">&lt;-</span> drivers <span class="sc">%&gt;%</span></span>
-<span id="cb54-4"><a href="in-class-exercises-1.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HH =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hand-held&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># Create dummy code for &quot;hand-held&quot; condition</span></span>
-<span id="cb54-5"><a href="in-class-exercises-1.html#cb54-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">HF =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hands-free&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>) <span class="co"># Create dummy code for &quot;hands-free&quot; condition</span></span>
-<span id="cb54-6"><a href="in-class-exercises-1.html#cb54-6" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
-<span id="cb54-7"><a href="in-class-exercises-1.html#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sem</span>(mod, <span class="at">data =</span> .) <span class="co"># Estimate the model</span></span>
-<span id="cb54-8"><a href="in-class-exercises-1.html#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-9"><a href="in-class-exercises-1.html#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="in-class-exercises-1.html#cb55-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;RT ~ 1 + HH + HF&#39;</span></span>
+<span id="cb55-2"><a href="in-class-exercises-1.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="in-class-exercises-1.html#cb55-3" aria-hidden="true" tabindex="-1"></a>lavOut <span class="ot">&lt;-</span> drivers <span class="sc">%&gt;%</span></span>
+<span id="cb55-4"><a href="in-class-exercises-1.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HH =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hand-held&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># Create dummy code for &quot;hand-held&quot; condition</span></span>
+<span id="cb55-5"><a href="in-class-exercises-1.html#cb55-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">HF =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hands-free&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>) <span class="co"># Create dummy code for &quot;hands-free&quot; condition</span></span>
+<span id="cb55-6"><a href="in-class-exercises-1.html#cb55-6" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a href="in-class-exercises-1.html#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sem</span>(mod, <span class="at">data =</span> .) <span class="co"># Estimate the model</span></span>
+<span id="cb55-8"><a href="in-class-exercises-1.html#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-9"><a href="in-class-exercises-1.html#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lavOut)</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML

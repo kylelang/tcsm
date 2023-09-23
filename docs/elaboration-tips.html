@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="assignment-3-full-structural-equation-model.html"/>
+<link rel="prev" href="a3_components.html"/>
 <link rel="next" href="data_options.html"/>
 <script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -174,14 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html#evaluation-1"><i class="fa fa-check"></i>Evaluation</a></li>
 <li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html#submission-1"><i class="fa fa-check"></i>Submission</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a>
 <ul>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html#evaluation-2"><i class="fa fa-check"></i>Evaluation</a></li>
-<li class="chapter" data-level="" data-path="assignment-3-full-structural-equation-model.html"><a href="assignment-3-full-structural-equation-model.html#submission-2"><i class="fa fa-check"></i>Submission</a></li>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html#evaluation-2"><i class="fa fa-check"></i>Evaluation</a></li>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html#submission-2"><i class="fa fa-check"></i>Submission</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html"><i class="fa fa-check"></i>Elaboration &amp; Tips</a>
 <ul>
-<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#rq"><i class="fa fa-check"></i>Motivation, Literature Review, &amp; Research Question</a></li>
+<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#rq"><i class="fa fa-check"></i>Theoretical Model &amp; Research Question</a></li>
 <li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#model_assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
 <li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#results_format"><i class="fa fa-check"></i>Results</a></li>
 </ul></li>
@@ -192,8 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#hypersensitive-narcissism-scale-dirty-dozen"><i class="fa fa-check"></i>Hypersensitive Narcissism Scale &amp; Dirty Dozen</a></li>
 <li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#kentucky-inventory-of-mindfulness-skills"><i class="fa fa-check"></i>Kentucky Inventory of Mindfulness Skills</a></li>
 <li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#depression-anxiety-stress-scale"><i class="fa fa-check"></i>Depression Anxiety Stress Scale</a></li>
-<li class="chapter" data-level="0.0.1" data-path="data_options.html"><a href="data_options.html#nomophobia"><i class="fa fa-check"></i><b>0.0.1</b> Nomophobia</a></li>
-<li class="chapter" data-level="0.0.2" data-path="data_options.html"><a href="data_options.html#recylced-water-acceptance"><i class="fa fa-check"></i><b>0.0.2</b> Recylced Water Acceptance</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#nomophobia"><i class="fa fa-check"></i>Nomophobia</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#recylced-water-acceptance"><i class="fa fa-check"></i>Recylced Water Acceptance</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html"><i class="fa fa-check"></i>Procedures</a>
 <ul>
@@ -361,39 +361,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="elaboration-tips" class="section level2 unnumbered hasAnchor">
 <h2>Elaboration &amp; Tips<a href="elaboration-tips.html#elaboration-tips" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="rq" class="section level3 unnumbered hasAnchor">
-<h3>Motivation, Literature Review, &amp; Research Question<a href="elaboration-tips.html#rq" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>Theoretical Model &amp; Research Question<a href="elaboration-tips.html#rq" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You need to provide some justification for your model and research question, but
-only enough to demonstrate that you…</p>
+only enough to demonstrate that you’ve actually conceptualized and estimated a
+theoretically plausible statistical model (as opposed to randomly combining
+variables until <strong>lavaan</strong> returns a pretty picture).</p>
 <ul>
-<li>Show that your model is plausible, but don’t provide a rigorous
-literature-supported theoretical motivation.</li>
+<li>You have several ways to show that your model is plausible.
+<ul>
+<li>Use common-sense arguments.</li>
+<li>Reference (a small number of) published papers.</li>
+<li>Replicate an existing model/research question.</li>
+</ul></li>
+<li>Don’t provide a rigorous literature-supported theoretical motivation.
+<ul>
+<li>You don’t have the time to conduct a thorough literature review, and we
+don’t have the time to read such reviews when grading.</li>
+<li>Literature review is not one of the learning goals for this course, so you
+cannot get “bonus points” for an extensive literature review.</li>
+</ul></li>
 </ul>
 <p>You are free to test any plausible model that meets the size requirements.</p>
 <ul>
 <li>You can derive your own model/research question or you can replicate a
 published analysis.</li>
 </ul>
+<div id="model-specifications" class="section level4 unnumbered hasAnchor">
+<h4>Model Specifications<a href="elaboration-tips.html#model-specifications" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We will not cover methods for modeling categorical outcome variables. So, use
+only continuous variables as outcomes.</p>
+<ul>
+<li>DVs in path models and the structural parts of SEMs</li>
+<li>Observed indicators of latent factors in CFA/SEM</li>
+</ul>
+<p><em>NOTE:</em> You may treat ordinal items as continuous, for the purposes of these
+assignments.</p>
+<p>We will not cover methods for latent variable interactions.</p>
+<ul>
+<li>Don’t specify a theoretical model that requires an interaction involving a
+latent construct.</li>
+</ul>
+<p>There is one exception to the above prohibition. If the moderator is an
+observed grouping variable, you can estimate the model as a multiple-group model.
+We’ll cover these methods in <a href="multiple-group-models.html">Week 7</a>.</p>
 <hr />
+</div>
 </div>
 <div id="model_assumptions" class="section level3 unnumbered hasAnchor">
 <h3>Assumptions<a href="elaboration-tips.html#model_assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You need to show that you’re thinking about the assumptions and their impact on
-your results, but you don’t need to run thorough model diagnostics. Basically,
-we’re looking for the following:</p>
-<div id="data" class="section level4 hasAnchor" number="0.0.0.1">
-<h4><span class="header-section-number">0.0.0.1</span> Data<a href="elaboration-tips.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+your results, but you don’t need to run thorough model diagnostics. Indeed, the
+task of checking assumptions isn’t nearly as straight forward in path analysis,
+CFA, and SEM as it is in linear regression modeling. You won’t be able to directly
+apply the methods you have learned for regression diagnostics, for example.</p>
+<p>Since all of our models are estimated with normal-theory maximum likelihood, the
+fundamental assumption of all the models we’ll consider in this course boils down
+to the following.</p>
+<pre><code>All random variables in my model are i.i.d. multivariate normally distributed. </code></pre>
+<p>So, you can get by with basic data screening and checking the observed random
+variables in your model (i.e., all variables other than fixed predictors) for
+normality.</p>
+<ul>
+<li>Since checking for multivariate normality is a bit tricky, we’ll only ask you
+to evaluate univariate normality.</li>
+<li>You should do these evaluations via graphical means.</li>
+</ul>
+<p>To summarize, we’re looking for the following.</p>
+<div id="data" class="section level4 unnumbered hasAnchor">
+<h4>Data<a href="elaboration-tips.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Consider whether the measurement level of your data matches the assumptions of
 your model.</li>
-<li>Check your variables for univariate outliers.</li>
-<li>Check for missing data.</li>
+<li>Check your variables for univariate outliers.
+<ul>
+<li>If you find any outliers, either treat them in some way or explain why you
+are retaining them for the analysis.</li>
+</ul></li>
+<li>Check for missing data.
+<ul>
+<li>For the purposes of the assignment, you can use complete case analysis to
+work around the missing data.</li>
+<li>If you’re up for more of a challenge, feel free to try multiple imputation
+or full information maximum likelihood.</li>
+</ul></li>
 </ul>
 </div>
-<div id="model" class="section level4 hasAnchor" number="0.0.0.2">
-<h4><span class="header-section-number">0.0.0.2</span> Model<a href="elaboration-tips.html#model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="model" class="section level4 unnumbered hasAnchor">
+<h4>Model<a href="elaboration-tips.html#model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Evaluate the univariate normality of any random, observed variables in your
-model
+model.
 <ul>
 <li>E.g., DVs in path models, observed IVs modeled as random variables,
 indicators of latent factors</li>
@@ -429,7 +486,7 @@ your conclusions.</li>
           </div>
         </div>
       </div>
-<a href="assignment-3-full-structural-equation-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a3_components.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="data_options.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
