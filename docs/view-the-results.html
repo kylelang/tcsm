@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.7 View the results: | Theory Construction and Statistical Modeling</title>
+  <meta name="description" content="3.7 View the results: | Theory Construction and Statistical Modeling" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.7 View the results: | Theory Construction and Statistical Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.7 View the results: | Theory Construction and Statistical Modeling" />
+  
+  
+  
+
+<meta name="author" content="Kyle M. Lang" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="test-the-simple-slopes.html"/>
+<link rel="next" href="efa.html"/>
+<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">TCSM</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="instructors.html"><a href="instructors.html"><i class="fa fa-check"></i>Instructors</a></li>
+<li class="chapter" data-level="" data-path="course-overview.html"><a href="course-overview.html"><i class="fa fa-check"></i>Course overview</a></li>
+<li class="chapter" data-level="" data-path="schedule.html"><a href="schedule.html"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="learning-goals.html"><a href="learning-goals.html"><i class="fa fa-check"></i>Learning goals</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#literature"><i class="fa fa-check"></i>Literature</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#software"><i class="fa fa-check"></i>Software</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-questions.html"><a href="reading-questions.html"><i class="fa fa-check"></i>Reading questions</a></li>
+<li class="chapter" data-level="" data-path="weekly-preparation.html"><a href="weekly-preparation.html"><i class="fa fa-check"></i>Weekly preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="weekly-preparation.html"><a href="weekly-preparation.html#background"><i class="fa fa-check"></i>Background knowledge</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="grading.html"><a href="grading.html"><i class="fa fa-check"></i>Grading</a></li>
+<li class="chapter" data-level="" data-path="attendance.html"><a href="attendance.html"><i class="fa fa-check"></i>Attendance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i>Assignments</a>
+<ul>
+<li class="chapter" data-level="" data-path="assignment-1-path-analysis.html"><a href="assignment-1-path-analysis.html"><i class="fa fa-check"></i>Assignment 1: Path Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="assignment-1-path-analysis.html"><a href="assignment-1-path-analysis.html#evaluation"><i class="fa fa-check"></i>Evaluation</a></li>
+<li class="chapter" data-level="" data-path="assignment-1-path-analysis.html"><a href="assignment-1-path-analysis.html#submission"><i class="fa fa-check"></i>Submission</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html"><i class="fa fa-check"></i>Assignment 2: Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html#evaluation-1"><i class="fa fa-check"></i>Evaluation</a></li>
+<li class="chapter" data-level="" data-path="assignment-2-confirmatory-factor-analysis.html"><a href="assignment-2-confirmatory-factor-analysis.html#submission-1"><i class="fa fa-check"></i>Submission</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html"><i class="fa fa-check"></i>Assignment 3: Full Structural Equation Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html#evaluation-2"><i class="fa fa-check"></i>Evaluation</a></li>
+<li class="chapter" data-level="" data-path="a3_components.html"><a href="a3_components.html#submission-2"><i class="fa fa-check"></i>Submission</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html"><i class="fa fa-check"></i>Elaboration &amp; Tips</a>
+<ul>
+<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#rq"><i class="fa fa-check"></i>Theoretical Model &amp; Research Question</a></li>
+<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#model_assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="elaboration-tips.html"><a href="elaboration-tips.html#results_format"><i class="fa fa-check"></i>Results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html"><i class="fa fa-check"></i>Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#coping-with-covid"><i class="fa fa-check"></i>Coping with Covid</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#feminist-perspectives-scale"><i class="fa fa-check"></i>Feminist Perspectives Scale</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#hypersensitive-narcissism-scale-dirty-dozen"><i class="fa fa-check"></i>Hypersensitive Narcissism Scale &amp; Dirty Dozen</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#kentucky-inventory-of-mindfulness-skills"><i class="fa fa-check"></i>Kentucky Inventory of Mindfulness Skills</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#depression-anxiety-stress-scale"><i class="fa fa-check"></i>Depression Anxiety Stress Scale</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#nomophobia"><i class="fa fa-check"></i>Nomophobia</a></li>
+<li class="chapter" data-level="" data-path="data_options.html"><a href="data_options.html#recylced-water-acceptance"><i class="fa fa-check"></i>Recylced Water Acceptance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html"><i class="fa fa-check"></i>Procedures</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html#formatting"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html#length"><i class="fa fa-check"></i>Length</a></li>
+<li class="chapter" data-level="" data-path="procedures.html"><a href="procedures.html#submission-3"><i class="fa fa-check"></i>Submission</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html"><i class="fa fa-check"></i>Grading</a>
+<ul>
+<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html#group-assignments"><i class="fa fa-check"></i>Group Assignments</a></li>
+<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html#individual-assignment"><i class="fa fa-check"></i>Individual Assignment</a></li>
+<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html#resits"><i class="fa fa-check"></i>Resits</a></li>
+<li class="chapter" data-level="" data-path="grading-1.html"><a href="grading-1.html#example-assignment"><i class="fa fa-check"></i>Example Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html"><i class="fa fa-check"></i>Rules</a>
+<ul>
+<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#resources-1"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#collaboration"><i class="fa fa-check"></i>Collaboration</a></li>
+<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#academic-integrity"><i class="fa fa-check"></i>Academic integrity</a></li>
+<li class="chapter" data-level="" data-path="rules.html"><a href="rules.html#strict-stuff"><i class="fa fa-check"></i>Strict stuff</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i>Software Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="typographic-conventions.html"><a href="typographic-conventions.html"><i class="fa fa-check"></i>Typographic Conventions</a></li>
+<li class="chapter" data-level="" data-path="installing-software.html"><a href="installing-software.html"><i class="fa fa-check"></i>Installing software</a>
+<ul>
+<li class="chapter" data-level="" data-path="installing-software.html"><a href="installing-software.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+<li class="chapter" data-level="" data-path="installing-software.html"><a href="installing-software.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="installing-software.html"><a href="installing-software.html#installing-packages"><i class="fa fa-check"></i>Installing packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="course-data.html"><a href="course-data.html"><i class="fa fa-check"></i>Course Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="note-on-data-updates.html"><a href="note-on-data-updates.html"><i class="fa fa-check"></i>Note on Data Updates</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="lecture.html"><a href="lecture.html"><i class="fa fa-check"></i><b>1.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="lecture.html"><a href="lecture.html#recordings"><i class="fa fa-check"></i><b>1.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="1.1.2" data-path="lecture.html"><a href="lecture.html#slides"><i class="fa fa-check"></i><b>1.1.2</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="reading.html"><a href="reading.html"><i class="fa fa-check"></i><b>1.2</b> Reading</a></li>
+<li class="chapter" data-level="1.3" data-path="at-home-exercises.html"><a href="at-home-exercises.html"><i class="fa fa-check"></i><b>1.3</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="at-home-exercises.html"><a href="at-home-exercises.html#visualizations-with-r"><i class="fa fa-check"></i><b>1.3.1</b> Visualizations with R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="at-home-exercises.html"><a href="at-home-exercises.html#programming-with-r"><i class="fa fa-check"></i><b>1.3.2</b> Programming with R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="in-class-exercises.html"><a href="in-class-exercises.html"><i class="fa fa-check"></i><b>1.4</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="in-class-exercises.html"><a href="in-class-exercises.html#viewing-data"><i class="fa fa-check"></i><b>1.4.1</b> Viewing Data</a></li>
+<li class="chapter" data-level="1.4.2" data-path="in-class-exercises.html"><a href="in-class-exercises.html#dissecting-data"><i class="fa fa-check"></i><b>1.4.2</b> Dissecting Data</a></li>
+<li class="chapter" data-level="1.4.3" data-path="in-class-exercises.html"><a href="in-class-exercises.html#grouping-and-manipulating-data"><i class="fa fa-check"></i><b>1.4.3</b> Grouping and Manipulating Data</a></li>
+<li class="chapter" data-level="1.4.4" data-path="in-class-exercises.html"><a href="in-class-exercises.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>1.4.4</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="1.4.5" data-path="in-class-exercises.html"><a href="in-class-exercises.html#visualizing-data"><i class="fa fa-check"></i><b>1.4.5</b> Visualizing Data</a></li>
+<li class="chapter" data-level="1.4.6" data-path="in-class-exercises.html"><a href="in-class-exercises.html#tidying-data"><i class="fa fa-check"></i><b>1.4.6</b> Tidying Data</a></li>
+<li class="chapter" data-level="" data-path="in-class-exercises.html"><a href="in-class-exercises.html#recap"><i class="fa fa-check"></i>Recap</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-modeling-path-analysis.html"><a href="statistical-modeling-path-analysis.html"><i class="fa fa-check"></i><b>2</b> Statistical Modeling &amp; Path Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="lecture-1.html"><a href="lecture-1.html"><i class="fa fa-check"></i><b>2.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="lecture-1.html"><a href="lecture-1.html#recordings-1"><i class="fa fa-check"></i><b>2.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="2.1.2" data-path="lecture-1.html"><a href="lecture-1.html#slides-1"><i class="fa fa-check"></i><b>2.1.2</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="reading-1.html"><a href="reading-1.html"><i class="fa fa-check"></i><b>2.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#reference"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#questions"><i class="fa fa-check"></i>Questions</a></li>
+<li class="chapter" data-level="" data-path="reading-1.html"><a href="reading-1.html#suggested-reading-optional"><i class="fa fa-check"></i>Suggested Reading (Optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html"><i class="fa fa-check"></i><b>2.3</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section"><i class="fa fa-check"></i><b>2.3.1</b> </a></li>
+<li class="chapter" data-level="2.3.2" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#slr1"><i class="fa fa-check"></i><b>2.3.2</b> </a></li>
+<li class="chapter" data-level="2.3.3" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#slr2"><i class="fa fa-check"></i><b>2.3.3</b> </a></li>
+<li class="chapter" data-level="2.3.4" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#slr3"><i class="fa fa-check"></i><b>2.3.4</b> </a></li>
+<li class="chapter" data-level="2.3.5" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#mlr"><i class="fa fa-check"></i><b>2.3.5</b> </a></li>
+<li class="chapter" data-level="2.3.6" data-path="at-home-exercises-1.html"><a href="at-home-exercises-1.html#section-1"><i class="fa fa-check"></i><b>2.3.6</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html"><i class="fa fa-check"></i><b>2.4</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#data-exploration"><i class="fa fa-check"></i><b>2.4.1</b> Data Exploration</a></li>
+<li class="chapter" data-level="2.4.2" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#linear-modeling"><i class="fa fa-check"></i><b>2.4.2</b> Linear Modeling</a></li>
+<li class="chapter" data-level="2.4.3" data-path="in-class-exercises-1.html"><a href="in-class-exercises-1.html#categorical-ivs"><i class="fa fa-check"></i><b>2.4.3</b> Categorical IVs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mediation-moderation.html"><a href="mediation-moderation.html"><i class="fa fa-check"></i><b>3</b> Mediation &amp; Moderation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lecture-2.html"><a href="lecture-2.html"><i class="fa fa-check"></i><b>3.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="lecture-2.html"><a href="lecture-2.html#recordings-2"><i class="fa fa-check"></i><b>3.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="3.1.2" data-path="lecture-2.html"><a href="lecture-2.html#slides-2"><i class="fa fa-check"></i><b>3.1.2</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="reading-2.html"><a href="reading-2.html"><i class="fa fa-check"></i><b>3.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#reference-1"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-1"><i class="fa fa-check"></i>Questions</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#reference-2"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-2.html"><a href="reading-2.html#questions-2"><i class="fa fa-check"></i>Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html"><i class="fa fa-check"></i><b>3.3</b> At-Home Exercises</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#mediation"><i class="fa fa-check"></i><b>3.3.1</b> Mediation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="at-home-exercises-2.html"><a href="at-home-exercises-2.html#moderation"><i class="fa fa-check"></i><b>3.3.2</b> Moderation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html"><i class="fa fa-check"></i><b>3.4</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#mediation-1"><i class="fa fa-check"></i><b>3.4.1</b> Mediation</a></li>
+<li class="chapter" data-level="3.4.2" data-path="in-class-exercises-2.html"><a href="in-class-exercises-2.html#moderation-1"><i class="fa fa-check"></i><b>3.4.2</b> Moderation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="estimate-and-plot-simple-slopes.html"><a href="estimate-and-plot-simple-slopes.html"><i class="fa fa-check"></i><b>3.5</b> Estimate and plot simple slopes:</a></li>
+<li class="chapter" data-level="3.6" data-path="test-the-simple-slopes.html"><a href="test-the-simple-slopes.html"><i class="fa fa-check"></i><b>3.6</b> Test the simple slopes:</a></li>
+<li class="chapter" data-level="3.7" data-path="view-the-results.html"><a href="view-the-results.html"><i class="fa fa-check"></i><b>3.7</b> View the results:</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="efa.html"><a href="efa.html"><i class="fa fa-check"></i><b>4</b> EFA</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lecture-3.html"><a href="lecture-3.html"><i class="fa fa-check"></i><b>4.1</b> Lecture</a></li>
+<li class="chapter" data-level="4.2" data-path="reading-3.html"><a href="reading-3.html"><i class="fa fa-check"></i><b>4.2</b> Reading</a></li>
+<li class="chapter" data-level="4.3" data-path="at-home-exercises-3.html"><a href="at-home-exercises-3.html"><i class="fa fa-check"></i><b>4.3</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="4.4" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html"><i class="fa fa-check"></i><b>4.4</b> In-Class Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>5</b> CFA</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="lecture-4.html"><a href="lecture-4.html"><i class="fa fa-check"></i><b>5.1</b> Lecture</a></li>
+<li class="chapter" data-level="5.2" data-path="reading-4.html"><a href="reading-4.html"><i class="fa fa-check"></i><b>5.2</b> Reading</a></li>
+<li class="chapter" data-level="5.3" data-path="at-home-exercises-4.html"><a href="at-home-exercises-4.html"><i class="fa fa-check"></i><b>5.3</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="5.4" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html"><i class="fa fa-check"></i><b>5.4</b> In-Class Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="full-sem.html"><a href="full-sem.html"><i class="fa fa-check"></i><b>6</b> Full SEM</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lecture-5.html"><a href="lecture-5.html"><i class="fa fa-check"></i><b>6.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="lecture-5.html"><a href="lecture-5.html#recordings-3"><i class="fa fa-check"></i><b>6.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lecture-5.html"><a href="lecture-5.html#slides-3"><i class="fa fa-check"></i><b>6.1.2</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="reading-5.html"><a href="reading-5.html"><i class="fa fa-check"></i><b>6.2</b> Reading</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-5.html"><a href="reading-5.html#reference-3"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="reading-5.html"><a href="reading-5.html#questions-3"><i class="fa fa-check"></i>Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html"><i class="fa fa-check"></i><b>6.3</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html"><i class="fa fa-check"></i><b>6.4</b> In-Class Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="multiple-group-models.html"><a href="multiple-group-models.html"><i class="fa fa-check"></i><b>7</b> Multiple Group Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lecture-6.html"><a href="lecture-6.html"><i class="fa fa-check"></i><b>7.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="lecture-6.html"><a href="lecture-6.html#recordings-4"><i class="fa fa-check"></i><b>7.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="7.1.2" data-path="lecture-6.html"><a href="lecture-6.html#slides-4"><i class="fa fa-check"></i><b>7.1.2</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reading-6.html"><a href="reading-6.html"><i class="fa fa-check"></i><b>7.2</b> Reading</a></li>
+<li class="chapter" data-level="7.3" data-path="at-home-exercises-6.html"><a href="at-home-exercises-6.html"><i class="fa fa-check"></i><b>7.3</b> At-Home Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="in-class-exercises-6.html"><a href="in-class-exercises-6.html"><i class="fa fa-check"></i><b>7.4</b> In-Class Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="wrap-up.html"><a href="wrap-up.html"><i class="fa fa-check"></i><b>8</b> Wrap-Up</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Theory Construction and Statistical Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="view-the-results" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> View the results:<a href="view-the-results.html#view-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>tsOut$hypotests</p>
+<pre><code>
+NOTE: The message printed by `testSlopes()` gives the boundaries of the 
+*Johnson-Neyman Region of Significance* [(Johnson &amp; Neyman, 1936)][jn]. 
+Johnson-Neyman analysis is an alternative method of probing interactions that we 
+have not covered in this course. For more information, check out 
+[Preacher, et al. (2006)][preacher_et_al_2006].
+
+&lt;/details&gt;
+
+---
+
+We will now use **lavaan** to estimate the moderated regression model from above 
+as a path analysis.
+
+---
+
+####
+
+Define the model syntax for the path analytic version of the model described
+above.
+
+- Parameterize the model as in the OLS regression.
+- Use only observed items and scale scores.
+
+&lt;details&gt;
+  &lt;summary&gt;Click to show code&lt;/summary&gt;
+
+```r
+pathMod &lt;- &#39;
+progress ~ 1 + lib2Con + success + disillusion + success:disillusion
+&#39;</code></pre>
+</details>
+<hr />
+<div id="pathFit" class="section level4" number="3.7.0.1">
+<h4><span class="header-section-number">3.7.0.1</span> </h4>
+<p>Estimate the path model on the outlook data.</p>
+<details>
+<summary>
+Click to show code
+</summary>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="view-the-results.html#cb103-1" aria-hidden="true" tabindex="-1"></a>pathFit <span class="ot">&lt;-</span> <span class="fu">sem</span>(pathMod, <span class="at">data =</span> outlook)</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-41" class="section level4" number="3.7.0.2">
+<h4><span class="header-section-number">3.7.0.2</span> </h4>
+<p>Summarize the fitted path model and interpret the results.</p>
+<ul>
+<li>Do the results match the OLS regression results?</li>
+<li>What proportion of the variability in <em>progress</em> is explained by this model?</li>
+</ul>
+<p><em>Hint</em> the function <code>lavInspect()</code> can be used to extract information from
+models</p>
+<details>
+<summary>
+Click to show code
+</summary>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="view-the-results.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pathFit)</span></code></pre></div>
+<pre><code>## lavaan 0.6.16 ended normally after 1 iteration
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         6
+## 
+##   Number of observations                          2288
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   progress ~                                          
+##     lib2Con           0.031    0.030    1.005    0.315
+##     success           0.424    0.258    1.640    0.101
+##     disillusion      -0.780    0.168   -4.630    0.000
+##     success:dsllsn    0.174    0.073    2.399    0.016
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .progress          6.811    0.620   10.985    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .progress          4.157    0.123   33.823    0.000</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="view-the-results.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lavInspect</span>(pathFit, <span class="st">&quot;r2&quot;</span>)</span></code></pre></div>
+<pre><code>## progress 
+##    0.138</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>Yes, the estimates and inferential conclusions are all the same as in the OLS
+regression model. The model explains 13.85%
+of the variability in <em>progress</em>.</p>
+</details>
+</details>
+<hr />
+<p>The <a href="https://cran.r-project.org/web/packages/semTools/index.html"><strong>semTools</strong></a> package contains some helpful routines for probing
+interactions estimated via the <code>lavaan()</code> function (or one of it’s wrappers).
+Specifically, the <code>probe2WayMC()</code> and <code>plotProbe()</code> functions will estimate/test
+simple slopes and plot the estimated simple slopes, respectively.</p>
+<hr />
+</div>
+<div id="section-42" class="section level4" number="3.7.0.3">
+<h4><span class="header-section-number">3.7.0.3</span> </h4>
+<p>Probe the interaction from <a href="view-the-results.html#pathFit">3.7.0.1</a> using <em>semTools</em> utilities.</p>
+<ul>
+<li>Use <code>probe2WayMC()</code> to estimate and test the simple slopes and intercepts.</li>
+<li>Use <code>plotProbe()</code> to visualize the simple slopes.</li>
+<li>Define the simple slopes with the same conditional values of <em>disillusion</em>
+that you used in <a href="in-class-exercises-2.html#ssOls">3.4.2.7</a>.</li>
+<li>Which simple slopes are significant?</li>
+<li>Do these results match the results from <a href="in-class-exercises-2.html#ssOls">3.4.2.7</a>?</li>
+</ul>
+<details>
+<summary>
+Click to show code
+</summary>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="view-the-results.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
+<span id="cb108-2"><a href="view-the-results.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb108-3"><a href="view-the-results.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute simple slopes and intercepts:</span></span>
+<span id="cb108-4"><a href="view-the-results.html#cb108-4" aria-hidden="true" tabindex="-1"></a>ssOut <span class="ot">&lt;-</span> <span class="fu">probe2WayMC</span>(pathFit, </span>
+<span id="cb108-5"><a href="view-the-results.html#cb108-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nameX    =</span> <span class="fu">c</span>(<span class="st">&quot;success&quot;</span>, <span class="st">&quot;disillusion&quot;</span>, <span class="st">&quot;success:disillusion&quot;</span>), </span>
+<span id="cb108-6"><a href="view-the-results.html#cb108-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nameY    =</span> <span class="st">&quot;progress&quot;</span>, </span>
+<span id="cb108-7"><a href="view-the-results.html#cb108-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">modVar   =</span> <span class="st">&quot;disillusion&quot;</span>,</span>
+<span id="cb108-8"><a href="view-the-results.html#cb108-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">valProbe =</span> outlook <span class="sc">%&gt;%</span> </span>
+<span id="cb108-9"><a href="view-the-results.html#cb108-9" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">summarise</span>(<span class="st">&quot;m-sd&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(disillusion) <span class="sc">-</span> <span class="fu">sd</span>(disillusion),</span>
+<span id="cb108-10"><a href="view-the-results.html#cb108-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">mean =</span> <span class="fu">mean</span>(disillusion),</span>
+<span id="cb108-11"><a href="view-the-results.html#cb108-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;m+sd&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(disillusion) <span class="sc">+</span> <span class="fu">sd</span>(disillusion)</span>
+<span id="cb108-12"><a href="view-the-results.html#cb108-12" aria-hidden="true" tabindex="-1"></a>                                 ) <span class="sc">%&gt;%</span> </span>
+<span id="cb108-13"><a href="view-the-results.html#cb108-13" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">unlist</span>()</span>
+<span id="cb108-14"><a href="view-the-results.html#cb108-14" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb108-15"><a href="view-the-results.html#cb108-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-16"><a href="view-the-results.html#cb108-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the results:</span></span>
+<span id="cb108-17"><a href="view-the-results.html#cb108-17" aria-hidden="true" tabindex="-1"></a>ssOut</span></code></pre></div>
+<pre><code>## $SimpleIntcept
+##      disillusion   est    se      z pvalue
+## m-sd       2.719 4.690 0.231 20.271      0
+## mean       3.497 4.084 0.190 21.508      0
+## m+sd       4.274 3.477 0.230 15.122      0
+## 
+## $SimpleSlope
+##      disillusion   est    se      z pvalue
+## m-sd       2.719 0.897 0.083 10.792      0
+## mean       3.497 1.033 0.065 15.994      0
+## m+sd       4.274 1.169 0.088 13.223      0</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="view-the-results.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Visualize the simple slopes:</span></span>
+<span id="cb110-2"><a href="view-the-results.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotProbe</span>(ssOut,</span>
+<span id="cb110-3"><a href="view-the-results.html#cb110-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlim =</span> <span class="fu">range</span>(outlook<span class="sc">$</span>success), </span>
+<span id="cb110-4"><a href="view-the-results.html#cb110-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">&quot;Ease of Personal Success&quot;</span>, </span>
+<span id="cb110-5"><a href="view-the-results.html#cb110-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Progress toward American Dream&quot;</span>,</span>
+<span id="cb110-6"><a href="view-the-results.html#cb110-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">legendArgs =</span> <span class="fu">list</span>(<span class="at">legend =</span> <span class="fu">rownames</span>(ssOut[[<span class="dv">1</span>]]))</span>
+<span id="cb110-7"><a href="view-the-results.html#cb110-7" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="view-the-results.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ssOut, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##               Length Class             Mode
+## SimpleIntcept 5      lavaan.data.frame list
+## SimpleSlope   5      lavaan.data.frame list</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
+<ul>
+<li><p>Each of the simple slopes is significant. As level of disillusionment increases,
+the effect of <em>success</em> on <em>progress</em> also increases, and this effect is
+significant for all levels of <em>disillusion</em> considered here.</p></li>
+<li><p>Yes, these results match the simple slopes from the OLS regression analysis.</p>
+</details></li>
+</ul>
+</details>
+<hr />
+<p>End of In-Class Exercises 3</p>
+<hr />
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="test-the-simple-slopes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="efa.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["willy_wallaby_from_wasatch.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"search": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
