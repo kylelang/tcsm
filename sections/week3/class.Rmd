@@ -155,7 +155,6 @@ Use the `lavaan::sem()` function to estimate the model defined in \@ref(w3csynta
 
 - Use the default settings in `sem()`.
 - Summarize the fitted model.
-- Do you notice anything special about the model fit? If so, can you explain?
 
 <details>
   <summary>Click to show code</summary>
@@ -163,19 +162,9 @@ Use the `lavaan::sem()` function to estimate the model defined in \@ref(w3csynta
 ```{r}
 library(lavaan)
 out <- sem(mod0, data = seData)
-summary(out, fit.measures = TRUE)
+summary(out)
 ```
   
-  <details>
-    <summary>Click for explanation</summary>
-    
-  The model fits the data perfectly because the model is saturated (i.e., we
-  have estimated all possible paths). So the model-implied covariance matrix
-  exactly replicates the observed covariance matrix. We can tell that the model
-  is saturated because the degrees of freedom for the $\chi^2$ statistic are 0.
-    
-  </details>
-
 </details>
 
 ---

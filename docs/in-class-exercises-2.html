@@ -457,7 +457,6 @@ Click to show code
 <ul>
 <li>Use the default settings in <code>sem()</code>.</li>
 <li>Summarize the fitted model.</li>
-<li>Do you notice anything special about the model fit? If so, can you explain?</li>
 </ul>
 <details>
 <summary>
@@ -465,7 +464,7 @@ Click to show code
 </summary>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="in-class-exercises-2.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
 <span id="cb84-2"><a href="in-class-exercises-2.html#cb84-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod0, <span class="at">data =</span> seData)</span>
-<span id="cb84-3"><a href="in-class-exercises-2.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb84-3"><a href="in-class-exercises-2.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 16 iterations
 ## 
 ##   Estimator                                         ML
@@ -478,38 +477,6 @@ Click to show code
 ##                                                       
 ##   Test statistic                                 0.000
 ##   Degrees of freedom                                 0
-## 
-## Model Test Baseline Model:
-## 
-##   Test statistic                               174.959
-##   Degrees of freedom                                15
-##   P-value                                        0.000
-## 
-## User Model versus Baseline Model:
-## 
-##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.000
-## 
-## Loglikelihood and Information Criteria:
-## 
-##   Loglikelihood user model (H0)              -1125.399
-##   Loglikelihood unrestricted model (H1)      -1125.399
-##                                                       
-##   Akaike (AIC)                                2292.797
-##   Bayesian (BIC)                              2355.017
-##   Sample-size adjusted Bayesian (SABIC)       2288.570
-## 
-## Root Mean Square Error of Approximation:
-## 
-##   RMSEA                                          0.000
-##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.000
-##   P-value H_0: RMSEA &lt;= 0.050                       NA
-##   P-value H_0: RMSEA &gt;= 0.080                       NA
-## 
-## Standardized Root Mean Square Residual:
-## 
-##   SRMR                                           0.000
 ## 
 ## Parameter Estimates:
 ## 
@@ -552,15 +519,6 @@ Click to show code
 ##    .Emp               0.779    0.092    8.456    0.000
 ##     ParAtt            1.277    0.151    8.456    0.000
 ##     PeerAtt           0.963    0.114    8.456    0.000</code></pre>
-<details>
-<summary>
-Click for explanation
-</summary>
-<p>The model fits the data perfectly because the model is saturated (i.e., we
-have estimated all possible paths). So the model-implied covariance matrix
-exactly replicates the observed covariance matrix. We can tell that the model
-is saturated because the degrees of freedom for the <span class="math inline">\(\chi^2\)</span> statistic are 0.</p>
-</details>
 </details>
 <hr />
 </div>
