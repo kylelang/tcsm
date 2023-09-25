@@ -56,8 +56,6 @@ We might generate the following hypotheses:
   relationships increase empathy, and higher levels of empathy lead to higher
   self-esteem.
   
----
-
 To evaluate these hypotheses, we will use **lavaan** to estimate a path model.
 
 ---
@@ -104,7 +102,7 @@ fit %>%
 
 ---
 
-### {#w3syntax}
+### {#w3hsyntax}
 
 Specify the lavaan model syntax implied by the path diagram shown above.
 
@@ -131,9 +129,9 @@ Emp ~ PeerAtt
 
 ---
 
-### {#fit1}
+### 
 
-Use the `lavaan::sem()` function to estimate the model defined in \@ref(w3syntax).
+Use the `lavaan::sem()` function to estimate the model defined in \@ref(w3hsyntax).
 
 - Use the default settings in `sem()`.
 
@@ -169,7 +167,7 @@ summary(out)
     <summary>Click for explanation</summary>
     
 ```{r, include=FALSE}
-tmp <- parameterestimates(out)
+tmp <- parameterEstimates(out)
 
 peer_c   <- tmp %>% filter(lhs == "SelfEst", op == "~", rhs == "PeerAtt")
 emp_b   <- tmp %>% filter(lhs == "SelfEst", op == "~", rhs == "Emp")
@@ -218,7 +216,7 @@ We can define new parameters in lavaan model syntax via the `:=` operator. The
 
 ###
 
-Use the procedure described above to modify the model syntax from \@ref(w3syntax) 
+Use the procedure described above to modify the model syntax from \@ref(w3hsyntax) 
 by adding the definition of the hypothesized IE from `PeerAtt` to `SelfEst`.
 
 *Tip* You can use any labeling scheme that makes sense to you, but I recommend
@@ -255,7 +253,7 @@ ie_PeerAtt := m1_x1 * y_m1
 
 ---
 
-### {#test1}
+### 
 
 Use `lavaan::sem()` to estimate the model with the IEs defined.
 
@@ -276,7 +274,7 @@ summary(out)
     <summary>Click for explanation</summary>
     
 ```{r, include = FALSE}
-tmp <- parameterestimates(out)
+tmp <- parameterEstimates(out)
 
 pa <- tmp %>% filter(label == "ie_PeerAtt")
 ```
@@ -284,7 +282,7 @@ pa <- tmp %>% filter(label == "ie_PeerAtt")
   The IE of *Peer Attachment* on *Self Esteem* through *Empathy* is significant ($\hat{\textit{IE}} = `r pa$est %>% round(3)`$, 
   $Z = `r pa$z %>% round(2)`$, $p = `r (pa$p / 2) %>% round(3)`$).
   
-  (Remember that we specificed a one-sided hypothesis test!)
+  (We specificed a one-sided hypothesis test!)
 
   
   </details>
@@ -293,20 +291,20 @@ pa <- tmp %>% filter(label == "ie_PeerAtt")
 
 ---
 
-Remember that the default significance test for the indirect effect here is
-still the same as the Sobel Z approach. To have an appropriate, robust test of
-the significance of the indirect effect requires bootstrapping, which we will
-do later this week in the in-class assignments. 
+As we learned in the lecture, the default significance test for the indirect
+effect here is still the same as the Sobel Z approach. To have an appropriate,
+robust test of the significance of the indirect effect requires bootstrapping,
+which we will do later this week in the in-class assignments. 
 
 ---
 
 ###
 
-Let's add another variable to our model: *parental attachment*
+For now, let's add another variable to our model: *parental attachment*
 
 Our research question now will be whether attachment, both to parents and to
 peers, influences a student's self esteem. Secondarily, we would like to know
-if someone's empathy influences the relationship. 
+if someone's empathy influences these relationships. 
 
 - Specify the lavaan model syntax implied by this research question
 - Estimate the model using `lavaan::sem()`
@@ -389,7 +387,7 @@ a categorical variable that we will be our moderator.
 
 ### {.unnumbered}
 
-Load the `Sesam2.sav` data.
+Load the `Sesam2.sav` data.^[Data are from the very interesting study: Ball, S., & Bogatz, G. A. (1970). A Summary of the Major Findings in" The First Year of Sesame Street: An Evaluation".]
 
 ```{r, eval = FALSE}
 # Read the data into an object called 'sesam2':
@@ -462,7 +460,7 @@ contrasts(sesam2$VIEWCAT)
 
 --------------------------------------------------------------------------------
 
-### {#reg2}
+### {#w3hreg2}
 
 Estimate a multiple regression model wherein *VIEWCAT* predicts *POSTNUMB*.
 
@@ -486,7 +484,7 @@ summary(results)
   tmp <- round(coef(results), 1)
   ci  <- round(confint(results), 1)
   srr <- round(summary(results)$r.squared, 2)
-  srf <- summary(results)$fstatistic
+  srf <- round(summary(results)$fstatistic, 2)
 ```
 
   A linear model predicting the post-test score of numbers learned based on how
@@ -634,7 +632,7 @@ analysis entailing three steps:
 
 --------------------------------------------------------------------------------
 
-### {#hReg}
+### {#w3hhReg}
 
 Conduct the hierarchical regression analysis described above.
 
@@ -683,7 +681,7 @@ anova(results_add, results_mod)
 ### 
 
 Sketch path diagrams for the additive and moderated models you estimated in
-[the previous section](#hReg) (on paper).
+[the previous section](#w3hhReg) (on paper).
 
 <details>
 
@@ -711,12 +709,6 @@ p1 <- prepare_graph(res,
 
 set.seed(6)
 
-# p        <- prepare_graph(res, angle = 179)
-# edges(p) <-
-#   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
-
-# ggsave(paste0(imageDir, "3_g1.png"), plot(p))
-
 tmp <- data.frame(
   POSTNUMB = sesam2$POSTNUMB,
   model.matrix(POSTNUMB ~ -1 + VIEWCAT * AGE, sesam2)
@@ -743,11 +735,6 @@ p2 <- prepare_graph(res,
   plot()
 
 
-# p        <- prepare_graph(res, angle = 179)
-# edges(p) <-
-#   edges(p)[!(edges(p)$from == edges(p)$to | !is.na(edges(p)$curvature)), ]
-#
-# ggsave(paste0(imageDir, "3_g2.png"), plot(p))
 ```
 
 **Additive Model**

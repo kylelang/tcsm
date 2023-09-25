@@ -32,6 +32,6 @@ knit_child(paste0(partDir, "reading.Rmd"), quiet = TRUE) %>%
 #   cat(sep = "\n")
 knit_child(paste0(partDir, "home.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-knit_child(paste0(partDir, "../class-placeholder.Rmd"), quiet = TRUE) %>%
+knit_child(paste0(partDir, "class.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 ```
