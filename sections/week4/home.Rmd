@@ -47,6 +47,7 @@ represented as factors. If so, good eyes! We'll come back to this issue a
 little later.
 
 ```{r, echo = FALSE}
+dataDir <- "../../../../data/"
 ess <- read.spss(paste0(dataDir, "ESSround1-a.sav"), to.data.frame = TRUE)
 ```
 
