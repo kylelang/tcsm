@@ -1,11 +1,5 @@
 ## Lecture
 
-```{r, echo = FALSE}
-knitr::include_url("https://www.youtube.com/embed/LGJap7ZRMSU")
-```
-
-[Download slides](pdf/tcsm_week_2.pdf)
-
 How do you know if you have measured the putative hypothetical construct that 
 you intend to measure?
 
@@ -34,5 +28,20 @@ discussed in this lecture (i.e., factor analysis and reliability analysis) to
 evaluate the quality of our measurement (i.e., how well we have estimated the 
 underlying hypothetical construct). If we do well enough in this estimation 
 task, we will be able to combine these estimated *latent variables* with the 
-*path analysis* methods discussed in two weeks to produce the full *structural 
-equation models* that we will cover at the end of this course. 
+*path analysis* methods discussed in previous two weeks to produce the full
+*structural equation models* that we will cover at the end of this course. 
+
+### Recording
+
+*Note:* This week (and next), we'll be re-using Caspar's old slides and lecture
+recording. So, you'll see Caspar in the following video, and the slides will
+have a notably different flavor than our usual materials. None of this affects
+the content, but I don't want you to be confused by the sudden shift in tone.
+
+```{r, echo = FALSE}
+knitr::include_url("https://www.youtube.com/embed/LGJap7ZRMSU")
+```
+
+### Slides
+
+You can download the lecture slides [here](pdf/tcsm_week_2.pdf).

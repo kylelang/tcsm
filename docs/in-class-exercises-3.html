@@ -312,7 +312,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="efa.html"><a href="efa.html"><i class="fa fa-check"></i><b>4</b> EFA</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lecture-3.html"><a href="lecture-3.html"><i class="fa fa-check"></i><b>4.1</b> Lecture</a></li>
+<li class="chapter" data-level="4.1" data-path="lecture-3.html"><a href="lecture-3.html"><i class="fa fa-check"></i><b>4.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="lecture-3.html"><a href="lecture-3.html#recording"><i class="fa fa-check"></i><b>4.1.1</b> Recording</a></li>
+<li class="chapter" data-level="4.1.2" data-path="lecture-3.html"><a href="lecture-3.html#slides-3"><i class="fa fa-check"></i><b>4.1.2</b> Slides</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="reading-3.html"><a href="reading-3.html"><i class="fa fa-check"></i><b>4.2</b> Reading</a>
 <ul>
 <li class="chapter" data-level="" data-path="reading-3.html"><a href="reading-3.html#reference-1-1"><i class="fa fa-check"></i>Reference 1</a></li>
@@ -364,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="lecture-5.html"><a href="lecture-5.html"><i class="fa fa-check"></i><b>6.1</b> Lecture</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="lecture-5.html"><a href="lecture-5.html#recordings-3"><i class="fa fa-check"></i><b>6.1.1</b> Recordings</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lecture-5.html"><a href="lecture-5.html#slides-3"><i class="fa fa-check"></i><b>6.1.2</b> Slides</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lecture-5.html"><a href="lecture-5.html#slides-4"><i class="fa fa-check"></i><b>6.1.2</b> Slides</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reading-5.html"><a href="reading-5.html"><i class="fa fa-check"></i><b>6.2</b> Reading</a>
 <ul>
@@ -379,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="lecture-6.html"><a href="lecture-6.html"><i class="fa fa-check"></i><b>7.1</b> Lecture</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="lecture-6.html"><a href="lecture-6.html#recordings-4"><i class="fa fa-check"></i><b>7.1.1</b> Recordings</a></li>
-<li class="chapter" data-level="7.1.2" data-path="lecture-6.html"><a href="lecture-6.html#slides-4"><i class="fa fa-check"></i><b>7.1.2</b> Slides</a></li>
+<li class="chapter" data-level="7.1.2" data-path="lecture-6.html"><a href="lecture-6.html#slides-5"><i class="fa fa-check"></i><b>7.1.2</b> Slides</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="reading-6.html"><a href="reading-6.html"><i class="fa fa-check"></i><b>7.2</b> Reading</a></li>
 <li class="chapter" data-level="7.3" data-path="at-home-exercises-6.html"><a href="at-home-exercises-6.html"><i class="fa fa-check"></i><b>7.3</b> At-Home Exercises</a></li>
@@ -548,8 +552,8 @@ a seed to make sure our results are reproducible.</li>
 <span id="cb152-4"><a href="in-class-exercises-3.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
 <span id="cb152-5"><a href="in-class-exercises-3.html#cb152-5" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
-<pre><code>## Parallel analysis suggests that the number of factors =  6  and the number of components =  NA</code></pre>
-<p>The results of the parallel analysis suggest 6 factors.</p>
+<pre><code>## Parallel analysis suggests that the number of factors =  5  and the number of components =  NA</code></pre>
+<p>The results of the parallel analysis suggest 5 factors.</p>
 <hr />
 <p>If you’ve been paying close attention, you may have noticed that we need to
 compute the eigenvalues from the original data to run parallel analysis. Hence,
@@ -573,7 +577,7 @@ we don’t actually need to run a separate EFA to estimate the eigenvalues.</p>
 have narrowed the range.</p>
 <ul>
 <li>Based on the scree plot and parallel analysis, we should consider solutions
-for 3 to 6 factors.</li>
+for 3 to 5 factors.</li>
 <li>We need to examine the factor loadings to see which solution makes the most
 substantive sense.</li>
 </ul>
