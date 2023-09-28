@@ -33,15 +33,29 @@ task, we will be able to combine these estimated *latent variables* with the
 
 ### Recording
 
-*Note:* This week (and next), we'll be re-using Caspar's old slides and lecture
-recording. So, you'll see Caspar in the following video, and the slides will
-have a notably different flavor than our usual materials. None of this affects
-the content, but I don't want you to be confused by the sudden shift in tone.
+*Notes:*
 
-```{r, echo = FALSE}
-knitr::include_url("https://www.youtube.com/embed/LGJap7ZRMSU")
-```
+- This week (and next), we'll be re-using Caspar van Lissa's old slides 
+  and lecture recording. So, you'll see Caspar in the following video, and the
+  slides will have a notably different flavor than our usual materials.
+- Don't be confused by any mention of "model fit" in the lecture. We haven't
+  covered model fit yet, but we will do so next week.
+
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/M1hk2byeLZY?si=FY2QJB447QKah6pT"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
 
 ### Slides
 
-You can download the lecture slides [here](pdf/tcsm_week_2.pdf).
+You can download the lecture slides [here](pdf/efa.pdf).
