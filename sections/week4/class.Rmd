@@ -34,7 +34,7 @@ in the ESS measure attitudes towards immigration and trust in politics.
 this position?
 
 <details>
-  <summary>Click for information</summary>
+  <summary>Click for explanation</summary>
 
 Hopefully not. PCA is not a method for estimating latent measurement structure; 
 PCA is a dimension reduction technique that tries to summarize a set of data 
@@ -57,7 +57,7 @@ background information presented in that article.
 - What key factors would influence your decision?
 
 <details>
-  <summary>Click for information</summary>
+  <summary>Click for explanation</summary>
   
 - We are trying to estimate meaningful latent factors, so EFA would be an 
 appropriate method.
@@ -88,7 +88,7 @@ checking/plotting the eigenvalues and running parallel analysis.
 ###
 
 Estimate the number of latent factors underlying the *Trust* items based on the 
-eigenvalues, the scree plot, and parallel analysis.
+eigenvalues, the scree plot, and parallel analysis. 
 
 - How many factors are suggested by each method?
 
@@ -97,40 +97,60 @@ the `qplot()` function from the `ggplot2` package and applying the `geom_path()`
 geometry.
 
 <details>
-  <summary>Click for explanation</summary>
-
-First, we'll run a trivial EFA using the `psych::fa()` function to get eigenvalues.
-
-- We don't care about the factors yet, so we can extract a single factor.
-- We also don't care about interpretable solutions, so we don't need rotation.
-
+  <summary>Click to show code (EFA)</summary>
+  
 ```{r}
 ## Load the psych package:
 library(psych)
 
 ## Run a trivial EFA on the 'trust' items
-efa_trust0 <- fa(ess[7:19], nfactors = 1, rotate = "none")
+efa_trust0 <- fa(ess[7:19], nfactors = 1, rotate = "none")  
 ```
+  
+  <details>
+    <summary>Click for explanation (EFA)</summary>
+  First, we'll run a trivial EFA using the `psych::fa()` function to get
+  eigenvalues.
 
-We can check the eigenvalues to see what proportion of the observed variance is 
-accounted for by each additional factor we may extract.
+  - We don't care about the factors yet, so we can extract a single factor.
+  - We also don't care about interpretable solutions, so we don't need rotation.
 
+  </details>
+
+</details>
+
+<details>
+  <summary>Click to show code (eigenvalue extraction)</summary>
+  
 ```{r}
 round(efa_trust0$values, digits = 3)
 ```
 
-Since only one eigenvalue is greater than one, the so-called "Kaiser Criterion" 
-would suggest extracting a single factor. 
+  <details>
+    <summary>Click for explanation (eigenvalue extraction)</summary>
+  We can check the eigenvalues to see what proportion of the observed variance
+  is accounted for by each additional factor we may extract.
+  
+  Since only one eigenvalue is greater than one, the so-called "Kaiser
+  Criterion" would suggest extracting a single factor. 
+  
+  - The Kaiser Criterion is not a valid way to select the number of factors in
+  EFA. So, we don't want to rely on this information alone.
+  
+  We can still use the eigenvalues to help us with factor enumeration, though.
+  One way to do so is by plotting the eigenvalues in a *scree plot*. 
+  </details>
 
-- The Kaiser Criterion is not a valid way to select the number of factors in EFA. 
-So, we don't want to rely on this information alone.
+</details>
 
-We can still use the eigenvalues to help us with factor enumeration, though. One
-way to do so is by plotting the eigenvalues in a *scree plot*. 
 
-- We can easily create a scree plot by passing the eigenvalues to the `qplot()` 
-function from the `ggplot2` package and add apply the `geom_path()` geometry:
+<details>
+  <summary>Click to show code (scree plot)</summary>
 
+  - We can easily create a scree plot by passing the eigenvalues to the 
+  `qplot()` function from the `ggplot2` package and add apply the `geom_path()`
+  geometry
+  
 ```{r}
 library(ggplot2)
 
@@ -139,21 +159,30 @@ qplot(y = efa_trust0$values) +
   ylab("Eigenvalues") + 
   xlab("Factors")
 ```
+  
+  <details>
+    <summary>Click for explanation (scree plot)</summary>
+  Although the scree plot provides useful information, we need to interpret that 
+  information subjectively, and the conclusions are sometimes ambiguous. 
 
-Although the scree plot provides useful information, we need to interpret that 
-information subjectively, and the conclusions are sometimes ambiguous. 
+  - In this case, the plot seems to suggest either one or three components, 
+  depending on where we consider the "elbow" to lie.
+  
+  As recommended in the lecture, we can also use "parallel analysis" (Horn,
+  1965) to provide more quantified information about the number of factors. 
+  We'll use the `psych::fa.parallel()` function to implement parallel analysis.
 
-- In this case, the plot seems to suggest either one or three components, 
-depending on where we consider the "elbow" to lie.
+  - Parallel analysis relies on randomly simulated/permuted data, so we should
+  set a seed to make sure our results are reproducible.
+  - We can set the `fa = "fa"` option to get only the results for EFA.
+  </details>
 
-As recommended in the lecture, we can also use "parallel analysis" (Horn, 1965) 
-to provide more quantified information about the number of factors. We'll use 
-the `psych::fa.parallel()` function to implement parallel analysis.
+</details>
 
-- Parallel analysis relies on randomly simulated/permuted data, so we should set 
-a seed to make sure our results are reproducible.
-- We can set the `fa = "fa"` option to get only the results for EFA.
 
+<details>
+  <summary>Click to show code (parallel analysis)</summary>
+  
 ```{r}
 ## Set the random number seed:
 set.seed(235711)
@@ -161,15 +190,19 @@ set.seed(235711)
 ## Run the parallel analysis:
 pa_trust <- fa.parallel(ess[7:19], fa = "fa")
 ```
-
-The results of the parallel analysis suggest `r pa_trust$nfact` factors. 
-
+  
+  <details>
+    <summary>Click for explanation (parallel analysis)</summary>
+    
+  The results of the parallel analysis suggest `r pa_trust$nfact` factors. 
+  
 ---
-
-If you've been paying close attention, you may have noticed that we need to
-compute the eigenvalues from the original data to run parallel analysis. Hence,
-we don't actually need to run a separate EFA to estimate the eigenvalues.
-
+  
+  If you've been paying close attention, you may have noticed that we need to
+  compute the eigenvalues from the original data to run parallel analysis. 
+  Hence, we don't actually need to run a separate EFA to estimate the
+  eigenvalues.
+  
 ```{r}
 ## View the eigenvalues estimated during the parallel analysis:
 pa_trust$fa.values
@@ -184,8 +217,13 @@ qplot(y = pa_trust$fa.values) +
   xlab("Factors")
 ```
 
----
+  </details>
 
+</details>
+
+<details>
+  <summary>Click for explanation (number of latent factors)</summary>
+  
 The different criteria disagree on how many factors we should extract, but we
 have narrowed the range.
 
@@ -203,8 +241,8 @@ substantive sense.
 Do the same analysis for the *attitudes toward immigration* items.
 
 <details>
-  <summary>Click for explanation</summary>
-
+  <summary>Click to show code</summary>
+  
 This time, we'll start by running the parallel analysis and get the eigenvalues 
 from the object returned by `psych::fa.parallel()`.
 
@@ -225,7 +263,10 @@ qplot(y = pa_att$fa.values) +
   xlab("Factors")
 ```
 
-For the *attitudes toward immigration* analysis, the results are even more 
+  
+  <details>
+    <summary>Click for explanation</summary>
+  For the *attitudes toward immigration* analysis, the results are even more 
 ambiguous than they were for the *trust* items.
 
 - The Kaiser Criterion suggests `r sum(pa_att$fa.value > 1)` factors
@@ -239,6 +280,7 @@ solutions for 3 to `r pa_att$nfact` factors.
 
 - Again, we need to check the substantive interpretation to choose the most 
 reasonable solution.
+  </details>
 
 </details>
 
@@ -269,8 +311,9 @@ You will need to specify a few key options.
 *Hint:* You can save yourself a lot of typing/copy-pasting (and the attendant 
 chances of errors) by using a `for()` loop to iterate through numbers of factors.
 
+
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Define an empty list to hold all of our fitted EFA objects:
@@ -293,7 +336,7 @@ for(i in 3:6)
 Repeat the above analysis for the *attitudes* items.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
  
 ```{r}
 efa_att <- list()
@@ -319,13 +362,16 @@ items, and select the best solution.
 by `psych::fa()`.
 - Looping can also be useful here.
 
+
 <details>
-  <summary>Click for explanation</summary>
- 
+  <summary>Click to show code</summary>
+  
 ```{r}
 for(x in efa_trust) print(x$loadings)
 ```
-
+  
+  <details>
+    <summary>Click for explanation</summary>
 *Note:* Any factor loadings with magnitude lower than 0.1 are suppressed in
 above output.
 
@@ -353,6 +399,7 @@ of the factors.
 - *Cumulative Var*: How much variance the factors explain, in total. 
     - If you estimated as many factors as items, then the *Cumulative Var* for
     the final factor would be `1.00` (i.e., 100%).
+  </details>
 
 </details>
 
@@ -364,7 +411,7 @@ Compare the factor loading matrices from the models estimated from the *Attitude
 items, and select the best solution.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
  
 ```{r}
 for(x in efa_att) print(x$loadings)
@@ -397,7 +444,7 @@ as new columns.
 *Hint:* If you're not sure of what do to, check \@ref(pcScores).
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Rename the factor scores:
@@ -427,32 +474,39 @@ time to replicate those analyses.
 Repeat the Kestilä (2006) between-country comparison using the factor scores you 
 created in \@ref(factorScores) and an appropriate statistical test.
 
+
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 Here, we'll only demonstrate a possible approach to analyzing one of the *Trust*
 dimensions. We can use an ANOVA to test whether the countries differ in average 
 levels of *Trust in Institutions* (as quantified by the relevant factor score).
 
 ```{r}
+## ANOVA
 out <- aov(trust_inst ~ cntry, data = ess)
 summary(out)
-```
 
-According to the omnibus F-test, average levels of *Trust in Institutions* 
-significantly differ between countries, but this test cannot tell us between 
-which countries the differences lie. 
-
-One way to test for differences between the individual countries would be a 
-post hoc test of all pairwise comparisons. Since we'll be doing `r choose(10, 2)` 
-tests, we need to apply a correction for repeated testing. Below, we use Tukey's 
-HSD correction.
-
-```{r}
+## Post-hoc test
 TukeyHSD(out)
+
 ```
+
+  <details>
+    <summary>Click for explanation</summary>
+  According to the omnibus F-test, average levels of *Trust in Institutions*
+  significantly differ between countries, but this test cannot tell us between 
+  which countries the differences lie. 
+
+  One way to test for differences between the individual countries would be a 
+  post hoc test of all pairwise comparisons. Since we'll be doing 
+  `r choose(10, 2)` tests, we need to apply a correction for repeated testing.
+  Above, we use Tukey's HSD correction.
+
+  </details>
 
 </details>
+
 
 ---
 
@@ -470,7 +524,7 @@ Create a new data frame that contains only the Finnish cases from `ess`.
 *Hint:* You can use logical indexing based on the `cntry` variable. 
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
   
 ```{r}
 ess_finland <- ess[ess$cntry == "Finland", ]
@@ -502,46 +556,42 @@ In the `ess` data, the relevant variables have the following names:
 
 Inspect the independent variables listed above.
 
-<details>
-  <summary>Click for explanation</summary>
 
+<details>
+  
+  <summary>Click to show code (descriptives)</summary>
+  
 ```{r}
 library(tidySEM)
 descriptives(ess_finland[c("gndr", "yrbrn", "eduyrs", "polintr", "lrscale")])
 ```
+</details>
 
-It looks like we still need some recoding. 
-
-**1. Age**
-
-The data contain the participants' years of birth instead of their age, but 
-Kestilä analyzed age. Fortunately, we know that the data were collected in 2002, 
-so we can simply subtract each participant's value of `yrbrn` from the 2002 to
-compute their age.
-
+<details>
+  <summary>Click to show code (yrbrn)</summary>
 
 ```{r}
 ess_finland$age <- 2002 - ess_finland$yrbrn
 ```
 
-**2. Political Interest & Political Orientation**
+  <details>
+    <summary>Click for explanation (yrbrn)</summary>
+  
+  It looks like we still need some recoding. 
 
-The variables `polintr` and `lrscale` are represented as character vectors. If
-we analyze these variables as they are, R will convert the character vectors to 
-factors and make dummy codes for each distinct value; we definitely don't want that. 
+  **1. Age**
 
-We need to convert `polintr` and `lrscale` to numeric vectors, but we cannot
-naively apply the `as.numeric()` function, because R doesn't know how to convert
-a word into a number (or, at least, not how we want the operation to be done). There
-are many ways that we could go about this conversion, but the `recode()` function 
-from the `dplyr` package is particularly useful for arbitrary recoding tasks such as 
-we have here.
+  The data contain the participants' years of birth instead of their age, but 
+  Kestilä analyzed age. Fortunately, we know that the data were collected in
+  2002, so we can simply subtract each participant's value of `yrbrn` from the
+  2002 to compute their age.
+  
+  </details>
 
-Kestilä (2006) dichotomized `polintr` by combining the lowest two and highest 
-two categories. So, we don't actually want to convert the `polint` variable into 
-a numeric, Likert-type variable. We want `polint` to be a binary factor. The 
-`recode_factor()` function from `dplyr()` will automatically convert our result
-into a factor.
+</details>
+
+<details>
+  <summary>Click to show code (polintr)</summary>
 
 ```{r}
 ## Load the dplyr package:
@@ -558,12 +608,37 @@ ess_finland$polintr_bin <- recode_factor(ess_finland$polintr,
 table(old = ess_finland$polintr, new = ess_finland$polintr_bin)
 ```
 
-For political orientation, only the two extreme values of the scale are labeled 
-as text. So, we only need to recode those two levels.
 
-- Since we're only replacing two of the 11 values, we'll need to provide a
-value for the `.default` argument in `dplyr::recode()`.
+  <details>
+    <summary>Click for explanation (polintr)</summary>
+      **2. Political Interest & Political Orientation**
+  
+    The variables `polintr` and `lrscale` are represented as character vectors. If
+    we analyze these variables as they are, R will convert the character vectors
+    to factors and make dummy codes for each distinct value; we definitely don't
+    want that. 
+  
+    We need to convert `polintr` and `lrscale` to numeric vectors, but we cannot
+    naively apply the `as.numeric()` function, because R doesn't know how to
+    convert a word into a number (or, at least, not how we want the operation to
+    be done). There are many ways that we could go about this conversion, but the
+    `recode()` function from the `dplyr` package is particularly useful for
+    arbitrary recoding tasks such as we have here.
+  
+    Kestilä (2006) dichotomized `polintr` by combining the lowest two and highest 
+    two categories. So, we don't actually want to convert the `polint` variable
+    into a numeric, Likert-type variable. We want `polint` to be a binary factor.
+    The `recode_factor()` function from `dplyr()` will automatically convert our
+    result into a factor.
+  
+  </details>
 
+</details>
+
+
+<details>
+  <summary>Click to show code (lrscale)</summary>
+  
 ```{r}
 ## Recode the extreme levels:
 tmp <- recode(ess_finland$lrscale,
@@ -578,15 +653,32 @@ table(old = ess_finland$lrscale, new = tmp)
 ## Overwrite the old variable:
 ess_finland$lrscale <- tmp
 ```
+  
+  <details>
+    <summary>Click for explanation</summary>
+For political orientation, only the two extreme values of the scale are labeled 
+as text. So, we only need to recode those two levels.
 
-**3. Sex**
+- Since we're only replacing two of the 11 values, we'll need to provide a
+value for the `.default` argument in `dplyr::recode()`.
+  </details>
 
-Although `gndr` would be automatically converted to a factor by `lm()`, it's 
-better to be explicit about our intentions and create the factor ourselves.
+</details>
 
+<details>
+  <summary>Click to show code (sex)</summary>
+  
 ```{r}
 ess_finland$sex <- factor(ess_finland$gndr)
 ```
+  
+  <details>
+    <summary>Click for explanation</summary>
+  **3. Sex**
+
+  Although `gndr` would be automatically converted to a factor by `lm()`, it's 
+  better to be explicit about our intentions and create the factor ourselves.
+  </details>
 
 </details>
 
@@ -666,21 +758,8 @@ consistency?
 is usually considered good.
 
 <details>
-  <summary>Click for explanation</summary>
-
-Let's estimate the reliability of the *Satisfaction* subscale from the *Trust* 
-analysis. According to our EFA, the *Satisfaction* subscale should be indicated
-by the following five variables:
-
-- `stfeco`
-- `stfgov`
-- `stfdem`
-- `stfedu`
-- `stfhlth`
-
-To estimate the internal consistency of this subscale, we simply provide a data 
-frame containing only the subscale data to the `alpha()` function.
-
+  <summary>Click to show code</summary>
+  
 ```{r}
 ## Define a vector of subscale item names:
 (targets <- paste0("stf", c("eco", "gov", "dem", "edu", "hlth")))
@@ -689,15 +768,34 @@ frame containing only the subscale data to the `alpha()` function.
 (out <- psych::alpha(ess[targets]))
 ```
 
-The `raw_alpha` value is the estimate of Cronbach's Alpha. In this case 
-$\alpha = `r round(out$total$raw_alpha, 3)`$, so the subscale is pretty reliable.
+  <details>
+    <summary>Click for explanation</summary>
+  Let's estimate the reliability of the *Satisfaction* subscale from the *Trust* 
+  analysis. According to our EFA, the *Satisfaction* subscale should be indicated
+  by the following five variables:
+  
+  - `stfeco`
+  - `stfgov`
+  - `stfdem`
+  - `stfedu`
+  - `stfhlth`
+  
+  To estimate the internal consistency of this subscale, we simply provide a data 
+  frame containing only the subscale data to the `alpha()` function.
+  
+  
+  
+  The `raw_alpha` value is the estimate of Cronbach's Alpha. In this case 
+  $\alpha = `r round(out$total$raw_alpha, 3)`$, so the subscale is pretty reliable.
+  
+  The table labeled "Reliability if an item is dropped" shows what Cronbach's Alpha
+  would be if each item were excluded from the scale. If this value is notably 
+  higher than the `raw_alpha` value, it could indicate a bad item.
+  
+  - Note that reliability is only one aspect of scale quality, though. So, you 
+  shouldn't throw out items just because they perform poorly in reliability analysis. 
 
-The table labeled "Reliability if an item is dropped" shows what Cronbach's Alpha
-would be if each item were excluded from the scale. If this value is notably 
-higher than the `raw_alpha` value, it could indicate a bad item.
-
-- Note that reliability is only one aspect of scale quality, though. So, you 
-shouldn't throw out items just because they perform poorly in reliability analysis. 
+  </details>
 
 </details>
 

@@ -31,14 +31,15 @@ Load the *ESSround1-a.sav* dataset into R.
 
 ```{r, eval = FALSE}
 ## Load the 'foreign' package:
-library(foreign)
+library(haven)
 
 ## Read the 'ESSround1-a.sav' ess into a data frame called 'ess': 
-ess <- read.spss("ESSround1-a.sav", to.data.frame = TRUE)
+ess <- read_spss("ESSround1-a.sav")
 
 ## Inspect the result:
 dim(ess)
 summary(ess)
+head(ess)
 str(ess)
 ```
 
@@ -48,7 +49,7 @@ little later.
 
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
-ess <- read.spss(paste0(dataDir, "ESSround1-a.sav"), to.data.frame = TRUE)
+ess <- read_spss(paste0(dataDir, "ESSround1-a.sav"))
 ```
 
 <details>
@@ -145,13 +146,19 @@ Subset the data to include only the 10 countries analyzed by Kestilä (2006).
 
 - Inspect the subsetted data to check that everything went well.
 
-*Hint:* Use the `%in%` operator to create a logical vector that indicates which
-elements of the `cntry` variable are *in* the set of target counties.
+*Hints:*
+
+- Use the `%in%` operator to create a logical vector that indicates which
+  elements of the `cntry` variable are *in* the set of target counties.
+- You may find it helpful to convert `cntry` to a factor using `as_factor()`.
+- You can clean up empty factor levels using `droplevels()`.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r, echo = TRUE}
+library(dplyr)
+
 ## Create a character vector naming the target countries:
 targets <- c("Austria", 
              "Belgium", 
@@ -165,7 +172,10 @@ targets <- c("Austria",
              "Sweden")
 
 ## Select only those rows that come from a target country:
-ess <- ess[ess$cntry %in% targets, ]
+ess <- ess %>%
+  mutate(cntry = as_factor(cntry)) %>%
+  filter(cntry %in% targets) %>%
+  mutate(cntry = droplevels(cntry))
 
 ## Inspect the result:
 dim(ess)
@@ -189,7 +199,7 @@ nominal variables should be factors).
 Screen the data to see if the variables are formatted correctly.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r, echo = TRUE}
 library(tidySEM)
@@ -261,7 +271,7 @@ Use `tidyr::pivot_longer()` to create a long-formatted data frame from the
 target variables in `ess` (i.e., columns 7 to 44).
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Load the tidyr package:
@@ -292,7 +302,7 @@ target variables.
 `facet_wrap(~ name, scales = "free_x")` to the end of your `ggplot()` call.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 library(ggplot2)
@@ -302,9 +312,17 @@ ggplot(ess_plot, aes(x = value)) +
   facet_wrap(~ name, scales = "free_x") # Facet on 'name'
 ```
 
-Notice that the variables are actually discrete (i.e., each variable takes only 
-a few integer values). However, most variables look relatively normal despite 
-being categorical. So, it's probably fine to analyze these variables as continuous.
+  <details>
+    <summary>Click for explanation</summary>
+    
+  Notice that the variables are actually discrete (i.e., each variable takes
+  only a few integer values). However, most variables look relatively normal
+  despite being categorical. So, we'll bend the rules a bit and analyze these
+  variables as continuous.
+  
+  </details>
+
+
 
 </details>
 
@@ -317,13 +335,20 @@ Check the descriptives for the target variables again.
 - Do you see any remaining issues?
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
   
 ```{r}
 descriptives(ess[7:44])
 ```
 
-No. Everything looks pretty much fine.
+  <details>
+    <summary>Click for explanation</summary>
+  
+  No. Everything looks pretty much fine.
+
+</details>
+
+
 
 </details>
 
@@ -355,7 +380,7 @@ option to hide any factor loadings smaller than a given threshold.
 
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 #### Trust in politics {-}
 
@@ -417,14 +442,10 @@ data frame.
 - You can use the `colnames()` function to assign column names to a matrix or 
 data frame.
 
-<details>
-  <summary>Click for explanation</summary>
-
 **1. Extract the component scores**
 
-The object produced by `psych::principal()` is simply list, and the component
-scores are already stored therein. So, to extract the component scores, we
-simply use the `$` operator to extract them.
+<details>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Save the component scores in stand-alone matrices: 
@@ -438,10 +459,26 @@ head(att_scores)
 summary(att_scores)
 ```
 
+  <details>
+    <summary>Click for explanation </summary>
+    
+
+  
+  The object produced by `psych::principal()` is simply list, and the component
+  scores are already stored therein. So, to extract the component scores, we
+  simply use the `$` operator to extract them.  
+    
+  </details>
+
+</details>
+
 ---
 
 **2. Name the component scores**
 
+<details>
+  <summary>Click to show code</summary>
+  
 ```{r}
 ## Check names (note the order):
 colnames(trust_scores)
@@ -458,9 +495,14 @@ colnames(att_scores) <- c("Quantity",
                           "Economic")
 ```
 
+</details>
+
 ---
 
 **3. Add the component scores to the dataset**
+
+<details>
+  <summary>Click to show code</summary>
 
 ```{r}
 # Add the component scores to the 'ess' data:
