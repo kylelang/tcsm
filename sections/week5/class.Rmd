@@ -22,6 +22,7 @@ Load the ESS data.
   <summary>Click for explanation</summary>
   
 ```{r, echo = FALSE}
+dataDir <- "../../../../data/"
 ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
 ```
 

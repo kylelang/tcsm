@@ -3,6 +3,7 @@
 ```{r include = FALSE}
 library(readxl)
 library(dplyr)
+dataDir <- "../../../../data/"
 ```
 
 Last week, you used PCA and EFA to replicate the results of Kestilä (2006). In 
