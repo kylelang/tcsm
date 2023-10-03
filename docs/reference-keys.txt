@@ -103,6 +103,16 @@ recording
 slides-3
 reading-3
 at-home-exercises-3
+section-44
+section-45
+section-46
+section-47
+section-48
+section-49
+section-50
+run_pca
+pcScores
+section-51
 in-class-exercises-3
 cfa
 lecture-4
