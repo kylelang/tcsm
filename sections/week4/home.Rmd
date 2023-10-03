@@ -2,7 +2,7 @@
 
 ```{r, include = FALSE}
 library(kableExtra)
-library(foreign)
+library(haven)
 ```
 
 In these exercises, you will attempt to replicate some of the analyses from the 
@@ -30,7 +30,7 @@ Load the *ESSround1-a.sav* dataset into R.
 - Inspect the data after loading to make sure everything went well.
 
 ```{r, eval = FALSE}
-## Load the 'foreign' package:
+## Load the 'haven' package:
 library(haven)
 
 ## Read the 'ESSround1-a.sav' ess into a data frame called 'ess': 
@@ -134,9 +134,9 @@ Kestilä only analyzed data from the following ten countries:
 
 So, our first task is to subset the data to only the relevant population.  
 
-As explained in \@ref(logicalSubsetting), we can select rows from a dataset
-based on logical conditions. In this case, we want to select only rows from the
-10 countries listed above.
+When we apply logical subsetting, we can select rows from a dataset based on
+logical conditions. In this case, we want to select only rows from the 10
+countries listed above.
 
 ---
 
@@ -173,9 +173,9 @@ targets <- c("Austria",
 
 ## Select only those rows that come from a target country:
 ess <- ess %>%
-  mutate(cntry = as_factor(cntry)) %>%
-  filter(cntry %in% targets) %>%
-  mutate(cntry = droplevels(cntry))
+  mutate(cntry = as_factor(cntry)) %>% # Convert cntry to a factor
+  filter(cntry %in% targets) %>%       # Subset rows
+  mutate(cntry = droplevels(cntry))    # Drop empty factor levels
 
 ## Inspect the result:
 dim(ess)
@@ -209,13 +209,25 @@ str(ess)
 
 ## Compute descriptive statistics:
 descriptives(ess)
-
-## Check the levels of one of the spurious factors:
-levels(ess$trstlgl)
 ```
 
-As noted above, one thing you might notice when inspecting the `ess` data is
-that nearly all variables are stored as factors.
+  <details>
+    <summary>Click for explanation</summary>
+
+One thing you might notice when inspecting the `ess` data is that all the 
+scale variables are stored as *labelled vectors*. When loading SPSS data, 
+**haven** will use these labelled vectors to preserve the metadata associated 
+with SPSS scale variables (i.e., variable labels and value labels).
+
+While it's good to have this metadata available, we want to analyze these items
+as numeric variables, so the value labels are only going to make our lives 
+harder. Thankfully, the **labelled** package contains many routines for 
+manipulating labelled vectors.
+
+We can use the `labelled::remove_val_labels()` function to strip the value
+labels and convert all of the labelled vectors to numeric vectors.
+
+  </details>
 
 </details>
 
@@ -228,26 +240,33 @@ Correct any formatting issues that you discovered above.
 <details>
   <summary>Click for explanation</summary>
 
-In keeping with conventions, we will treat ordinal Likert-type rating scales
-with five or more levels as continuous. Consequently, we need to convert these
-variables from factors to numeric vectors.
+In keeping with common practice, we will treat ordinal Likert-type rating scales
+with five or more levels as continuous. Since some R routines will treat labelled
+vectors as discrete variables, we can make things easier for ourselves by 
+converting all the labelled vectors in our data to numeric vectors.
 
-We can convert a factor to a numeric variable using the `as.numeric()` function, 
-but this function only operates on one variable at a time. To replicate the 
-Kestilä (2006) analysis, we need to convert 37 variables.
-
-Thankfully, we can use *apply* functions to broadcast univariate operation 
-across each column (or row) of a dataset. We are specifically interested in
-the `lapply()` function. The `lapply()` function applies some function to each
-element in a list (e.g., each column in a data frame).
-
-The variables we care about live in columns 7 to 44 of the `ess` dataset. In the 
-following code, we apply the `as.numeric()` function to these columns and 
-overwrite their original factor versions with the converted numeric data.
+As noted above, we can easily accomplish this goal with the `remove_val_labels()`
+function from the **labelled** package.
 
 ```{r}
-ess[7:44] <- lapply(ess[7:44], as.numeric)
+## If necessary, install the labelled package:
+# install.packages("labelled", repos = "https://cloud.r-project.org")
+
+## Load the labelled package:
+library(labelled)
+
+## Strip the value labels:
+ess <- remove_val_labels(ess)
+
+## Check the effects:
+str(ess)
+descriptives(ess)
 ```
+
+Note that the variables are now simple numeric vectors, but the variable labels
+have been retained as column attributes (which is probably useful). If we want
+to completely nuke the labelling information, we can use the 
+`labelled::remove_labels()` function to do so.
 
 </details>
 
@@ -268,7 +287,9 @@ from the `tidyr` package provides a convenient way to execute this conversion.
 ###
 
 Use `tidyr::pivot_longer()` to create a long-formatted data frame from the 
-target variables in `ess` (i.e., columns 7 to 44).
+target variables in `ess`.
+
+- The target variables are all columns from `trstlgl` to `rfgbfml`.
 
 <details>
   <summary>Click to show code</summary>
@@ -278,17 +299,22 @@ target variables in `ess` (i.e., columns 7 to 44).
 library(tidyr)
 
 ## Convert the target variables into a long-formatted data frame:
-ess_plot <- pivot_longer(ess[7:44], colnames(ess)[7:44])
+ess_plot <- pivot_longer(ess,
+                         cols = trstlgl:rfgbfml, # Which columns to convert
+                         names_to = "variable",  # Name for the new grouping variable
+                         values_to = "value")    # Name for the column of stacked values
 ```
 
 </details>
 
 ---
 
-The next step in the process will be to plot the variables using `ggplot()`. To
-create one plot for each variable, we will use the `facet_wrap()` function to 
-*facet* the plots on the `ess_plot$name` column (i.e., create a separate
-conditional plot for each unique value in `ess_plot$name`).
+The next step in the process will be to plot the variables using `ggplot()`. In
+the above code, I've named the new grouping variable `variable` and the new
+stacked data variable `value`. So, to create one plot for each (original,
+wide-format) variable, we will use the `facet_wrap()` function to 
+*facet* the plots of `value` on the `variable` column (i.e., create a separate
+conditional plot of `value` for each unique value in `variable`).
 
 ---
 
@@ -299,7 +325,9 @@ Use `ggplot()` with an appropriate *geom* (e.g., `geom_histogram()`,
 target variables. 
 
 *Hint:* To implement the faceting, simply add 
-`facet_wrap(~ name, scales = "free_x")` to the end of your `ggplot()` call.
+`facet_wrap(~ variable, scales = "free_x")` to the end of your `ggplot()` call
+(obviously, replacing "variable" with whatever you named the grouping variable
+in your `pivot_longer()` call).
 
 <details>
   <summary>Click to show code</summary>
@@ -308,8 +336,8 @@ target variables.
 library(ggplot2)
 
 ggplot(ess_plot, aes(x = value)) + 
-  geom_histogram() +                    # Create a histogram
-  facet_wrap(~ name, scales = "free_x") # Facet on 'name'
+  geom_histogram() +                        # Create a histogram
+  facet_wrap(~ variable, scales = "free_x") # Facet on 'variable'
 ```
 
   <details>
@@ -321,8 +349,6 @@ ggplot(ess_plot, aes(x = value)) +
   variables as continuous.
   
   </details>
-
-
 
 </details>
 
@@ -338,7 +364,7 @@ Check the descriptives for the target variables again.
   <summary>Click to show code</summary>
   
 ```{r}
-descriptives(ess[7:44])
+select(ess, trstlgl:rfgbfml) %>% descriptives()
 ```
 
   <details>
@@ -347,8 +373,6 @@ descriptives(ess[7:44])
   No. Everything looks pretty much fine.
 
 </details>
-
-
 
 </details>
 
@@ -391,7 +415,8 @@ Kestilä extracted three components with VARIMAX rotation.
 library(psych)
 
 ## Run the PCA:
-pca_trust <- principal(ess[7:19], nfactors = 3, rotate = "varimax")
+pca_trust <- select(ess, trstlgl:impcntr) %>% 
+  principal(nfactors = 3, rotate = "varimax")
 
 ## Print the results:
 print(pca_trust, cut = 0.3, digits = 3)
@@ -399,12 +424,14 @@ print(pca_trust, cut = 0.3, digits = 3)
 
 ---
 
-#### Attitudes toward imigration {-}
+#### Attitudes toward immigration {-}
 
 Kestilä extracted five components with VARIMAX rotation.
 
 ```{r}
-pca_att <- principal(ess[20:44], nfactors = 5, rotate = "varimax")
+pca_att <- select(ess, imsmetn:rfgbfml) %>%
+  principal(nfactors = 5, rotate = "varimax")
+
 print(pca_att, cut = 0.3, digits = 3)
 ```
 
@@ -461,13 +488,11 @@ summary(att_scores)
 
   <details>
     <summary>Click for explanation </summary>
-    
 
-  
   The object produced by `psych::principal()` is simply list, and the component
   scores are already stored therein. So, to extract the component scores, we
   simply use the `$` operator to extract them.  
-    
+
   </details>
 
 </details>

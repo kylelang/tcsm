@@ -12,15 +12,18 @@ Load the *ESSround1-b.csv* dataset.
 
 - These are the same data that you analyzed for the At-Home Exercises, but the
 processing/recoding that you should have done for those exercises has already
-been implemented.
-
+been (mostly) implemented.
+- It will be helpful to convert `cntry` back into a factor.
 
 ``` {r, eval = FALSE}
-ess <- read.csv("ESSround1-b.csv")
+ess <- read.csv("ESSround1-b.csv") %>%
+  mutate(cntry = factor(cntry))
 ```
 
 ``` {r, echo = FALSE}
-ess <- read.csv(paste0(dataDir, "ESSround1-b.csv"))
+dataDir <- "../../../../data/"
+ess <- read.csv(paste0(dataDir, "ESSround1-b.csv")) %>% 
+  mutate(cntry = factor(cntry))
 ```
 
 ---
@@ -75,9 +78,9 @@ rotation.
 ---
 
 We will now rerun the two PCAs that you conducted for the 
-[At-Home Exercises](at-home-exercises-1.html) using EFA. We will estimate the 
-EFA models using the `psych::fa()` function, but we need to know how many factors 
-to extract.
+[At-Home Exercises](at-home-exercises-3.html) using EFA. We will estimate the 
+EFA models using the `psych::fa()` function, but we need to know how many
+factors to extract.
 
 - We could simply estimate a range of solutions and compare the results.
 - We can restrict the range of plausible solutions and save some time by first 
@@ -96,112 +99,130 @@ eigenvalues, the scree plot, and parallel analysis.
 the `qplot()` function from the `ggplot2` package and applying the `geom_path()` 
 geometry.
 
+**1. Eigenvalue estimation**
+
 <details>
-  <summary>Click to show code (EFA)</summary>
+  <summary>Click to show code</summary>
   
 ```{r}
 ## Load the psych package:
 library(psych)
+library(dplyr)
 
 ## Run a trivial EFA on the 'trust' items
-efa_trust0 <- fa(ess[7:19], nfactors = 1, rotate = "none")  
+efa_trust0 <- select(ess, trstlgl:impcntr) %>%
+  fa(nfactors = 1, rotate = "none")  
 ```
-  
+
   <details>
     <summary>Click for explanation (EFA)</summary>
-  First, we'll run a trivial EFA using the `psych::fa()` function to get
-  eigenvalues.
+  
+First, we run a trivial EFA using the `psych::fa()` function to estimate the
+eigenvalues.
 
-  - We don't care about the factors yet, so we can extract a single factor.
-  - We also don't care about interpretable solutions, so we don't need rotation.
+- We don't care about the factors yet, so we can extract a single factor.
+- We also don't care about interpretable solutions, so we don't need rotation.
 
   </details>
 
-</details>
-
-<details>
-  <summary>Click to show code (eigenvalue extraction)</summary>
-  
 ```{r}
+## View the estimated eigenvalues:
 round(efa_trust0$values, digits = 3)
 ```
 
   <details>
     <summary>Click for explanation (eigenvalue extraction)</summary>
-  We can check the eigenvalues to see what proportion of the observed variance
-  is accounted for by each additional factor we may extract.
+
+We can check the eigenvalues to see what proportion of the observed variance is 
+accounted for by each additional factor we may extract.
   
-  Since only one eigenvalue is greater than one, the so-called "Kaiser
-  Criterion" would suggest extracting a single factor. 
+Since only one eigenvalue is greater than one, the so-called "Kaiser Criterion"
+would suggest extracting a single factor. 
   
-  - The Kaiser Criterion is not a valid way to select the number of factors in
+- The Kaiser Criterion is not a valid way to select the number of factors in 
   EFA. So, we don't want to rely on this information alone.
   
-  We can still use the eigenvalues to help us with factor enumeration, though.
-  One way to do so is by plotting the eigenvalues in a *scree plot*. 
-  </details>
+We can still use the eigenvalues to help us with factor enumeration, though.
+One way to do so is by plotting the eigenvalues in a *scree plot*. 
 
 </details>
 
+</details>
+
+**2. Scree plot**
 
 <details>
-  <summary>Click to show code (scree plot)</summary>
+  <summary>Click to show code</summary>
 
-  - We can easily create a scree plot by passing the eigenvalues to the 
-  `qplot()` function from the `ggplot2` package and add apply the `geom_path()`
-  geometry
+Given a vector of estimated eigenvalues, we can create a scree plot using 
+`ggplot()` and the `geom_line()` or `geom_path()` geometry.
   
 ```{r}
 library(ggplot2)
+library(magrittr)
 
-qplot(y = efa_trust0$values) + 
-  geom_path() +
-  ylab("Eigenvalues") + 
-  xlab("Factors")
+efa_trust0 %$% data.frame(y = values, x = 1:length(values)) %>%
+  ggplot(aes(x, y)) + 
+  geom_line() +
+  xlab("No. of Factors") +
+  ylab("Eigenvalues")
+```
+
+We can also use the `psych::scree()` function to create a scree plot directly
+from the data.
+
+```{r}
+select(ess, trstlgl:impcntr) %>% scree(pc = FALSE)
 ```
   
   <details>
     <summary>Click for explanation (scree plot)</summary>
-  Although the scree plot provides useful information, we need to interpret that 
-  information subjectively, and the conclusions are sometimes ambiguous. 
+  
+Although the scree plot provides useful information, we need to interpret that 
+information subjectively, and the conclusions are sometimes ambiguous, in this 
+case.
 
-  - In this case, the plot seems to suggest either one or three components, 
+- In this case, the plot seems to suggest either one or three components, 
   depending on where we consider the "elbow" to lie.
   
-  As recommended in the lecture, we can also use "parallel analysis" (Horn,
-  1965) to provide more quantified information about the number of factors. 
-  We'll use the `psych::fa.parallel()` function to implement parallel analysis.
+As recommended in the lecture, we can also use "parallel analysis"
+[(Horn, 1965)](https://doi.org/10.1007/BF02289447) to provide more objective
+information about the number of factors. We'll use the `psych::fa.parallel()`
+function to implement parallel analysis.
 
-  - Parallel analysis relies on randomly simulated/permuted data, so we should
+- Parallel analysis relies on randomly simulated/permuted data, so we should
   set a seed to make sure our results are reproducible.
-  - We can set the `fa = "fa"` option to get only the results for EFA.
-  </details>
+- We can set the `fa = "fa"` option to get only the results for EFA.
 
 </details>
 
+</details>
+
+**3. Parallel Analysis**
 
 <details>
-  <summary>Click to show code (parallel analysis)</summary>
+  <summary>Click to show code</summary>
   
 ```{r}
 ## Set the random number seed:
 set.seed(235711)
 
 ## Run the parallel analysis:
-pa_trust <- fa.parallel(ess[7:19], fa = "fa")
+pa_trust <- select(ess, trstlgl:impcntr) %>%
+     fa.parallel(fa = "fa") 
 ```
   
   <details>
-    <summary>Click for explanation (parallel analysis)</summary>
+    <summary>Click for explanation</summary>
     
-  The results of the parallel analysis suggest `r pa_trust$nfact` factors. 
-  
+The results of the parallel analysis suggest `r pa_trust$nfact` factors. 
+
 ---
-  
-  If you've been paying close attention, you may have noticed that we need to
-  compute the eigenvalues from the original data to run parallel analysis. 
-  Hence, we don't actually need to run a separate EFA to estimate the
-  eigenvalues.
+
+If you've been paying close attention, you may have noticed that we need to
+compute the eigenvalues from the original data to run parallel analysis. 
+Hence, we don't actually need to run a separate EFA to estimate the
+eigenvalues.
   
 ```{r}
 ## View the eigenvalues estimated during the parallel analysis:
@@ -211,18 +232,25 @@ pa_trust$fa.values
 pa_trust$fa.values - efa_trust0$values
 
 ## Recreate the scree plot from above:
-qplot(y = pa_trust$fa.values) + 
-  geom_path() + 
-  ylab("Eigenvalues") + 
-  xlab("Factors")
+pa_trust %$% data.frame(y = fa.values, x = 1:length(fa.values)) %>%
+  ggplot(aes(x, y)) + 
+  geom_line() +
+  xlab("No. of Factors") +
+  ylab("Eigenvalues")
 ```
+
+Of course, we also see the same scree plot printed as part of the parallel
+analysis. So, there's really no reason to create a separate scree plot, at all, 
+if we're doing parallel analysis.
 
   </details>
 
 </details>
 
+**4. Conclusion**
+
 <details>
-  <summary>Click for explanation (number of latent factors)</summary>
+  <summary>Click for explanation</summary>
   
 The different criteria disagree on how many factors we should extract, but we
 have narrowed the range.
@@ -244,33 +272,26 @@ Do the same analysis for the *attitudes toward immigration* items.
   <summary>Click to show code</summary>
   
 This time, we'll start by running the parallel analysis and get the eigenvalues 
-from the object returned by `psych::fa.parallel()`.
+and scree plot from `psych::fa.parallel()`.
 
 ```{r}
 ## Set the seed:
 set.seed(235711)
 
 ## Run parallel analysis on the 'attitudes' items:
-pa_att <- fa.parallel(ess[20:44])
+pa_att <- select(ess, imsmetn:rfgbfml) %>% fa.parallel(fa = "fa")
 
 ## Check the eigenvalues:
 round(pa_att$fa.values, digits = 3)
-
-## Create a scree plot:
-qplot(y = pa_att$fa.values) + 
-  geom_path() +
-  ylab("Eigenvalues") +
-  xlab("Factors")
 ```
 
-  
   <details>
     <summary>Click for explanation</summary>
-  For the *attitudes toward immigration* analysis, the results are even more 
+For the *attitudes toward immigration* analysis, the results are even more 
 ambiguous than they were for the *trust* items.
 
-- The Kaiser Criterion suggests `r sum(pa_att$fa.value > 1)` factors
-- The scree plot is hopelessly ambiguous
+- The Kaiser Criterion suggests `r sum(pa_att$fa.value > 1)` factors.
+- The scree plot is hopelessly ambiguous.
     - At least 3 factors?
     - No more than 9 factors?
 - Parallel analysis suggests `r pa_att$nfact` factors
@@ -280,7 +301,8 @@ solutions for 3 to `r pa_att$nfact` factors.
 
 - Again, we need to check the substantive interpretation to choose the most 
 reasonable solution.
-  </details>
+
+</details>
 
 </details>
 
@@ -288,7 +310,7 @@ reasonable solution.
 
 To evaluate the substantive interpretability of the different solutions, we need
 to estimate the full EFA models for each candidate number of factors. We then 
-compare the factor loadings across solutions to see which set of loading define
+compare the factor loadings across solutions to see which set of loadings define
 the most reasonable set of latent variables.
 
 ---
@@ -321,10 +343,11 @@ efa_trust <- list()
 
 ## Loop through the interesting numbers of factors and estimate an EFA for each:
 for(i in 3:6) 
-  efa_trust[[i - 2]] <- fa(ess[7:19], 
-                           nfactors = i,          # Number of factors = Loop index
-                           rotate   = "promax",   # Oblique rotation
-                           scores   = "Bartlett") # Estimate factor scores with WLS
+  efa_trust[[as.character(i)]] <- ess %>% 
+    select(trstlgl:impcntr) %>% 
+    fa(nfactors = i,          # Number of factors = Loop index
+       rotate   = "promax",   # Oblique rotation
+       scores   = "Bartlett") # Estimate factor scores with WLS
 ```
 
 </details>
@@ -341,10 +364,11 @@ Repeat the above analysis for the *attitudes* items.
 ```{r}
 efa_att <- list()
 for(i in 3:7)
-  efa_att[[i - 2]] <- fa(ess[20:44], 
-                         nfactors = i,         
-                         rotate   = "promax",  
-                         scores   = "Bartlett")
+  efa_att[[as.character(i)]] <- ess %>%
+    select(imsmetn:rfgbfml) %>%
+    fa(nfactors = i,         
+       rotate   = "promax",  
+       scores   = "Bartlett")
 ```
 
 </details>
@@ -369,7 +393,7 @@ by `psych::fa()`.
 ```{r}
 for(x in efa_trust) print(x$loadings)
 ```
-  
+ 
   <details>
     <summary>Click for explanation</summary>
 *Note:* Any factor loadings with magnitude lower than 0.1 are suppressed in
@@ -428,10 +452,10 @@ and five factors from the *Attitudes* items, to parallel the Kestilä (2006) res
 
 ```{r}
 ## Select the three-factor solution for 'trust':
-efa_trust <- efa_trust[[1]]
+efa_trust <- efa_trust[["3"]]
 
 ## Select the five-factor solution for 'attitudes':
-efa_att <- efa_att[[3]]
+efa_att <- efa_att[["5"]]
 ```
 
 ---
@@ -479,29 +503,47 @@ created in \@ref(factorScores) and an appropriate statistical test.
   <summary>Click to show code</summary>
 
 Here, we'll only demonstrate a possible approach to analyzing one of the *Trust*
-dimensions. We can use an ANOVA to test whether the countries differ in average 
-levels of *Trust in Institutions* (as quantified by the relevant factor score).
+dimensions. We can use a linear model to test whether the countries differ in
+average levels of *Trust in Institutions* (as quantified by the relevant factor
+score).
 
 ```{r}
-## ANOVA
-out <- aov(trust_inst ~ cntry, data = ess)
+## Estimate the model:
+out <- lm(trust_inst ~ cntry, data = ess)
+
+## View the regression-style summary:
 summary(out)
 
-## Post-hoc test
-TukeyHSD(out)
+## View the results as an ANOVA table:
+anova(out)
 
+aov(out)
+
+## Post-hoc tests
+out %>% aov() %>% TukeyHSD()
 ```
 
   <details>
     <summary>Click for explanation</summary>
-  According to the omnibus F-test, average levels of *Trust in Institutions*
-  significantly differ between countries, but this test cannot tell us between 
-  which countries the differences lie. 
 
-  One way to test for differences between the individual countries would be a 
-  post hoc test of all pairwise comparisons. Since we'll be doing 
-  `r choose(10, 2)` tests, we need to apply a correction for repeated testing.
-  Above, we use Tukey's HSD correction.
+According to the omnibus F-test, average levels of *Trust in Institutions*
+significantly differ between countries, but this test cannot tell us between 
+which countries the differences lie. 
+
+Similarly, the t statistics associated with each dummy code in the regression-style
+summary only tell us if that country differs significantly from the reference 
+country (i.e., `r levels(ess$cntry)[1]`), but we cannot see, for example, if
+there is a significant difference in average trust levels between Belgium and 
+the Netherlands.
+
+One way to test for differences between the individual countries would be a 
+post hoc test of all pairwise comparisons. Since we'll be doing 
+`r choose(10, 2)` tests, we need to apply a correction for repeated testing.
+
+- Above, we use the `TukeyHSD()` function to conduct all pairwise comparisons 
+  while applying Tukey's HSD correction.
+- The `TukeyHSD()` function only accepts models estimated with the `aov()` 
+  function, so we first pass our fitted lm object through `aov()`.
 
   </details>
 
@@ -527,7 +569,7 @@ Create a new data frame that contains only the Finnish cases from `ess`.
   <summary>Click to show code</summary>
   
 ```{r}
-ess_finland <- ess[ess$cntry == "Finland", ]
+ess_finland <- filter(ess, cntry == "Finland")
 ```
 
 </details>
@@ -556,28 +598,39 @@ In the `ess` data, the relevant variables have the following names:
 
 Inspect the independent variables listed above.
 
-
 <details>
-  
-  <summary>Click to show code (descriptives)</summary>
+  <summary>Click to show code</summary>
   
 ```{r}
 library(tidySEM)
-descriptives(ess_finland[c("gndr", "yrbrn", "eduyrs", "polintr", "lrscale")])
+select(ess_finland, gndr, yrbrn, eduyrs, polintr, lrscale) %>% 
+  descriptives()
 ```
+
+<summary>Click for explanation</summary>
+
+It looks like we still need some recoding. 
+
 </details>
+
+</details>
+
+---
+
+###
+
+Apply any necessary recoding/transformations.
 
 <details>
   <summary>Click to show code (yrbrn)</summary>
 
 ```{r}
-ess_finland$age <- 2002 - ess_finland$yrbrn
+ess_finland <- mutate(ess_finland, age = 2002 - yrbrn)
 ```
 
   <details>
     <summary>Click for explanation (yrbrn)</summary>
   
-  It looks like we still need some recoding. 
 
   **1. Age**
 

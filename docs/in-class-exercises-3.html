@@ -354,6 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.13" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-62"><i class="fa fa-check"></i><b>4.4.13</b> </a></li>
 <li class="chapter" data-level="4.4.14" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-63"><i class="fa fa-check"></i><b>4.4.14</b> </a></li>
 <li class="chapter" data-level="4.4.15" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-64"><i class="fa fa-check"></i><b>4.4.15</b> </a></li>
+<li class="chapter" data-level="4.4.16" data-path="in-class-exercises-3.html"><a href="in-class-exercises-3.html#section-65"><i class="fa fa-check"></i><b>4.4.16</b> </a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>5</b> CFA</a>
@@ -419,9 +420,11 @@ redo the analysis using <em>exploratory factor analysis</em> (EFA).</p>
 <ul>
 <li>These are the same data that you analyzed for the At-Home Exercises, but the
 processing/recoding that you should have done for those exercises has already
-been implemented.</li>
+been (mostly) implemented.</li>
+<li>It will be helpful to convert <code>cntry</code> back into a factor.</li>
 </ul>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="in-class-exercises-3.html#cb147-1" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="in-class-exercises-3.html#cb147-1" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb147-2"><a href="in-class-exercises-3.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cntry =</span> <span class="fu">factor</span>(cntry))</span></code></pre></div>
 <hr />
 </div>
 <div id="section-53" class="section level3" number="4.4.2">
@@ -474,9 +477,9 @@ rotation.</li>
 </details>
 <hr />
 <p>We will now rerun the two PCAs that you conducted for the
-<a href="at-home-exercises-1.html">At-Home Exercises</a> using EFA. We will estimate the
-EFA models using the <code>psych::fa()</code> function, but we need to know how many factors
-to extract.</p>
+<a href="at-home-exercises-3.html">At-Home Exercises</a> using EFA. We will estimate the
+EFA models using the <code>psych::fa()</code> function, but we need to know how many
+factors to extract.</p>
 <ul>
 <li>We could simply estimate a range of solutions and compare the results.</li>
 <li>We can restrict the range of plausible solutions and save some time by first
@@ -494,104 +497,107 @@ eigenvalues, the scree plot, and parallel analysis.</p>
 <p><em>Hint:</em> You can create a scree plot by supplying the vector of eigenvalues to
 the <code>qplot()</code> function from the <code>ggplot2</code> package and applying the <code>geom_path()</code>
 geometry.</p>
+<p><strong>1. Eigenvalue estimation</strong></p>
 <details>
 <summary>
-Click to show code (EFA)
+Click to show code
 </summary>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="in-class-exercises-3.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the psych package:</span></span>
 <span id="cb148-2"><a href="in-class-exercises-3.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb148-3"><a href="in-class-exercises-3.html#cb148-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-4"><a href="in-class-exercises-3.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run a trivial EFA on the &#39;trust&#39; items</span></span>
-<span id="cb148-5"><a href="in-class-exercises-3.html#cb148-5" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="ot">&lt;-</span> <span class="fu">fa</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)  </span></code></pre></div>
+<span id="cb148-3"><a href="in-class-exercises-3.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb148-4"><a href="in-class-exercises-3.html#cb148-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-5"><a href="in-class-exercises-3.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Run a trivial EFA on the &#39;trust&#39; items</span></span>
+<span id="cb148-6"><a href="in-class-exercises-3.html#cb148-6" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span></span>
+<span id="cb148-7"><a href="in-class-exercises-3.html#cb148-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fa</span>(<span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)  </span></code></pre></div>
 <details>
 <summary>
 Click for explanation (EFA)
 </summary>
-<p>First, we’ll run a trivial EFA using the <code>psych::fa()</code> function to get
+<p>First, we run a trivial EFA using the <code>psych::fa()</code> function to estimate the
 eigenvalues.</p>
 <ul>
-<li>We don’t care about the factors yet, so we can extract a single factor.
-<ul>
-<li>We also don’t care about interpretable solutions, so we don’t need rotation.</li>
-</ul>
+<li><p>We don’t care about the factors yet, so we can extract a single factor.</p></li>
+<li><p>We also don’t care about interpretable solutions, so we don’t need rotation.</p>
 </details></li>
 </ul>
-</details>
-<details>
-<summary>
-Click to show code (eigenvalue extraction)
-</summary>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="in-class-exercises-3.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust0<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##  [1]  4.940  0.733  0.492  0.173  0.064  0.014 -0.066 -0.091 -0.195 -0.210
-## [11] -0.289 -0.307 -0.318</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="in-class-exercises-3.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the estimated eigenvalues:</span></span>
+<span id="cb149-2"><a href="in-class-exercises-3.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust0<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  4.555  3.054  0.411  0.134  0.071 -0.119 -0.177 -0.258 -0.280 -0.312
+## [11] -0.344 -0.406 -0.412 -0.423 -0.444 -0.492</code></pre>
 <details>
 <summary>
 Click for explanation (eigenvalue extraction)
 </summary>
-<p>We can check the eigenvalues to see what proportion of the observed variance
-is accounted for by each additional factor we may extract.</p>
-<p>Since only one eigenvalue is greater than one, the so-called “Kaiser
-Criterion” would suggest extracting a single factor.</p>
+<p>We can check the eigenvalues to see what proportion of the observed variance is
+accounted for by each additional factor we may extract.</p>
+<p>Since only one eigenvalue is greater than one, the so-called “Kaiser Criterion”
+would suggest extracting a single factor.</p>
 <ul>
-<li><p>The Kaiser Criterion is not a valid way to select the number of factors in
-EFA. So, we don’t want to rely on this information alone.</p>
+<li>The Kaiser Criterion is not a valid way to select the number of factors in
+EFA. So, we don’t want to rely on this information alone.</li>
+</ul>
 <p>We can still use the eigenvalues to help us with factor enumeration, though.
 One way to do so is by plotting the eigenvalues in a <em>scree plot</em>.</p>
-</details></li>
-</ul>
 </details>
+</details>
+<p><strong>2. Scree plot</strong></p>
 <details>
 <summary>
-Click to show code (scree plot)
+Click to show code
 </summary>
-<ul>
-<li>We can easily create a scree plot by passing the eigenvalues to the
-<code>qplot()</code> function from the <code>ggplot2</code> package and add apply the <code>geom_path()</code>
-geometry</li>
-</ul>
+<p>Given a vector of estimated eigenvalues, we can create a scree plot using
+<code>ggplot()</code> and the <code>geom_line()</code> or <code>geom_path()</code> geometry.</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="in-class-exercises-3.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb151-2"><a href="in-class-exercises-3.html#cb151-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-3"><a href="in-class-exercises-3.html#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> efa_trust0<span class="sc">$</span>values) <span class="sc">+</span> </span>
-<span id="cb151-4"><a href="in-class-exercises-3.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
-<span id="cb151-5"><a href="in-class-exercises-3.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb151-6"><a href="in-class-exercises-3.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Factors&quot;</span>)</span></code></pre></div>
+<span id="cb151-2"><a href="in-class-exercises-3.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb151-3"><a href="in-class-exercises-3.html#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="in-class-exercises-3.html#cb151-4" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="sc">%$%</span> <span class="fu">data.frame</span>(<span class="at">y =</span> values, <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(values)) <span class="sc">%&gt;%</span></span>
+<span id="cb151-5"><a href="in-class-exercises-3.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
+<span id="cb151-6"><a href="in-class-exercises-3.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb151-7"><a href="in-class-exercises-3.html#cb151-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb151-8"><a href="in-class-exercises-3.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
 <p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p>We can also use the <code>psych::scree()</code> function to create a scree plot directly
+from the data.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="in-class-exercises-3.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span> <span class="fu">scree</span>(<span class="at">pc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation (scree plot)
 </summary>
 <p>Although the scree plot provides useful information, we need to interpret that
-information subjectively, and the conclusions are sometimes ambiguous.</p>
+information subjectively, and the conclusions are sometimes ambiguous, in this
+case.</p>
 <ul>
-<li><p>In this case, the plot seems to suggest either one or three components,
-depending on where we consider the “elbow” to lie.</p>
-<p>As recommended in the lecture, we can also use “parallel analysis” (Horn,</p>
-<ol start="1965" style="list-style-type: decimal">
-<li>to provide more quantified information about the number of factors.
-We’ll use the <code>psych::fa.parallel()</code> function to implement parallel analysis.</li>
-</ol>
+<li>In this case, the plot seems to suggest either one or three components,
+depending on where we consider the “elbow” to lie.</li>
+</ul>
+<p>As recommended in the lecture, we can also use “parallel analysis”
+<a href="https://doi.org/10.1007/BF02289447">(Horn, 1965)</a> to provide more objective
+information about the number of factors. We’ll use the <code>psych::fa.parallel()</code>
+function to implement parallel analysis.</p>
 <ul>
 <li>Parallel analysis relies on randomly simulated/permuted data, so we should
 set a seed to make sure our results are reproducible.</li>
 <li>We can set the <code>fa = "fa"</code> option to get only the results for EFA.</li>
 </ul>
-</details></li>
-</ul>
 </details>
+</details>
+<p><strong>3. Parallel Analysis</strong></p>
 <details>
 <summary>
-Click to show code (parallel analysis)
+Click to show code
 </summary>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="in-class-exercises-3.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the random number seed:</span></span>
-<span id="cb152-2"><a href="in-class-exercises-3.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb152-3"><a href="in-class-exercises-3.html#cb152-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-4"><a href="in-class-exercises-3.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
-<span id="cb152-5"><a href="in-class-exercises-3.html#cb152-5" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], <span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="in-class-exercises-3.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the random number seed:</span></span>
+<span id="cb153-2"><a href="in-class-exercises-3.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb153-3"><a href="in-class-exercises-3.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="in-class-exercises-3.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
+<span id="cb153-5"><a href="in-class-exercises-3.html#cb153-5" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span></span>
+<span id="cb153-6"><a href="in-class-exercises-3.html#cb153-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>) </span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <pre><code>## Parallel analysis suggests that the number of factors =  5  and the number of components =  NA</code></pre>
 <details>
 <summary>
-Click for explanation (parallel analysis)
+Click for explanation
 </summary>
 <p>The results of the parallel analysis suggest 5 factors.</p>
 <hr />
@@ -599,25 +605,30 @@ Click for explanation (parallel analysis)
 compute the eigenvalues from the original data to run parallel analysis.
 Hence, we don’t actually need to run a separate EFA to estimate the
 eigenvalues.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="in-class-exercises-3.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the eigenvalues estimated during the parallel analysis:</span></span>
-<span id="cb154-2"><a href="in-class-exercises-3.html#cb154-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values</span></code></pre></div>
-<pre><code>##  [1]  4.93985031  0.73335474  0.49174655  0.17294854  0.06372444  0.01363969
-##  [7] -0.06605432 -0.09109183 -0.19535125 -0.20991379 -0.28855561 -0.30662420
-## [13] -0.31782296</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="in-class-exercises-3.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare to the version from the EFA:</span></span>
-<span id="cb156-2"><a href="in-class-exercises-3.html#cb156-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values <span class="sc">-</span> efa_trust0<span class="sc">$</span>values</span></code></pre></div>
-<pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="in-class-exercises-3.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recreate the scree plot from above:</span></span>
-<span id="cb158-2"><a href="in-class-exercises-3.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> pa_trust<span class="sc">$</span>fa.values) <span class="sc">+</span> </span>
-<span id="cb158-3"><a href="in-class-exercises-3.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span> </span>
-<span id="cb158-4"><a href="in-class-exercises-3.html#cb158-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb158-5"><a href="in-class-exercises-3.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Factors&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="in-class-exercises-3.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the eigenvalues estimated during the parallel analysis:</span></span>
+<span id="cb155-2"><a href="in-class-exercises-3.html#cb155-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values</span></code></pre></div>
+<pre><code>##  [1]  4.55517136  3.05362593  0.41073627  0.13364902  0.07116952 -0.11909803
+##  [7] -0.17729996 -0.25838504 -0.28014401 -0.31230246 -0.34437047 -0.40604399
+## [13] -0.41192101 -0.42303666 -0.44425206 -0.49233019</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="in-class-exercises-3.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare to the version from the EFA:</span></span>
+<span id="cb157-2"><a href="in-class-exercises-3.html#cb157-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values <span class="sc">-</span> efa_trust0<span class="sc">$</span>values</span></code></pre></div>
+<pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="in-class-exercises-3.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recreate the scree plot from above:</span></span>
+<span id="cb159-2"><a href="in-class-exercises-3.html#cb159-2" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="sc">%$%</span> <span class="fu">data.frame</span>(<span class="at">y =</span> fa.values, <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(fa.values)) <span class="sc">%&gt;%</span></span>
+<span id="cb159-3"><a href="in-class-exercises-3.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
+<span id="cb159-4"><a href="in-class-exercises-3.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb159-5"><a href="in-class-exercises-3.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb159-6"><a href="in-class-exercises-3.html#cb159-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>Of course, we also see the same scree plot printed as part of the parallel
+analysis. So, there’s really no reason to create a separate scree plot, at all,
+if we’re doing parallel analysis.</p>
 </details>
 </details>
+<p><strong>4. Conclusion</strong></p>
 <details>
 <summary>
-Click for explanation (number of latent factors)
+Click for explanation
 </summary>
 <p>The different criteria disagree on how many factors we should extract, but we
 have narrowed the range.</p>
@@ -638,25 +649,19 @@ substantive sense.</li>
 Click to show code
 </summary>
 <p>This time, we’ll start by running the parallel analysis and get the eigenvalues
-from the object returned by <code>psych::fa.parallel()</code>.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="in-class-exercises-3.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the seed:</span></span>
-<span id="cb159-2"><a href="in-class-exercises-3.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb159-3"><a href="in-class-exercises-3.html#cb159-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-4"><a href="in-class-exercises-3.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run parallel analysis on the &#39;attitudes&#39; items:</span></span>
-<span id="cb159-5"><a href="in-class-exercises-3.html#cb159-5" aria-hidden="true" tabindex="-1"></a>pa_att <span class="ot">&lt;-</span> <span class="fu">fa.parallel</span>(ess[<span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>])</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
-<pre><code>## Parallel analysis suggests that the number of factors =  7  and the number of components =  5</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="in-class-exercises-3.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the eigenvalues:</span></span>
-<span id="cb161-2"><a href="in-class-exercises-3.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pa_att<span class="sc">$</span>fa.values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+and scree plot from <code>psych::fa.parallel()</code>.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="in-class-exercises-3.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the seed:</span></span>
+<span id="cb160-2"><a href="in-class-exercises-3.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb160-3"><a href="in-class-exercises-3.html#cb160-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-4"><a href="in-class-exercises-3.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run parallel analysis on the &#39;attitudes&#39; items:</span></span>
+<span id="cb160-5"><a href="in-class-exercises-3.html#cb160-5" aria-hidden="true" tabindex="-1"></a>pa_att <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span> <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  7  and the number of components =  NA</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="in-class-exercises-3.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the eigenvalues:</span></span>
+<span id="cb162-2"><a href="in-class-exercises-3.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pa_att<span class="sc">$</span>fa.values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##  [1]  7.841  1.474  0.748  0.534  0.327  0.152  0.123  0.025 -0.033 -0.064
 ## [11] -0.081 -0.098 -0.121 -0.137 -0.145 -0.179 -0.196 -0.204 -0.214 -0.222
 ## [21] -0.246 -0.253 -0.331 -0.425 -0.432</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="in-class-exercises-3.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a scree plot:</span></span>
-<span id="cb163-2"><a href="in-class-exercises-3.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">y =</span> pa_att<span class="sc">$</span>fa.values) <span class="sc">+</span> </span>
-<span id="cb163-3"><a href="in-class-exercises-3.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
-<span id="cb163-4"><a href="in-class-exercises-3.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>) <span class="sc">+</span></span>
-<span id="cb163-5"><a href="in-class-exercises-3.html#cb163-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Factors&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-130-2.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation
@@ -664,8 +669,8 @@ Click for explanation
 <p>For the <em>attitudes toward immigration</em> analysis, the results are even more
 ambiguous than they were for the <em>trust</em> items.</p>
 <ul>
-<li>The Kaiser Criterion suggests 2 factors</li>
-<li>The scree plot is hopelessly ambiguous
+<li>The Kaiser Criterion suggests 2 factors.</li>
+<li>The scree plot is hopelessly ambiguous.
 <ul>
 <li>At least 3 factors?</li>
 <li>No more than 9 factors?</li>
@@ -676,14 +681,14 @@ ambiguous than they were for the <em>trust</em> items.</p>
 solutions for 3 to 7 factors.</p>
 <ul>
 <li>Again, we need to check the substantive interpretation to choose the most
-reasonable solution.
-</details></li>
+reasonable solution.</li>
 </ul>
+</details>
 </details>
 <hr />
 <p>To evaluate the substantive interpretability of the different solutions, we need
 to estimate the full EFA models for each candidate number of factors. We then
-compare the factor loadings across solutions to see which set of loading define
+compare the factor loadings across solutions to see which set of loadings define
 the most reasonable set of latent variables.</p>
 <hr />
 </div>
@@ -713,10 +718,11 @@ Click to show code
 <span id="cb164-3"><a href="in-class-exercises-3.html#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb164-4"><a href="in-class-exercises-3.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Loop through the interesting numbers of factors and estimate an EFA for each:</span></span>
 <span id="cb164-5"><a href="in-class-exercises-3.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>) </span>
-<span id="cb164-6"><a href="in-class-exercises-3.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  efa_trust[[i <span class="sc">-</span> <span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">fa</span>(ess[<span class="dv">7</span><span class="sc">:</span><span class="dv">19</span>], </span>
-<span id="cb164-7"><a href="in-class-exercises-3.html#cb164-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">nfactors =</span> i,          <span class="co"># Number of factors = Loop index</span></span>
-<span id="cb164-8"><a href="in-class-exercises-3.html#cb164-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,   <span class="co"># Oblique rotation</span></span>
-<span id="cb164-9"><a href="in-class-exercises-3.html#cb164-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>) <span class="co"># Estimate factor scores with WLS</span></span></code></pre></div>
+<span id="cb164-6"><a href="in-class-exercises-3.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  efa_trust[[<span class="fu">as.character</span>(i)]] <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb164-7"><a href="in-class-exercises-3.html#cb164-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span> </span>
+<span id="cb164-8"><a href="in-class-exercises-3.html#cb164-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fa</span>(<span class="at">nfactors =</span> i,          <span class="co"># Number of factors = Loop index</span></span>
+<span id="cb164-9"><a href="in-class-exercises-3.html#cb164-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,   <span class="co"># Oblique rotation</span></span>
+<span id="cb164-10"><a href="in-class-exercises-3.html#cb164-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>) <span class="co"># Estimate factor scores with WLS</span></span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -729,10 +735,11 @@ Click to show code
 </summary>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="in-class-exercises-3.html#cb165-1" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb165-2"><a href="in-class-exercises-3.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)</span>
-<span id="cb165-3"><a href="in-class-exercises-3.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  efa_att[[i <span class="sc">-</span> <span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">fa</span>(ess[<span class="dv">20</span><span class="sc">:</span><span class="dv">44</span>], </span>
-<span id="cb165-4"><a href="in-class-exercises-3.html#cb165-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">nfactors =</span> i,         </span>
-<span id="cb165-5"><a href="in-class-exercises-3.html#cb165-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,  </span>
-<span id="cb165-6"><a href="in-class-exercises-3.html#cb165-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>)</span></code></pre></div>
+<span id="cb165-3"><a href="in-class-exercises-3.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  efa_att[[<span class="fu">as.character</span>(i)]] <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb165-4"><a href="in-class-exercises-3.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span></span>
+<span id="cb165-5"><a href="in-class-exercises-3.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fa</span>(<span class="at">nfactors =</span> i,         </span>
+<span id="cb165-6"><a href="in-class-exercises-3.html#cb165-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,  </span>
+<span id="cb165-7"><a href="in-class-exercises-3.html#cb165-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>)</span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -753,88 +760,100 @@ Click to show code
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="in-class-exercises-3.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(x <span class="cf">in</span> efa_trust) <span class="fu">print</span>(x<span class="sc">$</span>loadings)</span></code></pre></div>
 <pre><code>## 
 ## Loadings:
-##         MR3    MR1    MR2   
-## pltcare -0.103  0.815       
-## pltinvt -0.100  0.806       
-## trstprl  0.405  0.381       
-## trstlgl  0.843 -0.103       
-## trstplc  0.776 -0.217       
-## trstplt  0.279  0.571       
-## trstep   0.503  0.243       
-## trstun   0.543  0.199       
-## stfeco  -0.121  0.156  0.703
-## stfgov          0.246  0.594
-## stfdem   0.180  0.166  0.462
-## stfedu         -0.168  0.701
-## stfhlth        -0.134  0.664
+##         MR1    MR3    MR2   
+## trstlgl         0.683       
+## trstplc         0.600       
+## trstplt         0.594  0.198
+## trstep          0.725       
+## trstun          0.738       
+## stfeco                 0.748
+## stfgov          0.109  0.638
+## stfdem          0.253  0.509
+## stfedu                 0.644
+## stfhlth                0.628
+## imsmetn  0.811              
+## imdfetn  0.875              
+## eimrcnt  0.768              
+## eimpcnt  0.878              
+## imrcntr  0.808              
+## impcntr  0.870              
 ## 
-##                  MR3   MR1   MR2
-## SS loadings    2.178 2.101 2.023
-## Proportion Var 0.168 0.162 0.156
-## Cumulative Var 0.168 0.329 0.485
-## 
-## Loadings:
-##         MR2    MR1    MR4    MR3   
-## pltcare        -0.106  0.873       
-## pltinvt                0.843       
-## trstprl  0.118  0.471  0.194  0.106
-## trstlgl                       0.785
-## trstplc                       0.715
-## trstplt  0.101  0.491  0.335       
-## trstep          0.982 -0.171       
-## trstun          0.670         0.113
-## stfeco   0.726                     
-## stfgov   0.629  0.200        -0.157
-## stfdem   0.485  0.129  0.110       
-## stfedu   0.712 -0.108 -0.106  0.108
-## stfhlth  0.672        -0.101       
-## 
-##                  MR2   MR1   MR4   MR3
-## SS loadings    2.161 1.974 1.706 1.210
-## Proportion Var 0.166 0.152 0.131 0.093
-## Cumulative Var 0.166 0.318 0.449 0.542
+##                  MR1   MR3   MR2
+## SS loadings    4.214 2.339 2.098
+## Proportion Var 0.263 0.146 0.131
+## Cumulative Var 0.263 0.410 0.541
 ## 
 ## Loadings:
-##         MR1    MR5    MR4    MR3    MR2   
-## pltcare         0.872                     
-## pltinvt         0.871                     
-## trstprl  0.360  0.142  0.248  0.201 -0.104
-## trstlgl                       0.940       
-## trstplc                       0.808       
-## trstplt  0.294  0.316  0.308              
-## trstep  -0.140 -0.105  1.123 -0.157       
-## trstun                 0.515  0.163       
-## stfeco   0.701        -0.120         0.181
-## stfgov   0.992 -0.109        -0.129       
-## stfdem   0.526                0.158       
-## stfedu                               0.746
-## stfhlth                              0.578
+##         MR1    MR3    MR2    MR4   
+## trstlgl         0.707              
+## trstplc  0.113  0.620              
+## trstplt         0.580  0.211       
+## trstep          0.709              
+## trstun          0.726              
+## stfeco                 0.758       
+## stfgov                 0.651       
+## stfdem          0.253  0.510       
+## stfedu                 0.639       
+## stfhlth                0.622       
+## imsmetn  0.705                0.149
+## imdfetn  0.908                     
+## eimrcnt  0.213                0.864
+## eimpcnt  0.942                     
+## imrcntr  0.447                0.515
+## impcntr  0.984               -0.110
 ## 
-##                  MR1   MR5   MR4   MR3   MR2
-## SS loadings    2.016 1.668 1.714 1.681 0.956
-## Proportion Var 0.155 0.128 0.132 0.129 0.074
-## Cumulative Var 0.155 0.283 0.415 0.545 0.618
+##                  MR1   MR3   MR2   MR4
+## SS loadings    3.458 2.334 2.107 1.061
+## Proportion Var 0.216 0.146 0.132 0.066
+## Cumulative Var 0.216 0.362 0.494 0.560
 ## 
 ## Loadings:
-##         MR6    MR3    MR5    MR4    MR1    MR2   
-## pltcare         0.840                            
-## pltinvt         0.899                            
-## trstprl                              1.068       
-## trstlgl -0.117         0.742         0.160       
-## trstplc                0.955        -0.141       
-## trstplt  0.156  0.296         0.172  0.303       
-## trstep                -0.129  1.175              
-## trstun                 0.227  0.390              
-## stfeco   0.588                              0.216
-## stfgov   1.041                             -0.101
-## stfdem   0.423         0.151                0.119
-## stfedu                                      0.688
-## stfhlth                                     0.743
+##         MR1    MR2    MR3    MR4    MR5   
+## trstlgl                0.165         0.677
+## trstplc                              0.725
+## trstplt         0.202  0.631              
+## trstep                 0.810              
+## trstun                 0.653         0.128
+## stfeco          0.736               -0.108
+## stfgov          0.643  0.272        -0.174
+## stfdem          0.511  0.203              
+## stfedu          0.668 -0.149         0.134
+## stfhlth         0.637 -0.156              
+## imsmetn  0.707                0.144       
+## imdfetn  0.912                            
+## eimrcnt  0.166                0.896       
+## eimpcnt  0.952                            
+## imrcntr  0.421                0.531       
+## impcntr  0.995               -0.124       
 ## 
-##                  MR6   MR3   MR5   MR4   MR1   MR2
-## SS loadings    1.667 1.629 1.573 1.579 1.310 1.103
-## Proportion Var 0.128 0.125 0.121 0.121 0.101 0.085
-## Cumulative Var 0.128 0.254 0.375 0.496 0.597 0.682</code></pre>
+##                  MR1   MR2   MR3   MR4   MR5
+## SS loadings    3.438 2.123 1.678 1.129 1.071
+## Proportion Var 0.215 0.133 0.105 0.071 0.067
+## Cumulative Var 0.215 0.348 0.452 0.523 0.590
+## 
+## Loadings:
+##         MR1    MR2    MR3    MR4    MR5    MR6   
+## trstlgl                       0.826              
+## trstplc                       0.851              
+## trstplt         0.432  0.353  0.110              
+## trstep         -0.153  1.092 -0.155              
+## trstun                 0.470  0.191              
+## stfeco          0.704 -0.103                0.155
+## stfgov          0.963        -0.123              
+## stfdem          0.545         0.156              
+## stfedu                                      0.653
+## stfhlth                                     0.666
+## imsmetn  0.708                       0.143       
+## imdfetn  0.915                                   
+## eimrcnt  0.168                       0.890       
+## eimpcnt  0.955                                   
+## imrcntr  0.423                       0.529       
+## impcntr  0.998                      -0.122       
+## 
+##                  MR1   MR2   MR3   MR4   MR5   MR6
+## SS loadings    3.462 1.948 1.563 1.529 1.114 0.921
+## Proportion Var 0.216 0.122 0.098 0.096 0.070 0.058
+## Cumulative Var 0.216 0.338 0.436 0.531 0.601 0.659</code></pre>
 <details>
 <summary>
 Click for explanation
@@ -1057,10 +1076,10 @@ Click to show code
 questions will all assume you have extract three factors from the <em>Trust</em> items
 and five factors from the <em>Attitudes</em> items, to parallel the Kestilä (2006) results.</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="in-class-exercises-3.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Select the three-factor solution for &#39;trust&#39;:</span></span>
-<span id="cb170-2"><a href="in-class-exercises-3.html#cb170-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> efa_trust[[<span class="dv">1</span>]]</span>
+<span id="cb170-2"><a href="in-class-exercises-3.html#cb170-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> efa_trust[[<span class="st">&quot;3&quot;</span>]]</span>
 <span id="cb170-3"><a href="in-class-exercises-3.html#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb170-4"><a href="in-class-exercises-3.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Select the five-factor solution for &#39;attitudes&#39;:</span></span>
-<span id="cb170-5"><a href="in-class-exercises-3.html#cb170-5" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> efa_att[[<span class="dv">3</span>]]</span></code></pre></div>
+<span id="cb170-5"><a href="in-class-exercises-3.html#cb170-5" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> efa_att[[<span class="st">&quot;5&quot;</span>]]</span></code></pre></div>
 <hr />
 </div>
 <div id="factorScores" class="section level3" number="4.4.10">
@@ -1098,62 +1117,104 @@ created in <a href="in-class-exercises-3.html#factorScores">4.4.10</a> and an ap
 Click to show code
 </summary>
 <p>Here, we’ll only demonstrate a possible approach to analyzing one of the <em>Trust</em>
-dimensions. We can use an ANOVA to test whether the countries differ in average
-levels of <em>Trust in Institutions</em> (as quantified by the relevant factor score).</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="in-class-exercises-3.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA</span></span>
-<span id="cb172-2"><a href="in-class-exercises-3.html#cb172-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">aov</span>(trust_inst <span class="sc">~</span> cntry, <span class="at">data =</span> ess)</span>
-<span id="cb172-3"><a href="in-class-exercises-3.html#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
-<pre><code>##                Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## cntry           8   4730   591.2   637.3 &lt;2e-16 ***
-## Residuals   14769  13700     0.9                   
+dimensions. We can use a linear model to test whether the countries differ in
+average levels of <em>Trust in Institutions</em> (as quantified by the relevant factor
+score).</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="in-class-exercises-3.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model:</span></span>
+<span id="cb172-2"><a href="in-class-exercises-3.html#cb172-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> cntry, <span class="at">data =</span> ess)</span>
+<span id="cb172-3"><a href="in-class-exercises-3.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-4"><a href="in-class-exercises-3.html#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="do">## View the regression-style summary:</span></span>
+<span id="cb172-5"><a href="in-class-exercises-3.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = trust_inst ~ cntry, data = ess)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.0439 -0.5990  0.0774  0.6546  3.8306 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       0.05722    0.02380   2.404  0.01624 *  
+## cntryBelgium      0.24797    0.03461   7.165 8.15e-13 ***
+## cntryDenmark      0.89049    0.03709  24.006  &lt; 2e-16 ***
+## cntryFinland      0.66876    0.03293  20.309  &lt; 2e-16 ***
+## cntryGermany     -1.02160    0.03082 -33.147  &lt; 2e-16 ***
+## cntryItaly       -0.70295    0.03910 -17.980  &lt; 2e-16 ***
+## cntryNetherlands -0.10502    0.03233  -3.248  0.00117 ** 
+## cntryNorway       0.07686    0.03331   2.308  0.02103 *  
+## cntrySweden      -0.06433    0.03464  -1.857  0.06332 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 3409 observations deleted due to missingness</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-3.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Post-hoc test</span></span>
-<span id="cb174-2"><a href="in-class-exercises-3.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(out)</span></code></pre></div>
+## 
+## Residual standard error: 0.956 on 14315 degrees of freedom
+##   (3863 observations deleted due to missingness)
+## Multiple R-squared:  0.2656, Adjusted R-squared:  0.2652 
+## F-statistic: 647.2 on 8 and 14315 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-3.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the results as an ANOVA table:</span></span>
+<span id="cb174-2"><a href="in-class-exercises-3.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(out)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"8","2":"4731.789","3":"591.4735931","4":"647.229","5":"0","_rn_":"cntry"},{"1":"14315","2":"13081.837","3":"0.9138552","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="in-class-exercises-3.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(out)</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = out)
+## 
+## Terms:
+##                     cntry Residuals
+## Sum of Squares   4731.789 13081.837
+## Deg. of Freedom         8     14315
+## 
+## Residual standard error: 0.9559577
+## Estimated effects may be unbalanced
+## 3863 observations deleted due to missingness</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="in-class-exercises-3.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Post-hoc tests</span></span>
+<span id="cb177-2"><a href="in-class-exercises-3.html#cb177-2" aria-hidden="true" tabindex="-1"></a>out <span class="sc">%&gt;%</span> <span class="fu">aov</span>() <span class="sc">%&gt;%</span> <span class="fu">TukeyHSD</span>()</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
-## Fit: aov(formula = trust_inst ~ cntry, data = ess)
+## Fit: aov(formula = .)
 ## 
 ## $cntry
 ##                            diff         lwr          upr     p adj
-## Belgium-Austria      0.20168084  0.09589531  0.307466370 0.0000001
-## Denmark-Austria      0.76351677  0.65075137  0.876282159 0.0000000
-## Finland-Austria      0.64445653  0.54454924  0.744363816 0.0000000
-## Germany-Austria     -1.06714607 -1.16042396 -0.973868169 0.0000000
-## Italy-Austria       -0.71544868 -0.83369744 -0.597199916 0.0000000
-## Netherlands-Austria -0.21332373 -0.31147689 -0.115170569 0.0000000
-## Norway-Austria      -0.02389303 -0.12537152  0.077585455 0.9983715
-## Sweden-Austria      -0.20104524 -0.30601176 -0.096078730 0.0000001
-## Denmark-Belgium      0.56183592  0.44430483  0.679367018 0.0000000
-## Finland-Belgium      0.44277568  0.33751890  0.548032469 0.0000000
-## Germany-Belgium     -1.26882691 -1.36781322 -1.169840595 0.0000000
-## Italy-Belgium       -0.91712952 -1.03993136 -0.794327672 0.0000000
-## Netherlands-Belgium -0.41500457 -0.51859785 -0.311411294 0.0000000
-## Norway-Belgium      -0.22557387 -0.33232315 -0.118824600 0.0000000
-## Sweden-Belgium      -0.40272609 -0.51279649 -0.292655685 0.0000000
-## Finland-Denmark     -0.11906024 -0.23132977 -0.006790713 0.0279561
-## Germany-Denmark     -1.83066283 -1.93707592 -1.724249740 0.0000000
-## Italy-Denmark       -1.47896544 -1.60782874 -1.350102145 0.0000000
-## Netherlands-Denmark -0.97684049 -1.08755193 -0.866129055 0.0000000
-## Norway-Denmark      -0.78740980 -0.90107977 -0.673739822 0.0000000
-## Sweden-Denmark      -0.96456201 -1.08135648 -0.847767536 0.0000000
-## Germany-Finland     -1.71160259 -1.80428041 -1.618924768 0.0000000
-## Italy-Finland       -1.35990520 -1.47768118 -1.242129219 0.0000000
-## Netherlands-Finland -0.85778025 -0.95536333 -0.760197183 0.0000000
-## Norway-Finland      -0.66834956 -0.76927674 -0.567422375 0.0000000
-## Sweden-Finland      -0.84550177 -0.94993539 -0.741068145 0.0000000
-## Italy-Germany        0.35169739  0.23949007  0.463904704 0.0000000
-## Netherlands-Germany  0.85382234  0.76303822  0.944606449 0.0000000
-## Norway-Germany       1.04325303  0.94888357  1.137622497 0.0000000
-## Sweden-Germany       0.86610082  0.76799027  0.964211378 0.0000000
-## Netherlands-Italy    0.50212495  0.38583325  0.618416642 0.0000000
-## Norway-Italy         0.69155564  0.57244394  0.810667352 0.0000000
-## Sweden-Italy         0.51440343  0.39230640  0.636500461 0.0000000
-## Norway-Netherlands   0.18943070  0.09023961  0.288621788 0.0000001
-## Sweden-Netherlands   0.01227848 -0.09047831  0.115035276 0.9999902
-## Sweden-Norway       -0.17715221 -0.28308992 -0.071214500 0.0000077</code></pre>
+## Belgium-Austria      0.24796876  0.14060941  0.355328097 0.0000000
+## Denmark-Austria      0.89049075  0.77541622  1.005565280 0.0000000
+## Finland-Austria      0.66876487  0.56661216  0.770917590 0.0000000
+## Germany-Austria     -1.02160451 -1.11721519 -0.925993827 0.0000000
+## Italy-Austria       -0.70295083 -0.82423523 -0.581666425 0.0000000
+## Netherlands-Austria -0.10501583 -0.20532400 -0.004707667 0.0319748
+## Norway-Austria       0.07685797 -0.02646120  0.180177134 0.3373046
+## Sweden-Austria      -0.06432725 -0.17178456  0.043130061 0.6435559
+## Denmark-Belgium      0.64252199  0.52477886  0.760265130 0.0000000
+## Finland-Belgium      0.42079612  0.31564634  0.525945897 0.0000000
+## Germany-Belgium     -1.26957326 -1.36837964 -1.170766883 0.0000000
+## Italy-Belgium       -0.95091958 -1.07473883 -0.827100341 0.0000000
+## Netherlands-Belgium -0.35298459 -0.45634331 -0.249625861 0.0000000
+## Norway-Belgium      -0.17111079 -0.27739413 -0.064827447 0.0000211
+## Sweden-Belgium      -0.31229600 -0.42260635 -0.201985661 0.0000000
+## Finland-Denmark     -0.22172588 -0.33474178 -0.108709970 0.0000000
+## Germany-Denmark     -1.91209526 -2.01923451 -1.804956003 0.0000000
+## Italy-Denmark       -1.59344158 -1.72400698 -1.462876176 0.0000000
+## Netherlands-Denmark -0.99550658 -1.10685803 -0.884155131 0.0000000
+## Norway-Denmark      -0.81363278 -0.92770411 -0.699561455 0.0000000
+## Sweden-Denmark      -0.95481800 -1.07265047 -0.836985529 0.0000000
+## Germany-Finland     -1.69036938 -1.78349215 -1.597246611 0.0000000
+## Italy-Finland       -1.37171570 -1.49104866 -1.252382745 0.0000000
+## Netherlands-Finland -0.77378070 -0.87172036 -0.675841051 0.0000000
+## Norway-Finland      -0.59190690 -0.69292818 -0.490885631 0.0000000
+## Sweden-Finland      -0.73309212 -0.83834193 -0.627842317 0.0000000
+## Italy-Germany        0.31865368  0.20487064  0.432436712 0.0000000
+## Netherlands-Germany  0.91658867  0.82549312  1.007684229 0.0000000
+## Norway-Germany       1.09846248  1.00406162  1.192863333 0.0000000
+## Sweden-Germany       0.95727726  0.85836444  1.056190076 0.0000000
+## Netherlands-Italy    0.59793500  0.48017717  0.715692818 0.0000000
+## Norway-Italy         0.77980880  0.65947582  0.900141779 0.0000000
+## Sweden-Italy         0.63862358  0.51471938  0.762527777 0.0000000
+## Norway-Netherlands   0.18187380  0.08271813  0.281029475 0.0000005
+## Sweden-Netherlands   0.04068858 -0.06277190  0.144149065 0.9523456
+## Sweden-Norway       -0.14118522 -0.24756752 -0.034802920 0.0012799</code></pre>
 <details>
 <summary>
 Click for explanation
@@ -1161,11 +1222,21 @@ Click for explanation
 <p>According to the omnibus F-test, average levels of <em>Trust in Institutions</em>
 significantly differ between countries, but this test cannot tell us between
 which countries the differences lie.</p>
+<p>Similarly, the t statistics associated with each dummy code in the regression-style
+summary only tell us if that country differs significantly from the reference
+country (i.e., Austria), but we cannot see, for example, if
+there is a significant difference in average trust levels between Belgium and
+the Netherlands.</p>
 <p>One way to test for differences between the individual countries would be a
 post hoc test of all pairwise comparisons. Since we’ll be doing
-45 tests, we need to apply a correction for repeated testing.
-Above, we use Tukey’s HSD correction.</p>
-</details>
+45 tests, we need to apply a correction for repeated testing.</p>
+<ul>
+<li><p>Above, we use the <code>TukeyHSD()</code> function to conduct all pairwise comparisons
+while applying Tukey’s HSD correction.</p></li>
+<li><p>The <code>TukeyHSD()</code> function only accepts models estimated with the <code>aov()</code>
+function, so we first pass our fitted lm object through <code>aov()</code>.</p>
+</details></li>
+</ul>
 </details>
 <hr />
 <p>The second part of the Kestilä (2006) analysis was to evaluate how
@@ -1182,7 +1253,7 @@ of the analysis, we need to subset the data to only the Finnish cases.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="in-class-exercises-3.html#cb176-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> ess[ess<span class="sc">$</span>cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="in-class-exercises-3.html#cb179-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">filter</span>(ess, cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>)</span></code></pre></div>
 </details>
 <hr />
 <p>We still have one more step before we can estimate any models. We must prepare
@@ -1208,26 +1279,36 @@ inspect those variables to see if they require any processing.</li>
 <p>Inspect the independent variables listed above.</p>
 <details>
 <summary>
-Click to show code (descriptives)
+Click to show code
 </summary>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="in-class-exercises-3.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb177-2"><a href="in-class-exercises-3.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">descriptives</span>(ess_finland[<span class="fu">c</span>(<span class="st">&quot;gndr&quot;</span>, <span class="st">&quot;yrbrn&quot;</span>, <span class="st">&quot;eduyrs&quot;</span>, <span class="st">&quot;polintr&quot;</span>, <span class="st">&quot;lrscale&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="in-class-exercises-3.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb180-2"><a href="in-class-exercises-3.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(ess_finland, gndr, yrbrn, eduyrs, polintr, lrscale) <span class="sc">%&gt;%</span> </span>
+<span id="cb180-3"><a href="in-class-exercises-3.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["chr"],"align":["left"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[12],"type":["int"],"align":["right"]},{"label":["max"],"name":[13],"type":["int"],"align":["right"]},{"label":["range"],"name":[14],"type":["int"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"gndr","2":"character","3":"2000","4":"0.0000","5":"3","6":"NA","7":"NA","8":"1040","9":"Female","10":"NA","11":"0.4992000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"yrbrn","2":"integer","3":"2000","4":"0.0000","5":"79","6":"1956.36950","7":"1957","8":"1957","9":"NA","10":"18.491510","11":"NA","12":"1906","13":"1987","14":"81","15":"-0.1585289","16":"-1.448249","17":"2.113295","18":"9.657865"},{"1":"eduyrs","2":"integer","3":"1997","4":"0.0015","5":"27","6":"11.95643","7":"12","8":"12","9":"NA","10":"3.900645","11":"NA","12":"0","13":"26","14":"26","15":"0.2948606","16":"2.691696","17":"2.817418","18":"12.866107"},{"1":"polintr","2":"character","3":"1999","4":"0.0005","5":"5","6":"NA","7":"NA","8":"842","9":"Hardly interested","10":"NA","11":"0.6501730","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"lrscale","2":"character","3":"1891","4":"0.0545","5":"12","6":"NA","7":"NA","8":"599","9":"5","10":"NA","11":"0.8312956","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<summary>
+Click for explanation
+</summary>
+<p>It looks like we still need some recoding.</p>
 </details>
+</details>
+<hr />
+</div>
+<div id="section-63" class="section level3" number="4.4.14">
+<h3><span class="header-section-number">4.4.14</span> </h3>
+<p>Apply any necessary recoding/transformations.</p>
 <details>
 <summary>
 Click to show code (yrbrn)
 </summary>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="in-class-exercises-3.html#cb178-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">2002</span> <span class="sc">-</span> ess_finland<span class="sc">$</span>yrbrn</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="in-class-exercises-3.html#cb181-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland, <span class="at">age =</span> <span class="dv">2002</span> <span class="sc">-</span> yrbrn)</span></code></pre></div>
 <details>
 <summary>
 Click for explanation (yrbrn)
 </summary>
-<p>It looks like we still need some recoding.</p>
 <p><strong>1. Age</strong></p>
 <p>The data contain the participants’ years of birth instead of their age, but
 Kestilä analyzed age. Fortunately, we know that the data were collected in
@@ -1239,18 +1320,18 @@ Kestilä analyzed age. Fortunately, we know that the data were collected in
 <summary>
 Click to show code (polintr)
 </summary>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="in-class-exercises-3.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the dplyr package:</span></span>
-<span id="cb179-2"><a href="in-class-exercises-3.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb179-3"><a href="in-class-exercises-3.html#cb179-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb179-4"><a href="in-class-exercises-3.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the four character values into two factor levels:</span></span>
-<span id="cb179-5"><a href="in-class-exercises-3.html#cb179-5" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>polintr_bin <span class="ot">&lt;-</span> <span class="fu">recode_factor</span>(ess_finland<span class="sc">$</span>polintr,</span>
-<span id="cb179-6"><a href="in-class-exercises-3.html#cb179-6" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Not at all interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
-<span id="cb179-7"><a href="in-class-exercises-3.html#cb179-7" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Hardly interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
-<span id="cb179-8"><a href="in-class-exercises-3.html#cb179-8" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Quite interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>,</span>
-<span id="cb179-9"><a href="in-class-exercises-3.html#cb179-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Very interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>)</span>
-<span id="cb179-10"><a href="in-class-exercises-3.html#cb179-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb179-11"><a href="in-class-exercises-3.html#cb179-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
-<span id="cb179-12"><a href="in-class-exercises-3.html#cb179-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> ess_finland<span class="sc">$</span>polintr, <span class="at">new =</span> ess_finland<span class="sc">$</span>polintr_bin)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="in-class-exercises-3.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the dplyr package:</span></span>
+<span id="cb182-2"><a href="in-class-exercises-3.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb182-3"><a href="in-class-exercises-3.html#cb182-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-4"><a href="in-class-exercises-3.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the four character values into two factor levels:</span></span>
+<span id="cb182-5"><a href="in-class-exercises-3.html#cb182-5" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>polintr_bin <span class="ot">&lt;-</span> <span class="fu">recode_factor</span>(ess_finland<span class="sc">$</span>polintr,</span>
+<span id="cb182-6"><a href="in-class-exercises-3.html#cb182-6" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Not at all interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
+<span id="cb182-7"><a href="in-class-exercises-3.html#cb182-7" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Hardly interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
+<span id="cb182-8"><a href="in-class-exercises-3.html#cb182-8" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Quite interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>,</span>
+<span id="cb182-9"><a href="in-class-exercises-3.html#cb182-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;Very interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>)</span>
+<span id="cb182-10"><a href="in-class-exercises-3.html#cb182-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-11"><a href="in-class-exercises-3.html#cb182-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
+<span id="cb182-12"><a href="in-class-exercises-3.html#cb182-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> ess_finland<span class="sc">$</span>polintr, <span class="at">new =</span> ess_finland<span class="sc">$</span>polintr_bin)</span></code></pre></div>
 <pre><code>##                        new
 ## old                     Low Interest High Interest
 ##   Hardly interested              842             0
@@ -1283,15 +1364,15 @@ result into a factor.</p>
 <summary>
 Click to show code (lrscale)
 </summary>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="in-class-exercises-3.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the extreme levels:</span></span>
-<span id="cb181-2"><a href="in-class-exercises-3.html#cb181-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">recode</span>(ess_finland<span class="sc">$</span>lrscale,</span>
-<span id="cb181-3"><a href="in-class-exercises-3.html#cb181-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;Left&quot;</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb181-4"><a href="in-class-exercises-3.html#cb181-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;Right&quot;</span> <span class="ot">=</span> <span class="dv">10</span>,</span>
-<span id="cb181-5"><a href="in-class-exercises-3.html#cb181-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">.default =</span> <span class="fu">as.numeric</span>(ess_finland<span class="sc">$</span>lrscale)</span>
-<span id="cb181-6"><a href="in-class-exercises-3.html#cb181-6" aria-hidden="true" tabindex="-1"></a>              )</span>
-<span id="cb181-7"><a href="in-class-exercises-3.html#cb181-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-8"><a href="in-class-exercises-3.html#cb181-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
-<span id="cb181-9"><a href="in-class-exercises-3.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> ess_finland<span class="sc">$</span>lrscale, <span class="at">new =</span> tmp)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="in-class-exercises-3.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the extreme levels:</span></span>
+<span id="cb184-2"><a href="in-class-exercises-3.html#cb184-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">recode</span>(ess_finland<span class="sc">$</span>lrscale,</span>
+<span id="cb184-3"><a href="in-class-exercises-3.html#cb184-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;Left&quot;</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb184-4"><a href="in-class-exercises-3.html#cb184-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;Right&quot;</span> <span class="ot">=</span> <span class="dv">10</span>,</span>
+<span id="cb184-5"><a href="in-class-exercises-3.html#cb184-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">.default =</span> <span class="fu">as.numeric</span>(ess_finland<span class="sc">$</span>lrscale)</span>
+<span id="cb184-6"><a href="in-class-exercises-3.html#cb184-6" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb184-7"><a href="in-class-exercises-3.html#cb184-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-8"><a href="in-class-exercises-3.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
+<span id="cb184-9"><a href="in-class-exercises-3.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> ess_finland<span class="sc">$</span>lrscale, <span class="at">new =</span> tmp)</span></code></pre></div>
 <pre><code>##        new
 ## old       0   1   2   3   4   5   6   7   8   9  10
 ##   1       0  25   0   0   0   0   0   0   0   0   0
@@ -1305,8 +1386,8 @@ Click to show code (lrscale)
 ##   9       0   0   0   0   0   0   0   0   0  79   0
 ##   Left   24   0   0   0   0   0   0   0   0   0   0
 ##   Right   0   0   0   0   0   0   0   0   0   0  59</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="in-class-exercises-3.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Overwrite the old variable:</span></span>
-<span id="cb183-2"><a href="in-class-exercises-3.html#cb183-2" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>lrscale <span class="ot">&lt;-</span> tmp</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="in-class-exercises-3.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Overwrite the old variable:</span></span>
+<span id="cb186-2"><a href="in-class-exercises-3.html#cb186-2" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>lrscale <span class="ot">&lt;-</span> tmp</span></code></pre></div>
 <details>
 <summary>
 Click for explanation
@@ -1323,7 +1404,7 @@ value for the <code>.default</code> argument in <code>dplyr::recode()</code>.
 <summary>
 Click to show code (sex)
 </summary>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="in-class-exercises-3.html#cb184-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(ess_finland<span class="sc">$</span>gndr)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="in-class-exercises-3.html#cb187-1" aria-hidden="true" tabindex="-1"></a>ess_finland<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(ess_finland<span class="sc">$</span>gndr)</span></code></pre></div>
 <details>
 <summary>
 Click for explanation
@@ -1340,8 +1421,8 @@ a pretty silly thing to do, though. So, we won’t reproduce that aspect of the
 analysis.</p>
 <hr />
 </div>
-<div id="section-63" class="section level3" number="4.4.14">
-<h3><span class="header-section-number">4.4.14</span> </h3>
+<div id="section-64" class="section level3" number="4.4.15">
+<h3><span class="header-section-number">4.4.15</span> </h3>
 <p>Run a series of multiple linear regression analyses with the factor scores you
 created in <a href="in-class-exercises-3.html#factorScores">4.4.10</a> as the dependent variables and the same predictors
 used by Kestilä (2006).</p>
@@ -1352,10 +1433,10 @@ used by Kestilä (2006).</p>
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="in-class-exercises-3.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Institutions&#39;:</span></span>
-<span id="cb185-2"><a href="in-class-exercises-3.html#cb185-2" aria-hidden="true" tabindex="-1"></a>out_trust_inst <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
-<span id="cb185-3"><a href="in-class-exercises-3.html#cb185-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> ess_finland)</span>
-<span id="cb185-4"><a href="in-class-exercises-3.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_inst)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="in-class-exercises-3.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Institutions&#39;:</span></span>
+<span id="cb188-2"><a href="in-class-exercises-3.html#cb188-2" aria-hidden="true" tabindex="-1"></a>out_trust_inst <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
+<span id="cb188-3"><a href="in-class-exercises-3.html#cb188-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> ess_finland)</span>
+<span id="cb188-4"><a href="in-class-exercises-3.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_inst)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = trust_inst ~ sex + age + eduyrs + polintr_bin + 
@@ -1363,55 +1444,55 @@ Click for explanation
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.6185 -0.4519  0.1278  0.5827  2.8276 
+## -3.5724 -0.4492  0.1260  0.5941  2.3547 
 ## 
 ## Coefficients:
-##                           Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)               0.450351   0.113407   3.971 7.45e-05 ***
-## sexMale                   0.122805   0.040248   3.051  0.00231 ** 
-## age                      -0.005010   0.001230  -4.073 4.85e-05 ***
-## eduyrs                   -0.003403   0.005692  -0.598  0.55002    
-## polintr_binHigh Interest  0.071832   0.041387   1.736  0.08281 .  
-## lrscale                   0.085176   0.010008   8.511  &lt; 2e-16 ***
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)               0.3289965  0.1151344   2.857 0.004322 ** 
+## sexMale                   0.1505241  0.0409380   3.677 0.000243 ***
+## age                      -0.0055811  0.0012592  -4.432 9.92e-06 ***
+## eduyrs                   -0.0001833  0.0057951  -0.032 0.974774    
+## polintr_binHigh Interest  0.1237345  0.0421741   2.934 0.003392 ** 
+## lrscale                   0.0907595  0.0101966   8.901  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8306 on 1734 degrees of freedom
-##   (260 observations deleted due to missingness)
-## Multiple R-squared:  0.05488,    Adjusted R-squared:  0.05215 
-## F-statistic: 20.14 on 5 and 1734 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="in-class-exercises-3.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Politicians&#39;:</span></span>
-<span id="cb187-2"><a href="in-class-exercises-3.html#cb187-2" aria-hidden="true" tabindex="-1"></a>out_trust_pol <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_pol <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
-<span id="cb187-3"><a href="in-class-exercises-3.html#cb187-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ess_finland)</span>
-<span id="cb187-4"><a href="in-class-exercises-3.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_pol)</span></code></pre></div>
+## Residual standard error: 0.8355 on 1694 degrees of freedom
+##   (300 observations deleted due to missingness)
+## Multiple R-squared:  0.06695,    Adjusted R-squared:  0.0642 
+## F-statistic: 24.31 on 5 and 1694 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="in-class-exercises-3.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Politicians&#39;:</span></span>
+<span id="cb190-2"><a href="in-class-exercises-3.html#cb190-2" aria-hidden="true" tabindex="-1"></a>out_trust_pol <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_pol <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
+<span id="cb190-3"><a href="in-class-exercises-3.html#cb190-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ess_finland)</span>
+<span id="cb190-4"><a href="in-class-exercises-3.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_pol)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = trust_pol ~ sex + age + eduyrs + polintr_bin + lrscale, 
 ##     data = ess_finland)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.0051 -0.5076  0.1363  0.6615  2.5792 
+##      Min       1Q   Median       3Q      Max 
+## -2.85480 -0.50639  0.06368  0.63001  2.58685 
 ## 
 ## Coefficients:
 ##                           Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)              -0.094787   0.127932  -0.741 0.458845    
-## sexMale                  -0.001633   0.045404  -0.036 0.971316    
-## age                      -0.002739   0.001388  -1.974 0.048569 *  
-## eduyrs                    0.024486   0.006421   3.813 0.000142 ***
-## polintr_binHigh Interest  0.154389   0.046688   3.307 0.000963 ***
-## lrscale                   0.058146   0.011290   5.150  2.9e-07 ***
+## (Intercept)               0.097827   0.121803   0.803 0.421995    
+## sexMale                   0.163314   0.043309   3.771 0.000168 ***
+## age                       0.013771   0.001332  10.337  &lt; 2e-16 ***
+## eduyrs                   -0.050447   0.006131  -8.229 3.73e-16 ***
+## polintr_binHigh Interest -0.258279   0.044617  -5.789 8.43e-09 ***
+## lrscale                   0.033794   0.010787   3.133 0.001761 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9369 on 1734 degrees of freedom
-##   (260 observations deleted due to missingness)
-## Multiple R-squared:  0.04013,    Adjusted R-squared:  0.03736 
-## F-statistic:  14.5 on 5 and 1734 DF,  p-value: 6.103e-14</code></pre>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="in-class-exercises-3.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Attitudes toward Refugees&#39;:</span></span>
-<span id="cb189-2"><a href="in-class-exercises-3.html#cb189-2" aria-hidden="true" tabindex="-1"></a>out_refugees <span class="ot">&lt;-</span> <span class="fu">lm</span>(refugees <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
-<span id="cb189-3"><a href="in-class-exercises-3.html#cb189-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> ess_finland)</span>
-<span id="cb189-4"><a href="in-class-exercises-3.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_refugees)</span></code></pre></div>
+## Residual standard error: 0.8839 on 1694 degrees of freedom
+##   (300 observations deleted due to missingness)
+## Multiple R-squared:  0.1645, Adjusted R-squared:  0.1621 
+## F-statistic: 66.73 on 5 and 1694 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="in-class-exercises-3.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Attitudes toward Refugees&#39;:</span></span>
+<span id="cb192-2"><a href="in-class-exercises-3.html#cb192-2" aria-hidden="true" tabindex="-1"></a>out_refugees <span class="ot">&lt;-</span> <span class="fu">lm</span>(refugees <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
+<span id="cb192-3"><a href="in-class-exercises-3.html#cb192-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> ess_finland)</span>
+<span id="cb192-4"><a href="in-class-exercises-3.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_refugees)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = refugees ~ sex + age + eduyrs + polintr_bin + lrscale, 
@@ -1454,8 +1535,8 @@ to test rigorously this hypothesis, but we can already get started by estimating
 the <em>internal consistency</em> (a type of reliability) of the hypothesized subscales.</p>
 <hr />
 </div>
-<div id="section-64" class="section level3" number="4.4.15">
-<h3><span class="header-section-number">4.4.15</span> </h3>
+<div id="section-65" class="section level3" number="4.4.16">
+<h3><span class="header-section-number">4.4.16</span> </h3>
 <p>Estimate the internal consistency of the three <em>Trust</em> subscales and five
 <em>Attitudes</em> subscales implied by your EFA solutions from above.</p>
 <ul>
@@ -1473,11 +1554,11 @@ is usually considered good.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="in-class-exercises-3.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define a vector of subscale item names:</span></span>
-<span id="cb191-2"><a href="in-class-exercises-3.html#cb191-2" aria-hidden="true" tabindex="-1"></a>(targets <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;stf&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;eco&quot;</span>, <span class="st">&quot;gov&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;edu&quot;</span>, <span class="st">&quot;hlth&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="in-class-exercises-3.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define a vector of subscale item names:</span></span>
+<span id="cb194-2"><a href="in-class-exercises-3.html#cb194-2" aria-hidden="true" tabindex="-1"></a>(targets <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;stf&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;eco&quot;</span>, <span class="st">&quot;gov&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;edu&quot;</span>, <span class="st">&quot;hlth&quot;</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;stfeco&quot;  &quot;stfgov&quot;  &quot;stfdem&quot;  &quot;stfedu&quot;  &quot;stfhlth&quot;</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="in-class-exercises-3.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the reliability analysis on the subscale data:</span></span>
-<span id="cb193-2"><a href="in-class-exercises-3.html#cb193-2" aria-hidden="true" tabindex="-1"></a>(out <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(ess[targets]))</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="in-class-exercises-3.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the reliability analysis on the subscale data:</span></span>
+<span id="cb196-2"><a href="in-class-exercises-3.html#cb196-2" aria-hidden="true" tabindex="-1"></a>(out <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(ess[targets]))</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = ess[targets])
