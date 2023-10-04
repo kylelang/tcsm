@@ -8,7 +8,7 @@ redo the analysis using *exploratory factor analysis* (EFA).
 
 ### 
 
-Load the *ESSround1-b.csv* dataset.
+Load the [*ESSround1-b.csv*][ess_b] dataset.
 
 - These are the same data that you analyzed for the At-Home Exercises, but the
 processing/recoding that you should have done for those exercises has already
@@ -16,11 +16,14 @@ been (mostly) implemented.
 - It will be helpful to convert `cntry` back into a factor.
 
 ``` {r, eval = FALSE}
+library(dplyr)
+
 ess <- read.csv("ESSround1-b.csv") %>%
   mutate(cntry = factor(cntry))
 ```
 
 ``` {r, echo = FALSE}
+library(dplyr)
 dataDir <- "../../../../data/"
 ess <- read.csv(paste0(dataDir, "ESSround1-b.csv")) %>% 
   mutate(cntry = factor(cntry))
@@ -107,7 +110,6 @@ geometry.
 ```{r}
 ## Load the psych package:
 library(psych)
-library(dplyr)
 
 ## Run a trivial EFA on the 'trust' items
 efa_trust0 <- select(ess, trstlgl:impcntr) %>%
@@ -148,6 +150,8 @@ One way to do so is by plotting the eigenvalues in a *scree plot*.
 </details>
 
 </details>
+
+---
 
 **2. Scree plot**
 
@@ -198,6 +202,8 @@ function to implement parallel analysis.
 
 </details>
 
+---
+
 **3. Parallel Analysis**
 
 <details>
@@ -246,6 +252,8 @@ if we're doing parallel analysis.
   </details>
 
 </details>
+
+---
 
 **4. Conclusion**
 
@@ -396,6 +404,7 @@ for(x in efa_trust) print(x$loadings)
  
   <details>
     <summary>Click for explanation</summary>
+
 *Note:* Any factor loadings with magnitude lower than 0.1 are suppressed in
 above output.
 
@@ -423,6 +432,7 @@ of the factors.
 - *Cumulative Var*: How much variance the factors explain, in total. 
     - If you estimated as many factors as items, then the *Cumulative Var* for
     the final factor would be `1.00` (i.e., 100%).
+
   </details>
 
 </details>
@@ -498,7 +508,6 @@ time to replicate those analyses.
 Repeat the Kestilä (2006) between-country comparison using the factor scores you 
 created in \@ref(factorScores) and an appropriate statistical test.
 
-
 <details>
   <summary>Click to show code</summary>
 
@@ -516,8 +525,6 @@ summary(out)
 
 ## View the results as an ANOVA table:
 anova(out)
-
-aov(out)
 
 ## Post-hoc tests
 out %>% aov() %>% TukeyHSD()
@@ -554,8 +561,8 @@ post hoc test of all pairwise comparisons. Since we'll be doing
 
 The second part of the Kestilä (2006) analysis was to evaluate how 
 socio-demographic characteristics affected attitudes towards immigrants and 
-trust in politics among the Finnish electorate. Before we can replicate this part
-of the analysis, we need to subset the data to only the Finnish cases.
+trust in politics among the Finnish electorate. Before we can replicate this
+part of the analysis, we need to subset the data to only the Finnish cases.
 
 ---
 
@@ -603,15 +610,17 @@ Inspect the independent variables listed above.
   
 ```{r}
 library(tidySEM)
+
 select(ess_finland, gndr, yrbrn, eduyrs, polintr, lrscale) %>% 
   descriptives()
 ```
 
-<summary>Click for explanation</summary>
+<details>
+  <summary>Click for explanation</summary>
 
 It looks like we still need some recoding. 
 
-</details>
+  </details>
 
 </details>
 
@@ -621,116 +630,124 @@ It looks like we still need some recoding.
 
 Apply any necessary recoding/transformations.
 
+**1. Age**
+
 <details>
-  <summary>Click to show code (yrbrn)</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ess_finland <- mutate(ess_finland, age = 2002 - yrbrn)
 ```
 
   <details>
-    <summary>Click for explanation (yrbrn)</summary>
-  
+    <summary>Click for explanation</summary>
 
-  **1. Age**
-
-  The data contain the participants' years of birth instead of their age, but 
-  Kestilä analyzed age. Fortunately, we know that the data were collected in
-  2002, so we can simply subtract each participant's value of `yrbrn` from the
-  2002 to compute their age.
+The data contain the participants' years of birth instead of their age, but 
+Kestilä analyzed age. Fortunately, we know that the data were collected in
+2002, so we can simply subtract each participant's value of `yrbrn` from the
+2002 to compute their age.
   
   </details>
 
 </details>
 
+---
+
+**2. Political Interest & Orientation**
+
 <details>
-  <summary>Click to show code (polintr)</summary>
+  <summary>Click to show code</summary>
+
+First, we'll transform `polintr`.
 
 ```{r}
-## Load the dplyr package:
-library(dplyr)
+## Store the original variable for checking purposes:
+tmp <- ess_finland$polintr
 
 ## Recode the four character values into two factor levels:
-ess_finland$polintr_bin <- recode_factor(ess_finland$polintr,
-                                         "Not at all interested" = "Low Interest",
-                                         "Hardly interested" = "Low Interest",
-                                         "Quite interested" = "High Interest",
-                                         "Very interested" = "High Interest")
+ess_finland <-
+  mutate(ess_finland,
+         polintr_bin = recode_factor(polintr,
+                                     "Not at all interested" = "Low Interest",
+                                     "Hardly interested" = "Low Interest",
+                                     "Quite interested" = "High Interest",
+                                     "Very interested" = "High Interest")
+  )
 
 ## Check the conversion:
-table(old = ess_finland$polintr, new = ess_finland$polintr_bin)
+table(old = tmp, new = ess_finland$polintr_bin, useNA = "always")
 ```
 
+Now, we'll deal with `lrscale`.
 
-  <details>
-    <summary>Click for explanation (polintr)</summary>
-      **2. Political Interest & Political Orientation**
-  
-    The variables `polintr` and `lrscale` are represented as character vectors. If
-    we analyze these variables as they are, R will convert the character vectors
-    to factors and make dummy codes for each distinct value; we definitely don't
-    want that. 
-  
-    We need to convert `polintr` and `lrscale` to numeric vectors, but we cannot
-    naively apply the `as.numeric()` function, because R doesn't know how to
-    convert a word into a number (or, at least, not how we want the operation to
-    be done). There are many ways that we could go about this conversion, but the
-    `recode()` function from the `dplyr` package is particularly useful for
-    arbitrary recoding tasks such as we have here.
-  
-    Kestilä (2006) dichotomized `polintr` by combining the lowest two and highest 
-    two categories. So, we don't actually want to convert the `polint` variable
-    into a numeric, Likert-type variable. We want `polint` to be a binary factor.
-    The `recode_factor()` function from `dplyr()` will automatically convert our
-    result into a factor.
-  
-  </details>
-
-</details>
-
-
-<details>
-  <summary>Click to show code (lrscale)</summary>
-  
 ```{r}
+## Save the old version for checking:
+tmp <- ess_finland$lrscale
+
 ## Recode the extreme levels:
-tmp <- recode(ess_finland$lrscale,
-              "Left" = 0,
-              "Right" = 10,
-              .default = as.numeric(ess_finland$lrscale)
-              )
+ess_finland <- mutate(ess_finland,
+                      lrscale = recode(lrscale,
+                                       "Left" = 0,
+                                       "Right" = 10,
+                                       .default = as.numeric(lrscale)
+                      )
+)
 
 ## Check the conversion:
-table(old = ess_finland$lrscale, new = tmp)
-
-## Overwrite the old variable:
-ess_finland$lrscale <- tmp
+table(old = tmp, new = ess_finland$lrscale, useNA = "always")
 ```
-  
+
   <details>
     <summary>Click for explanation</summary>
+ 
+ The variables `polintr` and `lrscale` are represented as character vectors. If
+ we analyze these variables as they are, R will convert the character vectors
+ to factors and make dummy codes for each distinct value; we definitely don't
+ want that. 
+ 
+ We need to convert `polintr` and `lrscale` to numeric vectors, but we cannot
+ naively apply the `as.numeric()` function, because R doesn't know how to
+ convert a word into a number (or, at least, not how we want the operation to
+ be done). There are many ways that we could go about this conversion, but the
+ `recode()` function from the `dplyr` package is particularly useful for
+ arbitrary recoding tasks such as we have here.
+ 
+ Kestilä (2006) dichotomized `polintr` by combining the lowest two and highest 
+ two categories. So, we don't actually want to convert the `polint` variable
+ into a numeric, Likert-type variable. We want `polint` to be a binary factor.
+ The `recode_factor()` function from `dplyr()` will automatically convert our
+ result into a factor.
+
 For political orientation, only the two extreme values of the scale are labeled 
 as text. So, we only need to recode those two levels.
 
 - Since we're only replacing two of the 11 values, we'll need to provide a
 value for the `.default` argument in `dplyr::recode()`.
+
   </details>
 
 </details>
 
+---
+
+**3. Sex**
+
 <details>
-  <summary>Click to show code (sex)</summary>
+  <summary>Click to show code</summary>
   
 ```{r}
-ess_finland$sex <- factor(ess_finland$gndr)
+ess_finland <- mutate(ess_finland, sex = factor(gndr))
+
+## Check results:
+ess_finland %$% table(old = gndr, new = sex, useNA = "always")
 ```
   
   <details>
     <summary>Click for explanation</summary>
-  **3. Sex**
 
-  Although `gndr` would be automatically converted to a factor by `lm()`, it's 
-  better to be explicit about our intentions and create the factor ourselves.
+Although `gndr` would be automatically converted to a factor by `lm()`, it's 
+better to be explicit about our intentions and create the factor ourselves.
+
   </details>
 
 </details>
@@ -753,7 +770,7 @@ used by Kestilä (2006).
 - Do your results agree with those reported by Kestilä (2006)?
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Predicting 'Trust in Institutions':
@@ -801,7 +818,7 @@ Estimate the internal consistency of the three *Trust* subscales and five
 *Attitudes* subscales implied by your EFA solutions from above.
 
 - Use *Cronbach's Alpha* to quantify internal consistency.
-- Use the `alpha()` function from the `psych()` package to conduct the analysis.
+- Use the `alpha()` function from the **psych** package to conduct the analysis.
 - Run your analysis on the full `ess` dataset, not the Finnish subset.
 
 Are the subscales implied by your EFA reliable, in the sense of good internal 
@@ -814,39 +831,41 @@ is usually considered good.
   <summary>Click to show code</summary>
   
 ```{r}
-## Define a vector of subscale item names:
-(targets <- paste0("stf", c("eco", "gov", "dem", "edu", "hlth")))
-
 ## Run the reliability analysis on the subscale data:
-(out <- psych::alpha(ess[targets]))
+(
+  out <- select(ess, starts_with("stf")) %>%
+    psych::alpha()
+)
 ```
 
   <details>
     <summary>Click for explanation</summary>
-  Let's estimate the reliability of the *Satisfaction* subscale from the *Trust* 
-  analysis. According to our EFA, the *Satisfaction* subscale should be indicated
-  by the following five variables:
-  
-  - `stfeco`
-  - `stfgov`
-  - `stfdem`
-  - `stfedu`
-  - `stfhlth`
-  
-  To estimate the internal consistency of this subscale, we simply provide a data 
-  frame containing only the subscale data to the `alpha()` function.
-  
-  
-  
-  The `raw_alpha` value is the estimate of Cronbach's Alpha. In this case 
-  $\alpha = `r round(out$total$raw_alpha, 3)`$, so the subscale is pretty reliable.
-  
-  The table labeled "Reliability if an item is dropped" shows what Cronbach's Alpha
-  would be if each item were excluded from the scale. If this value is notably 
-  higher than the `raw_alpha` value, it could indicate a bad item.
-  
-  - Note that reliability is only one aspect of scale quality, though. So, you 
-  shouldn't throw out items just because they perform poorly in reliability analysis. 
+
+Here, we estimate the reliability of the *Satisfaction* subscale from the *Trust* 
+analysis. According to our EFA, the *Satisfaction* subscale should be indicated
+by the following five variables:
+ 
+- `stfeco`
+- `stfgov`
+- `stfdem`
+- `stfedu`
+- `stfhlth`
+ 
+We select these variables using the tidy-select function `starts_with()` to 
+extract all variables beginning with the three characters *"stf"*. To estimate 
+the internal consistency of this subscale, we simply provide a data frame 
+containing only the subscale data to the `alpha()` function.
+
+The `raw_alpha` value is the estimate of Cronbach's Alpha. In this case 
+$\alpha = `r round(out$total$raw_alpha, 3)`$, so the subscale is pretty reliable.
+
+The table labeled "Reliability if an item is dropped" shows what Cronbach's 
+Alpha would be if each item were excluded from the scale. If this value is
+notably higher than the `raw_alpha` value, it could indicate a bad item.
+ 
+- Note that reliability is only one aspect of scale quality, though. So, you 
+shouldn't throw out items just because they perform poorly in reliability
+analysis. 
 
   </details>
 
@@ -857,3 +876,5 @@ is usually considered good.
 End of In-Class Exercises
 
 ---
+
+[ess_b]: https://surfdrive.surf.nl/files/index.php/s/FClOuCa0yluoDwH/download

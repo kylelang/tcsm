@@ -18,8 +18,9 @@ two new waves have been collected each year since. You can find more info and
 access the data at <https://www.europeansocialsurvey.org>. 
 
 The data we will analyze for this practical are contained in the file named 
-*ESSround1-a.sav*. This file contains data for all respondents, but only includes 
-those variables that you will need to complete the following exercises. 
+[*ESSround1-a.sav*][ess_a]. This file contains data for all respondents, but
+only includes those variables that you will need to complete the following
+exercises. 
 
 ---
 
@@ -549,3 +550,11 @@ Yes, more-or-less. Although the exact estimates differ somewhat, the general
 pattern of factor loadings in Kestilä (2006) matches what we found here.
 
 </details>
+
+---
+
+End of At-Home Exercises
+
+---
+
+[ess_a]: https://surfdrive.surf.nl/files/index.php/s/nBQr1jnl8cwQLor/download
