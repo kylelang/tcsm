@@ -18,7 +18,7 @@ estimate an unknown factor structure (as in EFA), we now want to compare a
 hypothesized measurement model (i.e., factor structure) to observed data in order
 to evaluate the model's plausibility.
 
-### Recording {-}
+### Recording
 
 *Note:*
 
@@ -55,6 +55,6 @@ misunderstand his statements. We need to be careful not to over-generalize.
 knitr::include_url("https://www.youtube.com/embed/GTEmuveyJ1k")
 ```
 
-### Slides {-}
+### Slides
 
 You can download the lecture slides [here](pdf/cfa.pdf)

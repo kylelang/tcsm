@@ -132,6 +132,8 @@ section-64
 section-65
 cfa
 lecture-4
+recording-1
+slides-4
 reading-4
 at-home-exercises-4
 in-class-exercises-4
