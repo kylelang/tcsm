@@ -38,5 +38,9 @@ knit_child(paste0(partDir, "reading.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
 # knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
 #   cat(sep = "\n")
 knit_child(paste0(partDir, "home.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
+<<<<<<< HEAD
 knit_child(paste0(partDir, "../class-placeholder.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
+=======
+knit_child(paste0(partDir, "class.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
+>>>>>>> week4
 ```
