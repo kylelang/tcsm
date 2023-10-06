@@ -1,292 +1,164 @@
 ## At-Home Exercises
 
-```{r include = FALSE}
-library(readxl)
-library(dplyr)
-dataDir <- "../../../../data/"
-```
-
-Last week, you used PCA and EFA to replicate the results of Kestilä (2006). In 
-this week's [In-Class Exercises](in-class-exercises-2.html), you will revisit
-the Kestilä (2006) analysis one more time, now using *confirmatory factor 
-analysis* (CFA). 
-
-In this course, we will use the R-package `lavaan` to fit CFA models (as well as
-the path models and structural equation models you'll learn about in the coming
-weeks). Before you can jump into fitting a CFA to the Kestilä (2006) data, 
-however, you need to learn the basics of working with `lavaan`. 
-
-To prepare for the In-Class Exercises, work your way through this introduction
-to `lavaan` (part of which originates from the official `lavaan` tutorial). 
+This week, we will wrap up our re-analysis of the Kestilä (2006) results. During 
+this practical, you will conduct a CFA of the *Trust in Politics* items and 
+compare the results to those obtained from your previous EFA- and PCA-based 
+replications of Kestilä (2006).
 
 ---
 
 ###
 
-To get started with lavaan, complete the following two chapters from the 
-official `lavaan` tutorial:
+Load the ESS data.
 
-- [Installing lavaan](http://lavaan.ugent.be/tutorial/install.html)
-- [Lavaan syntax](http://lavaan.ugent.be/tutorial/syntax1.html)
-    - You only need to read this one
-
----
-
-Now, we'll demonstrate the basic `lavaan` workflow by estimating a linear 
-regression model using observed variables. We will analyze data from Hamilton 
-(1990) which quantify several attributes of 21 states in the US. We will use 
-three of these variables in this tutorial:
-
-1. `SAT`: Average SAT score
-1. `Income`: Per capita income expressed in $1000 units
-1. `Education`: Median education for residents 25 years of age or older
-
-The data are available in either CSV or XLSX format via the *Hamilton.csv* or 
-*Hamilton.xlsx* files, respectively.
-
----
-
-###
-
-Load the Hamilton (1990) data.
-
-*Hints:* 
-
-- Use the `read.csv()` function to load the data from CSV.
-- Use the `readxl::read_excel()` function to load the data from XLSX.
-- Both files contain the same data; you only need to load one version.
+- The relevant data are contained in the [*ess_round1.rds*][ess_data] file.
+    - This file is in R Data Set (RDS) format.
+    - The dataset is already stored as a data frame with the processing and 
+    cleaning that you should have done for previous practicals completed.
+    - Check the documentation for the `readRDS()` function to see how you can 
+    load data stored in an RDS file.
 
 <details>
   <summary>Click for explanation</summary>
   
-```{r eval = FALSE}
-## Load the readxl library:
-library(readxl)
-
-## Read the first sheet from 'Hamilton.xlsx' into a data frame called 'hamilton'
-hamilton <- read_excel("Hamilton.xlsx", sheet = 1)
-
-## OR ##
-
-## Read the data from 'Hamilton.csv' into a data frame called 'hamilton'
-hamilton <- read.csv("Hamilton.csv")
+```{r, echo = FALSE}
+dataDir <- "../../../../data/"
+ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
 ```
 
-```{r echo = FALSE}
-hamilton <- read_excel(paste0(dataDir, "Hamilton.xlsx"), sheet = 1)
+```{r, eval = FALSE}
+ess <- readRDS("ess_round1.rds")
 ```
 
 </details>
 
 ---
 
-The following path diagram shows the model we will fit to these data.
+Although you may have settled on any number of EFA solutions during the 
+[Week 4 In-Class Exercises](in-class-exercises-3.html), we are going to base the 
+following CFA on a three-factor model of *Trust in Politics* similar to the 
+original PCA results from Kestilä (2006).
 
-![](images/AMOS_path.png)
-
-This diagram represents a linear regression wherein `Education` and `Income` 
-predict `SAT`. Furthermore, `Education` and `Income` are modeled as correlated 
-random variables. As with any sensible model, `Education` and `Income` will not
-perfectly explain `SAT` (if this claim doesn't make sense, think back to our 
-discussions of model complexity and the strengths of parsimonious formal models 
-in Week 1). Consequently, the variable `Other` represents the residual of `SAT` 
-(i.e., all aspects of `SAT` that are not, linearly, related to `Education` or 
-`Income`).
-
-Although not related to the mechanics of using `lavaan`, you may find the
-following equivalencies interesting.
-
-- The regression model we're considering here is actually a simple example of a 
-*path model* such as those we'll start with in Week 5 of this course.
-- The `Other` factor shown in the diagram is equivalent to the residual term in 
-a linear regression model.
-- The `Other` factor is also equivalent to the *unique factor* or *uniqueness* 
-for an observed indicator in an EFA or CFA model.
+*Note:* Unless otherwise specified, all following questions refer to the *Trust 
+in Politics* items. We will not consider the *Attitudes toward Immigration* 
+items in these exercises.
 
 ---
 
-### {#syntax}
+### {#cfaSyntax}
 
-Based on what you learning from the `lavaan` tutorial, write out the `lavaan` 
-model syntax for the model represented by the path diagram above. 
+Define the `lavaan` model syntax for the CFA implied by the three-factor EFA 
+solution you found in the Week 2 In-Class Exercises.
 
-- Write the syntax as a character string.
-- Save this string as an object in your environment.
+- Covary the three latent factors.
+- Do not specify any mean structure.
+- Save this model syntax as an object in your environment.
 
 <details>
   <summary>Click for explanation</summary>
 
+We don't have to specify the latent covariances in the model syntax, we can tell 
+`lavaan` to estimate all latent covariances when we fit the model.
+
 ```{r}
-mod <- '
-SAT ~ Income + Education
-Income ~~ Education
-'
-```
-
-This syntax specifies two regression slopes and one covariance. However, our
-specification also implies three variances which `lavaan` will automatically 
-estimate.
-
-1. The **residual** variance of `SAT`
-1. The variance of `Income`
-1. The variance of `Education`
-
-Note that in the path diagram, all three variables have arrows pointing *toward* 
-them. Hence, all three variables are random, which means we must model their 
-variances. 
-
-- If we had not correlated `Income` and `Education`, we could have modeled them 
-as fixed predictors and not estimated their variance.
-- `SAT` is the DV in our model, so it must be random, and we must estimate its 
-(residual) variance.
-
-If we wanted to fully explicate all paths in terms of `lavaan` syntax, we could 
-do so as follows.
-
-```{r, eval = FALSE}
-mod <- '
-SAT ~ Income + Education
-
-Income ~~ Education
-
-SAT ~~ SAT
-Income ~~ Income
-Education ~~ Education
+mod_3f <- '
+politicians  =~ pltcare + pltinvt + trstplt
+satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth
+institutions =~ trstlgl + trstplc + trstun + trstprl
 '
 ```
 
 </details>
-
----
-
-In `lavaan`, we fit structural models (i.e., models with directional, causal 
-relations) using the `sem()` function. We will use the `sem()` function to fit
-the model you specified in \@ref(syntax) to the *Hamilton* data. 
 
 ---
 
 ###
 
-Consult the documentation for `lavaan::sem()` to learn what you must do to 
-estimate your model.
+Estimate the CFA model you defined above, and summarize the results.
+
+- Use the `lavaan::cfa()` function to estimate the model.
+- Use the default settings for the `cfa()` function.
+- Request the model fit statistics with the summary by supplying the 
+`fit.measures = TRUE` argument to `summary()`.
+- Request the standardized parameter estimates with the summary by supplying the 
+`standardized = TRUE` argument to `summary()`.
+
+Check the results, and answer the following questions:
+
+- Does the model fit the data well?
+- How are the latent variances and covariances specified when using the default 
+settings?
+- How is the model identified when using the default settings?
 
 <details>
   <summary>Click for explanation</summary>
 
-```{r eval = FALSE}
-?lavaan::sem
-```
-
----
-
-### {#estimate}
-
-Use the `sem()` function to fit the model you defined in \@ref(syntax) to the 
-*Hamilton* data.
-
-- Use the default settings, for now.
-- Save the result to an object in your environment.
-
-<details>
-  <summary>Click for explanation</summary>
 
 ```{r}
 ## Load the lavaan package:
 library(lavaan)
 
-## Fit the model, and store the result in an object called 'fit':
-fit <- sem(mod, data = hamilton)
+## Estimate the CFA model:
+fit_3f <- cfa(mod_3f, data = ess)
+
+## Summarize the fitted model:
+summary(fit_3f, fit.measures = TRUE, standardized = TRUE)
 ```
 
-You can safely ignore the warning about the variances' scales.
+No, the model does not seem to fit the data well.
+
+- The SRMR looks good, but one good looking fit statistic is not enough.
+- The RMSEA, TLI, and CFI are all in the "unacceptable" range.
+- The $\chi^2$ is highly significant, but we don't care.
+
+The `cfa()` function is just a wrapper for the `lavaan()` function with several 
+options set at the defaults you would want for a standard CFA. 
+
+- By default:
+    - All latent variances and covariances are freely estimated (due to the 
+    argument `auto.cov.lv.x = TRUE`)
+    - The model is identified by fixing the first factor loading of each factor 
+    to 1 (due to the argument `auto.fix.first = TRUE`)
+
+To see a full list of the (many) options you can specify to tweak the behavior
+of `lavaan` estimation functions run `?lavOptions`.
 
 </details>
 
 ---
 
+Now, we will consider a couple of alternative factor structures for the *Trust 
+in Politics* CFA. First, we will go extremely simple by estimating a one-factor 
+model wherein all *Trust* items are explained by a single latent variable.
+
+---
+
 ###
 
-Summarize the fitted model by running `summary()` on the results object from 
-\@ref(estimate).
+Define the `lavaan` model syntax for a one-factor model of the *Trust* items.
 
-- Do either of the predictors have a significant effect on SAT? 
+- Save this syntax as an object in your environment.
 
 <details>
   <summary>Click for explanation</summary>
 
 ```{r}
-summary(fit)
-```
-
-```{r, echo = FALSE}
-tmp <- summary(fit)$pe %>% filter(op == "~")
-
-inc <- tmp[1, ]
-edu <- tmp[2, ]
-```
-
-Yes, `Education` significantly affects `SAT` (
-$\beta = `r edu[["est"]] %>% round(2)`$,
-$z = `r edu[["z"]] %>% round(2)`$,
-$p < 0.001$
-), but `Income` does not (
-$\beta = `r inc[["est"]] %>% round(2)`$,
-$z = `r inc[["z"]] %>% round(3)`$,
-$p = `r inc[["pvalue"]] %>% round(3)`$
-).
-
-</details>
-
----
-
-We can also request additional results. For example, by specifying the option 
-`rsquare = TRUE` in the `summary()` function, we can see the estimated squared 
-multiple correlations for each dependent variable.
-
----
-
-###
-
-Summarize the model again, and add the `rsquare = TRUE` argument.
-
-- What proportion of the variance in `SAT` is explained by `Income` and `Education`?
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r}
-summary(fit, rsquare = TRUE)
-```
-
-```{r, echo = FALSE}
-r2 <- summary(fit, rsquare = TRUE)$pe %>% 
-  filter(op == "r2") %>% 
-  select(est) %>% 
-  as.numeric()
-```
-
-`Income` and `Education` explain `r (r2 * 100) %>% round(2)`% of the variance in 
-`SAT`.
-
-</details>
-
----
-
-The `semPlot` package can automatically generate a path diagram for some types
-of fitted SEMs (e.g., path models, CFA models). For the purposes of visualizing 
-our results, we will use the `semPlot::semPaths()` function.
-
----
-
-###
-
-Review the documentation for `semPlot::semPaths()`.
-
-<details>
-  <summary>Click for explanation</summary>
-
-```{r, eval = FALSE}
-?semPlot::semPaths
+mod_1f <- '
+political_trust =~ 
+  pltcare + 
+  pltinvt + 
+  trstprl + 
+  trstplt + 
+  stfeco + 
+  stfgov + 
+  stfdem + 
+  stfedu + 
+  stfhlth + 
+  trstlgl + 
+  trstplc + 
+  trstun + 
+  trstep
+'
 ```
 
 </details>
@@ -295,26 +167,145 @@ Review the documentation for `semPlot::semPaths()`.
 
 ###
 
-Use the `semPaths()` function to create a basic path diagram of your fitted model.
+Estimate the one-factor model, and summarize the results.
+
+- Does this model appear to fit better or worse than the three-factor model?
+
+*Notes:* 
+
+- We can also conduct a formal significance test for the difference between two 
+$\chi^2$ values, but we won't introduce those ideas until Week 5.
+- You can use the `lavaan::fitMeasures()` function to extract only the model fit 
+information from a fitted `lavaan` object.
 
 <details>
   <summary>Click for explanation</summary>
 
 ```{r}
-## Load the `semPlot` package:
-library(semPlot)
+## Estimate the one factor model:
+fit_1f <- cfa(mod_1f, data = ess)
 
-## Create a basic path diagram:
-semPaths(fit)
+## Summarize the results:
+summary(fit_1f, fit.measures = TRUE)
+
+
+## Compare fit statistics:
+fitMeasures(fit_3f)
+fitMeasures(fit_1f)
 ```
 
-We can improve this basic diagram in several ways. For example, we can add the 
-values of the estimates for the paths. We can also rotate the diagram to match 
-the orientation of our theoretical path diagram from above.
+The one-factor model definitely seems to fit worse than the three-factor model.
+
+</details>
+
+---
+
+A second order CFA model is another way of representing the latent structure 
+underlying a set of items. As you read in Byrne (2005), however, the second 
+order CFA is only appropriate in certain circumstances.
+
+---
+
+###
+
+Given the CFA results above, would a second order CFA be appropriate for the 
+*Trust* data? Why or why not?
+
+<details>
+  <summary>Click for explanation</summary>
+
+Yes, a second order CFA model is a theoretically appropriate representation of 
+the *Trust* items. 
+
+- The first order latent variables in the three-factor model are all 
+significantly correlated.
+- The first order latent variables in the three-factor model seem to tap 
+different aspects of some single underlying construct. 
+
+</details>
+
+---
+
+###
+
+Define the `lavaan` model syntax for a second-order CFA model of the *Trust* items.
+
+- Use the three factors defined in \@ref(cfaSyntax) as the first order factors.
+    
+<details>
+  <summary>Click for explanation</summary>
+
+To define the second order factor, we use the same syntactic conventions that we
+employ to define a first order factor. The only differences is that the 
+"indicators" of the second order factor (i.e., the variables listed on the RHS 
+of the `=~` operator) are previously defined first order latent variables.
 
 ```{r}
-semPaths(fit, whatLabels = "est", rotation = 2)
+mod_2nd <- '
+politicians  =~ pltcare + pltinvt + trstplt
+satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth
+institutions =~ trstlgl + trstplc + trstun + trstprl
+
+trust =~ politicians + satisfaction + institutions
+'
 ```
+
+</details>
+
+---
+
+###
+
+Estimate the second order CFA model, and summarize the results.
+
+- Does this model fit better or worse than the three-factor model?
+- Is this model more or less complex than the three-factor model?
+    - What information can you use to quantify this difference in complexity?
+
+<details>
+  <summary>Click for explanation</summary>
+
+We don't have to do anything special here. We can estimate and summarize the 
+second order CFA exactly as we did the first order CFA.
+
+```{r}
+fit_2nd <- cfa(mod_2nd, data = ess)
+summary(fit_2nd, fit.measures = TRUE, standardized = TRUE)
+
+## Compare fit between the first and second order models:
+fitMeasures(fit_3f)
+fitMeasures(fit_2nd)
+```
+
+You should quickly notice something strange about the model fit statistics 
+compared above. If you don't see it, consider the following:
+
+```{r}
+fitMeasures(fit_3f) - fitMeasures(fit_2nd)
+```
+
+The two models produce identical fit statistics! We also see that the degrees of 
+freedom are identical between the two models. Hence, the two models have equal
+complexity.
+
+This result taps into a critical idea in statistical modeling, namely, *model 
+equivalency*. It turns out the two models we're comparing here are *equivalent* 
+in the sense that they are statistically indistinguishable representations of 
+the data.
+
+Since this is a very important idea, I want to spend some time discussing it in 
+person. So, spend some time between now and the next lecture session thinking 
+about the implications of this model equivalence. Specifically, consider the 
+following questions:
+
+- What do we mean when we say that these two models are *equivalent*?
+- How is it possible for these two models to be *equivalent* when one contains 
+an additional latent variable?
+- Why are the degrees of freedom equal for these two models?
+- Why are the fit statistics equal for these two models?
+- How can we go about picking the "better" of these two models?
+
+We'll take some time to discuss these ideas in the next lecture session.
 
 </details>
 
@@ -323,3 +314,5 @@ semPaths(fit, whatLabels = "est", rotation = 2)
 End of At-Home Exercises
 
 ---
+
+[ess_data]: https://surfdrive.surf.nl/files/index.php/s/an0GVjaMiZYA73u/download
