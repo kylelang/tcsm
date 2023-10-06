@@ -136,6 +136,14 @@ recording-1
 slides-4
 reading-4
 at-home-exercises-4
+section-66
+cfaSyntax
+section-67
+section-68
+section-69
+section-70
+section-71
+section-72
 in-class-exercises-4
 full-sem
 lecture-5
