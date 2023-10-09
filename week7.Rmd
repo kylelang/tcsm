@@ -13,7 +13,6 @@ testing in the SEM/CFA context.
 1. Watch the [Lecture Recording](lecture-6.html) for this week.
 1. Complete the [Reading](reading-6.html) for this week, and answer the 
 associated reading questions.
-<!-- 1. Complete the [Formative Assessment](formative-assessment-6.html) for this week. -->
 
 **Homework before the practical**
 
@@ -28,8 +27,6 @@ knit_child(paste0(partDir, "lecture.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knit_child(paste0(partDir, "../reading-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
-# knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
-#   cat(sep = "\n")
 knit_child(paste0(partDir, "../home-placeholder.Rmd"), quiet = TRUE) %>%
   cat(sep = "\n")
 knit_child(paste0(partDir, "../class-placeholder.Rmd"), quiet = TRUE) %>%

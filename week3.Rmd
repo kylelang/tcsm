@@ -13,7 +13,6 @@ model using path analysis: *mediation* and *moderation*.
 1. Watch the [Lecture Recording](lecture-2.html) for this week.
 1. Complete the [Reading](reading-2.html) for this week, and answer the 
 associated reading questions.
-<!-- 1. Complete the [Formative Assessment](formative-assessment-2.html) for this week. -->
 
 **Homework before the practical**
 
@@ -23,15 +22,9 @@ Complete the [At-Home Exercises](at-home-exercises-2.html).
 
 During the practical you will work on the [In-Class Exercises](in-class-exercises-2.html).
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
-knit_child(paste0(partDir, "lecture.Rmd"), quiet = TRUE) %>%
-  cat(sep = "\n")
-knit_child(paste0(partDir, "reading.Rmd"), quiet = TRUE) %>%
-  cat(sep = "\n")
-# knit_child(paste0(partDir, "../assess-placeholder.Rmd"), quiet = TRUE) %>%
-#   cat(sep = "\n")
-knit_child(paste0(partDir, "home.Rmd"), quiet = TRUE) %>%
-  cat(sep = "\n")
-knit_child(paste0(partDir, "class.Rmd"), quiet = TRUE) %>%
-  cat(sep = "\n")
+```{r, echo = FALSE, message = FALSE, warning = FALSE, error = TRUE, results = "asis"}
+knit_child(paste0(partDir, "lecture.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
+knit_child(paste0(partDir, "reading.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
+knit_child(paste0(partDir, "home.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
+knit_child(paste0(partDir, "class.Rmd"), quiet = TRUE) %>% cat(sep = "\n")
 ```
