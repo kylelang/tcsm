@@ -19,7 +19,7 @@ Load the ESS data.
     load data stored in an RDS file.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
   
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
@@ -55,10 +55,7 @@ solution you found in the Week 2 In-Class Exercises.
 - Save this model syntax as an object in your environment.
 
 <details>
-  <summary>Click for explanation</summary>
-
-We don't have to specify the latent covariances in the model syntax, we can tell 
-`lavaan` to estimate all latent covariances when we fit the model.
+  <summary>Click to show code</summary>
 
 ```{r}
 mod_3f <- '
@@ -68,6 +65,13 @@ institutions =~ trstlgl + trstplc + trstun + trstprl
 '
 ```
 
+<details>
+  <summary>Click for explanation</summary>
+
+We don't have to specify the latent covariances in the model syntax, we can tell 
+`lavaan` to estimate all latent covariances when we fit the model.
+
+  </details>
 </details>
 
 ---
@@ -91,8 +95,7 @@ settings?
 - How is the model identified when using the default settings?
 
 <details>
-  <summary>Click for explanation</summary>
-
+  <summary>Click the code</summary>
 
 ```{r}
 ## Load the lavaan package:
@@ -104,6 +107,8 @@ fit_3f <- cfa(mod_3f, data = ess)
 ## Summarize the fitted model:
 summary(fit_3f, fit.measures = TRUE, standardized = TRUE)
 ```
+<details>
+  <summary>Click for explanation</summary>
 
 No, the model does not seem to fit the data well.
 
@@ -123,6 +128,7 @@ options set at the defaults you would want for a standard CFA.
 To see a full list of the (many) options you can specify to tweak the behavior
 of `lavaan` estimation functions run `?lavOptions`.
 
+  </details>
 </details>
 
 ---
@@ -140,7 +146,7 @@ Define the `lavaan` model syntax for a one-factor model of the *Trust* items.
 - Save this syntax as an object in your environment.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 mod_1f <- '
@@ -171,15 +177,11 @@ Estimate the one-factor model, and summarize the results.
 
 - Does this model appear to fit better or worse than the three-factor model?
 
-*Notes:* 
-
-- We can also conduct a formal significance test for the difference between two 
-$\chi^2$ values, but we won't introduce those ideas until Week 5.
-- You can use the `lavaan::fitMeasures()` function to extract only the model fit 
-information from a fitted `lavaan` object.
+*Note:* You can use the `lavaan::fitMeasures()` function to extract only the
+model fit information from a fitted `lavaan` object.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Estimate the one factor model:
@@ -188,14 +190,17 @@ fit_1f <- cfa(mod_1f, data = ess)
 ## Summarize the results:
 summary(fit_1f, fit.measures = TRUE)
 
-
 ## Compare fit statistics:
 fitMeasures(fit_3f)
 fitMeasures(fit_1f)
 ```
 
+<details>
+  <summary>Click for explanation</summary>
+
 The one-factor model definitely seems to fit worse than the three-factor model.
 
+  </details>
 </details>
 
 ---
@@ -231,14 +236,9 @@ different aspects of some single underlying construct.
 Define the `lavaan` model syntax for a second-order CFA model of the *Trust* items.
 
 - Use the three factors defined in \@ref(cfaSyntax) as the first order factors.
-    
-<details>
-  <summary>Click for explanation</summary>
 
-To define the second order factor, we use the same syntactic conventions that we
-employ to define a first order factor. The only differences is that the 
-"indicators" of the second order factor (i.e., the variables listed on the RHS 
-of the `=~` operator) are previously defined first order latent variables.
+ <details>
+  <summary>Click to show code</summary>
 
 ```{r}
 mod_2nd <- '
@@ -250,6 +250,15 @@ trust =~ politicians + satisfaction + institutions
 '
 ```
 
+<details>
+  <summary>Click for explanation</summary>
+
+To define the second order factor, we use the same syntactic conventions that we
+employ to define a first order factor. The only differences is that the 
+"indicators" of the second order factor (i.e., the variables listed on the RHS 
+of the `=~` operator) are previously defined first order latent variables.
+
+  </details>
 </details>
 
 ---
@@ -263,10 +272,7 @@ Estimate the second order CFA model, and summarize the results.
     - What information can you use to quantify this difference in complexity?
 
 <details>
-  <summary>Click for explanation</summary>
-
-We don't have to do anything special here. We can estimate and summarize the 
-second order CFA exactly as we did the first order CFA.
+  <summary>Click to show code</summary>
 
 ```{r}
 fit_2nd <- cfa(mod_2nd, data = ess)
@@ -276,6 +282,14 @@ summary(fit_2nd, fit.measures = TRUE, standardized = TRUE)
 fitMeasures(fit_3f)
 fitMeasures(fit_2nd)
 ```
+
+<details>
+  <summary>Click for explanation</summary>
+
+We don't have to do anything special here. We can estimate and summarize the 
+second order CFA exactly as we did the first order CFA.
+
+---
 
 You should quickly notice something strange about the model fit statistics 
 compared above. If you don't see it, consider the following:
@@ -294,7 +308,7 @@ in the sense that they are statistically indistinguishable representations of
 the data.
 
 Since this is a very important idea, I want to spend some time discussing it in 
-person. So, spend some time between now and the next lecture session thinking 
+person. So, spend some time between now and the Week 6 lecture session thinking 
 about the implications of this model equivalence. Specifically, consider the 
 following questions:
 
@@ -303,10 +317,10 @@ following questions:
 an additional latent variable?
 - Why are the degrees of freedom equal for these two models?
 - Why are the fit statistics equal for these two models?
-- How can we go about picking the "better" of these two models?
 
-We'll take some time to discuss these ideas in the next lecture session.
+We'll take some time to discuss these ideas in the Week 6 lecture session.
 
+  </details>
 </details>
 
 ---

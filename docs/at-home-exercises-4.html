@@ -448,7 +448,7 @@ load data stored in an RDS file.</li>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="at-home-exercises-4.html#cb194-1" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ess_round1.rds&quot;</span>)</span></code></pre></div>
 </details>
@@ -473,15 +473,20 @@ solution you found in the Week 2 In-Class Exercises.</p>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
-<p>We don’t have to specify the latent covariances in the model syntax, we can tell
-<code>lavaan</code> to estimate all latent covariances when we fit the model.</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="at-home-exercises-4.html#cb195-1" aria-hidden="true" tabindex="-1"></a>mod_3f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb195-2"><a href="at-home-exercises-4.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="st">politicians  =~ pltcare + pltinvt + trstplt</span></span>
 <span id="cb195-3"><a href="at-home-exercises-4.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="st">satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth</span></span>
 <span id="cb195-4"><a href="at-home-exercises-4.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="st">institutions =~ trstlgl + trstplc + trstun + trstprl</span></span>
 <span id="cb195-5"><a href="at-home-exercises-4.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We don’t have to specify the latent covariances in the model syntax, we can tell
+<code>lavaan</code> to estimate all latent covariances when we fit the model.</p>
+</details>
 </details>
 <hr />
 </div>
@@ -505,7 +510,7 @@ settings?</li>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click the code
 </summary>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="at-home-exercises-4.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the lavaan package:</span></span>
 <span id="cb196-2"><a href="at-home-exercises-4.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
@@ -611,6 +616,10 @@ Click for explanation
 ##     politicians       0.450    0.011   41.572    0.000    1.000    1.000
 ##     satisfaction      2.751    0.058   47.286    0.000    1.000    1.000
 ##     institutions      2.690    0.059   45.613    0.000    1.000    1.000</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
 <p>No, the model does not seem to fit the data well.</p>
 <ul>
 <li>The SRMR looks good, but one good looking fit statistic is not enough.</li>
@@ -631,6 +640,7 @@ to 1 (due to the argument <code>auto.fix.first = TRUE</code>)</li>
 <p>To see a full list of the (many) options you can specify to tweak the behavior
 of <code>lavaan</code> estimation functions run <code>?lavOptions</code>.</p>
 </details>
+</details>
 <hr />
 <p>Now, we will consider a couple of alternative factor structures for the <em>Trust
 in Politics</em> CFA. First, we will go extremely simple by estimating a one-factor
@@ -645,7 +655,7 @@ model wherein all <em>Trust</em> items are explained by a single latent variable
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="at-home-exercises-4.html#cb198-1" aria-hidden="true" tabindex="-1"></a>mod_1f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb198-2"><a href="at-home-exercises-4.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="st">political_trust =~ </span></span>
@@ -672,16 +682,11 @@ Click for explanation
 <ul>
 <li>Does this model appear to fit better or worse than the three-factor model?</li>
 </ul>
-<p><em>Notes:</em></p>
-<ul>
-<li>We can also conduct a formal significance test for the difference between two
-<span class="math inline">\(\chi^2\)</span> values, but we won’t introduce those ideas until Week 5.</li>
-<li>You can use the <code>lavaan::fitMeasures()</code> function to extract only the model fit
-information from a fitted <code>lavaan</code> object.</li>
-</ul>
+<p><em>Note:</em> You can use the <code>lavaan::fitMeasures()</code> function to extract only the
+model fit information from a fitted <code>lavaan</code> object.</p>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="at-home-exercises-4.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the one factor model:</span></span>
 <span id="cb199-2"><a href="at-home-exercises-4.html#cb199-2" aria-hidden="true" tabindex="-1"></a>fit_1f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_1f, <span class="at">data =</span> ess)</span>
@@ -841,7 +846,12 @@ Click for explanation
 ##                 0.756                 0.590                 0.551 
 ##                  ecvi 
 ##                 1.199</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
 <p>The one-factor model definitely seems to fit worse than the three-factor model.</p>
+</details>
 </details>
 <hr />
 <p>A second order CFA model is another way of representing the latent structure
@@ -876,12 +886,8 @@ different aspects of some single underlying construct.</li>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
-<p>To define the second order factor, we use the same syntactic conventions that we
-employ to define a first order factor. The only differences is that the
-“indicators” of the second order factor (i.e., the variables listed on the RHS
-of the <code>=~</code> operator) are previously defined first order latent variables.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="at-home-exercises-4.html#cb205-1" aria-hidden="true" tabindex="-1"></a>mod_2nd <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb205-2"><a href="at-home-exercises-4.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="st">politicians  =~ pltcare + pltinvt + trstplt</span></span>
 <span id="cb205-3"><a href="at-home-exercises-4.html#cb205-3" aria-hidden="true" tabindex="-1"></a><span class="st">satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth</span></span>
@@ -889,6 +895,15 @@ of the <code>=~</code> operator) are previously defined first order latent varia
 <span id="cb205-5"><a href="at-home-exercises-4.html#cb205-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb205-6"><a href="at-home-exercises-4.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="st">trust =~ politicians + satisfaction + institutions</span></span>
 <span id="cb205-7"><a href="at-home-exercises-4.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>To define the second order factor, we use the same syntactic conventions that we
+employ to define a first order factor. The only differences is that the
+“indicators” of the second order factor (i.e., the variables listed on the RHS
+of the <code>=~</code> operator) are previously defined first order latent variables.</p>
+</details>
 </details>
 <hr />
 </div>
@@ -904,10 +919,8 @@ of the <code>=~</code> operator) are previously defined first order latent varia
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
-<p>We don’t have to do anything special here. We can estimate and summarize the
-second order CFA exactly as we did the first order CFA.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="at-home-exercises-4.html#cb206-1" aria-hidden="true" tabindex="-1"></a>fit_2nd <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_2nd, <span class="at">data =</span> ess)</span>
 <span id="cb206-2"><a href="at-home-exercises-4.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_2nd, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 45 iterations
@@ -1070,6 +1083,13 @@ second order CFA exactly as we did the first order CFA.</p>
 ##                 0.854                 0.591                 0.744 
 ##                  ecvi 
 ##                 0.598</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We don’t have to do anything special here. We can estimate and summarize the
+second order CFA exactly as we did the first order CFA.</p>
+<hr />
 <p>You should quickly notice something strange about the model fit statistics
 compared above. If you don’t see it, consider the following:</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="at-home-exercises-4.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f) <span class="sc">-</span> <span class="fu">fitMeasures</span>(fit_2nd)</span></code></pre></div>
@@ -1113,7 +1133,7 @@ equivalency</em>. It turns out the two models we’re comparing here are <em>equ
 in the sense that they are statistically indistinguishable representations of
 the data.</p>
 <p>Since this is a very important idea, I want to spend some time discussing it in
-person. So, spend some time between now and the next lecture session thinking
+person. So, spend some time between now and the Week 6 lecture session thinking
 about the implications of this model equivalence. Specifically, consider the
 following questions:</p>
 <ul>
@@ -1122,9 +1142,9 @@ following questions:</p>
 an additional latent variable?</li>
 <li>Why are the degrees of freedom equal for these two models?</li>
 <li>Why are the fit statistics equal for these two models?</li>
-<li>How can we go about picking the “better” of these two models?</li>
 </ul>
-<p>We’ll take some time to discuss these ideas in the next lecture session.</p>
+<p>We’ll take some time to discuss these ideas in the Week 6 lecture session.</p>
+</details>
 </details>
 <hr />
 <p>End of At-Home Exercises</p>

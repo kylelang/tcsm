@@ -664,7 +664,7 @@ package to conduct a simple slopes analysis for the model from \@ref(olsFit).
 <details>
   <summary>Click to show code</summary>
 
-```{r, error = TRUE}
+```{r}
 library(rockchalk)
 
 ## Estimate and plot simple slopes:
