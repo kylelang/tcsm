@@ -430,7 +430,7 @@ Kestilä extracted three components with VARIMAX rotation.
 library(psych)
 
 ## Run the PCA:
-pca_trust <- select(ess, trstlgl:impcntr) %>% 
+pca_trust <- select(ess, trstlgl:trstplt) %>% 
   principal(nfactors = 3, rotate = "varimax")
 
 ## Print the results:
