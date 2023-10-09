@@ -371,7 +371,21 @@ select(ess, trstlgl:rfgbfml) %>% descriptives()
   <details>
     <summary>Click for explanation</summary>
   
-  No. Everything looks pretty much fine.
+  The variables `qfimchr` and `qfimwht` both contain values that fall outside the expected
+  range for our survey responses: 77, 88, and 99. In SPSS, these were labeled as "Refusal"
+  "Don't know" and "No answer" respectively, and would not have contributed to the
+  analysis. 
+
+  Here, we need to tell R that these values should be considered missing, or `NA`.
+  Otherwise they will contribute the numeric value to the analysis, as though someone had
+  provided an answer of 77 on a 10-point scale.
+
+```{r}
+ess <- ess %>%
+  mutate(across(c(qfimchr, qfimwht), na_if, 77)) %>% 
+  mutate(across(c(qfimchr, qfimwht), na_if, 88)) %>%
+  mutate(across(c(qfimchr, qfimwht), na_if, 99))
+```
 
 </details>
 
