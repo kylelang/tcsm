@@ -441,10 +441,10 @@ processing/recoding that you should have done for those exercises has already
 been (mostly) implemented.</li>
 <li>It will be helpful to convert <code>cntry</code> back into a factor.</li>
 </ul>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="in-class-exercises-3.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb147-2"><a href="in-class-exercises-3.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-3"><a href="in-class-exercises-3.html#cb147-3" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb147-4"><a href="in-class-exercises-3.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cntry =</span> <span class="fu">factor</span>(cntry))</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="in-class-exercises-3.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb150-2"><a href="in-class-exercises-3.html#cb150-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-3"><a href="in-class-exercises-3.html#cb150-3" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ESSround1-b.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb150-4"><a href="in-class-exercises-3.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cntry =</span> <span class="fu">factor</span>(cntry))</span></code></pre></div>
 <hr />
 </div>
 <div id="section-53" class="section level3" number="4.4.2">
@@ -522,12 +522,12 @@ geometry.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="in-class-exercises-3.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the psych package:</span></span>
-<span id="cb148-2"><a href="in-class-exercises-3.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb148-3"><a href="in-class-exercises-3.html#cb148-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-4"><a href="in-class-exercises-3.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run a trivial EFA on the &#39;trust&#39; items</span></span>
-<span id="cb148-5"><a href="in-class-exercises-3.html#cb148-5" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span></span>
-<span id="cb148-6"><a href="in-class-exercises-3.html#cb148-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fa</span>(<span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="in-class-exercises-3.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the psych package:</span></span>
+<span id="cb151-2"><a href="in-class-exercises-3.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb151-3"><a href="in-class-exercises-3.html#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="in-class-exercises-3.html#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run a trivial EFA on the &#39;trust&#39; items</span></span>
+<span id="cb151-5"><a href="in-class-exercises-3.html#cb151-5" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span></span>
+<span id="cb151-6"><a href="in-class-exercises-3.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fa</span>(<span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)  </span></code></pre></div>
 <details>
 <summary>
 Click for explanation (EFA)
@@ -539,8 +539,8 @@ eigenvalues.</p>
 <li><p>We also don’t care about interpretable solutions, so we don’t need rotation.</p>
 </details></li>
 </ul>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="in-class-exercises-3.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the estimated eigenvalues:</span></span>
-<span id="cb149-2"><a href="in-class-exercises-3.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust0<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="in-class-exercises-3.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the estimated eigenvalues:</span></span>
+<span id="cb152-2"><a href="in-class-exercises-3.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(efa_trust0<span class="sc">$</span>values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##  [1]  4.555  3.054  0.411  0.134  0.071 -0.119 -0.177 -0.258 -0.280 -0.312
 ## [11] -0.344 -0.406 -0.412 -0.423 -0.444 -0.492</code></pre>
 <details>
@@ -567,19 +567,19 @@ Click to show code
 </summary>
 <p>Given a vector of estimated eigenvalues, we can create a scree plot using
 <code>ggplot()</code> and the <code>geom_line()</code> or <code>geom_path()</code> geometry.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="in-class-exercises-3.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb151-2"><a href="in-class-exercises-3.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb151-3"><a href="in-class-exercises-3.html#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-4"><a href="in-class-exercises-3.html#cb151-4" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="sc">%$%</span> <span class="fu">data.frame</span>(<span class="at">y =</span> values, <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(values)) <span class="sc">%&gt;%</span></span>
-<span id="cb151-5"><a href="in-class-exercises-3.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
-<span id="cb151-6"><a href="in-class-exercises-3.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb151-7"><a href="in-class-exercises-3.html#cb151-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
-<span id="cb151-8"><a href="in-class-exercises-3.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="in-class-exercises-3.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb154-2"><a href="in-class-exercises-3.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb154-3"><a href="in-class-exercises-3.html#cb154-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-4"><a href="in-class-exercises-3.html#cb154-4" aria-hidden="true" tabindex="-1"></a>efa_trust0 <span class="sc">%$%</span> <span class="fu">data.frame</span>(<span class="at">y =</span> values, <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(values)) <span class="sc">%&gt;%</span></span>
+<span id="cb154-5"><a href="in-class-exercises-3.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
+<span id="cb154-6"><a href="in-class-exercises-3.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb154-7"><a href="in-class-exercises-3.html#cb154-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb154-8"><a href="in-class-exercises-3.html#cb154-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>We can also use the <code>psych::scree()</code> function to create a scree plot directly
 from the data.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="in-class-exercises-3.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span> <span class="fu">scree</span>(<span class="at">pc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="in-class-exercises-3.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span> <span class="fu">scree</span>(<span class="at">pc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation (scree plot)
@@ -608,13 +608,13 @@ set a seed to make sure our results are reproducible.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="in-class-exercises-3.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the random number seed:</span></span>
-<span id="cb153-2"><a href="in-class-exercises-3.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb153-3"><a href="in-class-exercises-3.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-4"><a href="in-class-exercises-3.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
-<span id="cb153-5"><a href="in-class-exercises-3.html#cb153-5" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span></span>
-<span id="cb153-6"><a href="in-class-exercises-3.html#cb153-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>) </span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="in-class-exercises-3.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the random number seed:</span></span>
+<span id="cb156-2"><a href="in-class-exercises-3.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb156-3"><a href="in-class-exercises-3.html#cb156-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-4"><a href="in-class-exercises-3.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
+<span id="cb156-5"><a href="in-class-exercises-3.html#cb156-5" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span></span>
+<span id="cb156-6"><a href="in-class-exercises-3.html#cb156-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>) </span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 <pre><code>## Parallel analysis suggests that the number of factors =  5  and the number of components =  NA</code></pre>
 <details>
 <summary>
@@ -626,21 +626,21 @@ Click for explanation
 compute the eigenvalues from the original data to run parallel analysis.
 Hence, we don’t actually need to run a separate EFA to estimate the
 eigenvalues.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="in-class-exercises-3.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the eigenvalues estimated during the parallel analysis:</span></span>
-<span id="cb155-2"><a href="in-class-exercises-3.html#cb155-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="in-class-exercises-3.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the eigenvalues estimated during the parallel analysis:</span></span>
+<span id="cb158-2"><a href="in-class-exercises-3.html#cb158-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values</span></code></pre></div>
 <pre><code>##  [1]  4.55517136  3.05362593  0.41073627  0.13364902  0.07116952 -0.11909803
 ##  [7] -0.17729996 -0.25838504 -0.28014401 -0.31230246 -0.34437047 -0.40604399
 ## [13] -0.41192101 -0.42303666 -0.44425206 -0.49233019</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="in-class-exercises-3.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare to the version from the EFA:</span></span>
-<span id="cb157-2"><a href="in-class-exercises-3.html#cb157-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values <span class="sc">-</span> efa_trust0<span class="sc">$</span>values</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="in-class-exercises-3.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare to the version from the EFA:</span></span>
+<span id="cb160-2"><a href="in-class-exercises-3.html#cb160-2" aria-hidden="true" tabindex="-1"></a>pa_trust<span class="sc">$</span>fa.values <span class="sc">-</span> efa_trust0<span class="sc">$</span>values</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="in-class-exercises-3.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recreate the scree plot from above:</span></span>
-<span id="cb159-2"><a href="in-class-exercises-3.html#cb159-2" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="sc">%$%</span> <span class="fu">data.frame</span>(<span class="at">y =</span> fa.values, <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(fa.values)) <span class="sc">%&gt;%</span></span>
-<span id="cb159-3"><a href="in-class-exercises-3.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
-<span id="cb159-4"><a href="in-class-exercises-3.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb159-5"><a href="in-class-exercises-3.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
-<span id="cb159-6"><a href="in-class-exercises-3.html#cb159-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="in-class-exercises-3.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Recreate the scree plot from above:</span></span>
+<span id="cb162-2"><a href="in-class-exercises-3.html#cb162-2" aria-hidden="true" tabindex="-1"></a>pa_trust <span class="sc">%$%</span> <span class="fu">data.frame</span>(<span class="at">y =</span> fa.values, <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(fa.values)) <span class="sc">%&gt;%</span></span>
+<span id="cb162-3"><a href="in-class-exercises-3.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
+<span id="cb162-4"><a href="in-class-exercises-3.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb162-5"><a href="in-class-exercises-3.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-6"><a href="in-class-exercises-3.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>Of course, we also see the same scree plot printed as part of the parallel
 analysis. So, there’s really no reason to create a separate scree plot, at all,
 if we’re doing parallel analysis.</p>
@@ -672,15 +672,15 @@ Click to show code
 </summary>
 <p>This time, we’ll start by running the parallel analysis and get the eigenvalues
 and scree plot from <code>psych::fa.parallel()</code>.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="in-class-exercises-3.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the seed:</span></span>
-<span id="cb160-2"><a href="in-class-exercises-3.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
-<span id="cb160-3"><a href="in-class-exercises-3.html#cb160-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="in-class-exercises-3.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run parallel analysis on the &#39;attitudes&#39; items:</span></span>
-<span id="cb160-5"><a href="in-class-exercises-3.html#cb160-5" aria-hidden="true" tabindex="-1"></a>pa_att <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span> <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="in-class-exercises-3.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the seed:</span></span>
+<span id="cb163-2"><a href="in-class-exercises-3.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb163-3"><a href="in-class-exercises-3.html#cb163-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-4"><a href="in-class-exercises-3.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Run parallel analysis on the &#39;attitudes&#39; items:</span></span>
+<span id="cb163-5"><a href="in-class-exercises-3.html#cb163-5" aria-hidden="true" tabindex="-1"></a>pa_att <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span> <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
+<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <pre><code>## Parallel analysis suggests that the number of factors =  7  and the number of components =  NA</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="in-class-exercises-3.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the eigenvalues:</span></span>
-<span id="cb162-2"><a href="in-class-exercises-3.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pa_att<span class="sc">$</span>fa.values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="in-class-exercises-3.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the eigenvalues:</span></span>
+<span id="cb165-2"><a href="in-class-exercises-3.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pa_att<span class="sc">$</span>fa.values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##  [1]  7.841  1.474  0.748  0.534  0.327  0.152  0.123  0.025 -0.033 -0.064
 ## [11] -0.081 -0.098 -0.121 -0.137 -0.145 -0.179 -0.196 -0.204 -0.214 -0.222
 ## [21] -0.246 -0.253 -0.331 -0.425 -0.432</code></pre>
@@ -735,16 +735,16 @@ chances of errors) by using a <code>for()</code> loop to iterate through numbers
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="in-class-exercises-3.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define an empty list to hold all of our fitted EFA objects:</span></span>
-<span id="cb164-2"><a href="in-class-exercises-3.html#cb164-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb164-3"><a href="in-class-exercises-3.html#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-4"><a href="in-class-exercises-3.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Loop through the interesting numbers of factors and estimate an EFA for each:</span></span>
-<span id="cb164-5"><a href="in-class-exercises-3.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>) </span>
-<span id="cb164-6"><a href="in-class-exercises-3.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  efa_trust[[<span class="fu">as.character</span>(i)]] <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb164-7"><a href="in-class-exercises-3.html#cb164-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span> </span>
-<span id="cb164-8"><a href="in-class-exercises-3.html#cb164-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fa</span>(<span class="at">nfactors =</span> i,          <span class="co"># Number of factors = Loop index</span></span>
-<span id="cb164-9"><a href="in-class-exercises-3.html#cb164-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,   <span class="co"># Oblique rotation</span></span>
-<span id="cb164-10"><a href="in-class-exercises-3.html#cb164-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>) <span class="co"># Estimate factor scores with WLS</span></span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="in-class-exercises-3.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define an empty list to hold all of our fitted EFA objects:</span></span>
+<span id="cb167-2"><a href="in-class-exercises-3.html#cb167-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb167-3"><a href="in-class-exercises-3.html#cb167-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="in-class-exercises-3.html#cb167-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Loop through the interesting numbers of factors and estimate an EFA for each:</span></span>
+<span id="cb167-5"><a href="in-class-exercises-3.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>) </span>
+<span id="cb167-6"><a href="in-class-exercises-3.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  efa_trust[[<span class="fu">as.character</span>(i)]] <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb167-7"><a href="in-class-exercises-3.html#cb167-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(trstlgl<span class="sc">:</span>impcntr) <span class="sc">%&gt;%</span> </span>
+<span id="cb167-8"><a href="in-class-exercises-3.html#cb167-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fa</span>(<span class="at">nfactors =</span> i,          <span class="co"># Number of factors = Loop index</span></span>
+<span id="cb167-9"><a href="in-class-exercises-3.html#cb167-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,   <span class="co"># Oblique rotation</span></span>
+<span id="cb167-10"><a href="in-class-exercises-3.html#cb167-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>) <span class="co"># Estimate factor scores with WLS</span></span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -755,13 +755,13 @@ Click to show code
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="in-class-exercises-3.html#cb165-1" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb165-2"><a href="in-class-exercises-3.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)</span>
-<span id="cb165-3"><a href="in-class-exercises-3.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  efa_att[[<span class="fu">as.character</span>(i)]] <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb165-4"><a href="in-class-exercises-3.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span></span>
-<span id="cb165-5"><a href="in-class-exercises-3.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fa</span>(<span class="at">nfactors =</span> i,         </span>
-<span id="cb165-6"><a href="in-class-exercises-3.html#cb165-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,  </span>
-<span id="cb165-7"><a href="in-class-exercises-3.html#cb165-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="in-class-exercises-3.html#cb168-1" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb168-2"><a href="in-class-exercises-3.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb168-3"><a href="in-class-exercises-3.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  efa_att[[<span class="fu">as.character</span>(i)]] <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb168-4"><a href="in-class-exercises-3.html#cb168-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span></span>
+<span id="cb168-5"><a href="in-class-exercises-3.html#cb168-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fa</span>(<span class="at">nfactors =</span> i,         </span>
+<span id="cb168-6"><a href="in-class-exercises-3.html#cb168-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">rotate   =</span> <span class="st">&quot;promax&quot;</span>,  </span>
+<span id="cb168-7"><a href="in-class-exercises-3.html#cb168-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">scores   =</span> <span class="st">&quot;Bartlett&quot;</span>)</span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -779,7 +779,7 @@ by <code>psych::fa()</code>.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="in-class-exercises-3.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(x <span class="cf">in</span> efa_trust) <span class="fu">print</span>(x<span class="sc">$</span>loadings)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="in-class-exercises-3.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(x <span class="cf">in</span> efa_trust) <span class="fu">print</span>(x<span class="sc">$</span>loadings)</span></code></pre></div>
 <pre><code>## 
 ## Loadings:
 ##         MR1    MR3    MR2   
@@ -925,7 +925,7 @@ items, and select the best solution.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="in-class-exercises-3.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(x <span class="cf">in</span> efa_att) <span class="fu">print</span>(x<span class="sc">$</span>loadings)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="in-class-exercises-3.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(x <span class="cf">in</span> efa_att) <span class="fu">print</span>(x<span class="sc">$</span>loadings)</span></code></pre></div>
 <pre><code>## 
 ## Loadings:
 ##         MR1    MR2    MR3   
@@ -1097,11 +1097,11 @@ Click to show code
 (2006). We need to keep these exercises consistent, though. So, the remaining
 questions will all assume you have extract three factors from the <em>Trust</em> items
 and five factors from the <em>Attitudes</em> items, to parallel the Kestilä (2006) results.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="in-class-exercises-3.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Select the three-factor solution for &#39;trust&#39;:</span></span>
-<span id="cb170-2"><a href="in-class-exercises-3.html#cb170-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> efa_trust[[<span class="st">&quot;3&quot;</span>]]</span>
-<span id="cb170-3"><a href="in-class-exercises-3.html#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-4"><a href="in-class-exercises-3.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Select the five-factor solution for &#39;attitudes&#39;:</span></span>
-<span id="cb170-5"><a href="in-class-exercises-3.html#cb170-5" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> efa_att[[<span class="st">&quot;5&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="in-class-exercises-3.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Select the three-factor solution for &#39;trust&#39;:</span></span>
+<span id="cb173-2"><a href="in-class-exercises-3.html#cb173-2" aria-hidden="true" tabindex="-1"></a>efa_trust <span class="ot">&lt;-</span> efa_trust[[<span class="st">&quot;3&quot;</span>]]</span>
+<span id="cb173-3"><a href="in-class-exercises-3.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="in-class-exercises-3.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Select the five-factor solution for &#39;attitudes&#39;:</span></span>
+<span id="cb173-5"><a href="in-class-exercises-3.html#cb173-5" aria-hidden="true" tabindex="-1"></a>efa_att <span class="ot">&lt;-</span> efa_att[[<span class="st">&quot;5&quot;</span>]]</span></code></pre></div>
 <hr />
 </div>
 <div id="factorScores" class="section level3" number="4.4.10">
@@ -1113,16 +1113,16 @@ as new columns.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="in-class-exercises-3.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Rename the factor scores:</span></span>
-<span id="cb171-2"><a href="in-class-exercises-3.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(efa_trust<span class="sc">$</span>scores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;trust_pol&quot;</span>, <span class="st">&quot;satisfy&quot;</span>, <span class="st">&quot;trust_inst&quot;</span>)</span>
-<span id="cb171-3"><a href="in-class-exercises-3.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(efa_att<span class="sc">$</span>scores)   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;effects&quot;</span>, </span>
-<span id="cb171-4"><a href="in-class-exercises-3.html#cb171-4" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;allowance&quot;</span>, </span>
-<span id="cb171-5"><a href="in-class-exercises-3.html#cb171-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;refugees&quot;</span>, </span>
-<span id="cb171-6"><a href="in-class-exercises-3.html#cb171-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;ethnic&quot;</span>, </span>
-<span id="cb171-7"><a href="in-class-exercises-3.html#cb171-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;europe&quot;</span>)</span>
-<span id="cb171-8"><a href="in-class-exercises-3.html#cb171-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-9"><a href="in-class-exercises-3.html#cb171-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Add factor scores to the dataset as new columns:</span></span>
-<span id="cb171-10"><a href="in-class-exercises-3.html#cb171-10" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ess, efa_trust<span class="sc">$</span>scores, efa_att<span class="sc">$</span>scores)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-3.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Rename the factor scores:</span></span>
+<span id="cb174-2"><a href="in-class-exercises-3.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(efa_trust<span class="sc">$</span>scores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;trust_pol&quot;</span>, <span class="st">&quot;satisfy&quot;</span>, <span class="st">&quot;trust_inst&quot;</span>)</span>
+<span id="cb174-3"><a href="in-class-exercises-3.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(efa_att<span class="sc">$</span>scores)   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;effects&quot;</span>, </span>
+<span id="cb174-4"><a href="in-class-exercises-3.html#cb174-4" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;allowance&quot;</span>, </span>
+<span id="cb174-5"><a href="in-class-exercises-3.html#cb174-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;refugees&quot;</span>, </span>
+<span id="cb174-6"><a href="in-class-exercises-3.html#cb174-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;ethnic&quot;</span>, </span>
+<span id="cb174-7"><a href="in-class-exercises-3.html#cb174-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;europe&quot;</span>)</span>
+<span id="cb174-8"><a href="in-class-exercises-3.html#cb174-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-9"><a href="in-class-exercises-3.html#cb174-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Add factor scores to the dataset as new columns:</span></span>
+<span id="cb174-10"><a href="in-class-exercises-3.html#cb174-10" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ess, efa_trust<span class="sc">$</span>scores, efa_att<span class="sc">$</span>scores)</span></code></pre></div>
 </details>
 <hr />
 <p>Kestilä (2006) used the component scores to descriptively evaluate country-level
@@ -1142,11 +1142,11 @@ Click to show code
 dimensions. We can use a linear model to test whether the countries differ in
 average levels of <em>Trust in Institutions</em> (as quantified by the relevant factor
 score).</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="in-class-exercises-3.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model:</span></span>
-<span id="cb172-2"><a href="in-class-exercises-3.html#cb172-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> cntry, <span class="at">data =</span> ess)</span>
-<span id="cb172-3"><a href="in-class-exercises-3.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-4"><a href="in-class-exercises-3.html#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="do">## View the regression-style summary:</span></span>
-<span id="cb172-5"><a href="in-class-exercises-3.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="in-class-exercises-3.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the model:</span></span>
+<span id="cb175-2"><a href="in-class-exercises-3.html#cb175-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> cntry, <span class="at">data =</span> ess)</span>
+<span id="cb175-3"><a href="in-class-exercises-3.html#cb175-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-4"><a href="in-class-exercises-3.html#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="do">## View the regression-style summary:</span></span>
+<span id="cb175-5"><a href="in-class-exercises-3.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = trust_inst ~ cntry, data = ess)
@@ -1173,15 +1173,15 @@ score).</p>
 ##   (3863 observations deleted due to missingness)
 ## Multiple R-squared:  0.2656, Adjusted R-squared:  0.2652 
 ## F-statistic: 647.2 on 8 and 14315 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="in-class-exercises-3.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the results as an ANOVA table:</span></span>
-<span id="cb174-2"><a href="in-class-exercises-3.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="in-class-exercises-3.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="do">## View the results as an ANOVA table:</span></span>
+<span id="cb177-2"><a href="in-class-exercises-3.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(out)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"8","2":"4731.789","3":"591.4735931","4":"647.229","5":"0","_rn_":"cntry"},{"1":"14315","2":"13081.837","3":"0.9138552","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="in-class-exercises-3.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Post-hoc tests</span></span>
-<span id="cb175-2"><a href="in-class-exercises-3.html#cb175-2" aria-hidden="true" tabindex="-1"></a>out <span class="sc">%&gt;%</span> <span class="fu">aov</span>() <span class="sc">%&gt;%</span> <span class="fu">TukeyHSD</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="in-class-exercises-3.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Post-hoc tests</span></span>
+<span id="cb178-2"><a href="in-class-exercises-3.html#cb178-2" aria-hidden="true" tabindex="-1"></a>out <span class="sc">%&gt;%</span> <span class="fu">aov</span>() <span class="sc">%&gt;%</span> <span class="fu">TukeyHSD</span>()</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1263,7 +1263,7 @@ part of the analysis, we need to subset the data to only the Finnish cases.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="in-class-exercises-3.html#cb177-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">filter</span>(ess, cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="in-class-exercises-3.html#cb180-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">filter</span>(ess, cntry <span class="sc">==</span> <span class="st">&quot;Finland&quot;</span>)</span></code></pre></div>
 </details>
 <hr />
 <p>We still have one more step before we can estimate any models. We must prepare
@@ -1291,10 +1291,10 @@ inspect those variables to see if they require any processing.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="in-class-exercises-3.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb178-2"><a href="in-class-exercises-3.html#cb178-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-3"><a href="in-class-exercises-3.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(ess_finland, gndr, yrbrn, eduyrs, polintr, lrscale) <span class="sc">%&gt;%</span> </span>
-<span id="cb178-4"><a href="in-class-exercises-3.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="in-class-exercises-3.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb181-2"><a href="in-class-exercises-3.html#cb181-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-3"><a href="in-class-exercises-3.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(ess_finland, gndr, yrbrn, eduyrs, polintr, lrscale) <span class="sc">%&gt;%</span> </span>
+<span id="cb181-4"><a href="in-class-exercises-3.html#cb181-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["unique"],"name":[5],"type":["int"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["mode_value"],"name":[9],"type":["chr"],"align":["left"]},{"label":["sd"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["v"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[12],"type":["int"],"align":["right"]},{"label":["max"],"name":[13],"type":["int"],"align":["right"]},{"label":["range"],"name":[14],"type":["int"],"align":["right"]},{"label":["skew"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["skew_2se"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["kurt"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurt_2se"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"gndr","2":"character","3":"2000","4":"0.0000","5":"3","6":"NA","7":"NA","8":"1040","9":"Female","10":"NA","11":"0.4992000","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"yrbrn","2":"integer","3":"2000","4":"0.0000","5":"79","6":"1956.36950","7":"1957","8":"1957","9":"NA","10":"18.491510","11":"NA","12":"1906","13":"1987","14":"81","15":"-0.1585289","16":"-1.448249","17":"2.113295","18":"9.657865"},{"1":"eduyrs","2":"integer","3":"1997","4":"0.0015","5":"27","6":"11.95643","7":"12","8":"12","9":"NA","10":"3.900645","11":"NA","12":"0","13":"26","14":"26","15":"0.2948606","16":"2.691696","17":"2.817418","18":"12.866107"},{"1":"polintr","2":"character","3":"1999","4":"0.0005","5":"5","6":"NA","7":"NA","8":"842","9":"Hardly interested","10":"NA","11":"0.6501730","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"},{"1":"lrscale","2":"character","3":"1891","4":"0.0545","5":"12","6":"NA","7":"NA","8":"599","9":"5","10":"NA","11":"0.8312956","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1317,7 +1317,7 @@ Click for explanation
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="in-class-exercises-3.html#cb179-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland, <span class="at">age =</span> <span class="dv">2002</span> <span class="sc">-</span> yrbrn)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="in-class-exercises-3.html#cb182-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland, <span class="at">age =</span> <span class="dv">2002</span> <span class="sc">-</span> yrbrn)</span></code></pre></div>
 <details>
 <summary>
 Click for explanation
@@ -1335,21 +1335,21 @@ Kestilä analyzed age. Fortunately, we know that the data were collected in
 Click to show code
 </summary>
 <p>First, we’ll transform <code>polintr</code>.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="in-class-exercises-3.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Store the original variable for checking purposes:</span></span>
-<span id="cb180-2"><a href="in-class-exercises-3.html#cb180-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> ess_finland<span class="sc">$</span>polintr</span>
-<span id="cb180-3"><a href="in-class-exercises-3.html#cb180-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-4"><a href="in-class-exercises-3.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the four character values into two factor levels:</span></span>
-<span id="cb180-5"><a href="in-class-exercises-3.html#cb180-5" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span></span>
-<span id="cb180-6"><a href="in-class-exercises-3.html#cb180-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(ess_finland,</span>
-<span id="cb180-7"><a href="in-class-exercises-3.html#cb180-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">polintr_bin =</span> <span class="fu">recode_factor</span>(polintr,</span>
-<span id="cb180-8"><a href="in-class-exercises-3.html#cb180-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Not at all interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
-<span id="cb180-9"><a href="in-class-exercises-3.html#cb180-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Hardly interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
-<span id="cb180-10"><a href="in-class-exercises-3.html#cb180-10" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Quite interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>,</span>
-<span id="cb180-11"><a href="in-class-exercises-3.html#cb180-11" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Very interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>)</span>
-<span id="cb180-12"><a href="in-class-exercises-3.html#cb180-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb180-13"><a href="in-class-exercises-3.html#cb180-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-14"><a href="in-class-exercises-3.html#cb180-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
-<span id="cb180-15"><a href="in-class-exercises-3.html#cb180-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> tmp, <span class="at">new =</span> ess_finland<span class="sc">$</span>polintr_bin, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="in-class-exercises-3.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Store the original variable for checking purposes:</span></span>
+<span id="cb183-2"><a href="in-class-exercises-3.html#cb183-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> ess_finland<span class="sc">$</span>polintr</span>
+<span id="cb183-3"><a href="in-class-exercises-3.html#cb183-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-4"><a href="in-class-exercises-3.html#cb183-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the four character values into two factor levels:</span></span>
+<span id="cb183-5"><a href="in-class-exercises-3.html#cb183-5" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span></span>
+<span id="cb183-6"><a href="in-class-exercises-3.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(ess_finland,</span>
+<span id="cb183-7"><a href="in-class-exercises-3.html#cb183-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">polintr_bin =</span> <span class="fu">recode_factor</span>(polintr,</span>
+<span id="cb183-8"><a href="in-class-exercises-3.html#cb183-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Not at all interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
+<span id="cb183-9"><a href="in-class-exercises-3.html#cb183-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Hardly interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low Interest&quot;</span>,</span>
+<span id="cb183-10"><a href="in-class-exercises-3.html#cb183-10" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Quite interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>,</span>
+<span id="cb183-11"><a href="in-class-exercises-3.html#cb183-11" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Very interested&quot;</span> <span class="ot">=</span> <span class="st">&quot;High Interest&quot;</span>)</span>
+<span id="cb183-12"><a href="in-class-exercises-3.html#cb183-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb183-13"><a href="in-class-exercises-3.html#cb183-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-14"><a href="in-class-exercises-3.html#cb183-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
+<span id="cb183-15"><a href="in-class-exercises-3.html#cb183-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> tmp, <span class="at">new =</span> ess_finland<span class="sc">$</span>polintr_bin, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
 <pre><code>##                        new
 ## old                     Low Interest High Interest &lt;NA&gt;
 ##   Hardly interested              842             0    0
@@ -1358,20 +1358,20 @@ Click to show code
 ##   Very interested                  0           144    0
 ##   &lt;NA&gt;                             0             0    1</code></pre>
 <p>Now, we’ll deal with <code>lrscale</code>.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="in-class-exercises-3.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the old version for checking:</span></span>
-<span id="cb182-2"><a href="in-class-exercises-3.html#cb182-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> ess_finland<span class="sc">$</span>lrscale</span>
-<span id="cb182-3"><a href="in-class-exercises-3.html#cb182-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb182-4"><a href="in-class-exercises-3.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the extreme levels:</span></span>
-<span id="cb182-5"><a href="in-class-exercises-3.html#cb182-5" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland,</span>
-<span id="cb182-6"><a href="in-class-exercises-3.html#cb182-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">lrscale =</span> <span class="fu">recode</span>(lrscale,</span>
-<span id="cb182-7"><a href="in-class-exercises-3.html#cb182-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Left&quot;</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb182-8"><a href="in-class-exercises-3.html#cb182-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Right&quot;</span> <span class="ot">=</span> <span class="dv">10</span>,</span>
-<span id="cb182-9"><a href="in-class-exercises-3.html#cb182-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">.default =</span> <span class="fu">as.numeric</span>(lrscale)</span>
-<span id="cb182-10"><a href="in-class-exercises-3.html#cb182-10" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb182-11"><a href="in-class-exercises-3.html#cb182-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb182-12"><a href="in-class-exercises-3.html#cb182-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb182-13"><a href="in-class-exercises-3.html#cb182-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
-<span id="cb182-14"><a href="in-class-exercises-3.html#cb182-14" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> tmp, <span class="at">new =</span> ess_finland<span class="sc">$</span>lrscale, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="in-class-exercises-3.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the old version for checking:</span></span>
+<span id="cb185-2"><a href="in-class-exercises-3.html#cb185-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> ess_finland<span class="sc">$</span>lrscale</span>
+<span id="cb185-3"><a href="in-class-exercises-3.html#cb185-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-4"><a href="in-class-exercises-3.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Recode the extreme levels:</span></span>
+<span id="cb185-5"><a href="in-class-exercises-3.html#cb185-5" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland,</span>
+<span id="cb185-6"><a href="in-class-exercises-3.html#cb185-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">lrscale =</span> <span class="fu">recode</span>(lrscale,</span>
+<span id="cb185-7"><a href="in-class-exercises-3.html#cb185-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Left&quot;</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb185-8"><a href="in-class-exercises-3.html#cb185-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Right&quot;</span> <span class="ot">=</span> <span class="dv">10</span>,</span>
+<span id="cb185-9"><a href="in-class-exercises-3.html#cb185-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">.default =</span> <span class="fu">as.numeric</span>(lrscale)</span>
+<span id="cb185-10"><a href="in-class-exercises-3.html#cb185-10" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb185-11"><a href="in-class-exercises-3.html#cb185-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb185-12"><a href="in-class-exercises-3.html#cb185-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-13"><a href="in-class-exercises-3.html#cb185-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the conversion:</span></span>
+<span id="cb185-14"><a href="in-class-exercises-3.html#cb185-14" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">old =</span> tmp, <span class="at">new =</span> ess_finland<span class="sc">$</span>lrscale, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
 <pre><code>##        new
 ## old       0   1   2   3   4   5   6   7   8   9  10 &lt;NA&gt;
 ##   1       0  25   0   0   0   0   0   0   0   0   0    0
@@ -1419,10 +1419,10 @@ value for the <code>.default</code> argument in <code>dplyr::recode()</code>.</p
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="in-class-exercises-3.html#cb184-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland, <span class="at">sex =</span> <span class="fu">factor</span>(gndr))</span>
-<span id="cb184-2"><a href="in-class-exercises-3.html#cb184-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-3"><a href="in-class-exercises-3.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Check results:</span></span>
-<span id="cb184-4"><a href="in-class-exercises-3.html#cb184-4" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="sc">%$%</span> <span class="fu">table</span>(<span class="at">old =</span> gndr, <span class="at">new =</span> sex, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="in-class-exercises-3.html#cb187-1" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ess_finland, <span class="at">sex =</span> <span class="fu">factor</span>(gndr))</span>
+<span id="cb187-2"><a href="in-class-exercises-3.html#cb187-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-3"><a href="in-class-exercises-3.html#cb187-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Check results:</span></span>
+<span id="cb187-4"><a href="in-class-exercises-3.html#cb187-4" aria-hidden="true" tabindex="-1"></a>ess_finland <span class="sc">%$%</span> <span class="fu">table</span>(<span class="at">old =</span> gndr, <span class="at">new =</span> sex, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
 <pre><code>##         new
 ## old      Female Male &lt;NA&gt;
 ##   Female   1040    0    0
@@ -1455,10 +1455,10 @@ used by Kestilä (2006).</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="in-class-exercises-3.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Institutions&#39;:</span></span>
-<span id="cb186-2"><a href="in-class-exercises-3.html#cb186-2" aria-hidden="true" tabindex="-1"></a>out_trust_inst <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
-<span id="cb186-3"><a href="in-class-exercises-3.html#cb186-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> ess_finland)</span>
-<span id="cb186-4"><a href="in-class-exercises-3.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_inst)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="in-class-exercises-3.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Institutions&#39;:</span></span>
+<span id="cb189-2"><a href="in-class-exercises-3.html#cb189-2" aria-hidden="true" tabindex="-1"></a>out_trust_inst <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_inst <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
+<span id="cb189-3"><a href="in-class-exercises-3.html#cb189-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> ess_finland)</span>
+<span id="cb189-4"><a href="in-class-exercises-3.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_inst)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = trust_inst ~ sex + age + eduyrs + polintr_bin + 
@@ -1483,10 +1483,10 @@ Click to show code
 ##   (300 observations deleted due to missingness)
 ## Multiple R-squared:  0.06695,    Adjusted R-squared:  0.0642 
 ## F-statistic: 24.31 on 5 and 1694 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="in-class-exercises-3.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Politicians&#39;:</span></span>
-<span id="cb188-2"><a href="in-class-exercises-3.html#cb188-2" aria-hidden="true" tabindex="-1"></a>out_trust_pol <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_pol <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
-<span id="cb188-3"><a href="in-class-exercises-3.html#cb188-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ess_finland)</span>
-<span id="cb188-4"><a href="in-class-exercises-3.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_pol)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="in-class-exercises-3.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Trust in Politicians&#39;:</span></span>
+<span id="cb191-2"><a href="in-class-exercises-3.html#cb191-2" aria-hidden="true" tabindex="-1"></a>out_trust_pol <span class="ot">&lt;-</span> <span class="fu">lm</span>(trust_pol <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
+<span id="cb191-3"><a href="in-class-exercises-3.html#cb191-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ess_finland)</span>
+<span id="cb191-4"><a href="in-class-exercises-3.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_trust_pol)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = trust_pol ~ sex + age + eduyrs + polintr_bin + lrscale, 
@@ -1511,10 +1511,10 @@ Click to show code
 ##   (300 observations deleted due to missingness)
 ## Multiple R-squared:  0.1645, Adjusted R-squared:  0.1621 
 ## F-statistic: 66.73 on 5 and 1694 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="in-class-exercises-3.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Attitudes toward Refugees&#39;:</span></span>
-<span id="cb190-2"><a href="in-class-exercises-3.html#cb190-2" aria-hidden="true" tabindex="-1"></a>out_refugees <span class="ot">&lt;-</span> <span class="fu">lm</span>(refugees <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
-<span id="cb190-3"><a href="in-class-exercises-3.html#cb190-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> ess_finland)</span>
-<span id="cb190-4"><a href="in-class-exercises-3.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_refugees)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="in-class-exercises-3.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Predicting &#39;Attitudes toward Refugees&#39;:</span></span>
+<span id="cb193-2"><a href="in-class-exercises-3.html#cb193-2" aria-hidden="true" tabindex="-1"></a>out_refugees <span class="ot">&lt;-</span> <span class="fu">lm</span>(refugees <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> eduyrs <span class="sc">+</span> polintr_bin <span class="sc">+</span> lrscale, </span>
+<span id="cb193-3"><a href="in-class-exercises-3.html#cb193-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> ess_finland)</span>
+<span id="cb193-4"><a href="in-class-exercises-3.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out_refugees)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = refugees ~ sex + age + eduyrs + polintr_bin + lrscale, 
@@ -1576,11 +1576,11 @@ is usually considered good.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="in-class-exercises-3.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the reliability analysis on the subscale data:</span></span>
-<span id="cb192-2"><a href="in-class-exercises-3.html#cb192-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb192-3"><a href="in-class-exercises-3.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, <span class="fu">starts_with</span>(<span class="st">&quot;stf&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb192-4"><a href="in-class-exercises-3.html#cb192-4" aria-hidden="true" tabindex="-1"></a>    psych<span class="sc">::</span><span class="fu">alpha</span>()</span>
-<span id="cb192-5"><a href="in-class-exercises-3.html#cb192-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="in-class-exercises-3.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run the reliability analysis on the subscale data:</span></span>
+<span id="cb195-2"><a href="in-class-exercises-3.html#cb195-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb195-3"><a href="in-class-exercises-3.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, <span class="fu">starts_with</span>(<span class="st">&quot;stf&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb195-4"><a href="in-class-exercises-3.html#cb195-4" aria-hidden="true" tabindex="-1"></a>    psych<span class="sc">::</span><span class="fu">alpha</span>()</span>
+<span id="cb195-5"><a href="in-class-exercises-3.html#cb195-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = .)

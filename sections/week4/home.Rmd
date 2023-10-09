@@ -39,18 +39,18 @@ ess <- read_spss("ESSround1-a.sav")
 
 ## Inspect the result:
 dim(ess)
-summary(ess)
 head(ess)
-str(ess)
+summary(ess)
 ```
-
-When you inspect the data, you may notice that almost all variables are 
-represented as factors. If so, good eyes! We'll come back to this issue a 
-little later.
 
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
 ess <- read_spss(paste0(dataDir, "ESSround1-a.sav"))
+
+## Inspect the result:
+dim(ess)
+head(ess)
+summary(ess)
 ```
 
 <details>
@@ -344,11 +344,14 @@ ggplot(ess_plot, aes(x = value)) +
   <details>
     <summary>Click for explanation</summary>
     
-  Notice that the variables are actually discrete (i.e., each variable takes
-  only a few integer values). However, most variables look relatively normal
-  despite being categorical. So, we'll bend the rules a bit and analyze these
-  variables as continuous.
-  
+Notice that the variables are actually discrete (i.e., each variable takes
+only a few integer values). However, most variables look relatively normal
+despite being categorical. So, we'll bend the rules a bit and analyze these
+variables as continuous.
+
+It also looks like there's something weird going on with `qfimchr` and `qfimwht`.
+More on that below.
+
   </details>
 
 </details>
@@ -371,14 +374,14 @@ select(ess, trstlgl:rfgbfml) %>% descriptives()
   <details>
     <summary>Click for explanation</summary>
   
-  The variables `qfimchr` and `qfimwht` both contain values that fall outside the expected
-  range for our survey responses: 77, 88, and 99. In SPSS, these were labeled as "Refusal"
-  "Don't know" and "No answer" respectively, and would not have contributed to the
-  analysis. 
+The variables `qfimchr` and `qfimwht` both contain values that fall outside the
+expected range for our survey responses: 77, 88, and 99. In SPSS, these were
+labeled as "Refusal" "Don't know" and "No answer" respectively, and would not
+have contributed to the analysis. 
 
-  Here, we need to tell R that these values should be considered missing, or `NA`.
-  Otherwise they will contribute the numeric value to the analysis, as though someone had
-  provided an answer of 77 on a 10-point scale.
+Here, we need to tell R that these values should be considered missing, or `NA`.
+Otherwise they will contribute the numeric value to the analysis, as though
+someone had provided an answer of 77 on a 10-point scale.
 
 ```{r}
 ess <- ess %>%
@@ -387,8 +390,7 @@ ess <- ess %>%
   mutate(across(c(qfimchr, qfimwht), na_if, 99))
 ```
 
-</details>
-
+  </details>
 </details>
 
 ---
