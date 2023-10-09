@@ -381,7 +381,7 @@ select(ess, trstlgl:rfgbfml) %>% descriptives()
   provided an answer of 77 on a 10-point scale.
 
 ```{r}
-ess %>%
+ess <- ess %>%
   mutate(across(c(qfimchr, qfimwht), na_if, 77)) %>% 
   mutate(across(c(qfimchr, qfimwht), na_if, 88)) %>%
   mutate(across(c(qfimchr, qfimwht), na_if, 99))
