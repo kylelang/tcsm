@@ -294,11 +294,11 @@ partSummary(semOut, 11)
 
 \sectionslide{Mediation with SEM}
 
-\watermarkoff %%%-------------------------------------------------------------%%%
+\watermarkoff %%%------------------------------------------------------------%%%
 
 \begin{frame}{Boring Model}
 
-  In Week 3, all of our models have looked something like:
+  In Week 3, all of our models looked something like:
 
   \begin{figure}
     \includegraphics[width=0.7\textwidth]{../figures/simpleMediationPathDiagram.pdf}
