@@ -6,15 +6,24 @@ analysis to produce a highly flexible and theoretically appealing modeling tool.
 Essentially, SEM allows us to build structural path models using the latent
 variables defined by a CFA.
 
-### Recordings
+### Recording
 
-*Once it's ready, the lecture recording will be embedded below.*
+<iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/tSAOK0QrF-g?si=FM0OREmWDkxzsU-X"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; 
+               autoplay; 
+               clipboard-write; 
+               encrypted-media; 
+               gyroscope; 
+               picture-in-picture; 
+               web-share" 
+        allowfullscreen>
+</iframe>
 
-![](https://i.gifer.com/3F2S.gif)
-
-```{r, echo = FALSE, eval = FALSE}
-knitr::include_url("")
-```
+<!-- ![](https://i.gifer.com/3F2S.gif) -->
 
 ### Slides
 

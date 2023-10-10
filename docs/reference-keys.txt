@@ -147,14 +147,14 @@ section-72
 in-class-exercises-4
 full-sem
 lecture-5
-recordings-3
+recording-2
 slides-5
 reading-5
 at-home-exercises-5
 in-class-exercises-5
 multiple-group-models
 lecture-6
-recordings-4
+recordings-3
 slides-6
 reading-6
 at-home-exercises-6
