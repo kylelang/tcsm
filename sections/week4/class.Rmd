@@ -439,7 +439,7 @@ of the factors.
 
 ---
 
-###
+### {#efaAtt}
 
 Compare the factor loading matrices from the models estimated from the *Attitudes* 
 items, and select the best solution.
@@ -466,6 +466,10 @@ efa_trust <- efa_trust[["3"]]
 
 ## Select the five-factor solution for 'attitudes':
 efa_att <- efa_att[["5"]]
+```
+
+```{r echo = FALSE}
+saveRDS(efa_att, "../../data/w4_efa_attitudes.rds")
 ```
 
 ---

@@ -11,64 +11,76 @@ PCA-based replications of Kestilä (2006).
 
 Load the ESS data.
 
-- The relevant data are contained in the [*ess_round1.rds*][ess_data] file.
-    - This file is in R Data Set (RDS) format.
-    - The dataset is already stored as a data frame with the processing and 
-    cleaning that you should have done for previous practicals completed.
-    - Check the documentation for the `readRDS()` function to see how you can 
-    load data stored in an RDS file.
+- The relevant data are contained in the [*ess_round1_attitudes.rds*][ess_att_data] file.
+   - This file is in R Data Set (RDS) format.
+   - The dataset is already stored as a data frame with the processing and 
+     cleaning that you should have done for previous practicals completed.
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
   
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
-ess <- readRDS(paste0(dataDir, "ess_c_with_france.rds"))
+ess <- readRDS(paste0(dataDir, "ess_round1_attitudes.rds"))
 ```
 
 ```{r, eval = FALSE}
-ess <- readRDS("ess_round1.rds")
+ess <- readRDS("ess_round1_attitudes.rds")
 ```
 
 </details>
 
 ---
 
-<!-- Although you may have settled on any number of EFA solutions during the  -->
-<!-- [Week 4 In-Class Exercises](in-class-exercises-3.html), -->
+We are going to conduct a CFA to evaluate the measurement model implied by the
+five-factor representation of the *Attitudes toward Immigration* items that you
+should have found via the EFA you conducted in the 
+[Week 4 In-Class Exercises](in-class-exercises-3.html).
 
-We are going to base the following CFA on a three-factor model of *Attitudes
-toward Immigration* similar to the original PCA results from Kestilä (2006).
-
-<!-- *Note:* Unless otherwise specified, all following questions refer to the  -->
-<!-- *Attitudes toward Immigration* items. We will not consider the *Trust in  -->
-<!-- Politics* items in these exercises. -->
+*Caveat:* Technically, the following CFA result have no confirmatory value
+because we'll be estimating our CFA models from the same data that we used for
+our EFA. Practicing the techniques will still be useful, though.
 
 ---
 
 ### {#cfaSyntaxAtt}
 
-Define the `lavaan` model syntax for the CFA implied by the five-factor PCA
-solution found in Table 3 of Kestilä (2006).
+Define the `lavaan` model syntax for the CFA implied by the five-factor solution
+from \@ref(efaAtt).
 
-<!-- Define the `lavaan` model syntax for the CFA implied by the five-factor EFA -->
-<!-- solution we found in \@ref(factorScores). -->
-
-
+- Enforce a simple structure; do not allow any cross-loadings.
 - Covary the five latent factors.
 - Do not specify any mean structure.
 - Save this model syntax as an object in your environment.
+
+*Hints:*
+
+- You can algorithmically enforce a simple structure by assigning each item to
+  the factor upon which it loads most strongly.
+- You can download the fitted `psych::efa()` object for the five-factor solution 
+  [here](../../data/w4_efa_attitudes.rds).
+- The pattern matrix for the five-factor EFA solution in our Week 4 exercises is
+  equivalent to the solution presented in Table 3 of Kestilä (2006).
 
 <details>
   <summary>Click to show code</summary>
 
 ```{r}
 mod_5f <- '
-immigpolicy    =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn 
-socialthreat   =~ imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt
-refugeepolicy  =~ gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg
-culturalthreat =~ qfimchr + qfimwht + pplstrd + vrtrlg
-economicthreat =~ imwgdwn + imhecop 
+## Immigration Policy:
+ip =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn 
+
+## Social Threat:
+st =~ imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt
+
+## Refugee Policy:
+rp =~ gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg
+
+## Cultural Threat:
+ct =~ qfimchr + qfimwht + pplstrd + vrtrlg
+
+## Economic Threat:
+et =~ imwgdwn + imhecop 
 '
 ```
 
@@ -110,32 +122,31 @@ fit_5f <- cfa(mod_5f, data = ess)
 ## Summarize the fitted model:
 summary(fit_5f, fit.measures = TRUE, standardized = TRUE)
 ```
-  
+ 
   <details>
     <summary>Click for explanation</summary>
-  No, the model does not seem to fit the data well.
 
-  - The SRMR looks good, but one good looking fit statistic is not enough.
-  - The TLI, and CFI are in the "unacceptable" range.
-  - RMSEA is in the "questionable" range.
-  - The $\chi^2$ is highly significant, but we don't care.
+No, the model does not seem to fit the data well.
 
-  The `cfa()` function is just a wrapper for the `lavaan()` function with several 
-  options set at the defaults you would want for a standard CFA. 
+- The SRMR looks good, but one good looking fit statistic is not enough.
+- The TLI and CFI are in the "unacceptable" range.
+- RMSEA is in the "questionable" range.
+- The $\chi^2$ is highly significant, but we don't care.
 
-  - By default:
-    - All latent variances and covariances are freely estimated (due to the 
-    argument `auto.cov.lv.x = TRUE`)
-    - The model is identified by fixing the first factor loading of each factor 
-    to 1 (due to the argument `auto.fix.first = TRUE`)
+The `cfa()` function is just a wrapper for the `lavaan()` function with several 
+options set at the defaults you would want for a standard CFA. 
 
-  To see a full list of the (many) options you can specify to tweak the behavior
-  of `lavaan` estimation functions run `?lavOptions`.
+- By default:
+   - All latent variances and covariances are freely estimated (due to the 
+     argument `auto.cov.lv.x = TRUE`)
+   - The model is identified by fixing the first factor loading of each factor 
+     to 1 (due to the argument `auto.fix.first = TRUE`)
+
+To see a full list of the (many) options you can specify to tweak the behavior
+of `lavaan` estimation functions run `?lavOptions`.
 
   </details>
-
 </details>
-
 
 ---
 
@@ -156,11 +167,10 @@ Define the `lavaan` model syntax for a one-factor model of the *Immigration* ite
 
 ```{r}
 mod_1f <- '
-immiattitude =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn + 
-                imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt +
-                gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc +
-                shrrfg  + qfimchr + qfimwht + pplstrd + vrtrlg  + imwgdwn +
-                imhecop
+ati =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn + imbgeco +
+       imbleco + imwbcnt + imwbcrm + imtcjob + imueclt + gvrfgap + imrsprc +
+       rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg  + qfimchr + qfimwht +
+       pplstrd + vrtrlg  + imwgdwn + imhecop
 '
 ```
 
@@ -172,14 +182,11 @@ immiattitude =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn +
 
 Estimate the one-factor model, and summarize the results.
 
-- Look at the fit measures for the one-factor and five-factor models
-- Is it clear which offers a better fit?
+- Compare the fit measures for the one-factor and five-factor models
+- Which model better fits the data?
 
-*Notes:* 
-<!-- - We can also conduct a formal significance test for the difference between two  -->
-<!-- $\chi^2$ values, but we won't introduce those ideas until Week 5. -->
-- Remember, you can use the `lavaan::fitMeasures()` function to extract only the
-model fit information from a fitted `lavaan` object.
+*Note:* Remember, you can use the `lavaan::fitMeasures()` function to extract 
+only the model fit information from a fitted `lavaan` object.
 
 <details>
   <summary>Click to show code</summary>
@@ -189,8 +196,7 @@ model fit information from a fitted `lavaan` object.
 fit_1f <- cfa(mod_1f, data = ess)
 
 ## Summarize the results:
-summary(fit_1f, fit.measures = TRUE)
-
+summary(fit_1f)
 
 ## Compare fit statistics:
 fitMeasures(fit_5f,
@@ -199,48 +205,49 @@ fitMeasures(fit_5f,
                              "cfi", "tli",            # Model fit vs. baseline
                              "rmsea", "srmr"),        # Model fit vs. saturated
             output = "text")
+
 fitMeasures(fit_1f,
             fit.measures = c("npar",                  # Estimated parameters
                              "chisq", "df", "pvalue", # Model fit vs. saturated
                              "cfi", "tli",            # Model fit vs. baseline
                              "rmsea", "srmr"),        # Model fit vs. saturated
             output = "text")
-
 ```
   
   <details>
     <summary>Click for explanation</summary>
-  The one-factor model definitely seems to fit worse than the five-factor model.
+    
+ The one-factor model definitely seems to fit worse than the five-factor model.
+ 
   </details>
-
 </details>
 
 ---
 
 ###
 
-Given the CFA results from the five factor model,would a second order CFA be
+Given the CFA results from the five factor model, would a second-order CFA be
 appropriate for the *Attitudes towards Immigration* data? Why or why not?
 
 <details>
   <summary>Click for explanation</summary>
 
-Yes, a second order CFA model is a theoretically appropriate representation of 
+Yes, a second-order CFA model is a theoretically appropriate representation of 
 the *Attitudes towards Immigration* items. 
 
 - The first order latent variables in the five-factor model are all 
-significantly correlated.
+  significantly correlated.
 - The first order latent variables in the five-factor model seem to tap 
-different aspects of some single underlying construct. 
+  different aspects of some single underlying construct. 
 
 </details>
 
 ---
 
-###
+### {#cfa2nd}
 
-Define the `lavaan` model syntax for a second-order CFA model of the 
-*Attitudes towards Immigration* items, estimate it, and inspect the results.
+Define the `lavaan` model syntax for a second-order CFA model of the *Attitudes
+towards Immigration* items, estimate it, and inspect the results.
 
 - Use the five factors defined in \@ref(cfaSyntaxAtt) as the first order factors.
   
@@ -248,260 +255,384 @@ Define the `lavaan` model syntax for a second-order CFA model of the
   <summary>Click to show code</summary>
 
 ```{r}
-mod_5f_2o <- '
-immigpolicy    =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn 
-socialthreat   =~ imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt 
-refugeepolicy  =~ gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg
-culturalthreat =~ qfimchr + qfimwht + pplstrd + vrtrlg
-economicthreat =~ imwgdwn + imhecop 
+mod_2o <- paste(mod_5f,
+                'ati =~ ip + rp + st + ct + et',
+                sep = '\n')
 
-attitudes =~ immigpolicy + refugeepolicy + socialthreat + culturalthreat + economicthreat
-'
-fit_5f_2o <- cfa(mod_5f_2o, data = ess)
-summary(fit_5f_2o, fit.measures = TRUE)
-
+fit_2o <- cfa(mod_2o, data = ess)
+summary(fit_2o, fit.measures = TRUE)
 ```
 
 </details>
-    
+
+---
+
 ###
 
-Compare the model fit of these two models using `fitMeasures()`. (Unlike in the
-home exercises, where the same number of parameters were estimated between the
-two models, here the fit is different.)
+Compare the model fit of the first- and second-order five-factor models using 
+the `fitMeasures()` function.
 
 - Which model offers the better fit?
 - Which model is more complex?
-
 
 <details>
   <summary>Click to show code</summary>
   
 ```{r}
-
 fitMeasures(fit_5f,
   fit.measures = c("npar",                  # Estimated parameters
                    "chisq", "df", "pvalue", # Model fit vs. saturated
                    "cfi", "tli",            # Model fit vs. baseline
                    "rmsea", "srmr"),        # Model fit vs. saturated
   output = "text")
-fitMeasures(fit_5f_2o,
+
+fitMeasures(fit_2o,
   fit.measures = c("npar",                  # Estimated parameters
                    "chisq", "df", "pvalue", # Model fit vs. saturated
                    "cfi", "tli",            # Model fit vs. baseline
                    "rmsea", "srmr"),        # Model fit vs. saturated
   output = "text")
-
-  
 ```
-  
+ 
   <details>
     <summary>Click for explanation</summary>
-  The CFI and TLI are both slightly better in the original five factor model,
-  but the RMSEA and SRMR of both models don't differ, (and, as usual, both
-  models have a significant $\chi^2$).
-  </details>
+ 
+The CFI and TLI are both slightly better in the original five factor model,
+but the RMSEA and SRMR of both models don't differ out to three decimal places. 
+As usual, both models have a significant $\chi^2$, but that doesn't tell us much.
 
+  </details>
 </details>
 
 ---
 
-Since the model fit indices are quite close between these two models, we might
-want to look at a different method of determining which model represents the
-data better. 
+Qualitative comparisons of model fit are fine, but we'd like to have an actual
+statistical test for these fit differences. As it happens, we have just such a
+test: a nested model $\Delta \chi^2$ test (AKA, chi-squared difference test, 
+change in chi-squared test, likelihood ratio test).
 
-In this week's lecture, you learned about nested models. Two models are nested
-if you can get one model by putting restrictions on another model (or
-conversely, if you can get to one model by simplifying another). Any model we
-create will be nested within the saturated model by default, because that model
-estimates all possible relationships. 
+In the Week 7 lecture, we'll cover nested models and tests thereof, but it will
+be useful to start thinking about these concepts now. Two models are said to be
+*nested* if you can define one model by placing constraints on the other model.
 
-If we were to build a model and tell lavaan to estimate a covariance between
-every two variables (as well as the variance of the variable itself) this would
-contain all the information that was in the variance covariance matrix. The 
-degrees of freedom of this model, the saturated model, are zero. 
+By way of example, consider the following two CFA models.
 
-```{r, echo=FALSE}
-library(dplyr)
-library(tidySEM)
+```{r, echo = FALSE}
+library(semPlot)
 library(semptools)
-satfit <- lav_partable_unrestricted(fit_5f) %>% 
-  cfa(data = ess) 
 
-satfit %>% 
-  semPlot::semPaths(layout = "tree", intercepts = FALSE, rotation = 2, sizeMan = 8, curve = 7,
-                    sizeMan2 = 2, esize = .01, mar = c(.3, .3, .3, .3), arrows = TRUE,
-                    asize = 1, DoNotPlot = TRUE, curveScale = TRUE) %>% 
-  rotate_resid(setNames(rep(-90, 25), names(select(ess, imrcntr:imhecop)))) %>% 
-  plot()
+hsMod <- '
+visual  =~ x1 + x2 + x3
+textual =~ x4 + x5 + x6
+'
 
+hsFit <- cfa(hsMod, data = HolzingerSwineford1939) 
 
+semPaths(hsFit,
+         layout = "tree2",
+         sizeMan = 10,
+         sizeMan2 = 8,
+         sizeLat = 18,
+         curve = 3,
+         esize = 2,
+         asize = 4,
+         mar = c(6, 2, 10, 2),
+         DoNotPlot = TRUE,
+         nCharNodes = 0) %>%
+rotate_resid(c(visual = -45, textual = 45)) %>%
+plot()
 
+hsMod2 <- '
+visual  =~ x1 + x2 + x3
+textual =~ x4 + x5 + x6
+
+visual ~~ 0 * textual
+'
+
+cfa(hsMod2, data = HolzingerSwineford1939) %>%
+  semPaths(layout = "tree2",
+           sizeMan = 10,
+           sizeMan2 = 8,
+           sizeLat = 18,
+           curve = 3,
+           esize = 2,
+           asize = 4,
+           mar = c(6, 2, 10, 2),
+           DoNotPlot = TRUE,
+           nCharNodes = 0,
+           exoCov = FALSE) %>%
+rotate_resid(c(visual = -45, textual = 45)) %>%
+plot()
 ```
 
-Similarly, the baseline model is always nested *inside* whatever model we want
-to create, because we could get to it by taking every relationship we wanted
-to estimate (like regression coefficients, path loadings, etc.) and forcing
-them to be zero. Below is the baseline or independence model for the
-*Attitudes Towards Immigration* items. The only parameters we're estimating are
-the variances for each of the items.
+The second model is nested within the first model, because we can define the
+second model by fixing the latent covariance to zero in the first model.
 
-```{r, echo=FALSE}
+Notice that the data contain $6(6 + 1) / 2 = 21$ unique pieces of information.
+The first model estimates `r (p = fitMeasures(hsFit, "npar"))` parameters, and 
+the second model estimates `r p - 1` parameters. Hence the first model has 
+`r (df1 = 21 - p)` degrees of freedom, and the second model has `r df1 + 1`
+degrees of freedom.
 
-baselinefit <- lav_partable_independence(fit_5f) %>% 
-  cfa(data = ess) 
+In general, the following must hold whenever *Model B* is nested within *Model A*.
 
-baselinefit %>% 
-  semPlot::semPaths(layout = "tree", intercepts = FALSE, rotation = 2, sizeMan = 8, curve = 7,
-                    sizeMan2 = 2, esize = .01, mar = c(.3, .3, .3, .3), arrows = TRUE,
-                    asize = 1, DoNotPlot = TRUE, curveScale = TRUE) %>% 
-  rotate_resid(setNames(rep(-90, 25), names(select(ess, imrcntr:imhecop)))) %>% 
+- Model B will have *fewer* estimated parameters than Model A.
+- Model B will have *more* degrees of freedom than Model A.
+- Model A will be *more* complex than model B.
+- Model A will fit the data *better* than model B.
+
+---
+
+**Saturated Model**
+
+All models are nested within the saturated model, because the saturated model
+estimates all possible relations among the variables. Regardless of what model
+we may be considering, we can always convert that model to a saturated model by
+estimating all possible associations. Hence, all models are nested within the 
+saturated model.
+
+```{r, echo = FALSE}
+tmp        <- rep(0, 6)
+names(tmp) <- lavNames(hsFit)
+
+lav_partable_unrestricted(hsFit) %>% 
+  cfa(data = HolzingerSwineford1939) %>%
+  semPaths(layout = "tree",
+           sizeMan = 10,
+           sizeMan2 = 8,
+           curve = 3,
+           esize = 2,
+           asize = 4,
+           DoNotPlot = TRUE) %>%
+  rotate_resid(tmp) %>%
   plot()
-
-
-
 ```
 
-When models are nested, we can compare their fit directly using the model
-deviance -- what's left over after we fit it together. For this, we use a
-likelihood ratio test. The deviance/likelihood of a more complex model will
-always be lower than the likelihood of a less complex model because that's what
-we tell the computer to do when we estimate a new parameter. The saturated
-model will always have the best possible fit against which you're comparing, 
-and the baseline fit the worst, so the models you build will be somewhere
-between the two.
+---
 
-But other models can be nested as well. An easy example is that our one-factor
-CFA is nested inside the five-factor CFA. It would be weird to do, but you could
-get there by telling lavaan that you wanted all five factors to be exactly the
-same (i.e. force them to have a correlation of 1). 
+**Baseline Model**
+
+Similarly, the baseline model (AKA, independence model) is nested within all 
+other models. In the baseline model, we only estimate the variances of the 
+observed items; all associations are constrained to zero. We can always convert
+our model to the baseline model by fixing all associations to zero. Hence, the
+baseline model is nested within all other models.
+
+```{r, echo = FALSE}
+lav_partable_independence(hsFit) %>% 
+  cfa(data = HolzingerSwineford1939) %>%
+  semPaths(layout = "tree",
+           sizeMan = 10,
+           sizeMan2 = 8,
+           esize = 2,
+           asize = 4)
+```
+
+---
+
+When two models are nested, we can use a $\Delta \chi^2$ test to check if the
+nested model fits *significantly worse* than its parent model. Whenever we place
+constraints on the model, the fit will deteriorate, but we want to know if the
+constraints we imposed to define the nested model have produced *too much* loss
+of fit.
+
+We can use the `anova()` function to easily conduct $\Delta \chi^2$ tests 
+comparing models that we've estimated with `cfa()` or `sem()`.
 
 ---
 
 ###
 
-Use the function `anova()` to compare two nested models: the five-factor model
-from \@ref(cfaSyntaxAtt) and one-factor model from \@ref(cfaSyntaxAtt1f). 
+Use the `anova()` function to compare the five-factor model from 
+\@ref(cfaSyntaxAtt) and one-factor model from \@ref(cfaSyntaxAtt1f). 
 
-- Explain what `Df`, `Chisq`, `Chisq diff`, `Df diff` and `Pr(>Chisq)` mean
+- Explain what `Df`, `Chisq`, `Chisq diff`, `Df diff`, and `Pr(>Chisq)` mean.
 - Which model is more complex?
 - Which model fits better?
-- Can you account for `Df diff`?
-- Does our decision from \@ref(compare1f5f) still hold?
+- What is the conclusion of the test?
 
 <details>
   <summary>Click to show code</summary>
   
 ```{r}
 anova(fit_1f, fit_5f)
-  
 ```
   
   <details>
     <summary>Click for explanation</summary>
     
-- `Df` is degrees of freedom and represents the amount of parameters that we
-  could still estimate before we were at the saturated model. Higher Df = 
-  less complex.
-- `Chisq` is the difference (think subtraction) between the deviance of each of
-  the two models and the saturated model. Higher Chisq = worse fit.
-- `Chisq diff` is the difference between the two Chisq values, or how much
-  more closely the more complex model fits the data.
-- `Df diff` is the difference in the number of parameters in the models. In this
-  case, it's 10.
-- `Pr(>Chisq)` is a p-value for whether or not `Chisq diff` is a big enough
-  difference to warrant losing `Df diff` degrees of freedom. If it's
-  significant, we prefer the more complex model.
-- Yes, our assessment still holds. The more complex model (*fit_5f*, which we
-  know because it has fewer degrees of freedom), is preferred because
-  `Pr(>Chisq)` is significant. In this case, on the parsimony front, we 
-  decide to prefer better fit over less complexity because the added parameters
-  contribute quite a bit.
-  
-How do we get to a `Df diff` of 10? 
-- Our five-factor model estimated correlations between each of five latent 
-  variables, for a total of 10 parameters ($5 * 4 / 2$), but there were no
-  correlations in the one-factor model. 
-- In the five-factor model, we estimated 20 factor loadings ($25 - 5$ for total
-  items, subtracting one fixed loading for each factor). In the one-factor
-  model, we estimated 24 factor loadings. 
-- In the five-factor model, we had five residual variances for each of the five
-  latent variables, and in the one-factor model, we estimated only one residual
-  variance. 
+The `Df` column contains the degrees of freedom of each model.
 
-The last two cancel each other out, and thinking about why will help your
-understanding.
+- Higher df $\Rightarrow$ Less complex model
+
+The `Chisq` column shows the $\chi^2$ statistics (AKA, likelihood ratio
+statistics) for each model.
+
+- $\chi^2$ = The ratio of the likelihoods for the estimated model and the 
+     saturated model).
+- Larger $\chi^2$ $\Rightarrow$ Worse fit
+
+`Chisq diff` is the difference between the two $\chi^2$ values (i.e., 
+$\Delta \chi^2$.
+
+- How much better the more complex model fits the data
+- Larger $\Delta \chi^2$ values indicate greater losses of fit induced by the
+  constraints needed to define the nested model.
+
+`Df diff` is the difference in the degrees of freedom between the models. 
+
+- Since both models must be estimated from the same pool of variables, this 
+  difference also represents the number of parameters that were constrained
+  to define the nested model.
+ 
+`Pr(>Chisq)` is a p-value for the $\Delta \chi^2$ test.
+
+- $H_0: \Delta \chi^2 = 0$
+- $H_1: \Delta \chi^2 > 0$
+
+The five-factor model is more complex than the one-factor model, but the extra
+complexity is justified The five-factor model fits significantly better than
+the one-factor model.
 
   </details>
-
 </details>
-
-###
-
-So far, none of the models we have made have had a good enough fit for us to be
-able to interpret them. Let's change that. Start from the five-factor model in
-\@ref(cfaSyntaxAtt) and add the following covariances:
-
-- Between items `imrcntr` and `eimrcnt` (these questions both ask about allowing
-  in immigrants from richer countries, but one is from countries within Europe
-  and one is from countries outside of Europe. It makes sense that answers on
-  these two items align closely.)
-- Between items `qfimchr` and `qfimwht` (these questions are both about
-  imposing qualifications on immigration -- specifically Christian religion and
-  `white` race. It also makes sense that these two will be closely related.)
-
-<details>
-  <summary>Click to show code</summary>
-
-```{r}
-
-mod_5f_cov <-'
-immigpolicy    =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn 
-socialthreat   =~ imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt
-refugeepolicy  =~ gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg
-culturalthreat =~ qfimchr + qfimwht + pplstrd + vrtrlg
-economicthreat =~ imwgdwn + imhecop 
-
-imrcntr ~~ eimrcnt
-qfimchr ~~ qfimwht
-'
-
-fit_5f_cov <- cfa(mod_5f_cov, data = ess)
-```
-
-</details>
-
 
 ---
 
 ###
 
-- Test to see if our fit improved. 
-- If so, is the fit acceptable?
+Use the `anova()` function to compare the first- and second-order five-factor
+models from \@ref(cfaSyntaxAtt) and \@ref(cfa2nd). 
 
-*Hint:* Are these models nested? 
+- Which model is more complex?
+- What is the conclusion of the test?
+
+<details>
+  <summary>Click to show code</summary>
+  
+```{r}
+anova(fit_5f, fit_2o)
+```
+  
+  <details>
+    <summary>Click for explanation</summary>
+    
+The first-order model is more complex than the second-order model 
+(df = `r fitMeasures(fit_5f, "df")` vs. df = `r fitMeasures(fit_2o, "df")`),
+and the extra complexity is necessary. The first-order model fits significantly
+better than the second-order model.
+
+  </details>
+</details>
+
+---
+
+###
+
+Based on the results above, would you say that you have successfully confirmed
+the five-factor structure implied by the EFA?
+
+<details>
+  <summary>Click for explanation</summary>
+
+Nope, not so much. The first-order five-factor model may fit the data best out
+of the three models considered here, but it still fits terribly. None of these
+models is an adequate representation of the *Attitudes toward Immigration* items.
+
+This result is particularly embarrassing when you consider that we've stacked the
+deck in our favor by using the same data to conduct the EFA and the CFA.
+
+When we fail to support the hypothesized measurement model, the confirmatory 
+phase of our analysis is over. At this point, we've essentially rejected our
+hypothesized measurement structure, and that's the conclusion of our analysis.
+We don't have to throw up our hands in despair, however. We can still contribute
+something useful by modifying the theoretical measurement model through an 
+exploratory, data-driven, post-hoc analysis.
+
+We'll give that a shot below.
+
+</details>
+
+---
+
+###
+
+Modify the five-factor CFA from \@ref(cfaSyntaxAtt) by freeing the following
+parameters.
+
+- The residual covariance between `imrcntr` and `eimrcnt`
+   - These questions both ask about allowing immigration from wealthy countries.
+   - It makes sense that answers on these two items share some additional, 
+     unique variance above-and-beyond what they contribute to the common factors. 
+- The residual covariance between `qfimchr` and `qfimwht`
+   - These questions are both about imposing qualifications on immigration
+     (specifically Christian religion and "white" race).
+
+<details>
+  <summary>Click to show code</summary>
+
+```{r}
+fit_5f_cov <- paste(mod_5f, 
+                    'imrcntr ~~ eimrcnt', 
+                    'qfimchr ~~ qfimwht', 
+                    sep = '\n') %>%
+  cfa(data = ess)
+
+summary(fit_5f_cov, fit.measures = TRUE)
+```
+
+</details>
+
+---
+
+###
+
+Evaluate the model modifications.
+
+- Did the model fit significantly improve?
+- Is the fit of the modified model acceptable?
 
 <details>
   <summary>Click to show code</summary>
   
 ```{r}
 anova(fit_5f_cov, fit_5f)
-
 fitMeasures(fit_5f_cov)
 ```
   
   <details>
     <summary>Click for explanation</summary>
-  Yes, our fit improved. The Chisq difference test is significant, which
-  suggests that the two new parameters we estimate are worth it in our
-  quest for a parsimonious model.
-    
-  Also, the fit measures are now acceptable, meaning we can now go on to
-  interpret our CFA.
-  
-  </details>
+ 
+Yes, the model fit improved significantly. In this case, the original five-factor
+model is nested within the modified model. So, our $\Delta \chi^2$ test is 
+evaluating the improvement in fit contributed by freeing the two residual 
+covariances. The $\Delta \chi^2$ test is significant, so we can conclude that
+including the two new parameter estimates has significantly improved the model fit.
 
+- I.e., Estimating these two residual covariances is "worth it" in the sense of
+  balancing model fit and model complexity.
+
+Also, the fit of the modified model is now acceptable.
+
+**Caveat** 
+
+If we had found this result when testing our original model, we would be
+well-situated to proceed with our analysis. In this case, however, we are no
+longer justified in generalizing these estimates to the population. We only
+arrived at this well-fitting model by modifying our original theoretical model
+to better fit the data using estimates derived from those same data to guide our
+model modifications.
+
+We've conducted this post-hoc analysis to help inform future research, and this
+result is useful as a starting point for future studies. Now, anyone analyzing
+these scales in the future could incorporate these residual covariances into
+their initial theoretical model. Basically, we conduct these types of post-hoc
+analyses to help future researchers learn from our mistakes.
+
+  </details>
 </details>
+
+<!------------------------------------------------------------------------------
 
 ---
 
@@ -523,31 +654,28 @@ summary(fit_5f_cov, standardized = TRUE)
   
   <details>
     <summary>Click for explanation</summary>
-    We can tell from the factor loadings that `refugeepolicy` represents a 
-    favorable stance towards refugees. The first indicator provides the scale
-    for the latent variable. In this case, this is the indicator `gvrfgap` 
-    ("Government should be generous judging applications for refugee status").
-    The other indicators in support of allowing refugees to work or bring
-    close family members also have positive loadings, which makes sense. 
-    
-  The variables `rfgfrpc` and `shrrfg` have negative loadings, because they are
-    attitudes towards the statements "Most refugee applicants not in real fear
-    of persecution own countries" and "Country has more than its fair share of
-    people applying refugee status". This makes sense, because someone who has
-    a high degree of support for policies helping refugees is likely to have a
-    low degree of support for those statements.
-    
-  Refugee policy correlates positively with `immigpolicy` and `culturalthreat`
-    and negatively with `socialthreat` and `economicthreat`.
-  
+ 
+We can tell from the factor loadings that `refugeepolicy` represents a 
+favorable stance towards refugees. The first indicator provides the scale
+for the latent variable. In this case, this is the indicator `gvrfgap` 
+("Government should be generous judging applications for refugee status").
+The other indicators in support of allowing refugees to work or bring
+close family members also have positive loadings, which makes sense. 
+ 
+The variables `rfgfrpc` and `shrrfg` have negative loadings, because they are
+attitudes towards the statements "Most refugee applicants not in real fear
+of persecution own countries" and "Country has more than its fair share of
+people applying refugee status". This makes sense, because someone who has
+a high degree of support for policies helping refugees is likely to have a
+low degree of support for those statements.
+ 
+Refugee policy correlates positively with `immigpolicy` and `culturalthreat`
+and negatively with `socialthreat` and `economicthreat`.
   
   </details>
-
 </details>
 
-
 ---
-
 
 ###
 
@@ -556,8 +684,9 @@ representative of each of the latent variables?
 
 <details>
   <summary>Click for explanation</summary>
-  We can look either at `Std.lv` or `Std.all` under the Latent Variables section
-  of the output. 
+
+We can look either at `Std.lv` or `Std.all` under the Latent Variables section
+of the output. 
 
 - For `immigpolicy`, `impcntr` has the highest absolute value.
 - For `socialthreat`, `imwbcnt` has the highest absolute value.
@@ -567,9 +696,7 @@ representative of each of the latent variables?
   
 </details>
 
-
----
-
+------------------------------------------------------------------------------->
 
 ---
 
@@ -577,4 +704,4 @@ End of In-Class Exercises
 
 ---
 
-[ess_data]: https://surfdrive.surf.nl/files/index.php/s/an0GVjaMiZYA73u/download
+[ess_att_data]: https://surfdrive.surf.nl/files/index.php/s/P8OENzmMuNXmpjq/download

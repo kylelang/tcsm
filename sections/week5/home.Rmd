@@ -11,7 +11,7 @@ replications of Kestilä (2006).
 
 Load the ESS data.
 
-- The relevant data are contained in the [*ess_round1.rds*][ess_data] file.
+- The relevant data are contained in the [*ess_round1_trust.rds*][ess_trust_data] file.
     - This file is in R Data Set (RDS) format.
     - The dataset is already stored as a data frame with the processing and 
     cleaning that you should have done for previous practicals completed.
@@ -23,11 +23,11 @@ Load the ESS data.
   
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
-ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
+ess <- readRDS(paste0(dataDir, "ess_round1_trust.rds"))
 ```
 
 ```{r, eval = FALSE}
-ess <- readRDS("ess_round1.rds")
+ess <- readRDS("ess_round1_trust.rds")
 ```
 
 </details>
@@ -329,4 +329,4 @@ End of At-Home Exercises
 
 ---
 
-[ess_data]: https://surfdrive.surf.nl/files/index.php/s/an0GVjaMiZYA73u/download
+[ess_trust_data]: https://surfdrive.surf.nl/files/index.php/s/4EmClZ70we4CLal/download
