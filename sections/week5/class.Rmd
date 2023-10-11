@@ -58,7 +58,7 @@ from \@ref(efaAtt).
 - You can algorithmically enforce a simple structure by assigning each item to
   the factor upon which it loads most strongly.
 - You can download the fitted `psych::efa()` object for the five-factor solution 
-  [here](../../data/w4_efa_attitudes.rds).
+  [here](../data/w4_efa_attitudes.rds).
 - The pattern matrix for the five-factor EFA solution in our Week 4 exercises is
   equivalent to the solution presented in Table 3 of Kestilä (2006).
 
