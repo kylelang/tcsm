@@ -1,6 +1,9 @@
 # -*- Makefile -*-
 
-all: multiple_group.pdf 
+TARGETS = multiple_group.pdf
+DEST = ../../../pdf/
+
+all: $(TARGETS)
 	
 %.pdf: %.tex
 	latexmk -pdf -f $^
@@ -8,6 +11,13 @@ all: multiple_group.pdf
 %.tex: %.Rnw
 	Rscript -e "knitr::knit('$^')"
 
+.PHONY: clean tidy nuke
+
+nuke: clean
+	rm -f cache/* figure/* $(TARGETS)
+	
+tidy: clean
+	mv $(TARGETS) $(DEST)
+	
 clean:
-	mv *.pdf ../../../pdf/
 	rm -f *.tex *.aux *.log *.out *.nav *.snm *.toc *.vrb *.bbl *.blg *.fdb_latexmk *.fls
