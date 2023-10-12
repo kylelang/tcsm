@@ -1,0 +1,296 @@
+## At-Home Exercises
+
+This week, wrap up our re-analysis of the Kestilä (2006) results. During 
+this practical, you will conduct a CFA of the *Trust in Politics* items and 
+compare the results to those obtained from your previous EFA- and PCA-based 
+replications of Kestilä (2006).
+
+---
+
+###
+
+Load the ESS data.
+
+- The relevant data are contained in the [*ess_round1_trust.rds*][ess_trust_data] file.
+    - This file is in R Data Set (RDS) format.
+    - The dataset is already stored as a data frame with the processing and 
+    cleaning that you should have done for previous practicals completed.
+    - Check the documentation for the `readRDS()` function to see how you can 
+    load data stored in an RDS file.
+
+<details>
+  <summary>Click for explanation</summary>
+  
+```{r, echo = FALSE}
+dataDir <- "../../../../data/"
+codeDir <- "../../code/"
+
+source(paste0(codeDir, "supportFunctions.R"))
+
+ess <- readRDS(paste0(dataDir, "ess_round1_trust.rds"))
+```
+
+```{r, eval = FALSE}
+ess <- readRDS("ess_round1_trust.rds")
+```
+
+</details>
+
+---
+
+Unfortunately, we need to do a little data processing before we can fit the
+regression model. At the moment, `lavaan` will not automatically convert a factor 
+variable into dummy codes. So, we need to create explicit dummy codes for the 
+two factors we'll use as predictors in our regression analysis: *sex*  and 
+*political orientation*.  
+
+---
+
+###
+
+Convert the *sex* and *political interest* factors into dummy codes.
+
+<details>
+  <summary>Click for explanation</summary>
+
+In R, we have several ways of converting a factor into an appropriate set of 
+dummy codes.
+
+- We could use the `dplyr::recode()` function as we did last week.
+- We can use the `model.matrix()` function to define a design matrix based on 
+the inherent contrast attribute of the factor.
+    - Missing data will cause problems here.
+- We can us `as.numeric()` to revert the factor to its underlying numeric 
+representation {Male = 1, Female = 2} and use arithmetic to convert {1, 2} 
+$\rightarrow$ {0, 1}.
+
+When our factor only has two levels, though, the `ifelse()` function is the 
+simplest way.
+
+```{r}
+library(dplyr)
+
+## Create a dummy codes by broadcasting a logical test on the factor levels:
+ess <- mutate(ess,
+              female = ifelse(sex == "Female", 1, 0),
+              hi_pol_interest = ifelse(polintr_bin == "High Interest", 1, 0)
+             )
+
+## Check the results:
+with(ess, table(dummy = female, factor = sex))
+with(ess, table(dummy = hi_pol_interest, factor = polintr_bin))
+```
+
+---
+
+###
+
+Finally, subset the data to only Finnish participants.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+ess_fin <- filter(ess, cntry == "Finland")
+```
+
+</details>
+
+---
+
+We are now ready to estimate our latent regression model. Specifically, we want
+to implement the following regression as an SEM in `lavaan`.
+
+\[
+Y_{trust\_inst} = \beta_1 X_{age} + \beta_2 X_{female} + \beta_3 X_{edu\_years} +
+                  \beta_4 X_{hi\_pol\_interest} + \beta_5 X_{lrscale} + 
+                  \varepsilon_Y
+\]
+
+---
+
+###
+
+Define the `lavaan` model syntax for the regression shown above.
+
+- Use the definition of the `institutions` factor from \@ref(cfaSyntax) to 
+define the DV.
+
+*Hint:* You can simply copy the line of syntax that defines the latent factor 
+and add a line to define the latent regression model.
+
+<details>
+<summary>Click for explanation</summary>
+
+```{r}
+mod_sem <- '
+## Define the latent DV:
+institutions =~ trstlgl + trstplc + trstun
+
+## Specify the structural relations:
+institutions ~ female + age + eduyrs + hi_pol_interest + lrscale
+'
+```
+
+</details>
+
+---
+
+###
+
+Estimate the SEM, and summarize the results.
+
+- Fit the model to the processed Finnish subsample from above.
+- Estimate the model using `lavaan::sem()`.
+- Use the default settings in the `sem()` function.
+- Request the standardized parameter estimates with the summary.
+- Request the $R^2$ estimates with the summary by supplying the `rsquare = TRUE` 
+argument to `summary()`.
+
+<details>
+  <summary>Click for explanation</summary>
+
+```{r}
+library(lavaan)
+
+## Fit the SEM:
+fit_sem <- sem(mod_sem, data = ess_fin)
+
+## Summarize the results:
+summary(fit_sem, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+```
+
+</details>
+
+---
+
+###
+
+Finally, we will rerun the latent regression model from above as a path model 
+with the factor score for *Trust in Institutions* as the DV.
+
+- Add the *Trust in Institutions* factor score that you estimated in 
+\@ref(factorScores) to the ESS data.
+    - If you did not save the factors scores last week, you'll need to rerun the 
+    relevant EFA.
+    - Don't forget to subset the data to the Finish participants before fitting
+    the path model.
+- Rerun the above SEM with the EFA-derived *Trust in Institutions* factor score
+taking the place of the analagous latent variable as DV.
+    - Request the standardized parameter estimates with the summary.
+    - Request the $R^2$ estimates with the summary.
+
+<details>
+  <summary>Click for explanation</summary>
+
+First, we'll quickly reproduce the *Trust in Institutions* factor score that we
+estimated last week.
+
+- Note that `psych::fa()` returns the factor scores in a different order than it
+did for the Week 2 analyses. 
+
+```{r}
+## Load the psych library:
+library(psych)
+
+## Rerun the three-factor EFA from last week:
+fit_efa <- fa(ess[7:19], 
+              nfactors = 3,          
+              rotate   = "promax",   
+              scores   = "Bartlett")
+
+## View the factor loadings:
+print(fit_efa$loadings, cut = 0.3)
+
+## Reproduce the factor score from last week:
+ess$trust_inst_efa <- fit_efa$scores[ , 1]
+
+## Subset the data again:
+ess_fin <- ess[ess$cntry == "Finland", ]
+```
+
+Now, we'll rerun our regression as a path analysis with the EFA-derived factor
+score as DV.
+
+```{r}
+## Define the model syntax for the path analysis:
+mod_pa <- 'trust_inst_efa ~ female + age + eduyrs + hi_pol_interest + lrscale'
+
+## Estimate the path model:
+fit_pa <- sem(mod_pa, data = ess_fin)
+
+## Summarize the results:
+summary(fit_pa, fit.measures = TRUE, standardized = TRUE)
+
+## Extract R^2:
+inspect(fit_pa, "r2")
+```
+
+</details>
+
+---
+
+###
+
+Compare the results from the path analysis to the SEM-based results.
+
+- Does it matter whether we use a latent variable or a factor score to define 
+the DV?
+
+*Hint:* When comparing parameter estimates, use the fully standardized estimates 
+(i.e., the values in the column labeled `Std.all`).
+
+<details>
+  <summary>Click for explanation</summary>
+
+First, we'll source a script that defines a bunch of convenience functions. One
+of these functions, `partSummary()`, will allow us to print only the interesting
+pieces of the model summary.
+
+```{r, eval = FALSE}
+## Source a script of convenience function definitions:
+source("supportFunctions.R")
+```
+
+Now, we'll compare the results. Specifically, we're interested in differences in
+the regression coefficients and the $R^2$.
+
+```{r}
+## View the regression estimates from the SEM:
+partSummary(fit_sem, 8, standardized = TRUE)
+
+## View the regression estimates from the path analysis:
+partSummary(fit_pa, 7, standardized = TRUE)
+
+## View the R-squared estimates from the SEM:
+partSummary(fit_sem, 10, rsquare = TRUE)
+
+## View the R-squared estimate from the path analysis:
+#partSummary(fit_pa, 9, rsquare = TRUE)
+inspect(fit_pa, "r2")
+```
+
+```{r, echo = FALSE}
+r2_sem <- summary(fit_sem, rsquare = TRUE)$pe %>% 
+  filter(op == "r2", rhs == "institutions") %>% 
+  select(est) %>% 
+  as.numeric()
+r2_pa <- inspect(fit_pa, "r2")
+
+#summary(fit_pa, rsquare = TRUE)$pe %>% 
+#  filter(op == "r2") %>% 
+#  select(est) %>% 
+#  as.numeric()
+```
+
+It certainly looks like the way we define the DV has a meaningful impact. The 
+patterns of significance differ between the two sets of regression slopes, and
+the $R^2$ is `r 100 * ((r2_sem / r2_pa) - 1) %>% round(3)`% larger in the SEM.
+
+</details>
+
+---
+
+End of In-Class Exercises
+
+---
