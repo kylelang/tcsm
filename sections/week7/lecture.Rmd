@@ -9,9 +9,71 @@ your CFA and SEM analyses. We'll cover three general topics:
 
 ### Recordings
 
-*Once it's ready, the lecture recording will be embedded below.*
+#### Multiple Group Models {-}
 
-![](https://i.gifer.com/Z58I.gif)
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/56A7arR4NgU?si=8g-5UhbUdPP66Erl"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
+
+#### Measurement Invariance {-}
+
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/SMZZLpE9ZSY?si=7qdvNbyZdcRegsqI"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
+
+#### Measurement Invariance Examples {-}
+
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/5FVIjAYmmC8?si=-PgqVzDCytXePe5S"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
+
+#### Moderation by Group {-}
+
+<iframe width = "560"
+        height = "315"
+        src = "https://www.youtube.com/embed/t0MnaFO3dTM?si=gaMRyFHOkLm22pqn"
+        frameborder = "0"
+        allow = "accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share"
+        allowfullscreen>
+</iframe>
+
+<!-- ![](https://i.gifer.com/Z58I.gif) -->
 
 ### Slides
 
