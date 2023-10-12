@@ -165,6 +165,13 @@ slides-5
 reading-5
 at-home-exercises-5
 in-class-exercises-5
+section-81
+section-82
+section-83
+updatedModel
+section-84
+section-85
+section-86
 multiple-group-models
 lecture-6
 recordings-3

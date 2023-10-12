@@ -410,7 +410,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reading-5.html"><a href="reading-5.html#questions-4"><i class="fa fa-check"></i>Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="at-home-exercises-5.html"><a href="at-home-exercises-5.html"><i class="fa fa-check"></i><b>6.3</b> At-Home Exercises</a></li>
-<li class="chapter" data-level="6.4" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html"><i class="fa fa-check"></i><b>6.4</b> In-Class Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html"><i class="fa fa-check"></i><b>6.4</b> In-Class Exercises</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#section-81"><i class="fa fa-check"></i><b>6.4.1</b> </a></li>
+<li class="chapter" data-level="6.4.2" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#section-82"><i class="fa fa-check"></i><b>6.4.2</b> </a></li>
+<li class="chapter" data-level="6.4.3" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#section-83"><i class="fa fa-check"></i><b>6.4.3</b> </a></li>
+<li class="chapter" data-level="6.4.4" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#updatedModel"><i class="fa fa-check"></i><b>6.4.4</b> </a></li>
+<li class="chapter" data-level="6.4.5" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#section-84"><i class="fa fa-check"></i><b>6.4.5</b> </a></li>
+<li class="chapter" data-level="6.4.6" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#section-85"><i class="fa fa-check"></i><b>6.4.6</b> </a></li>
+<li class="chapter" data-level="6.4.7" data-path="in-class-exercises-5.html"><a href="in-class-exercises-5.html#section-86"><i class="fa fa-check"></i><b>6.4.7</b> </a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="multiple-group-models.html"><a href="multiple-group-models.html"><i class="fa fa-check"></i><b>7</b> Multiple Group Models</a>
 <ul>
@@ -443,8 +452,1481 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="in-class-exercises-5" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> In-Class Exercises<a href="in-class-exercises-5.html#in-class-exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong><em>Coming soon to a GitBook near you!</em></strong></p>
+<p>In these exercises, you will use full structural equation modeling (SEM) to
+evaluate the <em>Theory of Reasoned Action</em> (TORA), which is a popular psychological
+theory of social behavior developed by Ajzen and Fishbein. The theory states that
+actual behavior is predicted by behavioral intention, which is in turn predicted
+by the attitude toward the behavior and subjective norms about the behavior.
+Later, a third determinant was added, <em>perceived behavioral control</em>. The extent
+to which people feel that they have control over their behavior also influences
+their behavior.</p>
+<hr />
+<p>The data we will use for this practical are available in the <em>toradata.csv</em> file.
+These data were synthesized according to the results of Reinecke (1998)’s
+investigation of condom use by young people between 16 and 24 years old.</p>
+<p>The data contain the following variables:</p>
+<ul>
+<li><code>respnr</code>: Numeric participant ID</li>
+<li><code>behavior</code>: The dependent variable <em>condom use</em>
+<ul>
+<li>Measured on a 5-point frequency scale (How often do you…)</li>
+</ul></li>
+<li><code>intent</code>: A single item assessing behavioral intention
+<ul>
+<li>Measured on a similar 5-point scale (In general, do you intend to…).</li>
+</ul></li>
+<li><code>attit_1</code>:<code>attit_3</code>: Three indicators of attitudes about condom use
+<ul>
+<li>Measured on a 5-point rating scale (e.g., using a condom is awkward)</li>
+</ul></li>
+<li><code>norm_1</code>:<code>norm_3</code>: Three indicators of social norms about condom use
+<ul>
+<li>Measured on a 5-point rating scale (e.g., I think most of my friends would
+use…)</li>
+</ul></li>
+<li><code>control_1</code>:<code>control_3</code>: Three indicators of perceived behavioral control
+<ul>
+<li>Measured on a 5-point rating scale (e.g., I know well how to use a condom)</li>
+</ul></li>
+<li><code>sex</code>: Binary factor indicating biological sex</li>
+</ul>
+<hr />
+<div id="section-81" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> </h3>
+Load the data contained in the <em>toradata.csv</em> file.
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="in-class-exercises-5.html#cb241-1" aria-hidden="true" tabindex="-1"></a>condom <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;toradata.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="section-82" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> </h3>
+<p>The data contain multiple indicators of <em>attitudes</em>, <em>norms</em>, and <em>control</em>.
+Run a CFA for these three latent variables.</p>
+<ul>
+<li>Correlate the latent factors.</li>
+<li>Do the data support the measurement model for these latent factors?</li>
+<li>Are the three latent factors significantly correlated?</li>
+<li>Is it reasonable to proceed with our evaluation of the TORA theory?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="in-class-exercises-5.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb242-2"><a href="in-class-exercises-5.html#cb242-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-3"><a href="in-class-exercises-5.html#cb242-3" aria-hidden="true" tabindex="-1"></a>mod_cfa <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb242-4"><a href="in-class-exercises-5.html#cb242-4" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb242-5"><a href="in-class-exercises-5.html#cb242-5" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb242-6"><a href="in-class-exercises-5.html#cb242-6" aria-hidden="true" tabindex="-1"></a><span class="st">control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb242-7"><a href="in-class-exercises-5.html#cb242-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb242-8"><a href="in-class-exercises-5.html#cb242-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-9"><a href="in-class-exercises-5.html#cb242-9" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_cfa, <span class="at">data =</span> condom)</span>
+<span id="cb242-10"><a href="in-class-exercises-5.html#cb242-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-11"><a href="in-class-exercises-5.html#cb242-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6.16 ended normally after 29 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        21
+## 
+##   Number of observations                           250
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                35.611
+##   Degrees of freedom                                24
+##   P-value (Chi-square)                           0.060
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                               910.621
+##   Degrees of freedom                                36
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    0.987
+##   Tucker-Lewis Index (TLI)                       0.980
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -2998.290
+##   Loglikelihood unrestricted model (H1)      -2980.484
+##                                                       
+##   Akaike (AIC)                                6038.580
+##   Bayesian (BIC)                              6112.530
+##   Sample-size adjusted Bayesian (SABIC)       6045.959
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.044
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.073
+##   P-value H_0: RMSEA &lt;= 0.050                    0.599
+##   P-value H_0: RMSEA &gt;= 0.080                    0.017
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.037
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.036    0.068   15.308    0.000
+##     attit_3          -1.002    0.067  -14.856    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            1.031    0.098   10.574    0.000
+##     norm_3            0.932    0.093   10.013    0.000
+##   control =~                                          
+##     control_1         1.000                           
+##     control_2         0.862    0.129    6.699    0.000
+##     control_3         0.968    0.133    7.290    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes ~~                                        
+##     norms             0.340    0.069    4.957    0.000
+##     control           0.475    0.073    6.468    0.000
+##   norms ~~                                            
+##     control           0.338    0.064    5.254    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .attit_1           0.418    0.052    8.047    0.000
+##    .attit_2           0.310    0.047    6.633    0.000
+##    .attit_3           0.369    0.049    7.577    0.000
+##    .norm_1            0.504    0.071    7.130    0.000
+##    .norm_2            0.469    0.071    6.591    0.000
+##    .norm_3            0.635    0.075    8.465    0.000
+##    .control_1         0.614    0.078    7.905    0.000
+##    .control_2         0.865    0.091    9.520    0.000
+##    .control_3         0.762    0.087    8.758    0.000
+##     attitudes         0.885    0.116    7.620    0.000
+##     norms             0.743    0.116    6.423    0.000
+##     control           0.497    0.099    5.002    0.000</code></pre>
+<ul>
+<li>Yes, the model fits the data well, and the measurement parameters (e.g., factor
+loadings, residual variances) look reasonable. So, the data seem to support this
+measurement structure.</li>
+<li>Yes, all three latent variables are significantly, positively correlated.</li>
+<li>Yes.
+<ul>
+<li>The measurement structure is supported, so we can use the latent variables
+to represent the respective constructs in our subsequent SEM.</li>
+<li>The TORA doesn’t actually say anything about the associations between these
+three factors, but it makes sense that they would be positively associated.
+So, we should find this result comforting.</li>
+</ul></li>
+</ul>
+</details>
+<hr />
+</div>
+<div id="section-83" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> </h3>
+<p>Estimate the basic TORA model as an SEM.</p>
+<ul>
+<li>Predict <em>intention</em> from <em>attitudes</em> and <em>norms</em>.</li>
+<li>Predict <em>condom use</em> from <em>intention</em>.</li>
+<li>Use the latent versions of <em>attitudes</em> and <em>norms</em>.</li>
+<li>Covary the <em>attitudes</em> and <em>norms</em> factors.</li>
+<li>Does the model fit well?</li>
+<li>Do the estimates align with the TORA?</li>
+<li>How much variance in <em>intention</em> and <em>condom use</em> are explained by the model?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="in-class-exercises-5.html#cb244-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb244-2"><a href="in-class-exercises-5.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Define the latent variables:</span></span>
+<span id="cb244-3"><a href="in-class-exercises-5.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1 + attit_2 + attit_3</span></span>
+<span id="cb244-4"><a href="in-class-exercises-5.html#cb244-4" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1  + norm_2  + norm_3</span></span>
+<span id="cb244-5"><a href="in-class-exercises-5.html#cb244-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-6"><a href="in-class-exercises-5.html#cb244-6" aria-hidden="true" tabindex="-1"></a><span class="st">## Define the structural model:         </span></span>
+<span id="cb244-7"><a href="in-class-exercises-5.html#cb244-7" aria-hidden="true" tabindex="-1"></a><span class="st">intent   ~ attitudes + norms</span></span>
+<span id="cb244-8"><a href="in-class-exercises-5.html#cb244-8" aria-hidden="true" tabindex="-1"></a><span class="st">behavior ~ intent</span></span>
+<span id="cb244-9"><a href="in-class-exercises-5.html#cb244-9" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb244-10"><a href="in-class-exercises-5.html#cb244-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-11"><a href="in-class-exercises-5.html#cb244-11" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> condom)</span>
+<span id="cb244-12"><a href="in-class-exercises-5.html#cb244-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-13"><a href="in-class-exercises-5.html#cb244-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6.16 ended normally after 24 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        18
+## 
+##   Number of observations                           250
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                27.890
+##   Degrees of freedom                                18
+##   P-value (Chi-square)                           0.064
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                              1089.407
+##   Degrees of freedom                                28
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    0.991
+##   Tucker-Lewis Index (TLI)                       0.986
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -2533.616
+##   Loglikelihood unrestricted model (H1)      -2519.671
+##                                                       
+##   Akaike (AIC)                                5103.232
+##   Bayesian (BIC)                              5166.618
+##   Sample-size adjusted Bayesian (SABIC)       5109.557
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.047
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.079
+##   P-value H_0: RMSEA &lt;= 0.050                    0.523
+##   P-value H_0: RMSEA &gt;= 0.080                    0.046
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.036
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.039    0.068   15.365    0.000
+##     attit_3          -1.002    0.067  -14.850    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            0.983    0.087   11.333    0.000
+##     norm_3            0.935    0.087   10.778    0.000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   intent ~                                            
+##     attitudes         0.439    0.063    6.990    0.000
+##     norms             0.693    0.077    8.977    0.000
+##   behavior ~                                          
+##     intent            0.746    0.045   16.443    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes ~~                                        
+##     norms             0.347    0.069    5.027    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .attit_1           0.420    0.052    8.103    0.000
+##    .attit_2           0.306    0.046    6.604    0.000
+##    .attit_3           0.372    0.049    7.651    0.000
+##    .norm_1            0.483    0.064    7.581    0.000
+##    .norm_2            0.521    0.065    7.954    0.000
+##    .norm_3            0.610    0.070    8.713    0.000
+##    .intent            0.423    0.048    8.769    0.000
+##    .behavior          0.603    0.054   11.180    0.000
+##     attitudes         0.884    0.116    7.614    0.000
+##     norms             0.765    0.113    6.767    0.000
+## 
+## R-Square:
+##                    Estimate
+##     attit_1           0.678
+##     attit_2           0.757
+##     attit_3           0.705
+##     norm_1            0.613
+##     norm_2            0.587
+##     norm_3            0.523
+##     intent            0.639
+##     behavior          0.520</code></pre>
+<ul>
+<li>Yes, the model still fits the data very well.</li>
+<li>Yes, the estimates all align with the TORA. Specifically, <em>attitudes</em> and
+<em>norms</em> both significantly predict <em>intention</em>, and <em>intention</em> significantly
+predicts <em>condom use</em>.</li>
+<li>The model explains 63.93% of the variance in
+<em>intention</em> and 51.96% of the variance in
+<em>condom use</em>.</li>
+</ul>
+</details>
+<hr />
+</div>
+<div id="updatedModel" class="section level3" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> </h3>
+<p>Update your model to represent the extended TORA model that includes
+<em>perceived behavioral control</em>.</p>
+<ul>
+<li>Regress <em>condom use</em> onto <em>perceived behavioral control</em>.</li>
+<li>Use the latent variable representation of <em>control</em>.</li>
+<li>Covary all three exogenous latent factors.</li>
+<li>Does the model fit well?</li>
+<li>Do the estimates align with the updated TORA?</li>
+<li>How much variance in <em>intention</em> and <em>condom use</em> are explained by the model?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="in-class-exercises-5.html#cb246-1" aria-hidden="true" tabindex="-1"></a>mod_tora <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb246-2"><a href="in-class-exercises-5.html#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb246-3"><a href="in-class-exercises-5.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb246-4"><a href="in-class-exercises-5.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="st">control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb246-5"><a href="in-class-exercises-5.html#cb246-5" aria-hidden="true" tabindex="-1"></a><span class="st">             </span></span>
+<span id="cb246-6"><a href="in-class-exercises-5.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="st">intent   ~ attitudes + norms</span></span>
+<span id="cb246-7"><a href="in-class-exercises-5.html#cb246-7" aria-hidden="true" tabindex="-1"></a><span class="st">behavior ~ intent + control</span></span>
+<span id="cb246-8"><a href="in-class-exercises-5.html#cb246-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb246-9"><a href="in-class-exercises-5.html#cb246-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-10"><a href="in-class-exercises-5.html#cb246-10" aria-hidden="true" tabindex="-1"></a>fit_tora <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod_tora, <span class="at">data =</span> condom)</span>
+<span id="cb246-11"><a href="in-class-exercises-5.html#cb246-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-12"><a href="in-class-exercises-5.html#cb246-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_tora, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6.16 ended normally after 31 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        27
+## 
+##   Number of observations                           250
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                48.757
+##   Degrees of freedom                                39
+##   P-value (Chi-square)                           0.136
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                              1333.695
+##   Degrees of freedom                                55
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    0.992
+##   Tucker-Lewis Index (TLI)                       0.989
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -3551.160
+##   Loglikelihood unrestricted model (H1)      -3526.782
+##                                                       
+##   Akaike (AIC)                                7156.320
+##   Bayesian (BIC)                              7251.400
+##   Sample-size adjusted Bayesian (SABIC)       7165.807
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.032
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.057
+##   P-value H_0: RMSEA &lt;= 0.050                    0.870
+##   P-value H_0: RMSEA &gt;= 0.080                    0.000
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.033
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.033    0.068   15.221    0.000
+##     attit_3          -1.025    0.068  -15.097    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            0.984    0.087   11.256    0.000
+##     norm_3            0.955    0.088   10.881    0.000
+##   control =~                                          
+##     control_1         1.000                           
+##     control_2         0.859    0.127    6.789    0.000
+##     control_3         0.997    0.131    7.609    0.000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   intent ~                                            
+##     attitudes         0.447    0.063    7.100    0.000
+##     norms             0.706    0.078    9.078    0.000
+##   behavior ~                                          
+##     intent            0.563    0.063    8.923    0.000
+##     control           0.454    0.119    3.805    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes ~~                                        
+##     norms             0.342    0.068    5.011    0.000
+##     control           0.474    0.072    6.548    0.000
+##   norms ~~                                            
+##     control           0.352    0.064    5.521    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .attit_1           0.432    0.052    8.381    0.000
+##    .attit_2           0.330    0.046    7.220    0.000
+##    .attit_3           0.344    0.046    7.439    0.000
+##    .norm_1            0.496    0.063    7.820    0.000
+##    .norm_2            0.533    0.065    8.152    0.000
+##    .norm_3            0.595    0.069    8.643    0.000
+##    .control_1         0.625    0.075    8.372    0.000
+##    .control_2         0.876    0.090    9.757    0.000
+##    .control_3         0.746    0.084    8.874    0.000
+##    .intent            0.409    0.047    8.769    0.000
+##    .behavior          0.542    0.052   10.423    0.000
+##     attitudes         0.872    0.115    7.566    0.000
+##     norms             0.751    0.112    6.709    0.000
+##     control           0.485    0.096    5.059    0.000
+## 
+## R-Square:
+##                    Estimate
+##     attit_1           0.668
+##     attit_2           0.738
+##     attit_3           0.727
+##     norm_1            0.602
+##     norm_2            0.577
+##     norm_3            0.535
+##     control_1         0.437
+##     control_2         0.290
+##     control_3         0.392
+##     intent            0.651
+##     behavior          0.566</code></pre>
+<ul>
+<li>Yes, the model still fits the data very well.</li>
+<li>Yes, the estimates all align with the updated TORA. Specifically, <em>attitudes</em>
+and <em>norms</em> both significantly predict <em>intention</em>, while <em>intention</em> and
+<em>control</em> both significantly predict <em>condom use</em>.</li>
+<li>The model explains 65.11% of the variance in
+<em>intention</em> and 56.62% of the variance in
+<em>condom use</em>.</li>
+</ul>
+</details>
+<hr />
+<p>The TORA model explicitly forbids direct paths from <em>attitudes</em> and <em>norms</em> to
+<em>behaviors</em>; these effects should be fully mediated by the <em>behavioral intention</em>.
+The theory does not specify how <em>perceived behavioral control</em> should affect
+<em>behaviors</em>. There may be a direct effect of <em>control</em> on <em>behavior</em>, or the
+effect may be (partially) mediated by <em>intention</em>.</p>
+<hr />
+</div>
+<div id="section-84" class="section level3" number="6.4.5">
+<h3><span class="header-section-number">6.4.5</span> </h3>
+<p>Evaluate the hypothesized indirect effects of <em>attitudes</em> and <em>norms</em>.</p>
+<ul>
+<li>Include <em>attitudes</em>, <em>norms</em>, and <em>control</em> in your model as in <a href="in-class-exercises-5.html#updatedModel">6.4.4</a>.</li>
+<li>Does <em>intention</em> significantly mediate the effects of <em>attitudes</em> and <em>norms</em>
+on <em>behavior</em>?
+<ul>
+<li>Don’t forget to follow all the steps we covered for testing mediation.</li>
+</ul></li>
+<li>Are both of the above effects completely mediated?</li>
+<li>Do these results comport with the TORA? Why or why not?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="in-class-exercises-5.html#cb248-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb248-2"><a href="in-class-exercises-5.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb248-3"><a href="in-class-exercises-5.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb248-4"><a href="in-class-exercises-5.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="st">control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb248-5"><a href="in-class-exercises-5.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="st">             </span></span>
+<span id="cb248-6"><a href="in-class-exercises-5.html#cb248-6" aria-hidden="true" tabindex="-1"></a><span class="st">intent   ~ a1 * attitudes + a2 * norms</span></span>
+<span id="cb248-7"><a href="in-class-exercises-5.html#cb248-7" aria-hidden="true" tabindex="-1"></a><span class="st">behavior ~ b * intent + control + attitudes + norms</span></span>
+<span id="cb248-8"><a href="in-class-exercises-5.html#cb248-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-9"><a href="in-class-exercises-5.html#cb248-9" aria-hidden="true" tabindex="-1"></a><span class="st">ie_att  := a1 * b</span></span>
+<span id="cb248-10"><a href="in-class-exercises-5.html#cb248-10" aria-hidden="true" tabindex="-1"></a><span class="st">ie_norm := a2 * b</span></span>
+<span id="cb248-11"><a href="in-class-exercises-5.html#cb248-11" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb248-12"><a href="in-class-exercises-5.html#cb248-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-13"><a href="in-class-exercises-5.html#cb248-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb248-14"><a href="in-class-exercises-5.html#cb248-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-15"><a href="in-class-exercises-5.html#cb248-15" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> condom, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb248-16"><a href="in-class-exercises-5.html#cb248-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-17"><a href="in-class-exercises-5.html#cb248-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Length  Class   Mode 
+##      1 lavaan     S4</code></pre>
+<ul>
+<li>Yes, both indirect effects are significant according to the 95% bootstrapped CIs.</li>
+<li>Yes, both effects are completely moderated by <em>behavioral intention</em>. We can
+infer as much because the direct effects of <em>attitudes</em> and <em>norms</em> on <em>condom
+use</em> are both nonsignificant.</li>
+<li>Yes, these results comport with the TORA. Both effects are fully mediated, as
+the theory stipulates.</li>
+</ul>
+</details>
+<hr />
+<p>In addition to evaluating the significance of the indirect and direct effects,
+we can also take a model-comparison perspective. We can use model comparisons to
+test if removing the direct effects of <em>attitudes</em> and <em>norms</em> on <em>condom use</em>
+significantly decreases model fit. In other words, are those paths needed to
+accurately represent the data, or are they “dead weight”.</p>
+<hr />
+</div>
+<div id="section-85" class="section level3" number="6.4.6">
+<h3><span class="header-section-number">6.4.6</span> </h3>
+<p>Use a <span class="math inline">\(\Delta \chi^2\)</span> test to evaluate the necessity of including the direct
+effects of <em>attitudes</em> and <em>norms</em> on <em>condom use</em> in the model.</p>
+<ul>
+<li>What is your conclusion?</li>
+</ul>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We only need to compare the fit of the model with the direct effects included
+to the fit of the model without the direct effects. We’ve already estimated both
+models, so we can simply submit the fitted <strong>lavaan</strong> objects to the <code>anova()</code>
+function.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="in-class-exercises-5.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit, fit_tora)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"37","2":"7160.192","3":"7262.314","4":"48.62879","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"fit"},{"1":"39","2":"7156.320","3":"7251.400","4":"48.75720","5":"0.1284159","6":"0","7":"2","8":"0.9378099","_rn_":"fit_tora"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The <span class="math inline">\(\Delta \chi^2\)</span> test is not significant. So, we have not lost a significant
+amount of fit by fixing the direct effects to zero. In other words, the complete
+mediation model explains the data just as well as the partial mediation model. So,
+we should probably prefer the more parsimonious model.</p>
+</details>
+<hr />
+</div>
+<div id="section-86" class="section level3" number="6.4.7">
+<h3><span class="header-section-number">6.4.7</span> </h3>
+<p>Use some statistical means of evaluating the most plausible way to include
+<em>perceived behavioral control</em> into the model.</p>
+<ul>
+<li>Choose between the following three options:
+<ol style="list-style-type: decimal">
+<li><em>control</em> predicts <em>behavior</em> via a direct, un-mediated effect.</li>
+<li><em>control</em> predicts <em>behavior</em> via an indirect effect that is completely
+mediated by <em>intention</em>.</li>
+<li><em>control</em> predicts <em>behavior</em> via both an indirect effect through
+<em>intention</em> and a residual direct effect.</li>
+</ol></li>
+</ul>
+<p><em>Hint:</em> There is more than one way to approach this problem.</p>
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>We can tackle this problem in a few different ways. One possibility entails
+testing the indirect, direct, and total effects.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="in-class-exercises-5.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Allow for partial mediation:</span></span>
+<span id="cb251-2"><a href="in-class-exercises-5.html#cb251-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb251-3"><a href="in-class-exercises-5.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb251-4"><a href="in-class-exercises-5.html#cb251-4" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb251-5"><a href="in-class-exercises-5.html#cb251-5" aria-hidden="true" tabindex="-1"></a><span class="st">control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb251-6"><a href="in-class-exercises-5.html#cb251-6" aria-hidden="true" tabindex="-1"></a><span class="st">             </span></span>
+<span id="cb251-7"><a href="in-class-exercises-5.html#cb251-7" aria-hidden="true" tabindex="-1"></a><span class="st">intent   ~ attitudes + norms + a * control</span></span>
+<span id="cb251-8"><a href="in-class-exercises-5.html#cb251-8" aria-hidden="true" tabindex="-1"></a><span class="st">behavior ~ b * intent + c * control</span></span>
+<span id="cb251-9"><a href="in-class-exercises-5.html#cb251-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-10"><a href="in-class-exercises-5.html#cb251-10" aria-hidden="true" tabindex="-1"></a><span class="st">ie    := a * b</span></span>
+<span id="cb251-11"><a href="in-class-exercises-5.html#cb251-11" aria-hidden="true" tabindex="-1"></a><span class="st">total := ie + c</span></span>
+<span id="cb251-12"><a href="in-class-exercises-5.html#cb251-12" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb251-13"><a href="in-class-exercises-5.html#cb251-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-14"><a href="in-class-exercises-5.html#cb251-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">235711</span>)</span>
+<span id="cb251-15"><a href="in-class-exercises-5.html#cb251-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb251-16"><a href="in-class-exercises-5.html#cb251-16" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod1, <span class="at">data =</span> condom, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb251-17"><a href="in-class-exercises-5.html#cb251-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Length  Class   Mode 
+##      1 lavaan     S4</code></pre>
+<p>From the above results, we can see that the direct and total effects are both
+significant, but the indirect effect is not. Hence, it probably makes the most
+sense to include <em>control</em> via a direct (non-mediated) effect on <em>behavior</em>.</p>
+<hr />
+<p>We can also approach this problem from a model-comparison perspective. We can
+fit models that encode each pattern of constraints and check which one best
+represents the data.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="in-class-exercises-5.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Force complete mediation:</span></span>
+<span id="cb253-2"><a href="in-class-exercises-5.html#cb253-2" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb253-3"><a href="in-class-exercises-5.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb253-4"><a href="in-class-exercises-5.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb253-5"><a href="in-class-exercises-5.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="st">control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb253-6"><a href="in-class-exercises-5.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="st">             </span></span>
+<span id="cb253-7"><a href="in-class-exercises-5.html#cb253-7" aria-hidden="true" tabindex="-1"></a><span class="st">intent   ~ attitudes + norms + control</span></span>
+<span id="cb253-8"><a href="in-class-exercises-5.html#cb253-8" aria-hidden="true" tabindex="-1"></a><span class="st">behavior ~ intent</span></span>
+<span id="cb253-9"><a href="in-class-exercises-5.html#cb253-9" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb253-10"><a href="in-class-exercises-5.html#cb253-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-11"><a href="in-class-exercises-5.html#cb253-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Force no mediation:</span></span>
+<span id="cb253-12"><a href="in-class-exercises-5.html#cb253-12" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb253-13"><a href="in-class-exercises-5.html#cb253-13" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb253-14"><a href="in-class-exercises-5.html#cb253-14" aria-hidden="true" tabindex="-1"></a><span class="st">norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb253-15"><a href="in-class-exercises-5.html#cb253-15" aria-hidden="true" tabindex="-1"></a><span class="st">control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb253-16"><a href="in-class-exercises-5.html#cb253-16" aria-hidden="true" tabindex="-1"></a><span class="st">             </span></span>
+<span id="cb253-17"><a href="in-class-exercises-5.html#cb253-17" aria-hidden="true" tabindex="-1"></a><span class="st">intent   ~ attitudes + norms</span></span>
+<span id="cb253-18"><a href="in-class-exercises-5.html#cb253-18" aria-hidden="true" tabindex="-1"></a><span class="st">behavior ~ intent + control</span></span>
+<span id="cb253-19"><a href="in-class-exercises-5.html#cb253-19" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb253-20"><a href="in-class-exercises-5.html#cb253-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-21"><a href="in-class-exercises-5.html#cb253-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the two restricted models:</span></span>
+<span id="cb253-22"><a href="in-class-exercises-5.html#cb253-22" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod2, <span class="at">data =</span> condom)</span>
+<span id="cb253-23"><a href="in-class-exercises-5.html#cb253-23" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod3, <span class="at">data =</span> condom)</span>
+<span id="cb253-24"><a href="in-class-exercises-5.html#cb253-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-25"><a href="in-class-exercises-5.html#cb253-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the results:</span></span>
+<span id="cb253-26"><a href="in-class-exercises-5.html#cb253-26" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code></pre></div>
+<pre><code>## lavaan 0.6.16 ended normally after 33 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        27
+## 
+##   Number of observations                           250
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                62.797
+##   Degrees of freedom                                39
+##   P-value (Chi-square)                           0.009
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.033    0.068   15.295    0.000
+##     attit_3          -1.018    0.068  -15.087    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            0.985    0.087   11.305    0.000
+##     norm_3            0.947    0.087   10.845    0.000
+##   control =~                                          
+##     control_1         1.000                           
+##     control_2         0.864    0.126    6.855    0.000
+##     control_3         0.958    0.129    7.417    0.000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   intent ~                                            
+##     attitudes         0.352    0.096    3.669    0.000
+##     norms             0.644    0.088    7.347    0.000
+##     control           0.207    0.163    1.268    0.205
+##   behavior ~                                          
+##     intent            0.746    0.045   16.443    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes ~~                                        
+##     norms             0.345    0.069    5.023    0.000
+##     control           0.476    0.073    6.513    0.000
+##   norms ~~                                            
+##     control           0.346    0.065    5.361    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .attit_1           0.427    0.051    8.295    0.000
+##    .attit_2           0.325    0.046    7.101    0.000
+##    .attit_3           0.349    0.047    7.477    0.000
+##    .norm_1            0.490    0.064    7.702    0.000
+##    .norm_2            0.524    0.065    8.025    0.000
+##    .norm_3            0.600    0.069    8.652    0.000
+##    .control_1         0.610    0.076    8.015    0.000
+##    .control_2         0.861    0.090    9.580    0.000
+##    .control_3         0.769    0.086    8.938    0.000
+##    .intent            0.412    0.046    8.890    0.000
+##    .behavior          0.603    0.054   11.180    0.000
+##     attitudes         0.877    0.115    7.596    0.000
+##     norms             0.757    0.112    6.733    0.000
+##     control           0.500    0.098    5.076    0.000</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="in-class-exercises-5.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code></pre></div>
+<pre><code>## lavaan 0.6.16 ended normally after 31 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        27
+## 
+##   Number of observations                           250
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                48.757
+##   Degrees of freedom                                39
+##   P-value (Chi-square)                           0.136
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.033    0.068   15.221    0.000
+##     attit_3          -1.025    0.068  -15.097    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            0.984    0.087   11.256    0.000
+##     norm_3            0.955    0.088   10.881    0.000
+##   control =~                                          
+##     control_1         1.000                           
+##     control_2         0.859    0.127    6.789    0.000
+##     control_3         0.997    0.131    7.609    0.000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   intent ~                                            
+##     attitudes         0.447    0.063    7.100    0.000
+##     norms             0.706    0.078    9.078    0.000
+##   behavior ~                                          
+##     intent            0.563    0.063    8.923    0.000
+##     control           0.454    0.119    3.805    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   attitudes ~~                                        
+##     norms             0.342    0.068    5.011    0.000
+##     control           0.474    0.072    6.548    0.000
+##   norms ~~                                            
+##     control           0.352    0.064    5.521    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .attit_1           0.432    0.052    8.381    0.000
+##    .attit_2           0.330    0.046    7.220    0.000
+##    .attit_3           0.344    0.046    7.439    0.000
+##    .norm_1            0.496    0.063    7.820    0.000
+##    .norm_2            0.533    0.065    8.152    0.000
+##    .norm_3            0.595    0.069    8.643    0.000
+##    .control_1         0.625    0.075    8.372    0.000
+##    .control_2         0.876    0.090    9.757    0.000
+##    .control_3         0.746    0.084    8.874    0.000
+##    .intent            0.409    0.047    8.769    0.000
+##    .behavior          0.542    0.052   10.423    0.000
+##     attitudes         0.872    0.115    7.566    0.000
+##     norms             0.751    0.112    6.709    0.000
+##     control           0.485    0.096    5.059    0.000</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="in-class-exercises-5.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Do either of the restricted models fit worse than the partial mediation model?</span></span>
+<span id="cb257-2"><a href="in-class-exercises-5.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit1, fit2)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"38","2":"7156.952","3":"7255.553","4":"47.38864","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"fit1"},{"1":"39","2":"7170.360","3":"7265.439","4":"62.79676","5":"15.40812","6":"0.2400676","7":"1","8":"8.661552e-05","_rn_":"fit2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="in-class-exercises-5.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit1, fit3)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"38","2":"7156.952","3":"7255.553","4":"47.38864","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"fit1"},{"1":"39","2":"7156.320","3":"7251.400","4":"48.75720","5":"1.368561","6":"0.03839587","7":"1","8":"0.2420593","_rn_":"fit3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The above <span class="math inline">\(\Delta \chi^2\)</span> tests tell us that the full mediation model fits
+significantly worse than the partial mediation model. Hence, forcing full
+mediation by fixing the direct effect to zero is an unreasonable restraint. The
+total effect model, on the other hand, does not fit significantly worse than the
+partial mediation model. So, we can conclude that removing the indirect effect
+and modeling the influence of <em>control</em> on <em>behavior</em> as an un-mediated direct
+association represents the data just as well as a model that allows for both
+indirect and direct effects. Hence, we should prefer the more parsimonious total
+effects model.</p>
+<hr />
+<p>While the two tests above lead us to prefer the non-mediated model, we cannot
+directly say that the the complete mediation model fits significantly worse than
+the non-mediated model. We have not directly compared those two models, and we
+cannot do so with the <span class="math inline">\(\Delta \chi^2\)</span>. We cannot do such a test because these two
+models are not nested: we must both add and remove a path to get from one model
+specification to the other. Also, both models have the same degrees of freedom,
+so we cannot define a sampling distribution against which we would compare the
+<span class="math inline">\(\Delta \chi^2\)</span>, anyway.</p>
+<p>We are not completely without options, though. We can use <em>information criteria</em>
+to compare non-nested models. The two most popular information criteria are the
+<em>Akaike’s Information Criterion</em> (AIC) and the <em>Bayesian Information Criterion</em>
+(BIC).</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="in-class-exercises-5.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Which model is the most parsimonious representation of the data?</span></span>
+<span id="cb259-2"><a href="in-class-exercises-5.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(fit1, fit2, fit3)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"28","2":"7156.952","_rn_":"fit1"},{"1":"27","2":"7170.360","_rn_":"fit2"},{"1":"27","2":"7156.320","_rn_":"fit3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="in-class-exercises-5.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(fit1, fit2, fit3)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"28","2":"7255.553","_rn_":"fit1"},{"1":"27","2":"7265.439","_rn_":"fit2"},{"1":"27","2":"7251.400","_rn_":"fit3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>When comparing models based on information criteria, a lower value indicates a
+better model in the sense of a better balance of fit and parsimony. The above
+results show that both the AIC and the BIC agree that the no-mediation model is
+the best.</p>
+<hr />
+<p>So, in the end, regardless of how we approach the question, all of our results
+suggest modeling <em>perceived behavioral control</em> as a direct, non-mediated
+predictor of <em>condom</em> use.</p>
+</details>
+<!------------------------------------------------------------------------------
 
+---
+
+Up to this point, we've implemented multiple group models simply by specifying 
+some grouping factor in the **lavaan** fitting function and proceeding with our
+primary analysis (e.g., testing for moderation by group). When we have latent 
+variables in our model, however, we get a new opportunity: we can test 
+*measurement invariance*. 
+
+Basically, measurement invariance testing allows us to empirically test for 
+differences in the measurement model between the groups. If we can establish 
+measurement invariance, we can draw the following (equivalent) conclusions: 
+
+- Our latent constructs are defined equivalently in all groups.
+- The participants in every group are interpreting our items in the same way. 
+- Participants in different groups who have the same values for the observed 
+indicators will also have the same score on the latent variable.
+- Between-group differences in latent parameters are due to true differences in
+the underlying latent constructs and not caused by differences in measurement.
+
+Anytime we make between-group comparisons (e.g., ANOVA, t-tests, moderation by 
+group, etc.) we assume invariant measurement. That is, we assume that the scores
+we're comparing have the same meaning in each group. When doing multiple group 
+SEM, however, we're apprised of the incredibly powerful capability of actually 
+testing this---very important, and often violated---assumption.
+
+
+The process of testing measurement invariance can get quite complex, but the 
+basic procedure boils down to using model comparison tests to evaluate the 
+plausibility of increasingly strong between-group constraints. For most problems,
+these constraints amount to the following three levels:
+
+1. *Configural:* The same pattern of free and fixed effects in all groups
+1. *Weak (aka Metric):* Configural + Equal factor loadings in all groups
+1. *Strong (aka Scalar):* Weak + Equal item intercepts in all groups
+
+You can read more about measurement invariance [here][van_de_schoot_et_al] and
+[here][putnick_bornstein], and you can find a brief discussion of how to 
+conduct measurement invariance tests in **lavaan** [here][mi_tutorial].
+
+---
+
+###
+
+Test for measurement invariance across *sex* groups in the three latent variables
+of the TORA model above.
+
+- Test configural, weak, and strong invariance.
+- Test for invariance in all three latent factors simultaneously.
+- Is full measurement invariance (i.e., up to and including strong invariance)
+supported?
+
+<details>
+  <summary>Click for explanation</summary>
+
+```r
+## Estimate the models:
+config <- cfa(mod_cfa, 
+              data = condom, 
+              group = "sex")
+weak <- cfa(mod_cfa, 
+            data = condom, 
+            group = "sex",
+            group.equal = "loadings")
+strong <- cfa(mod_cfa, 
+              data = condom, 
+              group = "sex",
+              group.equal = c("loadings", "intercepts")
+              )
+
+## Check that everything went well:
+summary(config, fit.measures = TRUE)
+```
+
+```
+## lavaan 0.6.16 ended normally after 54 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        60
+## 
+##   Number of observations per group:                   
+##     woman                                          161
+##     man                                             89
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                66.565
+##   Degrees of freedom                                48
+##   P-value (Chi-square)                           0.039
+##   Test statistic for each group:
+##     woman                                       42.623
+##     man                                         23.941
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                               948.362
+##   Degrees of freedom                                72
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    0.979
+##   Tucker-Lewis Index (TLI)                       0.968
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -2950.738
+##   Loglikelihood unrestricted model (H1)      -2917.456
+##                                                       
+##   Akaike (AIC)                                6021.476
+##   Bayesian (BIC)                              6232.764
+##   Sample-size adjusted Bayesian (SABIC)       6042.559
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.056
+##   90 Percent confidence interval - lower         0.013
+##   90 Percent confidence interval - upper         0.086
+##   P-value H_0: RMSEA <= 0.050                    0.366
+##   P-value H_0: RMSEA >= 0.080                    0.097
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.048
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## 
+## Group 1 [woman]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.005    0.075   13.427    0.000
+##     attit_3          -0.965    0.075  -12.878    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            0.952    0.101    9.470    0.000
+##     norm_3            0.879    0.101    8.742    0.000
+##   control =~                                          
+##     control_1         1.000                           
+##     control_2         0.794    0.144    5.526    0.000
+##     control_3         0.989    0.152    6.523    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes ~~                                        
+##     norms             0.450    0.087    5.200    0.000
+##     control           0.468    0.089    5.249    0.000
+##   norms ~~                                            
+##     control           0.387    0.079    4.912    0.000
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           2.839    0.090   31.702    0.000
+##    .attit_2           2.907    0.084   34.728    0.000
+##    .attit_3           3.174    0.084   37.969    0.000
+##    .norm_1            2.832    0.080   35.342    0.000
+##    .norm_2            2.832    0.079   35.775    0.000
+##    .norm_3            2.795    0.081   34.694    0.000
+##    .control_1         2.851    0.082   34.755    0.000
+##    .control_2         2.857    0.081   35.104    0.000
+##    .control_3         2.888    0.081   35.877    0.000
+##     attitudes         0.000                           
+##     norms             0.000                           
+##     control           0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           0.398    0.059    6.739    0.000
+##    .attit_2           0.227    0.045    5.011    0.000
+##    .attit_3           0.294    0.048    6.092    0.000
+##    .norm_1            0.346    0.065    5.328    0.000
+##    .norm_2            0.385    0.065    5.962    0.000
+##    .norm_3            0.513    0.072    7.108    0.000
+##    .control_1         0.587    0.090    6.531    0.000
+##    .control_2         0.754    0.096    7.815    0.000
+##    .control_3         0.557    0.086    6.453    0.000
+##     attitudes         0.893    0.142    6.273    0.000
+##     norms             0.688    0.121    5.706    0.000
+##     control           0.497    0.119    4.184    0.000
+## 
+## 
+## Group 2 [man]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2           1.167    0.149    7.843    0.000
+##     attit_3          -1.060    0.142   -7.443    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2            1.070    0.215    4.965    0.000
+##     norm_3            0.922    0.189    4.869    0.000
+##   control =~                                          
+##     control_1         1.000                           
+##     control_2         0.995    0.290    3.435    0.001
+##     control_3         0.949    0.285    3.332    0.001
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes ~~                                        
+##     norms             0.086    0.103    0.837    0.403
+##     control           0.388    0.113    3.430    0.001
+##   norms ~~                                            
+##     control           0.200    0.101    1.976    0.048
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           3.270    0.117   28.063    0.000
+##    .attit_2           3.180    0.128   24.905    0.000
+##    .attit_3           2.787    0.126   22.187    0.000
+##    .norm_1            3.236    0.131   24.692    0.000
+##    .norm_2            3.337    0.132   25.293    0.000
+##    .norm_3            3.303    0.131   25.136    0.000
+##    .control_1         3.157    0.111   28.415    0.000
+##    .control_2         3.135    0.129   24.249    0.000
+##    .control_3         3.213    0.130   24.805    0.000
+##     attitudes         0.000                           
+##     norms             0.000                           
+##     control           0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           0.440    0.095    4.631    0.000
+##    .attit_2           0.405    0.109    3.699    0.000
+##    .attit_3           0.541    0.112    4.822    0.000
+##    .norm_1            0.740    0.175    4.230    0.000
+##    .norm_2            0.647    0.182    3.555    0.000
+##    .norm_3            0.868    0.175    4.972    0.000
+##    .control_1         0.673    0.146    4.602    0.000
+##    .control_2         1.066    0.197    5.417    0.000
+##    .control_3         1.110    0.199    5.582    0.000
+##     attitudes         0.768    0.182    4.220    0.000
+##     norms             0.788    0.242    3.259    0.001
+##     control           0.426    0.168    2.537    0.011
+```
+
+```r
+summary(weak)
+```
+
+```
+## lavaan 0.6.16 ended normally after 37 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        60
+##   Number of equality constraints                     6
+## 
+##   Number of observations per group:                   
+##     woman                                          161
+##     man                                             89
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                68.557
+##   Degrees of freedom                                54
+##   P-value (Chi-square)                           0.088
+##   Test statistic for each group:
+##     woman                                       43.148
+##     man                                         25.409
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## 
+## Group 1 [woman]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2 (.p2.)    1.048    0.068   15.413    0.000
+##     attit_3 (.p3.)   -0.995    0.067  -14.762    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2  (.p5.)    0.977    0.091   10.708    0.000
+##     norm_3  (.p6.)    0.889    0.089    9.996    0.000
+##   control =~                                          
+##     cntrl_1           1.000                           
+##     cntrl_2 (.p8.)    0.843    0.130    6.506    0.000
+##     cntrl_3 (.p9.)    0.983    0.135    7.306    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes ~~                                        
+##     norms             0.431    0.082    5.256    0.000
+##     control           0.450    0.083    5.395    0.000
+##   norms ~~                                            
+##     control           0.378    0.075    5.031    0.000
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           2.839    0.088   32.194    0.000
+##    .attit_2           2.907    0.084   34.445    0.000
+##    .attit_3           3.174    0.084   37.913    0.000
+##    .norm_1            2.832    0.080   35.504    0.000
+##    .norm_2            2.832    0.080   35.571    0.000
+##    .norm_3            2.795    0.080   34.727    0.000
+##    .control_1         2.851    0.082   34.882    0.000
+##    .control_2         2.857    0.082   34.746    0.000
+##    .control_3         2.888    0.080   36.037    0.000
+##     attitudes         0.000                           
+##     norms             0.000                           
+##     control           0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           0.408    0.058    6.987    0.000
+##    .attit_2           0.221    0.045    4.896    0.000
+##    .attit_3           0.293    0.048    6.128    0.000
+##    .norm_1            0.353    0.063    5.580    0.000
+##    .norm_2            0.380    0.064    5.952    0.000
+##    .norm_3            0.512    0.071    7.178    0.000
+##    .control_1         0.590    0.088    6.695    0.000
+##    .control_2         0.744    0.096    7.731    0.000
+##    .control_3         0.565    0.085    6.663    0.000
+##     attitudes         0.844    0.129    6.540    0.000
+##     norms             0.672    0.113    5.921    0.000
+##     control           0.485    0.110    4.417    0.000
+## 
+## 
+## Group 2 [man]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2 (.p2.)    1.048    0.068   15.413    0.000
+##     attit_3 (.p3.)   -0.995    0.067  -14.762    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2  (.p5.)    0.977    0.091   10.708    0.000
+##     norm_3  (.p6.)    0.889    0.089    9.996    0.000
+##   control =~                                          
+##     cntrl_1           1.000                           
+##     cntrl_2 (.p8.)    0.843    0.130    6.506    0.000
+##     cntrl_3 (.p9.)    0.983    0.135    7.306    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes ~~                                        
+##     norms             0.092    0.114    0.807    0.420
+##     control           0.425    0.109    3.912    0.000
+##   norms ~~                                            
+##     control           0.217    0.103    2.100    0.036
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           3.270    0.120   27.254    0.000
+##    .attit_2           3.180    0.125   25.501    0.000
+##    .attit_3           2.787    0.125   22.275    0.000
+##    .norm_1            3.236    0.132   24.423    0.000
+##    .norm_2            3.337    0.130   25.610    0.000
+##    .norm_3            3.303    0.132   25.086    0.000
+##    .control_1         3.157    0.112   28.208    0.000
+##    .control_2         3.135    0.127   24.750    0.000
+##    .control_3         3.213    0.131   24.540    0.000
+##     attitudes         0.000                           
+##     norms             0.000                           
+##     control           0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           0.419    0.093    4.528    0.000
+##    .attit_2           0.438    0.099    4.436    0.000
+##    .attit_3           0.540    0.107    5.057    0.000
+##    .norm_1            0.704    0.158    4.456    0.000
+##    .norm_2            0.692    0.153    4.520    0.000
+##    .norm_3            0.864    0.164    5.271    0.000
+##    .control_1         0.668    0.139    4.797    0.000
+##    .control_2         1.110    0.186    5.960    0.000
+##    .control_3         1.094    0.193    5.663    0.000
+##     attitudes         0.862    0.166    5.200    0.000
+##     norms             0.859    0.193    4.443    0.000
+##     control           0.447    0.137    3.260    0.001
+```
+
+```r
+summary(strong)
+```
+
+```
+## lavaan 0.6.16 ended normally after 60 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        63
+##   Number of equality constraints                    15
+## 
+##   Number of observations per group:                   
+##     woman                                          161
+##     man                                             89
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                72.050
+##   Degrees of freedom                                60
+##   P-value (Chi-square)                           0.137
+##   Test statistic for each group:
+##     woman                                       43.961
+##     man                                         28.089
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## 
+## Group 1 [woman]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2 (.p2.)    1.028    0.065   15.693    0.000
+##     attit_3 (.p3.)   -0.990    0.065  -15.114    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2  (.p5.)    0.998    0.089   11.182    0.000
+##     norm_3  (.p6.)    0.918    0.088   10.467    0.000
+##   control =~                                          
+##     cntrl_1           1.000                           
+##     cntrl_2 (.p8.)    0.848    0.126    6.736    0.000
+##     cntrl_3 (.p9.)    0.987    0.131    7.558    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes ~~                                        
+##     norms             0.428    0.081    5.259    0.000
+##     control           0.454    0.084    5.438    0.000
+##   norms ~~                                            
+##     control           0.372    0.073    5.060    0.000
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1 (.25.)    2.864    0.085   33.535    0.000
+##    .attit_2 (.26.)    2.887    0.083   34.826    0.000
+##    .attit_3 (.27.)    3.166    0.082   38.500    0.000
+##    .norm_1  (.28.)    2.816    0.078   36.330    0.000
+##    .norm_2  (.29.)    2.838    0.078   36.453    0.000
+##    .norm_3  (.30.)    2.812    0.078   36.253    0.000
+##    .cntrl_1 (.31.)    2.847    0.078   36.562    0.000
+##    .cntrl_2 (.32.)    2.859    0.076   37.381    0.000
+##    .cntrl_3 (.33.)    2.891    0.077   37.531    0.000
+##     attitds           0.000                           
+##     norms             0.000                           
+##     control           0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           0.405    0.058    6.931    0.000
+##    .attit_2           0.226    0.045    5.051    0.000
+##    .attit_3           0.291    0.048    6.084    0.000
+##    .norm_1            0.362    0.062    5.795    0.000
+##    .norm_2            0.377    0.064    5.931    0.000
+##    .norm_3            0.506    0.071    7.109    0.000
+##    .control_1         0.592    0.088    6.743    0.000
+##    .control_2         0.743    0.096    7.739    0.000
+##    .control_3         0.566    0.085    6.684    0.000
+##     attitudes         0.861    0.130    6.607    0.000
+##     norms             0.650    0.109    5.950    0.000
+##     control           0.482    0.108    4.477    0.000
+## 
+## 
+## Group 2 [man]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes =~                                        
+##     attit_1           1.000                           
+##     attit_2 (.p2.)    1.028    0.065   15.693    0.000
+##     attit_3 (.p3.)   -0.990    0.065  -15.114    0.000
+##   norms =~                                            
+##     norm_1            1.000                           
+##     norm_2  (.p5.)    0.998    0.089   11.182    0.000
+##     norm_3  (.p6.)    0.918    0.088   10.467    0.000
+##   control =~                                          
+##     cntrl_1           1.000                           
+##     cntrl_2 (.p8.)    0.848    0.126    6.736    0.000
+##     cntrl_3 (.p9.)    0.987    0.131    7.558    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##   attitudes ~~                                        
+##     norms             0.093    0.113    0.825    0.409
+##     control           0.428    0.109    3.926    0.000
+##   norms ~~                                            
+##     control           0.213    0.101    2.102    0.036
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1 (.25.)    2.864    0.085   33.535    0.000
+##    .attit_2 (.26.)    2.887    0.083   34.826    0.000
+##    .attit_3 (.27.)    3.166    0.082   38.500    0.000
+##    .norm_1  (.28.)    2.816    0.078   36.330    0.000
+##    .norm_2  (.29.)    2.838    0.078   36.453    0.000
+##    .norm_3  (.30.)    2.812    0.078   36.253    0.000
+##    .cntrl_1 (.31.)    2.847    0.078   36.562    0.000
+##    .cntrl_2 (.32.)    2.859    0.076   37.381    0.000
+##    .cntrl_3 (.33.)    2.891    0.077   37.531    0.000
+##     attitds           0.356    0.133    2.680    0.007
+##     norms             0.480    0.133    3.602    0.000
+##     control           0.318    0.116    2.733    0.006
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)
+##    .attit_1           0.420    0.094    4.484    0.000
+##    .attit_2           0.456    0.100    4.557    0.000
+##    .attit_3           0.537    0.107    5.023    0.000
+##    .norm_1            0.724    0.157    4.599    0.000
+##    .norm_2            0.686    0.153    4.489    0.000
+##    .norm_3            0.859    0.165    5.220    0.000
+##    .control_1         0.669    0.139    4.821    0.000
+##    .control_2         1.109    0.186    5.958    0.000
+##    .control_3         1.094    0.193    5.664    0.000
+##     attitudes         0.872    0.167    5.214    0.000
+##     norms             0.830    0.186    4.455    0.000
+##     control           0.445    0.136    3.280    0.001
+```
+
+```r
+## Test measurement invariance:
+anova(config, weak, strong)
+```
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"48","2":"6021.476","3":"6232.764","4":"66.56458","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"config"},{"1":"54","2":"6011.469","3":"6201.628","4":"68.55703","5":"1.992447","6":"0","7":"6","8":"0.9203919","_rn_":"weak"},{"1":"60","2":"6002.962","3":"6171.992","4":"72.05044","5":"3.493417","6":"0","7":"6","8":"0.7448454","_rn_":"strong"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+```r
+## Make sure the strongly invariant model still fits well in an absolute sense:
+fitMeasures(strong)
+```
+
+```
+##                  npar                  fmin                 chisq 
+##                48.000                 0.144                72.050 
+##                    df                pvalue        baseline.chisq 
+##                60.000                 0.137               948.362 
+##           baseline.df       baseline.pvalue                   cfi 
+##                72.000                 0.000                 0.986 
+##                   tli                  nnfi                   rfi 
+##                 0.983                 0.983                 0.909 
+##                   nfi                  pnfi                   ifi 
+##                 0.924                 0.770                 0.986 
+##                   rni                  logl     unrestricted.logl 
+##                 0.986             -2953.481             -2917.456 
+##                   aic                   bic                ntotal 
+##              6002.962              6171.992               250.000 
+##                  bic2                 rmsea        rmsea.ci.lower 
+##              6019.828                 0.040                 0.000 
+##        rmsea.ci.upper        rmsea.ci.level          rmsea.pvalue 
+##                 0.071                 0.900                 0.669 
+##        rmsea.close.h0 rmsea.notclose.pvalue     rmsea.notclose.h0 
+##                 0.050                 0.013                 0.080 
+##                   rmr            rmr_nomean                  srmr 
+##                 0.062                 0.067                 0.051 
+##          srmr_bentler   srmr_bentler_nomean                  crmr 
+##                 0.051                 0.055                 0.054 
+##           crmr_nomean            srmr_mplus     srmr_mplus_nomean 
+##                 0.059                 0.052                 0.054 
+##                 cn_05                 cn_01                   gfi 
+##               275.398               307.658                 0.997 
+##                  agfi                  pgfi                   mfi 
+##                 0.994                 0.554                 0.976 
+##                  ecvi 
+##                 0.672
+```
+
+Yes, we have been able to establish full measurement invariance. 
+
+- The configurally invariant model fits the data well.
+- The $\Delta \chi^2$ tests support the tenability of the weak and strong 
+invariance constraints.
+- The strongly invariance model still fits the data well.
+
+</details>
+
+---
+
+Once you've established measurement invariance, you can move on to testing 
+hypotheses about between-group differences secure in the knowledge that your 
+latent factors represent the same hypothetical constructs in all groups.
+
+---
+
+###
+
+Using a strongly invariant model, conduct an omnibus test to see if *sex* 
+moderates any of the regression paths in the TORA model.
+
+- What do you conclude.
+
+<details>
+  <summary>Click for explanation</summary>
+  
+
+```r
+fit_full <- sem(mod_tora, 
+                data = condom, 
+                group = "sex", 
+                group.equal = c("loadings", "intercepts")
+                )
+
+fit_res <- sem(mod_tora, 
+               data = condom, 
+               group = "sex", 
+               group.equal = c("loadings", "intercepts", "regressions")
+               )
+
+anova(fit_full, fit_res)
+```
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"92","2":"7065.756","3":"7284.087","4":"141.9027","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"fit_full"},{"1":"96","2":"7110.616","3":"7314.860","4":"194.7621","5":"52.85934","6":"0.3125999","7":"4","8":"9.119284e-11","_rn_":"fit_res"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+Equating all regression paths across groups produces a significant loss of fit.
+Therefore, *sex* must moderate at least some of these paths.
+
+</details>
+
+------------------------------------------------------------------------------->
+<hr />
+<p>End of At-Home Exercises</p>
+<hr />
+
+</div>
 </div>
 <!-- </div> -->
             </section>

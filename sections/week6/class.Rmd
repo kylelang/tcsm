@@ -1,4 +1,4 @@
-## At-Home Exercises
+## In-Class Exercises
 
 In these exercises, you will use full structural equation modeling (SEM) to
 evaluate the *Theory of Reasoned Action* (TORA), which is a popular psychological 
@@ -44,7 +44,7 @@ condom <- read.csv("toradata.csv", stringsAsFactors = TRUE)
 ```
 
 ```{r, echo = FALSE}
-#dataDir <- "../../data/"
+dataDir <- "../../../../data/"
 condom <- read.csv(paste0(dataDir, "toradata.csv"), stringsAsFactors = TRUE)
 ```
 
@@ -405,6 +405,8 @@ predictor of *condom* use.
 
 </details>
 
+<!------------------------------------------------------------------------------
+
 ---
 
 Up to this point, we've implemented multiple group models simply by specifying 
@@ -533,6 +535,8 @@ Equating all regression paths across groups produces a significant loss of fit.
 Therefore, *sex* must moderate at least some of these paths.
 
 </details>
+
+------------------------------------------------------------------------------->
 
 ---
 
