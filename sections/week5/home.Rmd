@@ -11,23 +11,22 @@ replications of Kestilä (2006).
 
 Load the ESS data.
 
-- The relevant data are contained in the [*ess_round1_trust.rds*][ess_trust_data] file.
+- The relevant data are contained in the [*ess_round1.rds*][ess_data] file.
     - This file is in R Data Set (RDS) format.
     - The dataset is already stored as a data frame with the processing and 
     cleaning that you should have done for previous practicals completed.
-    - Check the documentation for the `readRDS()` function to see how you can 
-    load data stored in an RDS file.
 
 <details>
   <summary>Click to show code</summary>
   
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
-ess <- readRDS(paste0(dataDir, "ess_round1_trust.rds"))
+
+ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
 ```
 
 ```{r, eval = FALSE}
-ess <- readRDS("ess_round1_trust.rds")
+ess <- readRDS("ess_round1.rds")
 ```
 
 </details>
@@ -48,7 +47,7 @@ items in these exercises.
 ### {#cfaSyntax}
 
 Define the `lavaan` model syntax for the CFA implied by the three-factor EFA 
-solution you found in the Week 2 In-Class Exercises.
+solution you found in the Week 4 In-Class Exercises.
 
 - Covary the three latent factors.
 - Do not specify any mean structure.
@@ -59,9 +58,9 @@ solution you found in the Week 2 In-Class Exercises.
 
 ```{r}
 mod_3f <- '
-politicians  =~ pltcare + pltinvt + trstplt
-satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth
-institutions =~ trstlgl + trstplc + trstun + trstprl
+institutions =~ trstlgl + trstplc + trstun + trstep + trstprl
+satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem
+politicians  =~ pltinvt + pltcare + trstplt
 '
 ```
 
@@ -151,19 +150,19 @@ Define the `lavaan` model syntax for a one-factor model of the *Trust* items.
 ```{r}
 mod_1f <- '
 political_trust =~ 
-  pltcare + 
-  pltinvt + 
-  trstprl + 
-  trstplt + 
-  stfeco + 
-  stfgov + 
-  stfdem + 
-  stfedu + 
-  stfhlth + 
-  trstlgl + 
-  trstplc + 
-  trstun + 
-  trstep
+  trstlgl +
+  trstplc +
+  trstun +
+  trstep +
+  trstprl +
+  stfhlth +
+  stfedu  +
+  stfeco +
+  stfgov +
+  stfdem +
+  pltinvt +
+  pltcare +
+  trstplt
 '
 ```
 
@@ -242,9 +241,9 @@ Define the `lavaan` model syntax for a second-order CFA model of the *Trust* ite
 
 ```{r}
 mod_2nd <- '
-politicians  =~ pltcare + pltinvt + trstplt
-satisfaction =~ stfeco  + stfgov  + stfdem + stfedu  + stfhlth
-institutions =~ trstlgl + trstplc + trstun + trstprl
+institutions =~ trstlgl + trstplc + trstun + trstep + trstprl
+satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem
+politicians  =~ pltinvt + pltcare + trstplt
 
 trust =~ politicians + satisfaction + institutions
 '
@@ -328,5 +327,3 @@ We'll take some time to discuss these ideas in the Week 6 lecture session.
 End of At-Home Exercises
 
 ---
-
-[ess_trust_data]: https://surfdrive.surf.nl/files/index.php/s/4EmClZ70we4CLal/download

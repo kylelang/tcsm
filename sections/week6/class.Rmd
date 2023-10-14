@@ -1,4 +1,4 @@
-## At-Home Exercises
+## In-Class Exercises
 
 In these exercises, you will use full structural equation modeling (SEM) to
 evaluate the *Theory of Reasoned Action* (TORA), which is a popular psychological 
@@ -11,9 +11,10 @@ their behavior.
 
 ---
 
-The data we will use for this practical are available in the *toradata.csv* file. 
-These data were synthesized according to the results of Reinecke (1998)'s
-investigation of condom use by young people between 16 and 24 years old. 
+The data we will use for this practical are available in the 
+[*toradata.csv*][tora_data] file. These data were synthesized according to the
+results of Reinecke (1998)'s investigation of condom use by young people between
+16 and 24 years old. 
 
 The data contain the following variables:
 
@@ -36,15 +37,16 @@ The data contain the following variables:
 ###
 
 Load the data contained in the *toradata.csv* file.
+
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
   
 ```{r, eval = FALSE}
 condom <- read.csv("toradata.csv", stringsAsFactors = TRUE)
 ```
 
 ```{r, echo = FALSE}
-#dataDir <- "../../data/"
+dataDir <- "../../../../data/"
 condom <- read.csv(paste0(dataDir, "toradata.csv"), stringsAsFactors = TRUE)
 ```
 
@@ -63,7 +65,7 @@ Run a CFA for these three latent variables.
 - Is it reasonable to proceed with our evaluation of the TORA theory?
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 library(lavaan)
@@ -79,6 +81,9 @@ fit <- cfa(mod_cfa, data = condom)
 summary(fit, fit.measures = TRUE)
 ```
 
+  <details>
+    <summary>Click for explanation</summary>
+
 - Yes, the model fits the data well, and the measurement parameters (e.g., factor
 loadings, residual variances) look reasonable. So, the data seem to support this 
 measurement structure.
@@ -89,7 +94,8 @@ measurement structure.
    - The TORA doesn't actually say anything about the associations between these 
    three factors, but it makes sense that they would be positively associated.
    So, we should find this result comforting.
-   
+
+  </details>
 </details>
 
 ---
@@ -107,7 +113,7 @@ Estimate the basic TORA model as an SEM.
 - How much variance in *intention* and *condom use* are explained by the model?
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 mod <- '
@@ -129,6 +135,9 @@ summary(fit, fit.measures = TRUE, rsquare = TRUE)
 tmp <- inspect(fit, "r2")
 ```
 
+  <details>
+    <summary>Click for explanation</summary>
+
 - Yes, the model still fits the data very well.
 - Yes, the estimates all align with the TORA. Specifically, *attitudes* and 
 *norms* both significantly predict *intention*, and *intention* significantly 
@@ -137,6 +146,7 @@ predicts *condom use*.
 *intention* and `r (100 * tmp[["behavior"]]) %>% round(2)`% of the variance in 
 *condom use*.
 
+  </details>
 </details>
 
 ---
@@ -154,7 +164,7 @@ Update your model to represent the extended TORA model that includes
 - How much variance in *intention* and *condom use* are explained by the model?
 
 <details>
-  <summary>Click for explanation</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 mod_tora <- '
@@ -175,6 +185,9 @@ summary(fit_tora, fit.measures = TRUE, rsquare = TRUE)
 tmp <- inspect(fit_tora, "r2")
 ```
 
+  <details>
+    <summary>Click for explanation</summary>
+
 - Yes, the model still fits the data very well.
 - Yes, the estimates all align with the updated TORA. Specifically, *attitudes* 
 and *norms* both significantly predict *intention*, while *intention* and 
@@ -183,6 +196,7 @@ and *norms* both significantly predict *intention*, while *intention* and
 *intention* and `r (100 * tmp[["behavior"]]) %>% round(2)`% of the variance in 
 *condom use*.
 
+  </details>
 </details>
 
 ---
@@ -290,11 +304,14 @@ Use some statistical means of evaluating the most plausible way to include
 
 *Hint:* There is more than one way to approach this problem.
 
-<details>
-  <summary>Click for explanation</summary>
+---
 
-We can tackle this problem in a few different ways. One possibility entails 
-testing the indirect, direct, and total effects.
+**Approach 1: Testing Effects**
+
+<details>
+  <summary>Click to show code</summary>
+
+One way to tackle this problem is to test the indirect, direct, and total effects.
 
 ```{r boot2, cache = TRUE}
 ## Allow for partial mediation:
@@ -316,11 +333,22 @@ fit1 <- sem(mod1, data = condom, se = "bootstrap", bootstrap = 1000)
 summary(fit1, ci = TRUE)
 ```
 
+  <details>
+    <summary>Click for explanation</summary>
+
 From the above results, we can see that the direct and total effects are both
 significant, but the indirect effect is not. Hence, it probably makes the most
 sense to include *control* via a direct (non-mediated) effect on *behavior*.
 
+  </details>
+</details>
+
 ---
+
+**Approach 2.1: Nested Model Comparison**
+
+<details>
+  <summary>Click to show code</summary>
 
 We can also approach this problem from a model-comparison perspective. We can
 fit models that encode each pattern of constraints and check which one best 
@@ -360,6 +388,9 @@ anova(fit1, fit2)
 anova(fit1, fit3)
 ```
 
+  <details>
+    <summary>Click for explanation</summary>
+
 The above $\Delta \chi^2$ tests tell us that the full mediation model fits 
 significantly worse than the partial mediation model. Hence, forcing full 
 mediation by fixing the direct effect to zero is an unreasonable restraint. The 
@@ -370,21 +401,19 @@ association represents the data just as well as a model that allows for both
 indirect and direct effects. Hence, we should prefer the more parsimonious total
 effects model.
 
+  </details>
+</details>
+
 ---
 
-While the two tests above lead us to prefer the non-mediated model, we cannot 
-directly say that the the complete mediation model fits significantly worse than
-the non-mediated model. We have not directly compared those two models, and we 
-cannot do so with the $\Delta \chi^2$. We cannot do such a test because these two 
-models are not nested: we must both add and remove a path to get from one model 
-specification to the other. Also, both models have the same degrees of freedom,
-so we cannot define a sampling distribution against which we would compare the 
-$\Delta \chi^2$, anyway.
+**Approach 2.2: Non-Nested Model Comparison**
 
-We are not completely without options, though. We can use *information criteria*
-to compare non-nested models. The two most popular information criteria are the
-*Akaike's Information Criterion* (AIC) and the *Bayesian Information Criterion*
-(BIC).
+<details>
+  <summary>Click to show code</summary>
+
+We can also use *information criteria* to compare our models. The two most
+popular information criteria are the *Akaike's Information Criterion* (AIC) and
+the *Bayesian Information Criterion* (BIC).
 
 ```{r}
 ## Which model is the most parsimonious representation of the data?
@@ -392,18 +421,43 @@ AIC(fit1, fit2, fit3)
 BIC(fit1, fit2, fit3)
 ```
 
+  <details>
+    <summary>Click for explanation</summary>
+
+While the effect tests and the nested model comparisons both lead us to prefer 
+the non-mediated model, we cannot directly say that the complete mediation
+model fits significantly worse than the non-mediated model. We have not directly
+compared those two models, and we cannot do so with the $\Delta \chi^2$. We 
+cannot do such a test because these two models are not nested: we must both add
+and remove a path to get from one model specification to the other. Also, both
+models have the same degrees of freedom, so we cannot define a sampling 
+distribution against which we would compare the $\Delta \chi^2$, anyway.
+
+We can use information criteria to get around this problem, though. Information
+criteria can be used to compare both nested and non-nested models. These criteria 
+are designed to rank models by balancing their fit to the data and their complexity.
 When comparing models based on information criteria, a lower value indicates a 
 better model in the sense of a better balance of fit and parsimony. The above 
 results show that both the AIC and the BIC agree that the no-mediation model is
 the best.
 
+  </details>
+</details>
+
 ---
+
+**Conclusion**
+
+<details>
+  <summary>Click for explanation</summary>
 
 So, in the end, regardless of how we approach the question, all of our results 
 suggest modeling *perceived behavioral control* as a direct, non-mediated
 predictor of *condom* use.
 
 </details>
+
+<!------------------------------------------------------------------------------
 
 ---
 
@@ -534,12 +588,15 @@ Therefore, *sex* must moderate at least some of these paths.
 
 </details>
 
+------------------------------------------------------------------------------->
+
 ---
 
-End of At-Home Exercises
+End of In-Class Exercises
 
 ---
 
 [mi_tutorial]: https://www.lavaan.ugent.be/tutorial/groups.html
 [van_de_schoot_et_al]: https://doi.org/10.1080/17405629.2012.686740
 [putnick_bornstein]: https://doi.org/10.1016/j.dr.2016.06.004
+[tora_data]: https://surfdrive.surf.nl/files/index.php/s/I8IxckbNJlY5bQ3/download
