@@ -11,9 +11,10 @@ their behavior.
 
 ---
 
-The data we will use for this practical are available in the *toradata.csv* file. 
-These data were synthesized according to the results of Reinecke (1998)'s
-investigation of condom use by young people between 16 and 24 years old. 
+The data we will use for this practical are available in the 
+[*toradata.csv*][tora_data] file. These data were synthesized according to the
+results of Reinecke (1998)'s investigation of condom use by young people between
+16 and 24 years old. 
 
 The data contain the following variables:
 
@@ -540,10 +541,11 @@ Therefore, *sex* must moderate at least some of these paths.
 
 ---
 
-End of At-Home Exercises
+End of In-Class Exercises
 
 ---
 
 [mi_tutorial]: https://www.lavaan.ugent.be/tutorial/groups.html
 [van_de_schoot_et_al]: https://doi.org/10.1080/17405629.2012.686740
 [putnick_bornstein]: https://doi.org/10.1016/j.dr.2016.06.004
+[tora_data]: https://surfdrive.surf.nl/files/index.php/s/I8IxckbNJlY5bQ3/download

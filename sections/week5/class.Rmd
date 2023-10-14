@@ -11,21 +11,18 @@ PCA-based replications of Kestilä (2006).
 
 Load the ESS data.
 
-- The relevant data are contained in the [*ess_round1_attitudes.rds*][ess_att_data] file.
-   - This file is in R Data Set (RDS) format.
-   - The dataset is already stored as a data frame with the processing and 
-     cleaning that you should have done for previous practicals completed.
+- The relevant data are contained in the [*ess_round1.rds*][ess_data] file.
 
 <details>
   <summary>Click to show code</summary>
   
 ```{r, echo = FALSE}
 dataDir <- "../../../../data/"
-ess <- readRDS(paste0(dataDir, "ess_round1_attitudes.rds"))
+ess <- readRDS(paste0(dataDir, "ess_round1.rds"))
 ```
 
 ```{r, eval = FALSE}
-ess <- readRDS("ess_round1_attitudes.rds")
+ess <- readRDS("ess_round1.rds")
 ```
 
 </details>
@@ -473,7 +470,7 @@ statistics) for each model.
 - Larger $\chi^2$ $\Rightarrow$ Worse fit
 
 `Chisq diff` is the difference between the two $\chi^2$ values (i.e., 
-$\Delta \chi^2$.
+$\Delta \chi^2$).
 
 - How much better the more complex model fits the data
 - Larger $\Delta \chi^2$ values indicate greater losses of fit induced by the
@@ -703,5 +700,3 @@ of the output.
 End of In-Class Exercises
 
 ---
-
-[ess_att_data]: https://surfdrive.surf.nl/files/index.php/s/P8OENzmMuNXmpjq/download

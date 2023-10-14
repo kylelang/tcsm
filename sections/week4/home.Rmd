@@ -30,28 +30,37 @@ Load the *ESSround1-a.sav* dataset into R.
 
 - Inspect the data after loading to make sure everything went well.
 
+<details>
+  <summary>Click to show code</summary>
+
 ```{r, eval = FALSE}
 ## Load the 'haven' package:
 library(haven)
+library(tidySEM)
 
-## Read the 'ESSround1-a.sav' ess into a data frame called 'ess': 
+## Read the 'ESSround1-a.sav' data into a data frame called 'ess': 
 ess <- read_spss("ESSround1-a.sav")
 
 ## Inspect the result:
 dim(ess)
 head(ess)
-summary(ess)
+descriptives(ess)
 ```
 
 ```{r, echo = FALSE}
+library(haven)
+library(tidySEM)
+
 dataDir <- "../../../../data/"
 ess <- read_spss(paste0(dataDir, "ESSround1-a.sav"))
 
 ## Inspect the result:
 dim(ess)
 head(ess)
-summary(ess)
+descriptives(ess)
 ```
+
+</details>
 
 <details>
   <summary><b>Click here for a description of the variables.</b></summary>
@@ -119,6 +128,46 @@ data.frame(Variable = names(ess), Description = desc) %>%
 
 ---
 
+One thing you might notice when inspecting the `ess` data is that most of the 
+variables are stored as *labelled vectors*. When loading SPSS data, **haven** 
+will use these labelled vectors to preserve the metadata associated with SPSS 
+scale variables (i.e., variable labels and value labels).
+
+While it's good to have this metadata available, we want to analyze these items
+as numeric variables and factors, so the value labels are only going to make our
+lives harder. Thankfully, the **labelled** package contains many routines for 
+manipulating labelled vectors.
+
+We'll deal with the numeric variables in just a bit, but our first task will be
+to covert grouping variables to factors.
+
+---
+
+###
+
+Convert the `cntry`, `gndr`, `edulvl`, and `polintr` variables into factors.
+
+- Use the `as_factor()` function to do the conversion.
+- Convert `edulvl` and `polintr` to ordered factors.
+
+<details>
+  <summary>Click to see code</summary>
+
+```{r}
+library(dplyr)
+
+ess <- mutate(ess,
+              country = as_factor(cntry),
+              sex = as_factor(gndr),
+              edulvl = as_factor(edulvl, ordered = TRUE),
+              polintr = as_factor(polintr, ordered = TRUE)
+              )
+```
+
+</details>
+
+---
+
 The `ess` dataset contains much more information than Kestilä (2006) used. 
 Kestilä only analyzed data from the following ten countries:
 
@@ -133,7 +182,7 @@ Kestilä only analyzed data from the following ten countries:
 - Norway
 - Sweden
 
-So, our first task is to subset the data to only the relevant population.  
+So, our next task is to subset the data to only the relevant population.  
 
 When we apply logical subsetting, we can select rows from a dataset based on
 logical conditions. In this case, we want to select only rows from the 10
@@ -147,19 +196,16 @@ Subset the data to include only the 10 countries analyzed by Kestilä (2006).
 
 - Inspect the subsetted data to check that everything went well.
 
-*Hints:*
+*Hints:* 
 
 - Use the `%in%` operator to create a logical vector that indicates which
   elements of the `cntry` variable are *in* the set of target counties.
-- You may find it helpful to convert `cntry` to a factor using `as_factor()`.
-- You can clean up empty factor levels using `droplevels()`.
+- Use the `droplevels()` levels function to clean up empty factor levels.
 
 <details>
   <summary>Click to show code</summary>
 
 ```{r, echo = TRUE}
-library(dplyr)
-
 ## Create a character vector naming the target countries:
 targets <- c("Austria", 
              "Belgium", 
@@ -173,81 +219,34 @@ targets <- c("Austria",
              "Sweden")
 
 ## Select only those rows that come from a target country:
-ess <- ess %>%
-  mutate(cntry = as_factor(cntry)) %>% # Convert cntry to a factor
-  filter(cntry %in% targets) %>%       # Subset rows
-  mutate(cntry = droplevels(cntry))    # Drop empty factor levels
+ess <- filter(ess, country %in% targets) %>% # Subset rows
+  droplevels()                               # Drop empty factor levels
 
 ## Inspect the result:
 dim(ess)
-table(ess$cntry)
+table(ess$country)
 ```
 
 </details>
 
 ---
-
-Before we can analyze the data, we need to screen them for problems. At this 
-point, we won't get into the nitty-gritty of outlier analysis and data
-cleaning. We must, however, ensure that the variables we want to analyze are 
-formatted correctly (e.g., interval and ratio variables should be numeric, 
-nominal variables should be factors).
-
----
-
-###
-
-Screen the data to see if the variables are formatted correctly.
-
-<details>
-  <summary>Click to show code</summary>
-
-```{r, echo = TRUE}
-library(tidySEM)
-
-## Check the data structure:
-str(ess)
-
-## Compute descriptive statistics:
-descriptives(ess)
-```
-
-  <details>
-    <summary>Click for explanation</summary>
-
-One thing you might notice when inspecting the `ess` data is that all the 
-scale variables are stored as *labelled vectors*. When loading SPSS data, 
-**haven** will use these labelled vectors to preserve the metadata associated 
-with SPSS scale variables (i.e., variable labels and value labels).
-
-While it's good to have this metadata available, we want to analyze these items
-as numeric variables, so the value labels are only going to make our lives 
-harder. Thankfully, the **labelled** package contains many routines for 
-manipulating labelled vectors.
-
-We can use the `labelled::remove_val_labels()` function to strip the value
-labels and convert all of the labelled vectors to numeric vectors.
-
-  </details>
-
-</details>
-
----
-
-###
-
-Correct any formatting issues that you discovered above.
-
-<details>
-  <summary>Click for explanation</summary>
 
 In keeping with common practice, we will treat ordinal Likert-type rating scales
 with five or more levels as continuous. Since some R routines will treat labelled
 vectors as discrete variables, we can make things easier for ourselves by 
 converting all the labelled vectors in our data to numeric vectors.
 
-As noted above, we can easily accomplish this goal with the `remove_val_labels()`
-function from the **labelled** package.
+We can use the `labelled::remove_val_labels()` function to strip the value
+labels and convert all of the labelled vectors to numeric vectors.
+
+---
+
+###
+
+Convert the remaining labelled vectors to numeric vectors.
+
+<details>
+  <summary>Click to see code</summary>
 
 ```{r}
 ## If necessary, install the labelled package:
@@ -264,11 +263,15 @@ str(ess)
 descriptives(ess)
 ```
 
-Note that the variables are now simple numeric vectors, but the variable labels
-have been retained as column attributes (which is probably useful). If we want
-to completely nuke the labelling information, we can use the 
+  <details>
+    <summary>Click for explanation</summary>
+
+Note that the numeric variables are now simple numeric vectors, but the
+variable labels have been retained as column attributes (which is probably
+useful). If we want to completely nuke the labelling information, we can use the 
 `labelled::remove_labels()` function to do so.
 
+  </details>
 </details>
 
 ---
@@ -353,7 +356,6 @@ It also looks like there's something weird going on with `qfimchr` and `qfimwht`
 More on that below.
 
   </details>
-
 </details>
 
 ---
@@ -379,18 +381,67 @@ expected range for our survey responses: 77, 88, and 99. In SPSS, these were
 labeled as "Refusal" "Don't know" and "No answer" respectively, and would not
 have contributed to the analysis. 
 
-Here, we need to tell R that these values should be considered missing, or `NA`.
-Otherwise they will contribute the numeric value to the analysis, as though
-someone had provided an answer of 77 on a 10-point scale.
+  </details>
+</details>
+
+---
+
+###
+
+Correct any remaining issues you found above.
+
+<details>
+  <summary>Click to show code</summary>
 
 ```{r}
 ess <- ess %>%
   mutate(across(c(qfimchr, qfimwht), na_if, 77)) %>% 
   mutate(across(c(qfimchr, qfimwht), na_if, 88)) %>%
   mutate(across(c(qfimchr, qfimwht), na_if, 99))
+
+  ## Check the results:
+  select(ess, trstlgl:rfgbfml) %>% descriptives()
 ```
 
+  <details>
+    <summary>Click to show explanation</summary>
+
+Here, we need to tell R that these values should be considered missing, or `NA`.
+Otherwise they will contribute the numeric value to the analysis, as though
+someone had provided an answer of 77 on a 10-point scale.
+
   </details>
+</details>
+
+---
+
+We've done quite a bit of data processing, and we'll continue to use these data
+for several future practicals, so it would be a good idea to save the processed
+dataset for later use. When saving data that you plan to analyze in R, you will
+usually want to use the *R Data Set* (RDS) format.
+
+Datasets saved in RDS format retain all of their attributes and formatting (e.g.,
+factor are still factors, missing values are coded as `NA`, etc.). So, you
+don't have to redo any data processing before future analyses.
+
+---
+
+###
+
+Use the `saveRDS()` function to save the processed dataset.
+
+<details>
+  <summary>Click to show code</summary>
+
+```{r, eval = FALSE}
+## Save the processed data:
+saveRDS(ess, "ess_round1.rds")
+```
+
+```{r, echo = FALSE}
+saveRDS(ess, paste0(dataDir, "ess_round1.rds"))
+```
+
 </details>
 
 ---
@@ -506,12 +557,11 @@ summary(att_scores)
   <details>
     <summary>Click for explanation </summary>
 
-  The object produced by `psych::principal()` is simply list, and the component
-  scores are already stored therein. So, to extract the component scores, we
-  simply use the `$` operator to extract them.  
+The object produced by `psych::principal()` is simply list, and the component
+scores are already stored therein. So, to extract the component scores, we
+simply use the `$` operator to extract them.  
 
   </details>
-
 </details>
 
 ---
@@ -528,8 +578,8 @@ colnames(att_scores)
 
 ## Give informative names:
 colnames(trust_scores) <- c("Trust_Institutions", 
-                            "Satisfaction", "
-                            Trust_Politicians")
+                            "Satisfaction",
+                            "Trust_Politicians")
 colnames(att_scores) <- c("Quantity", 
                           "Effects", 
                           "Refugees", 
