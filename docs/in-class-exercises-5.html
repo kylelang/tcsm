@@ -505,10 +505,10 @@ use…)</li>
 <hr />
 <div id="section-89" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> </h3>
-Load the data contained in the <em>toradata.csv</em> file.
+<p>Load the data contained in the <em>toradata.csv</em> file.</p>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="in-class-exercises-5.html#cb255-1" aria-hidden="true" tabindex="-1"></a>condom <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;toradata.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
@@ -526,7 +526,7 @@ Run a CFA for these three latent variables.</p>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="in-class-exercises-5.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
 <span id="cb256-2"><a href="in-class-exercises-5.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -628,6 +628,10 @@ Click for explanation
 ##     attitudes         0.885    0.116    7.620    0.000
 ##     norms             0.743    0.116    6.423    0.000
 ##     control           0.497    0.099    5.002    0.000</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
 <ul>
 <li>Yes, the model fits the data well, and the measurement parameters (e.g., factor
 loadings, residual variances) look reasonable. So, the data seem to support this
@@ -640,7 +644,8 @@ to represent the respective constructs in our subsequent SEM.</li>
 <li>The TORA doesn’t actually say anything about the associations between these
 three factors, but it makes sense that they would be positively associated.
 So, we should find this result comforting.</li>
-</ul></li>
+</ul>
+</details></li>
 </ul>
 </details>
 <hr />
@@ -659,7 +664,7 @@ So, we should find this result comforting.</li>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="in-class-exercises-5.html#cb258-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb258-2"><a href="in-class-exercises-5.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Define the latent variables:</span></span>
@@ -773,14 +778,19 @@ Click for explanation
 ##     norm_3            0.523
 ##     intent            0.639
 ##     behavior          0.520</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
 <ul>
-<li>Yes, the model still fits the data very well.</li>
-<li>Yes, the estimates all align with the TORA. Specifically, <em>attitudes</em> and
+<li><p>Yes, the model still fits the data very well.</p></li>
+<li><p>Yes, the estimates all align with the TORA. Specifically, <em>attitudes</em> and
 <em>norms</em> both significantly predict <em>intention</em>, and <em>intention</em> significantly
-predicts <em>condom use</em>.</li>
-<li>The model explains 63.93% of the variance in
+predicts <em>condom use</em>.</p></li>
+<li><p>The model explains 63.93% of the variance in
 <em>intention</em> and 51.96% of the variance in
-<em>condom use</em>.</li>
+<em>condom use</em>.</p>
+</details></li>
 </ul>
 </details>
 <hr />
@@ -799,7 +809,7 @@ predicts <em>condom use</em>.</li>
 </ul>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="in-class-exercises-5.html#cb260-1" aria-hidden="true" tabindex="-1"></a>mod_tora <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb260-2"><a href="in-class-exercises-5.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
@@ -927,14 +937,19 @@ Click for explanation
 ##     control_3         0.392
 ##     intent            0.651
 ##     behavior          0.566</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
 <ul>
-<li>Yes, the model still fits the data very well.</li>
-<li>Yes, the estimates all align with the updated TORA. Specifically, <em>attitudes</em>
+<li><p>Yes, the model still fits the data very well.</p></li>
+<li><p>Yes, the estimates all align with the updated TORA. Specifically, <em>attitudes</em>
 and <em>norms</em> both significantly predict <em>intention</em>, while <em>intention</em> and
-<em>control</em> both significantly predict <em>condom use</em>.</li>
-<li>The model explains 65.11% of the variance in
+<em>control</em> both significantly predict <em>condom use</em>.</p></li>
+<li><p>The model explains 65.11% of the variance in
 <em>intention</em> and 56.62% of the variance in
-<em>condom use</em>.</li>
+<em>condom use</em>.</p>
+</details></li>
 </ul>
 </details>
 <hr />
@@ -1114,12 +1129,13 @@ mediated by <em>intention</em>.</li>
 </ol></li>
 </ul>
 <p><em>Hint:</em> There is more than one way to approach this problem.</p>
+<hr />
+<p><strong>Approach 1: Testing Effects</strong></p>
 <details>
 <summary>
-Click for explanation
+Click to show code
 </summary>
-<p>We can tackle this problem in a few different ways. One possibility entails
-testing the indirect, direct, and total effects.</p>
+<p>One way to tackle this problem is to test the indirect, direct, and total effects.</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="in-class-exercises-5.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Allow for partial mediation:</span></span>
 <span id="cb265-2"><a href="in-class-exercises-5.html#cb265-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb265-3"><a href="in-class-exercises-5.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="st">attitudes =~ attit_1   + attit_2   + attit_3</span></span>
@@ -1211,10 +1227,21 @@ testing the indirect, direct, and total effects.</p>
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
 ##     ie                0.110    0.105    1.048    0.295   -0.105    0.309
 ##     total             0.578    0.186    3.108    0.002    0.235    0.971</code></pre>
+<details>
+<summary>
+Click for explanation
+</summary>
 <p>From the above results, we can see that the direct and total effects are both
 significant, but the indirect effect is not. Hence, it probably makes the most
 sense to include <em>control</em> via a direct (non-mediated) effect on <em>behavior</em>.</p>
+</details>
+</details>
 <hr />
+<p><strong>Approach 2.1: Nested Model Comparison</strong></p>
+<details>
+<summary>
+Click to show code
+</summary>
 <p>We can also approach this problem from a model-comparison perspective. We can
 fit models that encode each pattern of constraints and check which one best
 represents the data.</p>
@@ -1394,6 +1421,10 @@ represents the data.</p>
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"38","2":"7156.952","3":"7255.553","4":"47.38864","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"fit1"},{"1":"39","2":"7156.320","3":"7251.400","4":"48.75720","5":"1.368561","6":"0.03839587","7":"1","8":"0.2420593","_rn_":"fit3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<details>
+<summary>
+Click for explanation
+</summary>
 <p>The above <span class="math inline">\(\Delta \chi^2\)</span> tests tell us that the full mediation model fits
 significantly worse than the partial mediation model. Hence, forcing full
 mediation by fixing the direct effect to zero is an unreasonable restraint. The
@@ -1403,19 +1434,17 @@ and modeling the influence of <em>control</em> on <em>behavior</em> as an un-med
 association represents the data just as well as a model that allows for both
 indirect and direct effects. Hence, we should prefer the more parsimonious total
 effects model.</p>
+</details>
+</details>
 <hr />
-<p>While the two tests above lead us to prefer the non-mediated model, we cannot
-directly say that the the complete mediation model fits significantly worse than
-the non-mediated model. We have not directly compared those two models, and we
-cannot do so with the <span class="math inline">\(\Delta \chi^2\)</span>. We cannot do such a test because these two
-models are not nested: we must both add and remove a path to get from one model
-specification to the other. Also, both models have the same degrees of freedom,
-so we cannot define a sampling distribution against which we would compare the
-<span class="math inline">\(\Delta \chi^2\)</span>, anyway.</p>
-<p>We are not completely without options, though. We can use <em>information criteria</em>
-to compare non-nested models. The two most popular information criteria are the
-<em>Akaike’s Information Criterion</em> (AIC) and the <em>Bayesian Information Criterion</em>
-(BIC).</p>
+<p><strong>Approach 2.2: Non-Nested Model Comparison</strong></p>
+<details>
+<summary>
+Click to show code
+</summary>
+<p>We can also use <em>information criteria</em> to compare our models. The two most
+popular information criteria are the <em>Akaike’s Information Criterion</em> (AIC) and
+the <em>Bayesian Information Criterion</em> (BIC).</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="in-class-exercises-5.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Which model is the most parsimonious representation of the data?</span></span>
 <span id="cb273-2"><a href="in-class-exercises-5.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(fit1, fit2, fit3)</span></code></pre></div>
 <div data-pagedtable="false">
@@ -1429,11 +1458,33 @@ to compare non-nested models. The two most popular information criteria are the
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"28","2":"7255.553","_rn_":"fit1"},{"1":"27","2":"7265.439","_rn_":"fit2"},{"1":"27","2":"7251.400","_rn_":"fit3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>When comparing models based on information criteria, a lower value indicates a
+<details>
+<summary>
+Click for explanation
+</summary>
+<p>While the effect tests and the nested model comparisons both lead us to prefer
+the non-mediated model, we cannot directly say that the complete mediation
+model fits significantly worse than the non-mediated model. We have not directly
+compared those two models, and we cannot do so with the <span class="math inline">\(\Delta \chi^2\)</span>. We
+cannot do such a test because these two models are not nested: we must both add
+and remove a path to get from one model specification to the other. Also, both
+models have the same degrees of freedom, so we cannot define a sampling
+distribution against which we would compare the <span class="math inline">\(\Delta \chi^2\)</span>, anyway.</p>
+<p>We can use information criteria to get around this problem, though. Information
+criteria can be used to compare both nested and non-nested models. These criteria
+are designed to rank models by balancing their fit to the data and their complexity.
+When comparing models based on information criteria, a lower value indicates a
 better model in the sense of a better balance of fit and parsimony. The above
 results show that both the AIC and the BIC agree that the no-mediation model is
 the best.</p>
+</details>
+</details>
 <hr />
+<p><strong>Conclusion</strong></p>
+<details>
+<summary>
+Click for explanation
+</summary>
 <p>So, in the end, regardless of how we approach the question, all of our results
 suggest modeling <em>perceived behavioral control</em> as a direct, non-mediated
 predictor of <em>condom</em> use.</p>
