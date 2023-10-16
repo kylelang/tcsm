@@ -132,7 +132,7 @@ We will use path analysis to test if `VIEWCAT` moderates the effect of `AGE` on
 
 1.  Estimate the unrestricted multiple-group model wherein we regress `POSTNUMB`
    onto `AGE` and specify `VIEWCAT` as the grouping factor.
-2.  Estimate the restricted model wherein we constrain the `AGE` $rightarrow$
+2.  Estimate the restricted model wherein we constrain the `AGE` $\rightarrow$
    `POSTNUMB` effect to be equal in all `VIEWCAT` groups.
 3.  Conduct a $\Delta \chi^2$ test to compare the fit of the two models.
 
@@ -417,7 +417,7 @@ $p = `r p`$,
 $\textit{RMSEA} = `r rmsea`$,
 $\textit{CFI} = `r cfi`$,
 $\textit{SRMR} = `r srmr`$).
-- No, there are no striking differences between the two sets of estimates. Although, 
+- No, there are no striking differences between the two sets of estimates. Although
   there is certainly some variability between groups, the two sets of estimates
   don't look systematically different.
 
