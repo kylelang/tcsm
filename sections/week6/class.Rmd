@@ -54,7 +54,7 @@ condom <- read.csv(paste0(dataDir, "toradata.csv"), stringsAsFactors = TRUE)
 
 ---
 
-###
+### {#toraCFA}
 
 The data contain multiple indicators of *attitudes*, *norms*, and *control*.
 Run a CFA for these three latent variables.
