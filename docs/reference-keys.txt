@@ -202,4 +202,7 @@ twoGroupCFA
 section-101
 section-102
 in-class-exercises-6
+w7MeasurementInvariance
+section-103
+section-104
 wrap-up

@@ -1,0 +1,143 @@
+## In-Class Exercises
+
+```{r include = FALSE}
+library(haven)
+library(dplyr)
+library(lavaan)
+```
+
+---
+
+### Measurement Invariance {#w7MeasurementInvariance}
+
+---
+
+We'll now pick up where we left off with the [At-Home Exercises](at-home-exercises-6.html)
+by testing measurement invariance in the two-group CFA of prolonged grief disorder.
+
+---
+
+####
+
+Load the *PGDdata2.txt* data as you did for the At-Home Exercises.
+
+- *NOTE:* Unless otherwise specified, all analyses in Section
+  \@ref(w7MeasurementInvariance) use these data.
+
+<details>
+  <summary>Click to show code</summary>
+
+```{r eval = FALSE}
+## Load the data:
+pgd <- read.table("PGDdata2.txt",
+                  na.strings = "-999",
+                  header = TRUE,
+                  sep = "\t") %>%
+       filter(!is.na(Kin2))
+
+## Check the results:
+head(pgd)
+summary(pdg)
+str(pgd)
+```
+
+```{r echo = FALSE}
+pgd <- read.table(paste0(dataDir, "PGDdata2.txt"),
+                  na.strings = "-999",
+                  header = TRUE,
+                  sep = "\t") %>%
+       filter(!is.na(Kin2))
+
+head(pgd)
+summary(pgd)
+str(pgd)
+```
+
+</details>
+
+---
+
+#### 
+
+Test *configural*, *weak*, and *strong* invariance using the multiple-group CFA
+from \@ref(twoGroupCFA).
+
+- What are your conclusions?
+
+<details>
+  <summary>Click to show code</summary>
+
+```{r}
+library(lavaan)
+library(semTools) # provides the compareFit() function
+
+## Define the syntax for the CFA model:
+cfaMod <- 'grief =~ b1pss1 + b2pss2 + b3pss3 + b4pss4 + b5pss5'
+
+## Estimate the configural model:
+configOut <- cfa(cfaMod, data = pgd, group = "Kin2")
+
+## Estimate the weak invariance model:
+weakOut <- cfa(cfaMod, data = pgd, group = "Kin2", group.equal = "loadings")
+
+## Estimate the strong invariance model:
+strongOut <- cfa(cfaMod,
+                 data = pgd,
+                 group = "Kin2",
+                 group.equal = c("loadings", "intercepts")
+                 )
+
+## Test invariance through model comparison tests:
+compareFit(configOut, weakOut, strongOut) %>% summary()
+```
+
+```{r, echo = FALSE}
+fit1 <- fitMeasures(configOut, c("chisq", "df", "pvalue", "rmsea", "cfi", "tli", "srmr"))
+
+cChi2 <- fit1["chisq"] %>% round(2)
+cDf <- fit1["df"]
+cP <- fit1["pvalue"] %>% round(3)
+rmsea <- fit1["rmsea"] %>% round(3)
+cfi <- fit1["cfi"] %>% round(3)
+srmr <- fit1["srmr"] %>% round(3)
+
+tmp <- anova(configOut, weakOut, strongOut)
+  
+wChi2 <- tmp[2, "Chisq diff"] %>% round(3)
+wDf   <- tmp[2, "Df diff"]
+wP    <- tmp[2, "Pr(>Chisq)"] %>% round(3)
+
+sChi2 <- tmp[3, "Chisq diff"] %>% round(3)
+sDf   <- tmp[3, "Df diff"]
+sP    <- tmp[3, "Pr(>Chisq)"] %>% round(3)
+```
+
+  <details>
+    <summary>Click for explanation</summary>
+
+- Configural invariance holds.
+   - The unrestricted, two-group model fits the data very well 
+     ($\chi^2[`r cDf`] = `r cChi2`$,
+     $p = `r cP`$,
+     $\textit{RMSEA} = `r rmsea`$,
+     $\textit{CFI} = `r cfi`$,
+     $\textit{SRMR} = `r srmr`$).
+- Weak invariance holds.
+   - The model comparison test shows a non-significant loss of fit between the 
+     configural and weak models ($\Delta \chi^2[`r wDf`] = `r wChi2`$, $p = `r wP`$).
+- Strong invariance holds.
+   - The model comparison test shows a non-significant loss of fit between the 
+     weak and strong models ($\Delta \chi^2[`r sDf`] = `r sChi2`$, $p = `r sP`$).
+
+  </details>
+</details>
+
+---
+
+End of In-Class Exercises 7
+
+---
+
+[sesam2_data]: https://surfdrive.surf.nl/files/index.php/s/dfzC7Tf5HHiTX8M/download
+[pgd_data]: https://surfdrive.surf.nl/files/index.php/s/xxkp4gZY682AGyY/download
+[boelen_et_al_2010]: https://doi.org/10.1016/j.jad.2010.01.076
