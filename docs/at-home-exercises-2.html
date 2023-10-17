@@ -781,7 +781,7 @@ Click to show code
 </summary>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="at-home-exercises-2.html#cb65-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
 <span id="cb65-2"><a href="at-home-exercises-2.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for outcome:</span></span>
-<span id="cb65-3"><a href="at-home-exercises-2.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ b * Emp + ParAtt + PeerAtt</span></span>
+<span id="cb65-3"><a href="at-home-exercises-2.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="st">SelfEst ~ b * Emp + c1 * ParAtt + c2 * PeerAtt</span></span>
 <span id="cb65-4"><a href="at-home-exercises-2.html#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-5"><a href="at-home-exercises-2.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="st">## Equation for mediator:</span></span>
 <span id="cb65-6"><a href="at-home-exercises-2.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="st">Emp ~ a1 * ParAtt + a2 * PeerAtt</span></span>
@@ -818,8 +818,8 @@ Click to show code
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##   SelfEst ~                                           
 ##     Emp        (b)    0.206    0.088    2.357    0.018
-##     ParAtt            0.287    0.078    3.650    0.000
-##     PeerAtt           0.024    0.094    0.252    0.801
+##     ParAtt    (c1)    0.287    0.078    3.650    0.000
+##     PeerAtt   (c2)    0.024    0.094    0.252    0.801
 ##   Emp ~                                               
 ##     ParAtt    (a1)    0.078    0.075    1.045    0.296
 ##     PeerAtt   (a2)    0.306    0.086    3.557    0.000
@@ -851,22 +851,22 @@ both paths?</p>
 <summary>
 Click to show explanation
 </summary>
-<p>According to the Sobel-style test, after controlling for <em>parental attachment</em>,
-the indirect effect of <em>peer attachment</em> on <em>self-esteem</em> was statistically
-significant (<span class="math inline">\(\hat{IE} = 0.063\)</span>,
-<span class="math inline">\(Z = 1.96\)</span>,
-<span class="math inline">\(p = 0.049\)</span>), as was the analogous direct effect
-(<span class="math inline">\(\hat{\beta} = 0.306\)</span>,
-<span class="math inline">\(Z = 3.56\)</span>,
-<span class="math inline">\(p &lt; 0.001\)</span>).</p>
-<p>After controlling for <em>peer attachment</em>, neither the indirect effect
-(<span class="math inline">\(\hat{IE} = 0.016\)</span>,
+<p>According to the Sobel-style test, after controlling for <em>peer attachment</em>,
+the indirect effect of <em>parental attachment</em> on <em>self-esteem</em> was nonsignificant
+(<span class="math inline">\(\hat{\textit{IE}} = 0.016\)</span>,
 <span class="math inline">\(Z = 0.96\)</span>,
-<span class="math inline">\(p = 0.339\)</span>) nor the direct effect
-(<span class="math inline">\(\hat{\beta} = 0.078\)</span>,
-<span class="math inline">\(Z = 1.05\)</span>,
-<span class="math inline">\(p = 0.296\)</span>) of <em>parental attachment</em> on
-<em>self-esteem</em> was significant, though.</p>
+<span class="math inline">\(p = 0.339\)</span>), whereas the analogous direct effect
+was significant (<span class="math inline">\(\hat{\beta} = 0.287\)</span>,
+<span class="math inline">\(Z = 3.65\)</span>,
+<span class="math inline">\(p &lt; 0.001\)</span>).</p>
+<p>On the other hand, after controlling for <em>parental attachment</em>, the indirect
+effect of <em>peer attachment</em> on <em>self-esteem</em> was statistically significant
+(<span class="math inline">\(\hat{\textit{IE}} = 0.063\)</span>,
+<span class="math inline">\(Z = 1.96\)</span>,
+<span class="math inline">\(p = 0.049\)</span>), but the direct effect was nonsignificant
+(<span class="math inline">\(\hat{\beta} = 0.024\)</span>,
+<span class="math inline">\(Z = 0.25\)</span>,
+<span class="math inline">\(p = 0.801\)</span>).</p>
 <hr />
 </div>
 </div>

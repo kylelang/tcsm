@@ -172,40 +172,39 @@ summary(out)
   <details>
     <summary>Click for explanation</summary>
     
-```{r, include=FALSE}
+```{r, include = FALSE}
 tmp <- parameterEstimates(out)
 
 peer_c <- tmp %>% filter(lhs == "SelfEst", op == "~", rhs == "PeerAtt")
 emp_b  <- tmp %>% filter(lhs == "SelfEst", op == "~", rhs == "Emp")
 peer_a <- tmp %>% filter(lhs == "Emp", op == "~", rhs == "PeerAtt")
-
 ```
 
-  The results show estimates of the *a* path (`Emp ~ PeerAtt`), the *b* path 
-  (`SelfEst ~ Emp`), and the *c'* path (`SelfEst ~ PeerAtt`).
+The results show estimates of the *a* path (`Emp ~ PeerAtt`), the *b* path 
+(`SelfEst ~ Emp`), and the *c'* path (`SelfEst ~ PeerAtt`).
 
-  All three of these effects are positive and significant, including the direct 
-  effect of `PeerAtt` on `SelfEst`
-  ($\beta = `r peer_c$est %>% round(3)`$,
-  $Z = `r peer_c$z %>% round(2)`$,
-  $p = `r (peer_c$p / 2) %>% round(3)`$),
-  and the parts of the indirect effect made up by the effect of `PeerAtt` on
-  `Emp`
-  ($\beta = `r peer_a$est %>% round(3)`$,
-  $Z = `r peer_a$z %>% round(2)`$,
-  $p = `r (peer_a$p / 2) %>% round(3)`$),
-  and `Emp` on `SelfEst`
-  ($\beta = `r emp_b$est %>% round(3)`$,
-  $Z = `r emp_b$z %>% round(2)`$,
-  $p = `r (emp_b$p / 2) %>% round(3)`$).
+All three of these effects are positive and significant, including the direct 
+effect of `PeerAtt` on `SelfEst`
+($\beta = `r peer_c$est %>% round(3)`$,
+$Z = `r peer_c$z %>% round(2)`$,
+$p = `r (peer_c$p / 2) %>% round(3)`$),
+and the parts of the indirect effect made up by the effect of `PeerAtt` on
+`Emp`
+($\beta = `r peer_a$est %>% round(3)`$,
+$Z = `r peer_a$z %>% round(2)`$,
+$p = `r (peer_a$p / 2) %>% round(3)`$),
+and `Emp` on `SelfEst`
+($\beta = `r emp_b$est %>% round(3)`$,
+$Z = `r emp_b$z %>% round(2)`$,
+$p = `r (emp_b$p / 2) %>% round(3)`$).
 
-  We can see that the direction of the effects seems to support of our
-  hypotheses, but without taking the next steps to investigate the indirect
-  effect, we should be hesitant to say more. 
+We can see that the direction of the effects seems to support of our
+hypotheses, but without taking the next steps to investigate the indirect
+effect, we should be hesitant to say more. 
   
   </details>
-  
 </details>
+
 ---
 
 Remember that an indirect effect (IE) is the product of multiple regression 
@@ -245,12 +244,11 @@ ie := a * b
   <details>
     <summary>Click for explanation</summary>
     
-  Notice that I only label the parameters that I will use to define the IE. You 
-  are free to label any parameter that you like, but I choose the to label only 
-  the minimally sufficient set to avoid cluttering the code/output.
+Notice that I only label the parameters that I will use to define the IE. You 
+are free to label any parameter that you like, but I choose the to label only 
+the minimally sufficient set to avoid cluttering the code/output.
   
   </details>
-
 </details>
 
 ---
@@ -281,16 +279,15 @@ tmp <- parameterEstimates(out)
 pa <- tmp %>% filter(label == "ie")
 ```
 
-  The IE of *Peer Attachment* on *Self Esteem* through *Empathy* is statistically 
-  significant ($\hat{\textit{IE}} = `r pa$est %>% round(3)`$, 
-  $Z = `r pa$z %>% round(2)`$, $p = `r (pa$p / 2) %>% round(3)`$).
+The IE of *Peer Attachment* on *Self Esteem* through *Empathy* is statistically 
+significant ($\hat{\textit{IE}} = `r pa$est %>% round(3)`$, 
+$Z = `r pa$z %>% round(2)`$, $p = `r (pa$p / 2) %>% round(3)`$).
   
-  *Note:* The p-value above doesn't match the output because we're testing a 
-  directional hypothesis, but **lavaan** conducts two-tailed tests for the model
-  parameters.
+*Note:* The p-value above doesn't match the output because we're testing a 
+directional hypothesis, but **lavaan** conducts two-tailed tests for the model
+parameters.
   
   </details>
-
 </details>
 
 ---
@@ -334,7 +331,7 @@ Run the path model needed to test the research questions listed above.
 ```{r}
 mod <- '
 ## Equation for outcome:
-SelfEst ~ b * Emp + ParAtt + PeerAtt
+SelfEst ~ b * Emp + c1 * ParAtt + c2 * PeerAtt
 
 ## Equation for mediator:
 Emp ~ a1 * ParAtt + a2 * PeerAtt
@@ -363,28 +360,33 @@ both paths?
   <summary>Click to show explanation</summary>
 
 ```{r, include = FALSE}
-pa <- parameterEstimates(out) %>%
-  filter(label %in% c("ie_ParAtt", "ie_PeerAtt", "a1", "a2"))
-pa
+tmp <- parameterEstimates(out)
+
+ieParent <- filter(tmp, label == "ie_ParAtt")
+iePeer <- filter(tmp, label == "ie_PeerAtt")
+cParent <- filter(tmp, label == "c1")
+cPeer <- filter(tmp, label == "c2")
+
+cPeer[1, "est"] %>% class()
 ```
 
-According to the Sobel-style test, after controlling for *parental attachment*,
-the indirect effect of *peer attachment* on *self-esteem* was statistically
-significant ($\hat{IE} = `r pa[4, "est"] %>% round(3)`$,
-$Z = `r pa[4, "z"] %>% round(2)`$,
-$p = `r pa[4, "pvalue"] %>% round(3)`$), as was the analogous direct effect 
-($\hat{\beta} = `r pa[2, "est"] %>% round(3)`$,
-$Z = `r pa[2, "z"] %>% round(2)`$,
+According to the Sobel-style test, after controlling for *peer attachment*,
+the indirect effect of *parental attachment* on *self-esteem* was nonsignificant
+($\hat{\textit{IE}} = `r ieParent[1, "est"] %>% round(3)`$,
+$Z = `r ieParent[1, "z"] %>% round(2)`$,
+$p = `r ieParent[1, "pvalue"] %>% round(3)`$), whereas the analogous direct effect 
+was significant ($\hat{\beta} = `r cParent[1, "est"] %>% round(3)`$,
+$Z = `r cParent[1, "z"] %>% round(2)`$,
 $p < 0.001$).
 
-After controlling for *peer attachment*, neither the indirect effect 
-($\hat{IE} = `r pa[3, "est"] %>% round(3)`$,
-$Z = `r pa[3, "z"] %>% round(2)`$,
-$p = `r pa[3, "pvalue"] %>% round(3)`$) nor the direct effect
-($\hat{\beta} = `r pa[1, "est"] %>% round(3)`$,
-$Z = `r pa[1, "z"] %>% round(2)`$,
-$p = `r pa[1, "pvalue"] %>% round(3)`$) of *parental attachment* on 
-*self-esteem* was significant, though.
+On the other hand, after controlling for *parental attachment*, the indirect
+effect of *peer attachment* on  *self-esteem* was statistically significant
+($\hat{\textit{IE}} = `r iePeer[1, "est"] %>% round(3)`$,
+$Z = `r iePeer[1, "z"] %>% round(2)`$,
+$p = `r iePeer[1, "pvalue"] %>% round(3)`$), but the direct effect was nonsignificant
+($\hat{\beta} = `r cPeer[1, "est"] %>% round(3)`$,
+$Z = `r cPeer[1, "z"] %>% round(2)`$,
+$p = `r cPeer[1, "pvalue"] %>% round(3)`$).
 
 ---
 
@@ -408,8 +410,7 @@ Year of Sesame Street: An Evaluation".]
   use these data.
 
 <details>
-
-<summary>Click to show code</summary>
+  <summary>Click to show code</summary>
 
 ```{r, eval = FALSE}
 # Read the data into an object called 'sesam2':
@@ -419,6 +420,7 @@ sesam2 <- read_sav("Sesam2.sav")
 ```{r, echo = FALSE}
 sesam2 <- read_sav(paste0(dataDir, "Sesam2.sav"))
 ```
+
 </details>
 
 ---
@@ -453,8 +455,7 @@ Convert *VIEWCAT* into a factor.
   function.
 
 <details>
-
-<summary>Click to show code</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 library(forcats)
@@ -497,8 +498,7 @@ Use `lm()` to estimate a multiple regression model wherein *VIEWCAT* predicts
 - Interpret the estimates.
 
 <details>
-
-<summary>Click to show code</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 lmOut <- lm(POSTNUMB ~ VIEWCAT, data = sesam2)
@@ -506,8 +506,7 @@ summary(lmOut)
 ```
 
   <details>
-  
-  <summary>Click for explanation</summary>
+    <summary>Click for explanation</summary>
   
 ```{r, include = FALSE}
 srr <- round(summary(lmOut)$r.squared, 2)
@@ -520,29 +519,28 @@ t <- cf[ , 3] %>% round(2)
 p <- cf[ , 4] %>% round(3)
 ```
 
-  Viewing category explains a statistically significant proportion of the 
-  variance in the post-test score of numbers learned ($R^2 = `r srr`$, 
-  $F(`r srf[2]`, `r srf[3]`) = `r srf[1]`$, 
-  $p < 0.001$).
+Viewing category explains a statistically significant proportion of the 
+variance in the post-test score of numbers learned ($R^2 = `r srr`$, 
+$F(`r srf[2]`, `r srf[3]`) = `r srf[1]`$, 
+$p < 0.001$).
   
-  Kids who never or rarely watched Sesame Street had an average score of
-  `r b[1]` on the post-test. Kids with weekly viewing habits of 2--3, 4--5, or
-  5+ times per week all had significantly higher scores on the post-test than 
-  kids who never or rarely watched Sesame Street (2--3: 
-  $\hat{\beta} = `r b[2]`$, 
-  $t = `r t[2]`$,
-  $p = `r p[2]`$;
-  4--5:
-  $\hat{\beta} = `r b[3]`$, 
-  $t = `r t[3]`$,
-  $p < 0.001$;
-  5+:
-  $\hat{\beta} = `r b[4]`$, 
-  $t = `r t[4]`$,
-  $p < 0.001$).
+Kids who never or rarely watched Sesame Street had an average score of
+`r b[1]` on the post-test. Kids with weekly viewing habits of 2--3, 4--5, or
+5+ times per week all had significantly higher scores on the post-test than 
+kids who never or rarely watched Sesame Street (2--3: 
+$\hat{\beta} = `r b[2]`$, 
+$t = `r t[2]`$,
+$p = `r p[2]`$;
+4--5:
+$\hat{\beta} = `r b[3]`$, 
+$t = `r t[3]`$,
+$p < 0.001$;
+5+:
+$\hat{\beta} = `r b[4]`$, 
+$t = `r t[4]`$,
+$p < 0.001$).
   
   </details>
-
 </details>
 
 ---
@@ -583,8 +581,7 @@ assigning the variable names to the `color` argument of the `aes()` function in
 `ggplot()`.
 
 <details>
-
-<summary>Click to show code</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 library(ggplot2)
@@ -615,8 +612,7 @@ Add linear regression lines for each group to the above scatterplot.
     - To omit error envelopes, set the argument `se = FALSE`
 
 <details>
-
-<summary>Click to show code</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Add OLS best-fit lines:
@@ -636,8 +632,7 @@ also get a separate regression line for each *VIEWCAT* group.
 How would you interpret the pattern of regression lines above?
 
 <details>
-
-<summary>Click for explanation</summary>
+  <summary>Click for explanation</summary>
 
 All the lines show a positive slope, so post-test number recognition appears to
 increase along with increasing age. The lines are not parallel, though. So
@@ -658,11 +653,11 @@ multiparameter hypothesis test of all `r nDum` interaction terms. One way that
 we can go about implementing such a test is through a hierarchical regression
 analysis entailing three steps:
 
-1.  Estimate the additive model wherein we regress *POSTNUMB* onto *AGE* and
-    *VIEWCAT* without any interaction.
-2.  Estimate the moderated model by adding the interaction between *AGE* and
-    *VIEWCAT* into the additive model.
-3.  Conduct a $\Delta R^2$ test to compare the fit of the two models.
+1. Estimate the additive model wherein we regress *POSTNUMB* onto *AGE* and
+   *VIEWCAT* without any interaction.
+1. Estimate the moderated model by adding the interaction between *AGE* and
+   *VIEWCAT* into the additive model.
+1. Conduct a $\Delta R^2$ test to compare the fit of the two models.
 
 ---
 
@@ -674,8 +669,7 @@ Conduct the hierarchical regression analysis described above.
 - Provide statistical justification for your conclusion.
 
 <details>
-
-<summary>Click to show code</summary>
+  <summary>Click to show code</summary>
 
 ```{r}
 ## Estimate the additive model a view the results:
@@ -691,8 +685,7 @@ anova(results_add, results_mod)
 ```
 
   <details>
-
-  <summary>Click for explanation</summary>
+    <summary>Click for explanation</summary>
   
 ```{r, include = FALSE}
   tmp <- anova(results_add, results_mod)
@@ -703,11 +696,10 @@ anova(results_add, results_mod)
   p   <- tmp[2, 6] %>% round(3)
 ```
   
-  *VIEWCAT* does not significantly moderate the effect of *AGE* on *POSTNUMB*
-  ($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$).
+*VIEWCAT* does not significantly moderate the effect of *AGE* on *POSTNUMB*
+($F[`r df1`, `r df2`] = `r f`$, $p = `r p`$).
 
   </details>
-
 </details>
 
 ---
@@ -718,8 +710,7 @@ Sketch the analytic path diagrams for the additive and moderated models you
 estimated in \@ref(w3hhReg) (on paper).
 
 <details>
-
-<summary>Click for explanation</summary>
+  <summary>Click for explanation</summary>
 
 ```{r, echo = FALSE, eval = TRUE}
 library(tidySEM)
@@ -767,8 +758,6 @@ p2 <- prepare_graph(res,
     label <- NA
   }) %>%
   plot()
-
-
 ```
 
 **Additive Model**
