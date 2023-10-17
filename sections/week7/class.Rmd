@@ -13,7 +13,7 @@ library(lavaan)
 ---
 
 We'll now pick up where we left off with the [At-Home Exercises](at-home-exercises-6.html)
-by testing measurement invariance in the two-group CFA of prolonged grief disorder.
+by testing measurement invariance in the two-group CFA from \@ref(twoGroupCFA).
 
 As you saw in the lecture, measurement invariance testing allows us to 
 empirically test for differences in the measurement model between the groups. If 
@@ -50,9 +50,9 @@ conduct measurement invariance tests in **lavaan** [here][mi_tutorial].
 
 ####
 
-Load the *PGDdata2.txt* data as you did for the At-Home Exercises.
+Load the *PGDdata2.txt* data as you did for the [At-Home Exercises](at-home-exercises-6.html).
 
-- *NOTE:* Unless otherwise specified, all analyses in Section
+- *Note:* Unless otherwise specified, all analyses in Section
   \@ref(w7MeasurementInvariance) use these data.
 
 <details>
@@ -150,6 +150,17 @@ wP    <- tmp[2, "Pr(>Chisq)"] %>% round(3)
 sChi2 <- tmp[3, "Chisq diff"] %>% round(2)
 sDf   <- tmp[3, "Df diff"]
 sP    <- tmp[3, "Pr(>Chisq)"] %>% round(3)
+
+fit2 <- fitMeasures(strongOut, 
+                    c("chisq", "df", "pvalue", "rmsea", "cfi", "tli", "srmr")
+                    )
+
+strongChi2 <- fit2["chisq"] %>% round(2)
+strongDf <- fit2["df"]
+strongP <- fit2["pvalue"] %>% round(3)
+strongRmsea <- fit2["rmsea"] %>% round(3)
+strongCfi <- fit2["cfi"] %>% round(3)
+strongSrmr <- fit2["srmr"] %>% round(3)
 ```
 
   <details>
@@ -168,6 +179,12 @@ sP    <- tmp[3, "Pr(>Chisq)"] %>% round(3)
 - Strong invariance holds.
    - The model comparison test shows a non-significant loss of fit between the 
      weak and strong models ($\Delta \chi^2[`r sDf`] = `r sChi2`$, $p = `r sP`$).
+   - The strongly invariant model still fits the data well
+     ($\chi^2[`r strongDf`] = `r strongChi2`$,
+     $p = `r strongP`$,
+     $\textit{RMSEA} = `r strongRmsea`$,
+     $\textit{CFI} = `r strongCfi`$,
+     $\textit{SRMR} = `r strongSrmr`$).
 
   </details>
 </details>
@@ -232,12 +249,14 @@ p    <- tmp[2, "Pr(>Chisq)"] %>% round(3)
 
   <details>
     <summary>Click for explanation</summary>
-We can equate the latent means by specifying the `group.equal = "means"` argument
-in `cfa()`. Then, we simply test this constrained model against the strong
-invariance model to get our test of mean differences.
+
+We can equate the latent means by specifying the `group.equal = "means"`
+argument in `cfa()`. Then, we simply compare this constrained model to the
+strong invariance model to get our test of mean differences.
 
 In this case, the means of the `grief` factor do not significantly differ between
-`Kin2` groups ($\Delta \chi^2[`r df`] = `r chi2`$, $p = `r p`$).
+`Kin2` groups ($\Delta \chi^2[`r df`] = `r chi2`$, $p = `r p`$), assuming we 
+adopt an alpha-level of 0.05 or lower for the test.
 
   </details>
 </details>
@@ -276,7 +295,7 @@ condom <- read.csv(paste0(dataDir, "toradata.csv"), stringsAsFactors = TRUE)
 
 Before we get to any moderation tests, however, we first need to establish
 measurement invariance. The first step in any multiple-group analysis that
-includes latent variables is measurment invariance testing.
+includes latent variables is measurement invariance testing.
 
 ---
 
@@ -316,9 +335,6 @@ summary(strong)
 
 ## Test measurement invariance:
 compareFit(config, weak, strong) %>% summary()
-
-## Make sure the strongly invariant model still fits well in an absolute sense:
-fitMeasures(strong)
 ```
 
 ```{r, echo = FALSE}
@@ -347,18 +363,18 @@ fit2 <- fitMeasures(strong,
                     c("chisq", "df", "pvalue", "rmsea", "cfi", "tli", "srmr")
                     )
 
-strongChi2 <- fit1["chisq"] %>% round(2)
-strongDf <- fit1["df"]
-strongP <- fit1["pvalue"] %>% round(3)
-strongRmsea <- fit1["rmsea"] %>% round(3)
-strongCfi <- fit1["cfi"] %>% round(3)
-strongSrmr <- fit1["srmr"] %>% round(3)
+strongChi2 <- fit2["chisq"] %>% round(2)
+strongDf <- fit2["df"]
+strongP <- fit2["pvalue"] %>% round(3)
+strongRmsea <- fit2["rmsea"] %>% round(3)
+strongCfi <- fit2["cfi"] %>% round(3)
+strongSrmr <- fit2["srmr"] %>% round(3)
 ```
 
   <details>
     <summary>Click for explanation</summary>
 
-Yes, we have been able to establish full measurement invariance. 
+Yes, we can establish full measurement invariance. 
 
 - Configural invariance holds.
    - The unrestricted, multiple-group model fits the data well 
@@ -432,7 +448,7 @@ paths in the model from \@ref(toraFullModel).
   <summary>Click for explanation</summary>
 
 ```{r}
-## Estimate a restricted model wherein the latent regressions are all equated
+## Estimate a restricted model wherein all latent regression paths are equated
 ## across groups.
 toraOut0 <- sem(tora_sem, 
                 data = condom, 
@@ -456,7 +472,7 @@ p    <- tmp[2, "Pr(>Chisq)"] %>% round(3)
     <summary>Click for explanation</summary>
 
 We can equate the latent regressions by specifying the `group.equal = "regressions"`
-argument in `sem()`. Then, we simply test this constrained model against the
+argument in `sem()`. Then, we simply compare this constrained model to the
 unconstrained model from \@ref(toraFullModel) to get our test of moderation.
 
 Equating all regression paths across groups produces a significant loss of fit
@@ -486,13 +502,13 @@ tora_sem <- paste(tora_cfa,
                    behavior ~ c(b1f, b1m) * intent + c(b2f, b2m) * control',
                   sep = '\n')
 
-## Estimate the model:
+## Estimate the model with weak invariance constraints:
 toraOut <- sem(tora_sem, data = condom, group = "sex", group.equal = "loadings")
 
 ## Check the results:
 summary(toraOut, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
 
-## Test the constraints:
+## Test for moderation:
 lavTestWald(toraOut, "b1f == b1m; b2f == b2m")
 ```
 
