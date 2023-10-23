@@ -13,7 +13,7 @@ your CFA and SEM analyses. We'll cover three general topics:
 
 <iframe width = "560"
         height = "315"
-        src = "https://www.youtube.com/embed/56A7arR4NgU?si=8g-5UhbUdPP66Erl"
+        src = "https://www.youtube.com/embed/_R9ThW-5gWw?si=ZoFrXpYIgE5YVsym"
         frameborder = "0"
         allow = "accelerometer;
                 autoplay;
