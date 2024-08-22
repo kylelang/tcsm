@@ -1,14 +1,15 @@
 ## In-Class Exercises
 
-In the practical this week, we'll go a little further into what it's possible
-with R. Don't worry if you cannot remember everything in these primers---they're
-only meant to familiarize you with what is possible and to get you some
-experience interacting with R and RStudio.
+In this week's practical, we'll go a little further into what's possible with R.
+Don't worry if you cannot remember everything in these primers---they're only
+meant to familiarize you with what is possible and to get you some experience
+interacting with R and RStudio.
 
-The following primers come from [Posit Cloud](https://posit.cloud/learn/primers) and
-were created with the [learnr package](https://rstudio.github.io/learnr/).
+You can access the In-Class Exercises via the following link.
 
----
+- [Link to In-Class Exercises](https://kylemlang.com/r-primers/class.html)
+
+<!------------------------------------------------------------------------------
 
 ### Viewing Data
 
@@ -151,14 +152,16 @@ in this course.
   referrerpolicy="no-referrer">
 </iframe>
 
+------------------------------------------------------------------------------->
+
 ---
 
 ### Recap {-}
 
-Hopefully, you now feel more comfortable using some of R's basic functionality
-and packages to work with data.
+Hopefully, after completing the practical exercises for this week, you feel more
+comfortable using R's basic functionality.
 
-Here's a brief description of the functions covered above:
+Here's a brief description of the functions covered in this week's practical exercises:
 
   - `install.packages()` for installing packages
     - Remember to put the package names in quotes
