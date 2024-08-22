@@ -470,7 +470,7 @@ PCA-based replications of Kestilä (2006).</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="in-class-exercises-4.html#cb213-1" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ess_round1.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="in-class-exercises-4.html#cb217-1" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ess_round1.rds&quot;</span>)</span></code></pre></div>
 </details>
 <hr />
 <p>We are going to conduct a CFA to evaluate the measurement model implied by the
@@ -505,22 +505,22 @@ equivalent to the solution presented in Table 3 of Kestilä (2006).</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="in-class-exercises-4.html#cb214-1" tabindex="-1"></a>mod_5f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb214-2"><a href="in-class-exercises-4.html#cb214-2" tabindex="-1"></a><span class="st">## Immigration Policy:</span></span>
-<span id="cb214-3"><a href="in-class-exercises-4.html#cb214-3" tabindex="-1"></a><span class="st">ip =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn </span></span>
-<span id="cb214-4"><a href="in-class-exercises-4.html#cb214-4" tabindex="-1"></a></span>
-<span id="cb214-5"><a href="in-class-exercises-4.html#cb214-5" tabindex="-1"></a><span class="st">## Social Threat:</span></span>
-<span id="cb214-6"><a href="in-class-exercises-4.html#cb214-6" tabindex="-1"></a><span class="st">st =~ imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt</span></span>
-<span id="cb214-7"><a href="in-class-exercises-4.html#cb214-7" tabindex="-1"></a></span>
-<span id="cb214-8"><a href="in-class-exercises-4.html#cb214-8" tabindex="-1"></a><span class="st">## Refugee Policy:</span></span>
-<span id="cb214-9"><a href="in-class-exercises-4.html#cb214-9" tabindex="-1"></a><span class="st">rp =~ gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg</span></span>
-<span id="cb214-10"><a href="in-class-exercises-4.html#cb214-10" tabindex="-1"></a></span>
-<span id="cb214-11"><a href="in-class-exercises-4.html#cb214-11" tabindex="-1"></a><span class="st">## Cultural Threat:</span></span>
-<span id="cb214-12"><a href="in-class-exercises-4.html#cb214-12" tabindex="-1"></a><span class="st">ct =~ qfimchr + qfimwht + pplstrd + vrtrlg</span></span>
-<span id="cb214-13"><a href="in-class-exercises-4.html#cb214-13" tabindex="-1"></a></span>
-<span id="cb214-14"><a href="in-class-exercises-4.html#cb214-14" tabindex="-1"></a><span class="st">## Economic Threat:</span></span>
-<span id="cb214-15"><a href="in-class-exercises-4.html#cb214-15" tabindex="-1"></a><span class="st">et =~ imwgdwn + imhecop </span></span>
-<span id="cb214-16"><a href="in-class-exercises-4.html#cb214-16" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="in-class-exercises-4.html#cb218-1" tabindex="-1"></a>mod_5f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb218-2"><a href="in-class-exercises-4.html#cb218-2" tabindex="-1"></a><span class="st">## Immigration Policy:</span></span>
+<span id="cb218-3"><a href="in-class-exercises-4.html#cb218-3" tabindex="-1"></a><span class="st">ip =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn </span></span>
+<span id="cb218-4"><a href="in-class-exercises-4.html#cb218-4" tabindex="-1"></a></span>
+<span id="cb218-5"><a href="in-class-exercises-4.html#cb218-5" tabindex="-1"></a><span class="st">## Social Threat:</span></span>
+<span id="cb218-6"><a href="in-class-exercises-4.html#cb218-6" tabindex="-1"></a><span class="st">st =~ imbgeco + imbleco + imwbcnt + imwbcrm + imtcjob + imueclt</span></span>
+<span id="cb218-7"><a href="in-class-exercises-4.html#cb218-7" tabindex="-1"></a></span>
+<span id="cb218-8"><a href="in-class-exercises-4.html#cb218-8" tabindex="-1"></a><span class="st">## Refugee Policy:</span></span>
+<span id="cb218-9"><a href="in-class-exercises-4.html#cb218-9" tabindex="-1"></a><span class="st">rp =~ gvrfgap + imrsprc + rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg</span></span>
+<span id="cb218-10"><a href="in-class-exercises-4.html#cb218-10" tabindex="-1"></a></span>
+<span id="cb218-11"><a href="in-class-exercises-4.html#cb218-11" tabindex="-1"></a><span class="st">## Cultural Threat:</span></span>
+<span id="cb218-12"><a href="in-class-exercises-4.html#cb218-12" tabindex="-1"></a><span class="st">ct =~ qfimchr + qfimwht + pplstrd + vrtrlg</span></span>
+<span id="cb218-13"><a href="in-class-exercises-4.html#cb218-13" tabindex="-1"></a></span>
+<span id="cb218-14"><a href="in-class-exercises-4.html#cb218-14" tabindex="-1"></a><span class="st">## Economic Threat:</span></span>
+<span id="cb218-15"><a href="in-class-exercises-4.html#cb218-15" tabindex="-1"></a><span class="st">et =~ imwgdwn + imhecop </span></span>
+<span id="cb218-16"><a href="in-class-exercises-4.html#cb218-16" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 <p><em>Note:</em> We don’t have to specify the latent covariances in the model syntax, we
 can tell <code>lavaan</code> to estimate all latent covariances when we fit the model.</p>
 </details>
@@ -548,14 +548,14 @@ settings?</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="in-class-exercises-4.html#cb215-1" tabindex="-1"></a><span class="do">## Load the lavaan package:</span></span>
-<span id="cb215-2"><a href="in-class-exercises-4.html#cb215-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb215-3"><a href="in-class-exercises-4.html#cb215-3" tabindex="-1"></a></span>
-<span id="cb215-4"><a href="in-class-exercises-4.html#cb215-4" tabindex="-1"></a><span class="do">## Estimate the CFA model:</span></span>
-<span id="cb215-5"><a href="in-class-exercises-4.html#cb215-5" tabindex="-1"></a>fit_5f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_5f, <span class="at">data =</span> ess)</span>
-<span id="cb215-6"><a href="in-class-exercises-4.html#cb215-6" tabindex="-1"></a></span>
-<span id="cb215-7"><a href="in-class-exercises-4.html#cb215-7" tabindex="-1"></a><span class="do">## Summarize the fitted model:</span></span>
-<span id="cb215-8"><a href="in-class-exercises-4.html#cb215-8" tabindex="-1"></a><span class="fu">summary</span>(fit_5f, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="in-class-exercises-4.html#cb219-1" tabindex="-1"></a><span class="do">## Load the lavaan package:</span></span>
+<span id="cb219-2"><a href="in-class-exercises-4.html#cb219-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb219-3"><a href="in-class-exercises-4.html#cb219-3" tabindex="-1"></a></span>
+<span id="cb219-4"><a href="in-class-exercises-4.html#cb219-4" tabindex="-1"></a><span class="do">## Estimate the CFA model:</span></span>
+<span id="cb219-5"><a href="in-class-exercises-4.html#cb219-5" tabindex="-1"></a>fit_5f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_5f, <span class="at">data =</span> ess)</span>
+<span id="cb219-6"><a href="in-class-exercises-4.html#cb219-6" tabindex="-1"></a></span>
+<span id="cb219-7"><a href="in-class-exercises-4.html#cb219-7" tabindex="-1"></a><span class="do">## Summarize the fitted model:</span></span>
+<span id="cb219-8"><a href="in-class-exercises-4.html#cb219-8" tabindex="-1"></a><span class="fu">summary</span>(fit_5f, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 72 iterations
 ## 
 ##   Estimator                                         ML
@@ -733,12 +733,12 @@ model wherein all <em>Attitude</em> items are explained by a single latent varia
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="in-class-exercises-4.html#cb217-1" tabindex="-1"></a>mod_1f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb217-2"><a href="in-class-exercises-4.html#cb217-2" tabindex="-1"></a><span class="st">ati =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn + imbgeco +</span></span>
-<span id="cb217-3"><a href="in-class-exercises-4.html#cb217-3" tabindex="-1"></a><span class="st">       imbleco + imwbcnt + imwbcrm + imtcjob + imueclt + gvrfgap + imrsprc +</span></span>
-<span id="cb217-4"><a href="in-class-exercises-4.html#cb217-4" tabindex="-1"></a><span class="st">       rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg  + qfimchr + qfimwht +</span></span>
-<span id="cb217-5"><a href="in-class-exercises-4.html#cb217-5" tabindex="-1"></a><span class="st">       pplstrd + vrtrlg  + imwgdwn + imhecop</span></span>
-<span id="cb217-6"><a href="in-class-exercises-4.html#cb217-6" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="in-class-exercises-4.html#cb221-1" tabindex="-1"></a>mod_1f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb221-2"><a href="in-class-exercises-4.html#cb221-2" tabindex="-1"></a><span class="st">ati =~ imrcntr + eimrcnt + eimpcnt + imsmetn + impcntr + imdfetn + imbgeco +</span></span>
+<span id="cb221-3"><a href="in-class-exercises-4.html#cb221-3" tabindex="-1"></a><span class="st">       imbleco + imwbcnt + imwbcrm + imtcjob + imueclt + gvrfgap + imrsprc +</span></span>
+<span id="cb221-4"><a href="in-class-exercises-4.html#cb221-4" tabindex="-1"></a><span class="st">       rfgbfml + rfggvfn + rfgawrk + rfgfrpc + shrrfg  + qfimchr + qfimwht +</span></span>
+<span id="cb221-5"><a href="in-class-exercises-4.html#cb221-5" tabindex="-1"></a><span class="st">       pplstrd + vrtrlg  + imwgdwn + imhecop</span></span>
+<span id="cb221-6"><a href="in-class-exercises-4.html#cb221-6" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -755,11 +755,11 @@ only the model fit information from a fitted <code>lavaan</code> object.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="in-class-exercises-4.html#cb218-1" tabindex="-1"></a><span class="do">## Estimate the one factor model:</span></span>
-<span id="cb218-2"><a href="in-class-exercises-4.html#cb218-2" tabindex="-1"></a>fit_1f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_1f, <span class="at">data =</span> ess)</span>
-<span id="cb218-3"><a href="in-class-exercises-4.html#cb218-3" tabindex="-1"></a></span>
-<span id="cb218-4"><a href="in-class-exercises-4.html#cb218-4" tabindex="-1"></a><span class="do">## Summarize the results:</span></span>
-<span id="cb218-5"><a href="in-class-exercises-4.html#cb218-5" tabindex="-1"></a><span class="fu">summary</span>(fit_1f)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="in-class-exercises-4.html#cb222-1" tabindex="-1"></a><span class="do">## Estimate the one factor model:</span></span>
+<span id="cb222-2"><a href="in-class-exercises-4.html#cb222-2" tabindex="-1"></a>fit_1f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_1f, <span class="at">data =</span> ess)</span>
+<span id="cb222-3"><a href="in-class-exercises-4.html#cb222-3" tabindex="-1"></a></span>
+<span id="cb222-4"><a href="in-class-exercises-4.html#cb222-4" tabindex="-1"></a><span class="do">## Summarize the results:</span></span>
+<span id="cb222-5"><a href="in-class-exercises-4.html#cb222-5" tabindex="-1"></a><span class="fu">summary</span>(fit_1f)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 47 iterations
 ## 
 ##   Estimator                                         ML
@@ -838,13 +838,13 @@ Click to show code
 ##    .imwgdwn           1.010    0.012   83.583    0.000
 ##    .imhecop           0.954    0.011   83.294    0.000
 ##     ati               0.353    0.007   48.941    0.000</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="in-class-exercises-4.html#cb220-1" tabindex="-1"></a><span class="do">## Compare fit statistics:</span></span>
-<span id="cb220-2"><a href="in-class-exercises-4.html#cb220-2" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_5f,</span>
-<span id="cb220-3"><a href="in-class-exercises-4.html#cb220-3" tabindex="-1"></a>            <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
-<span id="cb220-4"><a href="in-class-exercises-4.html#cb220-4" tabindex="-1"></a>                             <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb220-5"><a href="in-class-exercises-4.html#cb220-5" tabindex="-1"></a>                             <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
-<span id="cb220-6"><a href="in-class-exercises-4.html#cb220-6" tabindex="-1"></a>                             <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb220-7"><a href="in-class-exercises-4.html#cb220-7" tabindex="-1"></a>            <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="in-class-exercises-4.html#cb224-1" tabindex="-1"></a><span class="do">## Compare fit statistics:</span></span>
+<span id="cb224-2"><a href="in-class-exercises-4.html#cb224-2" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_5f,</span>
+<span id="cb224-3"><a href="in-class-exercises-4.html#cb224-3" tabindex="-1"></a>            <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
+<span id="cb224-4"><a href="in-class-exercises-4.html#cb224-4" tabindex="-1"></a>                             <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb224-5"><a href="in-class-exercises-4.html#cb224-5" tabindex="-1"></a>                             <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
+<span id="cb224-6"><a href="in-class-exercises-4.html#cb224-6" tabindex="-1"></a>                             <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb224-7"><a href="in-class-exercises-4.html#cb224-7" tabindex="-1"></a>            <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Model Test User Model:
 ## 
@@ -864,12 +864,12 @@ Click to show code
 ## Standardized Root Mean Square Residual:
 ## 
 ##   SRMR                                           0.048</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="in-class-exercises-4.html#cb222-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_1f,</span>
-<span id="cb222-2"><a href="in-class-exercises-4.html#cb222-2" tabindex="-1"></a>            <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
-<span id="cb222-3"><a href="in-class-exercises-4.html#cb222-3" tabindex="-1"></a>                             <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb222-4"><a href="in-class-exercises-4.html#cb222-4" tabindex="-1"></a>                             <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
-<span id="cb222-5"><a href="in-class-exercises-4.html#cb222-5" tabindex="-1"></a>                             <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb222-6"><a href="in-class-exercises-4.html#cb222-6" tabindex="-1"></a>            <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="in-class-exercises-4.html#cb226-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_1f,</span>
+<span id="cb226-2"><a href="in-class-exercises-4.html#cb226-2" tabindex="-1"></a>            <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
+<span id="cb226-3"><a href="in-class-exercises-4.html#cb226-3" tabindex="-1"></a>                             <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb226-4"><a href="in-class-exercises-4.html#cb226-4" tabindex="-1"></a>                             <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
+<span id="cb226-5"><a href="in-class-exercises-4.html#cb226-5" tabindex="-1"></a>                             <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb226-6"><a href="in-class-exercises-4.html#cb226-6" tabindex="-1"></a>            <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Model Test User Model:
 ## 
@@ -928,12 +928,12 @@ towards Immigration</em> items, estimate it, and inspect the results.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="in-class-exercises-4.html#cb224-1" tabindex="-1"></a>mod_2o <span class="ot">&lt;-</span> <span class="fu">paste</span>(mod_5f,</span>
-<span id="cb224-2"><a href="in-class-exercises-4.html#cb224-2" tabindex="-1"></a>                <span class="st">&#39;ati =~ ip + rp + st + ct + et&#39;</span>,</span>
-<span id="cb224-3"><a href="in-class-exercises-4.html#cb224-3" tabindex="-1"></a>                <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
-<span id="cb224-4"><a href="in-class-exercises-4.html#cb224-4" tabindex="-1"></a></span>
-<span id="cb224-5"><a href="in-class-exercises-4.html#cb224-5" tabindex="-1"></a>fit_2o <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_2o, <span class="at">data =</span> ess)</span>
-<span id="cb224-6"><a href="in-class-exercises-4.html#cb224-6" tabindex="-1"></a><span class="fu">summary</span>(fit_2o, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="in-class-exercises-4.html#cb228-1" tabindex="-1"></a>mod_2o <span class="ot">&lt;-</span> <span class="fu">paste</span>(mod_5f,</span>
+<span id="cb228-2"><a href="in-class-exercises-4.html#cb228-2" tabindex="-1"></a>                <span class="st">&#39;ati =~ ip + rp + st + ct + et&#39;</span>,</span>
+<span id="cb228-3"><a href="in-class-exercises-4.html#cb228-3" tabindex="-1"></a>                <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb228-4"><a href="in-class-exercises-4.html#cb228-4" tabindex="-1"></a></span>
+<span id="cb228-5"><a href="in-class-exercises-4.html#cb228-5" tabindex="-1"></a>fit_2o <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_2o, <span class="at">data =</span> ess)</span>
+<span id="cb228-6"><a href="in-class-exercises-4.html#cb228-6" tabindex="-1"></a><span class="fu">summary</span>(fit_2o, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 94 iterations
 ## 
 ##   Estimator                                         ML
@@ -1074,12 +1074,12 @@ the <code>fitMeasures()</code> function.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="in-class-exercises-4.html#cb226-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_5f,</span>
-<span id="cb226-2"><a href="in-class-exercises-4.html#cb226-2" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
-<span id="cb226-3"><a href="in-class-exercises-4.html#cb226-3" tabindex="-1"></a>                   <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb226-4"><a href="in-class-exercises-4.html#cb226-4" tabindex="-1"></a>                   <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
-<span id="cb226-5"><a href="in-class-exercises-4.html#cb226-5" tabindex="-1"></a>                   <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb226-6"><a href="in-class-exercises-4.html#cb226-6" tabindex="-1"></a>  <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="in-class-exercises-4.html#cb230-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_5f,</span>
+<span id="cb230-2"><a href="in-class-exercises-4.html#cb230-2" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
+<span id="cb230-3"><a href="in-class-exercises-4.html#cb230-3" tabindex="-1"></a>                   <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb230-4"><a href="in-class-exercises-4.html#cb230-4" tabindex="-1"></a>                   <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
+<span id="cb230-5"><a href="in-class-exercises-4.html#cb230-5" tabindex="-1"></a>                   <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb230-6"><a href="in-class-exercises-4.html#cb230-6" tabindex="-1"></a>  <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Model Test User Model:
 ## 
@@ -1099,12 +1099,12 @@ Click to show code
 ## Standardized Root Mean Square Residual:
 ## 
 ##   SRMR                                           0.048</code></pre>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="in-class-exercises-4.html#cb228-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_2o,</span>
-<span id="cb228-2"><a href="in-class-exercises-4.html#cb228-2" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
-<span id="cb228-3"><a href="in-class-exercises-4.html#cb228-3" tabindex="-1"></a>                   <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb228-4"><a href="in-class-exercises-4.html#cb228-4" tabindex="-1"></a>                   <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
-<span id="cb228-5"><a href="in-class-exercises-4.html#cb228-5" tabindex="-1"></a>                   <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
-<span id="cb228-6"><a href="in-class-exercises-4.html#cb228-6" tabindex="-1"></a>  <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="in-class-exercises-4.html#cb232-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_2o,</span>
+<span id="cb232-2"><a href="in-class-exercises-4.html#cb232-2" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">&quot;npar&quot;</span>,                  <span class="co"># Estimated parameters</span></span>
+<span id="cb232-3"><a href="in-class-exercises-4.html#cb232-3" tabindex="-1"></a>                   <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;pvalue&quot;</span>, <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb232-4"><a href="in-class-exercises-4.html#cb232-4" tabindex="-1"></a>                   <span class="st">&quot;cfi&quot;</span>, <span class="st">&quot;tli&quot;</span>,            <span class="co"># Model fit vs. baseline</span></span>
+<span id="cb232-5"><a href="in-class-exercises-4.html#cb232-5" tabindex="-1"></a>                   <span class="st">&quot;rmsea&quot;</span>, <span class="st">&quot;srmr&quot;</span>),        <span class="co"># Model fit vs. saturated</span></span>
+<span id="cb232-6"><a href="in-class-exercises-4.html#cb232-6" tabindex="-1"></a>  <span class="at">output =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Model Test User Model:
 ## 

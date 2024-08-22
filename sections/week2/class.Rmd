@@ -168,8 +168,8 @@ sesam %>% summarise(mean(ndif), sd(ndif))
   \@ref(changeScore).
 - Justify your choice of visualization.
 
-*Hint:* Some applicable visualizations are explained in the 
-[Visualizations with R] section.
+*Hint:* Recall the visualizations for continuous variables covered in the
+[Week 1 In-Class Exercises](https://kylemlang.com/r-primers/class.html).
 
 <details>
 
@@ -211,7 +211,9 @@ p + geom_boxplot()
 - Justify your choice of visualization.
 - Describe the relationship based on what you see in your visualization.
 
-*Hint:* Again, the [Visualizations with R] section may provide some useful insights.
+*Hint:* Again, some of the visualizations covered in the
+[Week 1 In-Class Exercises](https://kylemlang.com/r-primers/class.html) may be
+useful.
 
 <details>
 
@@ -781,15 +783,49 @@ you will need to create your own dummy codes.
 <summary>Click to show code</summary>
 
 ```{r}
+## Specify the model syntax:
 mod <- 'RT ~ 1 + HH + HF'
 
-lavOut <- drivers %>%
-  mutate(HH = ifelse(condition == "hand-held", 1, 0), # Create dummy code for "hand-held" condition
-         HF = ifelse(condition == "hands-free", 1, 0) # Create dummy code for "hands-free" condition
+## Dummy code the factor variable:
+drivers2 <- mutate(drivers,
+                   ## Create dummy code for "hand-held" condition:
+                   HH = ifelse(condition == "hand-held", 1, 0),
+                   ## Create dummy code for "hands-free" condition:
+                   HF = ifelse(condition == "hands-free", 1, 0)
+                   )
+
+## Estimate the path model:
+lavOut <- sem(mod, data = drivers2)
+
+## Summarize the results:
+summary(lavOut)
+```
+
+Alternatively, we can combine the data processing and model estimation into a
+single pipeline, as shown below. 
+
+- This type of combined approach might be preferable if we do not want to
+  permanently add the dummy codes to the `drivers` dataset.
+- The multi-step approach shown above would be better if we were going to reuse
+  the dummy codes in subsequent analyses.
+
+```{r}
+lavOut2 <- drivers %>%
+  mutate(HH = ifelse(condition == "hand-held", 1, 0),
+         HF = ifelse(condition == "hands-free", 1, 0)
          ) %>%
   sem(mod, data = .) # Estimate the model
 
-summary(lavOut)
+## Do the two approaches produce the same results?
+all.equal(
+  parameterEstimates(lavOut), 
+  parameterEstimates(lavOut2)
+  )
+
+all.equal(
+  fitMeasures(lavOut), 
+  fitMeasures(lavOut2)
+  )
 ```
 
 At this point, we haven't covered the tools you need to conduct the ANOVA-style 

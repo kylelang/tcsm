@@ -598,8 +598,8 @@ scores on knowledge of numbers:</p>
 <a href="in-class-exercises-1.html#changeScore">2.4.1.3</a>.</li>
 <li>Justify your choice of visualization.</li>
 </ul>
-<p><em>Hint:</em> Some applicable visualizations are explained in the
-[Visualizations with R] section.</p>
+<p><em>Hint:</em> Recall the visualizations for continuous variables covered in the
+<a href="https://kylemlang.com/r-primers/class.html">Week 1 In-Class Exercises</a>.</p>
 <details>
 <summary>
 Click to show code
@@ -638,7 +638,9 @@ relationship between the pre- and post-test number knowledge.</li>
 <li>Justify your choice of visualization.</li>
 <li>Describe the relationship based on what you see in your visualization.</li>
 </ul>
-<p><em>Hint:</em> Again, the [Visualizations with R] section may provide some useful insights.</p>
+<p><em>Hint:</em> Again, some of the visualizations covered in the
+<a href="https://kylemlang.com/r-primers/class.html">Week 1 In-Class Exercises</a> may be
+useful.</p>
 <details>
 <summary>
 Click to show code
@@ -1293,15 +1295,22 @@ you will need to create your own dummy codes.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="in-class-exercises-1.html#cb55-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;RT ~ 1 + HH + HF&#39;</span></span>
-<span id="cb55-2"><a href="in-class-exercises-1.html#cb55-2" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="in-class-exercises-1.html#cb55-3" tabindex="-1"></a>lavOut <span class="ot">&lt;-</span> drivers <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="in-class-exercises-1.html#cb55-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HH =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hand-held&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># Create dummy code for &quot;hand-held&quot; condition</span></span>
-<span id="cb55-5"><a href="in-class-exercises-1.html#cb55-5" tabindex="-1"></a>         <span class="at">HF =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hands-free&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>) <span class="co"># Create dummy code for &quot;hands-free&quot; condition</span></span>
-<span id="cb55-6"><a href="in-class-exercises-1.html#cb55-6" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
-<span id="cb55-7"><a href="in-class-exercises-1.html#cb55-7" tabindex="-1"></a>  <span class="fu">sem</span>(mod, <span class="at">data =</span> .) <span class="co"># Estimate the model</span></span>
-<span id="cb55-8"><a href="in-class-exercises-1.html#cb55-8" tabindex="-1"></a></span>
-<span id="cb55-9"><a href="in-class-exercises-1.html#cb55-9" tabindex="-1"></a><span class="fu">summary</span>(lavOut)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="in-class-exercises-1.html#cb55-1" tabindex="-1"></a><span class="do">## Specify the model syntax:</span></span>
+<span id="cb55-2"><a href="in-class-exercises-1.html#cb55-2" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="st">&#39;RT ~ 1 + HH + HF&#39;</span></span>
+<span id="cb55-3"><a href="in-class-exercises-1.html#cb55-3" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="in-class-exercises-1.html#cb55-4" tabindex="-1"></a><span class="do">## Dummy code the factor variable:</span></span>
+<span id="cb55-5"><a href="in-class-exercises-1.html#cb55-5" tabindex="-1"></a>drivers2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(drivers,</span>
+<span id="cb55-6"><a href="in-class-exercises-1.html#cb55-6" tabindex="-1"></a>                   <span class="do">## Create dummy code for &quot;hand-held&quot; condition:</span></span>
+<span id="cb55-7"><a href="in-class-exercises-1.html#cb55-7" tabindex="-1"></a>                   <span class="at">HH =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hand-held&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb55-8"><a href="in-class-exercises-1.html#cb55-8" tabindex="-1"></a>                   <span class="do">## Create dummy code for &quot;hands-free&quot; condition:</span></span>
+<span id="cb55-9"><a href="in-class-exercises-1.html#cb55-9" tabindex="-1"></a>                   <span class="at">HF =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hands-free&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb55-10"><a href="in-class-exercises-1.html#cb55-10" tabindex="-1"></a>                   )</span>
+<span id="cb55-11"><a href="in-class-exercises-1.html#cb55-11" tabindex="-1"></a></span>
+<span id="cb55-12"><a href="in-class-exercises-1.html#cb55-12" tabindex="-1"></a><span class="do">## Estimate the path model:</span></span>
+<span id="cb55-13"><a href="in-class-exercises-1.html#cb55-13" tabindex="-1"></a>lavOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> drivers2)</span>
+<span id="cb55-14"><a href="in-class-exercises-1.html#cb55-14" tabindex="-1"></a></span>
+<span id="cb55-15"><a href="in-class-exercises-1.html#cb55-15" tabindex="-1"></a><span class="do">## Summarize the results:</span></span>
+<span id="cb55-16"><a href="in-class-exercises-1.html#cb55-16" tabindex="-1"></a><span class="fu">summary</span>(lavOut)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
@@ -1334,6 +1343,31 @@ Click to show code
 ## Variances:
 ##                    Estimate   Std.Err  z-value  P(&gt;|z|)
 ##    .RT             16068.028 2933.607    5.477    0.000</code></pre>
+<p>Alternatively, we can combine the data processing and model estimation into a
+single pipeline, as shown below.</p>
+<ul>
+<li>This type of combined approach might be preferable if we do not want to
+permanently add the dummy codes to the <code>drivers</code> dataset.</li>
+<li>The multi-step approach shown above would be better if we were going to reuse
+the dummy codes in subsequent analyses.</li>
+</ul>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="in-class-exercises-1.html#cb57-1" tabindex="-1"></a>lavOut2 <span class="ot">&lt;-</span> drivers <span class="sc">%&gt;%</span></span>
+<span id="cb57-2"><a href="in-class-exercises-1.html#cb57-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HH =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hand-held&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb57-3"><a href="in-class-exercises-1.html#cb57-3" tabindex="-1"></a>         <span class="at">HF =</span> <span class="fu">ifelse</span>(condition <span class="sc">==</span> <span class="st">&quot;hands-free&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb57-4"><a href="in-class-exercises-1.html#cb57-4" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
+<span id="cb57-5"><a href="in-class-exercises-1.html#cb57-5" tabindex="-1"></a>  <span class="fu">sem</span>(mod, <span class="at">data =</span> .) <span class="co"># Estimate the model</span></span>
+<span id="cb57-6"><a href="in-class-exercises-1.html#cb57-6" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="in-class-exercises-1.html#cb57-7" tabindex="-1"></a><span class="do">## Do the two approaches produce the same results?</span></span>
+<span id="cb57-8"><a href="in-class-exercises-1.html#cb57-8" tabindex="-1"></a><span class="fu">all.equal</span>(</span>
+<span id="cb57-9"><a href="in-class-exercises-1.html#cb57-9" tabindex="-1"></a>  <span class="fu">parameterEstimates</span>(lavOut), </span>
+<span id="cb57-10"><a href="in-class-exercises-1.html#cb57-10" tabindex="-1"></a>  <span class="fu">parameterEstimates</span>(lavOut2)</span>
+<span id="cb57-11"><a href="in-class-exercises-1.html#cb57-11" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="in-class-exercises-1.html#cb59-1" tabindex="-1"></a><span class="fu">all.equal</span>(</span>
+<span id="cb59-2"><a href="in-class-exercises-1.html#cb59-2" tabindex="-1"></a>  <span class="fu">fitMeasures</span>(lavOut), </span>
+<span id="cb59-3"><a href="in-class-exercises-1.html#cb59-3" tabindex="-1"></a>  <span class="fu">fitMeasures</span>(lavOut2)</span>
+<span id="cb59-4"><a href="in-class-exercises-1.html#cb59-4" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 <p>At this point, we haven’t covered the tools you need to conduct the ANOVA-style
 tests with path models. So, you can’t yet answer the research question with the
 above model.</p>
