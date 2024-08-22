@@ -1,16 +1,17 @@
 ## At-Home Exercises
 
 This week is all about gaining familiarity with R and RStudio. We'll be using 
-the primers available on <a href="https://posit.cloud">Posit Cloud</a> to work
-through some basic elements of data visualization and statistical programming in
-R. Although you should already have R working, this week's at-home and in-class 
-exercises don't require that you have R installed on your system.
+material from the introductory tutorials that were previously available as 
+*Posit Primers*. These exercises work through some basic elements of data
+visualization and statistical programming in R. Although you should already have
+R working, this week's practical exercises don't require that you have R
+installed on your system.
 
-If following along within this GitBook doesn't work for you, you can also find
-the tutorials online on the [Posit Primers](https://posit.cloud/learn/primers/1)
-page.
+You can access the At-Home Exercises via the following link.
 
----
+- [Link to At-Home Exercises](https://kylemlang.com/r-primers/home.html)
+
+<!------------------------------------------------------------------------------
 
 ### Visualizations with R
 
@@ -41,6 +42,8 @@ page.
   loading="lazy"
   referrerpolicy="no-referrer">
 </iframe>
+
+------------------------------------------------------------------------------->
 
 ---
 
