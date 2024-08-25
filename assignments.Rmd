@@ -12,7 +12,13 @@ will write up your results in a concise report (not a full research paper).
     - Guidelines for these analyses/reports are delineated in the following 
       three sections.
     - You will submit your reports via Blackboard.
-- You will complete the first two assignments in your [Assignment Groups][group].
+- You will complete Assignments 1 and 2 in your [Assignment Groups][groups].
+- Ideally, your Assignment 1 Group and Assignment 2 Group will comprise the same
+  people.
+   - In the event of group-related issues during A1, you can join a different
+     group for A2.
+   - Even if you want to keep the same group members, you still need to enroll
+     in an Assignment 2 Group.
 - You will complete the third assignment individually.
 - The first two assignments are graded as pass/fail.
   - You must pass both of these assignments to pass the course.
@@ -20,7 +26,7 @@ will write up your results in a concise report (not a full research paper).
 
 <!----------------------------------------------------------------------------->
 
-## Assignment 1: Path Analysis {-}
+## Assignment 1: Path Analysis {- #a1_components}
 
 For the first assignment, **you will work in groups** to apply a *path model* 
 that describes how several (observed) variables could be causally related. 
@@ -42,7 +48,7 @@ model.
    - Include the code used to define and estimate your model as an appendix.
 1. Report the results
     - Evaluate the model [assumptions](#model_assumptions).
-    - Provide relevant output in a [suitable format](#results_format).
+    - Provide relevant output in a [suitable format](#reporting_standards).
     - Include measures of explained variance for the dependent variables.
 1. Discuss the results.
     - Use your results to answer the research question.
@@ -71,19 +77,19 @@ Assignment 1 is due at 23:59 on Wednesday 2 October 2024.
 
 <!----------------------------------------------------------------------------->
 
-## Assignment 2: Confirmatory Factor Analysis {-}
+## Assignment 2: Confirmatory Factor Analysis {- #a2_worksheet}
 
 In the second assignment, **you will work in groups** to run a *CFA* wherein 
 the observed variables are indirect indicators of the unobserved constructs you 
-want to analyze. 
+want to analyze.
 
 Unlike Assignments 1 and 3, you will not submit a research report for Assignment 
-2. You will report your analysis by filling in a structured worksheet. You can 
-download the worksheet below (in various formats).
+2. You will report your analysis by filling in a structured worksheet.
 
-- [R Markdown](data/a2_template.Rmd)
-- [Quarto](data/a2_template.qmd)
-- [MS Word](data/a2_template.docx)
+- You can download a blank copy of the worksheet [here](data/a2_template.pdf).
+- You can download the worksheet template below (in various formats).
+   - [R Markdown](data/a2_template.Rmd)
+   - [Quarto](data/a2_template.qmd)
 
 <!------------------------------------------------------------------------------
 The components of the second assignment are described below.
@@ -102,7 +108,7 @@ The components of the second assignment are described below.
     - Evaluate the [model assumptions](#model_assumptions).
     - Discuss other important decisions that could have influence your results.
 1. Report the results in APA style.
-    - Provide relevant output in a [suitable format](#results_format).
+    - Provide relevant output in a [suitable format](#reporting_standards).
     - Include measures of model fit.
 1. Discuss the results.
    - Use your results to answer the research question.
@@ -116,10 +122,12 @@ The components of the second assignment are described below.
 See the [Grading](grading-1.html) section below for more information on how 
 Assignment 2 will be evaluated.
 
+<!------------------------------------------------------------------------------
 You can access an evaluation matrix for Assignment 2 [here](data/a2_guidelines.pdf).
 
 - This matrix gives an indication of what level of work constitutes *insufficient*, 
   *sufficient*, and *excellent* responses to the six components described above.
+------------------------------------------------------------------------------->
 
 ---
 
@@ -163,8 +171,8 @@ The components of the third assignment are described below.
 1. Explain your rationale for important modeling decisions.
    - Discuss the conceptual fit between your theory and your model.
    - Evaluate the model [assumptions](#model_assumptions).
-1. Report the results in APA style.
-   - Provide relevant output in a [suitable format](#results_format).
+1. Report the results clearly and concisely.
+   - Provide relevant output in a [suitable format](#reporting_standards).
    - Include measures of model fit.
    - Include measures of explained variance for the dependent variables.
       - I.e., observed indicators, observed and latent structural outcomes
@@ -200,7 +208,52 @@ Assignment 3 is due at 23:59 on Wednesday 6 November 2024.
 
 ### Progression {- #progression}
 
-XXX
+The three assignments are meant to build upon one another. So, you should plan
+on analyzing the same dataset for all three assignments and choose a theoretical
+model that will satisfy the requirements of all three assignments. To facilitate
+this progression, consider the following points.
+
+- For A2 and A3, your theoretical model must include two or more latent
+  constructs. At least one of the latent constructs must act as in IV in your
+  model.
+   - When specifying your model for A1, ensure that you use at least two scale
+     scores constructed from three or more items each.
+   - Make sure to include at least one of these scale scores as an IV.
+- We will not cover methods for estimating latent variables from categorical
+  items.
+   - When specifying the latent constructs/scale scores in your model, do not
+     use nominal items and try to avoid ordinal items with fewer than five
+     levels.
+- We will not cover methods for latent variable interactions.
+   - When specifying your theoretical model in A1, do not include any
+     interactions involving scale scores (i.e., variables that will be latent
+     constructs in A3).
+   - *EXCEPTION:* You may specify an interaction between a scale score/latent
+     construct and a nominal grouping variable (e.g., sex, nationality,
+     ethnicity).
+      - You will learn how to test this type of hypothesis via multiple-group
+        SEM in [Week 7](multiple-group-models.html).
+
+#### Recycling Prior Work {-}
+
+Since each assignment should build on its predecessor, you'll inevitably find
+yourself in the position of needing to document exactly the same things across
+assignments. In such circumstances, you'll undoubtedly be wondering if you can
+reuse some of your previous writing. 
+
+Yes. You're free to reuse parts of your reports across all three assignments.
+There are some minor caveats to this statement, however.
+
+- When reusing prior work, make sure to address any feedback that you received
+  on that work.
+   - Uncorrected mistakes in copied passages will incur especially harsh
+     penalties in the [grading process](grading-1.html).
+- Make sure to update any recycled passages to suit the most recent analyses.
+   - A path diagram from A1 won't be valid for A2 or A3.
+   - A description of your theoretical model from A1 that refers to "scale
+     scores", won't be valid for A3.
+- Don't keep irrelevant parts of past assignments.
+   - Your grade will be penalized for including extraneous information.
 
 ---
 
@@ -299,7 +352,7 @@ To summarize, we're looking for the following.
 
 ---
 
-### Results {- #results_format}
+### Reporting Standards {- #reporting_standards}
 
 What do we mean by reporting your results "in a suitable format"? Basically,
 put some effort into making your results readable, and don't include a bunch of
@@ -311,11 +364,78 @@ is showing that you know which pieces of output convey the important information
 - Include only the output needed to understand your results and support
 your conclusions.
 
----
+The purpose of statistical data analysis is to provide empirical evidence for or
+against some theory/hypothesis/model. Therefore, the way you document your
+analysis and report your results must serve this basic purpose, first and
+foremost. 
 
-### Reporting Standards {- #reporting_standards}
+- Support any potentially refutable claims with appropriate statistics from your
+  analysis or a suitable citation.
+- Not every statement needs supporting evidence.
+   - Scientific laws
+   - Physical constants
+   - Logical (in the technical sense) implications of irrefutable antecedents
+   - Your own opinions (assuming you're not trying to pass them off as facts)
 
-XXX
+The next three subsections cover some specific considerations for reporting
+common classes of statistical results.
+
+#### Significance Tests {-}
+
+Any claim of a significant effect must be supported by relevant statistical
+evidence.
+
+- Match your test to your hypothesis
+   - Directional hypothesis $\Rightarrow$ one-tailed test
+   - Hypothesis of any non-zero effect $\Rightarrow$ two-tailed test
+- For any test of an estimated parameter (e.g., mean, mean difference,
+  regression coefficient, covariance), report the parameter estimate.
+- When using a test statistic (e.g., t, Z, F, $\chi^2$) to conduct the test,
+  report:
+   - The estimated test statistic
+   - The degrees of freedom for the test statistic
+   - The p-value for the test statistic
+      - When $p \ge 0.001$, report the computed p-value rounded to three decimal
+        places.
+      - Otherwise, report the p-value as $p < 0.001$.
+- When using a confidence interval to conduct the test:
+   - Clearly indicate the confidence level used to define the interval
+   - For directional hypotheses/one-tailed tests, only report the relevant
+     interval bound, and report the other bound as $\pm \infty$.
+- When using $\chi^2$ difference tests for significance testing, report
+   - The $\Delta \chi^2$ statistic
+   - The $\Delta \mathit{df}$
+   - The p-value for the $\Delta \chi^2$
+
+#### Model Fit {- #fit_reporting}
+
+Judging model fit is always a subjective process. The key is to provide a few
+pieces of convergent evidence to support the claimed degree of fit.
+
+- Always report the $\chi^2$, its degrees of freedom, and the associated
+  p-value.
+- Report at least two additional, non-redundant fit indices (i.e., indices that
+  quantify fit in different ways).
+   - If you don't have a particular preference, I'd recommend CFI, RMSEA
+     (and its 90% CI), and SRMR
+
+#### Parameter Estimates {- #parameter_reporting}
+
+Obviously, you need to report any parameter estimates that directly represent
+some component of your theory (e.g., regression coefficients that quantify
+linear associations implied by your theory). You also need to report the
+significance tests for these parameters.
+
+When evaluating a measurement model, a few key parameter matrices come into
+play. In addition to showing that your CFA model adequately fits the data, you
+should report the following parameter estimates:
+
+- Latent variances and covariances
+- Factor loadings
+- Residual variances
+
+If your CFA includes a mean structure, you should also report any estimated
+latent means and item intercepts.
 
 <!----------------------------------------------------------------------------->
 
@@ -482,11 +602,14 @@ report.
 Assignments 1 & 2 are simply graded as pass/fail. To pass, you must:
 
 1. Make a reasonable effort to complete all required work
-   - Include the XX required components in your A1 report
-   - Complete every section of the A2 worksheet
-1. Demonstrate a basically sound ability to apply path analysis/CFA
-   - Your work must demonstrate that you know what you're doing and are not just mindlessly implementing a sequence of memorized actions. 
-   - Does your report show that you understand what you've done, why you've done it, and the implications of your results?
+   - Include all required components listed [above](#a1_components) in your A1
+     report
+   - Complete every section of the [A2 worksheet](#a2_worksheet)
+1. Demonstrate a satisfactory ability to apply path analysis (A1) and CFA (A2)
+   - Does your work demonstrate that you understand what you're doing?
+      - Mindlessly implementing a sequence of memorized actions is not sufficient.
+   - Does your report show that you understand what you've done, why you've
+     done it, and the implications of your results?
    - Can we understand your analysis and results after reading your report?
 1. Submit your assignment before the deadline
 
@@ -574,7 +697,7 @@ Take note of the following points.
   members have dropped the course, complete the resits with the remaining group
   members.
 - You must complete the A3 resit individually.
-- Your revised grad for A3 cannot be higher than 6.
+- Your revised grade for A3 cannot be higher than 6.
 - Submit your resit assignments through the *Assignments* section on Blackboard.
 
 #### Grading Standards {-}
@@ -688,10 +811,10 @@ will apply.
 
 <!----------------------------------------------------------------------------->
 
-[a1]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4615766_1&course_id=_147640_1&group_id=&mode=cpview
-[a2]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4615790_1&course_id=_147640_1&group_id=&mode=cpview
-[a3]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4619015_1&course_id=_147640_1&group_id=&mode=cpview 
-[group]: https://uu.blackboard.com/webapps/bb-group-mgmt-LEARN/execute/groupInventoryList?course_id=_147640_1&mode=cpview
+[a1]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4924850_1&course_id=_154060_1&group_id=&mode=cpview
+[a2]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4924855_1&course_id=_154060_1&group_id=&mode=cpview
+[a3]: https://uu.blackboard.com/webapps/assignment/uploadAssignment?content_id=_4924856_1&course_id=_154060_1&group_id=&mode=cpview
+[groups]: https://uu.blackboard.com/webapps/bb-group-mgmt-LEARN/execute/groupContentList?course_id=_154060_1&action=list&mode=view#
 [covid_data]: https://surfdrive.surf.nl/files/index.php/s/UAtnDoYbvmtzhm5/download
 [covid_reg]: https://surfdrive.surf.nl/files/index.php/s/JCwYJUVz1nH1mT0/download
 [covid_codebook]: https://surfdrive.surf.nl/files/index.php/s/24i2Aq0tosKsFeq/download
