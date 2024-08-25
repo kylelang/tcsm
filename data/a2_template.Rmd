@@ -1,7 +1,11 @@
 ---
 title: "Group 42"
 author: ["Zaphod Beeblebrox", "Tricia McMillan", "Marvin T.P. Andy"]
-date: "1970-01-01"
+
+documentclass: article
+papersize: a4
+geometry: margin = 20mm
+fontfamily: sans
 output:
   pdf_document:
     number_sections: true
@@ -21,14 +25,10 @@ For Assignment 2, you will conduct a CFA and report the results via this
 worksheet.
 
 - Provide the requested information for each of the following items.
-- Be concise.
-   - Only include the necessary information.
-   - You won't get any extra credit for extraneous information.
-   - Waffling will hurt your grade.
-- Replace the placeholder values in the front matter with your Assignment 2
-  Group's details and the appropriate date.
-- Submit your completed worksheet as a PDF document.
-   - Any other file format will hurt your grade.
+- Only include the necessary information; waffling will hurt your grade.
+- Replace the placeholder values above with your Assignment 2 Group's details
+  and the appropriate date.
+- Submit the completed worksheet as a PDF document.
 
 *NOTE:* The relative weights for each item are given in brackets.
 
@@ -36,29 +36,29 @@ worksheet.
 
 \hrule
 
-## Which dataset are you using? [1]
+# Which dataset are you using? [1]
 
-## Describe your hypothesized measurement model. [2]
+# Describe your hypothesized measurement model. [2]
 
 - *What latent factors are you estimating?*
 - *Which items will you use to define each latent factor?*
-- *Why is your factor $\rightarrow$ item mapping justified?*
+- *Why is your hypothesized factor structure justified?*
 
-## Provide a path diagram of your theoretical measurement model. [2]
+# Provide a path diagram of your theoretical measurement model. [2]
 
-## Provide the lavaan syntax for your model. [2]
-
-```{r}
-
-```
-
-## Use the `lavaan::cfa()` function to estimate your model. [2]
+# Provide the lavaan syntax for your model. [2]
 
 ```{r}
 
 ```
 
-## Report the relevant parameter estimates from your fitted model. [3]
+# Use the `lavaan::cfa()` function to estimate your model. [2]
+
+```{r}
+
+```
+
+# Report the relevant parameter estimates from your fitted model. [3]
 
 - *Don't include the entire model summary.*
 - *The `lavaan::lavInspect()` or `lavaan::parameterEstimates()` functions could
@@ -68,15 +68,13 @@ worksheet.
 
 ```
 
-## Report the $R^2$ estimates from your fitted model. [2]
-
-- *Again, `lavInspect()` is your friend.*
+# Report the $R^2$ estimates from your fitted model. [2]
 
 ```{r, echo = FALSE}
 
 ```
 
-## Report a suitable set of model fit indices for your estimated model. [3]
+# Report suitable model fit indices for your estimated model. [3]
 
 - *Don't include every fit index lavaan provides.*
 
@@ -84,11 +82,11 @@ worksheet.
 
 ```
 
-## Do your results support the validity of your hypothesized model? [4]
+# Do your results support the validity of your hypothesized model? [4]
 
 - *Explain why or why not.*
 
-## Do you think the model could be improved? [2]
+# Do you think the model could be improved? [2]
 
 - *If so, explain how you would modify the model.*
 - *If not, explain why no improvement is possible.*
