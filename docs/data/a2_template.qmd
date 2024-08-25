@@ -1,0 +1,75 @@
+---
+title: "Group 42"
+author: ["Zaphod Beeblebrox", "Tricia McMillan", "Marvin T.P. Andy"]
+date: "1970-01-01"
+format:
+  pdf:
+    number-sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lavaan)
+library(knitr)
+```
+
+# Theory
+
+## Which dataset are you using?
+
+## Describe your hypothesized measurement model.
+
+## Provide a path diagram of your theoretical measurement model.
+
+\vspace{12pt}
+
+# Estimation
+
+## Provide the lavaan syntax for your model.
+
+```{r}
+
+```
+
+## Use the `lavaan::cfa()` function to estimate your model.
+
+```{r}
+
+```
+
+\vspace{12pt}
+
+# Results
+
+## Report the relevant parameter estimates from your fitted model.
+
+```{r, echo = FALSE}
+
+```
+
+## Report the $R^2$ estimates from your fitted model.
+
+```{r, echo = FALSE}
+
+```
+
+## Report the model fit indices for your estimated model.
+
+```{r, echo = FALSE}
+
+```
+
+\vspace{12pt}
+
+# Interpretation
+
+## Do your results support the validity of your hypothesized model?
+
+- *Explain why or why not.*
+
+## Do you think the model could be improved?
+
+- *If so, explain how you would modify the model.*
+- *If not, explain why no improvement is possible.*
+
+---
