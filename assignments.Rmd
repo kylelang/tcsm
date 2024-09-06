@@ -59,7 +59,7 @@ model.
 
 ### Evaluation {-}
 
-See the [Grading](grading-1.html) section below for more information on how 
+See the [Grading](grading.html) section below for more information on how 
 Assignment 1 will be evaluated.
 
 You can access an evaluation matrix for Assignment 1 [here](data/a1_guidelines.pdf).
@@ -119,7 +119,7 @@ The components of the second assignment are described below.
 
 ### Evaluation {-}
 
-See the [Grading](grading-1.html) section below for more information on how 
+See the [Grading](grading.html) section below for more information on how 
 Assignment 2 will be evaluated.
 
 <!------------------------------------------------------------------------------
@@ -185,7 +185,7 @@ The components of the third assignment are described below.
 
 ### Evaluation {-}
 
-See the [Grading](grading-1.html) section below for more information on how 
+See the [Grading](grading.html) section below for more information on how 
 the component scores represented in the rubric are combined into an overall 
 assignment grade.
 
@@ -198,7 +198,7 @@ You can access an evaluation matrix for Assignment 3 [here](data/a3_guidelines.p
 
 ### Submission {-}
 
-Assignment 3 is due at 23:59 on Wednesday 6 November 2024.
+Assignment 3 is due at 23:59 on Sunday 3 November 2024.
 
 - Submit your report via the [Assignment 3][a3] portal on Blackboard.
 
@@ -247,7 +247,7 @@ There are some minor caveats to this statement, however.
 - When reusing prior work, make sure to address any feedback that you received
   on that work.
    - Uncorrected mistakes in copied passages will incur especially harsh
-     penalties in the [grading process](grading-1.html).
+     penalties in the [grading process](grading.html).
 - Make sure to update any recycled passages to suit the most recent analyses.
    - A path diagram from A1 won't be valid for A2 or A3.
    - A description of your theoretical model from A1 that refers to "scale

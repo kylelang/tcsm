@@ -213,23 +213,23 @@ past statistics courses. You could also try one of the following open-access opt
 
 <!----------------------------------------------------------------------------->
 
-## Grading {-}
+## Evaluation {-}
 
 Your grade for the course is based on a “portfolio” composed of the three 
 take-home assignments:
 
 1. Path modeling 
-    - Deadline: **Wednesday 2023-10-04 at 23:59**
+    - Deadline: **Wednesday 2024-10-02 at 23:59**
     - Group assignment
     - Pass/Fail
 
 1. Confirmatory factor analysis
-    - Deadline: **Wednesday 2023-10-18 at 23:59**
+    - Deadline: **Wednesday 2024-10-16 at 23:59**
     - Group assignment
     - Pass/Fail 
 
 1. Full structural equation modeling 
-    - Deadline: **Friday 2023-11-10 at 23:59**
+    - Deadline: **Sunday 2024-11-03 at 23:59**
     - Individual assignment
     - Comprises your entire numeric course grade
 
