@@ -791,6 +791,46 @@ your original work to show us what you’ve learned.
 
 ---
 
+### Using AI tools {-}
+
+You are free to use AI tools like OpenAI’s ChatGPT or GitHub CoPilot, but you
+must cite the tools you used in the same way that you would cite any other
+software. As with citing any other source, properly citing AI tools both
+attributes the appropriate credit to the tool’s developers and helps you
+clearly and accurately describe your own work. In addition to providing a valid
+citation, you must also explain how you used the AI tool. Specifically, did you
+use AI to:
+
+1. Create new content (e.g., use ChatGPT to draft some parts of the text)
+1. Modify content that you created (e.g., use CoPilot to debug your R code)
+
+A convenient way to satisfy these requirements would be to provide the
+necessary information in a short section at the end of your report. You can
+think of this section as being analogous to the Conflict of Interest statements
+you often see in journal articles.
+
+#### AI tools & academic integrity {-}
+
+Generative AI may be shiny new tech, but that just means AI is like the newest,
+shiniest gizmo in a toolbox full of time-tested options, not some paradigm
+shift in carpentry that deprecates the hammer. The normal ethics of scientific
+communication still apply:
+
+1. Transparently describe your work
+1. Honestly attribute credit/blame
+
+Of course, the natural corollary of the above is that all the standard
+penalties for bad behavior also apply. Obfuscating your use of AI tools or
+attempting to claim AI-generated content as your own work is a form of academic
+fraud that is more-or-less equivalent to plagiarism. We will treat any such
+attempted subterfuge as academic dishonesty.
+
+Finally, don’t trust The Robots too much! You are ultimately responsible for
+the work you submit. So, you will have to own any “mistakes” that wily AI
+models induce in your work.
+
+---
+
 ### Strict stuff {-}
 
 By submitting your assignments (both group and individual), you confirm the 
