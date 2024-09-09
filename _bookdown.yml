@@ -1,4 +1,4 @@
-book_filename: "willy_wallaby_from_wasatch.Rmd"
+book_filename: "tcsm.Rmd"
 rmd_files: [
   "index.Rmd",
   "assignments.Rmd",
@@ -13,4 +13,5 @@ rmd_files: [
   "week8.Rmd"
   ]
 delete_merged_file: true
+documentclass: book
 output_dir: "docs"

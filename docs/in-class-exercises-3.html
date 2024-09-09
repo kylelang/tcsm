@@ -55,8 +55,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -592,11 +590,11 @@ Click to show code
 <span id="cb156-6"><a href="in-class-exercises-3.html#cb156-6" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb156-7"><a href="in-class-exercises-3.html#cb156-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
 <span id="cb156-8"><a href="in-class-exercises-3.html#cb156-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
 <p>We can also use the <code>psych::scree()</code> function to create a scree plot directly
 from the data.</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="in-class-exercises-3.html#cb157-1" tabindex="-1"></a><span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>trstplt) <span class="sc">%&gt;%</span> <span class="fu">scree</span>(<span class="at">pc =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation (scree plot)
@@ -631,13 +629,13 @@ Click to show code
 <span id="cb158-4"><a href="in-class-exercises-3.html#cb158-4" tabindex="-1"></a><span class="do">## Run the parallel analysis:</span></span>
 <span id="cb158-5"><a href="in-class-exercises-3.html#cb158-5" tabindex="-1"></a>pa_trust <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, trstlgl<span class="sc">:</span>trstplt) <span class="sc">%&gt;%</span></span>
 <span id="cb158-6"><a href="in-class-exercises-3.html#cb158-6" tabindex="-1"></a>     <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>) </span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
-<pre><code>## Parallel analysis suggests that the number of factors =  6  and the number of components =  NA</code></pre>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  5  and the number of components =  NA</code></pre>
 <details>
 <summary>
 Click for explanation
 </summary>
-<p>The results of the parallel analysis suggest 6 factors.</p>
+<p>The results of the parallel analysis suggest 5 factors.</p>
 <hr />
 <p>If you’ve been paying close attention, you may have noticed that we need to
 compute the eigenvalues from the original data to run parallel analysis.
@@ -657,7 +655,7 @@ eigenvalues.</p>
 <span id="cb164-4"><a href="in-class-exercises-3.html#cb164-4" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb164-5"><a href="in-class-exercises-3.html#cb164-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;No. of Factors&quot;</span>) <span class="sc">+</span></span>
 <span id="cb164-6"><a href="in-class-exercises-3.html#cb164-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Eigenvalues&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
 <p>Of course, we also see the same scree plot printed as part of the parallel
 analysis. So, there’s really no reason to create a separate scree plot, at all,
 if we’re doing parallel analysis.</p>
@@ -673,7 +671,7 @@ Click for explanation
 have narrowed the range.</p>
 <ul>
 <li>Based on the scree plot and parallel analysis, we should consider solutions
-for 3 to 6 factors.</li>
+for 3 to 5 factors.</li>
 <li>We need to examine the factor loadings to see which solution makes the most
 substantive sense.</li>
 </ul>
@@ -694,7 +692,7 @@ and scree plot from <code>psych::fa.parallel()</code>.</p>
 <span id="cb165-3"><a href="in-class-exercises-3.html#cb165-3" tabindex="-1"></a></span>
 <span id="cb165-4"><a href="in-class-exercises-3.html#cb165-4" tabindex="-1"></a><span class="do">## Run parallel analysis on the &#39;attitudes&#39; items:</span></span>
 <span id="cb165-5"><a href="in-class-exercises-3.html#cb165-5" tabindex="-1"></a>pa_att <span class="ot">&lt;-</span> <span class="fu">select</span>(ess, imsmetn<span class="sc">:</span>rfgbfml) <span class="sc">%&gt;%</span> <span class="fu">fa.parallel</span>(<span class="at">fa =</span> <span class="st">&quot;fa&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
 <pre><code>## Parallel analysis suggests that the number of factors =  7  and the number of components =  NA</code></pre>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="in-class-exercises-3.html#cb167-1" tabindex="-1"></a><span class="do">## Check the eigenvalues:</span></span>
 <span id="cb167-2"><a href="in-class-exercises-3.html#cb167-2" tabindex="-1"></a><span class="fu">round</span>(pa_att<span class="sc">$</span>fa.values, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
@@ -1639,17 +1637,7 @@ analysis.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -1667,7 +1655,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["willy_wallaby_from_wasatch.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

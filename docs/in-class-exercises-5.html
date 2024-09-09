@@ -55,8 +55,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -980,7 +978,7 @@ Click for explanation
 <span id="cb247-15"><a href="in-class-exercises-5.html#cb247-15" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> condom, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
 <span id="cb247-16"><a href="in-class-exercises-5.html#cb247-16" tabindex="-1"></a></span>
 <span id="cb247-17"><a href="in-class-exercises-5.html#cb247-17" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 36 iterations
+<pre><code>## lavaan 0.6-18 ended normally after 36 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1139,7 +1137,7 @@ Click to show code
 <span id="cb250-15"><a href="in-class-exercises-5.html#cb250-15" tabindex="-1"></a></span>
 <span id="cb250-16"><a href="in-class-exercises-5.html#cb250-16" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod1, <span class="at">data =</span> condom, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
 <span id="cb250-17"><a href="in-class-exercises-5.html#cb250-17" tabindex="-1"></a><span class="fu">summary</span>(fit1, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 33 iterations
+<pre><code>## lavaan 0.6-18 ended normally after 33 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2128,17 +2126,7 @@ Therefore, *sex* must moderate at least some of these paths.
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -2156,7 +2144,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["willy_wallaby_from_wasatch.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

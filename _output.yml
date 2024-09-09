@@ -1,7 +1,12 @@
 bookdown::gitbook:
   css: [style.css, font-awesome.min.css]
-  config:
+  split_by: section
+  df_print: paged
+  config: 
     toc:
       before: |
         <li><a href="./index.html">TCSM</a></li>
-    download: ["pdf"]
+      collapse: section
+      search: yes
+    download: null
+    sharing: false

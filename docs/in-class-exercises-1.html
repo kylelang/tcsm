@@ -55,8 +55,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -605,11 +603,11 @@ Click to show code
 <span id="cb19-5"><a href="in-class-exercises-1.html#cb19-5" tabindex="-1"></a></span>
 <span id="cb19-6"><a href="in-class-exercises-1.html#cb19-6" tabindex="-1"></a><span class="do">## Add some appropriate geoms:</span></span>
 <span id="cb19-7"><a href="in-class-exercises-1.html#cb19-7" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="in-class-exercises-1.html#cb20-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="in-class-exercises-1.html#cb21-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-66-3.png" width="672" />
+<img src="tcsm_files/figure-html/unnamed-chunk-66-3.png" width="672" />
 <details>
 <summary>
 Click for explanation
@@ -642,7 +640,7 @@ Click to show code
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="in-class-exercises-1.html#cb22-1" tabindex="-1"></a><span class="do">## Create a scatterplot of the pre- and post-test number knowledge</span></span>
 <span id="cb22-2"><a href="in-class-exercises-1.html#cb22-2" tabindex="-1"></a><span class="fu">ggplot</span>(sesam, <span class="fu">aes</span>(<span class="at">x =</span> prenumb, <span class="at">y =</span> postnumb)) <span class="sc">+</span></span>
 <span id="cb22-3"><a href="in-class-exercises-1.html#cb22-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation
@@ -1084,7 +1082,7 @@ Click to show code
 <li>How many variances are estimated?</li>
 <li>How many covariances are estimated?</li>
 </ul>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation
@@ -1094,7 +1092,7 @@ Click for explanation
 <li>Four (residual) variances (blue)</li>
 <li>No covariances</li>
 </ul>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 </details>
 <hr />
 </div>
@@ -1147,7 +1145,7 @@ Click to show code
 </summary>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="in-class-exercises-1.html#cb50-1" tabindex="-1"></a><span class="fu">ggplot</span>(drivers, <span class="fu">aes</span>(<span class="at">x =</span> RT)) <span class="sc">+</span></span>
 <span id="cb50-2"><a href="in-class-exercises-1.html#cb50-2" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation
@@ -1174,7 +1172,7 @@ Click to show code
 <p><em>Hint</em>: To modify the transparency of the densities, use the aesthetic <code>alpha</code>.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="in-class-exercises-1.html#cb51-1" tabindex="-1"></a><span class="fu">ggplot</span>(drivers, <span class="fu">aes</span>(<span class="at">x =</span> RT, <span class="at">fill =</span> condition)) <span class="sc">+</span></span>
 <span id="cb51-2"><a href="in-class-exercises-1.html#cb51-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation
@@ -1397,17 +1395,7 @@ above model.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -1425,7 +1413,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["willy_wallaby_from_wasatch.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

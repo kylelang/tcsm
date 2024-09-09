@@ -3,15 +3,6 @@ title: "Theory Construction and Statistical Modeling"
 author: "Kyle M. Lang"
 date: "Last updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
-output: 
-  bookdown::gitbook:
-    config: 
-      toc:
-       collapse: section
-       search: yes
-    split_by: section
-    df_print: paged
-documentclass: book
 ---
 
 \newcommand{\va}{\\[12pt]}

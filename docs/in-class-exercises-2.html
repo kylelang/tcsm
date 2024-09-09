@@ -55,8 +55,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -500,7 +498,7 @@ higher self-esteem.</li>
 <hr />
 <p>To evaluate these hypotheses, we will use <strong>lavaan</strong> to estimate the following
 multiple mediator model as a path model.</p>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <!-- ![](images/week5_home_full_model.png) -->
 <hr />
 </div>
@@ -789,7 +787,7 @@ Click to show code
 <span id="cb93-6"><a href="in-class-exercises-2.html#cb93-6" tabindex="-1"></a></span>
 <span id="cb93-7"><a href="in-class-exercises-2.html#cb93-7" tabindex="-1"></a><span class="do">## Summarize the model:</span></span>
 <span id="cb93-8"><a href="in-class-exercises-2.html#cb93-8" tabindex="-1"></a><span class="fu">summary</span>(out_boot)</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 16 iterations
+<pre><code>## lavaan 0.6-18 ended normally after 16 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1195,7 +1193,7 @@ Click to show code
 <span id="cb106-5"><a href="in-class-exercises-2.html#cb106-5" tabindex="-1"></a>                    <span class="at">plotx    =</span> <span class="st">&quot;success&quot;</span>, </span>
 <span id="cb106-6"><a href="in-class-exercises-2.html#cb106-6" tabindex="-1"></a>                    <span class="at">modx     =</span> <span class="st">&quot;disillusion&quot;</span>,</span>
 <span id="cb106-7"><a href="in-class-exercises-2.html#cb106-7" tabindex="-1"></a>                    <span class="at">modxVals =</span> <span class="st">&quot;std.dev&quot;</span>)</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="in-class-exercises-2.html#cb107-1" tabindex="-1"></a><span class="do">## Test the simple slopes:</span></span>
 <span id="cb107-2"><a href="in-class-exercises-2.html#cb107-2" tabindex="-1"></a>tsOut <span class="ot">&lt;-</span> <span class="fu">testSlopes</span>(psOut)</span></code></pre></div>
 <pre><code>## Values of disillusion OUTSIDE this interval:
@@ -1368,7 +1366,7 @@ Click to show code
 <span id="cb118-5"><a href="in-class-exercises-2.html#cb118-5" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Progress toward American Dream&quot;</span>,</span>
 <span id="cb118-6"><a href="in-class-exercises-2.html#cb118-6" tabindex="-1"></a>          <span class="at">legendArgs =</span> <span class="fu">list</span>(<span class="at">legend =</span> <span class="fu">names</span>(condVals))</span>
 <span id="cb118-7"><a href="in-class-exercises-2.html#cb118-7" tabindex="-1"></a>          )</span></code></pre></div>
-<p><img src="willy_wallaby_from_wasatch_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p><img src="tcsm_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <details>
 <summary>
 Click for explanation
@@ -1407,17 +1405,7 @@ match the simple slopes from the OLS regression analysis.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -1435,7 +1423,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["willy_wallaby_from_wasatch.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null
