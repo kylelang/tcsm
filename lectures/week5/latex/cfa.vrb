@@ -1,0 +1,27 @@
+\frametitle{3. Effects-coding method - lavaan outpu}
+
+\begin{itemize}
+    \item Constrain the average of the factor loadings to 1:
+    $\frac{1}{4} \sum_{i=1}^4 \lambda_i = 1$. \\ %(hence, sum = 3).
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.878, 0.918, 0.933}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{parameterEstimates}\hldef{(fit_1CFA_EffC)[}\hlnum{1}\hlopt{:}\hlnum{4}\hldef{,}\hlnum{1}\hlopt{:}\hlnum{5}\hldef{]}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{Error in eval(expr, envir, enclos): object 'fit\_1CFA\_EffC' not found}}\end{kframe}
+\end{knitrout}
+    \item Constrain the average of the item intercepts to 0:
+    $\frac{1}{4} \sum_{i=1}^4 \nu_i = 0$.\\
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.878, 0.918, 0.933}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{parameterEstimates}\hldef{(fit_1CFA_EffC)[}\hlnum{5}\hlopt{:}\hlnum{8}\hldef{,}\hlnum{1}\hlopt{:}\hlnum{5}\hldef{]}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{Error in eval(expr, envir, enclos): object 'fit\_1CFA\_EffC' not found}}\end{kframe}
+\end{knitrout}
+\end{itemize}
+
