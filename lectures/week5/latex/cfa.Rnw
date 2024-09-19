@@ -657,7 +657,7 @@ Borsboom, D., Mellenbergh, G.J., \& Van Heerden, J. (2003). The theoretical stat
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile, allowframebreaks]{SAPI CFA in R}
+\begin{frame}[fragile, allowframebreaks]{Example: Estimate a CFA Model}
 
   Load the SAPI data.
 
@@ -684,9 +684,43 @@ library(lavaan)
 out1 <- cfa(mod1, data = sapi)
 @
 
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}[fragile, allowframebreaks]{Example: Summarize the Fitted CFA}
+
+<<>>=
+partSummary(out1, 1:4)
+@
+
 \newpage
 
-Visualize the fitted model.
+<<>>=
+partSummary(out1, 5:7)
+@
+
+\newpage
+
+<<>>=
+partSummary(out1, 8:9)
+@
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}[fragile, allowframebreaks]{Example: Model Fit Statistics}
+
+  <<>>=
+  fitMeasures(out1)
+  @
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}[fragile, allowframebreaks]{Example: Visualize the Fitted CFA}
 
 <<eval = FALSE>>=
 library(lavaanPlot)
@@ -706,6 +740,7 @@ library(lavaanPlot)
 lavaanPlot(model = out1, 
            node_options = list(shape = "box", 
                                fontname = "Helvetica"), 
+           edge_options = list(color = "grey"), 
            coefs = TRUE, 
            stand = TRUE, 
            covs = TRUE)
@@ -714,28 +749,7 @@ lavaanPlot(model = out1,
 \end{frame}
 
 %------------------------------------------------------------------------------%
-
-\begin{frame}[fragile]{Step 9: Acquiring the summary}
-
-<<eval=FALSE>>=
-summary(out1)
-
-parameterEstimates(out1)
-
-fitMeasures(out1, c("chisq", "df", "pvalue", 
-                        "cfi", "tli", 
-                        "rmsea","srmr"))
-# As an example, there are more.
-@ 
-
-<<eval=FALSE>>=
-#The factors scores for each subject can be required via:
-predict(out1)
-@              
-
-\end{frame}
-
-%------------------------------------------------------------------------------%
+\comment{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{CFA: modification indices - lavaan commands}
 
@@ -888,6 +902,7 @@ $-$ Merkle, E. C., \& Rosseel, Y. (2018). blavaan: Bayesian Structural Equation 
 $-$ Muthén, B., \& Asparouhov, T. (2012). Bayesian structural equation modelling: A more flexible representation of substantive theory. Psychological Methods, 17(3), 313-335.
 \end{frame}
 
+}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %------------------------------------------------------------------------------%
 
 \section{Scaling}
@@ -968,7 +983,7 @@ Latent variables are not observed, thus no inherent scale.
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}{Three common ways}
+\begin{frame}{Two common ways}
 
 1. Marker-variable method \\
 Constrain one of the factor loadings (default).

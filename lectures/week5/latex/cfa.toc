@@ -1,6 +1,0 @@
-\beamer@sectionintoc {1}{SAPI}{3}{0}{1}
-\beamer@sectionintoc {2}{EFA and CFA}{5}{0}{2}
-\beamer@sectionintoc {3}{Confirmatory or Exploratory?}{11}{0}{3}
-\beamer@sectionintoc {4}{CFA in R}{15}{0}{4}
-\beamer@sectionintoc {5}{Scaling}{29}{0}{5}
-\beamer@sectionintoc {6}{Extra}{44}{0}{6}
