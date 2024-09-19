@@ -45,7 +45,10 @@ The components of the first assignment are described below.
    - Explain the conceptual fit between your theory and your model.
 1. Translate your theoretical path model into `lavaan` syntax, and estimate the 
 model.
-   - Submit the [(clean) R script](#analysis_script) along with your report. 
+   - Submit the [(clean) R script](#analysis_script) along with your report.
+      - Submit this R script as a separate file, not part of your report.
+   - Include the lavaan syntax used to estimate your path models in your report.
+      - Place these syntax snippets in [an appendix](#formatting).
 1. Report the results
     - Evaluate the model [assumptions](#model_assumptions).
     - Provide relevant output in a [suitable format](#reporting_standards).
@@ -161,7 +164,11 @@ The components of the third assignment are described below.
    - Include measures of model fit.
    - Evaluate the model [assumptions](#model_assumptions).
 1. Translate your theoretical SEM into **lavaan** syntax, and estimate the model.
-   - Submit the [(clean) R script](#analysis_script) along with your report. 
+   - Submit the [(clean) R script](#analysis_script) along with your report.
+      - Submit this R script as a separate file, not part of your report.
+   - Include the lavaan syntax used to estimate your SEM and CFA models in your
+   report.
+      - Place these syntax snippets in [an appendix](#formatting).
 1. Report the results of your SEM.
    - Provide relevant output in a [suitable format](#reporting_standards).
    - Include suitable parameter estimates.
@@ -517,7 +524,7 @@ if it will work for the assignments.
 
 ## Procedures {-}
 
-### Formatting {-}
+### Formatting {- #formatting}
 
 #### Report {-}
 
@@ -529,7 +536,48 @@ PDF format.
     Assignments 1 & 2, your name for Assignment 3).
     - The Assignment Group number (only for Assignments 1 & 2).
 
-#### Code {- #analysis_script}
+Your Assignment 1 & 3 reports should include appendicies containing the lavaan
+syntax used to estimate each model include in the respective report.
+
+- Include only the lavaan syntax string and the call to the estimation function
+used to fit the model (e.g., `cfa()`, `sem()`, `lavaan()`).
+
+For example, the following snippets would be appropriate.
+
+```{r, eval = FALSE}
+cfaMod <- '
+f1 =~ a1 + a2 + a3
+f2 =~ b1 + b2 + b3
+'
+
+cfaOut <- cfa(cfaMod, data = dat1, std.lv = TRUE)
+```
+
+```{r, eval = FALSE}
+semMod <- '
+f1 =~ a1 + a2 + a3
+f2 =~ b1 + b2 + b3
+
+f1 ~ f2 + x
+'
+
+semOut <- sem(semMod, data = dat1, std.lv = TRUE)
+```
+
+The snippet below, however, contains additional unecessary commands related to
+data ingest/processing and summarizing the model.
+
+```{r, eval = FALSE}
+dat0 <- readRDS("../data/dataset.rds")
+dat1 <- rename(dat0, x = foo, y = bar, z = baz)
+
+pathMod <- 'foo ~ bar + baz'
+pathOut <- sem(pathOut, data = dat1)
+
+summary(pathOut)
+```
+
+#### Syntax File {- #analysis_script}
 
 You must also submit an executable script containing the code used for your
 analyses.
@@ -542,9 +590,14 @@ analyses.
 Clean the script before submitting.
 
 - Remove extraneous/redundant code and comments.
+   - Only include the code for analyses that appear in your report.
+   - Include code for data processing/clean/wrangling.
 - Order the commands to match your final analysis.
-   - I should be able to source your script (i.e., run the entire script in
-     "batch mode") to reproduce your results.
+   - E.g., Data ingest $\rightarrow$ Data processing $\rightarrow$ Descriptive
+   analysis $\rightarrow$ Modeling $\rightarrow$ Processing results
+   $\rightarrow$ Post-hoc analysis
+   - In theory, I should be able to source your script (i.e., run the entire
+   script in "batch mode") to reproduce your results.
 
 ### Length {-}
 
@@ -836,3 +889,4 @@ will apply.
 [nomophobia_data]: https://zenodo.org/record/8209987
 [rwa_data]: https://data.mendeley.com/datasets/k9pvh7rc9n/5
 [rwa_paper]: https://www.sciencedirect.com/science/article/pii/S2352340922005996
+[knitr]: https://yihui.org/knitr/

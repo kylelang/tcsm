@@ -461,9 +461,39 @@ Assignments 1 &amp; 2, your name for Assignment 3).</li>
 <li>The Assignment Group number (only for Assignments 1 &amp; 2).</li>
 </ul></li>
 </ul>
+<p>Your Assignment 1 &amp; 3 reports should include appendicies containing the lavaan
+syntax used to estimate each model include in the respective report.</p>
+<ul>
+<li>Include only the lavaan syntax string and the call to the estimation function
+used to fit the model (e.g., <code>cfa()</code>, <code>sem()</code>, <code>lavaan()</code>).</li>
+</ul>
+<p>For example, the following snippets would be appropriate.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="procedures.html#cb2-1" tabindex="-1"></a>cfaMod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb2-2"><a href="procedures.html#cb2-2" tabindex="-1"></a><span class="st">f1 =~ a1 + a2 + a3</span></span>
+<span id="cb2-3"><a href="procedures.html#cb2-3" tabindex="-1"></a><span class="st">f2 =~ b1 + b2 + b3</span></span>
+<span id="cb2-4"><a href="procedures.html#cb2-4" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb2-5"><a href="procedures.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="procedures.html#cb2-6" tabindex="-1"></a>cfaOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod, <span class="at">data =</span> dat1, <span class="at">std.lv =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="procedures.html#cb3-1" tabindex="-1"></a>semMod <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb3-2"><a href="procedures.html#cb3-2" tabindex="-1"></a><span class="st">f1 =~ a1 + a2 + a3</span></span>
+<span id="cb3-3"><a href="procedures.html#cb3-3" tabindex="-1"></a><span class="st">f2 =~ b1 + b2 + b3</span></span>
+<span id="cb3-4"><a href="procedures.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="procedures.html#cb3-5" tabindex="-1"></a><span class="st">f1 ~ f2 + x</span></span>
+<span id="cb3-6"><a href="procedures.html#cb3-6" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb3-7"><a href="procedures.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="procedures.html#cb3-8" tabindex="-1"></a>semOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(semMod, <span class="at">data =</span> dat1, <span class="at">std.lv =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>The snippet below, however, contains additional unecessary commands related to
+data ingest/processing and summarizing the model.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="procedures.html#cb4-1" tabindex="-1"></a>dat0 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;../data/dataset.rds&quot;</span>)</span>
+<span id="cb4-2"><a href="procedures.html#cb4-2" tabindex="-1"></a>dat1 <span class="ot">&lt;-</span> <span class="fu">rename</span>(dat0, <span class="at">x =</span> foo, <span class="at">y =</span> bar, <span class="at">z =</span> baz)</span>
+<span id="cb4-3"><a href="procedures.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="procedures.html#cb4-4" tabindex="-1"></a>pathMod <span class="ot">&lt;-</span> <span class="st">&#39;foo ~ bar + baz&#39;</span></span>
+<span id="cb4-5"><a href="procedures.html#cb4-5" tabindex="-1"></a>pathOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(pathOut, <span class="at">data =</span> dat1)</span>
+<span id="cb4-6"><a href="procedures.html#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="procedures.html#cb4-7" tabindex="-1"></a><span class="fu">summary</span>(pathOut)</span></code></pre></div>
 </div>
 <div id="analysis_script" class="section level4 unnumbered hasAnchor">
-<h4>Code<a href="procedures.html#analysis_script" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4>Syntax File<a href="procedures.html#analysis_script" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>You must also submit an executable script containing the code used for your
 analyses.</p>
 <ul>
@@ -474,11 +504,18 @@ you may submit the source code that generates your report (i.e., an RMD
 </ul>
 <p>Clean the script before submitting.</p>
 <ul>
-<li>Remove extraneous/redundant code and comments.</li>
+<li>Remove extraneous/redundant code and comments.
+<ul>
+<li>Only include the code for analyses that appear in your report.</li>
+<li>Include code for data processing/clean/wrangling.</li>
+</ul></li>
 <li>Order the commands to match your final analysis.
 <ul>
-<li>I should be able to source your script (i.e., run the entire script in
-“batch mode”) to reproduce your results.</li>
+<li>E.g., Data ingest <span class="math inline">\(\rightarrow\)</span> Data processing <span class="math inline">\(\rightarrow\)</span> Descriptive
+analysis <span class="math inline">\(\rightarrow\)</span> Modeling <span class="math inline">\(\rightarrow\)</span> Processing results
+<span class="math inline">\(\rightarrow\)</span> Post-hoc analysis</li>
+<li>In theory, I should be able to source your script (i.e., run the entire
+script in “batch mode”) to reproduce your results.</li>
 </ul></li>
 </ul>
 </div>

@@ -494,19 +494,19 @@ conduct measurement invariance tests in <strong>lavaan</strong> <a href="https:/
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="in-class-exercises-6.html#cb278-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb278-2"><a href="in-class-exercises-6.html#cb278-2" tabindex="-1"></a></span>
-<span id="cb278-3"><a href="in-class-exercises-6.html#cb278-3" tabindex="-1"></a><span class="do">## Load the data:</span></span>
-<span id="cb278-4"><a href="in-class-exercises-6.html#cb278-4" tabindex="-1"></a>pgd <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;PGDdata2.txt&quot;</span>,</span>
-<span id="cb278-5"><a href="in-class-exercises-6.html#cb278-5" tabindex="-1"></a>                  <span class="at">na.strings =</span> <span class="st">&quot;-999&quot;</span>,</span>
-<span id="cb278-6"><a href="in-class-exercises-6.html#cb278-6" tabindex="-1"></a>                  <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb278-7"><a href="in-class-exercises-6.html#cb278-7" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb278-8"><a href="in-class-exercises-6.html#cb278-8" tabindex="-1"></a>       <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Kin2))</span>
-<span id="cb278-9"><a href="in-class-exercises-6.html#cb278-9" tabindex="-1"></a></span>
-<span id="cb278-10"><a href="in-class-exercises-6.html#cb278-10" tabindex="-1"></a><span class="do">## Check the results:</span></span>
-<span id="cb278-11"><a href="in-class-exercises-6.html#cb278-11" tabindex="-1"></a><span class="fu">head</span>(pgd)</span>
-<span id="cb278-12"><a href="in-class-exercises-6.html#cb278-12" tabindex="-1"></a><span class="fu">summary</span>(pdg)</span>
-<span id="cb278-13"><a href="in-class-exercises-6.html#cb278-13" tabindex="-1"></a><span class="fu">str</span>(pgd)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="in-class-exercises-6.html#cb281-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb281-2"><a href="in-class-exercises-6.html#cb281-2" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="in-class-exercises-6.html#cb281-3" tabindex="-1"></a><span class="do">## Load the data:</span></span>
+<span id="cb281-4"><a href="in-class-exercises-6.html#cb281-4" tabindex="-1"></a>pgd <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;PGDdata2.txt&quot;</span>,</span>
+<span id="cb281-5"><a href="in-class-exercises-6.html#cb281-5" tabindex="-1"></a>                  <span class="at">na.strings =</span> <span class="st">&quot;-999&quot;</span>,</span>
+<span id="cb281-6"><a href="in-class-exercises-6.html#cb281-6" tabindex="-1"></a>                  <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb281-7"><a href="in-class-exercises-6.html#cb281-7" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb281-8"><a href="in-class-exercises-6.html#cb281-8" tabindex="-1"></a>       <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Kin2))</span>
+<span id="cb281-9"><a href="in-class-exercises-6.html#cb281-9" tabindex="-1"></a></span>
+<span id="cb281-10"><a href="in-class-exercises-6.html#cb281-10" tabindex="-1"></a><span class="do">## Check the results:</span></span>
+<span id="cb281-11"><a href="in-class-exercises-6.html#cb281-11" tabindex="-1"></a><span class="fu">head</span>(pgd)</span>
+<span id="cb281-12"><a href="in-class-exercises-6.html#cb281-12" tabindex="-1"></a><span class="fu">summary</span>(pdg)</span>
+<span id="cb281-13"><a href="in-class-exercises-6.html#cb281-13" tabindex="-1"></a><span class="fu">str</span>(pgd)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Kin2"],"name":[1],"type":["int"],"align":["right"]},{"label":["b1pss1"],"name":[2],"type":["int"],"align":["right"]},{"label":["b2pss2"],"name":[3],"type":["int"],"align":["right"]},{"label":["b3pss3"],"name":[4],"type":["int"],"align":["right"]},{"label":["b4pss4"],"name":[5],"type":["int"],"align":["right"]},{"label":["b5pss5"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"1","3":"1","4":"1","5":"1","6":"1","_rn_":"1"},{"1":"0","2":"1","3":"0","4":"0","5":"1","6":"0","_rn_":"2"},{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"0","_rn_":"3"},{"1":"1","2":"1","3":"0","4":"1","5":"1","6":"0","_rn_":"4"},{"1":"0","2":"1","3":"1","4":"2","5":"0","6":"0","_rn_":"5"},{"1":"1","2":"2","3":"2","4":"2","5":"2","6":"1","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -549,26 +549,26 @@ from <a href="at-home-exercises-6.html#twoGroupCFA">7.3.2.4</a>.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="in-class-exercises-6.html#cb281-1" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb281-2"><a href="in-class-exercises-6.html#cb281-2" tabindex="-1"></a><span class="fu">library</span>(semTools) <span class="co"># provides the compareFit() function</span></span>
-<span id="cb281-3"><a href="in-class-exercises-6.html#cb281-3" tabindex="-1"></a></span>
-<span id="cb281-4"><a href="in-class-exercises-6.html#cb281-4" tabindex="-1"></a><span class="do">## Define the syntax for the CFA model:</span></span>
-<span id="cb281-5"><a href="in-class-exercises-6.html#cb281-5" tabindex="-1"></a>cfaMod <span class="ot">&lt;-</span> <span class="st">&#39;grief =~ b1pss1 + b2pss2 + b3pss3 + b4pss4 + b5pss5&#39;</span></span>
-<span id="cb281-6"><a href="in-class-exercises-6.html#cb281-6" tabindex="-1"></a></span>
-<span id="cb281-7"><a href="in-class-exercises-6.html#cb281-7" tabindex="-1"></a><span class="do">## Estimate the configural model:</span></span>
-<span id="cb281-8"><a href="in-class-exercises-6.html#cb281-8" tabindex="-1"></a>configOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod, <span class="at">data =</span> pgd, <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>)</span>
-<span id="cb281-9"><a href="in-class-exercises-6.html#cb281-9" tabindex="-1"></a></span>
-<span id="cb281-10"><a href="in-class-exercises-6.html#cb281-10" tabindex="-1"></a><span class="do">## Estimate the weak invariance model:</span></span>
-<span id="cb281-11"><a href="in-class-exercises-6.html#cb281-11" tabindex="-1"></a>weakOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod, <span class="at">data =</span> pgd, <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>, <span class="at">group.equal =</span> <span class="st">&quot;loadings&quot;</span>)</span>
-<span id="cb281-12"><a href="in-class-exercises-6.html#cb281-12" tabindex="-1"></a></span>
-<span id="cb281-13"><a href="in-class-exercises-6.html#cb281-13" tabindex="-1"></a><span class="do">## Estimate the strong invariance model:</span></span>
-<span id="cb281-14"><a href="in-class-exercises-6.html#cb281-14" tabindex="-1"></a>strongOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod,</span>
-<span id="cb281-15"><a href="in-class-exercises-6.html#cb281-15" tabindex="-1"></a>                 <span class="at">data =</span> pgd,</span>
-<span id="cb281-16"><a href="in-class-exercises-6.html#cb281-16" tabindex="-1"></a>                 <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>,</span>
-<span id="cb281-17"><a href="in-class-exercises-6.html#cb281-17" tabindex="-1"></a>                 <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>)</span>
-<span id="cb281-18"><a href="in-class-exercises-6.html#cb281-18" tabindex="-1"></a>                 )</span>
-<span id="cb281-19"><a href="in-class-exercises-6.html#cb281-19" tabindex="-1"></a></span>
-<span id="cb281-20"><a href="in-class-exercises-6.html#cb281-20" tabindex="-1"></a><span class="fu">summary</span>(configOut)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="in-class-exercises-6.html#cb284-1" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb284-2"><a href="in-class-exercises-6.html#cb284-2" tabindex="-1"></a><span class="fu">library</span>(semTools) <span class="co"># provides the compareFit() function</span></span>
+<span id="cb284-3"><a href="in-class-exercises-6.html#cb284-3" tabindex="-1"></a></span>
+<span id="cb284-4"><a href="in-class-exercises-6.html#cb284-4" tabindex="-1"></a><span class="do">## Define the syntax for the CFA model:</span></span>
+<span id="cb284-5"><a href="in-class-exercises-6.html#cb284-5" tabindex="-1"></a>cfaMod <span class="ot">&lt;-</span> <span class="st">&#39;grief =~ b1pss1 + b2pss2 + b3pss3 + b4pss4 + b5pss5&#39;</span></span>
+<span id="cb284-6"><a href="in-class-exercises-6.html#cb284-6" tabindex="-1"></a></span>
+<span id="cb284-7"><a href="in-class-exercises-6.html#cb284-7" tabindex="-1"></a><span class="do">## Estimate the configural model:</span></span>
+<span id="cb284-8"><a href="in-class-exercises-6.html#cb284-8" tabindex="-1"></a>configOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod, <span class="at">data =</span> pgd, <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>)</span>
+<span id="cb284-9"><a href="in-class-exercises-6.html#cb284-9" tabindex="-1"></a></span>
+<span id="cb284-10"><a href="in-class-exercises-6.html#cb284-10" tabindex="-1"></a><span class="do">## Estimate the weak invariance model:</span></span>
+<span id="cb284-11"><a href="in-class-exercises-6.html#cb284-11" tabindex="-1"></a>weakOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod, <span class="at">data =</span> pgd, <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>, <span class="at">group.equal =</span> <span class="st">&quot;loadings&quot;</span>)</span>
+<span id="cb284-12"><a href="in-class-exercises-6.html#cb284-12" tabindex="-1"></a></span>
+<span id="cb284-13"><a href="in-class-exercises-6.html#cb284-13" tabindex="-1"></a><span class="do">## Estimate the strong invariance model:</span></span>
+<span id="cb284-14"><a href="in-class-exercises-6.html#cb284-14" tabindex="-1"></a>strongOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod,</span>
+<span id="cb284-15"><a href="in-class-exercises-6.html#cb284-15" tabindex="-1"></a>                 <span class="at">data =</span> pgd,</span>
+<span id="cb284-16"><a href="in-class-exercises-6.html#cb284-16" tabindex="-1"></a>                 <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>,</span>
+<span id="cb284-17"><a href="in-class-exercises-6.html#cb284-17" tabindex="-1"></a>                 <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>)</span>
+<span id="cb284-18"><a href="in-class-exercises-6.html#cb284-18" tabindex="-1"></a>                 )</span>
+<span id="cb284-19"><a href="in-class-exercises-6.html#cb284-19" tabindex="-1"></a></span>
+<span id="cb284-20"><a href="in-class-exercises-6.html#cb284-20" tabindex="-1"></a><span class="fu">summary</span>(configOut)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 27 iterations
 ## 
 ##   Estimator                                         ML
@@ -651,7 +651,7 @@ Click to show code
 ##    .b4pss4            0.401    0.035   11.420    0.000
 ##    .b5pss5            0.366    0.034   10.767    0.000
 ##     grief             0.592    0.073    8.081    0.000</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="in-class-exercises-6.html#cb283-1" tabindex="-1"></a><span class="fu">summary</span>(weakOut)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="in-class-exercises-6.html#cb286-1" tabindex="-1"></a><span class="fu">summary</span>(weakOut)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 22 iterations
 ## 
 ##   Estimator                                         ML
@@ -735,7 +735,7 @@ Click to show code
 ##    .b4pss4            0.394    0.035   11.304    0.000
 ##    .b5pss5            0.361    0.034   10.686    0.000
 ##     grief             0.561    0.065    8.564    0.000</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="in-class-exercises-6.html#cb285-1" tabindex="-1"></a><span class="fu">summary</span>(strongOut)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="in-class-exercises-6.html#cb288-1" tabindex="-1"></a><span class="fu">summary</span>(strongOut)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 26 iterations
 ## 
 ##   Estimator                                         ML
@@ -820,8 +820,8 @@ Click to show code
 ##    .b4pss4            0.393    0.035   11.276    0.000
 ##    .b5pss5            0.361    0.034   10.700    0.000
 ##     grief             0.561    0.065    8.586    0.000</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="in-class-exercises-6.html#cb287-1" tabindex="-1"></a><span class="do">## Test invariance through model comparison tests:</span></span>
-<span id="cb287-2"><a href="in-class-exercises-6.html#cb287-2" tabindex="-1"></a><span class="fu">compareFit</span>(configOut, weakOut, strongOut) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="in-class-exercises-6.html#cb290-1" tabindex="-1"></a><span class="do">## Test invariance through model comparison tests:</span></span>
+<span id="cb290-2"><a href="in-class-exercises-6.html#cb290-2" tabindex="-1"></a><span class="fu">compareFit</span>(configOut, weakOut, strongOut) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## ################### Nested Model Comparison #########################
 ## 
 ## Chi-Squared Difference Test
@@ -907,15 +907,15 @@ difference described above.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="in-class-exercises-6.html#cb289-1" tabindex="-1"></a><span class="do">## Estimate the model with the latent means equated:</span></span>
-<span id="cb289-2"><a href="in-class-exercises-6.html#cb289-2" tabindex="-1"></a>resOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod,</span>
-<span id="cb289-3"><a href="in-class-exercises-6.html#cb289-3" tabindex="-1"></a>              <span class="at">data =</span> pgd,</span>
-<span id="cb289-4"><a href="in-class-exercises-6.html#cb289-4" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>,</span>
-<span id="cb289-5"><a href="in-class-exercises-6.html#cb289-5" tabindex="-1"></a>              <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;means&quot;</span>)</span>
-<span id="cb289-6"><a href="in-class-exercises-6.html#cb289-6" tabindex="-1"></a>              )</span>
-<span id="cb289-7"><a href="in-class-exercises-6.html#cb289-7" tabindex="-1"></a></span>
-<span id="cb289-8"><a href="in-class-exercises-6.html#cb289-8" tabindex="-1"></a><span class="do">## Check the results:</span></span>
-<span id="cb289-9"><a href="in-class-exercises-6.html#cb289-9" tabindex="-1"></a><span class="fu">summary</span>(resOut)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="in-class-exercises-6.html#cb292-1" tabindex="-1"></a><span class="do">## Estimate the model with the latent means equated:</span></span>
+<span id="cb292-2"><a href="in-class-exercises-6.html#cb292-2" tabindex="-1"></a>resOut <span class="ot">&lt;-</span> <span class="fu">cfa</span>(cfaMod,</span>
+<span id="cb292-3"><a href="in-class-exercises-6.html#cb292-3" tabindex="-1"></a>              <span class="at">data =</span> pgd,</span>
+<span id="cb292-4"><a href="in-class-exercises-6.html#cb292-4" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;Kin2&quot;</span>,</span>
+<span id="cb292-5"><a href="in-class-exercises-6.html#cb292-5" tabindex="-1"></a>              <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;means&quot;</span>)</span>
+<span id="cb292-6"><a href="in-class-exercises-6.html#cb292-6" tabindex="-1"></a>              )</span>
+<span id="cb292-7"><a href="in-class-exercises-6.html#cb292-7" tabindex="-1"></a></span>
+<span id="cb292-8"><a href="in-class-exercises-6.html#cb292-8" tabindex="-1"></a><span class="do">## Check the results:</span></span>
+<span id="cb292-9"><a href="in-class-exercises-6.html#cb292-9" tabindex="-1"></a><span class="fu">summary</span>(resOut)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 24 iterations
 ## 
 ##   Estimator                                         ML
@@ -999,8 +999,8 @@ Click to show code
 ##    .b4pss4            0.394    0.035   11.283    0.000
 ##    .b5pss5            0.361    0.034   10.691    0.000
 ##     grief             0.563    0.066    8.584    0.000</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="in-class-exercises-6.html#cb291-1" tabindex="-1"></a><span class="do">## Test the mean differences via a LRT:</span></span>
-<span id="cb291-2"><a href="in-class-exercises-6.html#cb291-2" tabindex="-1"></a><span class="fu">anova</span>(strongOut, resOut)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="in-class-exercises-6.html#cb294-1" tabindex="-1"></a><span class="do">## Test the mean differences via a LRT:</span></span>
+<span id="cb294-2"><a href="in-class-exercises-6.html#cb294-2" tabindex="-1"></a><span class="fu">anova</span>(strongOut, resOut)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"18","2":"6469.378","3":"6564.866","4":"23.96850","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"strongOut"},{"1":"19","2":"6471.024","3":"6562.172","4":"27.61472","5":"3.646228","6":"0.09661335","7":"1","8":"0.05619634","_rn_":"resOut"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1035,7 +1035,7 @@ model to test the moderating effect of <em>sex</em>.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="in-class-exercises-6.html#cb292-1" tabindex="-1"></a>condom <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;toradata.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="in-class-exercises-6.html#cb295-1" tabindex="-1"></a>condom <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;toradata.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
 <hr />
 <p>Before we get to any moderation tests, however, we first need to establish
@@ -1057,23 +1057,23 @@ supported?</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="in-class-exercises-6.html#cb293-1" tabindex="-1"></a>tora_cfa <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb293-2"><a href="in-class-exercises-6.html#cb293-2" tabindex="-1"></a><span class="st">  attitudes =~ attit_1   + attit_2   + attit_3</span></span>
-<span id="cb293-3"><a href="in-class-exercises-6.html#cb293-3" tabindex="-1"></a><span class="st">  norms     =~ norm_1    + norm_2    + norm_3</span></span>
-<span id="cb293-4"><a href="in-class-exercises-6.html#cb293-4" tabindex="-1"></a><span class="st">  control   =~ control_1 + control_2 + control_3</span></span>
-<span id="cb293-5"><a href="in-class-exercises-6.html#cb293-5" tabindex="-1"></a><span class="st">&#39;</span></span>
-<span id="cb293-6"><a href="in-class-exercises-6.html#cb293-6" tabindex="-1"></a></span>
-<span id="cb293-7"><a href="in-class-exercises-6.html#cb293-7" tabindex="-1"></a><span class="do">## Estimate the models:</span></span>
-<span id="cb293-8"><a href="in-class-exercises-6.html#cb293-8" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">cfa</span>(tora_cfa, <span class="at">data =</span> condom, <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>)</span>
-<span id="cb293-9"><a href="in-class-exercises-6.html#cb293-9" tabindex="-1"></a>weak <span class="ot">&lt;-</span> <span class="fu">cfa</span>(tora_cfa, <span class="at">data =</span> condom, <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, <span class="at">group.equal =</span> <span class="st">&quot;loadings&quot;</span>)</span>
-<span id="cb293-10"><a href="in-class-exercises-6.html#cb293-10" tabindex="-1"></a>strong <span class="ot">&lt;-</span> <span class="fu">cfa</span>(tora_cfa, </span>
-<span id="cb293-11"><a href="in-class-exercises-6.html#cb293-11" tabindex="-1"></a>              <span class="at">data =</span> condom, </span>
-<span id="cb293-12"><a href="in-class-exercises-6.html#cb293-12" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>,</span>
-<span id="cb293-13"><a href="in-class-exercises-6.html#cb293-13" tabindex="-1"></a>              <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>)</span>
-<span id="cb293-14"><a href="in-class-exercises-6.html#cb293-14" tabindex="-1"></a>              )</span>
-<span id="cb293-15"><a href="in-class-exercises-6.html#cb293-15" tabindex="-1"></a></span>
-<span id="cb293-16"><a href="in-class-exercises-6.html#cb293-16" tabindex="-1"></a><span class="do">## Check that everything went well:</span></span>
-<span id="cb293-17"><a href="in-class-exercises-6.html#cb293-17" tabindex="-1"></a><span class="fu">summary</span>(config)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="in-class-exercises-6.html#cb296-1" tabindex="-1"></a>tora_cfa <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb296-2"><a href="in-class-exercises-6.html#cb296-2" tabindex="-1"></a><span class="st">  attitudes =~ attit_1   + attit_2   + attit_3</span></span>
+<span id="cb296-3"><a href="in-class-exercises-6.html#cb296-3" tabindex="-1"></a><span class="st">  norms     =~ norm_1    + norm_2    + norm_3</span></span>
+<span id="cb296-4"><a href="in-class-exercises-6.html#cb296-4" tabindex="-1"></a><span class="st">  control   =~ control_1 + control_2 + control_3</span></span>
+<span id="cb296-5"><a href="in-class-exercises-6.html#cb296-5" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb296-6"><a href="in-class-exercises-6.html#cb296-6" tabindex="-1"></a></span>
+<span id="cb296-7"><a href="in-class-exercises-6.html#cb296-7" tabindex="-1"></a><span class="do">## Estimate the models:</span></span>
+<span id="cb296-8"><a href="in-class-exercises-6.html#cb296-8" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">cfa</span>(tora_cfa, <span class="at">data =</span> condom, <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>)</span>
+<span id="cb296-9"><a href="in-class-exercises-6.html#cb296-9" tabindex="-1"></a>weak <span class="ot">&lt;-</span> <span class="fu">cfa</span>(tora_cfa, <span class="at">data =</span> condom, <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, <span class="at">group.equal =</span> <span class="st">&quot;loadings&quot;</span>)</span>
+<span id="cb296-10"><a href="in-class-exercises-6.html#cb296-10" tabindex="-1"></a>strong <span class="ot">&lt;-</span> <span class="fu">cfa</span>(tora_cfa, </span>
+<span id="cb296-11"><a href="in-class-exercises-6.html#cb296-11" tabindex="-1"></a>              <span class="at">data =</span> condom, </span>
+<span id="cb296-12"><a href="in-class-exercises-6.html#cb296-12" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb296-13"><a href="in-class-exercises-6.html#cb296-13" tabindex="-1"></a>              <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>)</span>
+<span id="cb296-14"><a href="in-class-exercises-6.html#cb296-14" tabindex="-1"></a>              )</span>
+<span id="cb296-15"><a href="in-class-exercises-6.html#cb296-15" tabindex="-1"></a></span>
+<span id="cb296-16"><a href="in-class-exercises-6.html#cb296-16" tabindex="-1"></a><span class="do">## Check that everything went well:</span></span>
+<span id="cb296-17"><a href="in-class-exercises-6.html#cb296-17" tabindex="-1"></a><span class="fu">summary</span>(config)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 54 iterations
 ## 
 ##   Estimator                                         ML
@@ -1204,7 +1204,7 @@ Click to show code
 ##     attitudes         0.768    0.182    4.220    0.000
 ##     norms             0.788    0.242    3.259    0.001
 ##     control           0.426    0.168    2.537    0.011</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="in-class-exercises-6.html#cb295-1" tabindex="-1"></a><span class="fu">summary</span>(weak)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="in-class-exercises-6.html#cb298-1" tabindex="-1"></a><span class="fu">summary</span>(weak)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 37 iterations
 ## 
 ##   Estimator                                         ML
@@ -1336,7 +1336,7 @@ Click to show code
 ##     attitudes         0.862    0.166    5.200    0.000
 ##     norms             0.859    0.193    4.443    0.000
 ##     control           0.447    0.137    3.260    0.001</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="in-class-exercises-6.html#cb297-1" tabindex="-1"></a><span class="fu">summary</span>(strong)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="in-class-exercises-6.html#cb300-1" tabindex="-1"></a><span class="fu">summary</span>(strong)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 60 iterations
 ## 
 ##   Estimator                                         ML
@@ -1471,8 +1471,8 @@ Click to show code
 ##     attitudes         0.872    0.167    5.214    0.000
 ##     norms             0.830    0.186    4.455    0.000
 ##     control           0.445    0.136    3.280    0.001</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="in-class-exercises-6.html#cb299-1" tabindex="-1"></a><span class="do">## Test measurement invariance:</span></span>
-<span id="cb299-2"><a href="in-class-exercises-6.html#cb299-2" tabindex="-1"></a><span class="fu">compareFit</span>(config, weak, strong) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="in-class-exercises-6.html#cb302-1" tabindex="-1"></a><span class="do">## Test measurement invariance:</span></span>
+<span id="cb302-2"><a href="in-class-exercises-6.html#cb302-2" tabindex="-1"></a><span class="fu">compareFit</span>(config, weak, strong) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>## ################### Nested Model Comparison #########################
 ## 
 ## Chi-Squared Difference Test
@@ -1543,21 +1543,21 @@ latent factors represent the same hypothetical constructs in all groups.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="in-class-exercises-6.html#cb301-1" tabindex="-1"></a><span class="do">## Add the structural paths to the model:</span></span>
-<span id="cb301-2"><a href="in-class-exercises-6.html#cb301-2" tabindex="-1"></a>tora_sem <span class="ot">&lt;-</span> <span class="fu">paste</span>(tora_cfa,</span>
-<span id="cb301-3"><a href="in-class-exercises-6.html#cb301-3" tabindex="-1"></a>                  <span class="st">&#39;intent ~ attitudes + norms</span></span>
-<span id="cb301-4"><a href="in-class-exercises-6.html#cb301-4" tabindex="-1"></a><span class="st">                   behavior ~ intent + control&#39;</span>,</span>
-<span id="cb301-5"><a href="in-class-exercises-6.html#cb301-5" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
-<span id="cb301-6"><a href="in-class-exercises-6.html#cb301-6" tabindex="-1"></a></span>
-<span id="cb301-7"><a href="in-class-exercises-6.html#cb301-7" tabindex="-1"></a><span class="do">## Estimate the model:</span></span>
-<span id="cb301-8"><a href="in-class-exercises-6.html#cb301-8" tabindex="-1"></a>toraOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(tora_sem, </span>
-<span id="cb301-9"><a href="in-class-exercises-6.html#cb301-9" tabindex="-1"></a>               <span class="at">data =</span> condom, </span>
-<span id="cb301-10"><a href="in-class-exercises-6.html#cb301-10" tabindex="-1"></a>               <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, </span>
-<span id="cb301-11"><a href="in-class-exercises-6.html#cb301-11" tabindex="-1"></a>               <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>)</span>
-<span id="cb301-12"><a href="in-class-exercises-6.html#cb301-12" tabindex="-1"></a>               )</span>
-<span id="cb301-13"><a href="in-class-exercises-6.html#cb301-13" tabindex="-1"></a></span>
-<span id="cb301-14"><a href="in-class-exercises-6.html#cb301-14" tabindex="-1"></a><span class="do">## Check the results:</span></span>
-<span id="cb301-15"><a href="in-class-exercises-6.html#cb301-15" tabindex="-1"></a><span class="fu">summary</span>(toraOut, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="in-class-exercises-6.html#cb304-1" tabindex="-1"></a><span class="do">## Add the structural paths to the model:</span></span>
+<span id="cb304-2"><a href="in-class-exercises-6.html#cb304-2" tabindex="-1"></a>tora_sem <span class="ot">&lt;-</span> <span class="fu">paste</span>(tora_cfa,</span>
+<span id="cb304-3"><a href="in-class-exercises-6.html#cb304-3" tabindex="-1"></a>                  <span class="st">&#39;intent ~ attitudes + norms</span></span>
+<span id="cb304-4"><a href="in-class-exercises-6.html#cb304-4" tabindex="-1"></a><span class="st">                   behavior ~ intent + control&#39;</span>,</span>
+<span id="cb304-5"><a href="in-class-exercises-6.html#cb304-5" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb304-6"><a href="in-class-exercises-6.html#cb304-6" tabindex="-1"></a></span>
+<span id="cb304-7"><a href="in-class-exercises-6.html#cb304-7" tabindex="-1"></a><span class="do">## Estimate the model:</span></span>
+<span id="cb304-8"><a href="in-class-exercises-6.html#cb304-8" tabindex="-1"></a>toraOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(tora_sem, </span>
+<span id="cb304-9"><a href="in-class-exercises-6.html#cb304-9" tabindex="-1"></a>               <span class="at">data =</span> condom, </span>
+<span id="cb304-10"><a href="in-class-exercises-6.html#cb304-10" tabindex="-1"></a>               <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, </span>
+<span id="cb304-11"><a href="in-class-exercises-6.html#cb304-11" tabindex="-1"></a>               <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>)</span>
+<span id="cb304-12"><a href="in-class-exercises-6.html#cb304-12" tabindex="-1"></a>               )</span>
+<span id="cb304-13"><a href="in-class-exercises-6.html#cb304-13" tabindex="-1"></a></span>
+<span id="cb304-14"><a href="in-class-exercises-6.html#cb304-14" tabindex="-1"></a><span class="do">## Check the results:</span></span>
+<span id="cb304-15"><a href="in-class-exercises-6.html#cb304-15" tabindex="-1"></a><span class="fu">summary</span>(toraOut, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 62 iterations
 ## 
 ##   Estimator                                         ML
@@ -1789,16 +1789,16 @@ paths in the model from <a href="in-class-exercises-6.html#toraFullModel">7.4.3.
 <summary>
 Click for explanation
 </summary>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="in-class-exercises-6.html#cb303-1" tabindex="-1"></a><span class="do">## Estimate a restricted model wherein all latent regression paths are equated</span></span>
-<span id="cb303-2"><a href="in-class-exercises-6.html#cb303-2" tabindex="-1"></a><span class="do">## across groups.</span></span>
-<span id="cb303-3"><a href="in-class-exercises-6.html#cb303-3" tabindex="-1"></a>toraOut0 <span class="ot">&lt;-</span> <span class="fu">sem</span>(tora_sem, </span>
-<span id="cb303-4"><a href="in-class-exercises-6.html#cb303-4" tabindex="-1"></a>                <span class="at">data =</span> condom, </span>
-<span id="cb303-5"><a href="in-class-exercises-6.html#cb303-5" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, </span>
-<span id="cb303-6"><a href="in-class-exercises-6.html#cb303-6" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;regressions&quot;</span>)</span>
-<span id="cb303-7"><a href="in-class-exercises-6.html#cb303-7" tabindex="-1"></a>                )</span>
-<span id="cb303-8"><a href="in-class-exercises-6.html#cb303-8" tabindex="-1"></a></span>
-<span id="cb303-9"><a href="in-class-exercises-6.html#cb303-9" tabindex="-1"></a><span class="do">## Test the constraints:</span></span>
-<span id="cb303-10"><a href="in-class-exercises-6.html#cb303-10" tabindex="-1"></a><span class="fu">anova</span>(toraOut, toraOut0)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="in-class-exercises-6.html#cb306-1" tabindex="-1"></a><span class="do">## Estimate a restricted model wherein all latent regression paths are equated</span></span>
+<span id="cb306-2"><a href="in-class-exercises-6.html#cb306-2" tabindex="-1"></a><span class="do">## across groups.</span></span>
+<span id="cb306-3"><a href="in-class-exercises-6.html#cb306-3" tabindex="-1"></a>toraOut0 <span class="ot">&lt;-</span> <span class="fu">sem</span>(tora_sem, </span>
+<span id="cb306-4"><a href="in-class-exercises-6.html#cb306-4" tabindex="-1"></a>                <span class="at">data =</span> condom, </span>
+<span id="cb306-5"><a href="in-class-exercises-6.html#cb306-5" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, </span>
+<span id="cb306-6"><a href="in-class-exercises-6.html#cb306-6" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;regressions&quot;</span>)</span>
+<span id="cb306-7"><a href="in-class-exercises-6.html#cb306-7" tabindex="-1"></a>                )</span>
+<span id="cb306-8"><a href="in-class-exercises-6.html#cb306-8" tabindex="-1"></a></span>
+<span id="cb306-9"><a href="in-class-exercises-6.html#cb306-9" tabindex="-1"></a><span class="do">## Test the constraints:</span></span>
+<span id="cb306-10"><a href="in-class-exercises-6.html#cb306-10" tabindex="-1"></a><span class="fu">anova</span>(toraOut, toraOut0)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Chisq diff"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RMSEA"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Df diff"],"name":[7],"type":["int"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"92","2":"7065.756","3":"7284.087","4":"141.9027","5":"NA","6":"NA","7":"NA","8":"NA","_rn_":"toraOut"},{"1":"96","2":"7110.616","3":"7314.860","4":"194.7621","5":"52.85934","6":"0.3125999","7":"4","8":"9.119284e-11","_rn_":"toraOut0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1830,17 +1830,17 @@ and <code>control</code> on <code>behavior</code>.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="in-class-exercises-6.html#cb304-1" tabindex="-1"></a><span class="do">## Add the structural paths to the model and assign labels:</span></span>
-<span id="cb304-2"><a href="in-class-exercises-6.html#cb304-2" tabindex="-1"></a>tora_sem <span class="ot">&lt;-</span> <span class="fu">paste</span>(tora_cfa,</span>
-<span id="cb304-3"><a href="in-class-exercises-6.html#cb304-3" tabindex="-1"></a>                  <span class="st">&#39;intent ~ attitudes + norms</span></span>
-<span id="cb304-4"><a href="in-class-exercises-6.html#cb304-4" tabindex="-1"></a><span class="st">                   behavior ~ c(b1f, b1m) * intent + c(b2f, b2m) * control&#39;</span>,</span>
-<span id="cb304-5"><a href="in-class-exercises-6.html#cb304-5" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
-<span id="cb304-6"><a href="in-class-exercises-6.html#cb304-6" tabindex="-1"></a></span>
-<span id="cb304-7"><a href="in-class-exercises-6.html#cb304-7" tabindex="-1"></a><span class="do">## Estimate the model with weak invariance constraints:</span></span>
-<span id="cb304-8"><a href="in-class-exercises-6.html#cb304-8" tabindex="-1"></a>toraOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(tora_sem, <span class="at">data =</span> condom, <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, <span class="at">group.equal =</span> <span class="st">&quot;loadings&quot;</span>)</span>
-<span id="cb304-9"><a href="in-class-exercises-6.html#cb304-9" tabindex="-1"></a></span>
-<span id="cb304-10"><a href="in-class-exercises-6.html#cb304-10" tabindex="-1"></a><span class="do">## Check the results:</span></span>
-<span id="cb304-11"><a href="in-class-exercises-6.html#cb304-11" tabindex="-1"></a><span class="fu">summary</span>(toraOut, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="in-class-exercises-6.html#cb307-1" tabindex="-1"></a><span class="do">## Add the structural paths to the model and assign labels:</span></span>
+<span id="cb307-2"><a href="in-class-exercises-6.html#cb307-2" tabindex="-1"></a>tora_sem <span class="ot">&lt;-</span> <span class="fu">paste</span>(tora_cfa,</span>
+<span id="cb307-3"><a href="in-class-exercises-6.html#cb307-3" tabindex="-1"></a>                  <span class="st">&#39;intent ~ attitudes + norms</span></span>
+<span id="cb307-4"><a href="in-class-exercises-6.html#cb307-4" tabindex="-1"></a><span class="st">                   behavior ~ c(b1f, b1m) * intent + c(b2f, b2m) * control&#39;</span>,</span>
+<span id="cb307-5"><a href="in-class-exercises-6.html#cb307-5" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb307-6"><a href="in-class-exercises-6.html#cb307-6" tabindex="-1"></a></span>
+<span id="cb307-7"><a href="in-class-exercises-6.html#cb307-7" tabindex="-1"></a><span class="do">## Estimate the model with weak invariance constraints:</span></span>
+<span id="cb307-8"><a href="in-class-exercises-6.html#cb307-8" tabindex="-1"></a>toraOut <span class="ot">&lt;-</span> <span class="fu">sem</span>(tora_sem, <span class="at">data =</span> condom, <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>, <span class="at">group.equal =</span> <span class="st">&quot;loadings&quot;</span>)</span>
+<span id="cb307-9"><a href="in-class-exercises-6.html#cb307-9" tabindex="-1"></a></span>
+<span id="cb307-10"><a href="in-class-exercises-6.html#cb307-10" tabindex="-1"></a><span class="do">## Check the results:</span></span>
+<span id="cb307-11"><a href="in-class-exercises-6.html#cb307-11" tabindex="-1"></a><span class="fu">summary</span>(toraOut, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 60 iterations
 ## 
 ##   Estimator                                         ML
@@ -2058,8 +2058,8 @@ Click to show code
 ##     control_3         0.299
 ##     intent            0.663
 ##     behavior          0.395</code></pre>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="in-class-exercises-6.html#cb306-1" tabindex="-1"></a><span class="do">## Test for moderation:</span></span>
-<span id="cb306-2"><a href="in-class-exercises-6.html#cb306-2" tabindex="-1"></a><span class="fu">lavTestWald</span>(toraOut, <span class="st">&quot;b1f == b1m; b2f == b2m&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="in-class-exercises-6.html#cb309-1" tabindex="-1"></a><span class="do">## Test for moderation:</span></span>
+<span id="cb309-2"><a href="in-class-exercises-6.html#cb309-2" tabindex="-1"></a><span class="fu">lavTestWald</span>(toraOut, <span class="st">&quot;b1f == b1m; b2f == b2m&quot;</span>)</span></code></pre></div>
 <pre><code>## $stat
 ## [1] 9.85773
 ## 

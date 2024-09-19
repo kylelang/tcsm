@@ -467,7 +467,7 @@ cleaning that you should have done for previous practicals completed.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="at-home-exercises-4.html#cb196-1" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ess_round1.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="at-home-exercises-4.html#cb199-1" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ess_round1.rds&quot;</span>)</span></code></pre></div>
 </details>
 <hr />
 <p>Although you may have settled on any number of EFA solutions during the
@@ -492,11 +492,11 @@ solution you found in the Week 4 In-Class Exercises.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="at-home-exercises-4.html#cb197-1" tabindex="-1"></a>mod_3f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb197-2"><a href="at-home-exercises-4.html#cb197-2" tabindex="-1"></a><span class="st">institutions =~ trstlgl + trstplc + trstun + trstep + trstprl</span></span>
-<span id="cb197-3"><a href="at-home-exercises-4.html#cb197-3" tabindex="-1"></a><span class="st">satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem</span></span>
-<span id="cb197-4"><a href="at-home-exercises-4.html#cb197-4" tabindex="-1"></a><span class="st">politicians  =~ pltinvt + pltcare + trstplt</span></span>
-<span id="cb197-5"><a href="at-home-exercises-4.html#cb197-5" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="at-home-exercises-4.html#cb200-1" tabindex="-1"></a>mod_3f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb200-2"><a href="at-home-exercises-4.html#cb200-2" tabindex="-1"></a><span class="st">institutions =~ trstlgl + trstplc + trstun + trstep + trstprl</span></span>
+<span id="cb200-3"><a href="at-home-exercises-4.html#cb200-3" tabindex="-1"></a><span class="st">satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem</span></span>
+<span id="cb200-4"><a href="at-home-exercises-4.html#cb200-4" tabindex="-1"></a><span class="st">politicians  =~ pltinvt + pltcare + trstplt</span></span>
+<span id="cb200-5"><a href="at-home-exercises-4.html#cb200-5" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 <details>
 <summary>
 Click for explanation
@@ -529,14 +529,14 @@ settings?</li>
 <summary>
 Click the code
 </summary>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="at-home-exercises-4.html#cb198-1" tabindex="-1"></a><span class="do">## Load the lavaan package:</span></span>
-<span id="cb198-2"><a href="at-home-exercises-4.html#cb198-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb198-3"><a href="at-home-exercises-4.html#cb198-3" tabindex="-1"></a></span>
-<span id="cb198-4"><a href="at-home-exercises-4.html#cb198-4" tabindex="-1"></a><span class="do">## Estimate the CFA model:</span></span>
-<span id="cb198-5"><a href="at-home-exercises-4.html#cb198-5" tabindex="-1"></a>fit_3f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_3f, <span class="at">data =</span> ess)</span>
-<span id="cb198-6"><a href="at-home-exercises-4.html#cb198-6" tabindex="-1"></a></span>
-<span id="cb198-7"><a href="at-home-exercises-4.html#cb198-7" tabindex="-1"></a><span class="do">## Summarize the fitted model:</span></span>
-<span id="cb198-8"><a href="at-home-exercises-4.html#cb198-8" tabindex="-1"></a><span class="fu">summary</span>(fit_3f, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="at-home-exercises-4.html#cb201-1" tabindex="-1"></a><span class="do">## Load the lavaan package:</span></span>
+<span id="cb201-2"><a href="at-home-exercises-4.html#cb201-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb201-3"><a href="at-home-exercises-4.html#cb201-3" tabindex="-1"></a></span>
+<span id="cb201-4"><a href="at-home-exercises-4.html#cb201-4" tabindex="-1"></a><span class="do">## Estimate the CFA model:</span></span>
+<span id="cb201-5"><a href="at-home-exercises-4.html#cb201-5" tabindex="-1"></a>fit_3f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_3f, <span class="at">data =</span> ess)</span>
+<span id="cb201-6"><a href="at-home-exercises-4.html#cb201-6" tabindex="-1"></a></span>
+<span id="cb201-7"><a href="at-home-exercises-4.html#cb201-7" tabindex="-1"></a><span class="do">## Summarize the fitted model:</span></span>
+<span id="cb201-8"><a href="at-home-exercises-4.html#cb201-8" tabindex="-1"></a><span class="fu">summary</span>(fit_3f, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 46 iterations
 ## 
 ##   Estimator                                         ML
@@ -676,22 +676,22 @@ model wherein all <em>Trust</em> items are explained by a single latent variable
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="at-home-exercises-4.html#cb200-1" tabindex="-1"></a>mod_1f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb200-2"><a href="at-home-exercises-4.html#cb200-2" tabindex="-1"></a><span class="st">political_trust =~ </span></span>
-<span id="cb200-3"><a href="at-home-exercises-4.html#cb200-3" tabindex="-1"></a><span class="st">  trstlgl +</span></span>
-<span id="cb200-4"><a href="at-home-exercises-4.html#cb200-4" tabindex="-1"></a><span class="st">  trstplc +</span></span>
-<span id="cb200-5"><a href="at-home-exercises-4.html#cb200-5" tabindex="-1"></a><span class="st">  trstun +</span></span>
-<span id="cb200-6"><a href="at-home-exercises-4.html#cb200-6" tabindex="-1"></a><span class="st">  trstep +</span></span>
-<span id="cb200-7"><a href="at-home-exercises-4.html#cb200-7" tabindex="-1"></a><span class="st">  trstprl +</span></span>
-<span id="cb200-8"><a href="at-home-exercises-4.html#cb200-8" tabindex="-1"></a><span class="st">  stfhlth +</span></span>
-<span id="cb200-9"><a href="at-home-exercises-4.html#cb200-9" tabindex="-1"></a><span class="st">  stfedu  +</span></span>
-<span id="cb200-10"><a href="at-home-exercises-4.html#cb200-10" tabindex="-1"></a><span class="st">  stfeco +</span></span>
-<span id="cb200-11"><a href="at-home-exercises-4.html#cb200-11" tabindex="-1"></a><span class="st">  stfgov +</span></span>
-<span id="cb200-12"><a href="at-home-exercises-4.html#cb200-12" tabindex="-1"></a><span class="st">  stfdem +</span></span>
-<span id="cb200-13"><a href="at-home-exercises-4.html#cb200-13" tabindex="-1"></a><span class="st">  pltinvt +</span></span>
-<span id="cb200-14"><a href="at-home-exercises-4.html#cb200-14" tabindex="-1"></a><span class="st">  pltcare +</span></span>
-<span id="cb200-15"><a href="at-home-exercises-4.html#cb200-15" tabindex="-1"></a><span class="st">  trstplt</span></span>
-<span id="cb200-16"><a href="at-home-exercises-4.html#cb200-16" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="at-home-exercises-4.html#cb203-1" tabindex="-1"></a>mod_1f <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb203-2"><a href="at-home-exercises-4.html#cb203-2" tabindex="-1"></a><span class="st">political_trust =~ </span></span>
+<span id="cb203-3"><a href="at-home-exercises-4.html#cb203-3" tabindex="-1"></a><span class="st">  trstlgl +</span></span>
+<span id="cb203-4"><a href="at-home-exercises-4.html#cb203-4" tabindex="-1"></a><span class="st">  trstplc +</span></span>
+<span id="cb203-5"><a href="at-home-exercises-4.html#cb203-5" tabindex="-1"></a><span class="st">  trstun +</span></span>
+<span id="cb203-6"><a href="at-home-exercises-4.html#cb203-6" tabindex="-1"></a><span class="st">  trstep +</span></span>
+<span id="cb203-7"><a href="at-home-exercises-4.html#cb203-7" tabindex="-1"></a><span class="st">  trstprl +</span></span>
+<span id="cb203-8"><a href="at-home-exercises-4.html#cb203-8" tabindex="-1"></a><span class="st">  stfhlth +</span></span>
+<span id="cb203-9"><a href="at-home-exercises-4.html#cb203-9" tabindex="-1"></a><span class="st">  stfedu  +</span></span>
+<span id="cb203-10"><a href="at-home-exercises-4.html#cb203-10" tabindex="-1"></a><span class="st">  stfeco +</span></span>
+<span id="cb203-11"><a href="at-home-exercises-4.html#cb203-11" tabindex="-1"></a><span class="st">  stfgov +</span></span>
+<span id="cb203-12"><a href="at-home-exercises-4.html#cb203-12" tabindex="-1"></a><span class="st">  stfdem +</span></span>
+<span id="cb203-13"><a href="at-home-exercises-4.html#cb203-13" tabindex="-1"></a><span class="st">  pltinvt +</span></span>
+<span id="cb203-14"><a href="at-home-exercises-4.html#cb203-14" tabindex="-1"></a><span class="st">  pltcare +</span></span>
+<span id="cb203-15"><a href="at-home-exercises-4.html#cb203-15" tabindex="-1"></a><span class="st">  trstplt</span></span>
+<span id="cb203-16"><a href="at-home-exercises-4.html#cb203-16" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 </details>
 <hr />
 </div>
@@ -707,11 +707,11 @@ model fit information from a fitted <code>lavaan</code> object.</p>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="at-home-exercises-4.html#cb201-1" tabindex="-1"></a><span class="do">## Estimate the one factor model:</span></span>
-<span id="cb201-2"><a href="at-home-exercises-4.html#cb201-2" tabindex="-1"></a>fit_1f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_1f, <span class="at">data =</span> ess)</span>
-<span id="cb201-3"><a href="at-home-exercises-4.html#cb201-3" tabindex="-1"></a></span>
-<span id="cb201-4"><a href="at-home-exercises-4.html#cb201-4" tabindex="-1"></a><span class="do">## Summarize the results:</span></span>
-<span id="cb201-5"><a href="at-home-exercises-4.html#cb201-5" tabindex="-1"></a><span class="fu">summary</span>(fit_1f, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="at-home-exercises-4.html#cb204-1" tabindex="-1"></a><span class="do">## Estimate the one factor model:</span></span>
+<span id="cb204-2"><a href="at-home-exercises-4.html#cb204-2" tabindex="-1"></a>fit_1f <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_1f, <span class="at">data =</span> ess)</span>
+<span id="cb204-3"><a href="at-home-exercises-4.html#cb204-3" tabindex="-1"></a></span>
+<span id="cb204-4"><a href="at-home-exercises-4.html#cb204-4" tabindex="-1"></a><span class="do">## Summarize the results:</span></span>
+<span id="cb204-5"><a href="at-home-exercises-4.html#cb204-5" tabindex="-1"></a><span class="fu">summary</span>(fit_1f, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 33 iterations
 ## 
 ##   Estimator                                         ML
@@ -798,8 +798,8 @@ Click to show code
 ##    .pltcare           0.743    0.009   81.579    0.000
 ##    .trstplt           1.548    0.023   67.052    0.000
 ##     political_trst    2.299    0.055   41.569    0.000</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="at-home-exercises-4.html#cb203-1" tabindex="-1"></a><span class="do">## Compare fit statistics:</span></span>
-<span id="cb203-2"><a href="at-home-exercises-4.html#cb203-2" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="at-home-exercises-4.html#cb206-1" tabindex="-1"></a><span class="do">## Compare fit statistics:</span></span>
+<span id="cb206-2"><a href="at-home-exercises-4.html#cb206-2" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f)</span></code></pre></div>
 <pre><code>##                  npar                  fmin                 chisq 
 ##                29.000                 0.360             10652.207 
 ##                    df                pvalue        baseline.chisq 
@@ -832,7 +832,7 @@ Click to show code
 ##                 0.849                 0.611                 0.699 
 ##                  ecvi 
 ##                 0.725</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="at-home-exercises-4.html#cb205-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_1f)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="at-home-exercises-4.html#cb208-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_1f)</span></code></pre></div>
 <pre><code>##                  npar                  fmin                 chisq 
 ##                26.000                 0.598             17667.304 
 ##                    df                pvalue        baseline.chisq 
@@ -907,13 +907,13 @@ different aspects of some single underlying construct.</li>
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="at-home-exercises-4.html#cb207-1" tabindex="-1"></a>mod_2nd <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb207-2"><a href="at-home-exercises-4.html#cb207-2" tabindex="-1"></a><span class="st">institutions =~ trstlgl + trstplc + trstun + trstep + trstprl</span></span>
-<span id="cb207-3"><a href="at-home-exercises-4.html#cb207-3" tabindex="-1"></a><span class="st">satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem</span></span>
-<span id="cb207-4"><a href="at-home-exercises-4.html#cb207-4" tabindex="-1"></a><span class="st">politicians  =~ pltinvt + pltcare + trstplt</span></span>
-<span id="cb207-5"><a href="at-home-exercises-4.html#cb207-5" tabindex="-1"></a></span>
-<span id="cb207-6"><a href="at-home-exercises-4.html#cb207-6" tabindex="-1"></a><span class="st">trust =~ politicians + satisfaction + institutions</span></span>
-<span id="cb207-7"><a href="at-home-exercises-4.html#cb207-7" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="at-home-exercises-4.html#cb210-1" tabindex="-1"></a>mod_2nd <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb210-2"><a href="at-home-exercises-4.html#cb210-2" tabindex="-1"></a><span class="st">institutions =~ trstlgl + trstplc + trstun + trstep + trstprl</span></span>
+<span id="cb210-3"><a href="at-home-exercises-4.html#cb210-3" tabindex="-1"></a><span class="st">satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem</span></span>
+<span id="cb210-4"><a href="at-home-exercises-4.html#cb210-4" tabindex="-1"></a><span class="st">politicians  =~ pltinvt + pltcare + trstplt</span></span>
+<span id="cb210-5"><a href="at-home-exercises-4.html#cb210-5" tabindex="-1"></a></span>
+<span id="cb210-6"><a href="at-home-exercises-4.html#cb210-6" tabindex="-1"></a><span class="st">trust =~ politicians + satisfaction + institutions</span></span>
+<span id="cb210-7"><a href="at-home-exercises-4.html#cb210-7" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 <details>
 <summary>
 Click for explanation
@@ -940,8 +940,8 @@ of the <code>=~</code> operator) are previously defined first order latent varia
 <summary>
 Click to show code
 </summary>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="at-home-exercises-4.html#cb208-1" tabindex="-1"></a>fit_2nd <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_2nd, <span class="at">data =</span> ess)</span>
-<span id="cb208-2"><a href="at-home-exercises-4.html#cb208-2" tabindex="-1"></a><span class="fu">summary</span>(fit_2nd, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="at-home-exercises-4.html#cb211-1" tabindex="-1"></a>fit_2nd <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_2nd, <span class="at">data =</span> ess)</span>
+<span id="cb211-2"><a href="at-home-exercises-4.html#cb211-2" tabindex="-1"></a><span class="fu">summary</span>(fit_2nd, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-18 ended normally after 44 iterations
 ## 
 ##   Estimator                                         ML
@@ -1037,8 +1037,8 @@ Click to show code
 ##    .satisfaction      0.551    0.020   27.846    0.000    0.400    0.400
 ##    .politicians       0.065    0.004   17.091    0.000    0.157    0.157
 ##     trust             0.352    0.010   35.005    0.000    1.000    1.000</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="at-home-exercises-4.html#cb210-1" tabindex="-1"></a><span class="do">## Compare fit between the first and second order models:</span></span>
-<span id="cb210-2"><a href="at-home-exercises-4.html#cb210-2" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="at-home-exercises-4.html#cb213-1" tabindex="-1"></a><span class="do">## Compare fit between the first and second order models:</span></span>
+<span id="cb213-2"><a href="at-home-exercises-4.html#cb213-2" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f)</span></code></pre></div>
 <pre><code>##                  npar                  fmin                 chisq 
 ##                29.000                 0.360             10652.207 
 ##                    df                pvalue        baseline.chisq 
@@ -1071,7 +1071,7 @@ Click to show code
 ##                 0.849                 0.611                 0.699 
 ##                  ecvi 
 ##                 0.725</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="at-home-exercises-4.html#cb212-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_2nd)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="at-home-exercises-4.html#cb215-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_2nd)</span></code></pre></div>
 <pre><code>##                  npar                  fmin                 chisq 
 ##                29.000                 0.360             10652.207 
 ##                    df                pvalue        baseline.chisq 
@@ -1113,7 +1113,7 @@ second order CFA exactly as we did the first order CFA.</p>
 <hr />
 <p>You should quickly notice something strange about the model fit statistics
 compared above. If you don’t see it, consider the following:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="at-home-exercises-4.html#cb214-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f) <span class="sc">-</span> <span class="fu">fitMeasures</span>(fit_2nd)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="at-home-exercises-4.html#cb217-1" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit_3f) <span class="sc">-</span> <span class="fu">fitMeasures</span>(fit_2nd)</span></code></pre></div>
 <pre><code>##                  npar                  fmin                 chisq 
 ##                     0                     0                     0 
 ##                    df                pvalue        baseline.chisq 
