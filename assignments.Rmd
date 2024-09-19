@@ -582,7 +582,7 @@ summary(pathOut)
 You must also submit an executable script containing the code used for your
 analyses.
 
-- If you used [**KnitR**](knitr) to embed your analysis code in your report,
+- If you used [**KnitR**][knitr] to embed your analysis code in your report,
   you may submit the source code that generates your report (i.e., an RMD
   [R Markdown], QMD [Quarto], or RNW [LaTeX] file).
 - Otherwise, submit a standard R script.
