@@ -3,7 +3,7 @@
 In this lecture, we will begin by discussing the \emph{statistical modeling} 
 paradigm and contextualizing statistical modeling relative to other ways that we 
 can conduct statistical analyses. We will conclude with an introduction to 
-\emph{path analysis}.
+*path analysis*.
 
 ### Recordings
 

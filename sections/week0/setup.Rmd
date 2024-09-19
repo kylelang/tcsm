@@ -118,4 +118,30 @@ install.packages(c("lavaan",
                  dependencies = TRUE)
 ```
 
+#### Compiling packages from source {-}
+
+On Windows and Mac, R packages are distributed in two ways:
+
+1. Pre-compiled binary executables
+   - Binary packages can be run directly (equivalent to .exe files on Windows).
+   - You don't need any special tools to install binary packages.
+1. Archives of source code
+   - Packages installed via source code must be compiled locally.
+   - You will need an appropriate toolchain to build and install the package.
+   - New versions of a package are usually distributed via source code before
+   they get a binary release. So this option will get you the latest versions of
+   the packages.
+
+When you run the above command, you may see a message asking if you would like
+to compile certain packages from source. If so, it's usually best to accept this
+option. You may also get a message asking if you want to install **Rtools**. A
+typical Windows setup is missing the toolchain needed to compile R packages from
+source, so the R folks have packaged the necessary tools in a standalone
+software bundle called **Rtools**.
+
+You can find the appropriate **Rtools** installer through
+[this CRAN page](https://cran.r-project.org/bin/windows/Rtools/).
+
+- Follow the links for your R version and operating system.
+
 <!----------------------------------------------------------------------------->

@@ -548,7 +548,37 @@ command.</li>
 <span id="cb2-8"><a href="installing-software.html#cb2-8" tabindex="-1"></a>                   <span class="st">&quot;foreign&quot;</span>,</span>
 <span id="cb2-9"><a href="installing-software.html#cb2-9" tabindex="-1"></a>                   <span class="st">&quot;readxl&quot;</span>),</span>
 <span id="cb2-10"><a href="installing-software.html#cb2-10" tabindex="-1"></a>                 <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="compiling-packages-from-source" class="section level4 unnumbered hasAnchor">
+<h4>Compiling packages from source<a href="installing-software.html#compiling-packages-from-source" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>On Windows and Mac, R packages are distributed in two ways:</p>
+<ol style="list-style-type: decimal">
+<li>Pre-compiled binary executables
+<ul>
+<li>Binary packages can be run directly (equivalent to .exe files on Windows).</li>
+<li>You don’t need any special tools to install binary packages.</li>
+</ul></li>
+<li>Archives of source code
+<ul>
+<li>Packages installed via source code must be compiled locally.</li>
+<li>You will need an appropriate toolchain to build and install the package.</li>
+<li>New versions of a package are usually distributed via source code before
+they get a binary release. So this option will get you the latest versions of
+the packages.</li>
+</ul></li>
+</ol>
+<p>When you run the above command, you may see a message asking if you would like
+to compile certain packages from source. If so, it’s usually best to accept this
+option. You may also get a message asking if you want to install <strong>Rtools</strong>. A
+typical Windows setup is missing the toolchain needed to compile R packages from
+source, so the R folks have packaged the necessary tools in a standalone
+software bundle called <strong>Rtools</strong>.</p>
+<p>You can find the appropriate <strong>Rtools</strong> installer through
+<a href="https://cran.r-project.org/bin/windows/Rtools/">this CRAN page</a>.</p>
+<ul>
+<li>Follow the links for your R version and operating system.</li>
+</ul>
 <!----------------------------------------------------------------------------->
+</div>
 </div>
 </div>
 <!-- </div> -->

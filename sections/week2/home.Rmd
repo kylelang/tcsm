@@ -107,8 +107,8 @@ summary(results)
 Run a multiple linear regression with `LifSat` as the dependent variable and 
 `educ`, `age`, and `ChildSup` as the independent variables. 
 
-*Hint:* You can use the `+` sign to add multiple variables to the RHS of your 
-model formula.
+*Hint:* You can use the `+` sign to add multiple variables to the right hand
+side (RHS) of your model formula.
 
 <details>
   <summary>Click for explanation</summary>
