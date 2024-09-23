@@ -4,7 +4,7 @@ How do you know if you have measured the putative hypothetical construct that
 you intend to measure?
 
 - The methods introduced in this lecture (namely, latent variables, factor 
-analysis, and reliability analysis) can shed empirical light on this issue. 
+  analysis, and reliability analysis) can shed empirical light on this issue. 
 
 In the social and behavioral sciences we're often forced to measure key concepts
 indirectly. For example, we have no way of directly quantifying a person's 
@@ -35,9 +35,10 @@ task, we will be able to combine these estimated *latent variables* with the
 
 *Notes:*
 
-- This week (and next), we'll be re-using Caspar van Lissa's old slides 
-  and lecture recording. So, you'll see Caspar in the following video, and the
-  slides will have a notably different flavor than our usual materials.
+- This week, we'll be re-using Caspar van Lissa's old slides and lecture
+  recording. So, you'll see Caspar in the following video, and the slides will
+  have a notably different flavor than our usual materials.
+
 - Don't be confused by any mention of "model fit" in the lecture. We haven't
   covered model fit yet, but we will do so next week.
 
