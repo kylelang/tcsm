@@ -847,7 +847,7 @@ model.2CFA_mod <- "
 "
 
 # Fit model
-out1_mod <- cfa(model.2CFA_mod, data=data_sapi,
+out1_mod <- cfa(model.2CFA_mod, data=sapi,
                     missing='fiml', fixed.x=F)  # use FIML 
 @
 
@@ -1073,7 +1073,7 @@ model.1CFA <- '
 '
 
 # Fit model
-fit_1CFA <- cfa(model.1CFA, data=data_sapi,
+fit_1CFA <- cfa(model.1CFA, data=sapi,
                 missing='fiml', fixed.x=F)  # use FIML
 @ 
 
@@ -1161,7 +1161,7 @@ model.1CFA_RefGr <- '
  '
 
 # Fit model
-fit_1CFA_RefGr <- cfa(model.1CFA_RefGr, data=data_sapi,
+fit_1CFA_RefGr <- cfa(model.1CFA_RefGr, data=sapi,
                 missing='fiml', fixed.x=F)  # use FIML
 @ 
 
