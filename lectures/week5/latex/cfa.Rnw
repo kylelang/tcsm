@@ -1,7 +1,7 @@
 %%% Title:    TCSM Week 5: CFA
 %%% Author:   Kyle M. Lang (Adapted from Rebecca Kuiper's Summer School Slides)
 %%% Created:  2016-XX-XX
-%%% Modified: 2024-09-11
+%%% Modified: 2024-09-24
 
 \documentclass[10pt]{beamer}
 \usetheme{Utrecht}
@@ -27,6 +27,7 @@
 \newcommand{\pkg}[1]{\textbf{#1}}
 \newcommand{\src}[1]{\texttt{#1}}
 \newcommand{\rmsc}[1]{\textrm{\textsc{#1}}}
+\newcommand{\mub}[0]{\boldsymbol{\muup}}
 
 \title{Confirmatory Factor Analysis}
 \subtitle{Theory Construction and Statistical Modeling}
@@ -1222,196 +1223,371 @@ Sometimes, pragmatic reasons.
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}{3. Effects-coding method}
+\sectionslide{Model Estimation}
 
-    \begin{columns}[T] % align columns
-    \begin{column}{.65\textwidth}
-    
-    \textbf{Parameterization:}
-        \begin{itemize}
-            \item Constrain the average of the factor loadings to 1:
-            $\frac{1}{3} \sum_{i=1}^3 \lambda_i = 1$. %(hence, sum = 3).
-            \item Constrain the average of the item intercepts to 0:
-            $\frac{1}{3} \sum_{i=1}^3 \nu_i = 0$.
-        \end{itemize} 
-        \textbf{Defaults:}
-        \begin{itemize}
-            \item Mean of residuals is by definition 0.
-            \item Residuals have a loading of 1.
-        \end{itemize} 
-        \textbf{Estimated (subject to the constraints):}
-        \begin{itemize}
-            \item factor variance ($\Psi$),
-            \item factor mean ($\alpha$),
-            \item all factor loadings ($\lambda_1$, $\lambda_2$, $\lambda_3$),
-            \item all item intercepts ($\nu_1$, $\nu_2$, $\nu_3$), 
-            \item all residual variances ($\epsilon_1$, $\epsilon_2$, $\epsilon_3$).
-        \end{itemize}
-    
-    \end{column}%
-    
-    \hfill%
-    \begin{column}{.34\textwidth}
-        \includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{images/slide66.png} 
-    \end{column}%
+%------------------------------------------------------------------------------%
+
+\subsection{Maximum Likelihood}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}[allowframebreaks]{Maximum Likelihood Estimation}
+
+  ML estimation simply finds the parameter values that are ``most likely'' to 
+  have given rise to the observed data.
+  \vb
+  \begin{itemize}
+  \item The \emph{likelihood} function is just a probability density (or mass) 
+    function with the data treated as fixed and the parameters treated as 
+    random variables.
+    \vb
+  \item Having such a framework allows us to ask: ``Given that I've observed 
+    these data values, what parameter values most probably describe these 
+    data?''
+  \end{itemize}
+  
+  \pagebreak
+  
+  ML estimation is usually employed when there is no closed form solution for 
+  the parameters we seek.
+  \vb
+  \begin{itemize}
+  \item This is why you don't usually see ML used to fit general linear models.
+  \end{itemize}
+  \vb
+  After choosing a likelihood function, we iteratively optimize the function to 
+  produce the ML estimated parameters.
+  \vb
+  \begin{itemize}
+  \item In practice, we nearly always work with the natural logarithm of the 
+    likelihood function (i.e., the \emph{loglikelihood}).
+  \end{itemize}
+  
+\end{frame}
+
+\watermarkoff %----------------------------------------------------------------%
+
+\begin{frame}[fragile, allowframebreaks]{ML Intuition}
+  
+  Let's say we have the following $N = 10$ observations.
+  \vc
+  \begin{itemize}
+  \item We assume these data come from a normal distribution with a known 
+    variance of $\sigma^2 = 1$.  
+    \vc
+  \item We want to estimate the mean of this distribution, $\mu$.
+  \end{itemize}
+  
+  <<echo = 2>>=
+  options(width = 50)
+  (y <- rnorm(n = 10, mean = 5, sd = 1))
+  options(width = 80)
+  @
+  
+\end{frame}
+
+\watermarkon %-----------------------------------------------------------------%
+
+\begin{frame}{ML Intuition}
+  
+  In ML estimation, we would define different normal distributions.
+  \vc
+  \begin{itemize}
+  \item Every distribution would have $\sigma^2 = 1$.
+    \vc
+  \item Each distribution would have a different value of $\mu$.
+  \end{itemize}
+  \vb
+  We then compare the observed data to those distributions and see which 
+  distribution best fits the data.
+
+\end{frame}
+
+\watermarkoff %----------------------------------------------------------------%
+
+\begin{frame}{ML Intuition}
+  
+  <<echo = FALSE, out.width = "65%">>=
+  x1 <- seq(0, 10, length.out = 1000)
+  y1 <- dnorm(x1, 3, 1)
+  y2 <- dnorm(x1, 4, 1)
+  y3 <- dnorm(x1, 5, 1)
+  y4 <- dnorm(x1, 6, 1)
+  
+  dat1 <- data.frame(m = rep(c(3, 4, 5, 6), each = length(x1)),
+                     x = rep(x1, 4), 
+                     y = c(y1, y2, y3, y4)
+                     )
+  
+  dat2 <- data.frame(m = rep(c(3, 4, 5, 6), each = length(y)),
+                     x = rep(y, 4),
+                     y = c(dnorm(y, 3, 1),
+                           dnorm(y, 4, 1),
+                           dnorm(y, 5, 1),
+                           dnorm(y, 6, 1)
+                           )
+                     )
+  
+  ggplot(data = dat1, mapping = aes(y = y, x = x)) + 
+      geom_line() + 
+      geom_segment(data = dat2,
+                   mapping = aes(x = x, xend = x, y = 0, yend = y),
+                   color = "red") +
+      theme_classic() +
+      ylab("Density") +
+      xlab("Data Values") +
+      facet_wrap(vars(m))
+  @
+  
+\end{frame}
+
+\watermarkoff %----------------------------------------------------------------%
+
+\begin{frame}{Likelihoods}
+  
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      
+      Suppose we have the following model:
+      \begin{align*}
+        Y \sim \text{N}\left( \mu, \sigma^2 \right).
+      \end{align*}
+      
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      
+      <<echo = FALSE, cache = TRUE>>=
+      x    <- seq(0, 15, length.out = 1000)
+      dat1 <- data.frame(x = x, y = dnorm(x, 7.5, 1.75))
+      
+      ggplot(data = dat1, aes(x = x, y = y)) + 
+          theme_classic() +
+          geom_line() +
+          theme(text       = element_text(size = 16, family = "Courier"),
+                plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
+                ) +
+          ylab("Density") +
+          xlab("Y")
+      @
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\watermarkon %-----------------------------------------------------------------%
+
+\begin{frame}{Likelihoods}
+  
+  For a given $Y_n$, we have:
+  \begin{align}
+    P \left( Y_n|\mu, \sigma^2 \right) = 
+    \frac{1}{\sqrt{2 \pi \sigma^2}} 
+    e^{-\frac{\left( Y_n - \mu \right)^2}{2\sigma^2}}. \label{margPdf}
+  \end{align}
+  
+  If we plug estimated parameters into Equation \ref{margPdf}, we get the 
+  probability of observing $Y_n$ given $\hat{\mu}$ and $\hat{\sigma}^2$:
+  \begin{align}
+    P \left( Y_n|\hat{\mu}, \hat{\sigma}^2 \right) = 
+    \frac{1}{\sqrt{2 \pi \hat{\sigma}^2}} 
+    e^{-\frac{\left( Y_n - \hat{\mu}\right)^2}{2\hat{\sigma}^2}}. \label{estMargPdf}
+  \end{align}
+  
+  Applying Equation \ref{estMargPdf} to all $N$ observations and multiplying the 
+  results produces a \emph{likelihood}:
+  \begin{align*}
+    \hat{L} \left( \hat{\mu}, \hat{\sigma}^2 \right) = 
+    \prod_{n = 1}^N P \left( Y_n|\hat{\mu}, \hat{\sigma}^2 \right).
+  \end{align*}
+  
+\end{frame}
+
+%%----------------------------------------------------------------------------%%
+
+\begin{frame}{Likelihoods}
+  
+  We generally want to work with the natural logarithm of Equation 
+  \ref{estMargPdf}. Doing so gives the \emph{loglikelihood}:
+  \begin{align*}
+  \hat{\mathcal{L}} \left( \hat{\mu}, \hat{\sigma}^2 \right) &= 
+    \ln \prod_{n = 1}^N P \left( Y_n|\hat{\mu}, \hat{\sigma}^2 \right)\\ 
+    &= -\frac{N}{2} \ln 2\pi - N \ln \hat{\sigma} - \frac{1}{2\hat{\sigma}^2} 
+    \sum_{n = 1}^N \left( Y_n - \hat{\mu} \right)^2
+  \end{align*}
+  
+  ML tries to find the values of $\hat{\mu}$ and $\hat{\sigma}^2$ that maximize 
+  $\hat{\mathcal{L}} \left( \hat{\mu}, \hat{\sigma}^2 \right)$.
+  \vc
+  \begin{itemize}
+  \item Find the values of $\hat{\mu}$ and $\hat{\sigma}^2$ that are \emph{most 
+    likely}, given the observed values of $Y$.
+  \end{itemize}
+  
+\end{frame}
+
+\watermarkoff %----------------------------------------------------------------%
+
+\begin{frame}{Likelihoods}
+  
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+      
+      Suppose we have a linear regression model:
+      \begin{align*}
+        Y &= \beta_0 + \beta_1 X + \varepsilon,\\[6pt]
+        \varepsilon &\sim \text{N}\left( 0, \sigma^2 \right).
+      \end{align*}
+      This model can be equivalently written as:
+      \begin{align*}
+        Y \sim \text{N} \left( \beta_0 + \beta_1 X, \sigma^2 \right)
+      \end{align*}
+      
+    \end{column}
+    \begin{column}{0.5\textwidth}
+
+      \begin{figure}
+        \includegraphics[width = \textwidth]{figures/conditional_density_figure.png}\\
+        \va
+        \tiny{Image retrieved from:
+          \url{http://www.seaturtle.org/mtn/archives/mtn122/mtn122p1.shtml}}
+      \end{figure}
+      
+    \end{column}
     \end{columns}
     
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
-\begin{frame}{3. Effects-coding method Ctd}
-    
-    {\centering
-    \includegraphics[height=3cm,keepaspectratio]{images/slide66.png} 
-    }
-        
-Interpretations can be intuitive: 
-\begin{itemize}
-  \item Factor on similar scale as the indicators.
-  \item Factor variance ($\Psi$): average variance of each indicator that can be explained by the factor.
-  \item Factor mean ($\alpha$): weighted mean of the indicator means
-\end{itemize}
-    
-\end{frame}
-
-%------------------------------------------------------------------------------%
-
-\begin{frame}[fragile]{3. Effects-coding method - lavaan model}
-
-<<>>=
-# Model
-model.1CFA_EffC <- '
-  # Label parameters, such that they can be constrained
-  Extraversion =~ lambda1*Q77 + lambda2*Q84 + 
-                  lambda3*Q170 + lambda4*Q196
-  # intercepts
-  Q77  ~ nu1*1
-  Q84  ~ nu2*1
-  Q170 ~ nu3*1
-  Q196 ~ nu4*1
+\begin{frame}{Likelihoods}
   
-  # Constrain average of loadings to 1, i.e., set sum to 4
-  lambda1 == 4 - lambda2 - lambda3 - lambda4
-  # Constrain average of item intercepts to 0, 
-  # i.e., set sum to 0
-  nu1 == 0 - nu2 - nu3 - nu4
- '
-@ 
+  For a given $\{Y_n, X_n\}$, we have:
+  \begin{align}
+    P \left( Y_n|X_n, \beta_0, \beta_1, \sigma^2 \right) = 
+    \frac{1}{\sqrt{2 \pi \sigma^2}} 
+    e^{-\frac{\left( Y_n - \beta_0 - \beta_1 X_n \right)^2}{2\sigma^2}}. \label{olsPdf}
+  \end{align}
+  
+  If we plug our estimated parameters into Equation \ref{olsPdf}, we get the 
+  probability of observing $Y_n$ given $\hat{Y}_n = \hat{\beta}_0 + 
+  \hat{\beta}_1X_n$ and $\hat{\sigma}^2$.
+  \begin{align}
+    P \left( Y_n|X_n, \hat{\beta}_0, \hat{\beta}_1, \hat{\sigma}^2 \right) = 
+    \frac{1}{\sqrt{2 \pi \hat{\sigma}^2}} 
+    e^{-\frac{\left( Y_n - \hat{\beta}_0 - \hat{\beta}_1 X_n \right)^2}{2\hat{\sigma}^2}} \label{estOlsPdf}
+  \end{align}
+  
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Likelihoods}
+ 
+  So, our final loglikelihood function would be the following:
+  \begin{align*}
+  \hat{\mathcal{L}} \left( \hat{\beta}_0, \hat{\beta}_1, \hat{\sigma}^2 \right) &= 
+    \ln \prod_{n = 1}^N P \left( Y_n|X_n, \hat{\beta}_0, \hat{\beta}_1, \hat{\sigma}^2 \right)\\ 
+    &= -\frac{N}{2} \ln 2\pi - N \ln \hat{\sigma} - \frac{1}{2\hat{\sigma}^2} 
+    \sum_{n = 1}^N \left( Y_n - \hat{\beta}_0 - \hat{\beta}_1 X_n \right)^2.
+  \end{align*}
+  
+\end{frame}
+  
+\watermarkoff %----------------------------------------------------------------%
+
+\begin{frame}[fragile, allowframebreaks]{Example}
+    
+  <<echo = FALSE>>=
+  diabetes <- readRDS(paste0(dataDir, "diabetes.rds"))
+  @ 
+
+  <<>>=
+  ## Fit a model:
+  out1 <- lm(ldl ~ bp + glu + bmi, data = diabetes)
+  
+  ## Extract the predicted values and estimated residual standard error:
+  yHat <- predict(out1)
+  s    <- summary(out1)$sigma
+  
+  ## Compute the row-wise probabilities:
+  pY <- dnorm(diabetes$ldl, mean = yHat, sd = s)
+  
+  ## Compute the loglikelihood, and compare to R's version:
+  sum(log(pY)); logLik(out1)[1]
+  @
+
+\end{frame}
+
+\watermarkon %-----------------------------------------------------------------%
+
+\begin{frame}{Multivariate Normal Distribution}
+  
+  The PDF for the multivariate normal distribution is:
+  \begin{align*}
+    P(\mathbf{Y}|\mub, \Sigma) = 
+    \frac{1}{\sqrt{(2\pi)^P|\Sigma|}} e^{-\frac{1}{2}(\mathbf{Y} - \mub)^T\Sigma^{-1}(\mathbf{Y} - \mub)}.
+  \end{align*}
+  So, the multivariate normal loglikelihood is:
+  \begin{align*}
+    \mathcal{L} \left( \mub, \Sigma \right) = 
+    -\left[\frac{P}{2} \ln(2\pi) + \frac{1}{2} \ln |\Sigma| + \frac{1}{2} \right] \sum_{n = 1}^N(\mathbf{Y}_n - \mub)^T \Sigma^{-1}(\mathbf{Y}_n - \mub).
+  \end{align*}
+  Which can be further simplified if we multiply through by -2:
+  \begin{align*}
+    -2\mathcal{L} \left( \mub, \Sigma \right) = 
+    \left[P \ln(2\pi) + \ln |\Sigma| \right] \sum_{n = 1}^N(\mathbf{Y}_n - \mub)^T \Sigma^{-1}(\mathbf{Y}_n - \mub).
+  \end{align*}
+  
+\end{frame}
+
+%%----------------------------------------------------------------------------%%
+
+\begin{frame}{Steps of ML}
+
+  \begin{enumerate}
+  \item Choose a probability distribution, $f(Y|\theta)$, to describe the 
+    distribution of the data, $Y$, given the parameters, $\theta$.
+    \vc
+  \item Choose some estimate of $\theta$, $\hat{\theta}^{(i)}$.
+    \vc
+  \item Compute each row's contribution to the loglikelihood function by 
+    evaluating: $\ln \left[f\left(Y_n|\hat{\theta}^{(i)}\right)\right]$. 
+    \label{rowContrib}
+    \vc
+  \item Sum the individual loglikelihood contributions from Step 
+    \ref{rowContrib} to find the loglikelihood value, $\hat{\mathcal{L}}$. 
+    \label{getLL}
+    \vc
+  \item Choose a ``better'' estimate of the parameters, $\hat{\theta}^{(i + 1)}$, 
+    and repeat Steps \ref{rowContrib} and \ref{getLL}. \label{updateTheta}
+    \vc
+  \item Repeat Steps \ref{rowContrib} -- \ref{updateTheta} until the change 
+    between $LL^{(i - 1)}$ and $LL^{(i)}$ falls below some trivially small 
+    threshold.
+    \vc
+  \item Take $\hat{\theta}^{(i)}$ as your estimated parameters.
+  \end{enumerate}
 
 \end{frame}
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{3. Effects-coding method - fit lavaan model}
-
-Now, use the lavaan() function:
-
-\vspace{5mm}
-
-<<>>=
-# Fit model: Now, use the lavaan() function!
-fit_1CFA_EffC <- lavaan(model.1CFA_EffC, data=data_sapi,
-                      missing='fiml', fixed.x=F,
-                      auto.var = TRUE, 
-                      auto.fix.first = FALSE,
-                      auto.cov.lv.x = TRUE, 
-                      int.ov.free = TRUE)
-@ 
-% summary(fit_1CFA_EffC)
-
-\end{frame}
+\sectionslide{Model Fit}
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}[fragile]{3. Effects-coding method - lavaan outpu}
+\subsection{Degrees of Freedom}
 
-\begin{itemize}
-    \item Constrain the average of the factor loadings to 1:
-    $\frac{1}{4} \sum_{i=1}^4 \lambda_i = 1$. \\ %(hence, sum = 3).
-<<>>=
-parameterEstimates(fit_1CFA_EffC)[1:4,1:5]
-@
-    \item Constrain the average of the item intercepts to 0:
-    $\frac{1}{4} \sum_{i=1}^4 \nu_i = 0$.\\
-<<>>=
-parameterEstimates(fit_1CFA_EffC)[5:8,1:5]
-@
-\end{itemize}
-
-\end{frame}
+\subsection{Fit Indices}
 
 %------------------------------------------------------------------------------%
 
-\section{Extra}
-
-% Slide 20
-\begin{frame}
-	
-	\begin{center}
-		\Huge{Extra:}
-		
-		\large{Categorical/Ordinal or continuous indicators?}
-	\end{center}
-	
-	\vspace*{15mm}
-	
-	Note: in cfa() you can, for example use `ordered = TRUE' for  endogenous variable.\\
-	Default then: estimator = "WLSMV".
-	
-	\vspace*{15mm}
-	
-	More information on: https://lavaan.ugent.be/tutorial/cat.html
-	
-\end{frame}
+\sectionslide{Model Evluation}
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}
-	
-	\includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{images/slide21.png}
-	
-\end{frame}
-
-%------------------------------------------------------------------------------%
-
-\begin{frame}{Remark!}
-	
-Do NOT use a $\chi^2$ test or IC (AIC or BIC) \\
-to compare categorical and continuous models:
-
-\vspace{5mm}
-
-\begin{itemize}
-	\item Obviously not nested (so, no $\chi^2$ test anyway).
-	\item AND likelihoods of categorical and continuous indicator models are incomparable!
-\end{itemize}
-	
-	\vspace{5mm}
-	
-	Note: $\chi^2$ test and IC are based on (log) likelihood (= fit).
-	
-\end{frame}
-
-%------------------------------------------------------------------------------%
-
-\begin{frame}{Interesting Reading}
-	
-	https://lavaan.ugent.be/tutorial/cat.html
-	
-	\vspace{5mm}
-	
-	Muthén, B. (1984). A general structural equation model with dichotomous, ordered categorical, and continuous latent variable indicators. Psychometrica, 49(1), 115-132.
-	
-	\vspace{5mm}
-	
-	Rhemtulla, M., Brosseau-Liard, P.É., \& Savalei, V. (2012). When can categorical variables be treated as continuous? A comparison of robust continuous and categorical SEM estimation methods under suboptimal conditions. Psychological Methods, 17(3), 354-373. 
-	
-	\vspace{5mm}
-	
-	Sventina, D., Rutkowski, D. (2020). Multiple group invariance with categorical outcomes using updated guidelines: an illustration using Mplus and the lavaan/semtools packages. Structural Equational Modelling: A Multidisciplinary Journal, 27(1), 111-130
-
-\end{frame}
+\subsection{Model Comparison}
 
 %------------------------------------------------------------------------------%
 
