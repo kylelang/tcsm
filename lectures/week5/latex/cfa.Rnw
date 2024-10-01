@@ -1144,10 +1144,6 @@ If reference category changed, other loadings also change.
 
 %------------------------------------------------------------------------------%
 
-\subsection*{Scaling - Part 2}
-
-%------------------------------------------------------------------------------%
-
 \begin{frame}[fragile]{2. Reference-group method - lavaan}
 
 <<>>=
@@ -1224,6 +1220,220 @@ Sometimes, pragmatic reasons.
 %------------------------------------------------------------------------------%
 
 \sectionslide{Model Estimation}
+
+%------------------------------------------------------------------------------%
+
+\subsection{Model-Implied Statistics}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Model-Implied Statistics}
+
+  Most statistical estimation algorithms operate by minimizing the difference
+  between two key reference points:
+
+  \vc
+
+  \begin{enumerate}
+    \item The \emph{model-implied} statistics/predictions/fitted values
+      \begin{itemize}
+        \item The sufficient statistics implied by the structure of your model.
+        \item Predicted/fitted values produced by your model.
+      \end{itemize}
+
+      \vc
+
+    \item The \emph{observed} statistics/values
+      \begin{itemize}
+        \item The sufficient statistics calculated from the observed data.
+        \item The raw outcome values from your dataset.
+      \end{itemize}
+  \end{enumerate}
+
+  \vb
+
+  The predictions/implied statistics produced by a good model must be simpler
+  than the analagous quantities in the observed data.
+  \begin{itemize}
+    \item A model that exactly replicates the obvserved data is overfitting.
+    \item The inferences from such models won't generalize to the population.
+  \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Model-Implied Statistics}
+
+  You should already be familiar with this idea from OLS regression.
+
+  \begin{itemize}
+    \item The fitted values are the model implied statistics.
+      \begin{align*}
+        \hat{Y}_n = \hat{\beta}_0 + \sum_{p = 1}^P \hat{\beta}_p X_{n,p}
+      \end{align*}
+    \item The raw outcome variable, $Y$, contains the observed values.
+    \item Minimize the difference between $\hat{Y}$ and $Y$ to estimate the
+      model.
+      \begin{align*}
+        \eqit{RSS} = \sum_{n = 1}^N \left( Y_n - \hat{Y}_n \right)^2
+      \end{align*}
+  \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Fully Specified Path Diagram}
+
+  \begin{figure}
+    \includegraphics[width = \textwidth]{figures/cfa_two_factors_means.pdf}
+  \end{figure}
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Parameter Matrices}
+
+  % \begin{columns}
+  %   \begin{column}{0.1\textwidth}
+
+  %     \begin{align*}
+  %     \end{align*}
+
+  %   \end{column}
+  %   \begin{column}{0.2\textwidth}
+
+  %   \end{column}
+  %   \begin{column}{0.7\textwidth}
+
+  %     \begin{align*}
+  %     \end{align*}
+
+  %   \end{column}
+  % \end{columns}
+
+  \begin{columns}
+    \begin{column}{0.1\textwidth}
+
+      \begin{align*}
+        \alpha &=
+        \begin{bmatrix}
+          \alpha_1 \\
+          \alpha_2
+        \end{bmatrix}
+        \\[12pt]
+        \tau &=
+        \begin{bmatrix}
+          \tau_1 \\
+          \tau_2 \\
+          \tau_3 \\
+          \tau_4 \\
+          \tau_5 \\
+          \tau_6 \\
+          \tau_7 \\
+          \tau_8 \\
+          \tau_9
+        \end{bmatrix}
+      \end{align*}
+
+    \end{column}
+    \begin{column}{0.7\textwidth}
+
+      \begin{align*}
+        \Psi &=
+        \begin{bmatrix}
+          \psi_{11} &           \\
+          \psi_{21} & \psi_{22}
+        \end{bmatrix}
+        \\[12pt]
+        \Theta &=
+        \begin{bmatrix}
+          \theta_{11} &             &             &             &             &             &             &             &             \\
+          0           & \theta_{22} &             &             &             &             &             &             &             \\
+          0           & 0           & \theta_{33} &             &             &             &             &             &             \\
+          0           & 0           & 0           & \theta_{44} &             &             &             &             &             \\
+          0           & 0           & 0           & 0           & \theta_{55} &             &             &             &             \\
+          0           & 0           & 0           & 0           & 0           & \theta_{66} &             &             &             \\
+          0           & 0           & 0           & 0           & 0           & 0           & \theta_{77} &             &             \\
+          0           & 0           & 0           & 0           & 0           & 0           & 0           & \theta_{88} &             \\
+          0           & 0           & 0           & 0           & 0           & 0           & 0           & 0           & \theta_{99}
+        \end{bmatrix}
+      \end{align*}
+
+    \end{column}
+    \begin{column}{0.2\textwidth}
+
+      \begin{align*}
+        \\[22pt]
+        \Lambda =
+        \begin{bmatrix}
+          \lambda_{11} & 0            \\
+          \lambda_{21} & 0            \\
+          \lambda_{31} & 0            \\
+          \lambda_{41} & 0            \\
+          0            & \lambda_{52} \\
+          0            & \lambda_{62} \\
+          0            & \lambda_{72} \\
+          0            & \lambda_{82} \\
+          0            & \lambda_{92}
+        \end{bmatrix}
+      \end{align*}
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Model-Implied Statistics}
+
+  Model estimation for CFA/SEM follows the same principle.
+
+  \begin{align*}
+    \Sigma &=
+    \begin{bmatrix}
+      \lambda_{11} \psi_{11} \lambda_{11} + \theta_{11} &                                                   &                                                   \\
+      \lambda_{11} \psi_{11} \lambda_{21} + \theta_{21} & \lambda_{21} \psi_{11} \lambda_{21} + \theta_{22} &                                                   \\
+      \lambda_{11} \psi_{11} \lambda_{31} + \theta_{31} & \lambda_{21} \psi_{11} \lambda_{31} + \theta_{32} & \lambda_{31} \psi_{11} \lambda_{31} + \theta_{33} \\
+    \end{bmatrix}
+    \\[12pt]
+    \mu &=
+    \begin{bmatrix}
+     \tau_1 + \lambda_{11} \alpha_1 &
+     \tau_2 + \lambda_{22} \alpha_1 &
+     \tau_3 + \lambda_{33} \alpha_1
+    \end{bmatrix}
+  \end{align*}
+
+\end{frame}
+
+%------------------------------------------------------------------------------%
+
+\subsection{Tracing Rules}
+
+%------------------------------------------------------------------------------%
+
+\begin{frame}{Tracing Rules}
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+
+      Blah, blah, blah
+
+    \end{column}
+    \begin{column}{0.5\textwidth}
+
+      \begin{figure}
+        \includegraphics[width = \textwidth]{figures/cfa_four_indicators_means.pdf}
+      \end{figure}
+
+    \end{column}
+  \end{columns}
+
+\end{frame}
 
 %------------------------------------------------------------------------------%
 
@@ -1579,6 +1789,8 @@ Sometimes, pragmatic reasons.
 
 \subsection{Degrees of Freedom}
 
+%------------------------------------------------------------------------------%
+
 \subsection{Fit Indices}
 
 %------------------------------------------------------------------------------%
@@ -1588,6 +1800,10 @@ Sometimes, pragmatic reasons.
 %------------------------------------------------------------------------------%
 
 \subsection{Model Comparison}
+
+%------------------------------------------------------------------------------%
+
+\subsection{Model Modification}
 
 %------------------------------------------------------------------------------%
 
