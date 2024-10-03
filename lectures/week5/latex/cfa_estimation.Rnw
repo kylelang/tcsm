@@ -1,7 +1,7 @@
 %%% Title:    TCSM Week 5: CFA
 %%% Author:   Kyle M. Lang (Adapted from Rebecca Kuiper's Summer School Slides)
 %%% Created:  2016-XX-XX
-%%% Modified: 2024-10-02
+%%% Modified: 2024-10-03
 
 \documentclass[10pt]{beamer}
 \usetheme{Utrecht}
@@ -61,7 +61,7 @@ source("../../../code/supportFunctions.R")
 options(width = 80)
 opts_chunk$set(size = "footnotesize",
                fig.align = "center",
-               fig.path = "figure/multiple_mediation-",
+               fig.path = "figure/cfa_estimation-",
                message = FALSE,
                comment = "")
 knit_theme$set('edit-kwrite')
@@ -83,7 +83,7 @@ knit_theme$set('edit-kwrite')
 
 \section{SAPI Data}
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{South African Personality Inventory Project}
 
@@ -93,7 +93,7 @@ knit_theme$set('edit-kwrite')
 	
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \begin{frame}{SAPI details}
 	\begin{itemize}
@@ -130,13 +130,6 @@ knit_theme$set('edit-kwrite')
 
 \begin{frame}{Reflective Constructs}
 
-  In a reflective measurement model, the items are the dependent variables, and
-  the latent factor is the independent variable.
-  \begin{itemize}
-    \item The observed items are dependent variables.
-    \item The latent factor is causing the items to take the values we observe.
-  \end{itemize}
-
   \begin{figure}
     \scalebox{0.7}{
       \begin{tikzpicture}[
@@ -170,6 +163,13 @@ knit_theme$set('edit-kwrite')
       \end{tikzpicture}
     }
   \end{figure}
+
+  In a reflective measurement model, the items are the dependent variables, and
+  the latent factor is the independent variable.
+  \begin{itemize}
+    \item The observed items are dependent variables.
+    \item The latent factor is causing the items to take the values we observe.
+  \end{itemize}
 
 \end{frame}
 
@@ -218,10 +218,12 @@ knit_theme$set('edit-kwrite')
 
   \vspace{5mm}
 
-  The true temperature is the causal factor that produces thermometer readings.
+  The true temperature is the underlying (unobserved) factor that produces
+  thermometer readings.
   \begin{itemize}
-    \item Any given thermometer reading is only an imperfect reflection of the true temperature.
-    \item Taking multiple readings increases the reliability of our temperature estimate.
+    \item Any given thermometer reading is only an imperfect reflection of the
+      true temperature.
+    \item Multiple readings increase the reliability of our temperature estimate.
   \end{itemize}
 
 \end{frame}
@@ -291,7 +293,9 @@ knit_theme$set('edit-kwrite')
 
 \begin{frame}{Formative Constructs}
 
-  In a formative measurement model, the direction of the factor loadings is flipped.
+  Flipping the direction of the factor loadings makes a \emph{formative construct}.
+
+  \vb
 
   \begin{figure}
     \scalebox{0.7}{
@@ -600,9 +604,9 @@ knit_theme$set('edit-kwrite')
   \vb
 
   The predictions/implied statistics produced by a good model must be simpler
-  than the analagous quantities in the observed data.
+  than the analogous quantities in the observed data.
   \begin{itemize}
-    \item A model that exactly replicates the obvserved data is overfitting.
+    \item A model that exactly replicates the observed data is overfitting.
     \item The inferences from such models won't generalize to the population.
   \end{itemize}
 
@@ -629,7 +633,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{Fully Specified Path Diagram}
   
@@ -1029,7 +1033,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \begin{frame}{Optimization Objective}
 
@@ -1054,7 +1058,7 @@ knit_theme$set('edit-kwrite')
 
 \subsection{Degrees of Freedom}
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{Number of Estimated Parameters}
 
@@ -1123,7 +1127,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \begin{frame}{Available Information}
 
@@ -1183,7 +1187,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{Degrees of Freedom}
 
@@ -1212,7 +1216,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \begin{frame}{Identifying Constraints}
 
@@ -1289,7 +1293,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{Marker-Variable Method}
 
@@ -1587,7 +1591,7 @@ knit_theme$set('edit-kwrite')
 
 %------------------------------------------------------------------------------%
 
-\subsection{Under-Identifed Models}
+\subsection{Under-Identified Models}
 
 %------------------------------------------------------------------------------%
 
@@ -1633,7 +1637,7 @@ knit_theme$set('edit-kwrite')
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}{Under-Identifed: Marker-Variable}
+\begin{frame}{Under-Identified: Marker-Variable}
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -1674,7 +1678,7 @@ knit_theme$set('edit-kwrite')
 
 %------------------------------------------------------------------------------%
 
-\begin{frame}{Under-Identifed: Fixed-Factor}
+\begin{frame}{Under-Identified: Fixed-Factor}
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -1728,7 +1732,7 @@ knit_theme$set('edit-kwrite')
   \begin{columns}
     \begin{column}{0.5\textwidth}
 
-      With 4 indicaotrs, our model contains 14 parameters:
+      With 4 indicators, our model contains 14 parameters:
       \begin{itemize}
         \item Four factor loadings
         \item Four residual variances
@@ -1754,7 +1758,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \begin{frame}{Over-Identified Models}
 
@@ -1797,7 +1801,7 @@ knit_theme$set('edit-kwrite')
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}[fragile, allowframebreaks]{Over-Identified Models}
 
@@ -2206,7 +2210,7 @@ all(out)
 
 \end{frame}
 
-%------------------------------------------------------------------------------%
+\watermarkon %-----------------------------------------------------------------%
 
 \sectionslide{Example}
 
@@ -2217,7 +2221,7 @@ all(out)
 \def\gap{0.6}\relax     % Spread between indicator nodes
 \def\offset{30mm}\relax % Vertical offset between construct submodels
 
-%------------------------------------------------------------------------------%
+\watermarkoff %----------------------------------------------------------------%
 
 \begin{frame}{CFA of Extraversion Items}
 
