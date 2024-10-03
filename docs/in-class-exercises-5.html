@@ -354,7 +354,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="cfa.html"><a href="cfa.html"><i class="fa fa-check"></i><b>5</b> CFA</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lecture-4.html"><a href="lecture-4.html"><i class="fa fa-check"></i><b>5.1</b> Lecture</a></li>
+<li class="chapter" data-level="5.1" data-path="lecture-4.html"><a href="lecture-4.html"><i class="fa fa-check"></i><b>5.1</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="lecture-4.html"><a href="lecture-4.html#recordings-3"><i class="fa fa-check"></i><b>5.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="5.1.2" data-path="lecture-4.html"><a href="lecture-4.html#slides-4"><i class="fa fa-check"></i><b>5.1.2</b> Slides</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="reading-4.html"><a href="reading-4.html"><i class="fa fa-check"></i><b>5.2</b> Reading</a>
 <ul>
 <li class="chapter" data-level="" data-path="reading-4.html"><a href="reading-4.html#reference-3"><i class="fa fa-check"></i>Reference</a></li>
@@ -382,13 +386,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.7" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#cfa2nd"><i class="fa fa-check"></i><b>5.4.7</b> </a></li>
 <li class="chapter" data-level="5.4.8" data-path="in-class-exercises-4.html"><a href="in-class-exercises-4.html#section-77"><i class="fa fa-check"></i><b>5.4.8</b> </a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="extra-resources.html"><a href="extra-resources.html"><i class="fa fa-check"></i><b>5.5</b> Extra Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="full-sem.html"><a href="full-sem.html"><i class="fa fa-check"></i><b>6</b> Full SEM</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="lecture-5.html"><a href="lecture-5.html"><i class="fa fa-check"></i><b>6.1</b> Lecture</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="lecture-5.html"><a href="lecture-5.html#recording-1"><i class="fa fa-check"></i><b>6.1.1</b> Recording</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lecture-5.html"><a href="lecture-5.html#slides-4"><i class="fa fa-check"></i><b>6.1.2</b> Slides</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lecture-5.html"><a href="lecture-5.html#slides-5"><i class="fa fa-check"></i><b>6.1.2</b> Slides</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reading-5.html"><a href="reading-5.html"><i class="fa fa-check"></i><b>6.2</b> Reading</a>
 <ul>
@@ -415,8 +420,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="lecture-6.html"><a href="lecture-6.html"><i class="fa fa-check"></i><b>7.1</b> Lecture</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="lecture-6.html"><a href="lecture-6.html#recordings-3"><i class="fa fa-check"></i><b>7.1.1</b> Recordings</a></li>
-<li class="chapter" data-level="7.1.2" data-path="lecture-6.html"><a href="lecture-6.html#slides-5"><i class="fa fa-check"></i><b>7.1.2</b> Slides</a></li>
+<li class="chapter" data-level="7.1.1" data-path="lecture-6.html"><a href="lecture-6.html#recordings-4"><i class="fa fa-check"></i><b>7.1.1</b> Recordings</a></li>
+<li class="chapter" data-level="7.1.2" data-path="lecture-6.html"><a href="lecture-6.html#slides-6"><i class="fa fa-check"></i><b>7.1.2</b> Slides</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="reading-6.html"><a href="reading-6.html"><i class="fa fa-check"></i><b>7.2</b> Reading</a></li>
 <li class="chapter" data-level="7.3" data-path="at-home-exercises-6.html"><a href="at-home-exercises-6.html"><i class="fa fa-check"></i><b>7.3</b> At-Home Exercises</a>
@@ -527,7 +532,7 @@ Click to show code
 <span id="cb244-9"><a href="in-class-exercises-5.html#cb244-9" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_cfa, <span class="at">data =</span> condom)</span>
 <span id="cb244-10"><a href="in-class-exercises-5.html#cb244-10" tabindex="-1"></a></span>
 <span id="cb244-11"><a href="in-class-exercises-5.html#cb244-11" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6-18 ended normally after 29 iterations
+<pre><code>## lavaan 0.6-19 ended normally after 29 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -667,7 +672,7 @@ Click to show code
 <span id="cb246-11"><a href="in-class-exercises-5.html#cb246-11" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod, <span class="at">data =</span> condom)</span>
 <span id="cb246-12"><a href="in-class-exercises-5.html#cb246-12" tabindex="-1"></a></span>
 <span id="cb246-13"><a href="in-class-exercises-5.html#cb246-13" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6-18 ended normally after 24 iterations
+<pre><code>## lavaan 0.6-19 ended normally after 24 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -811,7 +816,7 @@ Click to show code
 <span id="cb248-10"><a href="in-class-exercises-5.html#cb248-10" tabindex="-1"></a>fit_tora <span class="ot">&lt;-</span> <span class="fu">sem</span>(mod_tora, <span class="at">data =</span> condom)</span>
 <span id="cb248-11"><a href="in-class-exercises-5.html#cb248-11" tabindex="-1"></a></span>
 <span id="cb248-12"><a href="in-class-exercises-5.html#cb248-12" tabindex="-1"></a><span class="fu">summary</span>(fit_tora, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">rsquare =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6-18 ended normally after 31 iterations
+<pre><code>## lavaan 0.6-19 ended normally after 31 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1259,7 +1264,7 @@ represents the data.</p>
 <span id="cb255-24"><a href="in-class-exercises-5.html#cb255-24" tabindex="-1"></a></span>
 <span id="cb255-25"><a href="in-class-exercises-5.html#cb255-25" tabindex="-1"></a><span class="do">## Check the results:</span></span>
 <span id="cb255-26"><a href="in-class-exercises-5.html#cb255-26" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code></pre></div>
-<pre><code>## lavaan 0.6-18 ended normally after 33 iterations
+<pre><code>## lavaan 0.6-19 ended normally after 33 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1328,7 +1333,7 @@ represents the data.</p>
 ##     norms             0.757    0.112    6.733    0.000
 ##     control           0.500    0.098    5.076    0.000</code></pre>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="in-class-exercises-5.html#cb257-1" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code></pre></div>
-<pre><code>## lavaan 0.6-18 ended normally after 31 iterations
+<pre><code>## lavaan 0.6-19 ended normally after 31 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1553,7 +1558,7 @@ summary(config, fit.measures = TRUE)
 ```
 
 ```
-## lavaan 0.6-18 ended normally after 54 iterations
+## lavaan 0.6-19 ended normally after 54 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1722,7 +1727,7 @@ summary(weak)
 ```
 
 ```
-## lavaan 0.6-18 ended normally after 37 iterations
+## lavaan 0.6-19 ended normally after 37 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1860,7 +1865,7 @@ summary(strong)
 ```
 
 ```
-## lavaan 0.6-18 ended normally after 60 iterations
+## lavaan 0.6-19 ended normally after 60 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB

@@ -1549,7 +1549,7 @@ knit_theme$set('edit-kwrite')
         \quad
         \Psi =
         \begin{bmatrix}
-          \psi_{11}
+          1
         \end{bmatrix}
         \\[8pt]
         \tau &=
