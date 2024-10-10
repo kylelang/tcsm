@@ -1,4 +1,4 @@
-colorout
+nvimcom
 knitr
 dplyr
 foreign
@@ -18,3 +18,4 @@ kableExtra
 labelled
 tidyr
 semPlot
+semptools

@@ -1,5 +1,9 @@
 ## At-Home Exercises
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
 This week, we'll take another look at the Kestilä (2006) results. During this
 practical, you will conduct an SEM to replicate the regression analysis of the
 Finnish data that you conducted in the [Week 4 In-Class Exercises](in-class-exercises-3.html).
@@ -109,8 +113,9 @@ satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem
 politicians  =~ pltinvt + pltcare + trstplt
 
 ## Specify the structural relations:
-institutions + satisfaction + politicians ~ 
-  female + age + eduyrs + hi_pol_interest + lrscale
+institutions +
+satisfaction +
+politicians ~ female + age + eduyrs + hi_pol_interest + lrscale
 '
 
 sem(mod_sem, data = ess_fin, fixed.x = FALSE) %>%
@@ -153,8 +158,9 @@ satisfaction =~ stfhlth + stfedu  + stfeco + stfgov + stfdem
 politicians  =~ pltinvt + pltcare + trstplt
 
 ## Specify the structural relations:
-institutions + satisfaction + politicians ~ 
-  female + age + eduyrs + hi_pol_interest + lrscale
+institutions ~ female + age + eduyrs + hi_pol_interest + lrscale
+satisfaction ~ female + age + eduyrs + hi_pol_interest + lrscale
+politicians  ~ female + age + eduyrs + hi_pol_interest + lrscale
 '
 ```
 
@@ -222,8 +228,10 @@ with the factor scores from \@ref(factorScores) acting as the DVs.
 ```{r}
 ## Define the model syntax for the path analysis:
 mod_pa <- '
-trust_inst + satisfy + trust_pol ~ 
-  female + age + eduyrs + hi_pol_interest + lrscale'
+trust_inst ~ female + age + eduyrs + hi_pol_interest + lrscale
+satisfy    ~ female + age + eduyrs + hi_pol_interest + lrscale
+trust_pol  ~ female + age + eduyrs + hi_pol_interest + lrscale
+'
 
 ## Estimate the path model:
 fit_pa <- sem(mod_pa, data = ess_fin, fixed.x = FALSE)

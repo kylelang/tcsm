@@ -1,5 +1,9 @@
 ## In-Class Exercises
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
 This week, we will wrap up our re-analysis of the Kestilä (2006) results. During
 this practical, you will conduct a CFA of the *Attitudes toward Immigration*
 items and compare the results to those obtained from your previous EFA- and
